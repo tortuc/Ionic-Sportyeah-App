@@ -1,0 +1,7 @@
+{
+  "name": "sportyeah-front",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
