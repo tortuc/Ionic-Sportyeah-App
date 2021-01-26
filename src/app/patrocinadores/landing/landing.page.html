@@ -1,0 +1,91 @@
+<ion-header class="noPM" >
+  <ion-toolbar [style.background]="colorNav">
+    <ion-buttons slot="start">
+      <ion-menu-button style="color: white"></ion-menu-button>
+    </ion-buttons>
+<!--    <img *ngIf="creator" 
+      (click)="changeLogo()"
+      style="cursor:pointer;"
+      [src]="landingService.ls.logo" width="200px" class="logoGood" 
+    />
+    <img *ngIf="!creator"
+      [src]="landingService.ls.logo" width="200px" class="logoGood" 
+      />-->
+    <ion-buttons slot="end" >
+      <ion-button 
+        *ngIf="!creator && userService.User?.username !== idUser"
+        (click)="setLocal()"
+      >
+        <ion-icon name="person-circle-outline"></ion-icon>
+        {{'GoToProfile' | translate}}
+      </ion-button>
+      <ion-button 
+        *ngIf="!creator && userService.User?.username === idUser"
+        (click)="creator = !creator"
+      >
+        <ion-icon name="person-circle-outline"></ion-icon>
+        {{'GoBack' | translate}}
+      </ion-button>
+ 
+      <ion-button *ngIf="creator" 
+        color="primary"
+        style="font-size: 9px;"
+        (click)="seePreview()"
+      >
+        <ion-icon name="eye-outline" style="margin-right: 5px;"></ion-icon>
+        Vista Previa
+      </ion-button>
+      <ion-list>
+      <ion-item
+
+        style="font-size: 9px;"
+        *ngIf="creator"
+      >
+        <ion-label>{{'activeLanding' | translate}} </ion-label>
+          
+        <ion-checkbox 
+
+          style="font-size: 7px;"
+          slot="end"
+          color="primary" 
+          [checked]="ls.ls.active"
+          (click)="changeStatus()"
+        >
+        </ion-checkbox>
+      </ion-item>
+      </ion-list>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+  <app-header-landing 
+    [creator]="creator"
+    [modalController]="modalController" 
+    [changeText]="changeText"
+  ></app-header-landing>
+  <app-optional-box 
+    [creator]="creator"
+    [modalController]="modalController" 
+    [changeText]="changeText"
+  >
+  </app-optional-box>
+  <app-products 
+    [creator]="creator"
+    [createProduct]="createProduct"
+    [modalController]="modalController"         
+    [changeText]="changeText"
+  ></app-products>
+  <app-carrousel-description 
+    [creator]="creator"
+    [modalController]="modalController" 
+    [changeText]="changeText"
+  ></app-carrousel-description>
+  <app-footer 
+    [creator]="creator"
+    [modalController]="modalController" 
+    [changeText]="changeText"
+  >
+  </app-footer>
+</ion-content>

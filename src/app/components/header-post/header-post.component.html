@@ -1,0 +1,10 @@
+<ion-avatar class="mini" (click)="goToProfile(post.user._id,post.user.username,post._id)">
+  <ion-img class="img-user-mini" [src]="post.user.photo"></ion-img>
+  <div class="connectedDIVlittlePost" *ngIf="post.user.connected"></div>
+</ion-avatar>
+<div class="user-name">
+  <span class="message profile-name" (click)="goToProfile(post.user._id,post.user.username,post._id)" >{{post.user.name}} {{post.user.last_name}}</span><br>
+  <span *ngIf="post.edited == null" (click)="goToPost(post._id)" class="profile-name date">{{post.date | customDisplayDate}}</span>
+  <span *ngIf="post.edited != null" (click)="goToPost(post._id)" class="profile-name date">editado el {{post.edited | customDisplayDate}}</span>
+</div>
+<ion-icon   *ngIf="post.user._id == userService.User?._id && displayOptions" name="chevron-down" (click)="openOptions($event)" class="options-down"></ion-icon>

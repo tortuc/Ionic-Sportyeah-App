@@ -1,0 +1,23 @@
+<!-- Contact-->
+<div 
+                class="button-photo-banner"
+                (click)="change()"
+                *ngIf="creator"
+
+    ><ion-icon name="camera-outline"
+                  style="margin-top: 6px; margin-left:7px;"
+      ></ion-icon></div>
+
+<section class="page-section" id="contact"
+  [style.backgroundImage]="'url('+ls.ls.dividerImg+')'">
+    <div class="container">
+        <div class="text-center">
+          <h5 class="section-subheading text-muted">{{landingService.ls.divider}}
+            <ion-icon name="create" class="editIcons"
+                                    *ngIf="creator"
+              (click)="changeText('divider')"   
+            ></ion-icon>
+          </h5>
+        </div>
+    </div>
+</section>

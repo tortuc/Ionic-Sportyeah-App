@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar class="bg-gradient-person">
+    <ion-title style="--color:white;">{{'search_friends.title' | translate}}</ion-title>
+    <ion-buttons slot="end" >
+      <ion-button (click)="dismiss()"  style="--color:white"><ion-icon name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  
+  <ion-item>
+    <ion-label position="floating" ><ion-icon name="search" style="vertical-align: middle;"></ion-icon> {{'search_your_friends' | translate}}</ion-label>
+    <ion-input [(ngModel)]="query" autofocus="true" (keyup)="filter()" type="text"></ion-input>
+  </ion-item>
+  <ion-item *ngFor="let user of users" >
+
+    <ion-thumbnail slot="start">
+      <ion-avatar class="mini" (click)="goToProfile(user._id,user.username)">
+        <img [src]="user.photo">
+      </ion-avatar>
+    </ion-thumbnail>
+    <ion-label class="profile-name" (click)="goToProfile(user._id,user.username)">
+      <span>{{user.name}} {{user.last_name}} </span><br>
+      <span style="font-size: 12px;">@{{user.username}}</span>
+    </ion-label>
+    <ion-button *ngIf="!userService.isFollow(user._id)" (click)="userService.follow(user._id)">{{'search_friends.follow' | translate}}</ion-button>
+    <ion-button *ngIf="userService.isFollow(user._id)" (click)="userService.unFollow(user._id)">{{'search_friends.unfollow' | translate}}</ion-button>
+    <ion-button *ngIf="userService.isFollow(user._id)" (click)="createChat(user)" ><ion-icon name="chatbubble-ellipses-outline"></ion-icon></ion-button>
+
+  </ion-item>
+  <ion-fab-button  style="z-index: 100;" (click)="whatsapp()" color="secondary"  class="new"><ion-icon name="logo-whatsapp"></ion-icon></ion-fab-button>
+
+</ion-content>

@@ -1,0 +1,101 @@
+<ion-header [fxShow.xs]="(!chat)?true:false">
+  <ion-toolbar  class="bg-gradient-person">
+    <ion-buttons slot="start">
+      <ion-menu-button style="color: white;"></ion-menu-button>
+    </ion-buttons>
+    <ion-title style="--color:white">{{'chat.title' | translate}}</ion-title>
+    <ion-buttons slot="end">
+      <button-search-friend></button-search-friend>
+
+      <button-notification></button-notification>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content  >
+  <ion-grid  class="p-0"  style="height: 100%;">
+    <ion-row  style="height: 100%;">
+      <ion-col size-lg="4" fxShow.lt-md="false" style="height: 100%;">
+        <ion-card class="friends-chat-card m-0" >
+          <ion-card-header style="padding: 0px !important;" class="bg-gradient-person">
+            <ion-item lines="none" style="--background:inherit">
+              <ion-thumbnail slot="start">
+                <ion-avatar class="mini" routerLink="/profile">
+                  <img [src]="userService.User?.photo">
+                </ion-avatar>
+              </ion-thumbnail>
+              <ion-title class="sport-title">SPORTYEAH!</ion-title>
+              <ion-icon slot="end" (click)="newChat()" name="chatbox" style="color:white !important;cursor: pointer;"></ion-icon>
+            </ion-item>
+          
+           
+          </ion-card-header>
+          <ion-card-content class="p-0">
+            <chat-user-item *ngFor="let item of chatService.chats"   [item]="item" (selected)="setChat($event)"></chat-user-item>
+          </ion-card-content>
+        </ion-card>
+
+      </ion-col>
+      <ion-col size="12" *ngIf="!chat" ngClass.xs="p-0"  fxShow.gt-sm="false" style="height: 100%;">
+        <ion-card class="friends-chat-card m-0" >
+          <ion-card-header style="padding: 0px !important;" class="bg-gradient-person">
+            <ion-item lines="none" style="--background:inherit">
+              <ion-thumbnail slot="start">
+                <ion-avatar class="mini"  routerLink="/profile">
+                  <img [src]="userService.User?.photo">
+                </ion-avatar>
+              </ion-thumbnail>
+              <ion-icon slot="end" (click)="newChat()" name="chatbox" style="color:white !important;cursor: pointer;"></ion-icon>
+            </ion-item>
+          
+           
+          </ion-card-header>
+          <ion-card-content class="p-0">
+            <chat-user-item *ngFor="let item of chatService.chats"   [item]="item" (selected)="setChat($event)"></chat-user-item>
+
+           
+          </ion-card-content>
+        
+        </ion-card>
+
+      </ion-col>
+  
+      <ion-col ngClass.xs="p-0" *ngIf="chat"   size-xs="12"  size-lg="8"  style="height: 100%; max-height: 100%;">
+        <chat-box [chat]="chat" (closeEvent)="chat = null"></chat-box>
+     
+      </ion-col>
+
+
+      <ion-col ngClass.xs="p-0" *ngIf="!chat"   size-xs="12"  size-lg="8"  style="height: 100%; max-height: 100%;">
+        <ion-card  class="chat-card  m-0 "  >
+          <ion-content #chatMessage  class="chat-content "> 
+            <ion-grid>
+              <ion-row >
+
+                <ion-col size="12">
+                  <ion-header >
+                    <ion-toolbar class="toolbar" >
+                      <ion-title style="color:black">{{'chat.start_chat' | translate}}</ion-title>
+                    </ion-toolbar>
+                  </ion-header>
+                </ion-col>
+
+                <ion-col size="12">
+                  <img class="image" src="https://img.icons8.com/clouds/452/chat-messages.png" alt="logo de sportyeah">
+                  <img class="basket" src="https://img.icons8.com/cotton/452/basketball--v1.png" alt="logo de sportyeah">
+                  <img class="pingpong" src="https://img.icons8.com/dusk/452/ping-pong.png" alt="logo de sportyeah">
+                  <img class="voley" src="https://img.icons8.com/cotton/452/volleyball.png" alt="logo de sportyeah">
+                  <img class="rugby" src="https://img.icons8.com/dusk/452/sport.png" alt="logo de sportyeah">
+                </ion-col>
+                
+              </ion-row>  
+            </ion-grid>
+          </ion-content>
+        </ion-card>
+      </ion-col>
+   
+  </ion-row>
+  
+  </ion-grid>
+</ion-content>
+

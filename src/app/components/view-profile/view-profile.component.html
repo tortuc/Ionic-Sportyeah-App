@@ -1,0 +1,51 @@
+<ion-header>
+  <ion-toolbar class="bg-gradient-person">
+    <ion-buttons slot="start">
+      <ion-back-button style="color: white;"></ion-back-button>
+    </ion-buttons>
+    <ion-title style="--color:white">{{'visitors.title' | translate}}</ion-title> 
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="bg-gradient-person" [scrollEvents]="true" (ionScrollEnd)="logScrolling($event)">
+  <ion-grid  style="padding: 0;" >
+    <ion-row   class="ion-justify-content-center">   
+      <ion-col ngClass.xs="m-p-0"  size-md="8" size-sm="12" >
+        <ion-card ngClass.xs="m-p-0" class="post-card" >
+          <ion-card-header class="text-center" >
+            <ion-avatar class="big" (click)="goTo('/profile')">
+
+              <ion-img class="img-user" [src]="userService.User?.photo"></ion-img>
+         
+            </ion-avatar>
+            <ion-card-title (click)="goTo('/profile')" >{{userService.User?.name}} {{userService.User?.last_name}} </ion-card-title>
+         
+          </ion-card-header> 
+            
+          <ion-card-content >
+            <ion-list lines="full">
+              <ion-item-sliding *ngFor="let item of vistasFor?.slice(0,indexLast )">
+                <ion-item-options side="start">
+                  <ion-item-option class="option" >{{item.Date | customDisplayDate}}</ion-item-option>
+                </ion-item-options>
+            <ion-item  >
+              <ion-thumbnail slot="start">
+                <ion-avatar (click)="userService.goToProfile(item.user.username,'profile',null)" class="mini">
+                  <img [src]="item.user.photo">
+                </ion-avatar>
+              </ion-thumbnail>
+              <ion-label class="profile-name" (click)="userService.goToProfile(item.user.username,'profile',null)">{{item.user.name}} {{item.user.last_name}}</ion-label>
+ 
+            </ion-item>
+            <ion-item-options side="end">
+              <ion-item-option class="option" ><ion-icon  name="eye-outline"></ion-icon> {{item.cantidad}}</ion-item-option>
+            </ion-item-options>
+          </ion-item-sliding>
+          </ion-list>
+          </ion-card-content>
+        </ion-card>
+       
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

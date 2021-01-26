@@ -1,0 +1,98 @@
+<ion-row>
+  <ion-col>
+    <h6 style="color: black; font-weight: bold">
+      {{'experience.title' | translate}}
+    </h6>
+  </ion-col>
+  <ion-col *ngIf="id==userService.User?._id">
+    <ion-icon
+      class="addPlus"
+      name="add-outline"
+      (click)="experienceService.experienceS = null"
+      routerLink="new-experience"
+    ></ion-icon>
+  </ion-col>
+</ion-row>
+<ng-container *ngIf="experiences$ | async as experiences">
+  <div *ngFor="let e of experiences" style="margin-bottom: 10px">
+    <div class="divExperiences" *ngIf="!e.deleted">
+      <ion-row>
+        <ion-col size="4" class="text-center">
+          <ion-slides pager="true" [options]="slideOpts">
+            <ion-slide *ngFor="let url of e.multimediaContent" class="slide">
+              <img
+                *ngIf="url.indexOf('image') !== -1"
+                [src]="url"
+                class="img"
+                alt=""
+              />
+              <video
+                *ngIf="url.indexOf('video') !== -1"
+                controlslist="nodownload"
+                controls="controls"
+                preload="metadata"
+                webkit-playsinline="webkit-playsinline"
+                class="videoPlayer"
+              >
+                <source [src]="url | safeUrl" type="video/mp4" />
+                <source [src]="url | safeUrl" type="video/ogg" />
+                <br />
+              </video>
+              <iframe
+                width="100%"
+                [src]="url | youtube"
+                *ngIf="url.indexOf('youtube') !== -1 && url | youtube"
+              >
+              </iframe>
+            </ion-slide>
+  
+            <ion-slide *ngIf="e.multimediaContent.length ===0">
+              <img
+                src="https://trello-attachments.s3.amazonaws.com/5ff9d47572424648014190dc/700x422/29f3e5ed0cea0a6b7439bfb986a090cd/original.jpg"
+                class="img"
+                alt=""
+              />
+            </ion-slide>
+          </ion-slides>
+        </ion-col>
+        <ion-col size="8">
+          <h2 class="t-16 t-black t-bold">{{e.position}}</h2>
+          <h6>{{e.title}}</h6>
+          <p class="visually-hidden">{{e.description}}</p>
+          <p style="font-size: 9px">{{e.federationTeam}} - {{e.place}}</p>
+          <p class="visually-hidden" style="font-size: 9px">
+            {{'experience.form.initDate' | translate}} {{e.initDate |
+            customDisplayDate : true}} -
+            <span
+              *ngIf="e.nowIn ===
+            false"
+              >{{'experience.form.finishDate' | translate}} {{e.finishDate |
+              customDisplayDate : true}}</span
+            >
+  
+            <span *ngIf="e.nowIn">{{'experience.form.nowIn' | translate}}</span>
+          </p>
+  
+          <ion-button
+            *ngIf="id==userService.User?._id"
+            style="float: right"
+            (click)="experienceService.delete(e._id)"
+          >
+            <ion-icon name="trash-outline"></ion-icon>
+          </ion-button>
+          <ion-button
+            *ngIf="id==userService.User?._id"
+            style="float: right"
+            (click)="experienceService.changeSelected(e)"
+            routerLink="new-experience"
+          >
+            <ion-icon name="create-outline"></ion-icon>
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </div>
+  </div>
+  <div class="text-center mb" *ngIf="experiences.length === 0">
+    {{'experience.no-info' | translate}}
+  </div>
+</ng-container>

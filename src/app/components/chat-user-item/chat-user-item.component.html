@@ -1,0 +1,15 @@
+<ion-item class="chat-item" (click)="setChat(item)">
+  <ion-thumbnail slot="start">
+    <ion-avatar class="mini">
+      <img [src]="(item.chat.sender._id != userService.User?._id)?item.chat.sender.photo:item.chat.receiver.photo">
+      <div class="connectedDIVlittle" *ngIf="(item.chat.sender?._id != userService.User?._id)?item.chat.sender?.connected:item.chat.receiver?.connected"></div>
+    </ion-avatar>
+  </ion-thumbnail>
+  <ion-label>
+    {{(item.chat.sender._id != userService.User?._id)?item.chat.sender.name:item.chat.receiver.name}} {{(item.chat.sender._id != userService.User?._id)?item.chat.sender.last_name:item.chat.receiver.last_name}} <br>
+    <span *ngIf="!item.lastMessage?.deleted && item.lastMessage != null" style="font-size: 12px;">{{item.lastMessage?.user.name}}: <ion-icon *ngIf="item.lastMessage?.image !=''" style="vertical-align: middle;" name="image"></ion-icon> <span *ngIf="item.lastMessage?.message != ''" [innerHTML]="item.lastMessage?.message | links"></span> </span>
+    <span *ngIf="item.lastMessage?.deleted" style="font-size: 12px;">{{item.lastMessage?.user.name}}:                 <span  style="font-size: 12px;color: gray;">{{'message_delete' | translate}}</span>
+  </span>
+  </ion-label>
+  <ion-badge *ngIf="item.unreads" style="--background:var(--color-primary)">{{item.unreads}}</ion-badge>
+</ion-item>

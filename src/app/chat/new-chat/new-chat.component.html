@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar  class="bg-gradient-person">
+    <ion-title style="--color:white">{{'chat.new' | translate}}</ion-title>
+    <ion-buttons slot="end" >
+      <ion-button (click)="dismiss()"  style="--color:white"><ion-icon name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content>
+    <ion-item *ngFor="let friend of userService.followings" class="friend" (click)="createChat(friend.user)">
+
+      <ion-thumbnail slot="start">
+        <ion-avatar class="mini">
+          <img [src]="friend.user.photo">
+        </ion-avatar>
+      </ion-thumbnail>
+      <ion-label >{{friend.user.name}} {{friend.user.last_name}}</ion-label>
+  
+    </ion-item>
+</ion-content>

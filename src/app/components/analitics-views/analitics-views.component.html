@@ -1,0 +1,435 @@
+<ion-header >
+  <ion-toolbar  class="bg-gradient-person">
+    <ion-buttons slot="start">
+      <ion-menu-button style="color: white;"></ion-menu-button>
+    </ion-buttons>
+    <ion-title style="--color:white">{{'analytics-views.title' | translate}}</ion-title>
+    <ion-buttons slot="end">
+      <div [routerLink]="'/profile'" class="search">
+        <ion-button>
+          <ion-icon name="arrow-undo" style="color:white;"></ion-icon>
+          <ion-title style="--color:white">{{'analytics-views.back-profile' | translate}}</ion-title>
+        </ion-button>
+      </div>      
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [scrollEvents]="true" (ionScrollEnd)="logScrolling($event)"  >
+  <ion-card>
+    <ion-card-header>
+      <ion-row>
+        <ion-col>
+          <ion-card-title>{{'analytics-views.subTilte' | translate}}</ion-card-title>
+          <ion-card-subtitle>{{'analytics-views.info' | translate}}</ion-card-subtitle>
+        </ion-col>
+        <ion-col>
+          <div  class="button">
+            <ion-button class="botons"  (click)="pieData()">
+              {{'analytics-views.all' | translate}}
+              <ion-icon class="icon" name="color-filter"></ion-icon>
+            </ion-button>
+          </div>
+        </ion-col>
+        <ion-col>
+          <div  class="button">
+            <ion-button  class="botons" (click)="working()"  > <!-- (click)="postLines()" -->
+              {{'analytics-views.post' | translate}}
+              <ion-icon class="icon" name="browsers"></ion-icon>
+            </ion-button>
+          </div>
+        </ion-col>
+      </ion-row>
+      
+    </ion-card-header>
+
+    <ion-card-content *ngIf="option == 'all'" >
+      <ion-row>
+
+        <ion-col size-xs="6" size-md="4"  size-lg="2">
+          <ion-text  (click)="presentToastWithOptions('analytics-views.info_post')"  style="cursor: pointer;;color: black;">
+            <h3>{{'analytics-views.post'| translate}}<span><ion-icon style="font-size: 20px;color:#385e81" name="information-circle-outline" ></ion-icon></span></h3>
+          </ion-text>
+        </ion-col>
+
+        <ion-col size-xs="6" size-md="4"  size-lg="2">
+          <ion-text (click)="presentToastWithOptions('analytics-views.info_chat')"  style="cursor: pointer;;color: black;">
+            <h3>{{'analytics-views.chat'| translate}}<span><ion-icon style="font-size: 20px;color:#26c281" name="information-circle-outline" ></ion-icon></span></h3>
+          </ion-text>
+        </ion-col>
+
+        <ion-col size-xs="6" size-md="4"  size-lg="2">
+          <ion-text (click)="presentToastWithOptions('analytics-views.info_search')"  style="cursor: pointer;;color: black;">
+            <h3>{{'analytics-views.search'| translate}}<span><ion-icon style="font-size: 20px;color:#d43c3c" name="information-circle-outline" ></ion-icon></span></h3>
+          </ion-text>
+        </ion-col>
+
+        <ion-col size-xs="6" size-md="4"  size-lg="2">
+          <ion-text (click)="presentToastWithOptions('analytics-views.info_profile')"  style="cursor: pointer;;color: black;">
+            <h3>{{'analytics-views.profile'| translate}}<span><ion-icon style="font-size: 20px;color:#6a19b5" name="information-circle-outline" ></ion-icon></span></h3>
+          </ion-text>
+        </ion-col>
+
+        <ion-col size-xs="6" size-md="4"  size-lg="2">
+          <ion-text (click)="presentToastWithOptions('analytics-views.info_reaction')"  style="cursor: pointer;;color: black;">
+            <h3>{{'analytics-views.reaction'| translate}}<span><ion-icon style="font-size: 20px;color:#3880ff" name="information-circle-outline" ></ion-icon></span></h3>
+          </ion-text>
+        </ion-col>
+
+        <ion-col size-xs="6" size-md="4"  size-lg="2">
+          <ion-text (click)="presentToastWithOptions('analytics-views.info_comment')"  style="cursor: pointer;;color: black;">
+            <h3>{{'analytics-views.comment'| translate}}<span><ion-icon style="font-size: 20px;color:#eef130" name="information-circle-outline" ></ion-icon></span></h3>
+          </ion-text>
+        </ion-col>
+
+      </ion-row>
+    </ion-card-content>
+
+    <ion-card-content *ngIf="option == 'post'" >
+      <ion-row>
+
+        <ion-col size-xs="6" size-md="4"  size-lg="2">
+          <ion-text (click)="presentToastWithOptions('analytics.info_views_post')"  style="cursor: pointer;;color: black;">
+            <h3>{{'analytics-views.reaction'| translate}}<span><ion-icon style="font-size: 20px;color:#3880ff" name="information-circle-outline" ></ion-icon></span></h3>
+          </ion-text>
+        </ion-col>
+
+        <ion-col size-xs="6" size-md="4"  size-lg="2">
+          <ion-text (click)="presentToastWithOptions('analytics-views.info_comment')"  style="cursor: pointer;;color: black;">
+            <h3>{{'analytics-views.comment'| translate}}<span><ion-icon style="font-size: 20px;color:#eef130" name="information-circle-outline" ></ion-icon></span></h3>
+          </ion-text>
+        </ion-col>
+
+      </ion-row>
+    </ion-card-content>
+
+  </ion-card>
+
+  
+  <ion-card *ngIf="option == 'all'">
+    <ion-card-content >
+      <ion-grid>
+        <ion-row >
+          <ion-col size-xs="12"  size-lg="5">
+            <ion-item>
+              <ion-label>
+                <ion-text color="black">
+                  <h1>{{'analytics-views.views' | translate}}: </h1>
+                </ion-text>
+              </ion-label>
+              <ion-text color="black">
+                <h2>{{allViews.length}}</h2>
+              </ion-text>   
+            </ion-item>
+            <ion-row>
+
+              <ion-col>
+                <div >
+                  <ion-button  class="botons" (click)="generateDay()" >
+                    <span >{{'analytics-views.today'| translate}}</span>
+                    <ion-icon class="calendar icon" name="today-outline"></ion-icon>
+                  </ion-button>
+                </div>
+              </ion-col>
+
+              <ion-col>
+                <div >
+                  <ion-button  class="botons" (click)="generateWeek()" >
+                    <span >{{'analytics-views.weeks'| translate}}</span>
+                    <ion-icon class="calendar icon" name="today-outline"></ion-icon>
+                  </ion-button>
+                </div>
+              </ion-col>
+
+              <ion-col>
+                <div >
+                  <ion-button  class="botons" (click)="generateMonth()" >
+                    <span >{{'analytics-views.months'| translate}}</span>
+                    <ion-icon class="calendar icon" name="today-outline"></ion-icon>
+                  </ion-button>
+                </div>
+              </ion-col>
+
+              <ion-col>
+                <div>
+                  <ion-button  class="botons" (click)="generateYear()" >
+                    <span >{{'analytics-views.years'| translate}}</span>
+                    <ion-icon class="calendar icon" name="calendar-outline"></ion-icon>
+                  </ion-button>
+                </div>
+              </ion-col>
+
+              <ion-col size="12" *ngIf="analyticsToShow == 'years'">
+                <ion-row>
+                  <ion-col size="12">
+                  <ion-item>
+                    <ion-label>
+                      <ion-text color="black">
+                        <h1>{{'analytics-views.year' | translate}}: </h1>
+                      </ion-text>
+                    </ion-label>
+                    <ion-text color="black">
+                      <h2> {{year}}</h2>
+                    </ion-text>   
+                  </ion-item>      
+                  </ion-col>
+                  <ion-col size="6">
+                    <ion-button class="week-button"  (click)="changeYear(-1)">{{'analytics-views.last' | translate}}</ion-button>
+                  </ion-col>
+                  <ion-col size="6">
+                    <ion-button class="week-button"  (click)="changeYear(1)">{{'analytics-views.next' | translate}}</ion-button>
+                  </ion-col>
+                </ion-row>
+               
+              </ion-col>
+
+              <ion-col size="12" *ngIf="analyticsToShow == 'months'">
+                <ion-row>
+                  <ion-col size="12">
+                    <ion-item>
+                      <ion-label>
+                        <ion-text color="black">
+                          <h1>{{'analytics-views.month' | translate}}:  </h1>
+                        </ion-text>
+                      </ion-label>
+                      <ion-text color="black">
+                        <h2>{{monthName}}</h2>
+                      </ion-text>   
+                    </ion-item>  
+                  </ion-col>
+
+                  <ion-col size="6">
+                    <ion-button class="week-button"  (click)="changeMonth(-1)">{{'analytics-views.last' | translate}}</ion-button>
+                  </ion-col>
+                  <ion-col size="6">
+                    <ion-button class="week-button"  (click)="changeMonth(1)">{{'analytics-views.next' | translate}}</ion-button>
+                  </ion-col>
+                </ion-row>
+              </ion-col>
+
+              <ion-col size="12" *ngIf="analyticsToShow == 'weeks'">
+                <ion-row>
+                  <ion-col size="12">
+                    <ion-item>
+                      <ion-label>
+                        <ion-text color="black">
+                          <h1>{{'analytics-views.days' | translate}}:  </h1>
+                        </ion-text>
+                      </ion-label>
+                      <ion-text color="black">
+                        <h2>{{daysWeek[0].date}} - {{daysWeek[6].date}}</h2>
+                      </ion-text>   
+                    </ion-item>  
+                  </ion-col>
+
+                  <ion-col size="6">
+                    <ion-button class="week-button"  (click)="changeWeek(-1)">{{'analytics-views.last' | translate}}</ion-button>
+                  </ion-col>
+                  <ion-col size="6">
+                    <ion-button class="week-button"  (click)="changeWeek(1)">{{'analytics-views.next' | translate}}</ion-button>
+                  </ion-col>
+                </ion-row>
+              </ion-col>
+
+              <ion-col size="12" *ngIf="analyticsToShow == 'hours'">
+                <ion-row>
+                  <ion-col size="12">
+                    <ion-item>
+                      <ion-label>
+                        <ion-text color="black">
+                          <h1>{{'analytics-views.day' | translate}}:  </h1>
+                        </ion-text>
+                      </ion-label>
+                      <ion-text color="black">
+                        <h2>{{day.format('YYYY-MM-DD')}}</h2>
+                      </ion-text>   
+                    </ion-item>  
+                  </ion-col>
+
+                  <ion-col size="6">
+                    <ion-button class="week-button"  (click)="changeDay(-1)">{{'analytics-views.last' | translate}}</ion-button>
+                  </ion-col>
+                  <ion-col size="6">
+                    <ion-button class="week-button"  (click)="changeDay(1)">{{'analytics-views.next' | translate}}</ion-button>
+                  </ion-col>
+                </ion-row>
+              </ion-col>
+
+            </ion-row>
+           
+          </ion-col>
+  
+          <ion-col size-xs="12"  size-lg="7"  >
+            
+           
+            <div class="divChart" *ngIf="analyticsToShow == 'all'" >
+              <canvas  id="polarArea" width="400" height="400"></canvas>
+            </div>
+            
+            <div class="divChart" *ngIf="analyticsToShow == 'hours' && noData ">
+              <canvas id="linesHour" width="400" height="400"></canvas>
+            </div>
+            
+            <div class="divChart" *ngIf="analyticsToShow == 'weeks' && noData ">
+              <canvas id="lines" width="400" height="400"></canvas>
+            </div>
+
+            <div class="divChart" *ngIf="analyticsToShow == 'months' && noData ">
+              <canvas id="linesMonth" width="400" height="400"></canvas>
+            </div>
+
+            <div class="divChart" *ngIf="analyticsToShow == 'years' && noData " >
+              <canvas  id="linesYear" width="400" height="400"></canvas>
+            </div>
+           
+            <div  *ngIf="noData === false" >
+              <ion-text  color="black">
+                <h1 class="textNoData">No hay datos para esta fecha</h1>
+              </ion-text>
+              <img class="noData" src="https://img.icons8.com/clouds/344/combo-chart.png" alt="logo de no datos analiticas">
+            </div>
+            
+          </ion-col>
+        </ion-row>            
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+
+ 
+  <div *ngIf="option == 'post'">
+    <ion-segment   class="segement"  [(ngModel)]="segment" >
+      <ion-segment-button  value='vistas'>     
+        <p style="visibility: visible">Post con mas redirecciones al peril</p>
+      </ion-segment-button>
+    
+    <ion-segment-button  value='usuarios'>     
+      <p style="visibility: visible">Usuarios que visitaron el perfil desde post</p>
+    </ion-segment-button>
+  </ion-segment>
+  </div>
+
+  <ion-card *ngIf="segment == 'vistas' && option == 'post'">
+    
+    <ion-card-content>
+      <ion-grid>
+        <ion-row>
+
+          <ion-col  style="padding: 0px;" size-xs="12"  size-lg="12">           
+              <ion-list>
+                
+                <ion-item>
+                  <ion-label>
+                    <ion-text color="black">
+                      <h1>Publicaciones</h1>
+                    </ion-text>
+                  </ion-label>
+                  <ion-text color="black">
+                    <h2>Total: {{totalViewsPost}}</h2>
+                  </ion-text>  
+                </ion-item>
+                
+                <ion-item *ngFor="let posts of postDeVerdad ">
+                  
+                    <ion-label>
+                      <ion-icon name="eye-outline"></ion-icon>
+                        {{posts.count}}
+                     
+                    </ion-label>
+                    <ion-note class="scale">
+                   <ion-card ngClass.xs="m-p-0"  style="width: 100%;">
+                   <ion-card-header>
+                      <header-post class="user-header" [post]="posts" ></header-post>       
+                    </ion-card-header>
+                  
+                    <ion-card-content  >
+                      <post-content [post]="posts"></post-content>
+                      <post-shared *ngIf="posts.post" [post]="posts.post" ></post-shared>
+                    </ion-card-content>
+                   </ion-card> 
+                   </ion-note>               
+                </ion-item>
+              
+              
+              </ion-list>          
+          </ion-col>
+
+          <!-- <ion-col size-xs="12"  size-lg="7"></ion-col>  -->
+
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+
+  </ion-card>
+
+  <ion-card  *ngIf="segment == 'usuarios' && option == 'post'" >
+    <ion-card-content>
+      <ion-grid>
+        <ion-row>
+          <ion-col  style="padding: 0px;" size-xs="12"  size-lg="12">           
+              <ion-list>
+                
+                <ion-item>
+                  <ion-label>
+                    <ion-text color="black">
+                      <h1>Publicaciones</h1>
+                    </ion-text>
+                  </ion-label>
+                  <ion-text color="black">
+                    <h2>Total: {{totalViewsPost}}</h2>
+                  </ion-text>  
+                </ion-item>
+                
+                <ion-item *ngFor="let posts of postInfoUser?.slice(0,indexLast ) ">
+                  
+                    <ion-label>
+                      <ion-text>
+                          <h5>Usuario: {{posts.user.name}} {{posts.user.last_name}}  </h5>
+                          <p>{{posts.Date | customDisplayDate}}</p>
+                      </ion-text>
+                    </ion-label>
+                    <ion-note class="scale">
+                   <ion-card ngClass.xs="m-p-0"  style="width: 100%;">
+                   <ion-card-header>
+                      <header-post class="user-header" [post]="posts.link" ></header-post>       
+                    </ion-card-header>
+                
+                    <ion-card-content  >
+                      <post-content [post]="posts.link"></post-content>
+                      <post-shared *ngIf="posts.link.post" [post]="posts.link.post" ></post-shared>
+                    </ion-card-content>
+                   </ion-card> 
+                   </ion-note>               
+                </ion-item>
+              </ion-list>          
+          </ion-col>
+          <!-- <ion-col size-xs="12"  size-lg="7"></ion-col>  -->
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+
+    
+  </ion-card>
+
+
+<ion-card *ngIf="option == 'working'">
+  <ion-card-content>
+    <ion-grid>
+      <ion-row>
+        <ion-col size ="5">
+          <ion-text style="position: relative; left: 13%;" class="botons">
+            <h1 class="h1Work">Estamos trabajando en esta función para usted</h1>
+          </ion-text>   
+          <img class="bottle" src="https://img.icons8.com/cotton/452/sport-bottle.png" alt="sport-bottle">
+          <img class="dumbbell" src="https://img.icons8.com/cotton/452/dumbbell--v1.png" alt="dumbbell">
+          <img class="helmet" src="https://img.icons8.com/cotton/344/american-football-helmet--v3.png" alt="american-football-helmet">
+          
+        </ion-col>
+        <ion-col size="7">
+          <img class="image" src="https://img.icons8.com/clouds/452/work.png" alt="logo trabajando en ello">
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card-content>
+</ion-card>
+
+</ion-content>

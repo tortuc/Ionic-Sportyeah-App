@@ -1,0 +1,41 @@
+<div class="wish" ngClass.xs="p-mini" >
+  <ion-icon name="close" class="close" (click)="close()"></ion-icon>
+  <ion-img class="laso" ngClass.xs="laso-mini" src="assets/images/laso-morado.png"></ion-img>
+  <h4 class="title" style="font-family: cursive;">{{wish.title}}</h4>
+  <h6 class="title">{{wish.description}}</h6>
+
+  <div class="white date">{{wish.type | translate}} - {{wish.privacity | translate}} {{wish.endDate | customDisplayDate:true}}</div>
+  <div class="white price-div">
+    <p >
+
+      <span>{{'price' | translate}}: </span> <span class="price">{{wish.price | currency:'EUR'}}</span>
+    </p>
+  </div>
+  <div *ngIf="wish.location != null" class="white">
+    <p style="    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;">
+
+      <span >{{'where_find' | translate}}: </span><br> <span class="location" [innerHTML]="wish.location | links"></span>
+    </p>
+  </div>
+
+  <div >
+    <url-preview *ngIf="preview" [preview]="preview" ></url-preview>
+    
+  </div>
+  
+ 
+  
+
+  <div *ngIf="wish.files.length > 0" style="margin-bottom: 40px;">
+    <span class="white">
+      {{'files' | translate}}
+    </span>
+    <view-files [files]="wish.files"></view-files>
+  </div>
+
+  <div *ngIf="wish.user._id == userService.User._id" style="text-align: center;">
+    <ion-button  class="add-button" (click)="done()">{{'make_done' | translate}}</ion-button>
+  </div>
+</div>

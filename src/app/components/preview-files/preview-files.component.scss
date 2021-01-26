@@ -1,0 +1,43 @@
+
+.close{
+    position: absolute;
+    top: 2px;
+    font-size: 20px;
+    right: 5px;
+    color: red;
+    cursor: pointer;
+    z-index: 100;
+}
+
+.document{
+    height: 80px;
+    position: relative;
+    .icon{
+        font-size: 50px;
+        left: 0;
+        color: var(--color-primary);
+        right: 0;
+        margin: auto;
+    }
+    .name{
+        bottom: 1px;
+        left: 0;
+        max-height: 20px;
+        right: 0;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+    
+}
+
+.image{
+    height: 120px;
+    position: relative;
+}
+
+
+.image-view{
+    max-height: 120px;
+    overflow: hidden;
+}

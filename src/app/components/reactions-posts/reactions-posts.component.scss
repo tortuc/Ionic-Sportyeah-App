@@ -1,0 +1,327 @@
+/* body {
+  background: #2ae;
+  color: #333;
+  text-align: center;
+  font-family: 'Open Sans', sans-serif;
+}
+
+p.f {
+  color: #fff;
+  font-size: 32px;
+  width: 42px;
+  height: 42px;
+  display: inline-block;
+  line-height: 62px;
+  background: #3b5998;
+  border-radius: 2px;
+  margin: 25px 0 0;
+  font-weight: 600;
+}
+
+span {
+  display: block;
+  color: #fff;
+  font-size: 14px;
+  text-transform: uppercase;
+}
+
+.bar {
+  background: #fff;
+  border-radius: 45px;
+  display: table;
+  height: 55px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+.circle {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background: #ff9;
+  float: left;
+  margin: 5px;
+  display: block;
+  text-align: center;
+  line-height: 45px;
+  transition: 0.5s;
+}
+
+.circle:hover{
+
+  -webkit-transform: scale(1.2);
+  -moz-transform: scale(1.2);
+  -ms-transform: scale(1.2);
+  -o-transform: scale(1.2);
+  transform: scale(1.2);
+  transition: 0.5s;
+}
+.circle:nth-child(1){
+  background: url("https://i.imgur.com/wVAJS8T_d.jpg?maxwidth=640&shape=thumb&fidelity=medium") no-repeat center;
+  background-size: 3.2pc;
+}
+
+.circle:nth-child(2){
+  background: url("https://i.imgur.com/y7qZQS3_d.jpg?maxwidth=640&shape=thumb&fidelity=medium")  no-repeat center;
+  background-size: 3.2pc;
+
+}
+.circle:nth-child(3){
+  background: url("https://i.imgur.com/eq69HEz_d.jpg?maxwidth=640&shape=thumb&fidelity=medium") no-repeat center;
+  background-size: 3.2pc;
+}
+
+.circle:nth-child(4){
+  background: url("https://i.imgur.com/XQSbgpw_d.jpg?maxwidth=640&shape=thumb&fidelity=medium")  no-repeat center;
+  background-size: 3.2pc;
+
+}
+.circle:nth-child(5){
+  background: url("https://i.imgur.com/JlQiyAu_d.jpg?maxwidth=640&shape=thumb&fidelity=medium") no-repeat center;
+  background-size: 3.2pc;
+}
+
+.circle:nth-child(6){
+  background: url("https://i.imgur.com/P4Xm6Ds_d.jpg?maxwidth=640&shape=thumb&fidelity=medium")  no-repeat center;
+  background-size: 3.2pc;
+
+}
+
+p {
+  margin-top: 15px;
+} */
+
+
+
+
+* {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  background: #e9eaed;
+  font-family: arial, sans-serif;
+}
+
+.text-desc, [class*="reaction-"], .field-reactions, .field-reactions:checked:focus ~ .text-desc {
+  clip: rect(1px, 1px, 1px, 1px);
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.field-reactions:focus ~ .text-desc, .box:hover [class*="reaction-"], .field-reactions:checked ~ [class*="reaction-"] {
+  clip: auto;
+  overflow: visible;
+  opacity: 1;
+}
+
+.main-title {
+  background: #3a5795;
+  padding: 10px;
+  color: #fff;
+  text-align: center;
+  font-size: 16px;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.text-desc {
+  font-weight: normal;
+  text-align: center;
+  transform: translateY(-50px);
+  white-space: nowrap;
+  font-size: 13px;
+  width: 100%;
+}
+
+[class*="reaction-"] {
+  border: none;
+  background-image: url(http://deividmarques.github.io/facebook-reactions-css/assets/images/facebook-reactions.png);
+  background-color: transparent;
+  display: block;
+  cursor: pointer;
+  height: 48px;
+  position: absolute;
+  width: 48px;
+  z-index: 11;
+  top: -28;
+  transform-origin: 50% 100%;
+  transform: scale(0.1);
+  transition: all 0.3s;
+  outline: none;
+  will-change: transform;
+  opacity: 0;
+}
+
+.box {
+  position: absolute;
+  left: calc(50% - 150px);
+  top: calc(50% - 50px);
+  width: 300px;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9;
+  visibility: hidden;
+}
+
+.field-reactions:focus ~ .label-reactions {
+  border-color: rgba(88, 144, 255, 0.3);
+}
+.field-reactions:checked:focus ~ .label-reactions {
+  border-color: transparent;
+}
+
+.label-reactions {
+  background: url(https://cdn4.iconfinder.com/data/icons/facebook-likes/100/1.png) no-repeat 0 0;
+  border: 2px dotted transparent;
+  display: block;
+  height: 100px;
+  margin: 0 auto;
+  width: 100px;
+  color: transparent;
+  cursor: pointer;
+}
+
+.toolbox {
+  background: #fff;
+  height: 52px;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.08), 0 2px 2px rgba(0, 0, 0, 0.15);
+  width: 300px;
+  border-radius: 40px;
+  top: -30px;
+  left: 0;
+  position: absolute;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+
+.legend-reaction {
+  background: rgba(0, 0, 0, 0.75);
+  border-radius: 10px;
+  box-sizing: border-box;
+  color: #fff;
+  display: inline-block;
+  font-size: 11px;
+  text-overflow: ellipsis;
+  font-weight: bold;
+  line-height: 20px;
+  max-width: 100%;
+  opacity: 0;
+  overflow: hidden;
+  padding: 0 6px;
+  transition: opacity 50ms ease;
+  left: 50%;
+  position: absolute;
+  text-align: center;
+  top: -28px;
+  transform: translateX(-50%);
+}
+
+.box:hover [class*="reaction-"] {
+  transform: scale(0.8) translateY(-40px);
+}
+.box:hover [class*="reaction-"]:hover, .box:hover [class*="reaction-"]:focus {
+  transition: all 0.2s ease-in;
+  transform: scale(1) translateY(-35px);
+}
+.box:hover [class*="reaction-"]:hover .legend-reaction, .box:hover [class*="reaction-"]:focus .legend-reaction {
+  opacity: 1;
+}
+.box:hover .toolbox {
+  opacity: 1;
+}
+.box:hover .toolbox {
+  visibility: visible;
+}
+.box:hover .reaction-love {
+  transition-delay: 0.06s;
+}
+.box:hover .reaction-haha {
+  transition-delay: 0.09s;
+}
+.box:hover .reaction-wow {
+  transition-delay: 0.12s;
+}
+.box:hover .reaction-sad {
+  transition-delay: 0.15s;
+}
+.box:hover .reaction-angry {
+  transition-delay: 0.18s;
+}
+
+.field-reactions:checked ~ [class*="reaction-"] {
+  transform: scale(0.8) translateY(-40px);
+}
+.field-reactions:checked ~ [class*="reaction-"]:hover, .field-reactions:checked ~ [class*="reaction-"]:focus {
+  transition: all 0.2s ease-in;
+  transform: scale(1) translateY(-35px);
+}
+.field-reactions:checked ~ [class*="reaction-"]:hover .legend-reaction, .field-reactions:checked ~ [class*="reaction-"]:focus .legend-reaction {
+  opacity: 1;
+}
+.field-reactions:checked ~ .toolbox {
+  opacity: 1;
+}
+.field-reactions:checked ~ .toolbox,
+.field-reactions:checked ~ .overlay {
+  visibility: visible;
+}
+.field-reactions:checked ~ .reaction-love {
+  transition-delay: 0.03s;
+}
+.field-reactions:checked ~ .reaction-haha {
+  transition-delay: 0.09s;
+}
+.field-reactions:checked ~ .reaction-wow {
+  transition-delay: 0.12s;
+}
+.field-reactions:checked ~ .reaction-sad {
+  transition-delay: 0.15s;
+}
+.field-reactions:checked ~ .reaction-angry {
+  transition-delay: 0.18s;
+}
+
+.reaction-like {
+  left: 0;
+  background-position: 0 -144px;
+}
+
+.reaction-love {
+  background-position: -48px 0;
+  left: 50px;
+}
+
+.reaction-haha {
+  background-position: -96px 0;
+  left: 100px;
+}
+
+.reaction-wow {
+  background-position: -144px 0;
+  left: 150px;
+}
+
+.reaction-sad {
+  background-position: -192px 0;
+  left: 200px;
+}
+
+.reaction-angry {
+  background-position: -240px 0;
+  left: 250px;
+}

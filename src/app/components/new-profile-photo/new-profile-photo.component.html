@@ -1,0 +1,12 @@
+<ion-avatar *ngIf="take" class="big">
+  <ion-img (click)="takePhotoFrom()" class="img-user img-edit" [src]="userService.User?.photo">
+
+  </ion-img>
+  
+</ion-avatar>
+<ion-avatar *ngIf="!take" class="big">
+  <ion-img routerLink="/profile" class="img-user img-edit" [src]="userService.User?.photo">
+
+  </ion-img>
+  
+</ion-avatar>

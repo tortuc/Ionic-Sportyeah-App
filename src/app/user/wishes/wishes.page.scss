@@ -1,0 +1,9 @@
+.add-button{
+    font-size: 10px;
+    --background: var(--color-primary);
+    height: 30px;
+}
+
+ion-segment-button{
+    --color-checked: var(--color-primary);
+}

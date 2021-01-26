@@ -1,0 +1,58 @@
+.edit {
+  vertical-align: middle;
+  cursor: pointer;
+}
+
+.mt5 {
+  margin-top: 10px;
+}
+
+.bandera {
+  width: 20px;
+}
+
+.banner {
+  background-size: cover;
+  padding: 0;
+  margin: 0;
+  height: 250px;
+}
+
+.button-photo-banner {
+  color: rgba(35, 112, 61, 0.993);
+  margin-top: 10px;
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
+  font-size: 20px;
+  margin-right: 10px;
+  border-radius: 50%;
+  background-color: white;
+  float: right;
+}
+
+.estado {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+.analythics{
+  color:black;
+  --background:#cfe2cf ;
+}
+.botonEliminar{
+  font-size: 13px;
+  color: red;
+  position: absolute;
+  right: 10px;;
+}
+
+.botonEditar{
+  font-size: 13px;
+  color: yellow;
+  position: absolute;
+  right: 23px;
+}
+

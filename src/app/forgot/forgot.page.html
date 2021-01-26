@@ -1,0 +1,63 @@
+<ion-content ngClass.gt-xs="bg-gradient-person">
+  <ion-grid style="padding: 0" class="height-100vh">
+    <ion-row
+      class="height-100vh ion-align-items-center ion-justify-content-center"
+    >
+      <ion-col class="max-widht-520" size-lg="5" size-md="8" size-sm="12">
+        <ion-card ngClass.xs="login-xs">
+          <ion-card-header class="text-center">
+            <div class="title-project"
+              style="cursor: pointer"
+              (click)="userService.goLanding()"
+            >
+            <img src="https://i.ibb.co/g6TFj6G/Logo-TRANSPARENTE.png" alt="SportYeah" width="200px"
+            style="vertical-align: middle !important;">
+            </div>
+           <ion-card-title>{{'forgot.title' | translate}}</ion-card-title>
+            <ion-card-subtitle
+              >{{'forgot.subtitle' | translate}}</ion-card-subtitle
+            >
+          </ion-card-header>
+
+          <ion-card-content>
+            <ion-grid>
+              <ion-row>
+                <ion-col>
+                  <form [formGroup]="forgotForm">
+                    <ion-grid class="max-widht-300 center">
+                      <ion-row>
+                        <ion-col size="12">
+                          <ion-item>
+                            <ion-label position="floating"
+                              >{{'forgot.email.label' | translate}}</ion-label
+                            >
+                            <ion-input
+                              formControlName="email"
+                              type="email"
+                            ></ion-input>
+                          </ion-item>
+                        </ion-col>
+                      </ion-row>
+                    </ion-grid>
+                  </form>
+
+                  <ion-button
+                    [disabled]="forgotForm.invalid"
+                    (click)="send()"
+                    class="btn-primary"
+                    expand="block"
+                    fill="outline"
+                    >{{'forgot.button' | translate}}</ion-button
+                  >
+                  <div class="max-widht-300 center margin-top-10 text-center">
+                    <a routerLink="/login">{{'forgot.back'| translate}}</a>
+                  </div>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

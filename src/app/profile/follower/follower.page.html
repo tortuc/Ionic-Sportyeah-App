@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-toolbar class="bg-gradient-person">
+    <ion-buttons slot="start">
+      <ion-back-button style="color: white;"></ion-back-button>
+    </ion-buttons>
+    <ion-title style="--color:white">{{'following.title' | translate}}</ion-title> 
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="bg-gradient-person">
+  <ion-grid  style="padding: 0;" >
+    <ion-row   class=" ion-justify-content-center ">
+      <ion-col ngClass.xs="m-p-0"  size-md="8" size-sm="12" >
+        <ion-card ngClass.xs="m-p-0" class="post-card" >
+          <ion-card-header class="text-center" >
+            <ion-avatar class="big" (click)="goTo('/profile')">
+
+              <ion-img class="img-user" [src]="userService.User?.photo"></ion-img>
+         
+            </ion-avatar>
+            <ion-card-title (click)="goTo('/profile')" >{{userService.User?.name}} {{userService.User?.last_name}} </ion-card-title>
+         
+          </ion-card-header>
+            
+          <ion-card-content >
+            <ion-item *ngFor="let item of userService.followers" >
+
+              <ion-thumbnail slot="start">
+                <ion-avatar (click)="userService.goToProfile(item.follower.username)" class="mini">
+                  <img [src]="item.follower.photo">
+                </ion-avatar>
+              </ion-thumbnail>
+              <ion-label class="profile-name" (click)="userService.goToProfile(item.follower.username,'profile',null)">{{item.follower.name}} {{item.follower.last_name}}</ion-label>
+              <ion-button *ngIf="!userService.isFollow(item.follower._id)" (click)="userService.follow(item.follower._id)">{{'search_friends.follow' | translate}}</ion-button>
+              <ion-button *ngIf="userService.isFollow(item.follower._id)" (click)="userService.unFollow(item.follower._id)">{{'search_friends.unfollow' | translate}}</ion-button>
+          
+            </ion-item>
+          </ion-card-content>
+        </ion-card>
+       
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

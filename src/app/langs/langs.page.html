@@ -1,0 +1,11 @@
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let lang of langs" (click)="use(lang)">
+      <ion-img style="width: 24px;height: 24px;margin-right: 5px;" src="./assets/flags/{{lang}}.png"></ion-img> {{lang}}
+    </ion-item>
+
+    <ion-item (click)="close()">
+      {{'langs.close' | translate}}
+    </ion-item>
+  </ion-list>
+</ion-content>

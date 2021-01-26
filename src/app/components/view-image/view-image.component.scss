@@ -1,0 +1,19 @@
+.img{
+    position: absolute;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    max-height: 100%;
+    max-width: 100%;
+}
+
+.close{
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    font-size: 32px;
+    z-index: 100;
+    color: red;
+    cursor: pointer;
+}

@@ -1,0 +1,42 @@
+<ion-grid>
+  <ion-row>
+    <ion-col *ngFor="let file of files" size="4">
+      <div *ngIf="file.type == 'document'" class="document">
+        <ion-icon name="close" class="close" (click)="close(file)"></ion-icon>
+        <div>
+
+          <ion-icon name="document-attach" class="icon"></ion-icon>
+        </div>
+        <div>
+
+          <p class="name">{{file.name}}</p>
+        </div>
+      </div>
+      <div *ngIf="file.type == 'image'" class="image">
+        <ion-icon name="close" class="close" (click)="close(file)"></ion-icon>
+        <div class="image-content">
+          <ion-img [src]="file.url" class="image-view"></ion-img>
+        </div>
+       
+      </div>
+      <div *ngIf="file.type == 'video'" class="image">
+        <ion-icon name="close" class="close" (click)="close(file)"></ion-icon>
+          <video style="width: 100%;" autoplay="true" >
+            <source [src]="file.url | safeUrl" type="video/mp4" />
+            <source [src]="file.url | safeUrl" type="video/ogg" />
+
+          </video>
+
+       
+      </div>
+      <div *ngIf="file.type == 'youtube' && file.url | youtube" class="image">
+        <ion-icon name="close" class="close" (click)="close(file)"></ion-icon>
+        <iframe style="max-height: 120px;" [src]="file.url | youtube" frameborder="0"></iframe>
+
+
+       
+      </div>
+      
+    </ion-col>
+  </ion-row>
+</ion-grid>

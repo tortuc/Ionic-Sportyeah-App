@@ -1,0 +1,22 @@
+<div [ngClass]="{'disabled':disabled}">
+  <ion-card ngClass.xs="m-p-0 " class="m-0"  style="width: 100%;">
+    <ion-card-header>
+      <header-post [displayOptions]="false" class="user-header" [post]="post" ></header-post>       
+
+    </ion-card-header>
+  
+    <ion-card-content (click)="goToPost(post._id)">
+      <p  style="user-select: none;pointer-events: none;white-space:pre-wrap;cursor: pointer;"><span class="message" [innerHTML]="post.message | links"></span></p>
+
+      <img class="img-post" *ngIf="post.image != null" [src]="post.image"/>
+      <iframe *ngIf="post.message  | youtube" [src]="post.message  | youtube" frameborder="0"></iframe>
+      <video *ngIf="post.video != null && post.video != ''"  controls="controls" preload="metadata"  webkit-playsinline="webkit-playsinline" class="videoPlayer">
+        <source [src]="post.video | safeUrl" type="video/mp4" />
+        <source [src]="post.video | safeUrl" type="video/ogg" />
+       </video>
+  
+    
+    </ion-card-content>
+   
+  </ion-card>
+</div>

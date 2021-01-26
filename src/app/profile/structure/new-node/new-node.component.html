@@ -1,0 +1,50 @@
+<ion-content class="text-center">
+  <h3 *ngIf="creating"> 
+    {{ 'creating'  | translate}} 
+  </h3>
+  <h3 *ngIf="!creating">
+    {{'changing' | translate}}
+  </h3>
+<form [formGroup]="form">
+  <ion-img 
+    [src]="photo" 
+    (click)="editPhoto()" 
+    style="cursor: pointer;"
+  >
+  </ion-img>
+    
+  <ion-item>
+    <ion-label position="stacked"
+    >{{'structure.modal.title' | translate}}</ion-label>
+    <ion-input type="text" 
+      [placeholder]="'enterText' | translate"
+      style="background: transparent;"
+      formControlName="title"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="stacked"
+    >{{'structure.modal.subtitle' | translate}}</ion-label>
+    <ion-input type="text" 
+      [placeholder]="'enterText' | translate"
+      style="background: transparent;"
+      formControlName="subtitle"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="stacked"
+    >{{'structure.modal.text' | translate}}</ion-label>
+    <ion-textarea type="text" 
+      [placeholder]="'enterText' | translate"
+      style="background: transparent;"
+      formControlName="text"></ion-textarea>
+  </ion-item>
+  <ion-button 
+      style="margin-top: 20px;"
+      (click)="save(form.value)"   
+      [disabled]="form.status !== 'VALID'"
+  >
+    {{'profile_edit.btn' | translate}}
+  </ion-button>
+</form>
+</ion-content>

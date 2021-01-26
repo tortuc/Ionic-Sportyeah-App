@@ -11,12 +11,16 @@
 
 /* Core CSS required for Ionic components to work properly */
 @import "~@ionic/angular/css/core.css";
+@font-face {
+  font-family: fast;
+  src: url(./assets/fonts/carter.ttf)
+}
 
 /* Basic CSS for apps built with Ionic */
 @import "~@ionic/angular/css/normalize.css";
 @import "~@ionic/angular/css/structure.css";
 @import "~@ionic/angular/css/typography.css";
-@import '~@ionic/angular/css/display.css';
+@import "~@ionic/angular/css/display.css";
 
 /* Optional CSS utils that can be commented out */
 @import "~@ionic/angular/css/padding.css";
@@ -24,3 +28,517 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+
+@import "~@ctrl/ngx-emoji-mart/picker";
+
+:root {
+  --color-primary: #006400;
+}
+::-webkit-scrollbar-track {
+  --webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3) !important;
+  border-radius: 10px !important;
+  background-color: inherit !important;
+}
+
+::-webkit-scrollbar {
+  width: 10px !important;
+  background-color: inherit !important;
+  height: 5px !important;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 10px !important;
+  --webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3) !important;
+  background-color: var(--color-primary) !important;
+}
+
+.friends-mobile {
+  max-width: 100% !important;
+  display: -webkit-box !important;
+  overflow: auto !important;
+}
+
+*[ng-reflect-router-link]:focus {
+  outline: none;
+}
+
+.bg-transparent {
+  background: transparent !important;
+}
+
+.title-project{
+  font-size: 40px;
+  font-family: "fast";
+  color:#006400;
+}
+
+ion-avatar.mini {
+  --border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+}
+ion-avatar.mention {
+  --border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
+}
+ion-avatar.xmini {
+  --border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+}
+ion-avatar.big {
+  --border-radius: 50%;
+  width: 150px;
+  height: 150px;
+  margin: auto;
+  cursor: pointer;
+}
+
+ion-title {
+  --color: white;
+}
+ion-card {
+  --background: white;
+}
+
+ion-item {
+  --background: white;
+  --color: black;
+}
+
+ion-infinite-scroll-content {
+  text-align: unset !important;
+}
+
+iframe {
+  width: 100%;
+  height: 300px;
+}
+
+.users-mentions {
+  display: flex;
+  margin: 5px;
+  cursor: pointer;
+  border-radius: 5px;
+  padding: 5px;
+}
+.users-mentions:hover {
+  background: #8219b42e;
+}
+
+calendar {
+  color: black;
+}
+ion-checkbox {
+  --border-color: auto;
+  vertical-align: middle;
+  --background: white;
+}
+
+ion-list {
+  background: white !important;
+}
+ion-content {
+  --background: white !important;
+}
+
+ion-card-title {
+  color: #000;
+}
+
+ion-item {
+  --border-color: #dad3d3 !important;
+}
+.date {
+  font-size: 12px;
+  color: #3a3a3a;
+}
+.profile-name {
+  cursor: pointer;
+}
+
+.profile-name:hover {
+  color: var(--color-primary);
+}
+
+.color-primary {
+  color: var(--color-primary);
+}
+
+.text-center {
+  text-align: center !important;
+}
+
+.bg-gradient-person {
+  --background: linear-gradient(90deg, rgb(16 42 82) 0%, rgb(131 197 247) 100%)!important 
+
+}
+.bg-gradient-person-fab {
+  --background:linear-gradient(150deg, #499091 1%, #c0ffd0 70%)!important;
+}
+.bg-gradient-purple {
+  --background: linear-gradient(150deg, #499091 1%, #c0ffd0 70%)!important;
+}
+
+.max-widht-300 {
+  max-width: 300px !important;
+}
+.max-widht-520 {
+  max-width: 520px !important;
+}
+.max-widht-700 {
+  max-width: 700px !important;
+}
+
+.center {
+  margin: auto !important;
+}
+
+.ilike {
+  --color: #e0245e;
+}
+.icomment {
+  --color: blue;
+}
+.ishared {
+  --color: #17bf63;
+}
+
+.margin-top-10 {
+  margin-top: 10px !important;
+}
+
+.text-right {
+  text-align: right;
+}
+
+a {
+  background-color: #6b272700;
+  color: var(--color-primary);
+  text-decoration: none !important;
+}
+
+.btn-primary {
+  max-width: 200px !important;
+  margin: auto;
+  margin-top: 15px;
+  --border-color: var(--color-primary);
+  --color: var(--color-primary);
+}
+
+.img-login {
+  width: 200px;
+  margin: auto;
+}
+
+.img-user {
+  width: 150px;
+  height: 150px;
+  margin: auto;
+}
+.img-user-mini {
+  width: 50px;
+  height: 50px;
+  margin: auto;
+}
+
+.user {
+  color: var(--color-primary);
+  cursor: pointer;
+}
+
+.user-header {
+  display: flex;
+  position: relative;
+}
+
+.post-card {
+  max-width: 700px;
+  margin: auto;
+}
+
+.name-mention {
+  align-self: center;
+  margin-left: 3px;
+  user-select: none;
+  color: black;
+}
+
+.user-name {
+  margin-left: 5px;
+  margin-top: 5px;
+  font-weight: bold;
+}
+
+.options {
+  text-align: center;
+}
+.message {
+  color: #000;
+  font-family: sans-serif;
+}
+.m-p-0 {
+  padding: 0 !important;
+}
+.m-0 {
+  margin: 0 !important;
+}
+.p-0 {
+  padding: 0 !important;
+}
+
+.new {
+  position: fixed;
+  bottom: 15px;
+  right: 15px;
+}
+
+.img-post {
+  width: 100% !important;
+  cursor: pointer;
+}
+
+.friends-card {
+  height: 80vh;
+  margin-top: 20px;
+  width: 30%;
+  position: fixed;
+  right: 20px;
+  overflow-y: scroll; 
+}
+
+.no-img {
+  color: white;
+  text-align: center;
+  padding: 5px;
+  font-size: 24px;
+  border-radius: 50%;
+  background: #9619b4;
+  width: 50px;
+  height: 50px;
+  position: relative;
+}
+
+.middle {
+  position: absolute;
+  top: 0;
+  padding: 10px;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  margin: auto;
+}
+
+.login-xs {
+  width: 100vw;
+  margin: 0;
+  margin-left: -10px;
+  box-shadow: none;
+  border: none;
+  background: inherit;
+}
+
+.height-100vh {
+  height: 100vh !important;
+}
+
+.error {
+  color: rgb(214, 25, 25);
+}
+
+[contenteditable] {
+  padding: 12px;
+  background: #fbfbfb;
+}
+[contenteditable]:focus {
+  outline: 0px solid transparent;
+}
+
+.fake-placeholder {
+  font-size: 14px;
+  position: absolute;
+  font-weight: 100;
+  color: #8a8a8a;
+  margin-top: 12px;
+  margin-left: 12px;
+
+  user-select: none;
+  pointer-events: none;
+}
+
+.videoPlayer {
+  width: 100% !important;
+  height: 300px !important;
+}
+
+.options-down {
+  cursor: pointer;
+  position: absolute;
+  right: 0;
+}
+
+.close-video {
+  position: absolute;
+  font-size: 24px;
+  border-radius: 50%;
+  background: #e0d5e4d1;
+  cursor: pointer;
+  z-index: 100;
+  left: 5px;
+  top: 5px;
+}
+
+.whatsapp span ion-icon {
+  --color: #4fce5d;
+}
+.twitter span ion-icon {
+  --color: #1da1f2;
+}
+.facebook span ion-icon {
+  --color: #4267b2;
+}
+
+.linkedin span ion-icon {
+  --color: #0072b1;
+}
+.copy span ion-icon {
+  --color: var(--color-primary);
+}
+.cancel span ion-icon {
+  --color: #e41919;
+}
+
+.friends-button:hover {
+  --background: lavender;
+}
+
+//------------------------ Styles for chat---------------------------
+
+.msg-options-icon {
+  position: absolute;
+  right: 6px;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.msg {
+  --background: white;
+  flex: 1 1 0;
+  max-width: 60%;
+  padding: 1px;
+  margin: 2px;
+  color: #000;
+  float: left;
+}
+
+.my-msg {
+  --background: #e3edff;
+  color: #000;
+  float: right !important;
+}
+
+// ------------------------------------------------------------------------
+
+.add-button {
+  font-size: 10px;
+  --background: var(--color-primary);
+  height: 30px;
+}
+
+.emoji {
+  font-size: 20px !important;
+}
+
+
+ion-segment-button{
+  --color: black !important;
+  }
+
+  .connectedDIV{
+    border-radius: 50%;
+    border: black solid 3px;
+    background-color: #31a24c;
+    width: 30px;
+    height: 30px;
+    z-index: 1;
+    margin-top: -35px;
+    margin-left: 103px;
+    position: absolute;
+  }
+  
+  .connectedDIVlittle{
+    border-radius: 50%;
+    border: black solid 3px;
+    background-color: #31a24c;
+    width: 15px;
+    height: 15px;
+    z-index: 1;
+    margin-top: -20px;
+    margin-left: 32px;
+    position: absolute;
+  }
+  
+  .connectedDIVlittlePost{
+    border-radius: 50%;
+    border: black solid 3px;
+    background-color: #31a24c;
+    width: 15px;
+    height: 15px;
+    z-index: 1;
+    margin-top: -12px;
+    margin-left: 32px;
+    position: absolute;
+  }
+  
+  .connectedDIVlittlexs{
+    border-radius: 50%;
+    border: black solid 1px;
+    background-color: #31a24c;
+    width: 7px;
+    height: 7px;
+    z-index: 1;
+    margin-top: -8px;
+    margin-left: 10px;
+    position: absolute;
+  }
+
+  .notificationP{
+    color: black;
+  }
+
+  .editIcons{
+    color: var(--ion-color-primary);
+    font-size: 30px;
+    cursor:pointer;
+  }
+
+ .modalText .modal-wrapper {
+     height:190px;
+     width:300px;
+       top: 40%;
+         position: absolute; 
+           display: block;  
+} 
+.button-photo-banner {
+  color: rgba(35, 112, 61, 0.993);
+  margin-top: 10px;
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
+  font-size: 20px;
+  margin-right: 10px;
+  border-radius: 50%;
+  background-color: white;
+  float: right;
+  position: absolute;
+  z-index: 10000000000000000000;
+  right: 4px;
+}
+
+.eyeIcon{
+  color: rgba(0, 0, 0, 0.479);
+}

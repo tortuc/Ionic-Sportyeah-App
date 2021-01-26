@@ -1,0 +1,25 @@
+
+  <ion-content>
+    <ion-list>
+      <ion-item style="cursor:pointer" (click)="dismiss('edit')">
+        <ion-icon style="color: var(--color-primary);margin-right:3px" name="create-outline"></ion-icon>  {{'edit' | translate}}
+      </ion-item>
+  
+      <ion-item  style="cursor:pointer"  (click)="dismiss('privacity')">
+        <ion-icon style="color: #19e43b;margin-right:3px"  [name]="(privacity == 'public')?'lock-closed-outline':'lock-open-outline'"></ion-icon>  {{(privacity == 'public')?translate.instant('make_private'):translate.instant('make_public')}}
+      </ion-item>
+
+      <ion-item  style="cursor:pointer"  (click)="dismiss('done')">
+        <ion-icon style="color: #3e19e4;margin-right:3px"  [name]="(done)?'arrow-back-circle-outline':'checkmark-done-outline'"></ion-icon>  {{(done)?translate.instant('make_pending'):translate.instant('make_done')}}
+      </ion-item>
+     
+
+      <ion-item style="cursor:pointer"  (click)="dismiss('delete')">
+        <ion-icon style="color: #e41919;margin-right:3px"  name="trash-bin-outline"></ion-icon>  {{'delete' | translate}}
+      </ion-item>
+  
+      <ion-item style="cursor:pointer" (click)="dismiss('close')">
+        <ion-icon style="color: #e41919;margin-right:3px"  name="close"></ion-icon> {{'close' | translate}}
+      </ion-item>
+    </ion-list>
+  </ion-content>

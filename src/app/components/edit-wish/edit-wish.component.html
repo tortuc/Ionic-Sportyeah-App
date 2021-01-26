@@ -1,0 +1,113 @@
+<div style="padding: 10px;overflow: auto;background: white;">
+  <ion-icon name="close" class="close" (click)="close()"></ion-icon>
+  <h4 class="title">{{'edit_wish.edit' | translate}}</h4>
+  <form [formGroup]="form">
+
+    <ion-grid>
+      <ion-radio-group formControlName="type">
+        <div style="text-align: center;">      
+            <span style="font-size: 12px;">{{'edit_wish.type.label' | translate}}</span>
+        </div>
+        <ion-row>
+    
+          <ion-col size="6">  
+            <ion-item lines="none">
+            <ion-label>{{'edit_wish.type.activity' | translate}}</ion-label>
+            <ion-radio value="activity"></ion-radio>
+          </ion-item>
+        </ion-col>
+          <ion-col size="6"> 
+            <ion-item lines="none">
+            <ion-label>{{'edit_wish.type.article' | translate}}</ion-label>
+            <ion-radio value="article"></ion-radio>
+          </ion-item>
+        </ion-col>
+        
+      </ion-row>
+    </ion-radio-group>
+    </ion-grid>
+    <ion-grid>
+      <ion-radio-group formControlName="privacity">
+        <div style="text-align: center;font-size: 12px;">      
+            <span>{{'edit_wish.privacity.label' | translate}}</span>
+        </div>
+        <ion-row>
+    
+          <ion-col size="6">  
+            <ion-item lines="none">
+            <ion-label>{{'edit_wish.privacity.public' | translate}}</ion-label>
+            <ion-radio value="public"></ion-radio>
+          </ion-item>
+        </ion-col>
+          <ion-col size="6"> 
+            <ion-item lines="none">
+            <ion-label>{{'edit_wish.privacity.private' | translate}}</ion-label>
+            <ion-radio value="private"></ion-radio>
+          </ion-item>
+        </ion-col>
+        
+      </ion-row>
+    </ion-radio-group>
+    </ion-grid>
+    <ion-item>
+      <ion-label position="floating">{{'edit_wish.title' | translate}}</ion-label>
+      <ion-input formControlName="title"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">{{'edit_wish.description' | translate}}</ion-label>
+      <ion-textarea formControlName="description"></ion-textarea>
+    </ion-item>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="6">
+          <span style="font-size: 12px;" >{{'create_wish.price_label' | translate}}</span>
+          <ion-item>
+            <ion-icon style="margin: 12px 0px;" name="logo-euro" slot="start" ></ion-icon>
+            <div
+            style="max-height: 200px; color: #222121"
+            formControlName="price"
+            contenteditable
+            class="custom-textarea"
+            Currency
+            (value)="newPrice($event)"
+          ></div>
+          </ion-item>
+        
+        </ion-col>
+        <ion-col size="6">
+  
+          <ion-item>
+            <ion-label position="floating">{{'edit_wish.date_label' | translate}}</ion-label>
+            <ion-input formControlName="endDate" type="date"  [min]="minDate"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <div style="padding: 10px;text-align: center;font-size: 12px;">
+      <p>{{'edit_wish.location_label' | translate}}</p>
+
+    </div>
+
+    <ion-item>
+      <ion-label position="floating">{{'edit_wish.location' | translate}}</ion-label>
+      <ion-input formControlName="location" (keyup)="previewUrl()"></ion-input>
+    </ion-item>
+    <div >
+      <url-preview *ngIf="preview" [preview]="preview" ></url-preview>
+      
+    </div>
+    <div style="padding: 10px;text-align: center;font-size: 12px;">
+      <p>{{'edit_wish.files_label' | translate}}</p>
+      <ion-button class="add-button" (click)="openFile()" >{{'edit_wish.files_attached' | translate}}</ion-button>
+      <input type="file" #fileChooser accept="image/*,video/*" (change)="uploadFile($event)" hidden>
+      <input type="file" #documentChooser accept=".doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/*" (change)="uploadDocument($event)" hidden>
+      <preview-files *ngIf="files.length > 0" [files]="files" (deleted)="newFiles($event)"></preview-files>
+    </div>
+
+
+    <div style="text-align: center;">
+      <ion-button (click)="create()" [disabled]="form.invalid" class="add-button">{{'edit_wish.edit' | translate}}</ion-button>
+    </div>
+   
+  </form>
+</div>

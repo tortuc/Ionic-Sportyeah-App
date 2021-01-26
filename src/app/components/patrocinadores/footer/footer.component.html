@@ -1,0 +1,48 @@
+<footer class="footer py-4">
+    <div class="container">
+        <div class="row align-items-center">
+          <div class="col-lg-4 text-lg-left">Copyright © {{ls.ls.copyright}}
+      <ion-icon name="create" class="editIcons"
+            (click)="changeText('copyright')"   
+            *ngIf="creator"
+        ></ion-icon>
+
+            {{year}}</div>
+            <div class="iconsText">
+              <a [href]="ls.ls.facebook" target="_blank"><ion-icon class="icons" name="logo-facebook"></ion-icon></a>
+
+        <ion-icon name="create" class="editIcons"
+            (click)="changeText('facebook')"   
+          *ngIf="creator"
+        ></ion-icon>
+             <a [href]="ls.ls.twitter" target="_blank"><ion-icon class="icons" name="logo-twitter"></ion-icon></a>
+              
+        <ion-icon name="create" class="editIcons"
+            (click)="changeText('twitter')"   
+            *ngIf="creator"
+        ></ion-icon>
+              <a [href]="ls.ls.instagram" target="_blank"><ion-icon class="icons"
+                                                    name="logo-instagram"></ion-icon></a>
+              
+        <ion-icon name="create" class="editIcons"
+            (click)="changeText('instagram')"   
+          *ngIf="creator"
+        ></ion-icon>
+
+        
+              <a [href]="ls.ls.linkedin" target="_blank"><ion-icon class="icons" name="logo-linkedin"></ion-icon></a>
+              <ion-icon name="create" class="editIcons"
+                  (click)="changeText('linkedin')"   
+                *ngIf="creator"
+              ></ion-icon>
+
+              <a [href]="ls.ls.tiktok" target="_blank"><ion-icon class="icons" name="logo-tiktok"></ion-icon></a>
+              <ion-icon name="create" class="editIcons"
+                  (click)="changeText('tiktok')"   
+                  *ngIf="creator"
+              ></ion-icon>
+            </div>
+        </div>
+    </div>
+</footer>
+

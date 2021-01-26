@@ -1,0 +1,56 @@
+<ion-header>
+  <ion-toolbar  class="bg-gradient-person">
+    <ion-buttons slot="start">
+      <ion-menu-button style="color: white;"></ion-menu-button>
+    </ion-buttons>
+    <ion-title style="--color:white" >{{'notifications.title' | translate}}</ion-title>
+    <ion-buttons slot="end">
+
+      <ion-button  (click)="langs($event)" style="--background: inherit; color: white;"><ion-img style="width: 24px;height: 24px;margin-right: 5px;" src="./assets/flags/{{translate.currentLang}}.png"></ion-img> {{translate.currentLang}}</ion-button>
+    </ion-buttons>
+ 
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="bg-gradient-person " >
+
+  <ion-grid  class="container"  ngClass.xs="container-xs">
+    <ion-row style="padding:0"  style="height: 100%;">
+      <ion-col size-xs="12"  size-lg="8" ngClass.xs="p-0" style="background-color: white;height: 100%;border-radius: 5px;padding:0 !important">
+        <ion-grid class="noticontent">
+          <ion-row style="padding: 10px;">
+            <span class="btn" (click)="seeAll()">{{'notifications.readall' | translate}}</span>
+          </ion-row>
+          <ion-row style="padding:0">
+            <ion-col style="padding:0"  *ngFor="let notification of notifications" size="12" >
+              <follow-notification      *ngIf="notification.action === 'follow'"    [notification]="notification"></follow-notification>
+              <unfollow-notification    *ngIf="notification.action === 'unfollow'"  [notification]="notification"></unfollow-notification>
+              <like-notification        *ngIf="notification.action === 'like'"      [notification]="notification"></like-notification>
+              <comment-notification     *ngIf="notification.action === 'comment'"   [notification]="notification"></comment-notification>
+              <shared-notification      *ngIf="notification.action === 'shared'"    [notification]="notification"></shared-notification>
+              <mention-notification      *ngIf="notification.action === 'mention' || notification.action === 'mention_comment'"    [notification]="notification"></mention-notification>
+             
+            </ion-col>
+            
+          </ion-row>
+         
+          
+       
+        </ion-grid>
+       
+     
+        
+      
+     
+      </ion-col>
+      <ion-col size-lg="4" fxShow.lt-md="false" class="ion-justify-content-center ion-align-items-center" >
+        <friends-panel-desktop></friends-panel-desktop>
+      </ion-col>
+  
+   
+  </ion-row>
+  
+  </ion-grid>
+
+
+</ion-content>

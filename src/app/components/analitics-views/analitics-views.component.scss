@@ -1,0 +1,147 @@
+.card{
+    width: 90%;
+    position: relative;
+    left: 20%;
+}
+
+.button{
+    margin-inline: auto;
+  }
+
+  .content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    box-sizing: border-box;
+    max-width: 100%;
+    min-height: 62px;
+    div {
+      padding: 0 10px;
+    }
+  }
+
+  .icon{
+      position:relative;
+      left: 10%;
+  }
+
+  .calendar {
+    font-size: 38px;
+  }
+
+  .days{
+    position: relative;
+    left: 57%;
+    top:10%;
+    font-size: 30%;
+  }
+
+  .divChart{
+display: block;
+width: 400px;
+height: 400px;
+  }
+
+  .week-button{
+    font-size: 9px;
+    --background: #3d7dff ;
+    height: 30px;
+  }
+
+  .scale{
+    transform:scale(0.9);
+  }
+ 
+  .image{
+    width:40%;
+    position:relative;
+    left: 35%;
+    top:0%;
+}
+.noData{
+    width:55%;
+    position:relative;
+    left: 20%;
+    top:0%;
+}
+.textNoData{
+  color:black;
+  position: relative;
+  left: 15;
+}
+
+.botons{
+  background: #50c8ff;
+}
+
+  @media screen and (max-width:470px){
+    .divChart{
+      display: block;
+      width: 300px;
+      height: 300px;
+    }
+
+    .textNoData{
+      transform: scale(0.9);
+    }
+
+    .botons{
+      background: #50c8ff;
+    }
+    .h1Work{
+      transform: scale(0.8);
+    }
+    .helmet{
+      width: 10%;
+      position: relative;
+      top: 12%;
+      left: 17%;
+    }
+    .dumbbell{
+      width: 10%;
+      position: relative;
+      top: -92%;
+      left: 9%;
+    }
+    .bottle{
+      width: 10%;
+      position: relative;
+      top:12;
+      left: -7%;
+    }
+    .image{
+      width:97%;
+      position:relative;
+      left: 13%;
+      top:22%;
+  }
+  }
+
+.helmet{
+  position: relative;
+  top: 37%;
+  left: 17%;
+  transform:rotate(142deg) ;
+  width: 30%;
+}
+.dumbbell{
+  position: relative;
+  top: 6%;
+  left: 9%;
+  transform:rotate(123deg) ;
+  width: 30%;
+}
+.bottle{
+  width: 28%;
+  position: relative;
+  top: 43%;
+  left: -7%;
+  transform: rotate(-90deg);
+}
+
+
+
+
+

@@ -1,0 +1,47 @@
+
+.close{
+    position: absolute;
+    top: 2px;
+    font-size: 20px;
+    right: 5px;
+    color: red;
+    cursor: pointer;
+    z-index: 100;
+}
+
+.document{
+    height: 200px;
+    position: relative;
+    text-align: center;
+    padding-top: 40px;
+    cursor: pointer;
+    .icon{
+        font-size: 50px;
+        left: 0;
+        color: var(--color-primary);
+        right: 0;
+        margin: auto;
+    }
+    .name{
+        bottom: 1px;
+        left: 0;
+        max-height: 20px;
+        right: 0;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        color: var(--color-primary) !important;
+    }
+    
+}
+
+.image{
+    height: 200px;
+    position: relative;
+}
+
+
+.image-view{
+    max-height: 200px;
+    overflow: hidden;
+}

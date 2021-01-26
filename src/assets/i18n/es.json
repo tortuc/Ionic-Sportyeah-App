@@ -1,0 +1,711 @@
+{
+  "loading": "Cargando...",
+  "cancel": "Cancelar",
+  "agree": "Aceptar",
+  "okey": "Aceptar",
+  "message_delete": "Este mensaje fue eliminado",
+  "new_comment_success": "Tu comentario se ha publicado!",
+  "404": {
+    "title": "404",
+    "subtitle": "Lo sentimos, esa página no existe.",
+    "back": "Volver al inicio"
+  },
+  "login": {
+    "msg": "Inicia sesión con tus credenciales",
+    "email": "Correo electrónico",
+    "password": "Contraseña",
+    "remember": "Recordar sesión",
+    "login": "Iniciar Sesión",
+    "forgot_password": "¿Olvidaste tu contraseña?",
+    "create_account": "Crear una nueva cuenta",
+    "wrong": {
+      "title": "Credenciales invalidas",
+      "msg": "Usuario o contraseña incorrecta",
+      "button": "Aceptar"
+    },
+    "noverified": {
+      "title": "Finalizar registro",
+      "msg": "Estimado usuario, Le hemos enviado un correo electronico para terminar su registro, si no ha llegado puedes reenviar el correo ",
+      "buttonCancel": "Cancelar",
+      "buttonResend": "Reenviar correo"
+    },
+    "resend": {
+      "title": "Correo enviado",
+      "msg": "Le hemos enviado un correo para verificar su cuenta y asi poder finalizar el registro",
+      "button": "Aceptar"
+    }
+  },
+  "sign_up": {
+    "legal": {
+      "one": "Haga Click para Aceptar las",
+      "two": "y las",
+      "three": "de SportYeah, así como, reconocer que la",
+      "four": "de SportYeah se aplica a usted"
+    },
+    "old": "Soy mayor de edad",
+    "sign_up": "Registrate con tus credenciales",
+    "name": {
+      "placeholder": "Nombre",
+      "required": "Por favor indique su nombre",
+      "regex": "Su nombre no puede contener numeros o caracteres especiales"
+    },
+    "parents_name": {
+      "placeholder": "Nombre del tutor",
+      "required": "Por favor indique su nombre",
+      "regex": "Su nombre no puede contener numeros o caracteres especiales"
+    },
+    "parents_last_name": {
+      "placeholder": "Apellido del tutor",
+      "required": "Por favor indique su apellido",
+      "regex": "Su apellido no puede contener numeros o caracteres especiales"
+    },
+    "last_name": {
+      "placeholder": "Apellido",
+      "required": "Por favor indique su apellido",
+      "regex": "Su apellido no puede contener numeros o caracteres especiales"
+    },
+
+    "username": {
+      "placeholder": "Usuario",
+      "required": "Ingrese un nombre de usuario"
+    },
+    "email": {
+      "placeholder": "Correo electrónico",
+      "required": "Ingrese su Correo electrónico",
+      "regex": "Ingrese un Correo electrónico valido"
+    },
+    "parents_email": {
+      "placeholder": "Correo electrónico del tutor",
+      "required": "Ingrese su Correo electrónico",
+      "regex": "Ingrese un Correo electrónico valido"
+    },
+    "password": {
+      "placeholder": "Contraseña",
+      "required": "La contraseña es requerida",
+      "regex": "Asegúrese de que tenga al menos 8 caracteres, incluido un número y una letra minúscula"
+    },
+    "repeat_password": {
+      "placeholder": "Repetir contraseña",
+      "required": "La contraseña es requerida",
+      "repeatInvalid": "La contraseña no coincide"
+    },
+    "create": "Crear cuenta",
+    "back": "Ya tengo una cuenta",
+    "success": {
+      "title": "¡Solo falta un paso!",
+      "msg": "Le hemos enviado un correo para verificar su cuenta y asi poder completar el registro",
+      "button": "Aceptar"
+    },
+    "wrong": {
+      "email": {
+        "title": "Correo electronico en uso",
+        "msg": "El Correo electronico pertenece a una cuenta registrada en sportyeah, intente con otro",
+        "button": "Aceptar"
+      },
+      "username": {
+        "title": "Nombre de usuario en uso",
+        "msg": "El nombre de usuario pertenece a una cuenta registrada en SportYeah, intente con otro",
+        "button": "Aceptar"
+      }
+    }
+  },
+  "footer": {
+    "twitter": "Síguenos en Twitter",
+    "instagram": "Síguenos en Instagram",
+    "facebook": "Danos like en facebook",
+    "thank_you": "Gracias por apoyarnos!",
+    "follow_us": "Síguenos en nuestras redes sociales.",
+    "support": "Soporte",
+    "about_us": "¿Quiénes somos?",
+    "contact_us": "Contactanos",
+    "frequent_questions": "Preguntas frecuentes",
+    "security_advice": "Consejos de seguridad",
+    "legal": "Legal",
+    "legal_warning": "Aviso Legal",
+    "terms_of_use": "Condiciones de uso",
+    "privacy_policy": "Política de Privacidad",
+    "return_policy": "Politica de Devoluciones",
+    "cookies": "Cookies",
+    "blog": "Blog",
+    "last_news": "Ultimas noticias",
+    "agree": "De acuerdo",
+    "cookie_msg": "Utilizamos cookies propias y de terceros para mejorar la experiencia del usuario a través de su navegación. Si continúas navegando aceptas su uso. Política de cookies y de seguridad",
+    "authorize":"Autorizo el envío de comunicaciones comerciales por parte de la empresa que gestiona SportYeah o terceros que colaboren con este."
+  },
+  "home": {
+    "last_connection": {
+      "msg": "Tu ultima conexion fue el dia",
+      "ip_address": "Mediante la direccion IP"
+    },
+    "welcome": "Bienvenida/o Sr. ",
+    "we_work": "Nos encontramos trabajando para usted"
+  },
+  "forgot": {
+    "title": "¿Tienes problemas para entrar?",
+    "subtitle": "Introduce tu correo electrónico y te enviaremos un enlace para que recuperes el acceso a tu cuenta.",
+    "email": {
+      "label": "Correo electrónico"
+    },
+    "button": "Enviar correo",
+    "back": "Volver al inicio de sesión",
+    "wrong": {
+      "title": "Correo invalido",
+      "msg": "El correo que ingresaste no se encuentra vinculado a ninguna cuenta en SportYeah",
+      "button": "Aceptar"
+    },
+    "success": {
+      "title": "Correo enviado",
+      "msg": "Le enviamos un correo electrónico para poder recuperar su contraseña",
+      "button": "Aceptar"
+    }
+  },
+  "new_password": {
+    "title": "Recuperar contraseña",
+    "subtitle": "Por favor ingresar su nueva contraseña",
+    "invalid": {
+      "title": "Enlace invalido",
+      "subtitle": "El enlace es invalido o esta caducado",
+      "back": "Volver al inicio"
+    },
+    "success": {
+      "title": "Contraseña Reestablecida",
+      "msg": "Su contraseña se ha reestablecido exitosamente",
+      "button": "Aceptar"
+    },
+    "wrong": {
+      "title": "Algo salio mal",
+      "msg": "Ocurrio un error al intentar cambiar su contraseña, intentelo mas tarde",
+      "button": "Aceptar"
+    },
+
+    "password": {
+      "label": "Contraseña",
+      "required": "La contraseña es requerida",
+      "regex": "Asegúrese de que tenga al menos 8 caracteres, incluido un número y una letra minúscula"
+    },
+    "repeat_password": {
+      "label": "Repetir contraseña",
+      "required": "La contraseña es requerida",
+      "repeatInvalid": "La contraseña no coincide"
+    },
+    "button": "Reestablecer"
+  },
+  "verification": {
+    "valid": {
+      "title": "Cuenta verificada",
+      "subtitle": "Gracias por verificar tu cuenta. Ya puedes iniciar sesion en tu cuenta de SportYeah!!!",
+      "back": "Ir a la app"
+    },
+    "invalid": {
+      "title": "Enlace invalido",
+      "subtitle": "El enlace es invalido o esta caducado",
+      "back": "Volver al inicio"
+    }
+  },
+  "langs": {
+    "close": "Cerrar"
+  },
+  "sidebar": {
+    "home": "Muro de Publicaciones",
+    "friends": "Buscar amigos",
+    "profile": "Mi Perfil",
+    "chat": "Chatear",
+    "calendar": "Calendario",
+    "logout": "Cerrar sesión",
+    "wishes": "Lista de deseos",
+    "event": "Crear eventos",
+    "eventlist": "Lista de eventos"
+  },
+  "profile": {
+    "title": "Perfil",
+    "followers": "Seguidores",
+    "followings": "Siguiendo",
+    "visitors":"Visitas",
+    "posts": "Publicaciones"
+  },
+  "profile_edit": {
+    "name": "Nombre",
+    "last_name": "Apellido",
+    "estado":"Estado",
+    "birthDate": "Fecha de nacimiento",
+    "change_password": "Cambiar contraseña",
+    "password": "Nueva contraseña",
+    "repeat_password": "Repetir contraseña",
+    "phone": "Telefono",
+    "unassigned": "Sin asignar",
+    "btn": "Guardar cambios",
+    "invalid_password": {
+      "header": "Contraseña incorrecta",
+      "message": "La contraseña que ingresaste no coincide con tu cuenta",
+      "btn": "Aceptar"
+    },
+    "error": {
+      "header": "Algo salio mal",
+      "message": "Ocurrio un error al intentar modificar tus datos",
+      "btn": "Aceptar"
+    },
+    "success": {
+      "header": "Perfil modificado",
+      "message": "Se modificaron tus datos correctamente",
+      "btn": "Aceptar"
+    }
+  },
+
+  "edit_post": {
+    "title": "Editar publicacion",
+    "btn": "Guardar"
+  },
+  "options_post": {
+    "edit": "Editar",
+    "delete": "Eliminar",
+    "close": "Cerrar"
+  },
+  "dashboard": {
+    "title": "Inicio",
+    "profile": "Perfil",
+    "friends": "Amigos",
+    "search_friend": "Buscar Amigos",
+    "new_post_placeholder": "¿Qué te gustaria compartir?"
+  },
+  "search_friends": {
+    "title": "Buscar amigos",
+    "follow": "Seguir",
+    "unfollow": "Dejar de seguir",
+    "message": "Enviar mensaje"
+  },
+  "post":{
+    "likes":"Reacciones",
+    "like":"Me gusta",
+    "love":"Me encanta",
+    "haha":"Me divierte",
+    "wow":"Me asombra",
+    "sad":"Me entistece",
+    "angry":"Me enoja",
+    "comments":"Comentarios",
+    "comment":"Comentar",
+    "shared":"Veces compartido",
+    "share":"Compartir"
+},
+  "new_post": {
+    "title": "Nueva publicacion",
+    "input": "¿Qué te gustaria compartir?",
+    "btn": "Crear"
+  },
+  "new_comment": {
+    "title": "Nuevo comentario",
+    "input": "¿Qué estás pensando?",
+    "btn": "Comentar"
+  },
+  "chat": {
+    "title": "Chat",
+    "input_placeholder": "Deja un mensaje...",
+    "contacts": {
+      "err_header": "Error",
+      "err_message": "No se pudo acceder a la lista de contactos",
+      "err_button": "Aceptar"
+    },
+    "new": "Nuevo chat",
+    "start_chat":"¡Empiea a chatear con uno de tus amigos!"
+  },
+  "contacts": {
+    "title": "Contactos"
+  },
+  "calendar": {
+    "m": "M",
+    "w": "S",
+    "d": "D"
+  },
+  "new_event": {
+    "title": "Crear evento",
+    "title_event": "Titulo del evento",
+    "description": "descripción",
+    "allDay": "Toto el dia",
+    "startTime": "Inicio",
+    "endTime": "Finalizacion",
+    "button": "CREAR"
+  },
+  "img-options": {
+    "header": "Subir foto",
+    "camera": "Camara",
+    "galery": "Galeria",
+    "avatar": "Avatares",
+    "video": "Video"
+  },
+  "avatar": {
+    "title": "Selecciona un avatar",
+    "select_header": "Avatar",
+    "select_message": "Estas seguro que deseas seleccionar este avatar como tu foto de perfil?"
+  },
+  "share_with": {
+    "title": "Publicación",
+    "text": "wow! Debes ver esta publicación en SPORTYEAH",
+    "dialogTitle": "Compartir en ..."
+  },
+  "share": {
+    "header": "Compartir",
+    "now": "Compartir",
+    "with": "Comparir en ..."
+  },
+  "following": {
+    "title": "Siguiendo"
+  },
+  "visitors": {
+    "title": "Visitas"
+  },
+  "follower": {
+    "title": "Seguidores"
+  },
+  "copy": "Copiar",
+  "upload_video": {
+    "uploading": {
+      "header": "Creando publicación",
+      "message": "Tu publicación se esta cargando"
+    },
+    "create": {
+      "header": "Publicación creada",
+      "message": "Tu Publicación se ha cargado correctamente"
+    },
+    "error": {
+      "header": "Algo salio mal",
+      "message": "Tu video no pudo cargarse, por lo tanto no se creo la Publicación"
+    }
+  },
+  "months": {
+    "0": "Enero",
+    "1": "Febrero",
+    "2": "Marzo",
+    "3": "Abril",
+    "4": "Mayo",
+    "5": "Junio",
+    "6": "Julio",
+    "7": "Agosto",
+    "8": "Septiembre",
+    "9": "Octubre",
+    "10": "Noviembre",
+    "11": "Diciembre"
+  },
+  "new_comment_placeholder": "Escribe un comentario...",
+  "likes": "Personas a las que han reaccionado esta publicación",
+  "shareds": "Personas que compartieron esta publicación",
+  "search_your_friends": "Busca a tus amigos...",
+  "invite_whatsapp": "te esta invitando a que te unas a SportYeah!",
+  "notifications": {
+    "title": "Notificaciones",
+    "follow": {
+      "text": "ha comenzado a seguirte"
+    },
+    "unfollow": {
+      "text": "ha dejado de seguirte"
+    },
+    "like": {
+      "text": "le ha dado me gusta a una de tus publicaciones"
+    },
+    "comment": {
+      "text": "ha comentado una de tus publicaciones"
+    },
+    "shared": {
+      "text": "ha compartido una de tus publicaciones"
+    },
+    "mention": {
+      "text": "te ha etiquetado en una publicación"
+    },
+    "mention_comment": {
+      "text": "te ha mencionado en un comentario"
+    },
+    "readall": "Marcar todas como leidas"
+  },
+  "edit": "Editar",
+  "delete": "Eliminar",
+  "close": "Cerrar",
+  "make_public": "Hacerlo publico",
+  "make_private": "Hacerlo privado",
+  "make_done": "Marcar como cumplido",
+  "make_pending": "Marcar como pendiente",
+  "activity": "Actividad",
+  "article": "Articulo",
+  "public": "Publico",
+  "private": "Privado",
+  "where_find": "Donde conseguirlo",
+  "price": "Precio",
+  "files": "Archivos",
+  "set_done": "Marcar como cumplido",
+  "wishlist": "Lista de deseos",
+  "my_wishlist": "Mi lista de deseos",
+  "add_wish": "Añadir deseo",
+  "pendings": "Pendientes",
+  "completed": "Cumplidos",
+  "create_wish": {
+    "header": "Añadir un nuevo deseo!",
+    "type": {
+      "label": "¿Que deseas?",
+      "activity": "Actividad",
+      "article": "Articulo"
+    },
+    "privacity": {
+      "label": "¿Como quieres que sea este deseo?",
+      "public": "Publico",
+      "private": "Privado"
+    },
+    "title": "Titulo",
+    "description": "descripción",
+    "price_label": "Coste estimado del articulo o actividad",
+    "date_label": "¿Cuando le gustaría tenerlo?",
+    "location_label": "Puedes dejar un ubicacion de donde se puede conseguir (pueder ser una ubicacion de google maps o una url de Amazon... Entre otros)",
+    "location": "Ubicacion",
+    "files_label": "Puedes adjuntar tu archivo, sacar una foto o video o incluso un enlace a youtube",
+    "files_attached": "Adjuntar archivo",
+    "create": "Crear deseo"
+  },
+  "edit_wish": {
+    "header": "Editar deseo",
+    "type": {
+      "label": "¿Que deseas?",
+      "activity": "Actividad",
+      "article": "Articulo"
+    },
+    "privacity": {
+      "label": "¿Como quieres que sea este deseo?",
+      "public": "Publico",
+      "private": "Privado"
+    },
+    "title": "Titulo",
+    "description": "descripción",
+    "price_label": "Coste estimado del articulo o actividad",
+    "date_label": "¿Cuando le gustaría tenerlo?",
+    "location_label": "Puedes dejar un ubicacion de donde se puede conseguir (pueder ser una ubicacion de google maps o una url de Amazon... Entre otros)",
+    "location": "Ubicacion",
+    "files_label": "Puedes adjuntar tu archivo, sacar una foto o video o incluso un enlace a youtube",
+    "files_attached": "Adjuntar archivo",
+    "edit": "Editar deseo"
+  },
+  "delete_wish": {
+    "header": "Eliminar deseo",
+    "message": "¿Seguro deseas eliminar este deseo?"
+  },
+  "wish_files": {
+    "header": "Cargar archivo",
+    "image": "Imagen o video",
+    "file": "Documento",
+    "youtube": {
+      "label": "Enlace de youtube",
+      "header": "Link de Youtube",
+      "invalid": {
+        "header": "Link no valido",
+        "message": "Por favor ingresa una URL valida de youtube"
+      }
+    }
+  },
+  "sport": {
+    "sport": "Deporte",
+    "soccer": "Fútbol",
+    "basketball": "Baloncesto",
+    "tennis": "Tenis",
+    "baseball": "Béisbol",
+    "running": "Correr",
+    "volleyball": "Voleibol",
+    "swimming": "Natación",
+    "boxing": "Boxeo",
+    "table_tennis": "Tenis de mesa",
+    "golf": "Golf",
+    "rugby": "Rugby",
+    "football": "Fútbol americano",
+    "esport": "eSport",
+    "various": "Varios"
+  },
+  "profile_user": {
+    "profile_user": "Tipo de usuario",
+    "club": "Club",
+    "player": {
+      "soccer": "Futbolista",
+      "basketball": "Basquetbolista",
+      "tennis": "Tenista",
+      "baseball": "Béisbolista",
+      "running": "Correrdor",
+      "volleyball": "Voleibolibolista",
+      "swimming": "Nadador",
+      "boxing": "Boxeador",
+      "table_tennis": "Jugador",
+      "golf": "Golfista",
+      "rugby": "Rugbista",
+      "football": "Jugador",
+      "esport": "Gamer",
+      "various": "Jugador"
+    },
+    "staff": "Staff del club",
+    "amateur": "Aficionado",
+    "representative": "Representante",
+    "scout": "Ojeador",
+    "press": "Prensa",
+    "association": "Asociación",
+    "foundation": "Fundación",
+    "federation": "Federación",
+    "sponsor": "Patrocinador",
+    "executive": "Ejecutivo",
+    "administration": "Admin de Clubes"
+  },
+  "sub_profile": {
+    "sub_profile": "Cargo",
+    "president": "Presidente",
+    "vice_president": "Vicepresidente",
+    "vocal": "vocero",
+    "adviser": "Asesor",
+    "area_director": "Director de área",
+    "treasury": "Tesorería",
+    "secretary": "Secretaría",
+    "administration": "Administración",
+    "coach": "Entrenador",
+    "physical_trainer": "Preparador físico",
+    "medicine": "Médico deportivo",
+    "nutritionist": "Nutricionista",
+    "sports_sychology": "Psicologo deportivo",
+    "field_delegate": "Delegado de campo"
+  },
+  "slider-logic":{
+    "youtube":"Video de Youtube",
+    "youtube-input":"Coloque un link de YouTube",
+    "confirm":"Agregar contenido"
+  },
+  "change-slider": {
+    "title":"Galeria"
+  },
+  "experience":{
+    "title":"Experiencia",
+    "create":"Añadir Experiencia",
+    "no-info":"No se encuentra información.",
+    "btn":"Cargar",
+    "deleteModal":{
+      "cancel": "Cancelar",
+      "confirm": "Esta seguro que desea eliminar esta experiencia.",
+      "accept": "Aceptar",
+      "alert" : "Alerta"
+    },
+    "form":{
+      "position": "Posición Ejercida",
+      "federationTeam": "Federación Encargada",
+      "nowIn": "Hasta la actualidad",
+      "place": "Lugar",
+      "initDate": "Fecha de inicio",
+      "finishDate": "Fecha de fin",
+      "title": "Titular",
+      "description": "Descripción",
+      "multimediaContent": "Contenido Multimedia",
+      "add": "Agregar Contenido",
+      "date": "Día de creación",
+      "deleted": "Estado"
+    }
+  },
+  "aptitudes":{
+    "title":"Aptitudes",
+    "create":"Añadir Aptitud",
+    "no-info":"No se encuentra información.",
+    "form":{
+      "federationTeam": "Federación Encargada",
+      "score": "Nivel de Destreza",
+      "title": "Nombre de la Aptitud",
+      "date": "Día de creación",
+      "deleted": "Estado"
+    },
+    "btn":"Cargar",
+    "confirm": "Esta seguro que desea eliminar este reconocimiento."
+    
+  },
+  "awards":{
+    "title":"Premios y Reconocimientos",
+    "create":"Añadir Reconocimiento",
+    "btn":"Cargar",
+    "form":{
+      "position": "Nombre del Premio",
+      "federationTeam": "Federación Encargada",
+      "place": "Lugar",
+      "title": "Titular",
+      "eventDate": "Fecha del Evento",
+      "description": "Descripción",
+      "multimediaContent": "Contenido Multimedia",
+      "add": "Agregar Contenido",
+      "date": "Día de creación",
+      "deleted": "Estado"
+    },
+    "confirm": "Esta seguro que desea eliminar este reconocimiento.",
+    "no-info":"No se encuentra información."
+  },
+  "labels-profile-segment":{
+    "profile":"Perfil",
+    "posts":"Publicaciones"
+  },
+  "landing":{
+    "title":"Landing"
+  },
+  "enterText":"Ingrese texto",
+  "Photo": "Imagen",
+  "Title": "Titulo",
+  "Subtitle": "Subtitulo",
+  "GoToProfile":"Ir al Perfil",
+  "active":"Activa",
+  "noActive":"Desactivada",
+  "analytics-views":{
+    "title":"Analíticas",
+    "subTilte":"Control de visitas al perfil",
+    "info":"Pulsa la la opción que deseas visualizar",
+    "all":"Todas",
+    "post":"Publicaciones",
+    "chat":"Chat",
+    "search":"Búsqueda",
+    "profile":"Perfil",
+    "reaction":"Reacciones",
+    "comment":"Comentarios",
+    "next":"Siguiente",
+    "last":"Anterior",
+    "back-profile":"Perfil",
+    "today":"Hoy",
+    "days":"Días",
+    "day":"Día",
+    "weeks":"Semanas",
+    "month":"Mes",
+    "months":"Meses",
+    "year":"Año",
+    "years":"Años",
+    "views":"Vistas Totales",
+    "info_post":"Personas que llegaron al perfil a través de publicaciones propias",
+    "info_chat":"Personas que llegaron al perfil a través del chat",
+    "info_search":"Personas que llegaron al perfil a través de búsquedas",
+    "info_profile":"Personas que llegaron al perfil a través de sus seguidores y/o seguidos",
+    "info_reaction":"Personas que llegaron al perfil a través de reacciones en publicaciones propias, u de otros usuarios",
+    "info_comment":"Personas que llegaron al perfil a través de comentarios en publicaciones propias, u de otros usuarios",
+    "info_views_post":"Cantidad de vistas al perfil por medio de una publicación",
+    "info_user_post":"Usuarios que visitaron el perfil, a través de una publicación",
+    "information":"Informacion:"
+},
+"days":{
+      "0":"Domingo",
+      "1":"Lunes",
+      "2":"Martes",
+      "3":"Miércoles",
+      "4":"Jueves",
+      "5":"Viernes",
+      "6":"Sábado"
+    },
+  "golanding":"Modificar pagina de la marca",
+  "golandingPublic":"Pagina de la marca",
+  "activeLanding" : "Vista al publico",
+  "LandingSave" :"Su landing se ha guardado correctamente.",
+  "infoVisits":"Desliza hacia la derecha > para visualizar la fecha e izquierda < para el número de veces que visito tu perfil",
+  "GoBack": "Volver",
+  "Sponsors": "Patrocinadores",
+  "GoToLink": "Ir al producto",
+  "MoreIcons":"Ver mas iconos",
+  "structure":{
+     "title":"Estructura organizacional",
+     "subtitle":"Inicio",
+     "text": "Aqui puedes describir cada elemento de tu estructura.",
+     "edit": "Editar estructura",
+     "see":"Ver más",
+     "modal":{
+       "title":"Titulo",
+       "subtitle":"Tipo",
+       "text":"Descripción"
+     }
+   },
+   "creating": "Creando nuevo elemento",
+   "changing": "Editando elemento"
+}
+

@@ -1,0 +1,76 @@
+<section class="page-section body " id="portfolio">
+    <div class="container">
+        <div class="text-center">
+          <h2 class="section-heading text-uppercase">{{landingService.ls.ptitle}}
+                    <ion-icon name="create" class="editIcons"
+            (click)="changeText('ptitle')"   
+                                            *ngIf="creator"
+          ></ion-icon>
+          </h2>
+          <h3 class="section-subheading
+                text-muted">{{landingService.ls.psubtitle}}
+                          <ion-icon name="create" class="editIcons"
+                                            *ngIf="creator"
+            (click)="changeText('psubtitle')"   
+          ></ion-icon> 
+          </h3>
+          <ion-button (click)="createProduct()" *ngIf="creator">
+           <ion-icon name="add-outline"></ion-icon>
+           Product 
+          </ion-button>
+        </div>
+        
+        <ion-row>
+            <ion-col size-md="4" size-xs="12" *ngFor="let product of
+              landingService.ls.products; let i = index">
+                <div class="portfolio-item">
+                  <a [href]="product.photo" target="_blank">
+                    <img 
+                      class="img-fluid" 
+                      [src]="product.photo" 
+                      alt="" 
+                    />
+                  </a>
+                    <div class="portfolio-caption">
+                      <div class="portfolio-caption-heading"
+                      >
+                         
+                          {{product.title}}
+                       <ion-icon name="create" class="editIcons"
+                        (click)="changeText('productArray', i, 'title')" 
+                        *ngIf="creator"
+                       ></ion-icon>
+                      </div>
+                      <div class="portfolio-caption-subheading
+                                   text-muted">
+                        {{product.subtitle}}
+
+                         <ion-icon name="create" class="editIcons"
+                            (click)="changeText('productArray', i, 'subtitle')" 
+                          *ngIf="creator"
+                         ></ion-icon>
+                      </div>
+
+                    <a 
+                        [href]="product.url"
+                        target="_blank"
+                        class="URL"
+                    >
+                      <ion-icon name="arrow-redo-outline"></ion-icon>
+                      {{ 'GoToLink' | translate}} 
+                    </a>
+
+                         <ion-icon name="create" class="editIcons"
+                            (click)="changeText('productArray', i, 'url')" 
+                          *ngIf="creator"
+                         ></ion-icon>
+                    </div>
+                </div>
+                <div class="text-center">
+                <ion-icon name="close-outline" class="trashIconVideo" (click)="delete(product)" *ngIf="creator"
+                ></ion-icon>
+                </div>
+            </ion-col>
+        </ion-row>
+    </div>
+</section>

@@ -1,0 +1,275 @@
+<ion-header>
+  <ion-toolbar class="bg-gradient-person">
+    <ion-buttons slot="start">
+      <ion-menu-button style="color: white"></ion-menu-button>
+    </ion-buttons>
+    <ion-title style="--color: white"
+      >{{'profile.title' | translate}}</ion-title
+    >
+    <ion-buttons slot="end">
+      <button-search-friend></button-search-friend>
+
+      <button-notification></button-notification>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<input hidden="true"  type="file" #fileChooser accept="video/*, image/*"/>
+
+<ion-content
+  class="bg-gradient-person"
+  [scrollEvents]="true"
+  (ionScrollEnd)="logScrolling($event)"
+>
+  <ion-refresher
+    slot="fixed"
+    (ionRefresh)="getPost($event,true)"
+    pullFactor="0.5"
+    pullMin="100"
+    pullMax="200"
+  >
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <ion-grid style="padding: 0" class="height-100vh">
+    <ion-row class="height-100vh ion-justify-content-center">
+      <ion-col ngClass.xs="m-p-0" size-md="8" size-sm="12">
+        <ion-card ngClass.xs="m-p-0" class="post-card">
+          <ion-card-header
+            class="text-center"
+            style="padding-top: 0; padding-left: 0; padding-right: 0"
+          >
+            <ion-card
+              class="banner"
+              [ngStyle]="{'background-image': 'url(' + userService.User?.photoBanner + ')'}"
+            >
+              <div
+                class="button-photo-banner"
+                (click)="bannerLogic.takePhotoFrom()"
+              >
+                <ion-icon
+                  name="camera-outline"
+                  style="margin-top: 6px"
+                ></ion-icon>
+              </div>
+              <div style="padding-top: 96px">
+                <new-profile-photo></new-profile-photo>
+              </div>
+            </ion-card>
+
+            <ion-card-title (click)="goTo('/profile/edit')">
+              <img
+                *ngIf="ipLoaded | async"
+                class="bandera"
+                [src]="'https://www.countryflags.io/'+banderaIP[0]+banderaIP[1]+'/flat/64.png'"
+                alt=""
+              />
+              {{userService.User?.name}} {{userService.User?.last_name}}
+              <ion-icon class="edit" name="settings-outline"></ion-icon>
+            </ion-card-title>
+            <ion-button  class="analythics" [routerLink]="'/landing/'+userService.User._id+'/analytics-views'" ><ion-icon  name="analytics-outline" style="cursor: pointer;color: black;"  ></ion-icon>{{'analytics-views.title' | translate}}</ion-button>
+            <ion-card-subtitle
+              style="color: rgba(35, 112, 61, 0.993); font-weight: bold"
+              (click)="goTo('/profile/edit')"
+            >
+              <span style="margin: auto; margin-bottom: 10px; font-size: 14px">
+                {{'sport.'+userService.User?.sport | translate}} |
+                <span *ngIf="userService.User?.profile_user === 'player'"
+                  >{{'profile_user.'+userService.User?.profile_user+'.'+userService.User?.sport
+                  | translate}}</span
+                >
+                <span *ngIf="userService.User?.profile_user !== 'player'"
+                  >{{'profile_user.'+userService.User?.profile_user |
+                  translate}}</span
+                >
+              </span>
+            </ion-card-subtitle>
+            <ion-card-subtitle class="estado">
+              {{userService.User?.estado}}
+            </ion-card-subtitle>
+            <ion-grid>
+              <ion-row>
+                <ion-col size="4">
+                  <strong>{{userService.followers.length}}</strong><br />
+                  <span class="profile-name" (click)="goTo('/profile/follower')"
+                    >{{'profile.followers' | translate}}</span
+                  >
+                </ion-col>
+                <ion-col size="4">
+                  <strong>{{views?.length == null?0:views.length}}</strong
+                  ><br />
+                  <span
+                    class="profile-name"
+                    (click)="goTo('/profile/view-profile')"
+                    >{{'profile.visitors' | translate}}</span
+                  >
+                </ion-col>
+                <ion-col size="4">
+                  <strong>{{userService.followings.length}}</strong><br />
+                  <span
+                    class="profile-name"
+                    (click)="goTo('/profile/following')"
+                    >{{'profile.followings' | translate}}</span
+                  >
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+            <ion-button color="primary"
+              *ngIf="landingButton"
+              [routerLink]="'../landing/'+userService.User.username"
+            >
+              <ion-icon
+                name="megaphone-outline" style="margin-right: 5px;"
+              >
+              </ion-icon>
+              {{'golanding' | translate}}
+            </ion-button>
+          </ion-card-header>
+
+          <ion-card-content> </ion-card-content>
+
+          <div>
+            <h1 class="text-center">{{'Sponsors' | translate}}
+              <span >
+                <ion-button style="margin-top: -13px;">
+                  <ion-icon name="add-circle-outline">
+                  </ion-icon>
+                </ion-button>
+              </span>
+            </h1>
+            <ion-grid>
+             <ion-row>
+               <ion-col>
+                <ion-icon name="trash-outline" class="botonEliminar"></ion-icon>
+                <ion-icon name="create-outline" class="botonEditar"></ion-icon>
+                <img src="https://tentulogo.com/wp-content/uploads/Adidas-FB.jpg"/> 
+               </ion-col>
+               <ion-col>
+                <ion-icon name="trash-outline" class="botonEliminar"></ion-icon>
+                <ion-icon name="create-outline" class="botonEditar"></ion-icon>
+                <img src="https://tentulogo.com/wp-content/uploads/Adidas-FB.jpg"/> 
+               </ion-col>
+               <ion-col>
+                <ion-icon name="trash-outline" class="botonEliminar"></ion-icon>
+                <ion-icon name="create-outline" class="botonEditar"></ion-icon>
+                <img src="https://tentulogo.com/wp-content/uploads/Adidas-FB.jpg"/> 
+               </ion-col>
+               <ion-col>
+                <ion-icon name="trash-outline" class="botonEliminar"></ion-icon>
+                <ion-icon name="create-outline" class="botonEditar"></ion-icon>
+                <img src="https://tentulogo.com/wp-content/uploads/Adidas-FB.jpg"/> 
+               </ion-col>
+             </ion-row>
+            </ion-grid>
+          </div>
+
+
+        <ion-segment (ionChange)="segmentChanged($event)"
+                    style="border: 1px white;"
+        >
+          <ion-segment-button value="profile" style="background-color:white;">
+            <ion-label>{{'labels-profile-segment.profile' | translate}}</ion-label>
+          </ion-segment-button>
+          <ion-segment-button value="posts" style="background-color:white;">
+            <ion-label >{{'labels-profile-segment.posts' | translate}}</ion-label>
+          </ion-segment-button>
+        </ion-segment>
+
+        </ion-card>
+        
+        <!-- INIT SEGMENT PROFILE  -->
+        <div *ngIf="profile">
+          <ion-card ngClass.xs="m-p-0" class="post-card mt5">
+            <ion-grid style="padding: 0" class="ion-justify-content-center">
+              <ion-row class="ion-justify-content-center">
+                <ion-col
+                  ngClass.xs="m-p-0"
+                  size-md="12"
+                  size-sm="12"
+                  size-xs="12"
+                >
+                  <app-carrousel [id]="userService.User?._id"></app-carrousel>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-card>
+
+          <app-structure
+            [ID]="userService.User?._id"
+            *ngIf="
+               userService.User.profile_user === 'sponsor'
+             "
+          ></app-structure>
+          
+          <ion-card ngClass.xs="m-p-0" class="post-card mt5"
+            *ngIf="
+              userService.User.profile_user !== 'sponsor'
+            "
+
+          >
+            <ion-grid style="padding: 0" class="ion-justify-content-center">
+              <ion-row class="ion-justify-content-center">
+                <ion-col ngClass.xs="m-p-0" size-md="12" size-sm="12">
+                  <app-experience [id]="userService.User?._id"></app-experience>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-card>
+
+          <ion-card ngClass.xs="m-p-0" class="post-card mt5">
+            <ion-grid style="padding: 0" class="ion-justify-content-center">
+              <ion-row class="ion-justify-content-center">
+                <ion-col ngClass.xs="m-p-0" size-md="12" size-sm="12">
+                  <app-awards [id]="userService.User?._id"></app-awards>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-card>
+
+          <ion-card ngClass.xs="m-p-0" class="post-card mt5"
+            *ngIf="
+              userService.User.profile_user !== 'sponsor'
+            "
+          >
+            <ion-grid style="padding: 0" class="ion-justify-content-center">
+              <ion-row class="ion-justify-content-center">
+                <ion-col ngClass.xs="m-p-0" size-md="12" size-sm="12">
+                  <app-aptitudes [id]="userService.User?._id"></app-aptitudes>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-card>
+        </div>
+        <!-- FINISH SEGMENT PROFILE  -->
+        <!-- SEGMENT POSTST -->
+        <div *ngIf="postsB">
+          <ion-grid ngClass.xs="m-p-0">
+            <ion-row *ngFor="let item of posts" class="post-card">
+              <ion-card ngClass.xs="m-p-0" style="width: 100%">
+                <ion-card-header>
+                  <header-post
+                    class="user-header"
+                    [post]="item.post"
+                    (getPost)="getPost()"
+                  ></header-post>
+                </ion-card-header>
+                <ion-card-content>
+                  <post-content [post]="item.post"></post-content>
+                  <post-shared
+                    *ngIf="item.post.post"
+                    [post]="item.post.post"
+                  ></post-shared>
+                </ion-card-content>
+                <post-options
+                  [item]="item"
+                  (sharedEvent)="getPost()"
+                ></post-options>
+              </ion-card>
+            </ion-row>
+          </ion-grid>
+        </div>
+        <!-- FINISH SEGMENT POSTS -->
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

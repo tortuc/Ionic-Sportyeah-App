@@ -1,0 +1,149 @@
+@mixin object($width, $height, $bg) {
+	width: $width;
+	height: $height;
+	background: $bg;
+}
+
+@mixin transPos($top, $right, $bottom, $left,$transX,$transY) {
+	position: absolute;
+	top: $top;
+	left: $left;
+	right: $right;
+	bottom: $bottom;
+	transform:translate($transX,$transY);
+}
+
+
+/* bottom: 200px;
+ */.reacts {
+	/* @include object(90px,90px,#fff); */
+	
+	padding:15px;
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: space-around;
+	visibility:visible;
+  overflow:visible;
+  position: relative;
+  top: -2px;
+  
+  padding-left: 6px;
+	.circle {
+		@include object(30px,30px,#EDFF97);
+		border-radius:50%;
+		transform-origin:50% 100%;
+		animation : slide 0.2s ease-in-out forwards;
+		cursor:pointer;
+		@keyframes slide {
+			0%{
+				transform : translateY(30px);
+				opacity:0;
+			}
+		}
+		@for $i from 1 through 6 {
+			&:nth-child(#{$i}) {
+				animation-duration : calc(0.2s * #{$i});
+			}
+		}
+		&:hover {
+			transform:scale(1.3);
+		}
+		&:hover p {
+			opacity:1;
+		}
+		img {
+			width:100%;
+		}
+		position:relative;
+		p {
+			@include transPos(-30px,null,null,155%,-50%,0);
+			
+			padding:4px 8px;
+			display:block;
+			color:#fff;
+			font-size:16px;
+			border-radius:90px;
+            opacity:1;
+			top: -12px;
+			width: 76px;
+			text-align: center;
+			
+		}
+	}
+}
+
+.like {
+	@include object(auto,40px,#fff);
+	@include transPos(null,null,calc(50% - 150px),50%,-50%,-50%);
+	clear:both;
+    line-height: 40px;
+    padding: 0 10px;
+    border-radius: 5px;
+  box-shadow: 0px 0px 60px rgba(0, 0, 0, 0.2);
+  top:10px;
+	cursor:pointer;
+	i,p {
+		display:inline-block;
+		color:#558CFF;
+		font-size:18px;
+		margin:0 3px;
+		
+	}
+	p {
+		font-family:Sans-serif;
+	}
+}
+
+.show {
+	opacity:1;
+}
+
+
+@media screen and (max-width:376px){
+.reacts {
+  transform:scale(0.9);
+  height: 110px;
+  width: 229px;
+  top: 21px;
+	}
+
+	.miniCircle{
+		@include object(17px,17px,#EDFF97);
+		border-radius:50%;
+			transform-origin:50% 100%;
+			animation : slide 0.2s ease-in-out forwards;
+			position:relative;
+			top: -40%;
+			left: 88%;
+	}
+}
+	
+.miniCircle{
+	@include object(17px,17px,#EDFF97);
+	border-radius:50%;
+		transform-origin:50% 100%;
+		animation : slide 0.2s ease-in-out forwards;
+		position:relative;
+		top: -40%;
+		left: 88%;
+}
+
+.ion-segment-button{
+	width:100% !important
+}
+
+
+
+@media screen and (max-width:420px){
+	.ion-segment-button{
+		width: 30%;
+	}
+	.reacts{
+		width: 55px;
+		height: 70px;
+	}
+	.circle{
+		top: -17px;
+	}
+  }
+	  

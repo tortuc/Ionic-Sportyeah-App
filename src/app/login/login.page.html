@@ -1,0 +1,100 @@
+<ion-content ngClass.gt-xs="bg-gradient-person">
+  <ion-button
+    ngClass.xs="lang-xs"
+    (click)="langs()"
+    style="--background: none;--box-shadow:none; position: fixed; right: 10px; top: 10px"
+    ><ion-img
+      style="width: 24px; height: 24px; margin-right: 5px"
+      src="./assets/flags/{{translate.currentLang}}.png"
+    ></ion-img>
+    {{translate.currentLang}}</ion-button
+  >
+  <ion-grid style="padding: 0" class="height-100vh">
+    <ion-row
+      class="height-100vh ion-align-items-center ion-justify-content-center"
+    >
+      <ion-col class="max-widht-520" size-lg="5" size-md="8" size-sm="12">
+        <ion-card ngClass.xs="login-xs">
+          <ion-card-header class="text-center">
+            <div class="title-project"
+              style="cursor: pointer"
+              (click)="userService.goLanding()"
+            >
+            <img src="https://i.ibb.co/g6TFj6G/Logo-TRANSPARENTE.png" alt="SportYeah" width="180px"
+            style="vertical-align: middle !important;">
+            </div>
+            <ion-card-title>{{'login.login' | translate}}</ion-card-title>
+            <ion-card-subtitle>{{'login.msg' | translate}}</ion-card-subtitle>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-grid>
+              <ion-row>
+                <ion-col>
+                  <form [formGroup]="loginForm">
+                    <ion-grid class="max-widht-300 center">
+                      <ion-row>
+                        <ion-col size="12">
+                          <ion-item>
+                            <ion-label position="floating"
+                              >{{'login.email' | translate}}</ion-label
+                            >
+                            <ion-input
+                              formControlName="email"
+                              type="email"
+                            ></ion-input>
+                          </ion-item>
+                        </ion-col>
+                        <ion-col size="12">
+                          <ion-item>
+                            <ion-input
+                              placeholder="{{'login.password' | translate}}"
+                              formControlName="password"
+                              [type]="(show)?'text':'password'"
+                            ></ion-input>
+                            <ion-icon
+                            class="eyeIcon"
+                              [name]="(show)?'eye-off':'eye'"
+                              slot="end"
+                              style="cursor: pointer"
+                              (click)="show = !show"
+                            ></ion-icon>
+                          </ion-item>
+                        </ion-col>
+                        <ion-col>
+                          <ion-checkbox
+                            [(ngModel)]="remember"
+                            [ngModelOptions]="{standalone: true}"
+                            style="vertical-align: middle"
+                          ></ion-checkbox
+                          ><span> Mantener sesion abierta</span>
+                        </ion-col>
+                      </ion-row>
+                    </ion-grid>
+                  </form>
+                  <div class="max-widht-300 center margin-top-10 text-right">
+                    <a routerLink="/forgot"
+                      >{{'login.forgot_password'| translate}}</a
+                    >
+                  </div>
+                  <ion-button
+                    [disabled]="loginForm.invalid"
+                    (click)="login()"
+                    class="btn-primary"
+                    expand="block"
+                    fill="outline"
+                    >{{'login.login' | translate}}</ion-button
+                  >
+                  <div class="max-widht-300 center margin-top-10 text-center">
+                    <a routerLink="/signup"
+                      >{{'login.create_account'| translate}}</a
+                    >
+                  </div>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

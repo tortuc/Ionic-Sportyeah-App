@@ -1,0 +1,82 @@
+<ion-header>
+  <ion-toolbar class="bg-gradient-person">
+    <ion-buttons slot="start">
+      <ion-back-button style="color: white"></ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-icon style="color: white;font-size:30px" name="person-outline" [routerLink]="'/profile'"></ion-icon>
+    </ion-buttons>
+    <ion-title style="--color: white">Crear</ion-title>
+    <button  (click)="imprimir()" >imprimir</button>
+    
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="bg-gradient-person">
+  <ion-grid>
+    <ion-row>
+      <ion-col size="6">
+        <ion-input placeholder="Titulo" [(ngModel)]="titulo1"></ion-input>
+        <ion-input placeholder="Subtitulo" [(ngModel)]="subtitulo1"></ion-input>
+      
+        <ngx-wig style="color: black;" [(ngModel)]="text1" [buttons]="'list1,list2,bold,italic,link,underline'"></ngx-wig>
+         
+        <button (click)="consol()" >Agregar</button>
+        <button [disabled]="(parrafos.length > 0 && number < parrafos.length-1)?false:true" (click)="numberPositionSelect(1)" >+</button>
+        <span *ngIf="parrafos.length > 0">{{number+1}}</span>
+        <button [disabled]="(parrafos.length > 0 && number > 0)?false:true" (click)="numberPositionSelect(-1)" >-</button>
+      
+        <button *ngIf="parrafos.length > 0" (click)="selectParrafo()" >Seleccionar</button>
+        <button *ngIf="parrafos.length > 0 && positionEditactual != null" (click)="EditParrafo()" >Editar</button>
+        <button *ngIf="parrafos.length > 0 && positionEditactual != null" (click)="eliminarParrafo()" >Eliminar</button>
+        <button *ngIf="parrafos.length > 0 && positionEditactual != null" (click)="cancelar()" >Cancelar</button><br>
+        <span *ngIf="parrafos.length > 0 && positionEditactual != null">Editar el párrafo número{{positionEditactual+1}}: </span>
+        <span *ngIf="parrafos.length > 0 && positionEditactual != null">{{parrafoAntesEdicion}}</span>
+      </ion-col>
+  
+  
+    
+        
+        <ion-col size="6" >
+          <ion-text *ngIf="parrafos.length > 0" color="dark">
+            <h3 style="text-align: center;">Párrafos</h3>
+          </ion-text>
+          <div *ngFor="let parrafo of parrafos" >
+            <ion-card [ngClass]="(positionEditactual == parrafo.position)?'selected':''" (click)="selectParrafoCards(parrafo.position)">
+              <ion-card-header>
+                <ion-card-subtitle>{{parrafo.subtitle}}</ion-card-subtitle>
+                <ion-card-title>{{parrafo.title}}</ion-card-title>
+              </ion-card-header>
+          
+              <ion-card-content>
+                <div [innerHTML]="parrafo.parrafo"></div>
+              </ion-card-content>
+            </ion-card>
+          </div>
+        </ion-col>
+
+      </ion-row>
+    </ion-grid>
+    
+
+
+</ion-content>
+<!-- <form [formGroup]="profileForm">
+  
+  <label>
+    First Name:
+    <angular-editor id="editor1" formControlName="htmlContent1" [config]="editorConfig"></angular-editor>
+  </label>
+
+  <label>
+    Last Name:
+    <angular-editor id="editor2" formControlName="htmlContent2" [config]="editorConfig"></angular-editor>
+  </label> 
+
+</form> -->
+
+
+
+
+
+

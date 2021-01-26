@@ -1,0 +1,64 @@
+<ion-row>
+  <ion-col>
+    <h6 style="color: black; font-weight: bold">
+      {{'awards.title' | translate}}
+    </h6>
+  </ion-col>
+  <ion-col *ngIf="id==userService.User?._id">
+    <ion-icon class="addPlus" name="add-outline" routerLink="new-awards"></ion-icon>
+  </ion-col>
+</ion-row>
+<div *ngFor="let e of awardService.awards" style="margin-bottom:10px;">
+  <div style="border-bottom: 2px solid rgb(243 242 239);" *ngIf="!e.deleted">
+    <ion-row>
+      <ion-col size="4" class="text-center">
+        <!--
+        <img src="https://i.ibb.co/b7cJrVM/133874692-795553201311240-1778846616970099917-n.png" width='100px'
+          style="background: black; border-radius: 30%;" />
+        -->
+        <!-- SLIDE --> 
+
+        <ion-slides pager="true" [options]="slideOpts">
+          <ion-slide *ngFor="let url of e.multimediaContent" class="slide">
+            <img *ngIf="url.indexOf('image') !== -1" [src]="url" class="img" alt="">
+            <video *ngIf="url.indexOf('video') !== -1" controlslist="nodownload" controls="controls" preload="metadata"
+              webkit-playsinline="webkit-playsinline" class="videoPlayer">
+              <source [src]="url | safeUrl" type="video/mp4" />
+              <source [src]="url | safeUrl" type="video/ogg" />
+              <br>
+            </video>
+            <iframe width="100%" [src]="url | youtube"
+              *ngIf="url.indexOf('youtube') !== -1 && url | youtube">
+            </iframe>
+          </ion-slide>
+
+          <ion-slide *ngIf="e.multimediaContent.length ===0">
+            <img
+              src="https://trello-attachments.s3.amazonaws.com/5ff9d47572424648014190dc/700x422/29f3e5ed0cea0a6b7439bfb986a090cd/original.jpg"
+              class="img" alt="">
+          </ion-slide>
+        </ion-slides>
+      </ion-col>
+      <ion-col size="8">
+        <h2 class="t-16 t-black t-bold">{{e.position}} </h2>
+        <h6  >{{e.title}}</h6>
+        <p class="visually-hidden" >{{e.description}}</p>
+        <p style="font-size: 9px; ">{{e.federationTeam}} - {{e.place}} </p>
+        <p class="visually-hidden" style="font-size: 9px;
+        ">{{'awards.form.eventDate' | translate}}
+        {{e.initDate | customDisplayDate : true}}         
+        </p>
+
+        <ion-button *ngIf="id==userService.User?._id" style="float: right;" (click)="awardService.delete(e._id)">
+          <ion-icon name="trash-outline"></ion-icon>
+        </ion-button>
+        <ion-button *ngIf="id==userService.User?._id" style="float: right;"
+          (click)="awardService.changeSelected(e)" routerLink="new-awards">
+          <ion-icon name="create-outline"></ion-icon>
+        </ion-button>
+
+      </ion-col>
+    </ion-row>
+  </div>
+</div>
+<div class="text-center mb" *ngIf="awardService.noAwards">{{'awards.no-info' | translate}}</div>

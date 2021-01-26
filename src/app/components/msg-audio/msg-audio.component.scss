@@ -1,0 +1,56 @@
+.audio{
+    width: 200px;
+    border-radius: 5px;
+}
+.date{
+    float: right;font-size: 12px;
+    margin-bottom: -8px;
+  }
+
+  .msg{
+    --background:white;
+    flex: 1 1 0;
+    max-width: 60%;
+    padding: 1px;
+    margin: 2px;
+    color: #000;
+    float: left;
+
+}
+
+.my-msg{
+    --background: #e3edff;
+    color: #000;
+    float: right !important;
+}
+
+.play{
+    color: var(--color-primary);
+    font-size: 32px;
+    vertical-align: text-top;
+    cursor: pointer;
+}
+
+.p-10-0{
+    padding: 0 10px !important;
+}
+
+.bar{
+    place-self: center !important;
+
+}
+.duration{
+    position: absolute;
+    right: 5px;
+    font-size: 10px;
+}
+
+ion-progress-bar{
+    --progress-background:var(--color-primary);
+    --buffer-background: #b3a9a9;
+}
+
+.read{
+    color: #e300ff;
+  }
+  

@@ -1,0 +1,17 @@
+<ion-row class="wish" >
+  <ion-col size="12">
+
+    <span class="title pointer" (click)="all()">{{wish.title}} </span>
+    
+    <ion-badge *ngIf="userService.User?._id == wish.user._id" class="status pointer" (click)="all()">{{(wish.privacity == 'public')?translate.instant('public'):translate.instant('private')}}</ion-badge>
+    <ion-badge *ngIf="userService.User?._id == wish.user._id" class="options" (click)="options($event)"><ion-icon name="ellipsis-vertical-outline"></ion-icon></ion-badge>
+   </ion-col>
+  <ion-col class="pointer" size="12" (click)="all()">
+    <p class="description">{{wish.description}}</p>
+    <span class="price">{{wish.price | currency:'EUR'}}</span>
+   </ion-col>
+   <ion-col class="pointer" size="12" (click)="all()">
+     <span class="date">{{wish.endDate | customDisplayDate:true}}</span>
+
+   </ion-col>
+</ion-row>

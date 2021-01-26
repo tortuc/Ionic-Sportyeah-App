@@ -1,0 +1,48 @@
+<ion-content class="ion-page text-center" style="padding: 20px;">
+<form [formGroup]="form">
+    <ion-item> 
+     <ion-label position="stacked"
+     style="font-weight: bold;" 
+     >{{'Photo' | translate}}</ion-label>
+       <div>
+      <img class="img-fluid" [src]="form.value.photo" style="cursor:
+                                                      pointer;margin-top:20px"
+      (click)="change()" />
+      </div>
+
+    </ion-item>
+  <ion-item>
+    <ion-label position="stacked"
+     style="font-weight: bold;" 
+     >{{'Title' | translate}}</ion-label>
+    <ion-textarea type="text" 
+      style="background: transparent;"
+      formControlName="title"></ion-textarea>
+  </ion-item>
+  <ion-item>
+    <ion-label position="stacked"
+     style="font-weight: bold;" 
+     >{{'Subtitle' | translate}}</ion-label>
+    <ion-textarea type="text" 
+      style="background: transparent;"
+      formControlName="subtitle"></ion-textarea>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="stacked"
+     style="font-weight: bold;" 
+    >Url</ion-label>
+    <ion-textarea type="text" 
+      style="background: transparent;"
+      formControlName="url"></ion-textarea>
+  </ion-item>
+
+  <ion-button 
+    style="margin-top: 20px;"
+    (click)="save()"
+    [disabled]="form.status !== 'VALID'"
+  >
+    {{'profile_edit.btn' | translate}}
+  </ion-button>
+</form>
+</ion-content>

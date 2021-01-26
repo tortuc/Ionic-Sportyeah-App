@@ -1,0 +1,174 @@
+import { Input, Component, OnInit } from '@angular/core';
+import {User, UserService } from 'src/app/service/user.service';
+import { ModalController } from '@ionic/angular';
+import { NewNodeComponent } from './new-node/new-node.component';
+import { take } from 'rxjs/operators';
+import { ActivatedRoute } from '@angular/router';
+
+interface UserData {
+  user: User;
+  friends: {
+    followers: number;
+    followings: number;
+  };
+  posts: number;
+  connected: boolean;
+}
+
+@Component({
+  selector: 'app-structure',
+  templateUrl: './structure.component.html',
+  styleUrls: ['./structure.component.scss'],
+})
+export class StructureComponent implements OnInit {
+  @Input() public ID:string;
+  public structure = {
+    id:1,
+    photo: `https://www.necg.com.lb/sites/default/files/images/organization.jpg`,
+    subtitle:`structure.subtitle`,
+    title: `structure.title`,
+    text: `structure.text`,
+    childs: [], 
+  }
+
+  public actualNode = this.structure;
+  public creator:boolean = false;
+  public structureStatus:boolean = true;
+
+  constructor(
+    public uS: UserService,
+    public mc: ModalController,
+    public userService: UserService,
+    public route: ActivatedRoute
+  ) {
+  }
+
+  ngOnInit() {
+
+
+    // Obtenemos la estructura organizacional del usuario si y solo si, dicha estructura existe.
+    console.log(this.ID);
+    if(this.ID === this.uS.User._id){
+      this.uS.User.structure !== undefined ? this.structure = this.uS.User.structure:null;
+      this.actualNode = this.structure
+      this.creator = true;
+    }else{
+      this.uS.getUserByUsername(this.route.snapshot.paramMap.get("username"))
+        .pipe(take(1))
+        .subscribe((r:UserData)=>{
+          console.log("c%UserData","color:green;")
+          console.log(r);
+          if(r.user.structure){
+            this.structure = r.user.structure;
+            this.actualNode = r.user.structure; 
+          }else{
+            this.structureStatus = false;
+          }
+        });
+    }}
+  async editNodes(node:any){
+    const modal = await this.mc.create({
+      component: NewNodeComponent,
+      cssClass: 'my-custom-class',
+      componentProps:{
+        structure:this.structure,
+        actualNode: node
+      }
+    });
+    await modal.present();
+    const { data } = await modal.onWillDismiss();
+    if(data){
+      console.log("form",data);
+      console.log("node",node);
+      node ? this.searchEdit(this.actualNode,data): this.createNode();
+    }
+  }
+
+  async createNode(){
+    //this.actualnode es el node padre
+    const modal = await this.mc.create({
+      component: NewNodeComponent,
+      cssClass: 'my-custom-class',
+      componentProps:{
+        structure:this.structure,
+        actualNode: undefined,
+        parentNode: this.actualNode
+      }
+    });
+    await modal.present();
+    const {data} = await modal.onWillDismiss();
+    if(data){
+      console.log("form: ",data,"parent: ",this.actualNode);
+      data.childs = [];
+      this.insertNode(this.structure,data, this.actualNode);
+    }
+  }
+
+  insertNode(node:any,newNode:any,parentNode:any){
+    if(node.id === parentNode.id){
+      node.childs.push(newNode);
+      this.as()
+    }else if (node.childs !== null){
+      for(let i in node.childs){
+        this.insertNode(node.childs[i],newNode,parentNode);
+      }
+    }
+
+  }
+
+  searchEdit(node:any,newNode:any){
+    console.log("EDITANDO STRUCTURA",node,newNode);
+    // Se buscara dentro de la estructura el nodo otorgado para su remplazo
+    if(node.id === newNode.id){
+      console.log("Editando");
+      node.photo = newNode.photo;
+      node.title = newNode.title;
+      node.subtitle = newNode.subtitle;
+      node.text = newNode.text;
+      console.log(node);
+      console.log(newNode);
+      this.as()
+    }else if(node.childs.length != 0){
+      console.log("revisando hijos");
+      for(let i = 0; i < node.childs.length; i++) {
+        this.searchEdit(node.childs[i],newNode);
+      }
+    }
+  }
+
+  deleteNode(node:any, nodeId:number){
+    console.log("%cDeleting a NODE", "color:red;font-size:30px;font-weight:bold;");
+    if(node.childs !== null){
+      for(let i in node.childs){
+        console.log("Revisando hijos")
+        let filtered = node.childs.filter((f:any)=>f.id===nodeId);
+        console.log("Filtro",filtered);
+        if(filtered && filtered.length > 0){
+          node.childs = node.childs.filter((f:any)=>f.id !== nodeId);
+          this.as()
+          return;
+        }
+        this.deleteNode(node.childs[i],nodeId);
+      }
+    }
+  }
+
+  go(subtitle:string, level:number,node:any){
+    if(subtitle === node.subtitle.split(' / ')[level]){
+      this.actualNode = node;
+    }else if(node.childs.length != 0){
+      for(let i in node.childs){
+        this.go(subtitle,level,node.childs[i])
+      }
+    } 
+  }
+
+  // Actualizar estructura
+  as(){
+    this.userService.User.structure = this.structure;
+    this.userService.update(this.userService.User)
+      .pipe(take(1))
+      .subscribe((r:any)=>console.log(r)); 
+  }
+
+}

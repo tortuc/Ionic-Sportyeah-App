@@ -1,0 +1,78 @@
+<ion-card ngClass.xs="m-p-0" class="post-card " style="margin-top:10px;"
+
+  *ngIf="structureStatus"
+  >
+    <ion-img [src]="actualNode.photo"></ion-img>
+    <ion-card-header>
+        <ion-button 
+          *ngIf="creator"
+          (click)="editNodes(actualNode)"
+          style="float: right; z-index: 99999999;"  
+        >
+          <ion-icon name="create-outline"></ion-icon>
+        </ion-button>
+      <ion-card-subtitle
+        style="width: 70%;"
+      >
+        <span
+          *ngFor="let l of actualNode.subtitle.split(' / ');let i = index"
+        >
+        <a 
+          (click)="go(l,i,structure)"
+          style="cursor: pointer;"
+        >
+          {{l | translate}}
+        </a>
+          <span *ngIf="i !== actualNode.subtitle.split(' / ').length -1"> / </span>
+        </span>
+      </ion-card-subtitle>
+      
+      <ion-card-title>
+        {{actualNode.title | translate}}
+      </ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      {{actualNode.text | translate}}
+    </ion-card-content>
+
+    <ion-list *ngFor="let i of actualNode.childs">
+      <ion-item>
+        <ion-avatar slot="start">
+          <img [src]="i.photo">
+        </ion-avatar>
+        <ion-label>
+          <h2>{{i.title | translate}}</h2>
+          <h3>{{i.subtitle | translate}}</h3>
+          <p>{{i.text.length > 15 ? i.text.substring(0,25)+'...': i.text | translate}}</p>
+          <ion-button (click)="actualNode=i"
+                    *ngIf="creator"
+            >
+            <ion-icon name="eye-outline" style="margin-right: 5px;"></ion-icon>
+            {{'structure.see' | translate}}
+          </ion-button>
+          <ion-button 
+            *ngIf="creator"
+            (click)="editNodes(i)">
+            <ion-icon name="create-outline"></ion-icon>
+          </ion-button>
+          <ion-button 
+                      *ngIf="creator"
+            (click)="deleteNode(structure,i.id)"
+            color="danger"
+          >
+            <ion-icon name="trash" >
+            </ion-icon>
+          </ion-button>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+    <div class="text-center" *ngIf="structure.title!=='structure.title'">
+      <ion-button (click)="createNode()"
+         *ngIf="creator"
+        >
+        <ion-icon name="add-outline"></ion-icon>
+      </ion-button>
+    </div>
+</ion-card>
+
