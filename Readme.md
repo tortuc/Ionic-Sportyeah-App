@@ -7,8 +7,21 @@ mongod
 1) eval "$(ssh-agent -s)"
 2) ssh-add ~/.ssh/id_rsa_sportyeah.pub
 
+# Tareas 27-01-2020
+1- EN PERFIL REPRESENTANTE....SOLO EXPERIENCIA + ESTRUCTURA DE CLUB
+2- EN PERFIL AFICIONADO ELIMINAR TODO LO QUE TIENE QUE VER CON PREMIOS / APTITUDES......
+3- AVATARES EN SPORTYEAH.
+4- Integrar el banco de imagenes gratuito.
+
 # Tareas 26-01-2020
-1- Esperar integracion de ssr.
+-1- Esperar integracion de ssr.
+-2- Corregidos todos los bugs con respecto a estructura organizacional.
+-3- Corregir bug al editar al padre.
+-4- Poder visualizar la estructura desde el perfil publico.
+-5- Crearme perfiles asociacion fundacion y federacion: probar privado publico.
+  davidasocia@gmail.com
+  davidfunda@gmail.com
+  davidfede@gmail.com
 
 
 # Tareas 24-01-2020

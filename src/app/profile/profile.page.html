@@ -197,13 +197,19 @@
           <app-structure
             [ID]="userService.User?._id"
             *ngIf="
-               userService.User.profile_user === 'sponsor'
+               userService.User.profile_user === 'sponsor' ||
+               userService.User.profile_user === 'association' ||
+               userService.User.profile_user === 'federation' ||
+               userService.User.profile_user === 'foundation'
              "
           ></app-structure>
           
           <ion-card ngClass.xs="m-p-0" class="post-card mt5"
             *ngIf="
-              userService.User.profile_user !== 'sponsor'
+              userService.User.profile_user !== 'sponsor' &&
+              userService.User.profile_user !== 'foundation' &&
+              userService.User.profile_user !== 'federation' &&
+               userService.User.profile_user !== 'association'
             "
 
           >
@@ -228,7 +234,10 @@
 
           <ion-card ngClass.xs="m-p-0" class="post-card mt5"
             *ngIf="
-              userService.User.profile_user !== 'sponsor'
+              userService.User.profile_user !== 'sponsor' &&
+              userService.User.profile_user !== 'federation' &&
+              userService.User.profile_user !== 'foundation' &&
+               userService.User.profile_user !== 'association'
             "
           >
             <ion-grid style="padding: 0" class="ion-justify-content-center">

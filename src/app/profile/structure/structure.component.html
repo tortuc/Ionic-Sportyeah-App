@@ -46,7 +46,6 @@
           <h3>{{i.subtitle | translate}}</h3>
           <p>{{i.text.length > 15 ? i.text.substring(0,25)+'...': i.text | translate}}</p>
           <ion-button (click)="actualNode=i"
-                    *ngIf="creator"
             >
             <ion-icon name="eye-outline" style="margin-right: 5px;"></ion-icon>
             {{'structure.see' | translate}}
