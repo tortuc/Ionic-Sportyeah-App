@@ -1,5 +1,7 @@
-import { LinkYoutubeComponent } from './../components/link-youtube/link-youtube.component';
-import { Subject } from 'rxjs';
+import { take } from 'rxjs/operators';
+import { FreeImgService } from "./freeImg.service";
+import { LinkYoutubeComponent } from "./../components/link-youtube/link-youtube.component";
+import { Subject } from "rxjs";
 import { Injectable, Input, ElementRef } from "@angular/core";
 import {
   ActionSheetController,
@@ -21,11 +23,12 @@ export class ImgVideoUpload {
   constructor(
     public userService: UserService,
     private actionSheetCtrl: ActionSheetController,
-    private imageAPI:JdvimageService,
+    private imageAPI: JdvimageService,
     private translate: TranslateService,
     private modalCtrl: ModalController,
     private loading: LoadingController,
-    private jdvImage: JdvimageService
+    private jdvImage: JdvimageService,
+    private freeImgService: FreeImgService
   ) {}
 
   content = new Subject();
@@ -33,7 +36,14 @@ export class ImgVideoUpload {
     let action = await this.actionSheetCtrl.create({
       header: this.translate.instant("img-options.header"),
       buttons: [
-       {
+        {
+          text: this.translate.instant("free-img"),
+          icon: "image-outline",
+          handler: () => {
+            this.freeImg();
+          },
+        },
+        {
           text: this.translate.instant("img-options.camera"),
           icon: "camera",
           handler: () => {
@@ -50,24 +60,30 @@ export class ImgVideoUpload {
     action.present();
   }
 
+  public freeImg() {
+    this.freeImgService
+      .getImages()
+      .pipe(take(1))
+      .subscribe((r) => console.log(r));
+  }
 
   @Input() take: boolean = true;
   async takePhotoFrom(fileChooser: ElementRef) {
     let action = await this.actionSheetCtrl.create({
       header: this.translate.instant("img-options.header"),
       buttons: [
-       {
+        {
           text: this.translate.instant("img-options.camera"),
           icon: "camera",
           handler: () => {
             this.takePicture(CameraSource.Camera);
           },
         },
-       {
+        {
           text: this.translate.instant("img-options.video"),
           icon: "camera",
           handler: () => {
-            this.video(fileChooser)
+            this.video(fileChooser);
           },
         },
         {
@@ -88,66 +104,66 @@ export class ImgVideoUpload {
   }
 
   video(fileChooser: ElementRef) {
-    fileChooser.nativeElement.click()
+    fileChooser.nativeElement.click();
   }
 
-  uploadFile(event){
-    let formData = new FormData()
-    let file = event.target.files[0]
-    if(file.type.split('/')[0] == 'video'){
-      formData.append('video',file)
-      this.uploadVideo(formData)
-    }else if(file.type.split('/')[0] == 'image'){
-      formData.append('image',file)
-      this.uploadImage(formData)
-    }else{
-      // handle      
+  uploadFile(event) {
+    let formData = new FormData();
+    let file = event.target.files[0];
+    if (file.type.split("/")[0] == "video") {
+      formData.append("video", file);
+      this.uploadVideo(formData);
+    } else if (file.type.split("/")[0] == "image") {
+      formData.append("image", file);
+      this.uploadImage(formData);
+    } else {
+      // handle
     }
   }
 
   /**
    * Sube un video al servidor
-   * @param formData 
+   * @param formData
    */
 
   uploadVideo(formData: FormData) {
-    this.imageAPI.uploadVideo(formData).toPromise()
-      .then((url)=>{
-        this.content.next(url)
+    this.imageAPI
+      .uploadVideo(formData)
+      .toPromise()
+      .then((url) => {
+        this.content.next(url);
       })
-      .catch((err)=>{
+      .catch((err) => {
         // handle
-      })
+      });
   }
 
   /**
    * Sube una imagen al servidor y la guarda en `files`
-   * @param formData 
+   * @param formData
    */
   uploadImage(formData: FormData) {
-    this.imageAPI.uploadImage(formData).toPromise()
-      .then((url)=>{
-        this.content.next(
-          url
-        )
+    this.imageAPI
+      .uploadImage(formData)
+      .toPromise()
+      .then((url) => {
+        this.content.next(url);
       })
-      .catch((err)=>{
+      .catch((err) => {
         // handle err
-      })
+      });
   }
-
-
 
   async youtubeVideo() {
     let modal = await this.modalCtrl.create({
       component: LinkYoutubeComponent,
     });
     modal.onDidDismiss().then((data) => {
-      data.data?this.content.next(data.data):null;
+      data.data ? this.content.next(data.data) : null;
     });
     return modal.present();
   }
-  
+
   async takePicture(source) {
     let formData = new FormData();
     Camera.getPhoto({
@@ -170,7 +186,7 @@ export class ImgVideoUpload {
           .toPromise()
           .then((url: string) => {
             loading.dismiss();
-            url?this.content.next(url):null;
+            url ? this.content.next(url) : null;
           })
           .catch((err) => {
             loading.dismiss();
@@ -194,4 +210,4 @@ export class ImgVideoUpload {
 
     return new Blob([ia], { type: mimeString });
   }
- }
+}
