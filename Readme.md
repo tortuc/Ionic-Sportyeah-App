@@ -17,12 +17,11 @@ mongod
 
 -2- EN PERFIL AFICIONADO ELIMINAR TODO LO QUE TIENE QUE VER CON PREMIOS / APTITUDES......
 -3- AVATARES EN SPORTYEAH.
-4- Integrar el banco de imagenes gratuito.
+-4- Integrar el banco de imagenes gratuito.
 -5- La imagen de products debe abrirse como modal.
 -6- Quitar margen en change slider, y mostrar imagenes con tamano que las imagenes se vean iguales.
 -7- Boton de change slider que sea como un div con un boton + icono.
 8- Bug al entrar al perfil despues de salir de otra cuenta se mantiene el anterior.
-9- Integrar banco gratuito de imagenes.
 
 ## Tareas 26-01-2020
 

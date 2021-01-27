@@ -35,7 +35,21 @@ export class ProfilePage implements OnInit {
     public bannerLogic: BannerLogic,
     public loginService: LoginService,
     private viewsProfileService: ViewsProfileService
-  ) {
+  ) {}
+
+  posts: IPostC[] = [];
+  views: [];
+  ngOnInit() {}
+  ionViewWillEnter() {
+    this.loginService.getIP().subscribe((geo) => {
+      this.banderaIP = geo.country;
+      this.ipLoaded = Promise.resolve(true);
+    });
+    this.getPost();
+    this.getCountPost();
+  }
+
+  getCountPost() {
     this.viewsProfileService
       .getProfileView(this.userService.User._id)
       .pipe(take(1))
@@ -55,20 +69,6 @@ export class ProfilePage implements OnInit {
     )
       this.landingButton = true;
     else this.landingButton = false;
-  }
-
-  posts: IPostC[] = [];
-  views: [];
-  ngOnInit() {
-    this.loginService.getIP().subscribe((geo) => {
-      this.banderaIP = geo.country;
-      this.ipLoaded = Promise.resolve(true);
-    });
-    this.getPost();
-    this.getCountPost();
-  }
-
-  getCountPost() {
     this.profileService
       .getCountPostByUser(this.userService.User._id)
       .then((count: number) => {
