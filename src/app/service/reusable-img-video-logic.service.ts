@@ -1,4 +1,5 @@
-import { take } from 'rxjs/operators';
+import { ImageSeeComponent } from "./../components/image-see/image-see.component";
+import { take } from "rxjs/operators";
 import { FreeImgService } from "./freeImg.service";
 import { LinkYoutubeComponent } from "./../components/link-youtube/link-youtube.component";
 import { Subject } from "rxjs";
@@ -60,11 +61,41 @@ export class ImgVideoUpload {
     action.present();
   }
 
-  public freeImg() {
+  public async freeImg() {
+    await this.presentLoading("loading");
     this.freeImgService
       .getImages()
       .pipe(take(1))
-      .subscribe((r) => console.log(r));
+      .subscribe(async (r: any) => {
+        console.log(r);
+        await this.loading.dismiss(null, null, "loading");
+        const modal = await this.presentModal(r.hits);
+        console.log(modal);
+        await modal.present()
+        const { data } = await modal.onWillDismiss();
+        console.log(data);
+        this.content.next(data);
+      });
+  }
+
+  async presentModal(datax: any): Promise<any> {
+    const modal = await this.modalCtrl.create({
+      component: ImageSeeComponent,
+      cssClass: "my-custom-class",
+      componentProps: {
+        data: datax,
+      },
+    });
+    return modal;
+  }
+
+  async presentLoading(url: string): Promise<void> {
+    const loadingC = await this.loading.create({
+      cssClass: "my-custom-class",
+      message: "Cargando...",
+      id: url,
+    });
+    await loadingC.present();
   }
 
   @Input() take: boolean = true;
@@ -77,6 +108,13 @@ export class ImgVideoUpload {
           icon: "camera",
           handler: () => {
             this.takePicture(CameraSource.Camera);
+          },
+        },
+        {
+          text: this.translate.instant("free-img"),
+          icon: "image-outline",
+          handler: () => {
+            this.freeImg();
           },
         },
         {

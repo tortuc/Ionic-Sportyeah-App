@@ -1,3 +1,4 @@
+import { ImageSeeComponent } from './image-see/image-see.component';
 import { ErrorComponent } from './error/error.component';
 import { LinkYoutubeComponent } from './link-youtube/link-youtube.component';
 import { NgModule } from '@angular/core';
@@ -56,6 +57,7 @@ import { ExperiencePage} from '../profile/experience/experience.page';
 import { AptitudesPage} from '../profile/aptitudes/aptitudes.page';
 import { IonicRatingModule } from 'ionic4-rating';
 import { StructureComponent } from 'src/app/profile/structure/structure.component';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -79,6 +81,7 @@ import { StructureComponent } from 'src/app/profile/structure/structure.componen
     PostSharedComponent,
     PostOptionsComponent,
     PostContentComponent,
+    ImageSeeComponent,
     FriendsMobileComponent,
     HeaderPostComponent,
     CommentPostComponent,
@@ -125,6 +128,7 @@ import { StructureComponent } from 'src/app/profile/structure/structure.componen
     AddFriendsPage,
     ExperiencePage,
     AptitudesPage,
+    ImageSeeComponent,
     AwardsPage,
     MsgAudioComponent,
     PostSharedComponent,
