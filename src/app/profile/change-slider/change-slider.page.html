@@ -9,55 +9,70 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="bg-gradient-person">
-  <ion-grid style="padding: 0" class="height-100vh">
-    <ion-row class="height-100vh ion-justify-content-center">
-      <ion-col size-md="8" size-sm="12">
-        <ion-card style="max-width: 700px" class="text-center">
-          <ion-button color="success" (click)="addContent()">Agregar contenido</ion-button>
-          <input multiple type="file" #fileChooser accept="video/*, image/*"
-          (change)="sliderLogic.uploadFile($event)" hidden>
-          <ion-card-content class="text-center">
-            <div *ngIf="sliderLogic.content.length === 0">No se encuentra contenido.</div>
-          <ion-row>
-            <ng-container *ngFor="let img of sliderLogic.content" >
-            <ion-col size="4">
-              <div *ngIf="img.indexOf('youtube') === -1 && img.indexOf('video') === -1">
-                <ion-icon name="close-outline" class="trashIcon" 
-                  (click)="sliderLogic.delete(img)"
-                ></ion-icon>
-                <img [src]="img" alt="" />
-              </div>
-              <div *ngIf="img.indexOf('video') !== -1">
-                <ion-icon name="close-outline" class="trashIconVideo" 
-                  (click)="sliderLogic.delete(img)"
-                ></ion-icon>
+<ion-content class="bg-gradient-person" style="margin: 0; padding: 0">
+  <ion-card class="text-center" style="margin: 0; padding: 0">
+    <ion-button color="success" (click)="addContent()"
+      ><ion-icon name="add-circle-outline"></ion-icon
+    ></ion-button>
+    <input
+      multiple
+      type="file"
+      #fileChooser
+      accept="video/*, image/*"
+      (change)="sliderLogic.uploadFile($event)"
+      hidden
+    />
+    <ion-card-content class="text-center">
+      <div *ngIf="sliderLogic.content.length === 0">
+        No se encuentra contenido.
+      </div>
+      <ion-row>
+        <ng-container *ngFor="let img of sliderLogic.content">
+          <ion-col size="4">
+            <div
+              *ngIf="img.indexOf('youtube') === -1 && img.indexOf('video') === -1"
+            >
+              <ion-icon
+                name="close-outline"
+                class="trashIcon"
+                (click)="sliderLogic.delete(img)"
+              ></ion-icon>
+              <img [src]="img" alt="" />
+            </div>
+            <div *ngIf="img.indexOf('video') !== -1">
+              <ion-icon
+                name="close-outline"
+                class="trashIconVideo"
+                (click)="sliderLogic.delete(img)"
+              ></ion-icon>
 
-                <video 
-                  controlslist="nodownload"  controls="controls" preload="metadata"  webkit-playsinline="webkit-playsinline" class="videoPlayer"
-                >
-                 <source [src]="img | safeUrl" type="video/mp4" />
-                 <source [src]="img | safeUrl" type="video/ogg" />
-                 <br>
-                </video>
-              </div>
-              <div *ngIf="img.indexOf('youtube') !== -1 && img | youtube" class="card">
-                <ion-icon name="close-outline" class="trashIconVideo" 
-                  (click)="sliderLogic.delete(img)"
-                ></ion-icon>
-                <iframe
-                  width="100%"
-                  height="100%"
-                  [src]="img | youtube"
-                >
-                </iframe>
-              </div>
-            </ion-col>
-            </ng-container>
-          </ion-row>
-          </ion-card-content>
-        </ion-card>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+              <video
+                controlslist="nodownload"
+                controls="controls"
+                preload="metadata"
+                webkit-playsinline="webkit-playsinline"
+                class="videoPlayer"
+              >
+                <source [src]="img | safeUrl" type="video/mp4" />
+                <source [src]="img | safeUrl" type="video/ogg" />
+                <br />
+              </video>
+            </div>
+            <div
+              *ngIf="img.indexOf('youtube') !== -1 && img | youtube"
+              class="card"
+            >
+              <ion-icon
+                name="close-outline"
+                class="trashIconVideo"
+                (click)="sliderLogic.delete(img)"
+              ></ion-icon>
+              <iframe width="100%" height="100%" [src]="img | youtube">
+              </iframe>
+            </div>
+          </ion-col>
+        </ng-container>
+      </ion-row>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
