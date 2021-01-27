@@ -1,0 +1,159 @@
+# IMPORTANTES
+Iniciar sportyeah
+cd "..\..\cygwin64\home\DELL E6430 ATG\proyectos\espana\sportyea\frontend"
+cd "..\..\cygwin64\home\DELL E6430 ATG\proyectos\espana\gitlab-sportyeha\jdvimage\src"
+cd "..\..\cygwin64\home\DELL E6430 ATG\proyectos\espana\sportyea\backend\src"
+mongod
+1) eval "$(ssh-agent -s)"
+2) ssh-add ~/.ssh/id_rsa_sportyeah.pub
+
+# Tareas 26-01-2020
+1- Esperar integracion de ssr.
+
+
+# Tareas 24-01-2020
+1- Corregir bugs con respecto a los niveles mas avanzados.
+  c- al editar un breadcrum modificar todos los breadcrum inferiores.
+
+# Tareas 23-01-20
+1- Realizar nodos estructura perfil:
+  * Realizar funcionalidad de modales:
+    -c- Al ser modal crear debe crear el nodo.
+    -d- Poder editar al foto de la modal.
+    -e- Boton eliminar node y logica.
+    f- Mejorar la logica del breadcrum: 
+      -a- al editar traer el ultimo breadcrum, 
+      -b- al presionar ver mas entrar al node hijo, 
+      -d- al presional un breadcrum volver a ese nivel.
+    g- Los breadcrum deben ser clickeables para poder devolverme en los nodos.
+
+# Tareas 22-01-20
+1- Realizar nodos estructura perfil:
+  * Maquetar modal para editar nodos y reabrir la misma para crear nodos mas
+    adentro
+  * Crear boton para editar un nodo hijo, para editar el padre, y para crear nuevos nodos
+  * Definir funcionalidad de breadcrum: array de string que lo separes por '/' en el ngOnInit debe separarlo y al mostrarlo poder navegar entre los distintos nodos. 
+
+  * Funcionalidad de breadcrum: Cada vez que se edite o se cree un node se agregara este al subtitulo con un ' ' y /
+  * Realizar funcionalidad de modales:
+    -a- Al traer los datos por primera vez deben venir vacios.
+    -b- Al darle click en guardar cambios debe modificar el nodo.
+
+# Tareas 21-01-20
+1- Realizar CRUD de nodos para estructura en perfil.
+  * Crear nuevo campo mixed en modelo usuarios.
+  * Crear nuevo componente estructura junto con su modal de nueva estructura, etc.
+  * Colocar breadcrum dentro de la estructura, colocar (foto, titulo, descripcion) dentro de cada nodo.
+  * Crear textos default.
+  * Crear JSON local el cual utilizaremos en el componente para mostrar la info
+    y poder editarla
+  * beber de la info de user.structure en el constructor.
+  * Crear modal para editar cada nodo.
+  * Colocar modal en los imports.
+  * Importar el modal controller.
+  * Abrir la modal al presional editar.
+  * Boton de editar deberia mostrarse a un lado de los childs. 
+  * Mejorar visual de los childs maquetar una prueba.
+
+# Tareas 20-01-20
+-1- Controlar tamanos en historia del perfil para que no rompa la visual.
+-2- Comentarios sobre posts como minimo debe tener una imagen o un caracter o un emoji.
+3- El boton de galeria de la imagen del banner tiene que abrir directamente el buscador de archivos.
+-4- Cerrar modales con el boton de ir hacia atras.
+
+# Tareas 19-01-20
+-1- Al darle click a la imagen abrirla.
+-2- Galeria de iconos para la landing.
+-3- Anadir iconos de linkedin y tiktok a la landing.
+-4- Seleccion multiple de imagenes carousel.
+-5- A partir de la segunda imagen del perfil no aparece icono para eliminar.
+
+# Tareas 18-01-20
+-1- Boton para editar el titulo, y descripcion del producto en cuestion.
+-2- No dejar crear un producto sin titulo o sin descripcion.
+
+
+# REUNION 17-01-20
+1- No permite ingresar caracteres especiales en las contrasenas.
+2- Correo llega mal la imagen.
+3- Que rediriga de http a https.
+4- No cambia imagen del banner al probar la primera vez.
+5- Galeria de iconos para la landing.
+6- Integrar API para imagenes gratuitas en cada subida.
+7- Redireccion de producto aclarar mejor la UI.
+8- Tooltip en titulo que redireccione a la url y la imagen se abra la imagen.
+9- Falta linkedin y tiktok.
+10- Translate influye dentro del cambio del texto.
+11- Club no deberia tener experiencias.
+12- Club no tiene aptitudes pero si deberia tener estructura de la organizacion.
+13- Gerarquia de organizacion mostrada parecida a la que sale del real madrid en google.
+14- Estructura por nodos en la estructura. Tal como la estructura del real madrid.
+15- No se cierra el banco de emojis al clickear fuera.
+16- El banner no se puede mover para que quede en la posicion preferida.
+17- Aun no hay avatares.
+18- Permitir seleccionar directamente de la galeria.
+19- Seleccion multiple de imagenes en carousel.
+20- A partir de la segunda imagen del perfil no aparece el icono para eliminar.
+21- Verificar la relacion de aspecto de la imagen subida en el carrousel.
+22- En vez de personal colocar staff del club. VICTOR.
+23- En perfil aficionado eliminar todo lo que sea premios aptitudes y colocar herramienta de fanatica.
+24- En perfil repreentante solo experiencia + estructura de club.
+25- Ojeador se queda asi, prensa tambien.
+26- Asociacion, fundacion y federacion en su perfil dejar premios y estructura de club.
+27- Ejectutivo igual y administrador de club igual.
+28- Carousel hacerla responsive 3x3. 
+29- En apartado prensa herramienta para crear noticia articulo etc, justo entre el carousel y el perfil.
+30- Graficas etc. Premio para Victor.
+31- Boton en notificaciones para actualizar.
+32- Pantalla de notificaciones esta mal el UI.
+33- No se cierra la pantalla de seleccionar iconos en el chat clickeando fuera.
+34- Iconos se meten al final y no en la posicion del cursor. 
+35- Facebook se ha ofendido.
+36- Se puede publicar comentarios vacios.
+37- Realizar trabajo para publicaciones con el exterior.
+38- Editor de videos. 
+39- Cadena de retos video al lado, repito el reto, etiqueta.
+40- Rankings super importante en SPORTYEAH.
+
+# TAREAS DAVID 14-01-20
+
+Donde dice logo cambiar por copyright.
+
+Poder crear patrocinadores:
+
+-1- Crear funcion de editar el array en backend en userModel.
+-2- Crear funcion controller user.
+-3- Agregar al userRouter las nuevas funciones.
+-4- Crear funcion en el servicio user.
+
+Mostrar a los patrocinadores en el perfil:
+
+Funcion unica para los clubes y jugadores.
+-5- En el init de profile traear los patrocinadores.
+6- Maquetar la pantalla y definir las dimensiones que deberia tener la imagen.
+7- Crear boton para agregar patrocinadores.
+8- Crear modal para agregar patrocinadores.
+9- Crear boton para editar patros. Crear modal para editar patrocinadores.
+10- Crear boton para eliminar patrocinadores.
+11- Crear modal para eliminar patrocinadores.
+12- Crear boton para editar los patrocinadores un estado que muestre y quite los botones.
+
+Sesion QA:
+1- Prueba crear patrocinadores, nombres largos urls largas.
+2- Prueba editar patrocinadores.
+3- Prueba eliminar patrocinadores.
+
+Mostrar los patrocinadores en el muro:
+13- Mostrar los patrocinadores de la misma forma que en el perfil un poco mas pequeno.
+
+Sesion QA:
+1- Probar los post en el muro.
+2- Probar los post en el perfil.
+
+
+
+Maquetacion: 
+1- que se vayan alineando en el centro las marcas. sean de proporcion horizontal.
+2- Boton para crear mas sponsors.
+3- Boton para editar sponsors.
+4- Boton para eliminar sponsors. 
