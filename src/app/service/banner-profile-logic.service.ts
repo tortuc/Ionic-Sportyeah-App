@@ -1,3 +1,6 @@
+import { ImageSeeComponent } from './../components/image-see/image-see.component';
+import { take } from 'rxjs/operators';
+import { FreeImgService } from './freeImg.service';
 import { Injectable, Input } from "@angular/core";
 import {
   ActionSheetController,
@@ -22,7 +25,8 @@ export class BannerLogic {
     private translate: TranslateService,
     private modalCtrl: ModalController,
     private loading: LoadingController,
-    private jdvImage: JdvimageService
+    private jdvImage: JdvimageService,
+    private freeImgService: FreeImgService,
   ) {}
 
   @Input() take: boolean = true;
@@ -35,6 +39,13 @@ export class BannerLogic {
           icon: "images",
           handler: () => {
             this.takePicture(CameraSource.Photos);
+          },
+        },
+        {
+          text: this.translate.instant("free-img"),
+          icon: "image-outline",
+          handler: () => {
+            this.freeImg();
           },
         },
         {
@@ -85,6 +96,44 @@ export class BannerLogic {
         break;
     }
   }
+
+  public async freeImg() {
+    await this.presentLoading("loading");
+    this.freeImgService
+      .getImages()
+      .pipe(take(1))
+      .subscribe(async (r: any) => {
+        console.log(r);
+        await this.loading.dismiss(null, null, "loading");
+        const modal = await this.presentModal(r.hits);
+        console.log(modal);
+        console.log('aquitoy');
+        await modal.present();
+        const { data } = await modal.onWillDismiss();
+        this.userService.User.photoBanner = data;
+      });
+  }
+
+  async presentModal(data: any): Promise<any> {
+    const modal = await this.modalCtrl.create({
+      component: ImageSeeComponent,
+      cssClass: "my-custom-class",
+      componentProps: {
+        data: data,
+      },
+    });
+    return modal;
+  }
+
+  async presentLoading(url: string): Promise<void> {
+    const loadingC = await this.loading.create({
+      cssClass: "my-custom-class",
+      message: "Cargando...",
+      id: url,
+    });
+    await loadingC.present();
+  }
+
 
   async takePicture(source) {
     let formData = new FormData();
