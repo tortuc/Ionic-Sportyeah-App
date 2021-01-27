@@ -1,92 +1,112 @@
 # IMPORTANTES
+
 Iniciar sportyeah
 cd "..\..\cygwin64\home\DELL E6430 ATG\proyectos\espana\sportyea\frontend"
 cd "..\..\cygwin64\home\DELL E6430 ATG\proyectos\espana\gitlab-sportyeha\jdvimage\src"
 cd "..\..\cygwin64\home\DELL E6430 ATG\proyectos\espana\sportyea\backend\src"
 mongod
-1) eval "$(ssh-agent -s)"
-2) ssh-add ~/.ssh/id_rsa_sportyeah.pub
 
-# Tareas 27-01-2020
-1- EN PERFIL REPRESENTANTE....SOLO EXPERIENCIA + ESTRUCTURA DE CLUB
-2- EN PERFIL AFICIONADO ELIMINAR TODO LO QUE TIENE QUE VER CON PREMIOS / APTITUDES......
-3- AVATARES EN SPORTYEAH.
+1. eval "$(ssh-agent -s)"
+2. ssh-add ~/.ssh/id_rsa_sportyeah.pub
+
+## Tareas 27-01-2020
+
+-1- EN PERFIL REPRESENTANTE....SOLO EXPERIENCIA + ESTRUCTURA DE CLUB
+
+- drepresent@gmail.com
+
+-2- EN PERFIL AFICIONADO ELIMINAR TODO LO QUE TIENE QUE VER CON PREMIOS / APTITUDES......
+-3- AVATARES EN SPORTYEAH.
 4- Integrar el banco de imagenes gratuito.
+5- La imagen de products debe abrirse como modal.
+6- Quitar margen en change slider, y mostrar imagenes con tamano que las imagenes se vean iguales.
+7- Boton de change slider que sea como un div con un boton + icono.
+8- Bug al entrar al perfil despues de salir de otra cuenta se mantiene el anterior.
 
-# Tareas 26-01-2020
+## Tareas 26-01-2020
+
 -1- Esperar integracion de ssr.
 -2- Corregidos todos los bugs con respecto a estructura organizacional.
 -3- Corregir bug al editar al padre.
 -4- Poder visualizar la estructura desde el perfil publico.
 -5- Crearme perfiles asociacion fundacion y federacion: probar privado publico.
-  davidasocia@gmail.com
-  davidfunda@gmail.com
-  davidfede@gmail.com
+davidasocia@gmail.com
+davidfunda@gmail.com
+davidfede@gmail.com
 
+## Tareas 24-01-2020
 
-# Tareas 24-01-2020
 1- Corregir bugs con respecto a los niveles mas avanzados.
-  c- al editar un breadcrum modificar todos los breadcrum inferiores.
+c- al editar un breadcrum modificar todos los breadcrum inferiores.
 
-# Tareas 23-01-20
+## Tareas 23-01-20
+
 1- Realizar nodos estructura perfil:
-  * Realizar funcionalidad de modales:
-    -c- Al ser modal crear debe crear el nodo.
-    -d- Poder editar al foto de la modal.
-    -e- Boton eliminar node y logica.
-    f- Mejorar la logica del breadcrum: 
-      -a- al editar traer el ultimo breadcrum, 
-      -b- al presionar ver mas entrar al node hijo, 
-      -d- al presional un breadcrum volver a ese nivel.
-    g- Los breadcrum deben ser clickeables para poder devolverme en los nodos.
 
-# Tareas 22-01-20
+- Realizar funcionalidad de modales:
+  -c- Al ser modal crear debe crear el nodo.
+  -d- Poder editar al foto de la modal.
+  -e- Boton eliminar node y logica.
+  f- Mejorar la logica del breadcrum:
+  -a- al editar traer el ultimo breadcrum,
+  -b- al presionar ver mas entrar al node hijo,
+  -d- al presional un breadcrum volver a ese nivel.
+  g- Los breadcrum deben ser clickeables para poder devolverme en los nodos.
+
+## Tareas 22-01-20
+
 1- Realizar nodos estructura perfil:
-  * Maquetar modal para editar nodos y reabrir la misma para crear nodos mas
-    adentro
-  * Crear boton para editar un nodo hijo, para editar el padre, y para crear nuevos nodos
-  * Definir funcionalidad de breadcrum: array de string que lo separes por '/' en el ngOnInit debe separarlo y al mostrarlo poder navegar entre los distintos nodos. 
 
-  * Funcionalidad de breadcrum: Cada vez que se edite o se cree un node se agregara este al subtitulo con un ' ' y /
-  * Realizar funcionalidad de modales:
-    -a- Al traer los datos por primera vez deben venir vacios.
-    -b- Al darle click en guardar cambios debe modificar el nodo.
+- Maquetar modal para editar nodos y reabrir la misma para crear nodos mas
+  adentro
+- Crear boton para editar un nodo hijo, para editar el padre, y para crear nuevos nodos
+- Definir funcionalidad de breadcrum: array de string que lo separes por '/' en el ngOnInit debe separarlo y al mostrarlo poder navegar entre los distintos nodos.
 
-# Tareas 21-01-20
+- Funcionalidad de breadcrum: Cada vez que se edite o se cree un node se agregara este al subtitulo con un ' ' y /
+- Realizar funcionalidad de modales:
+  -a- Al traer los datos por primera vez deben venir vacios.
+  -b- Al darle click en guardar cambios debe modificar el nodo.
+
+## Tareas 21-01-20
+
 1- Realizar CRUD de nodos para estructura en perfil.
-  * Crear nuevo campo mixed en modelo usuarios.
-  * Crear nuevo componente estructura junto con su modal de nueva estructura, etc.
-  * Colocar breadcrum dentro de la estructura, colocar (foto, titulo, descripcion) dentro de cada nodo.
-  * Crear textos default.
-  * Crear JSON local el cual utilizaremos en el componente para mostrar la info
-    y poder editarla
-  * beber de la info de user.structure en el constructor.
-  * Crear modal para editar cada nodo.
-  * Colocar modal en los imports.
-  * Importar el modal controller.
-  * Abrir la modal al presional editar.
-  * Boton de editar deberia mostrarse a un lado de los childs. 
-  * Mejorar visual de los childs maquetar una prueba.
 
-# Tareas 20-01-20
+- Crear nuevo campo mixed en modelo usuarios.
+- Crear nuevo componente estructura junto con su modal de nueva estructura, etc.
+- Colocar breadcrum dentro de la estructura, colocar (foto, titulo, descripcion) dentro de cada nodo.
+- Crear textos default.
+- Crear JSON local el cual utilizaremos en el componente para mostrar la info
+  y poder editarla
+- beber de la info de user.structure en el constructor.
+- Crear modal para editar cada nodo.
+- Colocar modal en los imports.
+- Importar el modal controller.
+- Abrir la modal al presional editar.
+- Boton de editar deberia mostrarse a un lado de los childs.
+- Mejorar visual de los childs maquetar una prueba.
+
+## Tareas 20-01-20
+
 -1- Controlar tamanos en historia del perfil para que no rompa la visual.
 -2- Comentarios sobre posts como minimo debe tener una imagen o un caracter o un emoji.
 3- El boton de galeria de la imagen del banner tiene que abrir directamente el buscador de archivos.
 -4- Cerrar modales con el boton de ir hacia atras.
 
-# Tareas 19-01-20
+## Tareas 19-01-20
+
 -1- Al darle click a la imagen abrirla.
 -2- Galeria de iconos para la landing.
 -3- Anadir iconos de linkedin y tiktok a la landing.
 -4- Seleccion multiple de imagenes carousel.
 -5- A partir de la segunda imagen del perfil no aparece icono para eliminar.
 
-# Tareas 18-01-20
+## Tareas 18-01-20
+
 -1- Boton para editar el titulo, y descripcion del producto en cuestion.
 -2- No dejar crear un producto sin titulo o sin descripcion.
 
+## REUNION 17-01-20
 
-# REUNION 17-01-20
 1- No permite ingresar caracteres especiales en las contrasenas.
 2- Correo llega mal la imagen.
 3- Que rediriga de http a https.
@@ -114,21 +134,21 @@ mongod
 25- Ojeador se queda asi, prensa tambien.
 26- Asociacion, fundacion y federacion en su perfil dejar premios y estructura de club.
 27- Ejectutivo igual y administrador de club igual.
-28- Carousel hacerla responsive 3x3. 
+28- Carousel hacerla responsive 3x3.
 29- En apartado prensa herramienta para crear noticia articulo etc, justo entre el carousel y el perfil.
 30- Graficas etc. Premio para Victor.
 31- Boton en notificaciones para actualizar.
 32- Pantalla de notificaciones esta mal el UI.
 33- No se cierra la pantalla de seleccionar iconos en el chat clickeando fuera.
-34- Iconos se meten al final y no en la posicion del cursor. 
+34- Iconos se meten al final y no en la posicion del cursor.
 35- Facebook se ha ofendido.
 36- Se puede publicar comentarios vacios.
 37- Realizar trabajo para publicaciones con el exterior.
-38- Editor de videos. 
+38- Editor de videos.
 39- Cadena de retos video al lado, repito el reto, etiqueta.
 40- Rankings super importante en SPORTYEAH.
 
-# TAREAS DAVID 14-01-20
+## TAREAS DAVID 14-01-20
 
 Donde dice logo cambiar por copyright.
 
@@ -163,10 +183,8 @@ Sesion QA:
 1- Probar los post en el muro.
 2- Probar los post en el perfil.
 
-
-
-Maquetacion: 
+Maquetacion:
 1- que se vayan alineando en el centro las marcas. sean de proporcion horizontal.
 2- Boton para crear mas sponsors.
 3- Boton para editar sponsors.
-4- Boton para eliminar sponsors. 
+4- Boton para eliminar sponsors.

@@ -1,5 +1,5 @@
 import { LoginService } from "./../service/login.service";
-import { take } from 'rxjs/operators';
+import { take } from "rxjs/operators";
 import { BannerLogic } from "./../service/banner-profile-logic.service";
 import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
 import { Router } from "@angular/router";
@@ -17,7 +17,7 @@ import { ViewsProfileService } from "../service/views-profile.service";
   styleUrls: ["./profile.page.scss"],
 })
 export class ProfilePage implements OnInit {
-  @ViewChild('fileChooser') fileChooser:ElementRef;
+  @ViewChild("fileChooser") fileChooser: ElementRef;
   public banderaIP: string = null;
   public ipLoaded: Promise<boolean>;
   public profile: boolean = true;
@@ -34,7 +34,7 @@ export class ProfilePage implements OnInit {
     public profileService: ProfileService,
     public bannerLogic: BannerLogic,
     public loginService: LoginService,
-    private viewsProfileService: ViewsProfileService,
+    private viewsProfileService: ViewsProfileService
   ) {
     this.viewsProfileService
       .getProfileView(this.userService.User._id)
@@ -44,14 +44,14 @@ export class ProfilePage implements OnInit {
         this.views = views.visits;
       });
     const uP = this.userService.User.profile_user;
-    if(
-      uP === 'club' ||
-      uP === 'representative' ||
-      uP === 'association' ||
-      uP === 'foundation' ||
-      uP === 'federation' ||
-      uP === 'brand' ||
-      uP === 'sponsor' 
+    if (
+      uP === "club" ||
+      uP === "representative" ||
+      uP === "association" ||
+      uP === "foundation" ||
+      uP === "federation" ||
+      uP === "brand" ||
+      uP === "sponsor"
     )
       this.landingButton = true;
     else this.landingButton = false;
@@ -74,8 +74,7 @@ export class ProfilePage implements OnInit {
       .then((count: number) => {
         this.countPost = count;
       })
-      .catch((err) => {
-      });
+      .catch((err) => {});
   }
 
   goToPost(id) {
@@ -123,12 +122,12 @@ export class ProfilePage implements OnInit {
   }
 
   segmentChanged(e: CustomEvent) {
-    if(e.detail.value === 'posts'){
+    if (e.detail.value === "posts") {
       this.profile = false;
       this.postsB = true;
-    }else{
+    } else {
       this.postsB = false;
-      this.profile = true; 
+      this.profile = true;
     }
   }
 }
