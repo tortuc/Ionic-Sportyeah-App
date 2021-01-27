@@ -32,7 +32,7 @@
         *ngFor="let product of landingService.ls.products; let i = index"
       >
         <div class="portfolio-item">
-          <a  target="_blank">
+          <a style="cursor: pointer" (click)="changePhoto(i)" target="_blank">
             <img class="img-fluid" [src]="product.photo" alt="" />
           </a>
           <div class="portfolio-caption">
