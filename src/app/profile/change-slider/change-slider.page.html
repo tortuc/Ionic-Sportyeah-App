@@ -11,9 +11,6 @@
 
 <ion-content class="bg-gradient-person" style="margin: 0; padding: 0">
   <ion-card class="text-center" style="margin: 0; padding: 0">
-    <ion-button color="success" (click)="addContent()"
-      ><ion-icon name="add-circle-outline"></ion-icon
-    ></ion-button>
     <input
       multiple
       type="file"
@@ -75,4 +72,5 @@
       </ion-row>
     </ion-card-content>
   </ion-card>
+  <ion-fab-button  color="secondary" (click)="addContent()" class="new"><ion-icon name="add"></ion-icon></ion-fab-button>
 </ion-content>
