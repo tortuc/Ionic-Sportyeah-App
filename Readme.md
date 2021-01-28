@@ -9,6 +9,13 @@ mongod
 1. eval "$(ssh-agent -s)"
 2. ssh-add ~/.ssh/id_rsa_sportyeah.pub
 
+## Tareas 28-01-2020
+
+1- Encuadre de imagen en banner change slider y products.
+2- Banco de emojis.
+3- Terminar tema de patrocinadores.
+4- Se vea la imagen del principio.
+
 ## Tareas 27-01-2020
 
 -1- EN PERFIL REPRESENTANTE....SOLO EXPERIENCIA + ESTRUCTURA DE CLUB
