@@ -139,64 +139,31 @@
             <h1 class="text-center">
               {{'Sponsors' | translate}}
               <span>
-                <ion-button style="margin-top: -13px">
+                <ion-button style="margin-top: -13px" (click)="createSponsor()">
                   <ion-icon name="add-circle-outline"> </ion-icon>
                 </ion-button>
               </span>
             </h1>
             <ion-grid>
               <ion-row>
-                <ion-col>
+                <ion-col
+                  *ngFor="let sponsor of userService.User?.sponsors; let i = index"
+                >
                   <ion-icon
                     name="trash-outline"
+                    style="cursor: pointer"
                     class="botonEliminar"
+                    (click)="deleteSponsor(i)"
                   ></ion-icon>
                   <ion-icon
                     name="create-outline"
+                    style="cursor: pointer"
                     class="botonEditar"
+                    (click)="editSponsor(i)"
                   ></ion-icon>
-                  <img
-                    src="https://tentulogo.com/wp-content/uploads/Adidas-FB.jpg"
-                  />
-                </ion-col>
-                <ion-col>
-                  <ion-icon
-                    name="trash-outline"
-                    class="botonEliminar"
-                  ></ion-icon>
-                  <ion-icon
-                    name="create-outline"
-                    class="botonEditar"
-                  ></ion-icon>
-                  <img
-                    src="https://tentulogo.com/wp-content/uploads/Adidas-FB.jpg"
-                  />
-                </ion-col>
-                <ion-col>
-                  <ion-icon
-                    name="trash-outline"
-                    class="botonEliminar"
-                  ></ion-icon>
-                  <ion-icon
-                    name="create-outline"
-                    class="botonEditar"
-                  ></ion-icon>
-                  <img
-                    src="https://tentulogo.com/wp-content/uploads/Adidas-FB.jpg"
-                  />
-                </ion-col>
-                <ion-col>
-                  <ion-icon
-                    name="trash-outline"
-                    class="botonEliminar"
-                  ></ion-icon>
-                  <ion-icon
-                    name="create-outline"
-                    class="botonEditar"
-                  ></ion-icon>
-                  <img
-                    src="https://tentulogo.com/wp-content/uploads/Adidas-FB.jpg"
-                  />
+                  <a [href]="sponsor.url" target="_blank">
+                    <img [src]="sponsor.photo"
+                  /></a>
                 </ion-col>
               </ion-row>
             </ion-grid>
@@ -267,8 +234,10 @@
             </ion-grid>
           </ion-card>
 
-          <ion-card ngClass.xs="m-p-0" class="post-card mt5"
-          *ngIf="
+          <ion-card
+            ngClass.xs="m-p-0"
+            class="post-card mt5"
+            *ngIf="
               userService.User.profile_user !== 'representative'
             "
           >

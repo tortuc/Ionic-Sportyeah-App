@@ -1,0 +1,29 @@
+<ion-content>
+  <div class="text-center">
+    <ion-img
+      [src]="photo"
+      style="cursor: pointer"
+      (click)="changePhoto()"
+    ></ion-img>
+    <form [formGroup]="form">
+      <ion-list>
+        <ion-item>
+          <ion-label position="stacked">{{
+            "sponsorURL" | translate
+          }}</ion-label>
+          <ion-input
+            type="text"
+            placeholder="URL"
+            formControlName="url"
+          ></ion-input>
+        </ion-item>
+      </ion-list>
+    </form>
+    <ion-button (click)="save()" [disabled]="form.status !== 'VALID'" shape="round" *ngIf="!editing">
+      {{ "new_event.button" | translate }}
+    </ion-button>
+    <ion-button (click)="save()" [disabled]="form.status !== 'VALID'" shape="round" *ngIf="editing">
+      {{ "edit" | translate }}
+    </ion-button>
+  </div>
+</ion-content>

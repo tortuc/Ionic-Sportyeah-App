@@ -1,3 +1,4 @@
+import { SponsorsComponent } from './../profile/sponsors/sponsors.component';
 import { ImageSeeComponent } from './image-see/image-see.component';
 import { ErrorComponent } from './error/error.component';
 import { LinkYoutubeComponent } from './link-youtube/link-youtube.component';
@@ -57,7 +58,6 @@ import { ExperiencePage} from '../profile/experience/experience.page';
 import { AptitudesPage} from '../profile/aptitudes/aptitudes.page';
 import { IonicRatingModule } from 'ionic4-rating';
 import { StructureComponent } from 'src/app/profile/structure/structure.component';
-
 @NgModule({
   imports: [
     CommonModule,
@@ -98,6 +98,7 @@ import { StructureComponent } from 'src/app/profile/structure/structure.componen
     UnfollowNotificationComponent,
     LikeNotificationComponent,
     CommentNotificationComponent,
+    SponsorsComponent,
     StructureComponent,
     SharedNotificationComponent,
     MentionNotificationComponent,
@@ -168,8 +169,8 @@ import { StructureComponent } from 'src/app/profile/structure/structure.componen
     MessageDocumentComponent,
     UrlPreviewComponent,
     ReactionsPostsComponent,
+    SponsorsComponent,
     ViewProfileComponent,
-
   ]
 })
 export class ComponentsModule { }

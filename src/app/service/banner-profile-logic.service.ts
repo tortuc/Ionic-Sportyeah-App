@@ -121,6 +121,7 @@ export class BannerLogic {
       componentProps: {
         data: data,
       },
+      backdropDismiss: false,
     });
     return modal;
   }

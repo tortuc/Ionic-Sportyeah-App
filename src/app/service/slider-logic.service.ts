@@ -105,6 +105,7 @@ export class SliderLogic {
       componentProps: {
         data: data,
       },
+      backdropDismiss: false,
     });
     return modal;
   }
@@ -177,6 +178,7 @@ export class SliderLogic {
   async chooseAvatar() {
     let modal = await this.modalCtrl.create({
       component: AvatarComponent,
+      backdropDismiss: false,
     });
     modal.onDidDismiss().then((data) => {
       this.avatarOptions(data.data);

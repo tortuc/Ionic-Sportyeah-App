@@ -85,6 +85,7 @@ export class ImgVideoUpload {
       componentProps: {
         data: datax,
       },
+      backdropDismiss: false,
     });
     return modal;
   }
@@ -195,6 +196,7 @@ export class ImgVideoUpload {
   async youtubeVideo() {
     let modal = await this.modalCtrl.create({
       component: LinkYoutubeComponent,
+      backdropDismiss: false,
     });
     modal.onDidDismiss().then((data) => {
       data.data ? this.content.next(data.data) : null;
