@@ -1,107 +1,143 @@
 <ion-header>
   <ion-toolbar class="bg-gradient-person">
     <ion-buttons slot="start">
-      <ion-back-button style="--color:white"></ion-back-button>
+      <ion-back-button style="--color: white"></ion-back-button>
     </ion-buttons>
-    <ion-title style="--color:white">{{'profile.title' | translate}}</ion-title> 
+    <ion-title style="--color: white"
+      >{{'profile.title' | translate}}</ion-title
+    >
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="bg-gradient-person">
-    <ion-row   class="height-100vh ion-justify-content-center">
-      <ion-col  size-md="8" size-sm="12">
-        <ion-card  style="max-width: 700px; margin:0 !important;">
-          <ion-card-header class="text-center" >
-            <new-profile-photo></new-profile-photo>
-            <ion-card-title>{{userService.User?.email}}</ion-card-title>
-            <ion-card-title><ion-icon style="vertical-align: middle;" name="phone-portrait-outline"></ion-icon>{{userService.User?.phone || 'profile_edit.unassigned' | translate}}</ion-card-title>
-
-          </ion-card-header>
-              <form [formGroup]="form">
-                <ion-grid >
-                  <ion-row >
-                    <ion-col size-sm="4" size-xs="12">
-                      <ion-item >
-                        <ion-label position="floating">{{'profile_edit.name' | translate}}</ion-label>
-                        <ion-input type="text" formControlName="name"></ion-input>
-                      </ion-item>
-                    </ion-col>
-                    <ion-col size-sm="4"  size-xs="12">
-                      <ion-item >
-                        <ion-label position="floating">{{'profile_edit.last_name' | translate}}</ion-label>
-                        <ion-input formControlName="last_name" ></ion-input>
-                      </ion-item>
-                    </ion-col>
-                    <ion-col size-sm="4"   size-xs="12">
-                      <ion-item >
-                        <ion-label position="floating">{{'profile_edit.birthDate' | translate}}</ion-label>
-                        <ion-input formControlName="birth_date" type="date"></ion-input>
-                      </ion-item>
-                    </ion-col>
-                    <ion-col size-sm="12" size-xs="12" >
-                      <ion-item >
-                        <ion-label position="floating">{{'profile_edit.estado' | translate}}</ion-label>
-                        <div
-                            #inputNode
-                        >
-                          <ion-textarea 
-                            type="text" formControlName="estado"></ion-textarea>
-                        </div>
-                      </ion-item>
-                      <div
-                        #emojiButton
-                        >
-                      <ion-button (click)="openEmojis()" 
-                        style="float: right;"
-                      >
+  <ion-row class="height-100vh ion-justify-content-center">
+    <ion-col size-md="8" size-sm="12">
+      <ion-card style="max-width: 700px; margin: 0 !important">
+        <ion-card-header class="text-center">
+          <new-profile-photo></new-profile-photo>
+          <ion-card-title>{{userService.User?.email}}</ion-card-title>
+          <ion-card-title
+            ><ion-icon
+              style="vertical-align: middle"
+              name="phone-portrait-outline"
+            ></ion-icon
+            >{{userService.User?.phone || 'profile_edit.unassigned' |
+            translate}}</ion-card-title
+          >
+        </ion-card-header>
+        <form [formGroup]="form">
+          <ion-grid>
+            <ion-row>
+              <ion-col size-sm="4" size-xs="12">
+                <ion-item>
+                  <ion-label position="floating"
+                    >{{'profile_edit.name' | translate}}</ion-label
+                  >
+                  <ion-input type="text" formControlName="name"></ion-input>
+                </ion-item>
+              </ion-col>
+              <ion-col size-sm="4" size-xs="12">
+                <ion-item>
+                  <ion-label position="floating"
+                    >{{'profile_edit.last_name' | translate}}</ion-label
+                  >
+                  <ion-input formControlName="last_name"></ion-input>
+                </ion-item>
+              </ion-col>
+              <ion-col size-sm="4" size-xs="12">
+                <ion-item>
+                  <ion-label position="floating"
+                    >{{'profile_edit.birthDate' | translate}}</ion-label
+                  >
+                  <ion-input
+                    formControlName="birth_date"
+                    type="date"
+                  ></ion-input>
+                </ion-item>
+              </ion-col>
+              <ion-col size-sm="12" size-xs="12">
+                <ion-item>
+                  <ion-label position="floating"
+                    >{{'profile_edit.estado' | translate}}</ion-label
+                  >
+                    <ion-textarea
+                      type="text"
+                      #FormElementRef
+                      formControlName="estado"
+                    ></ion-textarea>
+                    <div #emojiButton>
+                      <ion-button (click)="openEmojis($event)" style="float: right">
                         <ion-icon name="happy"></ion-icon>
                       </ion-button>
-                      </div>
-                      <div class="text-center" 
-                          #emojiContainer
-                       >
-                        <emoji-mart
-                          [hidden]="!emojis"
-                          (emojiClick)="addEmoji($event)"
-                          title="Pick your emoji…"
-                          emoji="point_up"
-                          [showPreview]="true"
-                        ></emoji-mart>
-                      </div>
-                    </ion-col>
-                    <ion-col  size="12">
-                      <ion-item >
-                        <ion-label>{{'profile_edit.change_password' | translate}}</ion-label>
-                        <ion-checkbox [(ngModel)]="change" [ngModelOptions]="{standalone: true}" (ionChange)="changePassword()" ></ion-checkbox>
-                      </ion-item>
-                    </ion-col>
-                    <ion-col  *ngIf="change" size-sm="6"  size-xs="12">
-                      <ion-item >
-                        <ion-input placeholder="{{'profile_edit.password' | translate}}" formControlName="password" [type]="(show)?'text':'password'"></ion-input>
-                        <ion-icon [name]="(show)?'eye-off':'eye'" slot="end" style="cursor: pointer;" (click)="show = !show"></ion-icon>
-
-                      </ion-item>
-                    </ion-col>
-                    <ion-col *ngIf="change" size-sm="6"  size-xs="12">
-                      <ion-item >
-                        <ion-input [type]="(show1)?'text':'password'" placeholder="{{'profile_edit.repeat_password' | translate}}" formControlName="repeat_password"></ion-input>
-                        <ion-icon [name]="(show1)?'eye-off':'eye'" slot="end" style="cursor: pointer;" (click)="show1 = !show1"></ion-icon>
-
-                      </ion-item>
-                    </ion-col>
-                  </ion-row>
-                  <ion-row>
-                    <ion-button (click)="save()" [disabled]="form.invalid" style="margin: auto;" class="bg-gradient-person">
-                      {{'profile_edit.btn' | translate}}
-                   </ion-button>
-                  </ion-row>
-
-                  
-                </ion-grid>
-              </form>
-           
-        </ion-card>
-      </ion-col>
-    </ion-row>
-
+                    </div>
+                </ion-item>
+                
+                <div class="text-center" #emojiContainer>
+                  <emoji-mart
+                    [hidden]="!emojis"
+                    (emojiClick)="addEmoji($event)"
+                    title="Pick your emoji…"
+                    emoji="point_up"
+                    [showPreview]="true"
+                  ></emoji-mart>
+                </div>
+              </ion-col>
+              <ion-col size="12">
+                <ion-item>
+                  <ion-label
+                    >{{'profile_edit.change_password' | translate}}</ion-label
+                  >
+                  <ion-checkbox
+                    [(ngModel)]="change"
+                    [ngModelOptions]="{standalone: true}"
+                    (ionChange)="changePassword()"
+                  ></ion-checkbox>
+                </ion-item>
+              </ion-col>
+              <ion-col *ngIf="change" size-sm="6" size-xs="12">
+                <ion-item>
+                  <ion-input
+                    placeholder="{{'profile_edit.password' | translate}}"
+                    formControlName="password"
+                    [type]="(show)?'text':'password'"
+                  ></ion-input>
+                  <ion-icon
+                    [name]="(show)?'eye-off':'eye'"
+                    slot="end"
+                    style="cursor: pointer"
+                    (click)="show = !show"
+                  ></ion-icon>
+                </ion-item>
+              </ion-col>
+              <ion-col *ngIf="change" size-sm="6" size-xs="12">
+                <ion-item>
+                  <ion-input
+                    [type]="(show1)?'text':'password'"
+                    placeholder="{{'profile_edit.repeat_password' | translate}}"
+                    formControlName="repeat_password"
+                  ></ion-input>
+                  <ion-icon
+                    [name]="(show1)?'eye-off':'eye'"
+                    slot="end"
+                    style="cursor: pointer"
+                    (click)="show1 = !show1"
+                  ></ion-icon>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-button
+                (click)="save()"
+                [disabled]="form.invalid"
+                style="margin: auto"
+                class="bg-gradient-person"
+              >
+                {{'profile_edit.btn' | translate}}
+              </ion-button>
+            </ion-row>
+          </ion-grid>
+        </form>
+      </ion-card>
+    </ion-col>
+  </ion-row>
 </ion-content>

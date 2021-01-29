@@ -144,26 +144,38 @@
                 </ion-button>
               </span>
             </h1>
-            <ion-grid>
+            <ion-grid class="text-center">
               <ion-row>
                 <ion-col
                   *ngFor="let sponsor of userService.User?.sponsors; let i = index"
                 >
-                  <ion-icon
-                    name="trash-outline"
-                    style="cursor: pointer"
-                    class="botonEliminar"
-                    (click)="deleteSponsor(i)"
-                  ></ion-icon>
-                  <ion-icon
-                    name="create-outline"
-                    style="cursor: pointer"
-                    class="botonEditar"
-                    (click)="editSponsor(i)"
-                  ></ion-icon>
                   <a [href]="sponsor.url" target="_blank">
-                    <img [src]="sponsor.photo"
+                    <img
+                      [src]="sponsor.photo"
+                      style="
+                        height: 50px;
+                        width: 100px;
+                        border-radius: 10px;
+                        object-fit: cover;
+                        object-position: cover;
+                      "
                   /></a>
+
+                  <div>
+                    <ion-icon
+                      name="create-outline"
+                      style="cursor: pointer"
+                      class="botonEditar"
+                      (click)="editSponsor(i)"
+                    ></ion-icon>
+
+                    <ion-icon
+                      name="trash-outline"
+                      style="cursor: pointer"
+                      class="botonEliminar"
+                      (click)="deleteSponsor(i)"
+                    ></ion-icon>
+                  </div>
                 </ion-col>
               </ion-row>
             </ion-grid>

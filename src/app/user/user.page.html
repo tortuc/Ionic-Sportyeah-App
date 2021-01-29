@@ -99,10 +99,52 @@
               </ion-row>
             </ion-grid>
             <div style="margin-top: 20px" *ngIf="!connected">
-              <!-- TODO colocarle UTC y translate -->
               Conectado por ultima vez {{lastConection | customDisplayDate}}.
             </div>
           </ion-card-header>
+
+          <!-- SPONSORS -->
+          <div class="text-center">
+            <!-- <h1 class="text-center">
+              {{'Sponsors' | translate}}
+              <span>
+                <ion-button style="margin-top: -13px" (click)="createSponsor()">
+                  <ion-icon name="add-circle-outline"> </ion-icon>
+                </ion-button>
+              </span>
+            </h1> -->
+            <!-- <p>{{'sponsorText' | translate}}</p> -->
+            <ion-grid>
+              <ion-row>
+                <ion-col *ngFor="let sponsor of user?.sponsors; let i = index">
+                  <!-- <ion-icon
+                    name="trash-outline"
+                    style="cursor: pointer"
+                    class="botonEliminar"
+                    (click)="deleteSponsor(i)"
+                  ></ion-icon>
+                  <ion-icon
+                    name="create-outline"
+                    style="cursor: pointer"
+                    class="botonEditar"
+                    (click)="editSponsor(i)"
+                  ></ion-icon> -->
+                  <a [href]="sponsor.url" target="_blank">
+                    <img
+                      [src]="sponsor.photo"
+                      style="
+                        height: 50px;
+                        width: 100px;
+                        border-radius: 10px;
+                        object-fit: cover;
+                        object-position: cover;
+                      "
+                  /></a>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </div>
+          <!-- TERMINO SPONSORS -->
 
           <ion-card-content> </ion-card-content>
           <div class="text-center">

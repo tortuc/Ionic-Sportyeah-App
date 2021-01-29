@@ -1,10 +1,17 @@
 <ion-content>
   <div class="text-center">
-    <ion-img
+    <img
       [src]="photo"
-      style="cursor: pointer"
+      style="
+        cursor: pointer;
+        height: 300px;
+        width: 600px;
+        border-radius: 10px;
+        object-fit: cover;
+        object-position: cover;
+      "
       (click)="changePhoto()"
-    ></ion-img>
+    />
     <form [formGroup]="form">
       <ion-list>
         <ion-item>
@@ -19,10 +26,20 @@
         </ion-item>
       </ion-list>
     </form>
-    <ion-button (click)="save()" [disabled]="form.status !== 'VALID'" shape="round" *ngIf="!editing">
+    <ion-button
+      (click)="save()"
+      [disabled]="form.status !== 'VALID'"
+      shape="round"
+      *ngIf="!editing"
+    >
       {{ "new_event.button" | translate }}
     </ion-button>
-    <ion-button (click)="save()" [disabled]="form.status !== 'VALID'" shape="round" *ngIf="editing">
+    <ion-button
+      (click)="save()"
+      [disabled]="form.status !== 'VALID'"
+      shape="round"
+      *ngIf="editing"
+    >
       {{ "edit" | translate }}
     </ion-button>
   </div>
