@@ -1,83 +1,124 @@
 <ion-header>
   <ion-toolbar class="bg-gradient-person">
-    <ion-title style="--color:white">{{'new_comment.title' | translate}}</ion-title>
-    <ion-buttons slot="end" >
-      <ion-button (click)="dismiss()"  style="--color:white"><ion-icon name="close"></ion-icon>
+    <ion-title style="--color: white">{{
+      "new_comment.title" | translate
+    }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismiss()" style="--color: white"
+        ><ion-icon name="close"></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
-  
 </ion-header>
 
 <ion-content>
   <ion-grid>
     <ion-row>
-      <ion-col size="12"  class="user-header">
-          <ion-avatar class="mini">
-          <ion-img class="img-user-mini" [src]="userService.User?.photo"></ion-img>
+      <ion-col size="12" class="user-header">
+        <ion-avatar class="mini">
+          <ion-img
+            class="img-user-mini"
+            [src]="userService.User?.photo"
+          ></ion-img>
         </ion-avatar>
         <div class="user-name">
-          <span style="color: #222121;">{{userService.User?.name}} {{userService.User?.last_name}}</span><br>
+          <span style="color: #222121"
+            >{{ userService.User?.name }}
+            {{ userService.User?.last_name }}</span
+          ><br />
         </div>
-  
-
       </ion-col>
-      <ion-col  size="12">
+      <ion-col size="12">
         <form [formGroup]="form">
-
-          <span *ngIf="form.controls.message.value == ''" class="fake-placeholder">{{'new_comment_placeholder' | translate}}</span>
-          <div  
-          style="max-height: 200px;color: #222121;" 
-          formControlName="message"
-          contenteditable
-          class="custom-textarea"
-          Mentions
-          (usersRender)="usersChange($event)"
-          (mention)="newValue($event)"
+          <span
+            *ngIf="form.controls.message.value == ''"
+            class="fake-placeholder"
+            >{{ "new_comment_placeholder" | translate }}</span
           >
-        </div> 
-        <div style="max-height: 400px;overflow: auto;">
-
-          <div class="users-mentions" id="mentionsUser" *ngFor="let user of users" (click)="setUser(user.user)">
-             <ion-avatar class="mention">
-               <ion-img [src]="user.user.photo"></ion-img>
-             </ion-avatar>
-             <span style="align-self: center;margin-left: 3px;user-select: none;"> {{user.user.name}} {{user.user.last_name}}</span>
+          <div
+            style="max-height: 200px; color: #222121"
+            formControlName="message"
+            contenteditable
+            class="custom-textarea"
+            Mentions
+            (usersRender)="usersChange($event)"
+            (mention)="newValue($event)"
+            #FormElementRef
+          ></div>
+          <div style="max-height: 400px; overflow: auto">
+            <div
+              class="users-mentions"
+              id="mentionsUser"
+              *ngFor="let user of users"
+              (click)="setUser(user.user)"
+            >
+              <ion-avatar class="mention">
+                <ion-img [src]="user.user.photo"></ion-img>
+              </ion-avatar>
+              <span
+                style="align-self: center; margin-left: 3px; user-select: none"
+              >
+                {{ user.user.name }} {{ user.user.last_name }}</span
+              >
+            </div>
           </div>
-        </div>
-       
-        <ion-avatar style="width: 150px;height: 150px;;position: relative;" *ngIf="form.controls.image.value != ''">
-          <ion-icon  (click)="removeImg()" class="icon-remove" style="cursor: pointer;" name="close"></ion-icon>
 
-          <ion-img style="border-radius: 5px !important;" [src]="form.controls.image.value">
+          <ion-avatar
+            style="width: 150px; height: 150px; position: relative"
+            *ngIf="form.controls.image.value != ''"
+          >
+            <ion-icon
+              (click)="removeImg()"
+              class="icon-remove"
+              style="cursor: pointer"
+              name="close"
+            ></ion-icon>
+
+            <ion-img
+              style="border-radius: 5px !important"
+              [src]="form.controls.image.value"
+            >
             </ion-img>
-    
-        </ion-avatar>
-      </form> 
-      <emoji-mart *ngIf="emoji"  (emojiClick)="addEmoji($event)" title="Pick your emoji…" emoji="point_up" [showPreview]="false"></emoji-mart>
-
+          </ion-avatar>
+        </form>
+        <div #emojisContainer>
+          <emoji-mart
+            *ngIf="emoji"
+            (emojiClick)="addEmoji($event)"
+            title="Pick your emoji…"
+            emoji="point_up"
+            [showPreview]="false"
+            #emojisContainer
+          ></emoji-mart>
+        </div>
       </ion-col>
-    
-      <ion-col class="buttons" size="12">   
 
-        <input #openImage type="file" accept="image/*" (change)="uploadImg($event)" hidden/>
-        <ion-button (click)="openEmojis()">
-          <ion-icon name="happy"></ion-icon>
-        </ion-button>
+      <ion-col class="buttons" size="12">
+        <input
+          #openImage
+          type="file"
+          accept="image/*"
+          (change)="uploadImg($event)"
+          hidden
+        />
+        <div #emojiButton>
+          <ion-button (click)="openEmojis()">
+            <ion-icon name="happy"></ion-icon>
+          </ion-button>
+        </div>
         <ion-button (click)="openImage.click()">
           <ion-icon name="image"></ion-icon>
         </ion-button>
         <!-- <ion-button>
           <ion-icon name="videocam"></ion-icon>
         </ion-button> -->
-          <ion-button [disabled]="form.value.message === '' && 
-            form.value.image === ''" (click)="send()">
-            {{'new_comment.btn' | translate}}
-          </ion-button>
+        <ion-button
+          [disabled]="form.value.message === '' && form.value.image === ''"
+          (click)="send()"
+        >
+          {{ "new_comment.btn" | translate }}
+        </ion-button>
       </ion-col>
     </ion-row>
   </ion-grid>
-
-  
-  
 </ion-content>

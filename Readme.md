@@ -10,18 +10,16 @@ mongod
 2. ssh-add ~/.ssh/id_rsa_sportyeah.pub
 3. ssh-add ~/.ssh/id_rsa_kecuki.pub
 
-3- Terminar tema de patrocinadores.
-
-  -1. Tamano predefinido para las imagenes de los patrocinadores.
-  -2. Mostrar los patrocinadores en el perfil publico.
-  -3. Mostrar patrocinadores en las publicaciones del muro justo debajo de su nombre.
-
-## Tareas 28-01-2020
+## Tareas 29-01-2020
 
 1- Encuadre de imagen en banner change slider y products.
 2- Banco de emojis.
+    - Revisando directiva mentions en busca de cambios. Efectivo habian cambios listo.
+
+## Tareas 28-01-2020
+
 -3- Terminar tema de patrocinadores.
-4- Se vea la imagen del principio.
+-4- Se vea la imagen del principio.
 
 ## Tareas 27-01-2020
 

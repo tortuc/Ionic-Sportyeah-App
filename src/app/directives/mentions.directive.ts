@@ -137,7 +137,8 @@ setCurrentCursorPosition(chars) {
 
 
 // posicion del caret al momento de seleccionar un usuario
-pos = 0
+public pos = 0
+public usersMetions = [];
 // la cadena que vamos a reemplazar
 match:string = null
 
@@ -149,12 +150,20 @@ public setUser(user:User){
   
   // Obtenemos su Full name
   let fullname = `${user.name} ${user.last_name}`
-  
   // El innerHTML que vamos a reemplazar
   let innerHTML = this.el.nativeElement.innerHTML
   
   // Remplazamos el `match` con la la etiqueta `<a>` que hace que puedas desplazarte a su perfil 
-  this.el.nativeElement.innerHTML = innerHTML.replace(this.match,`<a class="user" href="/#/user/${user.username}">${fullname}</a>`)
+  this.el.nativeElement.innerHTML = innerHTML.replace(this.match,`<a class="user" href="/user/${user.username}">${fullname}</a>`)
+  
+  // Añadimos al array de usuarios mecionados, para el fix del caret
+  this.usersMetions.push({
+    fullname,
+    url: `<a class="user" href="/user/${user.username}">${fullname}</a>`
+  });
+
+  // Limpiamos el array de menciones dobles
+  this.usersMetions = this.usersMetions.filter((v,i,a)=>a.findIndex(t=>(t.fullname === v.fullname ))===i)
   
   // una vez que esta reemplazado el texto, este emite el nuevo html para que se pueda asignar ese valor su respectiva variable de control
   this.mention.emit(this.el.nativeElement.innerHTML)
@@ -162,6 +171,8 @@ public setUser(user:User){
   // Una vez que la variable de control tenga el nuevo valor, se acomoda el caret del input al final del nombre del usuario
   this.setCurrentCursorPosition((this.pos - this.match.length) + fullname.length )
   
+  // Se actualiza tambien el valor de pos
+  this.pos = (this.pos - this.match.length) + fullname.length
   // Se limpea los usuarios a renderizar  
   this.usersRender.emit([])
   
