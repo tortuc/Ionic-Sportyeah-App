@@ -1,5 +1,5 @@
 import { TranslateService } from '@ngx-translate/core';
-import { Component, OnInit,Input } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { AwardService } from 'src/app/service/awards.service';
 import { UserService } from 'src/app/service/user.service';
 
@@ -14,12 +14,9 @@ export class AwardsPage implements OnInit {
     public awardService: AwardService,
     public userService: UserService
   ) {
-    //this.awardService.getByUser(this.userService.User._id);
+    // this.awardService.getByUser(this.userService.User._id);
   }
-  @Input() id:string;
-  async ngOnInit() {
-    await this.awardService.getByUser(this.id);
-  }
+  @Input() id: string;
 
   slideOpts = {
     on: {
@@ -71,15 +68,15 @@ export class AwardsPage implements OnInit {
           if (swiper.params.flipEffect.slideShadows) {
             // Set shadows
             let shadowBefore = swiper.isHorizontal()
-              ? $slideEl.find(".swiper-slide-shadow-left")
-              : $slideEl.find(".swiper-slide-shadow-top");
+              ? $slideEl.find('.swiper-slide-shadow-left')
+              : $slideEl.find('.swiper-slide-shadow-top');
             let shadowAfter = swiper.isHorizontal()
-              ? $slideEl.find(".swiper-slide-shadow-right")
-              : $slideEl.find(".swiper-slide-shadow-bottom");
+              ? $slideEl.find('.swiper-slide-shadow-right')
+              : $slideEl.find('.swiper-slide-shadow-bottom');
             if (shadowBefore.length === 0) {
               shadowBefore = swiper.$(
                 `<div class="swiper-slide-shadow-${
-                  swiper.isHorizontal() ? "left" : "top"
+                  swiper.isHorizontal() ? 'left' : 'top'
                 }"></div>`
               );
               $slideEl.append(shadowBefore);
@@ -87,15 +84,17 @@ export class AwardsPage implements OnInit {
             if (shadowAfter.length === 0) {
               shadowAfter = swiper.$(
                 `<div class="swiper-slide-shadow-${
-                  swiper.isHorizontal() ? "right" : "bottom"
+                  swiper.isHorizontal() ? 'right' : 'bottom'
                 }"></div>`
               );
               $slideEl.append(shadowAfter);
             }
-            if (shadowBefore.length)
+            if (shadowBefore.length) {
               shadowBefore[0].style.opacity = Math.max(-progress, 0);
-            if (shadowAfter.length)
+            }
+            if (shadowAfter.length) {
               shadowAfter[0].style.opacity = Math.max(progress, 0);
+            }
           }
           $slideEl.transform(
             `translate3d(${tx}px, ${ty}px, 0px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`
@@ -108,19 +107,20 @@ export class AwardsPage implements OnInit {
         slides
           .transition(duration)
           .find(
-            ".swiper-slide-shadow-top, .swiper-slide-shadow-right, .swiper-slide-shadow-bottom, .swiper-slide-shadow-left"
+            '.swiper-slide-shadow-top, .swiper-slide-shadow-right, .swiper-slide-shadow-bottom, .swiper-slide-shadow-left'
           )
           .transition(duration);
         if (swiper.params.virtualTranslate && duration !== 0) {
           let eventTriggered = false;
           // eslint-disable-next-line
           slides.eq(activeIndex).transitionEnd(function onTransitionEnd() {
-            if (eventTriggered) return;
-            if (!swiper || swiper.destroyed) return;
+            if (eventTriggered) { return; }
+            if (!swiper || swiper.destroyed) { return; }
 
             eventTriggered = true;
             swiper.animating = false;
-            const triggerEvents = ["webkitTransitionEnd", "transitionend"];
+            const triggerEvents = ['webkitTransitionEnd', 'transitionend'];
+            // tslint:disable-next-line: prefer-for-of
             for (let i = 0; i < triggerEvents.length; i += 1) {
               $wrapperEl.trigger(triggerEvents[i]);
             }
@@ -129,4 +129,7 @@ export class AwardsPage implements OnInit {
       },
     },
   };
+  async ngOnInit() {
+    await this.awardService.getByUser(this.id);
+  }
 }

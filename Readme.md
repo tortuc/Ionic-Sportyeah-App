@@ -10,7 +10,30 @@ mongod
 2. ssh-add ~/.ssh/id_rsa_sportyeah.pub
 3. ssh-add ~/.ssh/id_rsa_kecuki.pub
 
+## TAREAS 30-01-2020
+
+1- @davidvalor2 falta el banco de emojis en el chat.
+2- @davidvalor2 botón de eliminar en las experiencias y premios sin estilo.
+3- @davidvalor2 el botón de emojis esta mal posicionado al crear un comentario.
+4- @davidvalor2 al editar una publicación no funciona le banco de emojis.
+5- @davidvalor2 Las fechas de los premios y reconocimientos no son las colocadas.
+
 ## Tareas 29-01-2020
+
+1- QA APLICATION:
+  CUENTAS:
+    1- d@v.com
+    2- david@asocia.com
+    3- davidvalor@patro.com
+    4- davidvalor@club.com
+    5- davidvalorwork@gmail.com
+
+  HISTORIAS:
+    1- Estoy aqui en Sportyeah para divertirme y descubrir cada vez mas el mundo del deporte.
+    2- Hola! Escribeme y conoceme, podremos hacer negocios juntos.
+    3- Patro la mejor marca de bebidas energizantes.
+    4- Club, el mejor club de futbol de todos los tiempos en busca de nuevos jugadores.
+    5- Hey, estoy aqui para hacer amigos escribeme!
 
 1- Encuadre de imagen en banner change slider y products.
 -2- Banco de emojis.
