@@ -16,7 +16,7 @@ mongod
 2- @davidvalor2 botón de eliminar en las experiencias y premios sin estilo.
 3- @davidvalor2 el botón de emojis esta mal posicionado al crear un comentario.
 4- @davidvalor2 al editar una publicación no funciona le banco de emojis.
-5- @davidvalor2 Las fechas de los premios y reconocimientos no son las colocadas.
+-5- @davidvalor2 Las fechas de los premios y reconocimientos no son las colocadas.
 
 ## Tareas 29-01-2020
 
