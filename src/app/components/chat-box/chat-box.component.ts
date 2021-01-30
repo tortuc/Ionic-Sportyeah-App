@@ -8,6 +8,7 @@ import {
   OnInit,
   Output,
   ViewChild,
+  ElementRef,
 } from "@angular/core";
 import { FormBuilder, Validators } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
@@ -30,6 +31,9 @@ declare var MediaRecorder: any;
 export class ChatBoxComponent implements OnInit, OnChanges, AfterViewInit {
   @ViewChild("chatMessage") chatContent: any;
   @ViewChild("messagesContent") messagesContent: any;
+  @ViewChild("emojisContainer") emojisContainer: ElementRef;
+  @ViewChild("emojiButton") emojiButton: ElementRef;
+  @ViewChild("inputTextArea") inputTextArea: any;
 
   @Input() chat: IChat;
   urlVideo: string;
@@ -50,8 +54,16 @@ export class ChatBoxComponent implements OnInit, OnChanges, AfterViewInit {
     private route: ActivatedRoute,
     private router: Router
   ) {}
-
-  ngOnInit() {}
+  caretPosition;
+  lastCaretPosition = 0;
+  ngOnInit() {
+    window.onclick = () => {
+      this.emojis = false;
+    };
+    this.inputTextArea.el.addEventListener("focusout", (e) => {
+      this.caretPosition = e.target.selectionStart;
+    });
+  }
 
   ngOnChanges() {
     this.getMessages(this.chat._id, true);
@@ -281,13 +293,36 @@ export class ChatBoxComponent implements OnInit, OnChanges, AfterViewInit {
   }
 
   addEmoji(ev) {
-    this.form.controls.message.setValue(
-      this.form.controls.message.value + ev.emoji.native
-    );
+    this.lastCaretPosition != 0 && this.lastCaretPosition == this.caretPosition
+      ? (this.caretPosition = this.caretPosition + 2)
+      : null;
+
+    this.lastCaretPosition = this.caretPosition;
+
+    const newText =
+      this.form.controls.message.value
+        .replace(/&nbsp;/g, " ")
+        .substring(0, this.caretPosition) +
+      ev.emoji.native +
+      this.form.controls.message.value
+        .replace(/nbsp;/g, "")
+        .substring(this.caretPosition);
+    this.form.controls.message.setValue(newText);
   }
 
   openEmojis() {
     this.emojis = !this.emojis;
+
+    this.inputTextArea.el.onclick = function (e) {
+      e.stopPropagation();
+    };
+
+    this.emojiButton.nativeElement.onclick = function (e) {
+      e.stopPropagation();
+    };
+    this.emojisContainer.nativeElement.onclick = function (e) {
+      e.stopPropagation();
+    };
   }
 
   /**

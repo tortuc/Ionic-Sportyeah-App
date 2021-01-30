@@ -45,7 +45,7 @@ export class AwardService {
         this.noAwards = true;
         this.awards.map((e, i) =>
           e.deleted !== false ? null : (this.noAwards = false)
-        ); 
+        );
       });
   }
 
@@ -59,11 +59,11 @@ export class AwardService {
     );
   }
 
-  async delete(id:string){
+  async delete(id: string) {
     const alert = await this.alertController.create({
       cssClass: "my-custom-class",
       header: this.translate.instant("experience.deleteModal.alert"),
-      message: this.translate.instant("award.confirm"),
+      message: this.translate.instant("awards.confirm"),
       buttons: [
         {
           text: this.translate.instant("experience.deleteModal.cancel"),
@@ -76,12 +76,11 @@ export class AwardService {
         {
           text: this.translate.instant("experience.deleteModal.accept"),
           handler: () => {
-            this.http.delete(
-              `${environment.URL_API}/${this.route}/delete/${id}`,
-              {
+            this.http
+              .delete(`${environment.URL_API}/${this.route}/delete/${id}`, {
                 headers: new HttpHeaders({ "access-token": getToken() }),
-              }
-            ).subscribe(()=>this.getByUser(this.userService.User._id));
+              })
+              .subscribe(() => this.getByUser(this.userService.User._id));
           },
         },
       ],
@@ -91,20 +90,21 @@ export class AwardService {
   }
 
   edit(award: Awards) {
-    const id = award._id
-    console.log(id)
-    console.log(award)
-    delete award._id
-    return this.http.put(
-      `${environment.URL_API}/${this.route}/edit/${id}`,
-      award,
-      {
+    const id = award._id;
+    console.log(id);
+    console.log(award);
+    delete award._id;
+    return this.http
+      .put(`${environment.URL_API}/${this.route}/edit/${id}`, award, {
         headers: new HttpHeaders({ "access-token": getToken() }),
-      }
-    ).subscribe(()=>this.getByUser(this.userService.User._id),err=>console.log(err));
+      })
+      .subscribe(
+        () => this.getByUser(this.userService.User._id),
+        (err) => console.log(err)
+      );
   }
 
-  changeSelected(award: Awards){
+  changeSelected(award: Awards) {
     this.awardSelected = award;
   }
 }
