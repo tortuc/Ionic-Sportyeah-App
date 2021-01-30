@@ -12,7 +12,7 @@ mongod
 
 ## TAREAS 30-01-2020
 
-1- @davidvalor2 falta el banco de emojis en el chat.
+-1- @davidvalor2 falta el banco de emojis en el chat.
 -2- @davidvalor2 botón de eliminar en las experiencias y premios sin estilo.
 -3- @davidvalor2 el botón de emojis esta mal posicionado al crear un comentario.
 -4- @davidvalor2 al editar una publicación no funciona le banco de emojis.
