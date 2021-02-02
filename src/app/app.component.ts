@@ -82,9 +82,13 @@ export class AppComponent implements OnInit {
       title:'sidebar.chat',
       url: '/chat',
       icon: 'chatbox-ellipses'
-    }
+    },
+    {
+      title:'sidebar.news',
+      url: '/news',
+      icon: 'newspaper'
+    },
     
-   
   ];
 
   public giftPages = [

@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar class="bg-gradient-person">
+    <ion-buttons slot="start">
+      <ion-back-button style="color: white"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ 'news.read' | translate}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="bg-gradient-person">
+  <ion-card style="width: 80%;margin: auto;">
+    <ion-card-header>
+      <ion-card-subtitle style="text-align: center;">{{ 'sport.'+news?.sport| translate}}</ion-card-subtitle>
+      <ion-card-title style="text-align: center;">{{news?.headline}}</ion-card-title>
+      <ion-item>
+        <ion-label>
+          <ion-text color="black">
+            <h1 style="font-size:14px">{{news?.user.name}} {{news?.user.last_name}} </h1>
+          </ion-text>
+        </ion-label>
+        <ion-text color="black">
+          <h2 style="font-size:14px" >{{news?.date | customDisplayDate}}</h2>
+        </ion-text>   
+      </ion-item>
+    </ion-card-header>
+    <ion-img *ngIf="news?.principalImage"   class="imageSelected" [src]="news?.principalImage"></ion-img>
+    <ion-card-content *ngFor="let parrafo of news?.content;let i = index">
+      <div style="color: black;text-align: justify;"  [innerHTML]="parrafo.parrafo">
+      </div>
+      <ion-img *ngIf="parrafo?.image"   class="imageArray" [src]="parrafo?.image"></ion-img>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

@@ -10,6 +10,7 @@ import { PostService } from "../service/post.service";
 import { UserService } from "../service/user.service";
 import { ProfileService } from "../service/profile.service";
 import { ViewsProfileService } from "../service/views-profile.service";
+import { NewsService } from '../service/news.service';
 
 @Component({
   selector: "app-profile",
@@ -22,6 +23,7 @@ export class ProfilePage implements OnInit {
   public ipLoaded: Promise<boolean>;
   public profile: boolean = true;
   public postsB: boolean = false;
+  public newsB: boolean = false;
   public landingButton: boolean = false;
   loadingPost: boolean;
   countPost = 0;
@@ -35,6 +37,7 @@ export class ProfilePage implements OnInit {
     public bannerLogic: BannerLogic,
     public loginService: LoginService,
     private viewsProfileService: ViewsProfileService,
+    public newsService:NewsService
   ) {
     this.viewsProfileService
       .getProfileView(this.userService.User._id)
@@ -57,9 +60,15 @@ export class ProfilePage implements OnInit {
     else this.landingButton = false;
   }
 
+  news = [];
   posts: IPostC[] = [];
   views: [];
   ngOnInit() {
+    this.newsService.findUserNews(this.userService.User._id).subscribe((response:any)=>{
+      this.news = response
+      console.log(response)
+    })
+
     this.loginService.getIP().subscribe((geo) => {
       this.banderaIP = geo.country;
       this.ipLoaded = Promise.resolve(true);
@@ -67,6 +76,21 @@ export class ProfilePage implements OnInit {
     this.getPost();
     this.getCountPost();
   }
+
+  OpenNews(id){
+    this.newsService.openNews = id
+    this.router.navigate(["news/read"])
+  }
+  deleteNew(id){
+   this.newsService.delete(id)
+  }
+  editNews(idNews){
+    this.newsService.editNews = idNews
+    this.router.navigate(["news/edit"])
+  }
+  /* updateNew(){
+    this.newsService.updateNews()
+  } */
 
   getCountPost() {
     this.profileService
@@ -125,10 +149,16 @@ export class ProfilePage implements OnInit {
   segmentChanged(e: CustomEvent) {
     if(e.detail.value === 'posts'){
       this.profile = false;
+      this.newsB = false
       this.postsB = true;
-    }else{
+    }else if(e.detail.value === 'profile'){
       this.postsB = false;
+      this.newsB = false
       this.profile = true; 
+    }else{
+      this.newsB = true
+      this.postsB = false;
+      this.profile = false; 
     }
   }
 }

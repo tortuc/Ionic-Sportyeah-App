@@ -9,6 +9,9 @@ import { LoginService } from "./../service/login.service";
 import { ViewsProfileService } from "../service/views-profile.service";
 import { AngularDelegate } from "@ionic/angular";
 import { take } from "rxjs/operators";
+import { response } from "express";
+import { NewsService } from '../service/news.service';
+
 interface UserData {
   user: User;
   friends: {
@@ -29,6 +32,7 @@ export class UserPage implements OnInit {
    */
   public profile: boolean = true;
   public postsB: boolean = false;
+  public newsB: boolean = false;
   public loadingInit: boolean = true;
   user: any = null;
   friends: any = null;
@@ -56,6 +60,8 @@ export class UserPage implements OnInit {
     public loginService: LoginService,
     private viewsProfileService: ViewsProfileService,
     private ls: LandingService,
+    public newsService:NewsService
+
   ) {
   }
 
@@ -97,6 +103,12 @@ export class UserPage implements OnInit {
           this.lastConection = resp.user.lastConection;
           // Obtenemos su estado
           this.estado = resp.user.estado;
+
+          // Si es prensa obtenemos sus articulos
+          if(resp.user.profile_user == 'press'){
+            this.getArticle(resp.user._id)
+          }
+
 
           //Llamamos a la getviews
           // this.visited = resp.user._id
@@ -159,6 +171,19 @@ export class UserPage implements OnInit {
       });
   }
 
+news = [];
+  getArticle(id){
+    this.newsService.findUserNews(id).subscribe((response:any)=>{
+      console.log(response)
+      this.news = response
+    })
+  }
+
+  OpenNews(id){
+    this.newsService.openNews = id
+    this.router.navigate(["news/read"])
+  }
+
   //Contendra el _id del viewProfile al que se visita
   visited: any;
   vistasPerfil: any;
@@ -202,10 +227,16 @@ export class UserPage implements OnInit {
   segmentChanged(e: CustomEvent) {
     if(e.detail.value === 'posts'){
       this.profile = false;
+      this.newsB = false
       this.postsB = true;
-    }else{
+    }else if(e.detail.value === 'profile'){
       this.postsB = false;
+      this.newsB = false
       this.profile = true; 
+    }else{
+      this.newsB = true
+      this.postsB = false;
+      this.profile = false; 
     }
   }
 

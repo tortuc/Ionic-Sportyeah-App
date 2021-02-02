@@ -129,6 +129,9 @@
             <ion-segment-button value="posts" style="background-color:white;">
               <ion-label >{{'labels-profile-segment.posts' | translate}}</ion-label>
             </ion-segment-button>
+            <ion-segment-button *ngIf="user?.profile_user == 'press'" value="news" style="background-color:white;">
+              <ion-label >{{'labels-profile-segment.articles' | translate}}</ion-label>
+            </ion-segment-button>
           </ion-segment>
         </ion-card>
 
@@ -230,6 +233,32 @@
         </div>
 
         <!-- SEGMENT POSTS FINISH -->
+
+        <!-- SEGMENT NEWS -->
+        <div *ngIf="newsB">
+          <ion-grid ngClass.xs="m-p-0">
+            <ion-row *ngFor="let item of news" class="post-card">
+              <ion-card style="width: 100%;margin: auto;height: 100%;margin-bottom:3%;cursor: pointer;" (click)="OpenNews(item?._id)">
+                <ion-card-header>
+                  <ion-card-subtitle style="text-align: center;" *ngIf="item?.sport">{{ 'sport.'+item?.sport| translate}}</ion-card-subtitle>
+                  <ion-card-title style="text-align: center;">{{item?.headline}}</ion-card-title>
+                  <ion-item style="transform: scale(0.9);margin-bottom: -3%;">
+                    <ion-label>
+                      <ion-text color="black">
+                        <h1 style="font-size:14px">{{item?.user.name}} {{item?.user.last_name}} </h1>
+                      </ion-text>
+                    </ion-label>
+                    <ion-text color="black">
+                      <h2 style="font-size:14px" >{{item?.date | customDisplayDate}}</h2>
+                    </ion-text>   
+                  </ion-item>
+                </ion-card-header>
+                <ion-img *ngIf="item?.image[0]"   class="imageMiniCard" [src]="item?.image[0]"></ion-img>
+              </ion-card>
+            </ion-row>
+          </ion-grid>
+        </div>
+        <!-- FINISH SEGMENT NEWS -->
       </ion-col>
     </ion-row>
     <ion-row *ngIf="user == 404" class="ion-justify-content-center">

@@ -8,7 +8,7 @@
       <div [routerLink]="'/profile'" class="search">
         <ion-button>
           <ion-icon name="arrow-undo" style="color:white;"></ion-icon>
-          <ion-title style="--color:white">{{'analytics-views.back-profile' | translate}}</ion-title>
+          <!-- <ion-title style="--color:white">{{'analytics-views.back-profile' | translate}}</ion-title> -->
         </ion-button>
       </div>      
     </ion-buttons>
@@ -19,21 +19,21 @@
   <ion-card>
     <ion-card-header>
       <ion-row>
-        <ion-col>
+        <ion-col size-lg="4"  size-xs="12" >
           <ion-card-title>{{'analytics-views.subTilte' | translate}}</ion-card-title>
           <ion-card-subtitle>{{'analytics-views.info' | translate}}</ion-card-subtitle>
         </ion-col>
-        <ion-col>
-          <div  class="button">
+        <ion-col size-lg="4"  size-xs="12" >
+          <div style="text-align: center;" class="button">
             <ion-button class="botons"  (click)="pieData()">
               {{'analytics-views.all' | translate}}
               <ion-icon class="icon" name="color-filter"></ion-icon>
             </ion-button>
           </div>
         </ion-col>
-        <ion-col>
-          <div  class="button">
-            <ion-button  class="botons" (click)="working()"  > <!-- (click)="postLines()" -->
+        <ion-col size-lg="4"  size-xs="12" >
+          <div style="text-align: center;"  class="button">
+            <ion-button  class="botons" (click)="postLines()"  > <!-- (click)="postLines()" -->
               {{'analytics-views.post' | translate}}
               <ion-icon class="icon" name="browsers"></ion-icon>
             </ion-button>
@@ -47,37 +47,37 @@
       <ion-row>
 
         <ion-col size-xs="6" size-md="4"  size-lg="2">
-          <ion-text  (click)="presentToastWithOptions('analytics-views.info_post')"  style="cursor: pointer;;color: black;">
+          <ion-text  (click)="presentToastWithOptions('analytics-views.info_post')"  style="cursor: pointer;;color: black;text-align: center;">
             <h3>{{'analytics-views.post'| translate}}<span><ion-icon style="font-size: 20px;color:#385e81" name="information-circle-outline" ></ion-icon></span></h3>
           </ion-text>
         </ion-col>
 
         <ion-col size-xs="6" size-md="4"  size-lg="2">
-          <ion-text (click)="presentToastWithOptions('analytics-views.info_chat')"  style="cursor: pointer;;color: black;">
+          <ion-text (click)="presentToastWithOptions('analytics-views.info_chat')"  style="cursor: pointer;;color: black;text-align: center;">
             <h3>{{'analytics-views.chat'| translate}}<span><ion-icon style="font-size: 20px;color:#26c281" name="information-circle-outline" ></ion-icon></span></h3>
           </ion-text>
         </ion-col>
 
         <ion-col size-xs="6" size-md="4"  size-lg="2">
-          <ion-text (click)="presentToastWithOptions('analytics-views.info_search')"  style="cursor: pointer;;color: black;">
+          <ion-text (click)="presentToastWithOptions('analytics-views.info_search')"  style="cursor: pointer;;color: black;text-align: center;">
             <h3>{{'analytics-views.search'| translate}}<span><ion-icon style="font-size: 20px;color:#d43c3c" name="information-circle-outline" ></ion-icon></span></h3>
           </ion-text>
         </ion-col>
 
         <ion-col size-xs="6" size-md="4"  size-lg="2">
-          <ion-text (click)="presentToastWithOptions('analytics-views.info_profile')"  style="cursor: pointer;;color: black;">
+          <ion-text (click)="presentToastWithOptions('analytics-views.info_profile')"  style="cursor: pointer;;color: black;text-align: center;">
             <h3>{{'analytics-views.profile'| translate}}<span><ion-icon style="font-size: 20px;color:#6a19b5" name="information-circle-outline" ></ion-icon></span></h3>
           </ion-text>
         </ion-col>
 
         <ion-col size-xs="6" size-md="4"  size-lg="2">
-          <ion-text (click)="presentToastWithOptions('analytics-views.info_reaction')"  style="cursor: pointer;;color: black;">
+          <ion-text (click)="presentToastWithOptions('analytics-views.info_reaction')"  style="cursor: pointer;;color: black;text-align: center;">
             <h3>{{'analytics-views.reaction'| translate}}<span><ion-icon style="font-size: 20px;color:#3880ff" name="information-circle-outline" ></ion-icon></span></h3>
           </ion-text>
         </ion-col>
 
         <ion-col size-xs="6" size-md="4"  size-lg="2">
-          <ion-text (click)="presentToastWithOptions('analytics-views.info_comment')"  style="cursor: pointer;;color: black;">
+          <ion-text (click)="presentToastWithOptions('analytics-views.info_comment')"  style="cursor: pointer;;color: black;text-align: center;">
             <h3>{{'analytics-views.comment'| translate}}<span><ion-icon style="font-size: 20px;color:#eef130" name="information-circle-outline" ></ion-icon></span></h3>
           </ion-text>
         </ion-col>
@@ -88,15 +88,21 @@
     <ion-card-content *ngIf="option == 'post'" >
       <ion-row>
 
-        <ion-col size-xs="6" size-md="4"  size-lg="2">
-          <ion-text (click)="presentToastWithOptions('analytics.info_views_post')"  style="cursor: pointer;;color: black;">
+        <ion-col size-xs="6" size-md="4"  size-lg="4">
+          <ion-text (click)="presentToastWithOptions('analytics-views.info_views_post')"  style="cursor: pointer;color: black;text-align: center;">
             <h3>{{'analytics-views.reaction'| translate}}<span><ion-icon style="font-size: 20px;color:#3880ff" name="information-circle-outline" ></ion-icon></span></h3>
           </ion-text>
         </ion-col>
 
-        <ion-col size-xs="6" size-md="4"  size-lg="2">
-          <ion-text (click)="presentToastWithOptions('analytics-views.info_comment')"  style="cursor: pointer;;color: black;">
-            <h3>{{'analytics-views.comment'| translate}}<span><ion-icon style="font-size: 20px;color:#eef130" name="information-circle-outline" ></ion-icon></span></h3>
+        <ion-col size-xs="6" size-md="4"  size-lg="4">
+          <ion-text (click)="presentToastWithOptions('analytics-views.info_comment')"  style="cursor: pointer;color: black;text-align: center;">
+            <h3>{{'analytics-views.comment'| translate}}<span><ion-icon style="font-size: 20px;color:#f4989e" name="information-circle-outline" ></ion-icon></span></h3>
+          </ion-text>
+        </ion-col>
+
+        <ion-col size-xs="6" size-md="4"  size-lg="4">
+          <ion-text (click)="presentToastWithOptions('analytics-views.info_shared')"  style="cursor: pointer;color: black;text-align: center;">
+            <h3>{{'analytics-views.shared'| translate}}<span><ion-icon style="font-size: 20px;color:#67ba8c" name="information-circle-outline" ></ion-icon></span></h3>
           </ion-text>
         </ion-col>
 
@@ -282,7 +288,7 @@
               <canvas  id="linesYear" width="400" height="400"></canvas>
             </div>
            
-            <div  *ngIf="noData === false" >
+            <div  *ngIf="noData === false " >
               <ion-text  color="black">
                 <h1 class="textNoData">No hay datos para esta fecha</h1>
               </ion-text>
@@ -295,8 +301,242 @@
     </ion-card-content>
   </ion-card>
 
- 
-  <div *ngIf="option == 'post'">
+
+<!-- Post Inicio -->
+
+<ion-grid *ngIf="option == 'post' && todolosPost.length > 0 ">
+  <ion-row>
+    <!-- Columna de las reacciones -->
+    <ion-col size-lg="4"  size-xs="12" *ngIf="interaccionActual == ''" >
+      <div style="background: #95bbfd73;" >
+        <div style="cursor: pointer;background: #3880ff73;" (click)="actualLikes()">
+          <ion-img class="iconsPost"  src="https://img.icons8.com/bubbles/344/facebook-like.png" alt="Reaction icon"></ion-img>
+          <ion-text   class="textCenter">
+            <h4 class="semiBlack">{{'analytics-views.reaction' | translate}}</h4>
+          </ion-text>
+        </div>
+        <div>
+          <!-- Si no tiene likes -->
+          <ion-text *ngIf="likes.length == 0;"  class="textCenter">
+            <h2  class="h1Work">{{'analytics-views.noLike' | translate}}</h2>
+          </ion-text>
+          <div style="margin-bottom: 5%;" *ngFor="let posts of likes?.slice(0,3);let i = index ">   
+            <div style="position: relative;margin-bottom: -5%;margin-top: 5%; left: 0%;color: black; text-align: center;">
+              <ion-icon *ngIf="i == 0" name="medal" style="color:#FFD700"></ion-icon>
+              <ion-icon *ngIf="i == 1" name="medal" style="color:#C0C0C0"></ion-icon>
+              <ion-icon *ngIf="i == 2" name="medal" style="color:#cd7f32 "></ion-icon>
+                {{posts.likes.length}}
+            </div>
+           <ion-card  class="scale" ngClass.xs="m-p-0"  style="width: 98%;margin-top:7%;margin-left: 1%;">
+           <ion-card-header>
+              <header-post class="user-header" [post]="posts.post" ></header-post>       
+            </ion-card-header>
+          
+            <ion-card-content  >
+              <post-content [post]="posts.post"></post-content>
+              <post-shared *ngIf="posts.post.post" [post]="posts.post.post" ></post-shared>
+            </ion-card-content>
+           </ion-card>             
+          </div>
+        </div>
+        <div style=" height: 20px;width: 100%;background-color: #3880ff73;"></div>
+      </div>
+    </ion-col>
+
+    <!-- Columna si interaccionActual es likes -->
+    <ion-col size="12" *ngIf="interaccionActual == 'likes'" >
+      <div style="background: #b0cdff73;"> 
+        <div style="background: #3880ff73;" >
+          <ion-icon style="font-size: 36px;color: #ff0000bf; cursor: pointer;" name="close" (click)="sinInteraccionActual()"></ion-icon>
+          <ion-img class="iconActual"  src="https://img.icons8.com/bubbles/344/facebook-like.png" alt="Reaction icon"></ion-img>
+        </div>
+        <div>
+          <!-- Si no tiene likes -->
+          <ion-text *ngIf="likes.length == 0;"  class="textCenter">
+            <h2  class="h1Work">{{'analytics-views.noLike' | translate}}</h2>
+          </ion-text>
+          <div style="margin-bottom: 5%;" *ngFor="let posts of likes;let i = index ">   
+            <div style="position: relative;margin-bottom: -5%;margin-top: 5%; left: 0%;color: black; text-align: center;">
+              <ion-icon *ngIf="i == 0" name="medal" style="color:#FFD700"></ion-icon>
+              <ion-icon *ngIf="i == 1" name="medal" style="color:#C0C0C0"></ion-icon>
+              <ion-icon *ngIf="i == 2" name="medal" style="color:#cd7f32 "></ion-icon>
+                {{posts.likes.length}} {{'analytics-views.reaction' | translate}}
+            </div>
+           <ion-card class="scale" ngClass.xs="m-p-0"  style="width: 98%;margin-top:7%;margin-left: 1%;">
+           <ion-card-header>
+              <header-post class="user-header" [post]="posts.post" ></header-post>       
+            </ion-card-header>
+          
+            <ion-card-content  >
+              <post-content [post]="posts.post"></post-content>
+              <post-shared *ngIf="posts.post.post" [post]="posts.post.post" ></post-shared>
+            </ion-card-content>
+           </ion-card>             
+          </div>
+        </div>
+        <div style=" height: 20px;width: 100%;background-color: #3880ff73;"></div>
+      </div>
+    </ion-col>
+
+    <!-- Columna de los comentarios -->
+    <ion-col size-lg="4"  size-xs="12" *ngIf="interaccionActual == ''" >
+      <div style="background: #f5bec369;">
+        <div style="background: #f4989e69;cursor: pointer;" (click)="actualComments()">
+          <ion-img class="iconsPost"  src="https://img.icons8.com/bubbles/344/comments.png" alt="Reaction icon"></ion-img>
+          <ion-text   class="textCenter">
+            <h4 class="semiBlack">{{'analytics-views.comment' | translate}}</h4>
+          </ion-text>
+        </div>
+        <div>
+          <!-- Si no tiene comentarios -->
+          <ion-text *ngIf="comments.length == 0;"  class="textCenter">
+            <h2 class="h1Work">{{'analytics-views.noComment' | translate}}</h2>
+          </ion-text>
+          <div style="margin-bottom: 5%;" *ngFor="let posts of comments?.slice(0,3);let i = index ">
+                    
+            <div style="position: relative;margin-bottom: -5%;margin-top: 5%; left: 0%;color: black; text-align: center;">
+              <ion-icon *ngIf="i == 0" name="medal" style="color:#FFD700"></ion-icon>
+              <ion-icon *ngIf="i == 1" name="medal" style="color:#C0C0C0"></ion-icon>
+              <ion-icon *ngIf="i == 2" name="medal" style="color:#cd7f32 "></ion-icon>
+                {{posts.comments.length}}
+            </div>
+          <ion-card class="scale" ngClass.xs="m-p-0"  style="width: 98%;margin-top:7%;margin-left: 1%;">
+          <ion-card-header>
+              <header-post class="user-header" [post]="posts.post" ></header-post>       
+            </ion-card-header>
+          
+            <ion-card-content  >
+              <post-content [post]="posts.post"></post-content>
+              <post-shared *ngIf="posts.post.post" [post]="posts.post.post" ></post-shared>
+            </ion-card-content>
+          </ion-card>            
+        </div>
+        </div>
+        <div style=" height: 20px;width: 100%;background-color: #f4989e69;"></div>
+    </div>
+    </ion-col>
+
+<!-- Columna si interaccionActual es commnets -->
+<ion-col size="12" *ngIf="interaccionActual == 'comments'" >
+  <div  style="background: #f3cccf69;">
+    <div style="background: #f4989e69;">
+      <ion-icon style="font-size: 36px;color: #ff0000bf; cursor: pointer;" name="close" (click)="sinInteraccionActual()"></ion-icon>
+      <ion-img class="iconActual"  src="https://img.icons8.com/bubbles/344/comments.png" alt="Reaction icon"></ion-img>
+    </div>
+    <div>
+      <!-- Si no tiene comentarios -->
+      <ion-text *ngIf="comments.length == 0;"  class="textCenter">
+        <h2 class="h1Work">{{'analytics-views.noComment' | translate}}</h2>
+      </ion-text>
+      <div style="margin-bottom: 5%;" *ngFor="let posts of comments;let i = index ">
+                
+        <div style="position: relative;margin-bottom: -5%;margin-top: 5%; left: 0%;color: black; text-align: center;">
+          <ion-icon *ngIf="i == 0" name="medal" style="color:#FFD700"></ion-icon>
+          <ion-icon *ngIf="i == 1" name="medal" style="color:#C0C0C0"></ion-icon>
+          <ion-icon *ngIf="i == 2" name="medal" style="color:#cd7f32 "></ion-icon>
+            {{posts.comments.length}} {{'analytics-views.comment' | translate}}
+        </div>
+      <ion-card class="scale" ngClass.xs="m-p-0"  style="width: 98%;margin-top:7%;margin-left: 1%;">
+      <ion-card-header>
+          <header-post class="user-header" [post]="posts.post" ></header-post>       
+        </ion-card-header>
+      
+        <ion-card-content  >
+          <post-content [post]="posts.post"></post-content>
+          <post-shared *ngIf="posts.post.post" [post]="posts.post.post" ></post-shared>
+        </ion-card-content>
+      </ion-card>            
+    </div>
+    </div>
+    <div style=" height: 20px;width: 100%;background-color: #f4989e69;"></div>
+</div>
+</ion-col>
+
+
+    <!-- Columna de compartidos -->
+    <ion-col size-lg="4"  size-xs="12" *ngIf="interaccionActual == ''">
+      <div style="background: #92c9aa85;">
+        <div style="background: #67ba8c85;cursor: pointer;"  (click)="actualShareds()">
+          <ion-img class="iconsPost"  src="https://img.icons8.com/bubbles/452/undo.png" alt="Reaction icon"></ion-img>
+          <ion-text   class="textCenter">
+            <h4 class="semiBlack">{{'analytics-views.shared' | translate}}</h4>
+          </ion-text>
+        </div>
+        <div>
+           <!-- Si no ha sido compartido -->
+           <ion-text *ngIf="shareds.length == 0;"  class="textCenter">
+            <h2 class="h1Work">{{'analytics-views.noShared' | translate}}</h2>
+          </ion-text>
+          <div style="margin-bottom: 5%;" *ngFor="let posts of shareds?.slice(0,3);let i = index ">
+                    
+            <div style="position: relative;margin-bottom: -5%;margin-top: 5%; left: 0%;color: black; text-align: center;">
+              <ion-icon *ngIf="i == 0" name="medal" style="color:#FFD700"></ion-icon>
+              <ion-icon *ngIf="i == 1" name="medal" style="color:#C0C0C0"></ion-icon>
+              <ion-icon *ngIf="i == 2" name="medal" style="color:#cd7f32 "></ion-icon>
+                {{posts.shareds.length}}
+            </div>
+          <ion-card class="scale" ngClass.xs="m-p-0"  style="width: 98%;margin-top:7%;margin-left: 1%;">
+          <ion-card-header>
+              <header-post class="user-header" [post]="posts.post" ></header-post>       
+            </ion-card-header>
+          
+            <ion-card-content  >
+              <post-content [post]="posts.post"></post-content>
+              <post-shared *ngIf="posts.post.post" [post]="posts.post.post" ></post-shared>
+            </ion-card-content>
+          </ion-card>            
+        </div>
+        </div>
+        <div style=" height: 20px;width: 100%;background-color: #67ba8c85;"></div>
+    </div>
+    </ion-col>
+
+    <!-- Columna si interaccionActual es commnets -->
+    <ion-col size="12" *ngIf="interaccionActual == 'shareds'">
+      <div style="background: #92c9aa85;">
+        <div style="background: #67ba8c85;">
+          <ion-icon style="font-size: 36px;color: #ff0000bf; cursor: pointer;" name="close" (click)="sinInteraccionActual()"></ion-icon>
+          <ion-img class="iconsPost"  src="https://img.icons8.com/bubbles/452/undo.png" alt="Reaction icon"></ion-img>
+        </div>
+        <div>
+           <!-- Si no ha sido compartido -->
+           <ion-text *ngIf="shareds.length == 0;"  class="textCenter">
+            <h2 class="h1Work">{{'analytics-views.noShared' | translate}}</h2>
+          </ion-text>
+          <div style="margin-bottom: 5%;" *ngFor="let posts of shareds;let i = index ">
+                    
+            <div style="position: relative;margin-bottom: -5%;margin-top: 5%; left: 0%;color: black; text-align: center;">
+              <ion-icon *ngIf="i == 0" name="medal" style="color:#FFD700"></ion-icon>
+              <ion-icon *ngIf="i == 1" name="medal" style="color:#C0C0C0"></ion-icon>
+              <ion-icon *ngIf="i == 2" name="medal" style="color:#cd7f32 "></ion-icon>
+                {{posts.shareds.length}} {{'analytics-views.shared' | translate}}
+            </div>
+          <ion-card class="scale" ngClass.xs="m-p-0"  style="width: 98%;margin-top:7%;margin-left: 1%;">
+          <ion-card-header>
+              <header-post class="user-header" [post]="posts.post" ></header-post>       
+            </ion-card-header>
+          
+            <ion-card-content  >
+              <post-content [post]="posts.post"></post-content>
+              <post-shared *ngIf="posts.post.post" [post]="posts.post.post" ></post-shared>
+            </ion-card-content>
+          </ion-card>            
+        </div>
+        </div>
+        <div style=" height: 20px;width: 100%;background-color: #67ba8c85;"></div>
+    </div>
+    </ion-col>
+
+  </ion-row>
+</ion-grid>
+
+<!-- Post Final -->
+
+
+
+
+<!--  Aqui comentare TODO hasta el final de lo que tengo; -->
+ <!--  <div *ngIf="option == 'post'">
     <ion-segment   class="segement"  [(ngModel)]="segment" >
       <ion-segment-button  value='vistas'>     
         <p style="visibility: visible">Post con mas redirecciones al peril</p>
@@ -353,7 +593,6 @@
               </ion-list>          
           </ion-col>
 
-          <!-- <ion-col size-xs="12"  size-lg="7"></ion-col>  -->
 
         </ion-row>
       </ion-grid>
@@ -402,22 +641,40 @@
                 </ion-item>
               </ion-list>          
           </ion-col>
-          <!-- <ion-col size-xs="12"  size-lg="7"></ion-col>  -->
+         
         </ion-row>
       </ion-grid>
     </ion-card-content>
 
     
-  </ion-card>
+  </ion-card> -->
+<!--  Aqui llego lo que comente-->
+
+<!-- Seccion no post INICIO -->
+<ion-card *ngIf="todolosPost.length == 0">
+  <ion-card-content>
+    <ion-grid>
+      <ion-row >
+        <ion-col style="text-align: center;" size ="12">
+          <ion-text  class="botons">
+            <h1  class="h1Work">{{'analytics-views.noPost' | translate}}</h1>
+          </ion-text>   
+          <img  src="https://img.icons8.com/bubbles/344/close-window.png" alt="no post">
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card-content>
+</ion-card>
+<!-- Seccion no post FINAL -->
 
 
 <ion-card *ngIf="option == 'working'">
   <ion-card-content>
     <ion-grid>
-      <ion-row>
+      <ion-row >
         <ion-col size ="5">
           <ion-text style="position: relative; left: 13%;" class="botons">
-            <h1 class="h1Work">Estamos trabajando en esta función para usted</h1>
+            <h1 class="h1Work">{{'analytics-views.working' | translate}}</h1>
           </ion-text>   
           <img class="bottle" src="https://img.icons8.com/cotton/452/sport-bottle.png" alt="sport-bottle">
           <img class="dumbbell" src="https://img.icons8.com/cotton/452/dumbbell--v1.png" alt="dumbbell">
@@ -431,5 +688,27 @@
     </ion-grid>
   </ion-card-content>
 </ion-card>
+
+<ion-card *ngIf="allViews === undefined && option != 'working' ">
+  <ion-card-content>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12">
+          <div   >
+            <ion-text  color="black">
+              <h1 class="textNoData">No hay datos para su perfil</h1>
+            </ion-text>
+            <img class="noData" src="https://img.icons8.com/clouds/344/combo-chart.png" alt="logo de no datos analiticas">
+          </div>        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card-content>
+</ion-card>
+
+
+
+
+
+
 
 </ion-content>

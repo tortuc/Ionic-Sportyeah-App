@@ -10,8 +10,11 @@ import { NewsPage } from './news.page';
 import {NgxWigModule} from 'ngx-wig';
 
 import{ CreateComponent } from './create/create.component'
+import { EditComponent } from './edit/edit.component';
+import { ReadComponent } from './read/read.component';
 import { HttpClientModule} from '@angular/common/http';
-
+import { TranslateModule } from '@ngx-translate/core';
+import { PipesModule } from '../../pipes/pipes.module';
 
 
 @NgModule({
@@ -22,11 +25,16 @@ import { HttpClientModule} from '@angular/common/http';
     NewsPageRoutingModule,
     ReactiveFormsModule,
     NgxWigModule,
-    HttpClientModule
+    HttpClientModule,
+    TranslateModule,
+    PipesModule,
+    
   ],
   declarations: [
     NewsPage,
-    CreateComponent
+    CreateComponent,
+    EditComponent,
+    ReadComponent
   ]
 })
 export class NewsPageModule {}
