@@ -108,17 +108,18 @@ const routes: Routes = [
     canActivate: [AuthGuardService],
   },
   {
-    path: "**",
-    loadChildren: () =>
-      import("./not-found/not-found.module").then((m) => m.NotFoundPageModule),
-  },
-  {
     path: "challenges",
     loadChildren: () =>
       import("./challenges/challenges.module").then(
         (m) => m.ChallengesPageModule
       ),
   },
+  {
+    path: "**", // Por favor no poner nada por debajo de esta ruta de lo contrario no agarrara
+    loadChildren: () =>
+      import("./not-found/not-found.module").then((m) => m.NotFoundPageModule),
+  },
+  // Toda ruta debajo de este lugar no va a ser tomada en cuenta
 ];
 
 @NgModule({

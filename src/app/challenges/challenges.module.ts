@@ -13,10 +13,10 @@ import { ChallengesPage } from "./challenges.page";
     CommonModule,
     FormsModule,
     IonicModule,
+    ChallengesPageRoutingModule,
     TranslateModule,
     ComponentsModule,
     PipesModule,
-    ChallengesPageRoutingModule,
   ],
   declarations: [ChallengesPage],
 })
