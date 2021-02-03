@@ -54,6 +54,14 @@ const routes: Routes = [
       import("./langs/langs.module").then((m) => m.LangsPageModule),
   },
   {
+    path: "challenges",
+    loadChildren: () =>
+      import("./challenges/challenges.module").then(
+        (m) => m.ChallengesPageModule
+      ),
+    canActivate: [AuthGuardService],
+  },
+  {
     path: "landing/:id",
     loadChildren: () =>
       import("./patrocinadores/landing/landing.module").then(
@@ -71,14 +79,6 @@ const routes: Routes = [
     path: "chat",
     loadChildren: () =>
       import("./chat/chat.module").then((m) => m.ChatPageModule),
-    canActivate: [AuthGuardService],
-  },
-  {
-    path: "challenges",
-    loadChildren: () =>
-      import("./challenges/challenges.module").then(
-        (m) => m.ChallengesPageModule
-      ),
     canActivate: [AuthGuardService],
   },
   {
