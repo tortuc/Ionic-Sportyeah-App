@@ -1,87 +1,150 @@
-<ion-app  >
- 
-    <ion-split-pane   contentId="main-content">
+<ion-app>
+  <ion-split-pane contentId="main-content">
+    <ion-menu
+      ngClass.gt-xs="max-widht-300"
+      [disabled]="userService.User == undefined"
+      contentId="main-content"
+      type="overlay"
+    >
+      <ion-content>
+        <ion-list style="padding-bottom: 0" id="inbox-list">
+          <ion-buttons slot="start">
+            <ion-menu-button style="color: black"></ion-menu-button>
+          </ion-buttons>
+          <ion-img
+            class="img-login"
+            style="width: 100px; margin-bottom: 5%"
+            src="https://i.ibb.co/g6TFj6G/Logo-TRANSPARENTE.png"
+          ></ion-img>
 
-          <ion-menu  ngClass.gt-xs="max-widht-300" [disabled]="userService.User == undefined" contentId="main-content" type="overlay">
-            <ion-content >
-              <ion-list style="padding-bottom: 0;" id="inbox-list">
-                <ion-buttons slot="start">
-                  <ion-menu-button style="color: black;"></ion-menu-button>
-                </ion-buttons>
-                <ion-img class="img-login" style="width: 100px; margin-bottom:5%" src="https://i.ibb.co/g6TFj6G/Logo-TRANSPARENTE.png"></ion-img>
-      
-                <new-profile-photo></new-profile-photo>
-  
-                <ion-list-header style="color: black; margin-top:10px;" (click)="goTo('/profile/edit')">
-                  <span style="margin:auto">
-                    <!-- ENCUENTRA LA BANDERA DEPENDIENDO DE LA IP DEL USUARIO API https://www.countryflags.io/ -->
-                    <img *ngIf="ipLoaded | async" class="bandera" [src]="'https://www.countryflags.io/'+banderaIP[0]+banderaIP[1]+'/flat/64.png'" alt=""/>
-                    {{userService.User?.name || ''}} {{userService.User?.last_name || ''}}
-                  </span>
-                
-                </ion-list-header>
-                <ion-list-header style="color: rgba(35, 112, 61, 0.993); margin-top:8px" 
-                  (click)="goTo('/profile/edit')"
-                > 
-                  <span style="margin:auto;margin-bottom:10px;font-size: 14px;">
-                    {{'sport.'+userService.User?.sport | translate}} | 
-                    <span *ngIf="userService.User?.profile_user === 'player'">{{'profile_user.'+userService.User?.profile_user+'.'+userService.User?.sport | translate}}</span>
-                    <span *ngIf="userService.User?.profile_user !== 'player'">{{'profile_user.'+userService.User?.profile_user | translate}}</span>
-                  </span>
-                </ion-list-header>
-                <ion-list-header style="color: rgb(75, 72, 72);">
-                 
-                  <span style="margin:auto;font-size: 14px;">
+          <new-profile-photo></new-profile-photo>
 
-                    @{{userService.User?.username || ''}} 
-                  </span>
-                </ion-list-header>
+          <ion-list-header
+            style="color: black; margin-top: 10px"
+            (click)="goTo('/profile/edit')"
+          >
+            <span style="margin: auto">
+              <!-- ENCUENTRA LA BANDERA DEPENDIENDO DE LA IP DEL USUARIO API https://www.countryflags.io/ -->
+              <img
+                *ngIf="ipLoaded | async"
+                class="bandera"
+                [src]="
+                  'https://www.countryflags.io/' +
+                  banderaIP[0] +
+                  banderaIP[1] +
+                  '/flat/64.png'
+                "
+                alt=""
+              />
+              {{ userService.User?.name || "" }}
+              {{ userService.User?.last_name || "" }}
+            </span>
+          </ion-list-header>
+          <ion-list-header
+            style="color: rgba(35, 112, 61, 0.993); margin-top: 8px"
+            (click)="goTo('/profile/edit')"
+          >
+            <span style="margin: auto; margin-bottom: 10px; font-size: 14px">
+              {{ "sport." + userService.User?.sport | translate }} |
+              <span *ngIf="userService.User?.profile_user === 'player'">{{
+                "profile_user." +
+                  userService.User?.profile_user +
+                  "." +
+                  userService.User?.sport | translate
+              }}</span>
+              <span *ngIf="userService.User?.profile_user !== 'player'">{{
+                "profile_user." + userService.User?.profile_user | translate
+              }}</span>
+            </span>
+          </ion-list-header>
+          <ion-list-header style="color: rgb(75, 72, 72)">
+            <span style="margin: auto; font-size: 14px">
+              @{{ userService.User?.username || "" }}
+            </span>
+          </ion-list-header>
 
-                <ion-list-header  >
-                    <p class="estado" >
-                      {{userService.User?.estado===undefined?"Hey there I'm in SportYeah.":userService.User?.estado}}
-                       <!-- BOTON DE EDICION AUN NO ME GUSTA COMO QUEDA -->
-                      <!-- <span><ion-icon name="create-outline" class="editOutline"></ion-icon></span> -->
-                    </p>
-                </ion-list-header>
-      
-                <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
-                  <ion-item (click)="selectedIndex = i" routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" routerLinkActive="selected">
-                    <ion-icon slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon>
-                    <ion-label>{{ p.title | translate }}</ion-label>
-                    <ion-badge *ngIf="p.url == '/chat' && chatService.allUnread" style="--background:var(--color-primary)">{{chatService.allUnread}}</ion-badge>
-                  </ion-item>
+          <ion-list-header>
+            <p class="estado">
+              {{
+                userService.User?.estado === undefined
+                  ? "Hey there I'm in SportYeah."
+                  : userService.User?.estado
+              }}
+              <!-- BOTON DE EDICION AUN NO ME GUSTA COMO QUEDA -->
+              <!-- <span><ion-icon name="create-outline" class="editOutline"></ion-icon></span> -->
+            </p>
+          </ion-list-header>
 
-                </ion-menu-toggle>
-             
-              </ion-list>
-              <ion-list style="padding-top: 3px;" id="inbox-list">
-              
-      
-                <ion-menu-toggle auto-hide="false" *ngFor="let p of giftPages; let i = index">
-                  <ion-item (click)="selectedIndex = i" routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" routerLinkActive="selected">
-                    <ion-icon slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon>
-                    <ion-label>{{ p.title | translate }}</ion-label>
-                    <ion-badge *ngIf="p.url == '/chat' && chatService.allUnread" style="--background:var(--color-primary)">{{chatService.allUnread}}</ion-badge>
-                  </ion-item>
-
-                </ion-menu-toggle>
-                <ion-menu-toggle auto-hide="false" >
-                  <ion-item (click)="logout()" routerLink="/"  lines="none" detail="false" >
-                    <ion-icon slot="start" ios="exit-outline" md="exit-outline"></ion-icon>
-                    <ion-label>{{'sidebar.logout' | translate}}</ion-label>
-                  </ion-item>
-                </ion-menu-toggle>
-              </ion-list>
-
-      
-             
-            </ion-content>
-          </ion-menu>
-          <ion-router-outlet  id="main-content"></ion-router-outlet>
-      
-      
-   
-    </ion-split-pane> 
-
+          <ion-menu-toggle
+            auto-hide="false"
+            *ngFor="let p of appPages; let i = index"
+          >
+            <ion-item
+              (click)="selectedIndex = i"
+              routerDirection="root"
+              [routerLink]="[p.url]"
+              lines="none"
+              detail="false"
+              routerLinkActive="selected"
+            >
+              <ion-icon
+                slot="start"
+                [ios]="p.icon + '-outline'"
+                [md]="p.icon + '-sharp'"
+              ></ion-icon>
+              <ion-label>{{ p.title | translate }}</ion-label>
+              <ion-badge
+                *ngIf="p.url == '/chat' && chatService.allUnread"
+                style="--background: var(--color-primary)"
+                >{{ chatService.allUnread }}</ion-badge
+              >
+            </ion-item>
+          </ion-menu-toggle>
+        </ion-list>
+        <ion-list style="padding-top: 3px" id="inbox-list">
+          <ion-menu-toggle
+            auto-hide="false"
+            *ngFor="let p of giftPages; let i = index"
+          >
+            <ion-item
+              (click)="selectedIndex = i"
+              routerDirection="root"
+              [routerLink]="[p.url]"
+              lines="none"
+              detail="false"
+              routerLinkActive="selected"
+            >
+              <ion-icon
+                slot="start"
+                [ios]="p.icon + '-outline'"
+                [md]="p.icon + '-sharp'"
+              ></ion-icon>
+              <ion-label>{{ p.title | translate }}</ion-label>
+              <ion-badge
+                *ngIf="p.url == '/chat' && chatService.allUnread"
+                style="--background: var(--color-primary)"
+                >{{ chatService.allUnread }}</ion-badge
+              >
+            </ion-item>
+          </ion-menu-toggle>
+          <ion-menu-toggle auto-hide="false">
+            <ion-item
+              (click)="logout()"
+              routerLink="/"
+              lines="none"
+              detail="false"
+            >
+              <ion-icon
+                slot="start"
+                ios="exit-outline"
+                md="exit-outline"
+              ></ion-icon>
+              <ion-label>{{ "sidebar.logout" | translate }}</ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+        </ion-list>
+      </ion-content>
+    </ion-menu>
+    <ion-router-outlet id="main-content"></ion-router-outlet>
+  </ion-split-pane>
 </ion-app>

@@ -82,6 +82,11 @@ export class AppComponent implements OnInit {
       title:'sidebar.chat',
       url: '/chat',
       icon: 'chatbox-ellipses'
+    },
+    {
+      title:'challenges',
+      url:'/challenges',
+      icon: 'medal'
     }
     
    
