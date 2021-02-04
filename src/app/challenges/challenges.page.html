@@ -1,9 +1,50 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>{{'challenges' | translate}}</ion-title>
+  <ion-toolbar class="bg-gradient-person">
+    <ion-title>
+      <ion-icon name="medal-outline"></ion-icon>
+      {{'challenges' | translate}}
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+  <ion-row>
+    <ion-col size="2" style="margin-left: 50px; margin-top: 50px">
+      <h2>
+        <ion-icon
+          name="home-outline"
+          style="color: var(--ion-color-primary)"
+        ></ion-icon>
+        {{'challenge.foryou' | translate}}
+      </h2>
+      <h2>
+        <ion-icon
+          name="people-outline"
+          style="color: var(--ion-color-primary)"
+        ></ion-icon>
+        {{'challenge.following' | translate}}
+      </h2>
+      <hr style="background-color: grey" />
+      <div class="text-center">
+        <p>{{'challenge.recomended' | translate}}</p>
+        <!-- CUENTAS RECOMENDADAS -->
+        <div>
+          <p style="font-size: 10px">
+            {{'challenge.norecomended' | translate}}
+          </p>
+        </div>
+        <!-- FIN CUENTAS RECOMENDAS -->
+      </div>
+    </ion-col>
+    <ion-col size="9" class="text-center" style="margin-top:40px"> 
+      <div>{{'challenge.nocontent' | translate}}</div>
+    </ion-col>
+  </ion-row>
 </ion-content>
+
+<div style="position: fixed; bottom: 25px; right: 25px;">
+  <ion-button (click)="create()">
+    <ion-icon name="medal-outline"></ion-icon>
+    ¡Crea tu propio reto!
+  </ion-button>
+</div>

@@ -71,7 +71,7 @@ export class ImgVideoUpload {
         await this.loading.dismiss(null, null, "loading");
         const modal = await this.presentModal(r.hits);
         console.log(modal);
-        await modal.present()
+        await modal.present();
         const { data } = await modal.onWillDismiss();
         console.log(data);
         this.content.next(data);
@@ -141,20 +141,45 @@ export class ImgVideoUpload {
     });
     action.present();
   }
+  async takeOnlyVideo(fileChooser: ElementRef) {
+    let action = await this.actionSheetCtrl.create({
+      header: this.translate.instant("img-options.header"),
+      buttons: [
+        {
+          text: this.translate.instant("img-options.video"),
+          icon: "camera",
+          handler: () => {
+            this.video(fileChooser);
+          },
+        },
+        {
+          text: this.translate.instant("cancel"),
+          icon: "close",
+          role: "cancel",
+        },
+      ],
+    });
+    action.present();
+  }
 
   video(fileChooser: ElementRef) {
+    console.log(fileChooser.nativeElement);
     fileChooser.nativeElement.click();
   }
 
-  uploadFile(event) {
+  async uploadFile(event) {
+    let loading = await this.loading.create({
+      message: this.translate.instant("loading"),
+    });
+    loading.present();
     let formData = new FormData();
     let file = event.target.files[0];
     if (file.type.split("/")[0] == "video") {
       formData.append("video", file);
-      this.uploadVideo(formData);
+      this.uploadVideo(formData,loading);
     } else if (file.type.split("/")[0] == "image") {
       formData.append("image", file);
-      this.uploadImage(formData);
+      this.uploadImage(formData,loading);
     } else {
       // handle
     }
@@ -165,15 +190,19 @@ export class ImgVideoUpload {
    * @param formData
    */
 
-  uploadVideo(formData: FormData) {
+  uploadVideo(formData: FormData, loading?) {
+
     this.imageAPI
       .uploadVideo(formData)
       .toPromise()
       .then((url) => {
+        if(loading) loading.dismiss()
         this.content.next(url);
       })
       .catch((err) => {
         // handle
+        if(loading) loading.dismiss()
+        console.log(err);
       });
   }
 
@@ -181,15 +210,17 @@ export class ImgVideoUpload {
    * Sube una imagen al servidor y la guarda en `files`
    * @param formData
    */
-  uploadImage(formData: FormData) {
+  uploadImage(formData: FormData, loading?) {
     this.imageAPI
       .uploadImage(formData)
       .toPromise()
       .then((url) => {
         this.content.next(url);
+        if(loading) loading.dismiss()
       })
       .catch((err) => {
         // handle err
+        if(loading) loading.dismiss()
       });
   }
 

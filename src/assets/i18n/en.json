@@ -679,5 +679,13 @@
   "free-img": "Free Images",
   "sponsorURL": "Pagina del patrocinador",
   "sponsorText": "See this profiles",
-  "challenges": "Challenges"
+  "challenges": "Challenges",
+  "challenge": {
+    "foryou":"For You",
+    "following":"Following",
+    "recomended":"Recommended",
+    "norecomended":"No content",
+    "nocontent":"No content",
+    "upload":"Upload your challenge"
+  }
 }

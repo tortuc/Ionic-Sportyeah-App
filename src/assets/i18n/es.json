@@ -709,5 +709,20 @@
   "free-img": "Imagenes Gratis",
   "sponsorURL": "Pagina del patrocinador",
   "sponsorText": "Revisa estos perfiles",
-  "challenges": "Desafíos"
+  "challenges": "Desafíos",
+  "challenge": {
+    "foryou": "Para ti",
+    "following": "Siguiendo",
+    "recomended": "Cuentas Recomendadas",
+    "norecomended": "Aun no hemos podido descifrar tus gustos :(",
+    "nocontent": "Sin contenido disponible",
+    "upload": "Sube tu desafío",
+    "title": "Titulo del desafío",
+    "description": "Descripción",
+    "createAward": "Crear desafío",
+    "place": "Posición",
+    "titleAward":"Titulo del Premio",
+    "mediaAward":"Imagen del desafío"
+  },
+  "save": "Guardar Cambios"
 }

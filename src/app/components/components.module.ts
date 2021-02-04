@@ -1,3 +1,4 @@
+import { CreateChallengeComponent } from './challenge/create/create.component';
 import { SponsorsComponent } from './../profile/sponsors/sponsors.component';
 import { ImageSeeComponent } from './image-see/image-see.component';
 import { ErrorComponent } from './error/error.component';
@@ -122,7 +123,7 @@ import { StructureComponent } from 'src/app/profile/structure/structure.componen
     AptitudesPage,
     ReactionsPostsComponent,
     ViewProfileComponent,
-
+    CreateChallengeComponent
   ],
   exports:[
     ImageComponent,
@@ -171,6 +172,7 @@ import { StructureComponent } from 'src/app/profile/structure/structure.componen
     ReactionsPostsComponent,
     SponsorsComponent,
     ViewProfileComponent,
+    CreateChallengeComponent
   ]
 })
 export class ComponentsModule { }

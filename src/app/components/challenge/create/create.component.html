@@ -1,0 +1,105 @@
+<ion-content>
+  <input
+    #fileChooser
+    (change)="img.uploadFile($event)"
+    hidden="true"
+    accept="video/*"
+    type="file"
+  />
+  <div class="text-center" *ngIf="!award">
+    <div *ngIf="form.value.challenge === ''" style="margin-top: 20px">
+      <img
+        src="https://byspel.com/wp-content/uploads/2017/01/upload-cloud.png"
+        alt=""
+        style="width: 100px; cursor: pointer"
+        (click)="challenge()"
+      />
+      <h6 style="color: grey">{{ "challenge.upload" | translate }}</h6>
+    </div>
+    <div *ngIf="form.value.challenge !== ''">
+      <video
+        controlslist="nodownload"
+        controls="controls"
+        preload="metadata"
+        webkit-playsinline="webkit-playsinline"
+        class="videoPlayer"
+      >
+        <source [src]="form.value.challenge | safeUrl" type="video/mp4" />
+        <source [src]="form.value.challenge | safeUrl" type="video/ogg" />
+        <br />
+      </video>
+    </div>
+
+    <!-- CHALLENGE FORM -->
+    <form [formGroup]="form">
+      <ion-item>
+        <ion-label position="floating">
+          {{ "challenge.title" | translate }}
+        </ion-label>
+        <ion-input type="text" formControlName="title"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">
+          {{ "challenge.description" | translate }}
+        </ion-label>
+        <ion-textarea type="text" formControlName="description"></ion-textarea>
+      </ion-item>
+    </form>
+  </div>
+  <!-- AWARD FORM -->
+  <form [formGroup]="formAward" [hidden]="!award" class="text-center">
+    <div *ngIf="formAward.value.media === ''" style="margin-top: 20px">
+      <img
+        src="https://byspel.com/wp-content/uploads/2017/01/upload-cloud.png"
+        alt=""
+        style="width: 100px; cursor: pointer"
+        (click)="awardMedia()"
+      />
+      <h6 style="color: grey">{{ "challenge.mediaAward" | translate }}</h6>
+    </div>
+    <div *ngIf="formAward.value.media !== ''">
+      <img [src]="formAward.value.media" alt="" (click)="awardMedia()" />
+    </div>
+    <ion-item>
+      <ion-label position="floating">{{
+        "challenge.place" | translate
+      }}</ion-label>
+      <ion-input type="text" fromControlName="place"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">{{
+        "challenge.titleAward" | translate
+      }}</ion-label>
+      <ion-input type="text" fromControlName="title"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">{{
+        "challenge.description" | translate
+      }}</ion-label>
+      <ion-textarea type="text" fromControlName="description"></ion-textarea>
+    </ion-item>
+  </form>
+  <div class="text-center" style="margin-top: 20px" *ngIf="!award">
+    <ion-button (click)="award = true">
+      <ion-icon name="trophy-outline"></ion-icon>
+      {{ "challenge.createAward" | translate }}
+    </ion-button>
+  </div>
+
+  <div class="text-center" style="margin-top: 20px" *ngIf="!award">
+    <ion-button [disabled]="form.status !== 'VALID'" (click)="saveChallenge()">
+      {{ "save" | translate }}
+    </ion-button>
+  </div>
+  <div class="text-center" style="margin-top: 20px" *ngIf="award">
+    <ion-button
+      (click)="createAward(formAward)"
+      [disabled]="formAward.status !== 'VALID'"
+    >
+      {{ "save" | translate }}
+    </ion-button>
+    <ion-button color="light" (click)="award = false">
+      {{ "back" | translate }}
+    </ion-button>
+  </div>
+</ion-content>
