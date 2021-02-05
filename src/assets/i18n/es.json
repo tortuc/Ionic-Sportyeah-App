@@ -722,7 +722,9 @@
     "createAward": "Crear desafío",
     "place": "Posición",
     "titleAward":"Titulo del Premio",
-    "mediaAward":"Imagen del desafío"
+    "mediaAward":"Imagen del desafío",
+    "retar":"Aceptar Reto"
   },
   "save": "Guardar Cambios"
+
 }

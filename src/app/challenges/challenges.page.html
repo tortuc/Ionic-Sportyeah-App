@@ -4,45 +4,153 @@
       <ion-icon name="medal-outline"></ion-icon>
       {{'challenges' | translate}}
     </ion-title>
+    <ion-buttons slot="end">
+      <ion-button
+        style="
+          border-radius: 5px;
+          background-color: var(--ion-color-primary, #3880ff);
+          color: white;
+        "
+      >
+        <ion-icon name="home-outline" style="margin-right: 10px"></ion-icon>
+        {{'challenge.foryou' | translate}}
+      </ion-button>
+      <ion-button
+        style="
+          border-radius: 5px;
+          background-color: var(--ion-color-primary, #3880ff);
+          color: white;
+        "
+      >
+        <ion-icon name="people-outline" style="margin-right: 10px"></ion-icon>
+        {{'challenge.following' | translate}}
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <ion-row>
-    <ion-col size="2" style="margin-left: 50px; margin-top: 50px">
-      <h2>
-        <ion-icon
-          name="home-outline"
-          style="color: var(--ion-color-primary)"
-        ></ion-icon>
-        {{'challenge.foryou' | translate}}
-      </h2>
-      <h2>
-        <ion-icon
-          name="people-outline"
-          style="color: var(--ion-color-primary)"
-        ></ion-icon>
-        {{'challenge.following' | translate}}
-      </h2>
-      <hr style="background-color: grey" />
-      <div class="text-center">
-        <p>{{'challenge.recomended' | translate}}</p>
-        <!-- CUENTAS RECOMENDADAS -->
-        <div>
-          <p style="font-size: 10px">
-            {{'challenge.norecomended' | translate}}
-          </p>
-        </div>
-        <!-- FIN CUENTAS RECOMENDAS -->
+<ion-content class="bg-gradient-person" style="margin: 0px">
+  <div size="12" style="margin: 0px">
+    <div *ngIf="!challenges">{{'challenge.nocontent' | translate}}</div>
+    <div
+      *ngFor="let challenge of challenges"
+      style="
+        border-bottom: 1px grey;
+        width: 100%;
+        height: 92vh;
+        margin-bottom: 20px;
+        background-color: white;
+        padding: 10px;
+        border-radius: 5px;
+      "
+    >
+      <div style="text-align: left">
+        <ion-grid>
+          <ion-row>
+            <ion-col size="2" class="quitar">
+              <ion-avatar>
+                <img [src]="challenge.challenged.userId.data.photo" />
+              </ion-avatar>
+            </ion-col>
+            <ion-col size="10">
+              <ion-button style="float: right"> Seguir </ion-button>
+              <span
+                style="font-weight: bold; margin-right: 5px; font-size: 13px"
+                >{{challenge.challenged.userId.data.name}}</span
+              >
+              <span
+                style="font-weight: bold; margin-right: 5px; font-size: 13px"
+                >{{challenge.challenged.userId.data.last_name}}</span
+              >
+              <!-- <span
+                  style="font-weight: bold; margin-right: 5px; font-size: 13px"
+                  >{{challenge.challenged.userId.data.email}}</span
+                > -->
+              <p style="line-height: 4px; font-size: 11px; font-weight: bold">
+                {{challenge.title}}
+              </p>
+              <p style="line-height: 4px; font-size: 11px; font-weight: bold">
+                {{challenge.description}}
+              </p>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
       </div>
-    </ion-col>
-    <ion-col size="9" class="text-center" style="margin-top:40px"> 
-      <div>{{'challenge.nocontent' | translate}}</div>
-    </ion-col>
-  </ion-row>
+      <div *ngIf="challenge.challenging.media === challenge.challenged.media" style="height: 70vh;">
+        <video
+          width="100%"
+          height="70vh"
+          autoplay
+          controlslist="nodownload"
+          controls="controls"
+          preload="metadata"
+        >
+          <source
+            [src]="challenge.challenging.media | safeUrl"
+            type="video/mp4"
+          />
+          <source
+            [src]="challenge.challenging.media | safeUrl"
+            type="video/ogg"
+          />
+          <br />
+        </video>
+      </div>
+
+      <div *ngIf="challenge.challenging.media !== challenge.challenged.media" style="height: 70vh;">
+        <video
+          width="50%"
+          height="100%"
+          style="border-radius: 5px"
+          autoplay
+          controlslist="nodownload"
+          controls="controls"
+          preload="metadata"
+        >
+          <source
+            [src]="challenge.challenging.media | safeUrl"
+            type="video/mp4"
+          />
+          <source
+            [src]="challenge.challenging.media | safeUrl"
+            type="video/ogg"
+          />
+          <br />
+        </video>
+        <video
+          width="50%"
+          height="100%"
+          style="border-radius: 5px"
+          autoplay
+          controlslist="nodownload"
+          controls="controls"
+          preload="metadata"
+        >
+          <source
+            [src]="challenge.challenged.media | safeUrl"
+            type="video/mp4"
+          />
+          <source
+            [src]="challenge.challenged.media | safeUrl"
+            type="video/ogg"
+          />
+          <br />
+        </video>
+      </div>
+      <div style="text-align: center">
+        <ion-button (click)="aceptarReto(challenge.challenged)">
+          <ion-icon
+            name="arrow-undo-outline"
+            style="margin-right: 5px"
+          ></ion-icon>
+          {{'challenge.retar' | translate}}
+        </ion-button>
+      </div>
+    </div>
+  </div>
 </ion-content>
 
-<div style="position: fixed; bottom: 25px; right: 25px;">
+<div style="position: fixed; bottom: 25px; right: 25px">
   <ion-button (click)="create()">
     <ion-icon name="medal-outline"></ion-icon>
     ¡Crea tu propio reto!

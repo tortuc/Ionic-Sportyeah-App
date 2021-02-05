@@ -79,7 +79,7 @@
       <ion-textarea type="text" fromControlName="description"></ion-textarea>
     </ion-item>
   </form>
-  <div class="text-center" style="margin-top: 20px" *ngIf="!award">
+  <div class="text-center" style="margin-top: 20px" *ngIf="!award && createAward">
     <ion-button (click)="award = true">
       <ion-icon name="trophy-outline"></ion-icon>
       {{ "challenge.createAward" | translate }}
@@ -91,7 +91,7 @@
       {{ "save" | translate }}
     </ion-button>
   </div>
-  <div class="text-center" style="margin-top: 20px" *ngIf="award">
+  <div class="text-center" style="margin-top: 20px" *ngIf="award ">
     <ion-button
       (click)="createAward(formAward)"
       [disabled]="formAward.status !== 'VALID'"

@@ -7,7 +7,7 @@ export const environment = {
   URL_API: "http://localhost:3000/v1",
   URL_IMAGE: "http://localhost:3112/v1",
   URL_SOCKET: "http://localhost:3000",
-  URL_CHALLENGE: "http://localhost:6666",
+  URL_CHALLENGE: "http://localhost:1000",
 };
 
 /*

@@ -27,13 +27,14 @@ export interface IReference {
   reactions: [];
   comments: [];
   display: number;
+  _id?:string;
   createdAt?: string;
   modifiedAt?: string;
   deleted?: string;
 }
 export interface IChallenge {
-  challenging: IReference;
-  challenged: IReference;
+  challenging: IReference | string;
+  challenged: IReference | string;
   awards: IAward[];
   title: string;
   description: string;
@@ -57,5 +58,9 @@ export class ChallengeService {
   create(challenge: IChallenge) {
     console.log(`${this.route}/create`);
     return this.http.post(`${this.route}/create`, challenge);
+  }
+
+  getAll(){
+    return this.http.get(`${this.route}/all`);
   }
 }
