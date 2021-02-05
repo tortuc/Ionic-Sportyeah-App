@@ -1,28 +1,27 @@
-import { Component, OnInit, HostListener } from '@angular/core';
-import { ModalController } from '@ionic/angular';
-import { Platform } from '@ionic/angular';
-import { SplashScreen } from '@ionic-native/splash-screen/ngx';
-import { StatusBar } from '@ionic-native/status-bar/ngx';
-import { TranslateService } from '@ngx-translate/core';
-import { LoginService } from './service/login.service';
-import { UserService } from './service/user.service';
-import { Router } from '@angular/router';
-import { ChatService } from './service/chat.service';
-import { NotificationService } from './service/notification.service';
+import { Component, OnInit, HostListener } from "@angular/core";
+import { ModalController } from "@ionic/angular";
+import { Platform } from "@ionic/angular";
+import { SplashScreen } from "@ionic-native/splash-screen/ngx";
+import { StatusBar } from "@ionic-native/status-bar/ngx";
+import { TranslateService } from "@ngx-translate/core";
+import { LoginService } from "./service/login.service";
+import { UserService } from "./service/user.service";
+import { Router } from "@angular/router";
+import { ChatService } from "./service/chat.service";
+import { NotificationService } from "./service/notification.service";
 
 @Component({
-  selector: 'app-root',
-  templateUrl: 'app.component.html',
-  styleUrls: ['app.component.scss']
+  selector: "app-root",
+  templateUrl: "app.component.html",
+  styleUrls: ["app.component.scss"],
 })
 export class AppComponent implements OnInit {
-
-  @HostListener('document:ionBackButton',['$event'])
-  private async overrideHardwareBackAction($event:any){
+  @HostListener("document:ionBackButton", ["$event"])
+  private async overrideHardwareBackAction($event: any) {
     await this.modalController.dismiss();
   }
-  
-  public banderaIP:string = null;
+
+  public banderaIP: string = null;
   public ipLoaded: Promise<boolean>;
   public selectedIndex = 0;
 
@@ -30,26 +29,20 @@ export class AppComponent implements OnInit {
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
-    private loginService:LoginService,
-    public userService:UserService,
-    private router:Router,
+    private loginService: LoginService,
+    public userService: UserService,
+    private router: Router,
     public modalController: ModalController,
-    public translate:TranslateService,
-    public chatService:ChatService,
-    public notificationService:NotificationService,
+    public translate: TranslateService,
+    public chatService: ChatService,
+    public notificationService: NotificationService
   ) {
     this.initializeApp();
-    translate.addLangs(["es","en"])
-    translate.setDefaultLang('es');
-    translate.use('es'); 
-  
- 
+    translate.addLangs(["es", "en"]);
+    translate.setDefaultLang("es");
+    translate.use("es");
   }
 
-
-
-
-  
   initializeApp() {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
@@ -57,39 +50,40 @@ export class AppComponent implements OnInit {
     });
   }
 
-
-
-  logout(){
-    this.userService.logout()
+  logout() {
+    this.userService.logout();
   }
 
-  goTo(r){
-    this.router.navigate([r])
+  goTo(r) {
+    this.router.navigate([r]);
   }
 
   public appPages = [
     {
-      title:'sidebar.profile',
-      url: '/profile',
-      icon: 'person'
+      title: "sidebar.profile",
+      url: "/profile",
+      icon: "person",
     },
     {
-      title:'sidebar.home',
-      url: '/dashboard',
-      icon: 'home'
+      title: "sidebar.home",
+      url: "/dashboard",
+      icon: "home",
     },
     {
-      title:'sidebar.chat',
-      url: '/chat',
-      icon: 'chatbox-ellipses'
+      title: "sidebar.chat",
+      url: "/chat",
+      icon: "chatbox-ellipses",
     },
     {
-      title:'challenges',
-      url:'/challenges',
-      icon: 'medal'
-    }
-    
-   
+      title: "challenges",
+      url: "/challenges",
+      icon: "medal",
+    },
+    {
+      title: "sidebar.news",
+      url: "/news",
+      icon: "newspaper",
+    },
   ];
 
   public giftPages = [
@@ -113,11 +107,12 @@ export class AppComponent implements OnInit {
       url: '/calendar',
       icon: 'calendar'
     } */
-  ]
+  ];
 
   ngOnInit() {
-    this.loginService.getIP().subscribe((geo)=>{this.banderaIP = geo.country;this.ipLoaded = Promise.resolve(true);});
-
+    this.loginService.getIP().subscribe((geo) => {
+      this.banderaIP = geo.country;
+      this.ipLoaded = Promise.resolve(true);
+    });
   }
- 
 }

@@ -1,5 +1,5 @@
 
-<div *ngIf="!notification.read" [ngClass]="(notification.read)?'':'unread'"><span class="see"><ion-icon (click)="read()"   class=" eye "  name="eye-outline"></ion-icon></span></div>
+<div *ngIf="!notification.read" [ngClass]="(notification.read)?'':'unread'"><span class="see"><ion-icon style="cursor: pointer;" (click)="read()"   class=" eye "  name="eye-outline"></ion-icon></span></div>
 <div class="notification" [ngClass]="(notification.read)?'':'unread'" routerLink="{{notification.routerlink}}">
   <div>
 

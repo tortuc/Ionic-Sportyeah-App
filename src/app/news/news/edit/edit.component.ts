@@ -1,42 +1,38 @@
-import { Component, OnInit, ViewChild  } from '@angular/core';
-//import { FormBuilder, FormControl,FormGroup} from '@angular/forms';
-import { TranslateService } from "@ngx-translate/core";
-import { UserService } from "../../../service/user.service";
-import { FormBuilder, FormGroup, FormControl, Validators} from '@angular/forms';
-import * as moment from 'moment';
-import { Plugins, CameraResultType, CameraSource } from '@capacitor/core';
-import { ActionSheetController, LoadingController, ModalController   } from '@ionic/angular';
-import { JdvimageService } from 'src/app/service/jdvimage.service';
+import { Component, OnInit } from '@angular/core';
 import { NewsService } from '../../../service/news.service';
 import { ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { UserService } from "../../../service/user.service";
+import { FormBuilder, FormGroup, FormControl, Validators} from '@angular/forms';
+import { Plugins, CameraResultType, CameraSource } from '@capacitor/core';
+import { ActionSheetController, LoadingController, ModalController   } from '@ionic/angular';
+import { TranslateService } from "@ngx-translate/core";
+import { JdvimageService } from 'src/app/service/jdvimage.service';
 
 const { Camera ,Filesystem} = Plugins;
 
 @Component({
-  selector: 'app-create',
-  templateUrl: './create.component.html',
-  styleUrls: ['./create.component.scss'],
+  selector: 'app-edit',
+  templateUrl: './edit.component.html',
+  styleUrls: ['./edit.component.scss'],
 })
-export class CreateComponent implements OnInit {
+export class EditComponent implements OnInit {
 
-
-constructor(
-    private fb:FormBuilder,
-    public userService: UserService,
-    public translate: TranslateService,
-    private modalCtrl:ModalController,
-    private loading:LoadingController,
-    private jdvImage:JdvimageService,
-    private actionSheetCtrl:ActionSheetController,
+  constructor(
     public newsService:NewsService,
     public toastController: ToastController,
     private router:Router,
+    public userService: UserService,
+    private fb:FormBuilder,
+    public translate: TranslateService,
+    private actionSheetCtrl:ActionSheetController,
+    private jdvImage:JdvimageService,
+    private loading:LoadingController,
 
   ) { }
 
-
   form = this.fb.group({
+    id:[this.newsService.editNews],
     user:['',[Validators.required]],
     headline:['',[Validators.required]],
     content:['',[Validators.required]],
@@ -45,10 +41,11 @@ constructor(
     principalVideo:['',[Validators.required]],
     sport:['',[Validators.required]]
   })
+  news
 
   async presentToastWithOptions() {
     const toast = await this.toastController.create({
-      message:this.translate.instant('news.published'),
+      message:this.translate.instant('news.edited'),
       position: 'top',
       color: 'dark',
       duration: 3000,
@@ -56,7 +53,21 @@ constructor(
     toast.present();
   }
 
-publicar(){
+  ngOnInit() {
+    this.newsService.findById(this.newsService.editNews).subscribe((response:any)=>{
+      this.news = response.news
+      console.log(response.news)
+      this.videoSelected = response.news.principalVideo;
+      this.urlVideo = response.news.principalVideo;
+      this.imagenSelected = response.news.principalImage;
+     // this.arrayImagenes = response.news.image;
+      this.parrafos = response.news.content;
+      this.titulo1 = response.news.headline;
+      this.deporte = response.news.sport;
+    })
+  }
+
+editar(){
     this.form.value.principalVideo = this.videoSelected;
     this.form.value.principalImage = this.imagenSelected;
     this.form.value.user = this.userService.User._id 
@@ -64,11 +75,13 @@ publicar(){
     this.form.value.content = this.parrafos
     //this.form.value.image = this.arrayImagenes
     this.form.value.sport = this.deporte
-    this.newsService.create(this.form.value).subscribe((response)=>{
+    this.newsService.updateNews(this.form.value).subscribe((response)=>{
       this.presentToastWithOptions()
-      this.router.navigate(["news"])
+      this.newsService.openNews = this.newsService.editNews
+      this.router.navigate(["news/read"])
     })
 }
+
 fecha = new Date().getDate() + '/'+ (new Date().getMonth()+1) + '/' + new Date().getFullYear()
 editando:boolean=false//si esta editando el agregar es disabled
 imagen;//imagen mostrada
@@ -76,7 +89,6 @@ number:number = 0//Posicion de el parrafo, pero no del array,
 positionEditactual:number=null; 
 parrafoAntesEdicion;
 parrafos=[];
-
   text1 = `Escribe el párrafo # ${this.parrafos.length+1} `;
   titulo1= ``;
   deporte= ``;
@@ -99,69 +111,63 @@ parrafos=[];
 
 
   consol(){
-  this.parrafos.push({parrafo:this.text1,position:this.parrafos.length,image:'',video:null})//title:this.titulo1,subtitle:this.deporte
-  this.text1 = `Escribe el párrafo # ${this.parrafos.length+1} `
- 
-  /* this.titulo1= `Escribe el Titulo # ${this.parrafos.length+1} `;
-  this.deporte= `Escribe el Subtitulo # ${this.parrafos.length+1} `; */
-  console.log(this.parrafos)
-}
-selectParrafo(){
-  this.text1 =  this.parrafos[this.number].parrafo
- /*  this.titulo1 =  this.parrafos[this.number].title
-  this.deporte =  this.parrafos[this.number].subtitle */
-  this.positionEditactual = this.number
-  this.parrafoAntesEdicion = this.parrafos[this.number].parrafo
-}
-
-selectParrafoCards(position){
-  this.number = position
-  this.text1 =  this.parrafos[position].parrafo
- /*  this.titulo1 =  this.parrafos[position].title
-  this.deporte =  this.parrafos[position].subtitle */
-  this.positionEditactual = position
-  this.parrafoAntesEdicion = this.parrafos[position].parrafo
-  this.editando = true
-}
-
-EditParrafo(){
-  this.parrafos[this.positionEditactual].parrafo = this.text1;
-  this.parrafos[this.positionEditactual].title = this.titulo1;
- // this.parrafos[this.positionEditactual].subtitle = this.deporte;
-  this.positionEditactual = null
-  this.editando = false
-  this.text1 = `Escribe el párrafo # ${this.parrafos.length+1} `
-/*   this.titulo1= `Escribe el Título # ${this.parrafos.length+1} `;
-  this.deporte= `Escribe el Subtítulo # ${this.parrafos.length+1} `; */
-}
-eliminarParrafo(){
-  this.parrafos.splice(this.positionEditactual,1)
-  for(let i= this.positionEditactual; i <= this.parrafos.length-1; i++){
-    this.parrafos[i].position -= 1; 
+    this.parrafos.push({parrafo:this.text1,position:this.parrafos.length,image:'',video:null})
+    this.text1 = `Escribe el párrafo # ${this.parrafos.length+1} `
+   
+   
+    console.log(this.parrafos)
   }
-  this.positionEditactual = null
-  this.editando = false
-  if(this.number != 0 && this.number == this.parrafos.length){
-    this.number -= 1
+  selectParrafo(){
+    this.text1 =  this.parrafos[this.number].parrafo
+  
+    this.positionEditactual = this.number
+    this.parrafoAntesEdicion = this.parrafos[this.number].parrafo
   }
   
-  this.text1 = `Escribe el párrafo # ${this.parrafos.length+1} `
-/*   this.titulo1= `Escribe el Título # ${this.parrafos.length+1} `;
-  this.deporte= `Escribe el Subtítulo # ${this.parrafos.length+1} `; */
-}
-numberPositionSelect(number){
-  this.number += number
-}
-cancelar(){
-  this.positionEditactual = null
-  this.parrafoAntesEdicion = null
-  this.editando = false
-  this.text1 = `Escribe el párrafo # ${this.parrafos.length+1} `
- /*  this.titulo1= `Escribe el Título # ${this.parrafos.length+1} `;
-  this.deporte= `Escribe el Subtítulo # ${this.parrafos.length+1} `; */
-}
+  selectParrafoCards(position){
+    this.number = position
+    this.text1 =  this.parrafos[position].parrafo
+ 
+    this.positionEditactual = position
+    this.parrafoAntesEdicion = this.parrafos[position].parrafo
+    this.editando = true
+  }
+  
+  EditParrafo(){
+    this.parrafos[this.positionEditactual].parrafo = this.text1;
+    this.parrafos[this.positionEditactual].title = this.titulo1;
+ 
+    this.positionEditactual = null
+    this.editando = false
+    this.text1 = `Escribe el párrafo # ${this.parrafos.length+1} `
+  
+  }
+  eliminarParrafo(){
+    this.parrafos.splice(this.positionEditactual,1)
+    for(let i= this.positionEditactual; i <= this.parrafos.length-1; i++){
+      this.parrafos[i].position -= 1; 
+    }
+    this.positionEditactual = null
+    this.editando = false
+    if(this.number != 0 && this.number == this.parrafos.length){
+      this.number -= 1
+    }
+    
+    this.text1 = `Escribe el párrafo # ${this.parrafos.length+1} `
+  
+  }
+  numberPositionSelect(number){
+    this.number += number
+  }
+  cancelar(){
+    this.positionEditactual = null
+    this.parrafoAntesEdicion = null
+    this.editando = false
+    this.text1 = `Escribe el párrafo # ${this.parrafos.length+1} `
 
-////Imagenes
+  }
+
+  ////Imagenes
 selectedImage(imag){
   this.imagen = imag;
 }
@@ -178,7 +184,7 @@ goBackImage(){
   this.imagen = undefined
 }
 
-////////
+  ////////
 arrayImagenes = [];
 async takePhotoFrom(imagenType,i){
   let action = await this.actionSheetCtrl.create({
@@ -193,7 +199,6 @@ async takePhotoFrom(imagenType,i){
         }else if('notPrincipal'){
           this.takePictures(CameraSource.Photos,i)
         }
-      
       }
     },
     
@@ -208,6 +213,12 @@ async takePhotoFrom(imagenType,i){
 }
 
 
+
+/* subirImage(){
+  //no hace nada
+ this.imagenSelected = this.arrayImagenes[0]
+ 
+} */
 async takePictures(source,i) {
   let formData = new FormData()
 
@@ -233,7 +244,10 @@ async takePictures(source,i) {
       loading.dismiss()
       console.error(err);
     })
-
+    
+    
+    
+   
     loading.dismiss()
   /* 
       this.jdvImage.uploadImage(formData).toPromise()
@@ -251,9 +265,9 @@ async takePictures(source,i) {
           
         })*/
   })
-  .catch((err)=>{})
+  .catch((err)=>{   
+  })
 }
-
 async takePrincipal(source) {
   let formData = new FormData()
 
@@ -288,10 +302,6 @@ deleteImagePrincipal(){
   this.open = false;
 }
 
-
-
-
-
 DataURIToBlob(dataURI: string) {
     
   const splitDataURI = dataURI.split(',')
@@ -305,9 +315,6 @@ DataURIToBlob(dataURI: string) {
   return new Blob([ia], { type: mimeString })
 }
 //////
-
-/////
-
 ////
 
 
@@ -346,11 +353,11 @@ takeImageArray(img,i){
 }
 
 deleteImage(i){
- this.parrafos[i].image = '';
- this.openArray = false;
-}
+  this.parrafos[i].image = '';
+  this.openArray = false;
+ }
 
-///Create Video
+ ///Create Video
 urlVideo = null
 videoFile = null
 videoSelected = null;
@@ -404,69 +411,8 @@ uploadVideoNotPrincipal(video,i){
     console.log('No se subio el mmg video NOTPREINCIPAL')
   })
 }
-
-
-
-  ngOnInit(): void {
  
-  }
-  /* 
 
-  ngOnInit() {}
-console(){
- 
-}
 
-texto;
-  profileForm = new FormGroup({
-    htmlContent1: new FormControl(''),
-    htmlContent2: new FormControl(''),
-  });
-
-  editorConfig: AngularEditorConfig = {
-    editable: true,
-      spellcheck: true,
-      height: 'auto',
-      minHeight: '0',
-      maxHeight: 'auto',
-      width: 'auto',
-      minWidth: '0',
-      translate: 'yes',
-      enableToolbar: true,
-      showToolbar: true,
-      placeholder: 'Enter text here...',
-      defaultParagraphSeparator: '',
-      defaultFontName: '',
-      defaultFontSize: '',
-      fonts: [
-        {class: 'arial', name: 'Arial'},
-        {class: 'times-new-roman', name: 'Times New Roman'},
-        {class: 'calibri', name: 'Calibri'},
-        {class: 'comic-sans-ms', name: 'Comic Sans MS'}
-      ],
-      customClasses: [
-      {
-        name: 'quote',
-        class: 'quote',
-      },
-      {
-        name: 'redText',
-        class: 'redText'
-      },
-      {
-        name: 'titleText',
-        class: 'titleText',
-        tag: 'h1',
-      },
-    ],
-    uploadUrl: 'v1/image',
-    uploadWithCredentials: false,
-    sanitize: true,
-    toolbarPosition: 'top',
-    toolbarHiddenButtons: [
-      ['bold', 'italic'],
-      ['fontSize','backgroundColor']
-    ]
-}; */
 
 }

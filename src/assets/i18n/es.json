@@ -210,6 +210,7 @@
     "friends": "Buscar amigos",
     "profile": "Mi Perfil",
     "chat": "Chatear",
+    "news": "Noticias",
     "calendar": "Calendario",
     "logout": "Cerrar sesión",
     "wishes": "Lista de deseos",
@@ -629,7 +630,8 @@
   },
   "labels-profile-segment": {
     "profile": "Perfil",
-    "posts": "Publicaciones"
+    "posts": "Publicaciones",
+    "articles": "Artículos"
   },
   "landing": {
     "title": "Landing"
@@ -652,6 +654,7 @@
     "profile": "Perfil",
     "reaction": "Reacciones",
     "comment": "Comentarios",
+    "shared": "Compartido",
     "next": "Siguiente",
     "last": "Anterior",
     "back-profile": "Perfil",
@@ -669,10 +672,16 @@
     "info_search": "Personas que llegaron al perfil a través de búsquedas",
     "info_profile": "Personas que llegaron al perfil a través de sus seguidores y/o seguidos",
     "info_reaction": "Personas que llegaron al perfil a través de reacciones en publicaciones propias, u de otros usuarios",
-    "info_comment": "Personas que llegaron al perfil a través de comentarios en publicaciones propias, u de otros usuarios",
-    "info_views_post": "Cantidad de vistas al perfil por medio de una publicación",
+    "info_comment": "Publicaciones con mas comentarios.",
+    "info_views_post": "Publicaciones con más reacciones.",
+    "info_shared": "Publicaciones más compartidas por los usuarios.",
     "info_user_post": "Usuarios que visitaron el perfil, a través de una publicación",
-    "information": "Informacion:"
+    "information": "Informacion:",
+    "noPost": "No has realizado ninguna publicación",
+    "noLike": "No has recibido like en tus publicaciones",
+    "noComment": "No han comentado tus publicaciones",
+    "noShared": "No han compartido tus publicaciones",
+    "working": "Estamos trabajando en esta función para usted"
   },
   "days": {
     "0": "Domingo",
@@ -721,10 +730,40 @@
     "description": "Descripción",
     "createAward": "Crear desafío",
     "place": "Posición",
-    "titleAward":"Titulo del Premio",
-    "mediaAward":"Imagen del desafío",
-    "retar":"Aceptar Reto"
+    "titleAward": "Titulo del Premio",
+    "mediaAward": "Imagen del desafío",
+    "retar": "Aceptar Reto"
   },
-  "save": "Guardar Cambios"
+  "save": "Guardar Cambios",
 
+  "news": {
+    "news": "Noticias",
+    "newsSport": "Noticias Sportyeah!",
+    "create": "Crear",
+    "read": "Leer",
+    "article": "Artículo",
+    "title": "Título",
+    "writeParagraph": "Escribe el párrafo",
+    "images": "Imágenes",
+    "add": "Agregar",
+    "edit": "Editar",
+    "editParagraph": "Editando párrafo",
+    "delete": "Eliminar",
+    "cancel": "Cancelar",
+    "changePrincipalImage": "Cambiar imagen principal",
+    "image": "Imagen",
+    "changeImage": "Editar Imagen",
+    "preview": "Vista Previa",
+    "next": "Siguiente",
+    "prev": "Anterior",
+    "publish": "Publicar",
+    "published": "Artículo publicado con exito!",
+    "edited": "Artículo editado con exito!",
+    "deleteModal": {
+      "cancel": "Cancelar",
+      "confirm": "Esta seguro que desea eliminar este artículo.",
+      "accept": "Aceptar",
+      "alert": "Alerta"
+    }
+  }
 }
