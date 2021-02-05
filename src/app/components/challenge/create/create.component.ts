@@ -96,6 +96,7 @@ export class CreateChallengeComponent implements OnInit {
         challenges: [],
       };
     } else {
+      console.log(this.challenged);
       newChallenge = {
         challenging: this.challenged._id,
         challenged:challenging,

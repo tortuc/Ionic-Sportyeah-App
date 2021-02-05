@@ -29,7 +29,12 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="bg-gradient-person" style="margin: 0px">
+<ion-content
+  class="bg-gradient-person"
+  style="margin: 0px"
+  [scrollEvents]="true"
+  (ionScroll)="onScroll($event)"
+>
   <div size="12" style="margin: 0px">
     <div *ngIf="!challenges">{{'challenge.nocontent' | translate}}</div>
     <div
@@ -47,13 +52,45 @@
       <div style="text-align: left">
         <ion-grid>
           <ion-row>
-            <ion-col size="2" class="quitar">
+            <ion-col size="3" class="quitar" style="justify-content: center">
               <ion-avatar>
                 <img [src]="challenge.challenged.userId.data.photo" />
               </ion-avatar>
             </ion-col>
-            <ion-col size="10">
-              <ion-button style="float: right"> Seguir </ion-button>
+            <ion-col size="3" style="text-align: left">
+              <span
+                style="font-weight: bold; margin-right: 5px; font-size: 13px"
+                >{{challenge.challenged.userId.data.name}}</span
+              >
+              <span
+                style="font-weight: bold; margin-right: 5px; font-size: 13px"
+                >{{challenge.challenged.userId.data.last_name}}</span
+              >
+              <!-- <span
+                  style="font-weight: bold; margin-right: 5px; font-size: 13px"
+                  >{{challenge.challenged.userId.data.email}}</span
+                > -->
+              <p style="line-height: 4px; font-size: 11px; font-weight: bold">
+                {{challenge.title}}
+              </p>
+              <p style="line-height: 4px; font-size: 11px; font-weight: bold">
+                {{challenge.description}}
+              </p>
+            </ion-col>
+            <ion-col
+              size="3"
+              *ngIf="challenge.challenging.media !== challenge.challenged.media"
+              style="text-align: right"
+            >
+              <ion-avatar>
+                <img [src]="challenge.challenging.userId.data.photo" alt="" />
+              </ion-avatar>
+            </ion-col>
+            <ion-col
+              size="3"
+              *ngIf="challenge.challenging.media !== challenge.challenged.media"
+              style="text-align: left"
+            >
               <span
                 style="font-weight: bold; margin-right: 5px; font-size: 13px"
                 >{{challenge.challenged.userId.data.name}}</span
@@ -76,10 +113,13 @@
           </ion-row>
         </ion-grid>
       </div>
-      <div *ngIf="challenge.challenging.media === challenge.challenged.media" style="height: 70vh;">
+      <div
+        *ngIf="challenge.challenging.media === challenge.challenged.media"
+        style="height: 70vh"
+      >
         <video
           width="100%"
-          height="70vh"
+          height="100%"
           autoplay
           controlslist="nodownload"
           controls="controls"
@@ -97,7 +137,10 @@
         </video>
       </div>
 
-      <div *ngIf="challenge.challenging.media !== challenge.challenged.media" style="height: 70vh;">
+      <div
+        *ngIf="challenge.challenging.media !== challenge.challenged.media"
+        style="height: 70vh"
+      >
         <video
           width="50%"
           height="100%"

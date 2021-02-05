@@ -3,7 +3,7 @@ import { take } from "rxjs/operators";
 import { CreateChallengeComponent } from "./../components/challenge/create/create.component";
 import { ModalController } from "@ionic/angular";
 import { TranslateService } from "@ngx-translate/core";
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ViewChild } from "@angular/core";
 import { ChallengeService } from "../service/challenge.service";
 
 @Component({
@@ -12,6 +12,7 @@ import { ChallengeService } from "../service/challenge.service";
   styleUrls: ["./challenges.page.scss"],
 })
 export class ChallengesPage implements OnInit {
+  // @ViewChild(Content) content:Content;
   public challenges: any[] = null;
   constructor(
     public translate: TranslateService,
@@ -40,7 +41,11 @@ export class ChallengesPage implements OnInit {
         const r = await this.userService
           .getUserById(challenge.challenged.userId.referenceId)
           .toPromise();
+        const r2 = await this.userService
+          .getUserById(challenge.challenging.userId.referenceId)
+          .toPromise();
         challenge.challenged.userId.data = r;
+        challenge.challenging.userId.data = r2;
         return challenge;
       })
     );
@@ -52,6 +57,9 @@ export class ChallengesPage implements OnInit {
     const modal = await this.mc.create({
       component: CreateChallengeComponent,
       cssClass: "a",
+      componentProps:{
+        challenged:null
+      }
     });
     modal.onDidDismiss().then(() => this.ngOnInit());
     await modal.present();
@@ -67,5 +75,11 @@ export class ChallengesPage implements OnInit {
     })
     modal.onDidDismiss().then(()=> this.ngOnInit())
     await modal.present()
+  }
+
+  async onScroll(e){
+    e.preventDefault()
+    // this.content.scrollToTop();
+    console.log('Is scrolling',e);
   }
 }
