@@ -1,0 +1,5 @@
+<ion-content *ngIf="data">
+  <div *ngFor="let photo of data">
+    <ion-img [src]="photo.webformatURL" (click)="send(photo)" style="cursor: pointer;"></ion-img>
+  </div>
+</ion-content>

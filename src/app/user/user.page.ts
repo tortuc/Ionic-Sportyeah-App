@@ -66,20 +66,23 @@ export class UserPage implements OnInit {
   }
 
   ionViewWillEnter() {
-    this.ls.getByUser(this.route.snapshot.paramMap.get("username"))
+    this.ls
+      .getByUser(this.route.snapshot.paramMap.get("username"))
       .pipe(take(1))
-      .subscribe((r:any)=>{
-        if(r !== null && localStorage.getItem('landing') !== 'false'){
-          if(r.active === true)  
-            this.router.navigate(['../../landing/'+this.route.snapshot.paramMap.get("username")])
-          else{
+      .subscribe((r: any) => {
+        if (r !== null && localStorage.getItem("landing") !== "false") {
+          if (r.active === true)
+            this.router.navigate([
+              "../../landing/" + this.route.snapshot.paramMap.get("username"),
+            ]);
+          else {
             this.landingNotActive = true;
             this.loadingInit = false;
           }
-        }else{
-            this.loadingInit = false;
+        } else {
+          this.loadingInit = false;
         }
-        localStorage.setItem('landing','true');
+        localStorage.setItem("landing", "true");
       });
     // Cuando Inicia busca el username que viene en los parametros
     this.userService
@@ -115,16 +118,16 @@ export class UserPage implements OnInit {
 
           this.id_visited = resp.user._id;
           this.slider = resp.user.slider;
-          
+
           const uP = resp.user.profile_user;
-          if(
-            uP === 'club' ||
-            uP === 'representative' ||
-            uP === 'association' ||
-            uP === 'foundation' ||
-            uP === 'federation' ||
-            uP === 'brand' ||
-            uP === 'sponsor' 
+          if (
+            uP === "club" ||
+            uP === "representative" ||
+            uP === "association" ||
+            uP === "foundation" ||
+            uP === "federation" ||
+            uP === "brand" ||
+            uP === "sponsor"
           )
             this.landingButton = true;
           else this.landingButton = false;
@@ -140,7 +143,7 @@ export class UserPage implements OnInit {
           // por lo tanto lo marcamos como not found
           this.user = 404;
         }
-      )
+      );
   }
 
   /**
@@ -225,7 +228,7 @@ news = [];
   }
 
   segmentChanged(e: CustomEvent) {
-    if(e.detail.value === 'posts'){
+    if (e.detail.value === "posts") {
       this.profile = false;
       this.newsB = false
       this.postsB = true;
@@ -239,5 +242,4 @@ news = [];
       this.profile = false; 
     }
   }
-
 }

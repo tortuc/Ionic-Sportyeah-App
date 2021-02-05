@@ -1,4 +1,7 @@
-import { LinkYoutubeComponent } from './../components/link-youtube/link-youtube.component';
+import { ImageSeeComponent } from "./../components/image-see/image-see.component";
+import { take } from "rxjs/operators";
+import { FreeImgService } from "./freeImg.service";
+import { LinkYoutubeComponent } from "./../components/link-youtube/link-youtube.component";
 import { Injectable, Input, ElementRef } from "@angular/core";
 import {
   ActionSheetController,
@@ -20,32 +23,40 @@ export class SliderLogic {
   constructor(
     public userService: UserService,
     private actionSheetCtrl: ActionSheetController,
-    private imageAPI:JdvimageService,
+    private imageAPI: JdvimageService,
     private translate: TranslateService,
     private modalCtrl: ModalController,
     private loading: LoadingController,
+    private freeImgService: FreeImgService,
     private jdvImage: JdvimageService
   ) {}
 
-  content:any[]=this.userService.User.slider
+  content: any[] = this.userService.User.slider;
 
   @Input() take: boolean = true;
   async takePhotoFrom(fileChooser: ElementRef) {
     let action = await this.actionSheetCtrl.create({
       header: this.translate.instant("img-options.header"),
       buttons: [
-       {
+        {
           text: this.translate.instant("img-options.camera"),
           icon: "camera",
           handler: () => {
             this.takePicture(CameraSource.Camera);
           },
         },
-       {
+        {
+          text: this.translate.instant("free-img"),
+          icon: "image-outline",
+          handler: () => {
+            this.freeImg();
+          },
+        },
+        {
           text: this.translate.instant("img-options.galery"),
           icon: "image-outline",
           handler: () => {
-            this.video(fileChooser)
+            this.video(fileChooser);
           },
         },
         {
@@ -66,61 +77,100 @@ export class SliderLogic {
   }
 
   video(fileChooser: ElementRef) {
-    fileChooser.nativeElement.click()
+    fileChooser.nativeElement.click();
   }
 
-  async uploadFile(event){
-    for(let i = 0; i < event.target.files.length; i++  ){
-      let formData = new FormData()
-      let file = event.target.files[i]
+  public async freeImg() {
+    await this.presentLoading("loading");
+    this.freeImgService
+      .getImages()
+      .pipe(take(1))
+      .subscribe(async (r: any) => {
+        console.log(r);
+        await this.loading.dismiss(null, null, "loading");
+        const modal = await this.presentModal(r.hits);
+        console.log(modal);
+        console.log('aquitoy');
+        await modal.present();
+        const { data } = await modal.onWillDismiss();
+        this.content.push(data);
+
+      });
+  }
+
+  async presentModal(data: any): Promise<any> {
+    const modal = await this.modalCtrl.create({
+      component: ImageSeeComponent,
+      cssClass: "my-custom-class",
+      componentProps: {
+        data: data,
+      },
+      backdropDismiss: false,
+    });
+    return modal;
+  }
+
+  async presentLoading(url: string): Promise<void> {
+    const loadingC = await this.loading.create({
+      cssClass: "my-custom-class",
+      message: "Cargando...",
+      id: url,
+    });
+    await loadingC.present();
+  }
+
+  async uploadFile(event) {
+    for (let i = 0; i < event.target.files.length; i++) {
+      let formData = new FormData();
+      let file = event.target.files[i];
       console.log(file);
-      if(file.type.split('/')[0] == 'video'){
-        formData.append('video',file)
-        await this.uploadVideo(formData)
-      }else if(file.type.split('/')[0] == 'image'){
-        formData.append('image',file)
-        await this.uploadImage(formData)
-      }else{
-        // handle      
+      if (file.type.split("/")[0] == "video") {
+        formData.append("video", file);
+        await this.uploadVideo(formData);
+      } else if (file.type.split("/")[0] == "image") {
+        formData.append("image", file);
+        await this.uploadImage(formData);
+      } else {
+        // handle
       }
     }
   }
 
   /**
    * Sube un video al servidor
-   * @param formData 
+   * @param formData
    */
 
   async uploadVideo(formData: FormData) {
-    console.log("Subiendo un video")
-    await this.imageAPI.uploadVideo(formData).toPromise()
-      .then((url)=>{
-         this.content.push(url)
+    console.log("Subiendo un video");
+    await this.imageAPI
+      .uploadVideo(formData)
+      .toPromise()
+      .then((url) => {
+        this.content.push(url);
       })
-      .catch((err)=>{
+      .catch((err) => {
         console.log(err);
-      })
+      });
   }
 
   /**
    * Sube una imagen al servidor y la guarda en `files`
-   * @param formData 
+   * @param formData
    */
   async uploadImage(formData: FormData) {
-    console.log("Subiendo una imagen")
+    console.log("Subiendo una imagen");
     const url = await this.imageAPI.uploadImage(formData).toPromise();
-    console.log("Subida")
-    this.content.push(url)
+    console.log("Subida");
+    this.content.push(url);
   }
-
-
 
   async youtubeVideo() {
     let modal = await this.modalCtrl.create({
       component: LinkYoutubeComponent,
     });
     modal.onDidDismiss().then((data) => {
-      data.data?this.content.push(data.data):null;
+      data.data ? this.content.push(data.data) : null;
     });
     return modal.present();
   }
@@ -128,6 +178,7 @@ export class SliderLogic {
   async chooseAvatar() {
     let modal = await this.modalCtrl.create({
       component: AvatarComponent,
+      backdropDismiss: false,
     });
     modal.onDidDismiss().then((data) => {
       this.avatarOptions(data.data);
@@ -172,7 +223,7 @@ export class SliderLogic {
           .toPromise()
           .then((url: string) => {
             loading.dismiss();
-            url?this.content.push(url):null;
+            url ? this.content.push(url) : null;
           })
           .catch((err) => {
             loading.dismiss();
@@ -195,11 +246,11 @@ export class SliderLogic {
 
     return new Blob([ia], { type: mimeString });
   }
-  delete(name:string){
-    const index = this.content.indexOf(name)
-    this.content.splice(index,1)
+  delete(name: string) {
+    const index = this.content.indexOf(name);
+    this.content.splice(index, 1);
   }
-  save(){
+  save() {
     this.userService
       .update({ slider: this.content })
       .toPromise()

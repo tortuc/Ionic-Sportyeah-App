@@ -2,8 +2,8 @@
   <ion-row>
 
     <ion-col  size="12">
-      <form [formGroup]="form">
-          <span *ngIf="form.controls.message.value == ''" class="fake-placeholder">{{'new_comment_placeholder' | translate}}</span>
+      <form [formGroup]="post?form:formNews">
+          <span *ngIf="post?form.controls.message.value == '':formNews.controls.message.value == ''" class="fake-placeholder">{{'new_comment_placeholder' | translate}}</span>
           <div  
           class="custom-textarea box-input"
           formControlName="message"
@@ -24,10 +24,10 @@
         </div>
       </div>
      
-      <ion-avatar style="width: 150px;height: 150px;;position: relative;" *ngIf="form.controls.image.value != ''">
+      <ion-avatar style="width: 150px;height: 150px;;position: relative;" *ngIf="post?form.controls.image.value != '':formNews.controls.image.value != ''">
         <ion-icon  (click)="removeImg()" class="icon-remove" style="cursor: pointer;" name="close"></ion-icon>
 
-        <ion-img style="border-radius: 5px !important;" [src]="form.controls.image.value">
+        <ion-img style="border-radius: 5px !important;" [src]="post?form.controls.image.value:formNews.controls.image.value != ''">
           </ion-img>
   
       </ion-avatar>
@@ -49,7 +49,7 @@
         <ion-icon name="videocam"></ion-icon>
       </ion-button> -->
        
-        <ion-button [disabled]="form.invalid && this.form.value.image == ''" (click)="send()">
+        <ion-button [disabled]="post?form.invalid && this.form.value.image == '':formNews.invalid && this.formNews.value.image == ''" (click)="send()">
           {{'new_comment.btn' | translate}}
         </ion-button>
     </ion-col>

@@ -15,7 +15,7 @@ const routes: Routes = [
     component: CreateComponent
   },
   {
-    path: 'read',
+    path: 'read/:id',
     component: ReadComponent
   },
   {

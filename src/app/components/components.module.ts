@@ -1,3 +1,5 @@
+import { SponsorsComponent } from './../profile/sponsors/sponsors.component';
+import { ImageSeeComponent } from './image-see/image-see.component';
 import { ErrorComponent } from './error/error.component';
 import { LinkYoutubeComponent } from './link-youtube/link-youtube.component';
 import { NgModule } from '@angular/core';
@@ -79,6 +81,7 @@ import { StructureComponent } from 'src/app/profile/structure/structure.componen
     PostSharedComponent,
     PostOptionsComponent,
     PostContentComponent,
+    ImageSeeComponent,
     FriendsMobileComponent,
     HeaderPostComponent,
     CommentPostComponent,
@@ -95,6 +98,7 @@ import { StructureComponent } from 'src/app/profile/structure/structure.componen
     UnfollowNotificationComponent,
     LikeNotificationComponent,
     CommentNotificationComponent,
+    SponsorsComponent,
     StructureComponent,
     SharedNotificationComponent,
     MentionNotificationComponent,
@@ -125,6 +129,7 @@ import { StructureComponent } from 'src/app/profile/structure/structure.componen
     AddFriendsPage,
     ExperiencePage,
     AptitudesPage,
+    ImageSeeComponent,
     AwardsPage,
     MsgAudioComponent,
     PostSharedComponent,
@@ -164,8 +169,8 @@ import { StructureComponent } from 'src/app/profile/structure/structure.componen
     MessageDocumentComponent,
     UrlPreviewComponent,
     ReactionsPostsComponent,
+    SponsorsComponent,
     ViewProfileComponent,
-
   ]
 })
 export class ComponentsModule { }

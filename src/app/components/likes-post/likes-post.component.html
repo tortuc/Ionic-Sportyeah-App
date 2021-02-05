@@ -95,7 +95,7 @@
     </ion-segment-button>
   </ion-segment>
   <div *ngIf="segment == 0  ">
-    <ion-item  *ngFor="let like of likes"  style="cursor: pointer;" (click)="goToProfile(like.user._id,like.user.username)"  > 
+    <ion-item  *ngFor="let like of likes"  style="cursor: pointer;" (click)="idPost?goToProfile(like.user._id,like.user.username):''"  > 
       <ion-thumbnail slot="start">
         <ion-avatar class="mini">
           <img [src]="like.user.photo">
@@ -135,7 +135,7 @@
     </ion-item>
   </div>
   <div *ngIf="segment == 1  ">
-    <ion-item  *ngFor="let like of likE"  style="cursor: pointer;" (click)="goToProfile(like.user._id,like.user.username)"  > 
+    <ion-item  *ngFor="let like of likE"  style="cursor: pointer;" (click)="idPost?goToProfile(like.user._id,like.user.username):''"  > 
       <ion-thumbnail slot="start">
         <ion-avatar class="mini">
           <img [src]="like.user.photo">
@@ -150,7 +150,7 @@
     </ion-item>
   </div>
   <div *ngIf="segment == 2  && love.length != 0 ">
-    <ion-item  *ngFor="let like of love" style="cursor: pointer;" (click)="goToProfile(like.user._id,like.user.username)"  >
+    <ion-item  *ngFor="let like of love" style="cursor: pointer;" (click)="idPost?goToProfile(like.user._id,like.user.username):''"  >
       <ion-thumbnail slot="start">
         <ion-avatar class="mini">
           <img [src]="like.user.photo">
@@ -165,7 +165,7 @@
     </ion-item>
   </div>
   <div *ngIf="segment == 3  && haha.length != 0 ">
-    <ion-item  *ngFor="let like of haha" style="cursor: pointer;" (click)="goToProfile(like.user._id,like.user.username)"  >
+    <ion-item  *ngFor="let like of haha" style="cursor: pointer;" (click)="idPost?goToProfile(like.user._id,like.user.username):''"  >
       <ion-thumbnail slot="start">
         <ion-avatar class="mini">
           <img [src]="like.user.photo">
@@ -180,7 +180,7 @@
     </ion-item>
   </div>
   <div *ngIf="segment == 4  && wow.length != 0 ">
-    <ion-item  *ngFor="let like of wow" style="cursor: pointer;" (click)="goToProfile(like.user._id,like.user.username)"  >
+    <ion-item  *ngFor="let like of wow" style="cursor: pointer;" (click)="idPost?goToProfile(like.user._id,like.user.username):''"  >
       <ion-thumbnail slot="start">
         <ion-avatar class="mini">
           <img [src]="like.user.photo">
@@ -195,7 +195,7 @@
     </ion-item>
   </div>
   <div *ngIf="segment == 5  && sad.length != 0 ">
-    <ion-item  *ngFor="let like of sad" style="cursor: pointer;" (click)="goToProfile(like.user._id,like.user.username)"  >
+    <ion-item  *ngFor="let like of sad" style="cursor: pointer;" (click)="idPost?goToProfile(like.user._id,like.user.username):''"  >
       <ion-thumbnail slot="start">
         <ion-avatar class="mini">
           <img [src]="like.user.photo">
@@ -210,7 +210,7 @@
     </ion-item>
   </div>
   <div *ngIf="segment == 6  && angry.length != 0 ">
-    <ion-item  *ngFor="let like of angry" style="cursor: pointer;" (click)="goToProfile(like.user._id,like.user.username)"  >
+    <ion-item  *ngFor="let like of angry" style="cursor: pointer;" (click)="idPost?goToProfile(like.user._id,like.user.username):''"  >
       <ion-thumbnail slot="start">
         <ion-avatar class="mini">
           <img [src]="like.user.photo">

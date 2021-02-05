@@ -11,8 +11,22 @@ export interface IPost {
     edited:Date
 }
 
+//Noticia
+export interface INew {
+    _id:string | string
+    user:User
+    headline:string | null
+    content:[]
+    principalImage:string | null
+    principalVideo:string | null
+    sport:string
+    date:Date
+    edited:Date
+}
+
 export interface ILike {
     user:User
+    news:string//revisar si se debe eliminars
     post:string
     date:Date
     _id:string
@@ -23,6 +37,7 @@ export interface ILike {
 export interface IComment{
     user:User
     post:string
+    news:string//revisar si se debe eliminars
     message:string
     image:string
     date:Date
@@ -36,6 +51,13 @@ export interface IPostC {
     likes:ILike[]
     comments:IComment[]
     shareds:IPost[]
+}
+
+export interface INewC {
+    news:INew
+    likes:ILike[]
+    comments:IComment[]
+    shareds:INew[]
 }
 
 export function hola(){

@@ -5,6 +5,7 @@ import { AlertController } from "@ionic/angular";
 import { TranslateService } from "@ngx-translate/core";
 import { getToken } from "../helpers/token";
 import { UserService } from "./user.service";
+import {Howl, Howler} from 'howler';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +22,15 @@ export class NewsService {
     private translate: TranslateService,
     private userService: UserService
   ) { }
-
+  audio = new Howl({
+    src:['../../assets/sounds/comment.mp3']
+  })
+  
+  
+  public  commentAudio(){
+    this.audio.load()
+   this.audio.play()
+  }
 
 
   create(body){
@@ -45,7 +54,6 @@ export class NewsService {
   }
 
   updateNews(news:any){
-    console.log(news)
     return this.http.put(`${environment.URL_API}/news/update/${news._id}`,news)
   }
   
@@ -84,6 +92,44 @@ export class NewsService {
     await alert.present();
   }
 
+  likeNews(id,reaction){
+    return this.http.put(
+      `${environment.URL_API}/news/like/${id}` ,{id_reaction:reaction},
+      {
+        headers: new HttpHeaders({"access-token":getToken()})
+      }
+    )
+  }
 
+
+  dislikePost(id){
+    return this.http.put(
+      `${environment.URL_API}/news/dislike/${id}`,
+      null,
+      {
+        headers: new HttpHeaders({"access-token":getToken()})
+      }
+    )
+  }
+
+
+  newComment(body){
+    return this.http.post(
+      `${environment.URL_API}/news/comment`,
+      body,
+      {
+        headers: new HttpHeaders({"access-token":getToken()})
+      }
+    )
+  }
+  
+  getShareds(id){
+    return this.http.get(
+      `${environment.URL_API}/news/shareds/${id}`,
+      {
+        headers: new HttpHeaders({"access-token":getToken()})
+      }
+    )
+  }
 
 }

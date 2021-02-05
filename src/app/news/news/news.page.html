@@ -35,6 +35,17 @@
           </ion-item>
         </ion-card-header>
         <ion-img *ngIf="new.principalImage"   class="imageMiniCard" [src]="new.principalImage"></ion-img>
+        <div *ngIf="new.principalVideo" style="position: relative">
+          <video
+            controls="controls"
+            preload="metadata"
+            autoplay="autoplay"
+            webkit-playsinline="webkit-playsinline"
+            class="videoPlayer"
+          >
+            <source [src]="new.principalVideo | safeUrl" type="video/mp4" />
+          </video>
+        </div> 
       </ion-card>
     </ion-col>
   </ion-row>

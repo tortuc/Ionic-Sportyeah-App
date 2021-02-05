@@ -81,7 +81,7 @@ export class NewNodeComponent implements OnInit {
     console.log(resp);
     console.log(resp.split(' / '));
     const array = resp.split(' / ');
-    //array.length === 2 ? array.splice(array.length -1,1): null;
+    array.length === 1 && array[0] === '' ? array.splice(array.length -1,1): null;
     array.push(form.subtitle);
     form.subtitle = array.join(' / ');
     console.log("SUBTITLE",form.subtitle);
@@ -96,7 +96,11 @@ export class NewNodeComponent implements OnInit {
     console.log("subtitle",subtitle);
     console.log("node",node);
     console.log("parentNode",parentNode);
-    if(this.actualNode?.id === node.id){
+    if(node.id === 1 && this.actualNode?.id === node.id ){
+      console.log("retorno vacio porque esta es la primera iteracion");
+      return ''
+    }
+    else if(this.actualNode?.id === node.id){
       console.log("Retorno el subtitle porque el nodo es este")
       return subtitle;
     }else if(node.id === parentNode?.id && node.id !== 1){

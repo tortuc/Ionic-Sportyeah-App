@@ -1,5 +1,6 @@
+import { SponsorsComponent } from "./sponsors/sponsors.component";
 import { LoginService } from "./../service/login.service";
-import { take } from 'rxjs/operators';
+import { take } from "rxjs/operators";
 import { BannerLogic } from "./../service/banner-profile-logic.service";
 import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
 import { Router } from "@angular/router";
@@ -11,6 +12,7 @@ import { UserService } from "../service/user.service";
 import { ProfileService } from "../service/profile.service";
 import { ViewsProfileService } from "../service/views-profile.service";
 import { NewsService } from '../service/news.service';
+import { ModalController } from "@ionic/angular";
 
 @Component({
   selector: "app-profile",
@@ -18,7 +20,7 @@ import { NewsService } from '../service/news.service';
   styleUrls: ["./profile.page.scss"],
 })
 export class ProfilePage implements OnInit {
-  @ViewChild('fileChooser') fileChooser:ElementRef;
+  @ViewChild("fileChooser") fileChooser: ElementRef;
   public banderaIP: string = null;
   public ipLoaded: Promise<boolean>;
   public profile: boolean = true;
@@ -29,6 +31,7 @@ export class ProfilePage implements OnInit {
   countPost = 0;
   constructor(
     public userService: UserService,
+    public mc: ModalController,
     public translate: TranslateService,
     public popoverController: PopoverController,
     private postService: PostService,
@@ -93,13 +96,31 @@ export class ProfilePage implements OnInit {
   } */
 
   getCountPost() {
+    this.viewsProfileService
+      .getProfileView(this.userService.User._id)
+      .pipe(take(1))
+      .subscribe((views: any) => {
+        if (!views) return false;
+        this.views = views.visits;
+      });
+    const uP = this.userService.User.profile_user;
+    if (
+      uP === "club" ||
+      uP === "representative" ||
+      uP === "association" ||
+      uP === "foundation" ||
+      uP === "federation" ||
+      uP === "brand" ||
+      uP === "sponsor"
+    )
+      this.landingButton = true;
+    else this.landingButton = false;
     this.profileService
       .getCountPostByUser(this.userService.User._id)
       .then((count: number) => {
         this.countPost = count;
       })
-      .catch((err) => {
-      });
+      .catch((err) => {});
   }
 
   goToPost(id) {
@@ -147,7 +168,7 @@ export class ProfilePage implements OnInit {
   }
 
   segmentChanged(e: CustomEvent) {
-    if(e.detail.value === 'posts'){
+    if (e.detail.value === "posts") {
       this.profile = false;
       this.newsB = false
       this.postsB = true;
@@ -160,5 +181,79 @@ export class ProfilePage implements OnInit {
       this.postsB = false;
       this.profile = false; 
     }
+  }
+
+  public async createSponsor() {
+    const modal = await this.mc.create({
+      component: SponsorsComponent,
+      cssClass: "my-custom-class",
+      backdropDismiss: false,
+    });
+    await modal.present();
+    const { data } = await modal.onWillDismiss();
+    console.log("SPONSORS DATA FOR CREATE");
+    console.log(data);
+    const user = this.userService.User;
+    user.sponsors.push(data);
+    this.userService
+      .update(user)
+      .pipe(take(1))
+      .subscribe((u: any) => {
+        console.log(u);
+        this.userService
+          .getUserByUsername(this.userService.User.username)
+          .pipe(take(1))
+          .subscribe((u: any) => {
+            console.log(u);
+            this.userService.User = u.user;
+          });
+      });
+  }
+
+  public deleteSponsor(i: number) {
+    const user = this.userService.User;
+    user.sponsors.splice(i, 1);
+    this.userService
+      .update(user)
+      .pipe(take(1))
+      .subscribe((u: any) => {
+        console.log(u);
+        this.userService
+          .getUserByUsername(this.userService.User.username)
+          .pipe(take(1))
+          .subscribe((u: any) => {
+            console.log(u);
+            this.userService.User = u.user;
+          });
+      });
+  }
+
+  public async editSponsor(i: number) {
+    console.log("edit");
+    const modal = await this.mc.create({
+      component: SponsorsComponent,
+      cssClass: "my-custom-class",
+      componentProps: { data: this.userService.User.sponsors[i] },
+      backdropDismiss: false,
+    });
+    await modal.present();
+    const { data } = await modal.onWillDismiss();
+    console.log("SPONSORS DATA FOR CREATE");
+    console.log(data);
+    const user = this.userService.User;
+    user.sponsors[i] = data;
+    this.userService
+      .update(user)
+      .pipe(take(1))
+      .subscribe((u: any) => {
+        console.log(u);
+        this.userService
+          .getUserByUsername(this.userService.User.username)
+          .pipe(take(1))
+          .subscribe((u: any) => {
+            console.log(u);
+            this.userService.User = u.user;
+          });
+      });
   }
 }

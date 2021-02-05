@@ -14,7 +14,7 @@
   </ion-toolbar>
 </ion-header>
 
-<input hidden="true"  type="file" #fileChooser accept="video/*, image/*"/>
+<input hidden="true" type="file" #fileChooser accept="video/*, image/*" />
 
 <ion-content
   class="bg-gradient-person"
@@ -67,7 +67,15 @@
               {{userService.User?.name}} {{userService.User?.last_name}}
               <ion-icon class="edit" name="settings-outline"></ion-icon>
             </ion-card-title>
-            <ion-button  class="analythics" [routerLink]="'/landing/'+userService.User._id+'/analytics-views'" ><ion-icon  name="analytics-outline" style="cursor: pointer;color: black;"  ></ion-icon>{{'analytics-views.title' | translate}}</ion-button>
+            <ion-button
+              class="analythics"
+              [routerLink]="'/landing/'+userService.User._id+'/analytics-views'"
+              ><ion-icon
+                name="analytics-outline"
+                style="cursor: pointer; color: black"
+              ></ion-icon
+              >{{'analytics-views.title' | translate}}</ion-button
+            >
             <ion-card-subtitle
               style="color: rgba(35, 112, 61, 0.993); font-weight: bold"
               (click)="goTo('/profile/edit')"
@@ -117,13 +125,12 @@
                 </ion-col>
               </ion-row>
             </ion-grid>
-            <ion-button color="primary"
+            <ion-button
+              color="primary"
               *ngIf="landingButton"
               [routerLink]="'../landing/'+userService.User.username"
             >
-              <ion-icon
-                name="megaphone-outline" style="margin-right: 5px;"
-              >
+              <ion-icon name="megaphone-outline" style="margin-right: 5px">
               </ion-icon>
               {{'golanding' | translate}}
             </ion-button>
@@ -132,57 +139,71 @@
           <ion-card-content> </ion-card-content>
 
           <div>
-            <h1 class="text-center">{{'Sponsors' | translate}}
-              <span >
-                <ion-button style="margin-top: -13px;">
-                  <ion-icon name="add-circle-outline">
-                  </ion-icon>
+            <h1 class="text-center">
+              {{'Sponsors' | translate}}
+              <span>
+                <ion-button style="margin-top: -13px" (click)="createSponsor()">
+                  <ion-icon name="add-circle-outline"> </ion-icon>
                 </ion-button>
               </span>
             </h1>
-            <ion-grid>
-             <ion-row>
-               <ion-col>
-                <ion-icon name="trash-outline" class="botonEliminar"></ion-icon>
-                <ion-icon name="create-outline" class="botonEditar"></ion-icon>
-                <img src="https://tentulogo.com/wp-content/uploads/Adidas-FB.jpg"/> 
-               </ion-col>
-               <ion-col>
-                <ion-icon name="trash-outline" class="botonEliminar"></ion-icon>
-                <ion-icon name="create-outline" class="botonEditar"></ion-icon>
-                <img src="https://tentulogo.com/wp-content/uploads/Adidas-FB.jpg"/> 
-               </ion-col>
-               <ion-col>
-                <ion-icon name="trash-outline" class="botonEliminar"></ion-icon>
-                <ion-icon name="create-outline" class="botonEditar"></ion-icon>
-                <img src="https://tentulogo.com/wp-content/uploads/Adidas-FB.jpg"/> 
-               </ion-col>
-               <ion-col>
-                <ion-icon name="trash-outline" class="botonEliminar"></ion-icon>
-                <ion-icon name="create-outline" class="botonEditar"></ion-icon>
-                <img src="https://tentulogo.com/wp-content/uploads/Adidas-FB.jpg"/> 
-               </ion-col>
-             </ion-row>
+            <ion-grid class="text-center">
+              <ion-row>
+                <ion-col
+                  *ngFor="let sponsor of userService.User?.sponsors; let i = index"
+                >
+                  <a [href]="sponsor.url" target="_blank">
+                    <img
+                      [src]="sponsor.photo"
+                      style="
+                        height: 50px;
+                        width: 100px;
+                        border-radius: 10px;
+                        object-fit: cover;
+                        object-position: cover;
+                      "
+                  /></a>
+
+                  <div>
+                    <ion-icon
+                      name="create-outline"
+                      style="cursor: pointer"
+                      class="botonEditar"
+                      (click)="editSponsor(i)"
+                    ></ion-icon>
+
+                    <ion-icon
+                      name="trash-outline"
+                      style="cursor: pointer"
+                      class="botonEliminar"
+                      (click)="deleteSponsor(i)"
+                    ></ion-icon>
+                  </div>
+                </ion-col>
+              </ion-row>
             </ion-grid>
           </div>
 
-
-        <ion-segment (ionChange)="segmentChanged($event)"
-                    style="border: 1px white;"
-        >
-          <ion-segment-button value="profile" style="background-color:white;">
-            <ion-label>{{'labels-profile-segment.profile' | translate}}</ion-label>
-          </ion-segment-button>
-          <ion-segment-button value="posts" style="background-color:white;">
-            <ion-label >{{'labels-profile-segment.posts' | translate}}</ion-label>
-          </ion-segment-button>
-          <ion-segment-button *ngIf="userService.User?.profile_user == 'press'" value="news" style="background-color:white;">
-            <ion-label >{{'labels-profile-segment.articles' | translate}}</ion-label>
-          </ion-segment-button>
-        </ion-segment>
-
+          <ion-segment
+            (ionChange)="segmentChanged($event)"
+            style="border: 1px white"
+          >
+            <ion-segment-button value="profile" style="background-color: white">
+              <ion-label
+                >{{'labels-profile-segment.profile' | translate}}</ion-label
+              >
+            </ion-segment-button>
+            <ion-segment-button value="posts" style="background-color: white">
+              <ion-label
+                >{{'labels-profile-segment.posts' | translate}}</ion-label
+              >
+            </ion-segment-button>
+            <ion-segment-button *ngIf="userService.User?.profile_user == 'press'" value="news" style="background-color:white;">
+              <ion-label >{{'labels-profile-segment.articles' | translate}}</ion-label>
+            </ion-segment-button>
+          </ion-segment>
         </ion-card>
-        
+
         <!-- INIT SEGMENT PROFILE  -->
         <div *ngIf="profile">
           <ion-card ngClass.xs="m-p-0" class="post-card mt5">
@@ -203,15 +224,24 @@
           <app-structure
             [ID]="userService.User?._id"
             *ngIf="
-               userService.User.profile_user === 'sponsor'
+               userService.User.profile_user === 'sponsor' ||
+               userService.User.profile_user === 'association' ||
+               userService.User.profile_user === 'federation' ||
+               userService.User.profile_user === 'representative' ||
+               userService.User.profile_user === 'foundation'
              "
           ></app-structure>
-          
-          <ion-card ngClass.xs="m-p-0" class="post-card mt5"
-            *ngIf="
-              userService.User.profile_user !== 'sponsor'
-            "
 
+          <ion-card
+            ngClass.xs="m-p-0"
+            class="post-card mt5"
+            *ngIf="
+              userService.User.profile_user !== 'sponsor' &&
+              userService.User.profile_user !== 'foundation' &&
+              userService.User.profile_user !== 'federation' &&
+              userService.User.profile_user !== 'amateur' &&
+              userService.User.profile_user !== 'association'
+            "
           >
             <ion-grid style="padding: 0" class="ion-justify-content-center">
               <ion-row class="ion-justify-content-center">
@@ -222,7 +252,13 @@
             </ion-grid>
           </ion-card>
 
-          <ion-card ngClass.xs="m-p-0" class="post-card mt5">
+          <ion-card
+            ngClass.xs="m-p-0"
+            class="post-card mt5"
+            *ngIf="
+              userService.User.profile_user !== 'representative'
+            "
+          >
             <ion-grid style="padding: 0" class="ion-justify-content-center">
               <ion-row class="ion-justify-content-center">
                 <ion-col ngClass.xs="m-p-0" size-md="12" size-sm="12">
@@ -232,9 +268,15 @@
             </ion-grid>
           </ion-card>
 
-          <ion-card ngClass.xs="m-p-0" class="post-card mt5"
+          <ion-card
+            ngClass.xs="m-p-0"
+            class="post-card mt5"
             *ngIf="
-              userService.User.profile_user !== 'sponsor'
+              userService.User.profile_user !== 'sponsor' &&
+              userService.User.profile_user !== 'federation' &&
+              userService.User.profile_user !== 'foundation' &&
+              userService.User.profile_user !== 'representative' &&
+               userService.User.profile_user !== 'association'
             "
           >
             <ion-grid style="padding: 0" class="ion-justify-content-center">
@@ -301,6 +343,17 @@
                   </ion-item>
                 </ion-card-header>
                 <ion-img *ngIf="item?.principalImage"   class="imageMiniCard" [src]="item?.principalImage"></ion-img>
+                <div *ngIf="item?.principalVideo" style="position: relative">
+                  <video
+                    controls="controls"
+                    preload="metadata"
+                    autoplay="autoplay"
+                    webkit-playsinline="webkit-playsinline"
+                    class="videoPlayer"
+                  >
+                    <source [src]="item?.principalVideo | safeUrl" type="video/mp4" />
+                  </video>
+                </div> 
               </ion-card>
             </ion-row>
           </ion-grid>

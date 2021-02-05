@@ -130,7 +130,7 @@
     "last_news": "Ultimas noticias",
     "agree": "De acuerdo",
     "cookie_msg": "Utilizamos cookies propias y de terceros para mejorar la experiencia del usuario a través de su navegación. Si continúas navegando aceptas su uso. Política de cookies y de seguridad",
-    "authorize":"Autorizo el envío de comunicaciones comerciales por parte de la empresa que gestiona SportYeah o terceros que colaboren con este."
+    "authorize": "Autorizo el envío de comunicaciones comerciales por parte de la empresa que gestiona SportYeah o terceros que colaboren con este."
   },
   "home": {
     "last_connection": {
@@ -221,13 +221,13 @@
     "title": "Perfil",
     "followers": "Seguidores",
     "followings": "Siguiendo",
-    "visitors":"Visitas",
+    "visitors": "Visitas",
     "posts": "Publicaciones"
   },
   "profile_edit": {
     "name": "Nombre",
     "last_name": "Apellido",
-    "estado":"Estado",
+    "estado": "Estado",
     "birthDate": "Fecha de nacimiento",
     "change_password": "Cambiar contraseña",
     "password": "Nueva contraseña",
@@ -274,19 +274,19 @@
     "unfollow": "Dejar de seguir",
     "message": "Enviar mensaje"
   },
-  "post":{
-    "likes":"Reacciones",
-    "like":"Me gusta",
-    "love":"Me encanta",
-    "haha":"Me divierte",
-    "wow":"Me asombra",
-    "sad":"Me entistece",
-    "angry":"Me enoja",
-    "comments":"Comentarios",
-    "comment":"Comentar",
-    "shared":"Veces compartido",
-    "share":"Compartir"
-},
+  "post": {
+    "likes": "Reacciones",
+    "like": "Me gusta",
+    "love": "Me encanta",
+    "haha": "Me divierte",
+    "wow": "Me asombra",
+    "sad": "Me entistece",
+    "angry": "Me enoja",
+    "comments": "Comentarios",
+    "comment": "Comentar",
+    "shared": "Veces compartido",
+    "share": "Compartir"
+  },
   "new_post": {
     "title": "Nueva publicacion",
     "input": "¿Qué te gustaria compartir?",
@@ -306,7 +306,7 @@
       "err_button": "Aceptar"
     },
     "new": "Nuevo chat",
-    "start_chat":"¡Empiea a chatear con uno de tus amigos!"
+    "start_chat": "¡Empiea a chatear con uno de tus amigos!"
   },
   "contacts": {
     "title": "Contactos"
@@ -561,26 +561,26 @@
     "sports_sychology": "Psicologo deportivo",
     "field_delegate": "Delegado de campo"
   },
-  "slider-logic":{
-    "youtube":"Video de Youtube",
-    "youtube-input":"Coloque un link de YouTube",
-    "confirm":"Agregar contenido"
+  "slider-logic": {
+    "youtube": "Video de Youtube",
+    "youtube-input": "Coloque un link de YouTube",
+    "confirm": "Agregar contenido"
   },
   "change-slider": {
-    "title":"Galeria"
+    "title": "Galeria"
   },
-  "experience":{
-    "title":"Experiencia",
-    "create":"Añadir Experiencia",
-    "no-info":"No se encuentra información.",
-    "btn":"Cargar",
-    "deleteModal":{
+  "experience": {
+    "title": "Experiencia",
+    "create": "Añadir Experiencia",
+    "no-info": "No se encuentra información.",
+    "btn": "Cargar",
+    "deleteModal": {
       "cancel": "Cancelar",
       "confirm": "Esta seguro que desea eliminar esta experiencia.",
       "accept": "Aceptar",
-      "alert" : "Alerta"
+      "alert": "Alerta"
     },
-    "form":{
+    "form": {
       "position": "Posición Ejercida",
       "federationTeam": "Federación Encargada",
       "nowIn": "Hasta la actualidad",
@@ -595,26 +595,25 @@
       "deleted": "Estado"
     }
   },
-  "aptitudes":{
-    "title":"Aptitudes",
-    "create":"Añadir Aptitud",
-    "no-info":"No se encuentra información.",
-    "form":{
+  "aptitudes": {
+    "title": "Aptitudes",
+    "create": "Añadir Aptitud",
+    "no-info": "No se encuentra información.",
+    "form": {
       "federationTeam": "Federación Encargada",
       "score": "Nivel de Destreza",
       "title": "Nombre de la Aptitud",
       "date": "Día de creación",
       "deleted": "Estado"
     },
-    "btn":"Cargar",
+    "btn": "Cargar",
     "confirm": "Esta seguro que desea eliminar este reconocimiento."
-    
   },
-  "awards":{
-    "title":"Premios y Reconocimientos",
-    "create":"Añadir Reconocimiento",
-    "btn":"Cargar",
-    "form":{
+  "awards": {
+    "title": "Premios y Reconocimientos",
+    "create": "Añadir Reconocimiento",
+    "btn": "Cargar",
+    "form": {
       "position": "Nombre del Premio",
       "federationTeam": "Federación Encargada",
       "place": "Lugar",
@@ -627,17 +626,17 @@
       "deleted": "Estado"
     },
     "confirm": "Esta seguro que desea eliminar este reconocimiento.",
-    "no-info":"No se encuentra información."
+    "no-info": "No se encuentra información."
   },
-  "labels-profile-segment":{
-    "profile":"Perfil",
-    "posts":"Publicaciones",
+  "labels-profile-segment": {
+    "profile": "Perfil",
+    "posts": "Publicaciones",
     "articles":"Artículos"
   },
-  "landing":{
-    "title":"Landing"
+  "landing": {
+    "title": "Landing"
   },
-  "enterText":"Ingrese texto",
+  "enterText": "Ingrese texto",
   "Photo": "Imagen",
   "Title": "Titulo",
   "Subtitle": "Subtitulo",
@@ -716,6 +715,9 @@
    },
    "creating": "Creando nuevo elemento",
    "changing": "Editando elemento",
+   "free-img": "Imagenes Gratis",
+  "sponsorURL": "Pagina del patrocinador",
+  "sponsorText": "Revisa estos perfiles",
    "news":{
      "news":"Noticias",
      "newsSport":"Noticias Sportyeah!",
@@ -748,4 +750,3 @@
      
     }
 }
-

@@ -42,6 +42,7 @@ constructor(
     content:['',[Validators.required]],
     //image:['',[Validators.required]],
     principalImage:['',[Validators.required]],
+    principalVideo:['',[Validators.required]],
     sport:['',[Validators.required]]
   })
 
@@ -56,6 +57,7 @@ constructor(
   }
 
 publicar(){
+    this.form.value.principalVideo = this.videoSelected;
     this.form.value.principalImage = this.imagenSelected;
     this.form.value.user = this.userService.User._id 
     this.form.value.headline = this.titulo1;
@@ -97,7 +99,7 @@ parrafos=[];
 
 
   consol(){
-  this.parrafos.push({parrafo:this.text1,position:this.parrafos.length,image:''})//title:this.titulo1,subtitle:this.deporte
+  this.parrafos.push({parrafo:this.text1,position:this.parrafos.length,image:'',video:null})//title:this.titulo1,subtitle:this.deporte
   this.text1 = `Escribe el párrafo # ${this.parrafos.length+1} `
  
   /* this.titulo1= `Escribe el Titulo # ${this.parrafos.length+1} `;
@@ -351,17 +353,57 @@ deleteImage(i){
 ///Create Video
 urlVideo = null
 videoFile = null
-closeVideo(){
+videoSelected = null;
+urlVideoNotPrincipal = null
+videoFileNotPrincipal = null
+closeVideoPrincipal(){
   this.urlVideo = null
   this.videoFile = null
+  this.videoSelected = null;
 }
-async uploadVideo($event){
-  console.log(this.urlVideo)
-  console.log(this.videoFile)
-  this.urlVideo = URL.createObjectURL($event.target.files[0])
-  this.videoFile = $event.target.files[0]
+closeVideoNotPrincipal(i){
+  console.log(i)
+  this.parrafos[i].video = null;
+}
+async uploadVideo($event,type:string,i){
+  let form = new FormData();
+  if($event.target.files[0] && type == 'principal'){
+    this.urlVideo = URL.createObjectURL($event.target.files[0])
+    this.videoFile = $event.target.files[0]
+    form.append("video", this.videoFile);
+   await this.uploadVideoPrincipal(form)
+  }else if($event.target.files[0] && type == 'notPrincipal'){
+    
+    this.urlVideoNotPrincipal = URL.createObjectURL($event.target.files[0])
+    this.videoFileNotPrincipal = $event.target.files[0]
+    form.append("video", this.videoFileNotPrincipal);
+    console.log($event.target.files[0])
+   await this.uploadVideoNotPrincipal(form,i)
+  }else{
+    console.log('No has seleccionado ningun video')
+  }
 }
 
+uploadVideoPrincipal(video){
+  this.jdvImage.uploadVideo(video)
+  .toPromise()
+  .then((url)=>{
+    this.videoSelected = url
+  })
+  .catch((err)=>{
+    console.log('No se subio el mmg video')
+  })
+}
+uploadVideoNotPrincipal(video,i){
+  this.jdvImage.uploadVideo(video)
+  .toPromise()
+  .then((url)=>{
+    this.parrafos[i].video = url
+  })
+  .catch((err)=>{
+    console.log('No se subio el mmg video NOTPREINCIPAL')
+  })
+}
 
 
 

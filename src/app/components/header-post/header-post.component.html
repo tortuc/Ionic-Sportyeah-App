@@ -1,10 +1,80 @@
-<ion-avatar class="mini" (click)="goToProfile(post.user._id,post.user.username,post._id)">
+<ion-avatar
+  class="mini"
+  (click)="goToProfile(post.user._id, post.user.username, post._id)"
+>
   <ion-img class="img-user-mini" [src]="post.user.photo"></ion-img>
   <div class="connectedDIVlittlePost" *ngIf="post.user.connected"></div>
 </ion-avatar>
 <div class="user-name">
-  <span class="message profile-name" (click)="goToProfile(post.user._id,post.user.username,post._id)" >{{post.user.name}} {{post.user.last_name}}</span><br>
-  <span *ngIf="post.edited == null" (click)="goToPost(post._id)" class="profile-name date">{{post.date | customDisplayDate}}</span>
-  <span *ngIf="post.edited != null" (click)="goToPost(post._id)" class="profile-name date">editado el {{post.edited | customDisplayDate}}</span>
+  <span
+    class="message profile-name"
+    (click)="goToProfile(post.user._id, post.user.username, post._id)"
+    >{{ post.user.name }} {{ post.user.last_name }}</span
+  ><br />
+  <span
+    *ngIf="post.edited == null"
+    (click)="goToPost(post._id)"
+    class="profile-name date"
+    >{{ post.date | customDisplayDate }}</span
+  >
+  <span
+    *ngIf="post.edited != null"
+    (click)="goToPost(post._id)"
+    class="profile-name date"
+    >editado el {{ post.edited | customDisplayDate }}</span
+  >
+  <span
+    (click)="goToPost(post._id)"
+    class="profile-name date"
+    style="width: 50%"
+  >
+    <!-- SPONSORS -->
+    <div class="text-center">
+      <!-- <h1 class="text-center">
+        {{'Sponsors' | translate}}
+        <span>
+          <ion-button style="margin-top: -13px" (click)="createSponsor()">
+            <ion-icon name="add-circle-outline"> </ion-icon>
+          </ion-button>
+        </span>
+      </h1> -->
+      <!-- <p>{{'sponsorText' | translate}}</p> -->
+      <ion-grid>
+        <ion-row>
+          <ion-col *ngFor="let sponsor of post.user.sponsors; let i = index">
+            <!-- <ion-icon
+              name="trash-outline"
+              style="cursor: pointer"
+              class="botonEliminar"
+              (click)="deleteSponsor(i)"
+            ></ion-icon>
+            <ion-icon
+              name="create-outline"
+              style="cursor: pointer"
+              class="botonEditar"
+              (click)="editSponsor(i)"
+            ></ion-icon> -->
+            <a [href]="sponsor.url" target="_blank">
+              <img
+                [src]="sponsor.photo"
+                style="
+                  height: 30px;
+                  width: 60px;
+                  border-radius: 10px;
+                  object-fit:cover;
+                  object-position: cover;
+                "
+            /></a>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+    <!-- TERMINO SPONSORS -->
+  </span>
 </div>
-<ion-icon   *ngIf="post.user._id == userService.User?._id && displayOptions" name="chevron-down" (click)="openOptions($event)" class="options-down"></ion-icon>
+<ion-icon
+  *ngIf="post.user._id == userService.User?._id && displayOptions"
+  name="chevron-down"
+  (click)="openOptions($event)"
+  class="options-down"
+></ion-icon>

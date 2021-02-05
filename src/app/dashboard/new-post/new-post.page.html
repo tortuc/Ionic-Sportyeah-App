@@ -28,9 +28,9 @@
         </div>
       </ion-col>
       <ion-col size="12">
-        <form [formGroup]="form">
+        <form [formGroup]="post?form:formNews">
           <span
-            *ngIf="form.controls.message.value == ''"
+            *ngIf="post?form.controls.message.value == '':formNews.controls.message.value == ''"
             class="fake-placeholder"
             >{{'dashboard.new_post_placeholder' | translate}}</span
           >
@@ -42,6 +42,7 @@
             Mentions
             (usersRender)="usersChange($event)"
             (mention)="newValue($event)"
+            #FormElementRef
           ></div>
           <div style="max-height: 400px; overflow: auto">
             <div
@@ -63,7 +64,7 @@
 
           <ion-avatar
             style="width: 150px; height: 150px; position: relative"
-            *ngIf="form.controls.image.value != ''"
+            *ngIf="post?form.controls.image.value != '':formNews.controls.image.value != ''"
           >
             <ion-icon
               (click)="removeImg()"
@@ -74,18 +75,18 @@
 
             <ion-img
               style="border-radius: 5px !important"
-              [src]="form.controls.image.value"
+              [src]="post?form.controls.image.value:formNews.controls.image.value"
             >
             </ion-img>
           </ion-avatar>
           <iframe
-            *ngIf="form.controls.message.value | youtube"
-            [src]="form.controls.message.value | youtube"
+            *ngIf="post?form.controls.message.value:formNews.controls.message.value | youtube"
+            [src]="post?form.controls.message.value:formNews.controls.message.value | youtube"
             frameborder="0"
           ></iframe>
         </form>
         <post-shared *ngIf="post" [post]="post"></post-shared>
-
+        <post-shared *ngIf="news" [news]="news"></post-shared>
         <div *ngIf="urlVideo" style="position: relative">
           <ion-icon
             name="close"
@@ -102,15 +103,18 @@
             <source [src]="urlVideo | safeUrl" type="video/mp4" />
           </video>
         </div>
-        <emoji-mart
-          *ngIf="emoji"
-          (emojiClick)="addEmoji($event)"
-          title="Pick your emoji…"
-          emoji="point_up"
-          [showPreview]="false"
-        ></emoji-mart>
       </ion-col>
       <ion-col class="buttons" size="12">
+        <div #emojisContainer>
+          <emoji-mart
+            class="emojis"
+            *ngIf="emoji"
+            (emojiClick)="addEmoji($event)"
+            title="Pick your emoji…"
+            emoji="point_up"
+            [showPreview]="false"
+          ></emoji-mart>
+        </div>
         <input
           #openImage
           type="file"
@@ -125,9 +129,11 @@
           (change)="uploadVideo($event)"
           hidden
         />
-        <ion-button (click)="openEmojis()">
-          <ion-icon name="happy"></ion-icon>
-        </ion-button>
+        <span #emojiButton>
+          <ion-button (click)="openEmojis()">
+            <ion-icon name="happy"></ion-icon>
+          </ion-button>
+        </span>
         <ion-button (click)="openImage.click()">
           <ion-icon name="image"></ion-icon>
         </ion-button>
@@ -136,7 +142,7 @@
         </ion-button>
 
         <ion-button
-          [disabled]="form.invalid && videoFile == null"
+          [disabled]="post?form.invalid && videoFile == null:formNews.invalid && videoFile == null"
           (click)="save()"
         >
           {{'new_post.btn' | translate}}

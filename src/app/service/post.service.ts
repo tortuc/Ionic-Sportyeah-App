@@ -33,6 +33,7 @@ public  commentAudio(){
 
 
 create(body:IPost){
+  console.log(body)
   return this.http.post(`${environment.URL_API}/post/create`,body)
 }
 

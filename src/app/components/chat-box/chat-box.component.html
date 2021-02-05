@@ -1,125 +1,197 @@
-<ion-card class="chat-card  m-0"  >
-  <ion-card-header style="padding: 0px !important;" class="bg-gradient-person chat-header">
-    
+<ion-card class="chat-card m-0">
+  <ion-card-header
+    style="padding: 0px !important"
+    class="bg-gradient-person chat-header"
+  >
     <chat-header [chat]="chat" (close)="close()"></chat-header>
-  
-   
   </ion-card-header>
- 
-  <ion-content #chatMessage  class="chat-content bg-gradient-person">
-    
-    <ion-grid>
-      <ion-row >
-        <ion-col size="12" *ngFor="let msg of messages" style="padding: 0px;">
 
-          <section 
-          *ngIf="!msg.deleted  && msg.audio == null"
-          >
-            <message-basic [message]="msg" ></message-basic>
+  <ion-content #chatMessage class="chat-content bg-gradient-person">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12" *ngFor="let msg of messages" style="padding: 0px">
+          <section *ngIf="!msg.deleted && msg.audio == null">
+            <message-basic [message]="msg"></message-basic>
           </section>
 
-          <section *ngIf="!msg.deleted && msg.audio != null ">
-            <msg-audio [message]="msg"  ></msg-audio>
-
+          <section *ngIf="!msg.deleted && msg.audio != null">
+            <msg-audio [message]="msg"></msg-audio>
           </section>
           <!-- <section *ngIf="msg.document != null && !msg.deleted">
             <message-document [message]="msg"></message-document>
           </section> -->
-          
 
-          <section *ngIf="msg.deleted"> <message-deleted [message]="msg"> </message-deleted> </section>
-      
+          <section *ngIf="msg.deleted">
+            <message-deleted [message]="msg"> </message-deleted>
+          </section>
         </ion-col>
-      </ion-row> 
+      </ion-row>
     </ion-grid>
-
-
-
-
   </ion-content>
-  
+
   <ion-grid class="chat-footer bg-gradient-person">
     <form [formGroup]="form">
-    <ion-row *ngIf="form.controls.image.value != ''">
-      <div  style="width: 120px;position: relative;">
-        <ion-icon class="img-remove" name="close" (click)="form.controls.image.setValue('')"></ion-icon>
-        <ion-img  [src]="form.controls.image.value"></ion-img>
+      <ion-row *ngIf="form.controls.image.value != ''">
+        <div style="width: 120px; position: relative">
+          <ion-icon
+            class="img-remove"
+            name="close"
+            (click)="form.controls.image.setValue('')"
+          ></ion-icon>
+          <ion-img [src]="form.controls.image.value"></ion-img>
+        </div>
+      </ion-row>
+
+      <ion-row *ngIf="form.controls.document.value != null">
+        <ion-chip style="--background: white; --color: black">
+          <ion-icon name="document" color="primary"></ion-icon>
+          <ion-label>{{ form.controls.document.value.name }}</ion-label>
+          <ion-icon
+            name="close"
+            (click)="form.controls.document.setValue(null)"
+          ></ion-icon>
+        </ion-chip>
+      </ion-row>
+
+      <ion-row *ngIf="urlVideo" style="position: relative">
+        <ion-icon
+          name="close"
+          class="close-video"
+          (click)="closeVideo()"
+        ></ion-icon>
+        <video
+          controls="controls"
+          preload="metadata"
+          autoplay="autoplay"
+          webkit-playsinline="webkit-playsinline"
+          class="videoPlayer"
+        >
+          <source [src]="urlVideo | safeUrl" type="video/mp4" />
+        </video>
+      </ion-row>
+
+      <div [hidden]="!emojis" #emojisContainer>
+        <emoji-mart
+          [style]="{ width: '100%' }"
+          (emojiClick)="addEmoji($event)"
+          title="Pick your emoji…"
+          emoji="point_up"
+          [showPreview]="false"
+        ></emoji-mart>
       </div>
-      
-     
-      
-    </ion-row>
+      <ion-row>
+        <ion-col class="footer-content">
+          <div class="button" #emojiButton>
+            <ion-icon
+              name="happy"
+              (click)="openEmojis()"
+              class="icon"
+            ></ion-icon>
+            <ngx-emoji emoji="26fd" size="24"></ngx-emoji>
+          </div>
+          <input
+            #openImage
+            type="file"
+            accept="image/*"
+            (change)="uploadImg($event)"
+            hidden
+          />
+          <input
+            #openDocument
+            type="file"
+            accept="application/*"
+            (change)="uploadDocumet($event)"
+            hidden
+          />
+          <div class="button">
+            <ion-icon
+              name="image"
+              (click)="openImage.click()"
+              class="icon"
+            ></ion-icon>
+            <ngx-emoji emoji="26fd" size="24"></ngx-emoji>
+          </div>
+          <input
+            #openVideo
+            type="file"
+            accept="video/*"
+            (change)="uploadVideo($event)"
+            hidden
+          />
 
-    <ion-row *ngIf="form.controls.document.value != null"> 
-      <ion-chip   style="--background:white;--color:black">
-        <ion-icon name="document" color="primary"></ion-icon>
-        <ion-label>{{form.controls.document.value.name}}</ion-label>
-        <ion-icon name="close" (click)="form.controls.document.setValue(null)"></ion-icon>
-      </ion-chip>
-    </ion-row>
+          <div class="button">
+            <ion-icon
+              name="videocam"
+              (click)="openVideo.click()"
+              class="icon"
+            ></ion-icon>
+            <ngx-emoji emoji="26fd" size="24"></ngx-emoji>
+          </div>
+          <div class="button">
+            <ion-icon
+              name="document"
+              (click)="openDocument.click()"
+              class="icon"
+            ></ion-icon>
+          </div>
 
-    <ion-row *ngIf="urlVideo" style="position: relative;">
-      <ion-icon name="close" class="close-video" (click)="closeVideo()"></ion-icon>
-      <video  controls="controls" preload="metadata" autoplay="autoplay" webkit-playsinline="webkit-playsinline" class="videoPlayer">
-        <source [src]="urlVideo | safeUrl" type="video/mp4" />
-       </video>
-
-    </ion-row>
-    
-    <ion-row *ngIf="emojis">
-      <emoji-mart [style]="{width:'100%'}"  (emojiClick)="addEmoji($event)" title="Pick your emoji…" emoji="point_up" [showPreview]="false"></emoji-mart>
-     </ion-row>
-      <ion-row >
-       
-      <ion-col class="footer-content">
-
-        <div class="button">
-          <ion-icon name="happy" (click)="openEmojis()" class="icon"></ion-icon>
-          <ngx-emoji emoji="26fd" size="24"></ngx-emoji>
-        </div>
-        <input #openImage type="file" accept="image/*" (change)="uploadImg($event)" hidden/>
-        <input #openDocument type="file" accept="application/*"  (change)="uploadDocumet($event)" hidden/>
-        <div class="button">
-          <ion-icon name="image" (click)="openImage.click()" class="icon"></ion-icon>
-          <ngx-emoji emoji="26fd" size="24"></ngx-emoji>
-        </div>
-        <input #openVideo type="file" accept="video/*" (change)="uploadVideo($event)" hidden/>
-
-
-        <div class="button">
-          <ion-icon name="videocam" (click)="openVideo.click()" class="icon"></ion-icon>
-          <ngx-emoji emoji="26fd" size="24"></ngx-emoji>
-        </div>
-        <div class="button">
-          <ion-icon name="document" (click)="openDocument.click()" class="icon"></ion-icon>
-
-        </div>
-       
-   
-       
-        <div class="textarea">
-
-          <ion-textarea [readonly]="diffRecord > 0" (keydown.enter)="send($event)" (click)="readMessages(messages,chat._id)" rows="1" formControlName="message" class="input-message" placeholder="{{'chat.input_placeholder' | translate}}" autoGrow="true">
-
-          </ion-textarea >
-        </div>
-            <div class="button" *ngIf="form.controls.message.value != '' || videoFile != null">
-              <ion-icon  name="send" class="icon" (click)="send($event)"></ion-icon>
-
-            </div>
-            <div class="button" *ngIf="(mediaRecorder == null  || mediaRecorder.state == 'inactive') &&  form.controls.message.value == '' && videoFile == null" >
-              <ion-icon name="mic" (click)="captureAudio()" class="icon"></ion-icon>
-
-            </div>
-            <div class="button" style="margin-bottom: 5px !important;"  *ngIf="mediaRecorder != null && mediaRecorder.state == 'recording' ">
-              <ion-icon name="close-circle-outline" (click)="stopRecord(false)" class="icon audio-cancel"></ion-icon>
-              <span class="diff">{{diffRecord | diffTime}}</span>
-              <ion-icon name="checkmark-circle-outline" class="icon audio-success" (click)="stopRecord(true)"></ion-icon>
-            </div>
-          </ion-col>
-          
-        </ion-row>
-      </form>
-      </ion-grid>
-
+          <div class="textarea">
+            <ion-textarea
+              #inputTextArea
+              [readonly]="diffRecord > 0"
+              (keydown.enter)="send($event)"
+              (click)="readMessages(messages, chat._id)"
+              rows="1"
+              formControlName="message"
+              class="input-message"
+              placeholder="{{ 'chat.input_placeholder' | translate }}"
+              autoGrow="true"
+            >
+            </ion-textarea>
+          </div>
+          <div
+            class="button"
+            *ngIf="form.controls.message.value != '' || videoFile != null"
+          >
+            <ion-icon
+              name="send"
+              class="icon"
+              (click)="send($event)"
+            ></ion-icon>
+          </div>
+          <div
+            class="button"
+            *ngIf="
+              (mediaRecorder == null || mediaRecorder.state == 'inactive') &&
+              form.controls.message.value == '' &&
+              videoFile == null
+            "
+          >
+            <ion-icon
+              name="mic"
+              (click)="captureAudio()"
+              class="icon"
+            ></ion-icon>
+          </div>
+          <div
+            class="button"
+            style="margin-bottom: 5px !important"
+            *ngIf="mediaRecorder != null && mediaRecorder.state == 'recording'"
+          >
+            <ion-icon
+              name="close-circle-outline"
+              (click)="stopRecord(false)"
+              class="icon audio-cancel"
+            ></ion-icon>
+            <span class="diff">{{ diffRecord | diffTime }}</span>
+            <ion-icon
+              name="checkmark-circle-outline"
+              class="icon audio-success"
+              (click)="stopRecord(true)"
+            ></ion-icon>
+          </div>
+        </ion-col>
+      </ion-row>
+    </form>
+  </ion-grid>
 </ion-card>

@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA,NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule,ReactiveFormsModule  } from '@angular/forms';
 
@@ -15,6 +15,7 @@ import { ReadComponent } from './read/read.component';
 import { HttpClientModule} from '@angular/common/http';
 import { TranslateModule } from '@ngx-translate/core';
 import { PipesModule } from '../../pipes/pipes.module';
+import { ComponentsModule } from '../../components/components.module';
 
 
 @NgModule({
@@ -28,13 +29,14 @@ import { PipesModule } from '../../pipes/pipes.module';
     HttpClientModule,
     TranslateModule,
     PipesModule,
-    
+    ComponentsModule
   ],
   declarations: [
     NewsPage,
     CreateComponent,
     EditComponent,
     ReadComponent
-  ]
+  ],
+  schemas:[CUSTOM_ELEMENTS_SCHEMA]
 })
 export class NewsPageModule {}
