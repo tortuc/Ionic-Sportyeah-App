@@ -92,6 +92,9 @@
                 >
               </span>
             </ion-card-subtitle>
+            <ion-card-subtitle *ngIf="userService.User?.profile_user == 'press'" >
+              <ion-button [routerLink]="'/news/create'" ><ion-icon style="margin-right: 8px;" name="newspaper-outline"></ion-icon> {{'news.article' | translate}}</ion-button>
+            </ion-card-subtitle>
             <ion-card-subtitle class="estado">
               {{userService.User?.estado}}
             </ion-card-subtitle>
@@ -194,6 +197,9 @@
               <ion-label
                 >{{'labels-profile-segment.posts' | translate}}</ion-label
               >
+            </ion-segment-button>
+            <ion-segment-button *ngIf="userService.User?.profile_user == 'press'" value="news" style="background-color:white;">
+              <ion-label >{{'labels-profile-segment.articles' | translate}}</ion-label>
             </ion-segment-button>
           </ion-segment>
         </ion-card>
@@ -311,6 +317,49 @@
           </ion-grid>
         </div>
         <!-- FINISH SEGMENT POSTS -->
+         <!-- SEGMENT NEWS -->
+        <div *ngIf="newsB">
+          <ion-grid ngClass.xs="m-p-0">
+            <ion-row *ngFor="let item of news" class="post-card">
+              <ion-card style="width: 100%;margin: auto;height: 100%;margin-bottom:3%" >
+                <ion-button style="position: relative; left: 0; z-index: 10; --background:none;color:black;--box-shadow:none;top:0%" (click)="editNews(item?._id)"  >
+                    <ion-icon  name="create-outline" style="--color: black;font-size:30px" ></ion-icon>
+                  </ion-button>
+                <ion-button style="position: relative; left: 74%; z-index: 10; --background:none;color:#ff000096;--box-shadow:none;top:0%;width:15% ;" (click)="deleteNew(item?._id)" >
+                  <ion-icon  name="trash-outline" style="--color: black;font-size:30px" ></ion-icon>
+                </ion-button>
+                <ion-card-header (click)="OpenNews(item?._id)" style="cursor: pointer;">
+                  <ion-card-subtitle style="text-align: center;" *ngIf="item?.sport">{{ 'sport.'+item?.sport| translate}}</ion-card-subtitle>
+                  <ion-card-title style="text-align: center;">{{item?.headline}}</ion-card-title>
+                  <ion-item style="transform: scale(0.9);margin-bottom: -3%;">
+                    <ion-label>
+                      <ion-text color="black">
+                        <h1 style="font-size:14px">{{item?.user.name}} {{item?.user.last_name}} </h1>
+                      </ion-text>
+                    </ion-label>
+                    <ion-text color="black">
+                      <h2 style="font-size:14px" >{{item?.date | customDisplayDate}}</h2>
+                    </ion-text>   
+                  </ion-item>
+                </ion-card-header>
+                <ion-img *ngIf="item?.principalImage"   class="imageMiniCard" [src]="item?.principalImage"></ion-img>
+                <div *ngIf="item?.principalVideo" style="position: relative">
+                  <video
+                    controls="controls"
+                    preload="metadata"
+                    autoplay="autoplay"
+                    webkit-playsinline="webkit-playsinline"
+                    class="videoPlayer"
+                  >
+                    <source [src]="item?.principalVideo | safeUrl" type="video/mp4" />
+                  </video>
+                </div> 
+              </ion-card>
+            </ion-row>
+          </ion-grid>
+        </div>
+        <!-- FINISH SEGMENT NEWS -->
+
       </ion-col>
     </ion-row>
   </ion-grid>

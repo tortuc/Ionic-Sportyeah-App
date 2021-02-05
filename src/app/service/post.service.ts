@@ -33,6 +33,7 @@ public  commentAudio(){
 
 
 create(body:IPost){
+  console.log(body)
   return this.http.post(`${environment.URL_API}/post/create`,body)
 }
 
@@ -130,4 +131,14 @@ getShareds(id){
     }
   )
 }
+
+getPostUser(id){
+  return this.http.get(
+    `${environment.URL_API}/post/post/${id}`,
+    {
+      headers: new HttpHeaders({"access-token":getToken()})
+    }
+  )
+}
+
 }

@@ -42,13 +42,11 @@ export class PostPage implements OnInit {
   goBack(){
     this.router.navigate(['/dashboard'])
   }
-
-
   getPost(id){
     this.postService.getPost(id).toPromise()
     .then((post)=>{
       this.item = post
-      console.log(post)
+      console.log(this.item)
     })
     .catch((err)=>{
       // handle err

@@ -3,10 +3,11 @@ import { FormBuilder, Validators } from "@angular/forms";
 import { LoadingController, ModalController } from "@ionic/angular";
 import { TranslateService } from "@ngx-translate/core";
 import { MentionsDirective } from "src/app/directives/mentions.directive";
-import { IPost } from "src/app/models/iPost";
+import { IPost, INew } from "src/app/models/iPost";
 import { JdvimageService } from "src/app/service/jdvimage.service";
 import { PostService } from "src/app/service/post.service";
 import { UserService } from "src/app/service/user.service";
+import { NewsService } from 'src/app/service/news.service';
 
 @Component({
   selector: "app-new-comment",
@@ -15,6 +16,7 @@ import { UserService } from "src/app/service/user.service";
 })
 export class NewCommentComponent implements OnInit {
   @Input() post: IPost;
+  @Input() news: INew;
   @ViewChild(MentionsDirective) mentions;
   @ViewChild("FormElementRef") inputNode: any;
   @ViewChild("emojisContainer") emojisContainer: any;
@@ -27,7 +29,8 @@ export class NewCommentComponent implements OnInit {
     private loadingCtrl: LoadingController,
     private translate: TranslateService,
     private imageService: JdvimageService,
-    private postService: PostService
+    private postService: PostService,
+    public newsService:NewsService,
   ) {}
 
   form = this.fb.group({
@@ -36,6 +39,7 @@ export class NewCommentComponent implements OnInit {
   });
 
   ngOnInit() {
+    console.log(this.news)
     window.onclick = () => {
       this.emoji = false;
     };
@@ -96,8 +100,9 @@ export class NewCommentComponent implements OnInit {
   send() {
     if (this.form.value.message != null || this.form.value.image != null) {
       let comment = this.form.value;
-      comment.post = this.post._id;
-      this.postService
+      if(this.post){
+        comment.post = this.post._id;
+        this.postService
         .newComment(comment)
         .toPromise()
         .then((comments) => {
@@ -105,11 +110,28 @@ export class NewCommentComponent implements OnInit {
             action: "comment",
             comments,
             post: this.post,
-          });
+          });        
         })
         .catch((err) => {
           // handle err
         });
+      }else if(this.news){
+        console.log('es el new-comment')
+        comment.news = this.news._id;
+        this.newsService
+        .newComment(comment)
+        .toPromise()
+        .then((comments) => {
+          this.modalCtrl.dismiss({
+            action: "comment",
+            comments,
+            news: this.news,
+          });       
+        })
+        .catch((err) => {
+          // handle err
+        });
+      }
     }
   }
 

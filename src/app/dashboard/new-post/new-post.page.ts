@@ -3,7 +3,7 @@ import { FormBuilder, Validators } from "@angular/forms";
 import { LoadingController, ModalController, Platform } from "@ionic/angular";
 import { TranslateService } from "@ngx-translate/core";
 import { MentionsDirective } from "src/app/directives/mentions.directive";
-import { IPost } from "src/app/models/iPost";
+import { IPost ,INew} from "src/app/models/iPost";
 import { JdvimageService } from "src/app/service/jdvimage.service";
 import { PostService } from "src/app/service/post.service";
 import { UserService } from "src/app/service/user.service";
@@ -18,6 +18,7 @@ import { ClassField } from "@angular/compiler";
 })
 export class NewPostPage implements OnInit {
   @Input() post: IPost;
+  @Input() news: INew
   @ViewChild(MentionsDirective) mentions;
   @ViewChild("FormElementRef") inputNode: ElementRef;
   @ViewChild("emojisContainer") emojisContainer: ElementRef;
@@ -50,6 +51,7 @@ export class NewPostPage implements OnInit {
   users = [];
 
   ngOnInit() {
+    console.log(this.news)
     window.onclick = () => {
       this.emoji = false;
     };
@@ -64,6 +66,13 @@ export class NewPostPage implements OnInit {
     image: [""],
     video: [null],
     post: [null],
+  });
+  formNews = this.fb.group({
+    user: [this.userService.User?._id],
+    message: ["", [Validators.required]],
+    image: [""],
+    video: [null],
+    news: [null],
   });
 
   closeVideo() {
@@ -88,7 +97,11 @@ export class NewPostPage implements OnInit {
       .toPromise()
       .then((url) => {
         loading.dismiss();
-        this.form.controls.image.setValue(url);
+        if(this.post){
+          this.form.controls.image.setValue(url);
+        }else if(this.news){
+          this.formNews.controls.image.setValue(url);
+        }
       })
       .catch((err) => {
         loading.dismiss();
@@ -96,20 +109,30 @@ export class NewPostPage implements OnInit {
   }
 
   removeImg() {
-    this.form.controls.image.setValue("");
+    if(this.post){
+      this.form.controls.image.setValue("");
+    }else if(this.news){
+      this.formNews.controls.image.setValue("");
+    }
   }
 
   newValue($event) {
-    this.form.controls.message.setValue($event);
+    if(this.post){
+      this.form.controls.message.setValue($event);
+    }else if(this.news){
+      this.formNews.controls.message.setValue($event);
+    }
+    
   }
 
-  async save() {
-    if (this.videoFile == null) {
+  async save() {        ///AQUI UN IF
+    if(this.post){
+      if (this.videoFile == null) {
       let loading = await this.loadingCtrl.create({
         message: this.translate.instant("loading"),
       });
       loading.present();
-      let post = this.form.value;
+      let post = this.form.value; 
       if (this.post) {
         post.post = this.post._id;
       }
@@ -131,7 +154,7 @@ export class NewPostPage implements OnInit {
     } else {
       let form = new FormData();
       form.append("video", this.videoFile);
-      let post = this.form.value;
+      let post = this.form.value;        
       if (this.post) {
         post.post = this.post._id;
       }
@@ -142,6 +165,46 @@ export class NewPostPage implements OnInit {
         post: post,
       });
     }
+  }else if(this.news){
+    if (this.videoFile == null) {
+      let loading = await this.loadingCtrl.create({
+        message: this.translate.instant("loading"),
+      });
+      loading.present();
+      let news = this.formNews.value; ///AQUI UN IF///AQUI UN IF
+      if (this.news) {
+        news.news = this.news._id;
+      }
+      this.postService
+        .create(news)
+        .toPromise()
+        .then((post) => {
+          loading.dismiss();
+
+          this.modalController.dismiss({
+            dismissed: true,
+            create: true,
+            post,
+          });
+        })
+        .catch((err) => {
+          loading.dismiss();
+        });
+    } else {
+      let form = new FormData();
+      form.append("video", this.videoFile);
+      let news = this.formNews.value;        ///AQUI UN IF///AQUI UN IF
+      if (this.news) {
+        news.news = this.news._id;
+      }
+      this.modalController.dismiss({
+        dismissed: true,
+        create: false,
+        video: form,
+        news: news,
+      });
+    }
+  }
   }
 
   dismiss() {
@@ -156,12 +219,21 @@ export class NewPostPage implements OnInit {
 
   addEmoji(ev) {
     this.mentions.usersMetions.forEach((element) => {
-      this.form.controls.message.setValue(
-        this.form.controls.message.value.replaceAll(
-          element.url,
-          element.fullname
-        )
-      );
+      if(this.post){
+        this.form.controls.message.setValue(
+          this.form.controls.message.value.replaceAll(
+            element.url,
+            element.fullname
+          )
+        );
+      }else if(this.news){
+        this.formNews.controls.message.setValue(
+          this.formNews.controls.message.value.replaceAll(
+            element.url,
+            element.fullname
+          )
+        );
+      }
     });
 
     this.lastCaretPosition != 0 && this.lastCaretPosition == this.mentions.pos
@@ -169,8 +241,8 @@ export class NewPostPage implements OnInit {
       : null;
 
     this.lastCaretPosition = this.mentions.pos;
-
-    const newText =
+    if(this.post){
+      const newText =
       this.form.controls.message.value
         .replace(/&nbsp;/g, " ")
         .substring(0, this.mentions.pos) +
@@ -188,6 +260,27 @@ export class NewPostPage implements OnInit {
         )
       );
     });
+    }else if(this.news){
+      const newText =
+      this.formNews.controls.message.value
+        .replace(/&nbsp;/g, " ")
+        .substring(0, this.mentions.pos) +
+      ev.emoji.native +
+      this.formNews.controls.message.value
+        .replace(/&nbsp;/g, "")
+        .substring(this.mentions.pos);
+    this.formNews.controls.message.setValue(newText);
+
+    this.mentions.usersMetions.forEach((element) => {
+      this.formNews.controls.message.setValue(
+        this.formNews.controls.message.value.replaceAll(
+          element.fullname,
+          element.url
+        )
+      );
+    });
+    }
+    
   }
 
   emoji = false;

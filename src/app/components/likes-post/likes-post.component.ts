@@ -18,6 +18,7 @@ export class LikesPostComponent implements OnInit {
   @Input() sad: any[]
   @Input() angry: any[]
   @Input() idPost: string
+  @Input() idNews: string
   constructor(
     public userService:UserService,
     public router:Router,

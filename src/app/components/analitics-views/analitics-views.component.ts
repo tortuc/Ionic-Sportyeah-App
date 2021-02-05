@@ -70,13 +70,30 @@ export class AnaliticsViewsComponent implements OnInit {
   async getPost(id,i):Promise<any>{
       return await new Promise((resolve)=>{
         this.postService.getPost(id).subscribe((post:any)=>{
-          post.post.count = i        
+          post.post.count = i    
           resolve(post.post)
       })
     })
   }
-  
-  
+ //eliminar////////////////////////////////////////////////////////////////////
+todolosPost = [];
+likes = [];
+comments = [];
+shareds = [];
+interaccionActual = '';
+actualLikes(){
+  this.interaccionActual = 'likes';
+}
+actualComments(){
+  this.interaccionActual = 'comments';
+}
+actualShareds(){
+  this.interaccionActual = 'shareds';
+}
+sinInteraccionActual(){
+  this.interaccionActual = '';
+}
+
 
 //Encuentra los post repetidos y el que tenga mas repeticiones sera el primero
     find_duplicate_in_array(array){
@@ -146,9 +163,52 @@ this.sortable.sort(function(b, a) {
      } 
    }
   ngOnInit() {
+     //eliminar////////////////////////////////////////////////////////////////////
+     this.postService.getPostUser(this.userService.User._id).subscribe((response:any)=>{
+       this.todolosPost = response
+       
+       this.likes = response.filter((post:any)=>{
+         return post.likes.length > 0
+       })
+       
+       this.comments = response.filter((post:any)=>{
+        return post.comments.length > 0
+      })
+
+      this.shareds = response.filter((post:any)=>{
+        return post.shareds.length > 0
+      })
+      
+      //Ordena de mayor a menor el post con mas reacciones
+      this.likes.sort(function(b, a) {
+        return a.likes.length - b.likes.length ;
+    });
+
+      //Ordena de mayor a menor el post con mas comentarios
+      this.comments.sort(function(b, a) {
+        return a.comments.length - b.comments.length ;
+    });
+
+      //Ordena de mayor a menor el post con mas veces compartido
+      this.shareds.sort(function(b, a) {
+        return a.shareds.length - b.shareds.length ;
+    });
+      console.log(this.likes)
+      console.log(this.comments)
+      console.log(this.shareds)
+      console.log(response)
+
+     })
+
+
+
     this.viewsProfileService.getProfileView(this.userService.User._id)
     .subscribe((views:any)=>{
+      if(views === null){
+        this.noData = false
+      }else{
       this.allViews = views.visits
+      
       this.postViews = this.allViews.filter((post)=>{
         //post.link = post.link.split('/')[2]
         return post.from == "post"
@@ -172,7 +232,9 @@ this.sortable.sort(function(b, a) {
       this.pieData()
       this.introduPost()
       this.postUsersViews()
+    }
     })
+    
    }
    segment='vistas';
 postInfoUser=[]
@@ -189,64 +251,67 @@ async postUsersViews(){
 }
 
  pieData(){
-  if(this.allViews.length != 0){
-    this.noData = true
-  }
-  this.option = 'all'
-  if(this.allViews.length >0){
-    this.analyticsToShow='all'
-  }
+   if(this.allViews != undefined){
 
-  this.cd.detectChanges()
-
-  this.bars = new Chart("polarArea", {
-    type: 'polarArea',
-    data: {
-      labels: [this.translate.instant('analytics-views.post'),
-      this.translate.instant('analytics-views.chat'),
-      this.translate.instant('analytics-views.search'),
-      this.translate.instant('analytics-views.profile'),
-      this.translate.instant('analytics-views.reaction'),
-      this.translate.instant('analytics-views.comment')
-    ],
-      datasets: [
-        {
-          label: 'All',
-          data: [
-            this.postViews.length,this.chatViews.length,this.searchViews.length,
-            this.profileViews.length,this.reactionViews.length,this.commentViews.length
-          ],
-          backgroundColor: [
-            'rgb(56, 94, 129,0.6)',
-            'rgb(38, 194, 129,0.6)',
-            'rgb(212, 60, 60,0.6)',
-            'rgb(106, 25, 181,0.6)',
-            'rgb(56, 128, 255,0.6)',
-            'rgb(238, 241, 48,0.6)',
-          ], // array should have same number of elements as number of dataset
-          borderColor: [
-            'rgb(56, 94, 129,0.6)',
-            'rgb(38, 194, 129,0.6)',
-            'rgb(212, 60, 60,0.6)',
-            'rgb(106, 25, 181,0.6)',
-            'rgb(56, 128, 255,0.6)',
-            'rgb(238, 241, 48,0.6)',
-        ],// array should have same number of elements as number of dataset
-          borderWidth: 1
-        },
-    ]
-    },
-    options: {
-      scales: {
-        yAxes: [{
-          ticks: {
-            beginAtZero: true,
-            stepSize: 1
-          }
-        }]
-      }
+    if(this.allViews.length != 0){
+      this.noData = true
     }
-  });
+    this.option = 'all'
+    if(this.allViews.length >0){
+      this.analyticsToShow='all'
+    }
+
+    this.cd.detectChanges()
+
+    this.bars = new Chart("polarArea", {
+      type: 'polarArea',
+      data: {
+        labels: [this.translate.instant('analytics-views.post'),
+        this.translate.instant('analytics-views.chat'),
+        this.translate.instant('analytics-views.search'),
+        this.translate.instant('analytics-views.profile'),
+        this.translate.instant('analytics-views.reaction'),
+        this.translate.instant('analytics-views.comment')
+      ],
+        datasets: [
+          {
+            label: 'All',
+            data: [
+              this.postViews.length,this.chatViews.length,this.searchViews.length,
+              this.profileViews.length,this.reactionViews.length,this.commentViews.length
+            ],
+            backgroundColor: [
+              'rgb(56, 94, 129,0.6)',
+              'rgb(38, 194, 129,0.6)',
+              'rgb(212, 60, 60,0.6)',
+              'rgb(106, 25, 181,0.6)',
+              'rgb(56, 128, 255,0.6)',
+              'rgb(238, 241, 48,0.6)',
+            ], // array should have same number of elements as number of dataset
+            borderColor: [
+              'rgb(56, 94, 129,0.6)',
+              'rgb(38, 194, 129,0.6)',
+              'rgb(212, 60, 60,0.6)',
+              'rgb(106, 25, 181,0.6)',
+              'rgb(56, 128, 255,0.6)',
+              'rgb(238, 241, 48,0.6)',
+          ],// array should have same number of elements as number of dataset
+            borderWidth: 1
+          },
+      ]
+      },
+      options: {
+        scales: {
+          yAxes: [{
+            ticks: {
+              beginAtZero: true,
+              stepSize: 1
+            }
+          }]
+        }
+      }
+    });
+  }else{ this.option = '' }
  }
 
  week = moment()
@@ -516,8 +581,9 @@ this.allViews.forEach((visits) => {
           if(this.years[key].date == date){this.noData = true}
         }
       });
-
+    
       this.linesDataYears()
+    
   }
 /* 
   returnMes(fecha,desde){
@@ -534,6 +600,7 @@ this.allViews.forEach((visits) => {
   } */
 
   linesDataYears(){
+     
     this.analyticsToShow='years'
     this.cd.detectChanges()
     this.dataPost = []
@@ -726,6 +793,8 @@ this.allViews.forEach((visits) => {
       }
     }
   });
+
+   
   }
 
   changeYear(n){
