@@ -4,54 +4,99 @@
       <ion-back-button style="color: white"></ion-back-button>
     </ion-buttons>
     <ion-buttons slot="end">
-      <ion-icon style="color: white;font-size:30px;cursor: pointer;" name="person-outline" [routerLink]="'/profile'"></ion-icon>
+      <ion-icon
+        style="color: white; font-size: 30px; cursor: pointer"
+        name="person-outline"
+        [routerLink]="'/profile'"
+      ></ion-icon>
     </ion-buttons>
-    <ion-title style="--color: white">{{ 'news.create'| translate}}</ion-title>
-    
+    <ion-title style="--color: white">{{
+      "news.create" | translate
+    }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="bg-gradient-person">
   <ion-slides #slides pager="true" [options]="slideOpts">
     <ion-slide>
-      <ion-content  class="bg-gradient-person">
-  <ion-grid>
-    <ion-row>
-      <ion-col size="12">
-        <div style="margin-bottom: -2%;">
-          <ion-button  type="submit" style="--background:#428cff96;position: relative;left: 6%;font-size: 12px;top: -2%;" float-right ion-button  class="btnNext" (click)="next(slides)">{{ 'news.next' | translate}}</ion-button>
-        </div>
-      </ion-col>
+      <ion-content class="bg-gradient-person">
+        <ion-grid>
+          <ion-row>
+            <ion-col size="12">
+              <div style="margin-bottom: -2%">
+                <ion-button
+                  type="submit"
+                  style="
+                    --background: #428cff96;
+                    position: relative;
+                    left: 6%;
+                    font-size: 12px;
+                    top: -2%;
+                  "
+                  float-right
+                  ion-button
+                  class="btnNext"
+                  (click)="next(slides)"
+                  >{{ "news.next" | translate }}</ion-button
+                >
+              </div>
+            </ion-col>
 
-      <ion-col size-lg="6"  size-xs="12">
-        <ion-button (click)="consol()" *ngIf="!editando"  >{{'news.add' | translate}}</ion-button>
-        <ion-button *ngIf="parrafos.length > 0 && positionEditactual != null"  (click)="EditParrafo()" >{{'news.edit' | translate}}</ion-button>
-        <ion-button *ngIf="parrafos.length > 0 && positionEditactual != null" style="--background:rgba(255, 100, 100, 0.685);" (click)="eliminarParrafo()" >{{'news.delete' | translate}}</ion-button>
-        <ion-button *ngIf="parrafos.length > 0 && positionEditactual != null"  (click)="cancelar()" >{{'news.cancel' | translate}}</ion-button><br>
-        <span *ngIf="parrafos.length > 0 && positionEditactual != null">{{'news.editParagraph' | translate}}: {{positionEditactual+1}}...: </span>
+            <ion-col size-lg="6" size-xs="12">
+              <ion-button (click)="consol()" *ngIf="!editando">{{
+                "news.add" | translate
+              }}</ion-button>
+              <ion-button
+                *ngIf="parrafos.length > 0 && positionEditactual != null"
+                (click)="EditParrafo()"
+                >{{ "news.edit" | translate }}</ion-button
+              >
+              <ion-button
+                *ngIf="parrafos.length > 0 && positionEditactual != null"
+                style="--background: rgba(255, 100, 100, 0.685)"
+                (click)="eliminarParrafo()"
+                >{{ "news.delete" | translate }}</ion-button
+              >
+              <ion-button
+                *ngIf="parrafos.length > 0 && positionEditactual != null"
+                (click)="cancelar()"
+                >{{ "news.cancel" | translate }}</ion-button
+              ><br />
+              <span *ngIf="parrafos.length > 0 && positionEditactual != null"
+                >{{ "news.editParagraph" | translate }}:
+                {{ positionEditactual + 1 }}...:
+              </span>
 
-        <ion-item>
-          <ion-label>{{'news.title' | translate}}</ion-label>
-          <ion-input [hidden]="title" style="background: white; color: black;" placeholder="Titulo" [(ngModel)]="titulo1"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label position="floating">{{'sport.sport' | translate}}</ion-label>
-              <ion-select [(ngModel)]="deporte">
-                <ion-select-option  *ngFor="let sport of sports" [value]="sport" >{{ 'sport.'+sport| translate}}</ion-select-option>              
-              </ion-select>
-         </ion-item> 
-        <ngx-wig style="color: black;" [(ngModel)]="text1" [buttons]="'list1,list2,bold,italic,link,underline'"></ngx-wig>
-         
-      
-        
-      </ion-col>
-  
-  
-    
-        
-      <ion-col size-lg="6"  size-xs="12">
+              <ion-item>
+                <ion-label>{{ "news.title" | translate }}</ion-label>
+                <ion-input
+                  [hidden]="title"
+                  style="background: white; color: black"
+                  placeholder="Titulo"
+                  [(ngModel)]="titulo1"
+                ></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-label position="floating">{{
+                  "sport.sport" | translate
+                }}</ion-label>
+                <ion-select [(ngModel)]="deporte">
+                  <ion-select-option
+                    *ngFor="let sport of sports"
+                    [value]="sport"
+                    >{{ "sport." + sport | translate }}</ion-select-option
+                  >
+                </ion-select>
+              </ion-item>
+              <ngx-wig
+                style="color: black"
+                [(ngModel)]="text1"
+                [buttons]="'list1,list2,bold,italic,link,underline'"
+              ></ngx-wig>
+            </ion-col>
 
-        <!-- <ion-card>
+            <ion-col size-lg="6" size-xs="12">
+              <!-- <ion-card>
           <ion-card-header>
             <ion-card-title style="text-align: center;">Imágenes</ion-card-title>
             <ion-card-content>
@@ -69,265 +114,417 @@
             </ion-card-content>
           </ion-card-header>
         </ion-card> -->
-        
 
-        
-        <ion-card>
-          <ion-card-header>
-            
-            <ion-card-subtitle *ngIf="deporte">{{ 'sport.'+deporte| translate}}</ion-card-subtitle>
-            <ion-card-title style="text-align: center;">{{titulo1}}</ion-card-title>
-          </ion-card-header>
-          <ion-card-content>
-
-            <!-- Boton para imagen Principal -->
-            <ion-button *ngIf="!imagenSelected" style="text-align: center;" (click)="takePhotoFrom('principal')"  >
-              <ion-icon  name="images" style="--color: black;font-size:30px" ></ion-icon>
-            </ion-button>
-            <!-- Imagen Principal -->
-            <ion-img style="cursor: pointer;" *ngIf="imagenSelected" (click)="clickImage()"  class="img-user img-edit" [src]="imagenSelected"></ion-img>
-             <!-- Video Principal -->
-            <div *ngIf="urlVideo" style="position: relative">
-              <ion-icon
-                name="close"
-                class="close-video"
-                (click)="closeVideoPrincipal()"
-              ></ion-icon>
-              <video
-                controls="controls"
-                preload="metadata"
-                autoplay="autoplay"
-                webkit-playsinline="webkit-playsinline"
-                class="videoPlayer"
-              >
-                <source [src]="urlVideo | safeUrl" type="video/mp4" />
-              </video>
-            </div> 
-<div *ngIf="!urlVideo">
-        <input
-          #openVideo
-          type="file"
-          accept="video/*"
-          (change)="uploadVideo($event,'principal')"
-          hidden
-        />
-        <ion-button (click)="openVideo.click()">
-          <ion-icon name="videocam"></ion-icon>
-        </ion-button>
-</div>
-
-
-
-
-
-
-             
-            <ion-card *ngIf="open">
+              <ion-card>
                 <ion-card-header>
-                  <ion-card-title style="text-align: center;">{{ 'news.changePrincipalImage' | translate}}<span><ion-icon style="color: red;" (click)="closeImage()" name="close-outline"></ion-icon></span></ion-card-title>
+                  <ion-card-subtitle *ngIf="deporte">{{
+                    "sport." + deporte | translate
+                  }}</ion-card-subtitle>
+                  <ion-card-title style="text-align: center">{{
+                    titulo1
+                  }}</ion-card-title>
                 </ion-card-header>
-                  <ion-card-content>
-                    <!-- Boton para cambiar imagen Principal -->
-                    <ion-button  style="text-align: center;" (click)="takePhotoFrom('principal')"  >
-                      <ion-icon  name="images" style="--color: black;font-size:30px" ></ion-icon>
+                <ion-card-content>
+                  <!-- Boton para imagen Principal -->
+                  <ion-button
+                    *ngIf="!imagenSelected"
+                    style="text-align: center"
+                    (click)="takePhotoFrom('principal')"
+                  >
+                    <ion-icon
+                      name="images"
+                      style="--color: black; font-size: 30px"
+                    ></ion-icon>
+                  </ion-button>
+                  <!-- Imagen Principal -->
+                  <ion-img
+                    style="cursor: pointer"
+                    *ngIf="imagenSelected"
+                    (click)="clickImage()"
+                    class="img-user img-edit"
+                    [src]="imagenSelected"
+                  ></ion-img>
+                  <!-- Video Principal -->
+                  <div *ngIf="urlVideo" style="position: relative">
+                    <ion-icon
+                      name="close"
+                      class="close-video"
+                      (click)="closeVideoPrincipal()"
+                    ></ion-icon>
+                    <video
+                      controls="controls"
+                      preload="metadata"
+                      autoplay="autoplay"
+                      webkit-playsinline="webkit-playsinline"
+                      class="videoPlayer"
+                    >
+                      <source [src]="urlVideo | safeUrl" type="video/mp4" />
+                    </video>
+                  </div>
+                  <div *ngIf="!urlVideo">
+                    <input
+                      #openVideo
+                      type="file"
+                      accept="video/*"
+                      (change)="uploadVideo($event, 'principal')"
+                      hidden
+                    />
+                    <ion-button (click)="openVideo.click()">
+                      <ion-icon name="videocam"></ion-icon>
                     </ion-button>
-                    <ion-button  style="text-align: center;" (click)="deleteImagePrincipal()"  >
-                      <ion-icon  name="trash-outline" style="--color: black;font-size:30px" ></ion-icon>
-                    </ion-button>
-                  </ion-card-content>
-                
-              </ion-card>
-    
-            <div *ngFor="let parrafo of parrafos; let i = index" >
-              <ion-card [ngClass]="(positionEditactual == parrafo.position)?'selected':''" (click)="(positionEditactual != parrafo.position)?selectParrafoCards(parrafo.position):cancelar()">
-                <!-- <ion-card-header>
+                  </div>
+
+                  <ion-card *ngIf="open">
+                    <ion-card-header>
+                      <ion-card-title style="text-align: center"
+                        >{{ "news.changePrincipalImage" | translate
+                        }}<span
+                          ><ion-icon
+                            style="color: red"
+                            (click)="closeImage()"
+                            name="close-outline"
+                          ></ion-icon></span
+                      ></ion-card-title>
+                    </ion-card-header>
+                    <ion-card-content>
+                      <!-- Boton para cambiar imagen Principal -->
+                      <ion-button
+                        style="text-align: center"
+                        (click)="takePhotoFrom('principal')"
+                      >
+                        <ion-icon
+                          name="images"
+                          style="--color: black; font-size: 30px"
+                        ></ion-icon>
+                      </ion-button>
+                      <ion-button
+                        style="text-align: center"
+                        (click)="deleteImagePrincipal()"
+                      >
+                        <ion-icon
+                          name="trash-outline"
+                          style="--color: black; font-size: 30px"
+                        ></ion-icon>
+                      </ion-button>
+                    </ion-card-content>
+                  </ion-card>
+
+                  <div *ngFor="let parrafo of parrafos; let i = index">
+                    <ion-card
+                      [ngClass]="
+                        positionEditactual == parrafo.position ? 'selected' : ''
+                      "
+                      (click)="
+                        positionEditactual != parrafo.position
+                          ? selectParrafoCards(parrafo.position)
+                          : cancelar()
+                      "
+                    >
+                      <!-- <ion-card-header>
                   <ion-card-subtitle>{{parrafo.subtitle}}</ion-card-subtitle>
                   <ion-card-title>{{parrafo.title}}</ion-card-title>
                 </ion-card-header> -->
-                <!-- <div [innerHTML]="parrafo.parrafo"></div> -->
-                <ion-card-content>
-                  <div [innerHTML]="parrafo.parrafo"></div>
-                </ion-card-content>
-              </ion-card>
-              <ion-button *ngIf="parrafo.image== ''" style="text-align: center;" (click)="takePhotoFrom('notPrincipal',i)"  >
-                <ion-icon  name="images" style="--color: black;font-size:30px" ></ion-icon>
-              </ion-button>
-              <ion-img style="cursor: pointer;" *ngIf="parrafo.image != ''" (click)="clickImageArray(i)"  class="img-user img-edit" [src]="parrafo.image"></ion-img>
-                        <ion-card *ngIf="openArray && parrafo.position == imagenACambiar">
-                          <ion-card-header>
-                            <ion-card-title style="text-align: center;">{{ 'news.changeImage'| translate}}<span><ion-icon style="color: red;cursor: pointer;" (click)="closeImageArray()" name="close-outline"></ion-icon></span></ion-card-title>
-                          </ion-card-header>
-                            <ion-card-content>
-                              <!-- Boton para cambiar imagen De este parrafo caMBIA LA FUNCION NO L HAS CAMBIADO-->
-                                <ion-button  style="text-align: center;" (click)="takePhotoFrom('other',i)"  >
-                                  <ion-icon  name="images" style="--color: black;font-size:30px" ></ion-icon>
-                                </ion-button>
-                                <ion-button  style="text-align: center;" (click)="deleteImage(i)"  >
-                                  <ion-icon  name="trash-outline" style="--color: black;font-size:30px" ></ion-icon>
-                                </ion-button>
-                            </ion-card-content>
-                        </ion-card>
-                        <!-- Videos notPrincipal -->
-            <div *ngIf="parrafo.video" style="position: relative">
-              <ion-icon
-                name="close"
-                class="close-video"
-                (click)="closeVideoNotPrincipal(parrafo.position)"
-              ></ion-icon>
-              <video
-                controls="controls"
-                preload="metadata"
-                autoplay="autoplay"
-                webkit-playsinline="webkit-playsinline"
-                class="videoPlayer"
-              >
-                <source [src]="parrafo.video | safeUrl" type="video/mp4" />
-              </video>
-            </div> 
-              <div *ngIf="!parrafo.video">
+                      <!-- <div [innerHTML]="parrafo.parrafo"></div> -->
+                      <ion-card-content>
+                        <div [innerHTML]="parrafo.parrafo"></div>
+                      </ion-card-content>
+                    </ion-card>
+                    <ion-button
+                      *ngIf="parrafo.image == ''"
+                      style="text-align: center"
+                      (click)="takePhotoFrom('notPrincipal', i)"
+                    >
+                      <ion-icon
+                        name="images"
+                        style="--color: black; font-size: 30px"
+                      ></ion-icon>
+                    </ion-button>
+                    <ion-img
+                      style="cursor: pointer"
+                      *ngIf="parrafo.image != ''"
+                      (click)="clickImageArray(i)"
+                      class="img-user img-edit"
+                      [src]="parrafo.image"
+                    ></ion-img>
+                    <ion-card
+                      *ngIf="openArray && parrafo.position == imagenACambiar"
+                    >
+                      <ion-card-header>
+                        <ion-card-title style="text-align: center"
+                          >{{ "news.changeImage" | translate
+                          }}<span
+                            ><ion-icon
+                              style="color: red; cursor: pointer"
+                              (click)="closeImageArray()"
+                              name="close-outline"
+                            ></ion-icon></span
+                        ></ion-card-title>
+                      </ion-card-header>
+                      <ion-card-content>
+                        <!-- Boton para cambiar imagen De este parrafo caMBIA LA FUNCION NO L HAS CAMBIADO-->
+                        <ion-button
+                          style="text-align: center"
+                          (click)="takePhotoFrom('other', i)"
+                        >
+                          <ion-icon
+                            name="images"
+                            style="--color: black; font-size: 30px"
+                          ></ion-icon>
+                        </ion-button>
+                        <ion-button
+                          style="text-align: center"
+                          (click)="deleteImage(i)"
+                        >
+                          <ion-icon
+                            name="trash-outline"
+                            style="--color: black; font-size: 30px"
+                          ></ion-icon>
+                        </ion-button>
+                      </ion-card-content>
+                    </ion-card>
+                    <!-- Videos notPrincipal -->
+                    <div *ngIf="parrafo.video" style="position: relative">
+                      <ion-icon
+                        name="close"
+                        class="close-video"
+                        (click)="closeVideoNotPrincipal(parrafo.position)"
+                      ></ion-icon>
+                      <video
+                        controls="controls"
+                        preload="metadata"
+                        autoplay="autoplay"
+                        webkit-playsinline="webkit-playsinline"
+                        class="videoPlayer"
+                      >
+                        <source
+                          [src]="parrafo.video | safeUrl"
+                          type="video/mp4"
+                        />
+                      </video>
+                    </div>
+                    <div *ngIf="!parrafo.video">
                       <input
                         #openVideo
                         type="file"
                         accept="video/*"
-                        (change)="uploadVideo($event,'notPrincipal',parrafo.position)"
+                        (change)="
+                          uploadVideo($event, 'notPrincipal', parrafo.position)
+                        "
                         hidden
                       />
                       <ion-button (click)="openVideo.click()">
                         <ion-icon name="videocam"></ion-icon>
                       </ion-button>
-              </div>
-            </div>
-          </ion-card-content>
-        </ion-card>
-        
-        
-      </ion-col>
-
-      </ion-row>
-    </ion-grid>
-    
-  </ion-content>
-  
-  </ion-slide>
-
-        <ion-slide>
-          
-          <ion-content class="bg-gradient-person">
-            <ion-grid>
-              <ion-row>
-                <ion-col size="12">
-                  <div style="margin-bottom: -2%;">
-                    <ion-button  type="submit" style="--background:#428cff96;position: relative;right: 3%;font-size: 12px;top: -2%;" float-left ion-button   class="btnPrev" (click)="prev(slides)">{{ 'news.prev' | translate}}</ion-button>
-                    <ion-button  type="submit" style="--background:#428cff96;position: relative;left: 6%;font-size: 12px;top: -2%;" float-right ion-button  class="btnNext" (click)="next(slides)">{{ 'news.next' | translate}}</ion-button>
+                    </div>
                   </div>
-                </ion-col>
-                <ion-col size="12">
-                  <ion-text  color="dark">
-                    <h3 style="text-align: center;color:black">{{ 'news.preview' | translate}}</h3>
-                  </ion-text>
-                
-                  
-          <ion-card style="width: 85%;margin: auto;">
-            <ion-card-header>
-              <ion-card-subtitle style="text-align: center;" *ngIf="deporte">{{ 'sport.'+deporte| translate}}</ion-card-subtitle>
-              <ion-card-title style="text-align: center;">{{titulo1}}</ion-card-title>
-              <ion-item>
-                <ion-label>
-                  <ion-text color="black">
-                    <h1 style="font-size:14px">{{userService.User?.name}} {{userService.User?.last_name}} </h1>
-                  </ion-text>
-                </ion-label>
-                <ion-text color="black">
-                  <h2 style="font-size:14px" >{{fecha}}</h2>
-                </ion-text>   
-              </ion-item>
-            </ion-card-header>
-            <ion-img *ngIf="imagenSelected"   class="imageSelected" [src]="imagenSelected"></ion-img>
-             <!-- Video Principal -->
-            <div *ngIf="urlVideo" style="position: relative">
-              <video
-                controls="controls"
-                preload="metadata"
-                autoplay="autoplay"
-                webkit-playsinline="webkit-playsinline"
-                class="videoPlayer"
-              >
-                <source [src]="urlVideo | safeUrl" type="video/mp4" />
-              </video>
-            </div> 
-            <ion-card-content *ngFor="let parrafo of parrafos;let i = index">
-              <div style="color: black;text-align: justify;"  [innerHTML]="parrafo.parrafo">
-              </div>
-              <ion-img *ngIf="parrafo.image"   class="imageArray" [src]="parrafo.image"></ion-img>
-              <div *ngIf="parrafo.video" style="position: relative">
-                <video
-                  controls="controls"
-                  preload="metadata"
-                  autoplay="autoplay"
-                  webkit-playsinline="webkit-playsinline"
-                  class="videoPlayer"
+                </ion-card-content>
+              </ion-card>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-content>
+    </ion-slide>
+
+    <ion-slide>
+      <ion-content class="bg-gradient-person">
+        <ion-grid>
+          <ion-row>
+            <ion-col size="12">
+              <div style="margin-bottom: -2%">
+                <ion-button
+                  type="submit"
+                  style="
+                    --background: #428cff96;
+                    position: relative;
+                    right: 3%;
+                    font-size: 12px;
+                    top: -2%;
+                  "
+                  float-left
+                  ion-button
+                  class="btnPrev"
+                  (click)="prev(slides)"
+                  >{{ "news.prev" | translate }}</ion-button
                 >
-                  <source [src]="parrafo.video | safeUrl" type="video/mp4" />
-                </video>
-              </div> 
-            </ion-card-content>
-          </ion-card>
-        </ion-col>
-        </ion-row>
-        </ion-grid>
-          </ion-content>
-        </ion-slide>
-        <ion-slide>
-          <ion-content>
-            <ion-grid>
-              <ion-row>
-                <ion-col size="12">
-                  <div style="margin-bottom: -2%;">
-                    <ion-button  type="submit" style="--background:#428cff96;position: relative;right: 3%;font-size: 12px;top: -2%;" float-left ion-button   class="btnPrev" (click)="prev(slides)">{{ 'news.prev' | translate}}</ion-button>
+                <ion-button
+                  type="submit"
+                  style="
+                    --background: #428cff96;
+                    position: relative;
+                    left: 6%;
+                    font-size: 12px;
+                    top: -2%;
+                  "
+                  float-right
+                  ion-button
+                  class="btnNext"
+                  (click)="next(slides)"
+                  >{{ "news.next" | translate }}</ion-button
+                >
+              </div>
+            </ion-col>
+            <ion-col size="12">
+              <ion-text color="dark">
+                <h3 style="text-align: center; color: black">
+                  {{ "news.preview" | translate }}
+                </h3>
+              </ion-text>
+
+              <ion-card style="width: 85%; margin: auto">
+                <ion-card-header>
+                  <ion-card-subtitle
+                    style="text-align: center"
+                    *ngIf="deporte"
+                    >{{ "sport." + deporte | translate }}</ion-card-subtitle
+                  >
+                  <ion-card-title style="text-align: center">{{
+                    titulo1
+                  }}</ion-card-title>
+                  <ion-item>
+                    <ion-label>
+                      <ion-text color="black">
+                        <h1 style="font-size: 14px">
+                          {{ userService.User?.name }}
+                          {{ userService.User?.last_name }}
+                        </h1>
+                      </ion-text>
+                    </ion-label>
+                    <ion-text color="black">
+                      <h2 style="font-size: 14px">{{ fecha }}</h2>
+                    </ion-text>
+                  </ion-item>
+                </ion-card-header>
+                <ion-img
+                  *ngIf="imagenSelected"
+                  class="imageSelected"
+                  [src]="imagenSelected"
+                ></ion-img>
+                <!-- Video Principal -->
+                <div *ngIf="urlVideo" style="position: relative">
+                  <video
+                    controls="controls"
+                    preload="metadata"
+                    autoplay="autoplay"
+                    webkit-playsinline="webkit-playsinline"
+                    class="videoPlayer"
+                  >
+                    <source [src]="urlVideo | safeUrl" type="video/mp4" />
+                  </video>
+                </div>
+                <ion-card-content
+                  *ngFor="let parrafo of parrafos; let i = index"
+                >
+                  <div
+                    style="color: black; text-align: justify"
+                    [innerHTML]="parrafo.parrafo"
+                  ></div>
+                  <ion-img
+                    *ngIf="parrafo.image"
+                    class="imageArray"
+                    [src]="parrafo.image"
+                  ></ion-img>
+                  <div *ngIf="parrafo.video" style="position: relative">
+                    <video
+                      controls="controls"
+                      preload="metadata"
+                      autoplay="autoplay"
+                      webkit-playsinline="webkit-playsinline"
+                      class="videoPlayer"
+                    >
+                      <source
+                        [src]="parrafo.video | safeUrl"
+                        type="video/mp4"
+                      />
+                    </video>
                   </div>
-                </ion-col>
-                <ion-col size="12" tyle="text-align: center;">
-                  <ion-text  color="dark">
-                    <h3 style="text-align: center;color:black"><ion-button (click)="publicar()">{{ 'news.publish' | translate}}</ion-button></h3>
-                  </ion-text>
-                
-                  
-          <ion-card style="width: 45%;margin: auto;height: 82%;">
-            <ion-card-header>
-              <ion-card-subtitle style="text-align: center;" *ngIf="deporte">{{ 'sport.'+deporte| translate}}</ion-card-subtitle>
-              <ion-card-title style="text-align: center;">{{titulo1}}</ion-card-title>
-              <ion-item style="transform: scale(0.9);margin-bottom: -3%;">
-                <ion-label>
-                  <ion-text color="black">
-                    <h1 style="font-size:14px">{{userService.User?.name}} {{userService.User?.last_name}} </h1>
-                  </ion-text>
-                </ion-label>
-                <ion-text color="black">
-                  <h2 style="font-size:14px" >{{fecha}}</h2>
-                </ion-text>   
-              </ion-item>
-            </ion-card-header>
-            <ion-img *ngIf="imagenSelected"   class="imageMiniCard" [src]="imagenSelected"></ion-img>
-            <!-- Video Principal -->
-            <div *ngIf="urlVideo" style="position: relative">
-              <video
-                controls="controls"
-                preload="metadata"
-                autoplay="autoplay"
-                webkit-playsinline="webkit-playsinline"
-                class="videoPlayer"
-              >
-                <source [src]="urlVideo | safeUrl" type="video/mp4" />
-              </video>
-            </div> 
-          </ion-card>
-        </ion-col>
-        </ion-row>
+                </ion-card-content>
+              </ion-card>
+            </ion-col>
+          </ion-row>
         </ion-grid>
-          </ion-content>
-        </ion-slide>
-      </ion-slides>
-  </ion-content>
+      </ion-content>
+    </ion-slide>
+    <ion-slide>
+      <ion-content>
+        <ion-grid>
+          <ion-row>
+            <ion-col size="12">
+              <div style="margin-bottom: -2%">
+                <ion-button
+                  type="submit"
+                  style="
+                    --background: #428cff96;
+                    position: relative;
+                    right: 3%;
+                    font-size: 12px;
+                    top: -2%;
+                  "
+                  float-left
+                  ion-button
+                  class="btnPrev"
+                  (click)="prev(slides)"
+                  >{{ "news.prev" | translate }}</ion-button
+                >
+              </div>
+            </ion-col>
+            <ion-col size="12" tyle="text-align: center;">
+              <ion-text color="dark">
+                <h3 style="text-align: center; color: black">
+                  <ion-button (click)="publicar()">{{
+                    "news.publish" | translate
+                  }}</ion-button>
+                </h3>
+              </ion-text>
+
+              <ion-card style="width: 45%; margin: auto; height: 82%">
+                <ion-card-header>
+                  <ion-card-subtitle
+                    style="text-align: center"
+                    *ngIf="deporte"
+                    >{{ "sport." + deporte | translate }}</ion-card-subtitle
+                  >
+                  <ion-card-title style="text-align: center">{{
+                    titulo1
+                  }}</ion-card-title>
+                  <ion-item style="transform: scale(0.9); margin-bottom: -3%">
+                    <ion-label>
+                      <ion-text color="black">
+                        <h1 style="font-size: 14px">
+                          {{ userService.User?.name }}
+                          {{ userService.User?.last_name }}
+                        </h1>
+                      </ion-text>
+                    </ion-label>
+                    <ion-text color="black">
+                      <h2 style="font-size: 14px">{{ fecha }}</h2>
+                    </ion-text>
+                  </ion-item>
+                </ion-card-header>
+                <ion-img
+                  *ngIf="imagenSelected"
+                  class="imageMiniCard"
+                  [src]="imagenSelected"
+                ></ion-img>
+                <!-- Video Principal -->
+                <div *ngIf="urlVideo" style="position: relative">
+                  <video
+                    controls="controls"
+                    preload="metadata"
+                    autoplay="autoplay"
+                    webkit-playsinline="webkit-playsinline"
+                    class="videoPlayer"
+                  >
+                    <source [src]="urlVideo | safeUrl" type="video/mp4" />
+                  </video>
+                </div>
+              </ion-card>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-content>
+    </ion-slide>
+  </ion-slides>
+</ion-content>
 <!-- <form [formGroup]="profileForm">
   
   <label>
@@ -341,9 +538,3 @@
   </label> 
 
 </form> -->
-
-
-
-
-
-

@@ -236,6 +236,13 @@ export class UserService {
     });
   }
 
+  getUserById(id) {
+    return this.http.get(`${environment.URL_API}/user/id/${id}`, {
+      headers: new HttpHeaders({ "access-token": getToken() }),
+    });
+  }
+
+
   public goToProfile(username,from = null,link = null) {
     if (username != this.User.username) {
       

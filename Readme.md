@@ -10,7 +10,17 @@ mongod
 2. ssh-add ~/.ssh/id_rsa_sportyeah.pub
 3. ssh-add ~/.ssh/id_rsa_kecuki.pub
 
-## TAREAS 30-01-2020
+## TAREAS 03-02-2021
+
+1. Create component challenges.
+2. Integrate API challenges.
+3. Button create challenge.
+4. Modal create challenge.
+5. Modal create award.
+6. Modal challenge friends.
+7. Create if public or private.
+
+## TAREAS 30-01-2021
 
 -1- @davidvalor2 falta el banco de emojis en el chat.
 -2- @davidvalor2 botón de eliminar en las experiencias y premios sin estilo.
