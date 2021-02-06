@@ -4,26 +4,35 @@
     style="margin-top: 6px; margin-left: 7px"
   ></ion-icon>
 </div>
-<ion-slides
-  pager="true"
-  [options]="slideOpts"
-  
->
-  <ion-slide *ngFor="let img of userService.User.slider"  class="slide">
-   <img [src]="img" class="img" alt="">
-   <video *ngIf="img.indexOf('video') !== -1" 
-     controlslist="nodownload"  controls="controls" preload="metadata"  webkit-playsinline="webkit-playsinline" class="videoPlayer"
+<ion-slides pager="true" [options]="slideOpts">
+  <ion-slide *ngFor="let img of userService.User.slider" class="slide">
+    <img [src]="img" class="img" alt="" width="500px" height="300px"/>
+    <video
+      width="500"
+      height="300"
+      *ngIf="img.indexOf('video') !== -1"
+      controlslist="nodownload"
+      controls="controls"
+      preload="metadata"
+      webkit-playsinline="webkit-playsinline"
+      class="videoPlayer"
     >
-     <source [src]="img | safeUrl" type="video/mp4" />
-     <source [src]="img | safeUrl" type="video/ogg" />
-     <br>
+      <source [src]="img | safeUrl" type="video/mp4" />
+      <source [src]="img | safeUrl" type="video/ogg" />
+      <br />
     </video>
-    <iframe width="100%" height="100%" [src]="img | youtube" *ngIf="img.indexOf('youtube') !== -1 && img | youtube" > </iframe>
+    <iframe
+      width="500"
+      height="300"
+      [src]="img | youtube"
+      *ngIf="img.indexOf('youtube') !== -1 && img | youtube"
+    >
+    </iframe>
   </ion-slide>
-  
-  <ion-slide *ngIf="userService.User.slider.length ===0">
-   <img
-     src="https://trello-attachments.s3.amazonaws.com/5ff9d47572424648014190dc/700x422/29f3e5ed0cea0a6b7439bfb986a090cd/original.jpg"
+
+  <ion-slide *ngIf="userService.User.slider.length === 0">
+    <img
+      src="https://trello-attachments.s3.amazonaws.com/5ff9d47572424648014190dc/700x422/29f3e5ed0cea0a6b7439bfb986a090cd/original.jpg"
     />
   </ion-slide>
 </ion-slides>
