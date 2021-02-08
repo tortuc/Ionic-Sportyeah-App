@@ -115,8 +115,11 @@
             </h1> -->
             <!-- <p>{{'sponsorText' | translate}}</p> -->
             <ion-grid>
-              <ion-row style="justify-content: center;">
-                <ion-col size="2" *ngFor="let sponsor of user?.sponsors; let i = index">
+              <ion-row style="justify-content: center">
+                <ion-col
+                  size="2"
+                  *ngFor="let sponsor of user?.sponsors; let i = index"
+                >
                   <!-- <ion-icon
                     name="trash-outline"
                     style="cursor: pointer"
@@ -188,20 +191,7 @@
         <!-- PROFILE SEGMENT -->
 
         <div *ngIf="profile">
-          <ion-card ngClass.xs="m-p-0" class="post-card mt5">
-            <ion-grid style="padding: 0" class="ion-justify-content-center">
-              <ion-row class="ion-justify-content-center">
-                <ion-col
-                  ngClass.xs="m-p-0"
-                  size-md="12"
-                  size-sm="12"
-                  size-xs="12"
-                >
-                  <app-carrousel [slider]="slider"></app-carrousel>
-                </ion-col>
-              </ion-row>
-            </ion-grid>
-          </ion-card>
+          <app-carrousel [slider]="slider"></app-carrousel>
 
           <app-structure
             [id]="user._id"
