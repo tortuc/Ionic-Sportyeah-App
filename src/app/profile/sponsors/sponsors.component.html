@@ -26,21 +26,32 @@
         </ion-item>
       </ion-list>
     </form>
-    <ion-button
-      (click)="save()"
-      [disabled]="form.status !== 'VALID'"
-      shape="round"
-      *ngIf="!editing"
-    >
-      {{ "new_event.button" | translate }}
-    </ion-button>
-    <ion-button
-      (click)="save()"
-      [disabled]="form.status !== 'VALID'"
-      shape="round"
-      *ngIf="editing"
-    >
-      {{ "edit" | translate }}
-    </ion-button>
+    <div style="margin-top:30px;">
+      <ion-button
+        (click)="save()"
+        [disabled]="form.status !== 'VALID'"
+        shape="round"
+        *ngIf="!editing"
+      >
+        {{ "new_event.button" | translate }}
+      </ion-button>
+      <ion-button
+        (click)="save()"
+        [disabled]="form.status !== 'VALID'"
+        shape="round"
+        *ngIf="editing"
+      >
+        {{ "edit" | translate }}
+      </ion-button>
+
+      <ion-button
+        (click)="close()"
+        shape="round"
+        color="lighted"
+        style="color: black"
+      >
+        {{ "close" | translate }}
+      </ion-button>
+    </div>
   </div>
 </ion-content>

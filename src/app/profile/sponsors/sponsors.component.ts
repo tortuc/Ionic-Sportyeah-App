@@ -26,8 +26,8 @@ export class SponsorsComponent implements OnInit {
   ngOnInit() {
     if (this.data) {
       this.editing = true;
-      this.form.controls.url.setValue(this.data.url)
-      this.photo = this.data.photo
+      this.form.controls.url.setValue(this.data.url);
+      this.photo = this.data.photo;
     }
   }
 
@@ -39,5 +39,9 @@ export class SponsorsComponent implements OnInit {
   save() {
     this.form.value.photo = this.photo;
     this.mc.dismiss(this.form.value);
+  }
+
+  close(){
+    this.mc.dismiss();
   }
 }

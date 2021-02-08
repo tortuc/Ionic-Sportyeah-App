@@ -115,8 +115,8 @@
             </h1> -->
             <!-- <p>{{'sponsorText' | translate}}</p> -->
             <ion-grid>
-              <ion-row>
-                <ion-col *ngFor="let sponsor of user?.sponsors; let i = index">
+              <ion-row style="justify-content: center;">
+                <ion-col size="2" *ngFor="let sponsor of user?.sponsors; let i = index">
                   <!-- <ion-icon
                     name="trash-outline"
                     style="cursor: pointer"
@@ -129,7 +129,7 @@
                     class="botonEditar"
                     (click)="editSponsor(i)"
                   ></ion-icon> -->
-                  <a [href]="sponsor.url" target="_blank">
+                  <a [href]="'//'+sponsor.url" target="_blank">
                     <img
                       [src]="sponsor.photo"
                       style="
@@ -173,8 +173,14 @@
                 >{{'labels-profile-segment.posts' | translate}}</ion-label
               >
             </ion-segment-button>
-            <ion-segment-button *ngIf="user?.profile_user == 'press'" value="news" style="background-color:white;">
-              <ion-label >{{'labels-profile-segment.articles' | translate}}</ion-label>
+            <ion-segment-button
+              *ngIf="user?.profile_user == 'press'"
+              value="news"
+              style="background-color: white"
+            >
+              <ion-label
+                >{{'labels-profile-segment.articles' | translate}}</ion-label
+              >
             </ion-segment-button>
           </ion-segment>
         </ion-card>
@@ -299,22 +305,45 @@
         <div *ngIf="newsB">
           <ion-grid ngClass.xs="m-p-0">
             <ion-row *ngFor="let item of news" class="post-card">
-              <ion-card style="width: 100%;margin: auto;height: 100%;margin-bottom:3%;cursor: pointer;" (click)="OpenNews(item?._id)">
+              <ion-card
+                style="
+                  width: 100%;
+                  margin: auto;
+                  height: 100%;
+                  margin-bottom: 3%;
+                  cursor: pointer;
+                "
+                (click)="OpenNews(item?._id)"
+              >
                 <ion-card-header>
-                  <ion-card-subtitle style="text-align: center;" *ngIf="item?.sport">{{ 'sport.'+item?.sport| translate}}</ion-card-subtitle>
-                  <ion-card-title style="text-align: center;">{{item?.headline}}</ion-card-title>
-                  <ion-item style="transform: scale(0.9);margin-bottom: -3%;">
+                  <ion-card-subtitle
+                    style="text-align: center"
+                    *ngIf="item?.sport"
+                    >{{ 'sport.'+item?.sport| translate}}</ion-card-subtitle
+                  >
+                  <ion-card-title style="text-align: center"
+                    >{{item?.headline}}</ion-card-title
+                  >
+                  <ion-item style="transform: scale(0.9); margin-bottom: -3%">
                     <ion-label>
                       <ion-text color="black">
-                        <h1 style="font-size:14px">{{item?.user.name}} {{item?.user.last_name}} </h1>
+                        <h1 style="font-size: 14px">
+                          {{item?.user.name}} {{item?.user.last_name}}
+                        </h1>
                       </ion-text>
                     </ion-label>
                     <ion-text color="black">
-                      <h2 style="font-size:14px" >{{item?.date | customDisplayDate}}</h2>
-                    </ion-text>   
+                      <h2 style="font-size: 14px">
+                        {{item?.date | customDisplayDate}}
+                      </h2>
+                    </ion-text>
                   </ion-item>
                 </ion-card-header>
-                <ion-img *ngIf="item?.principalImage"   class="imageMiniCard" [src]="item?.principalImage"></ion-img>
+                <ion-img
+                  *ngIf="item?.principalImage"
+                  class="imageMiniCard"
+                  [src]="item?.principalImage"
+                ></ion-img>
                 <div *ngIf="item?.principalVideo" style="position: relative">
                   <video
                     controls="controls"
@@ -323,7 +352,10 @@
                     webkit-playsinline="webkit-playsinline"
                     class="videoPlayer"
                   >
-                    <source [src]="item?.principalVideo | safeUrl" type="video/mp4" />
+                    <source
+                      [src]="item?.principalVideo | safeUrl"
+                      type="video/mp4"
+                    />
                   </video>
                 </div>
               </ion-card>

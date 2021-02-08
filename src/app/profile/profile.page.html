@@ -139,22 +139,22 @@
           <ion-card-content> </ion-card-content>
 
           <div>
-            <h1 class="text-center">
-              {{'Sponsors' | translate}}
+            <h6 class="text-center">
+              {{'sponsorDescription' | translate}}
               <span>
                 <ion-button style="margin-top: -13px" (click)="createSponsor()">
                   <ion-icon name="add-circle-outline"> </ion-icon>
                 </ion-button>
               </span>
-            </h1>
+            </h6>
             <ion-grid class="text-center">
-              <ion-row>
+              <ion-row style="justify-content: center;">
                 <ion-col
+                  size="2"
                   *ngFor="let sponsor of userService.User?.sponsors; let i = index"
                 >
-                  <a [href]="sponsor.url" target="_blank">
-                    <img
-                      [src]="sponsor.photo"
+                  <a [href]="'//'+sponsor.url" target="_blank">
+                    <img [src]="sponsor.photo"
                       style="
                         height: 50px;
                         width: 100px;
