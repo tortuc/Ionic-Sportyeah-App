@@ -97,7 +97,7 @@ export class NewPostPage implements OnInit {
       .toPromise()
       .then((url) => {
         loading.dismiss();
-        if(this.post){
+        if(!this.news ){
           this.form.controls.image.setValue(url);
         }else if(this.news){
           this.formNews.controls.image.setValue(url);
@@ -109,7 +109,7 @@ export class NewPostPage implements OnInit {
   }
 
   removeImg() {
-    if(this.post){
+    if(!this.news ){
       this.form.controls.image.setValue("");
     }else if(this.news){
       this.formNews.controls.image.setValue("");
@@ -117,7 +117,7 @@ export class NewPostPage implements OnInit {
   }
 
   newValue($event) {
-    if(this.post){
+    if(!this.news ){
       this.form.controls.message.setValue($event);
     }else if(this.news){
       this.formNews.controls.message.setValue($event);
@@ -126,7 +126,7 @@ export class NewPostPage implements OnInit {
   }
 
   async save() {        ///AQUI UN IF
-    if(this.post){
+    if(!this.news){
       if (this.videoFile == null) {
       let loading = await this.loadingCtrl.create({
         message: this.translate.instant("loading"),
@@ -141,7 +141,7 @@ export class NewPostPage implements OnInit {
         .toPromise()
         .then((post) => {
           loading.dismiss();
-
+          console.log(post)
           this.modalController.dismiss({
             dismissed: true,
             create: true,
@@ -180,7 +180,7 @@ export class NewPostPage implements OnInit {
         .toPromise()
         .then((post) => {
           loading.dismiss();
-
+          console.log(post)
           this.modalController.dismiss({
             dismissed: true,
             create: true,
@@ -219,7 +219,7 @@ export class NewPostPage implements OnInit {
 
   addEmoji(ev) {
     this.mentions.usersMetions.forEach((element) => {
-      if(this.post){
+      if(!this.news ){
         this.form.controls.message.setValue(
           this.form.controls.message.value.replaceAll(
             element.url,
@@ -241,7 +241,7 @@ export class NewPostPage implements OnInit {
       : null;
 
     this.lastCaretPosition = this.mentions.pos;
-    if(this.post){
+    if(!this.news ){
       const newText =
       this.form.controls.message.value
         .replace(/&nbsp;/g, " ")

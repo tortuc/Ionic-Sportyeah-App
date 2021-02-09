@@ -115,11 +115,18 @@ const routes: Routes = [
       ),
   },
   {
-    path: "**", // Por favor no poner nada por debajo de esta ruta de lo contrario no agarrara
-    loadChildren: () =>
-      import("./not-found/not-found.module").then((m) => m.NotFoundPageModule),
+    path: 'ranking',
+    loadChildren: () => import('./ranking/ranking.module').then( m => m.RankingPageModule),
+    canActivate:[AuthGuardService]
   },
-  // Toda ruta debajo de este lugar no va a ser tomada en cuenta
+  {
+    path:"**",
+    loadChildren: () => import('./not-found/not-found.module').then( m => m.NotFoundPageModule)
+  
+  },
+  
+
+ 
 ];
 
 @NgModule({

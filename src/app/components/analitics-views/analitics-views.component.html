@@ -15,7 +15,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [scrollEvents]="true" (ionScrollEnd)="logScrolling($event)"  >
+<ion-content class="bg-gradient-person" [scrollEvents]="true" (ionScrollEnd)="logScrolling($event)"  >
   <ion-card>
     <ion-card-header>
       <ion-row>
@@ -268,23 +268,23 @@
           <ion-col size-xs="12"  size-lg="7"  >
             
            
-            <div class="divChart" *ngIf="analyticsToShow == 'all'" >
+            <div style="margin-left: auto;margin-right: auto;" class="divChart" *ngIf="analyticsToShow == 'all'" >
               <canvas  id="polarArea" width="400" height="400"></canvas>
             </div>
             
-            <div class="divChart" *ngIf="analyticsToShow == 'hours' && noData ">
+            <div style="margin-left: auto;margin-right: auto;" class="divChart" *ngIf="analyticsToShow == 'hours' && noData ">
               <canvas id="linesHour" width="400" height="400"></canvas>
             </div>
             
-            <div class="divChart" *ngIf="analyticsToShow == 'weeks' && noData ">
+            <div style="margin-left: auto;margin-right: auto;" class="divChart" *ngIf="analyticsToShow == 'weeks' && noData ">
               <canvas id="lines" width="400" height="400"></canvas>
             </div>
 
-            <div class="divChart" *ngIf="analyticsToShow == 'months' && noData ">
+            <div style="margin-left: auto;margin-right: auto;" class="divChart" *ngIf="analyticsToShow == 'months' && noData ">
               <canvas id="linesMonth" width="400" height="400"></canvas>
             </div>
 
-            <div class="divChart" *ngIf="analyticsToShow == 'years' && noData " >
+            <div style="margin-left: auto;margin-right: auto;" class="divChart" *ngIf="analyticsToShow == 'years' && noData " >
               <canvas  id="linesYear" width="400" height="400"></canvas>
             </div>
            
@@ -304,7 +304,7 @@
 
 <!-- Post Inicio -->
 
-<ion-grid *ngIf="option == 'post' && todolosPost.length > 0 ">
+<ion-grid  *ngIf="option == 'post' && todolosPost.length > 0 ">
   <ion-row>
     <!-- Columna de las reacciones -->
     <ion-col size-lg="4"  size-xs="12" *ngIf="interaccionActual == ''" >
@@ -344,10 +344,10 @@
     </ion-col>
 
     <!-- Columna si interaccionActual es likes -->
-    <ion-col size="12" *ngIf="interaccionActual == 'likes'" >
+    <ion-col size="12" style="margin-top: 5%;" *ngIf="interaccionActual == 'likes'" >
       <div style="background: #b0cdff73;"> 
         <div style="background: #3880ff73;" >
-          <ion-icon style="font-size: 36px;color: #ff0000bf; cursor: pointer;" name="close" (click)="sinInteraccionActual()"></ion-icon>
+          <ion-icon  class="xClose" name="close" (click)="sinInteraccionActual()"></ion-icon>
           <ion-img class="iconActual"  src="https://img.icons8.com/bubbles/344/facebook-like.png" alt="Reaction icon"></ion-img>
         </div>
         <div>
@@ -417,10 +417,10 @@
     </ion-col>
 
 <!-- Columna si interaccionActual es commnets -->
-<ion-col size="12" *ngIf="interaccionActual == 'comments'" >
+<ion-col size="12" style="margin-top: 5%;" *ngIf="interaccionActual == 'comments'" >
   <div  style="background: #f3cccf69;">
     <div style="background: #f4989e69;">
-      <ion-icon style="font-size: 36px;color: #ff0000bf; cursor: pointer;" name="close" (click)="sinInteraccionActual()"></ion-icon>
+      <ion-icon  class="xClose" name="close" (click)="sinInteraccionActual()"></ion-icon>
       <ion-img class="iconActual"  src="https://img.icons8.com/bubbles/344/comments.png" alt="Reaction icon"></ion-img>
     </div>
     <div>
@@ -492,11 +492,11 @@
     </ion-col>
 
     <!-- Columna si interaccionActual es commnets -->
-    <ion-col size="12" *ngIf="interaccionActual == 'shareds'">
+    <ion-col size="12" style="margin-top: 5%;" *ngIf="interaccionActual == 'shareds'">
       <div style="background: #92c9aa85;">
         <div style="background: #67ba8c85;">
-          <ion-icon style="font-size: 36px;color: #ff0000bf; cursor: pointer;" name="close" (click)="sinInteraccionActual()"></ion-icon>
-          <ion-img class="iconsPost"  src="https://img.icons8.com/bubbles/452/undo.png" alt="Reaction icon"></ion-img>
+          <ion-icon  name="close" class="xClose" (click)="sinInteraccionActual()"></ion-icon>
+          <ion-img class="iconsPost" style="margin-top: -5%;width: 20%;" src="https://img.icons8.com/bubbles/452/undo.png" alt="shared"></ion-img>
         </div>
         <div>
            <!-- Si no ha sido compartido -->

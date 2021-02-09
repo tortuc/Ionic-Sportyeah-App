@@ -141,4 +141,11 @@ getPostUser(id){
   )
 }
 
+getAllPost(){
+  return this.http.get(`${environment.URL_API}/post/all`,
+  {
+    headers: new HttpHeaders({"access-token":getToken()})
+  })
+}
+
 }
