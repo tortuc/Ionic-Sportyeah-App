@@ -28,7 +28,7 @@
   }
 
   .calendar {
-    font-size: 38px;
+    font-size: 28px;
   }
 
   .days{
@@ -116,6 +116,11 @@ height: 400px;
       position:relative;
       left: 13%;
       top:22%;
+
+      .xClose{
+        margin-left: 80%;
+        font-size: 20px;
+      }
   }
   }
 
@@ -164,10 +169,19 @@ height: 400px;
   width: 20%;
   margin-right: auto;
   margin-left: auto;
-  margin-top: -7%;
+  margin-top: -5%;
 }
 
 .semiBlack{
   color: #000000;
 }
 
+.xClose{
+  float:right;
+text-align: right;
+  /* margin-left: 90%; */
+  font-size: 36px;
+  color: #ff0000bf; 
+  cursor: pointer;
+
+}

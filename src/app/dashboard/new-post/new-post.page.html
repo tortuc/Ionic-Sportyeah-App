@@ -28,9 +28,9 @@
         </div>
       </ion-col>
       <ion-col size="12">
-        <form [formGroup]="post?form:formNews">
+        <form [formGroup]="news?formNews:form">
           <span
-            *ngIf="post?form.controls.message.value == '':formNews.controls.message.value == ''"
+            *ngIf="news?formNews.controls.message.value == '':form.controls.message.value == ''"
             class="fake-placeholder"
             >{{'dashboard.new_post_placeholder' | translate}}</span
           >
@@ -64,7 +64,7 @@
 
           <ion-avatar
             style="width: 150px; height: 150px; position: relative"
-            *ngIf="post?form.controls.image.value != '':formNews.controls.image.value != ''"
+            *ngIf="news?formNews.controls.image.value != '':form.controls.image.value != ''"
           >
             <ion-icon
               (click)="removeImg()"
@@ -75,13 +75,13 @@
 
             <ion-img
               style="border-radius: 5px !important"
-              [src]="post?form.controls.image.value:formNews.controls.image.value"
+              [src]="news?formNews.controls.image.value:form.controls.image.value"
             >
             </ion-img>
           </ion-avatar>
           <iframe
-            *ngIf="post?form.controls.message.value:formNews.controls.message.value | youtube"
-            [src]="post?form.controls.message.value:formNews.controls.message.value | youtube"
+            *ngIf="news?(formNews.controls.message.value | youtube):(form.controls.message.value | youtube)"
+            [src]="news?(formNews.controls.message.value | youtube):(form.controls.message.value | youtube)"
             frameborder="0"
           ></iframe>
         </form>
@@ -142,7 +142,7 @@
         </ion-button>
 
         <ion-button
-          [disabled]="post?form.invalid && videoFile == null:formNews.invalid && videoFile == null"
+          [disabled]="news?formNews.invalid && videoFile == null:form.invalid && videoFile == null"
           (click)="save()"
         >
           {{'new_post.btn' | translate}}

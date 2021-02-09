@@ -80,10 +80,17 @@ const routes: Routes = [
     canActivate:[AuthGuardService]
   },
   {
+    path: 'ranking',
+    loadChildren: () => import('./ranking/ranking.module').then( m => m.RankingPageModule),
+    canActivate:[AuthGuardService]
+  },
+  {
     path:"**",
     loadChildren: () => import('./not-found/not-found.module').then( m => m.NotFoundPageModule)
   
   },
+  
+
  
 ];
 
