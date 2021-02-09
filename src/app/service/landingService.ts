@@ -113,6 +113,12 @@ export class LandingService {
     this.ls = newLanding;
   }
 
+  getIcons() {
+    return this.http.get(
+      `${environment.URL_API}/${this.route}/ionicIcons`
+    );
+  }
+
   getByUser(username: string) {
     return this.http.get(`${environment.URL_API}/${this.route}/${username}`);
   }
