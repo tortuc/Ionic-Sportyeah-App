@@ -161,7 +161,7 @@
                   size="2"
                   *ngFor="let sponsor of userService.User?.sponsors; let i = index"
                 >
-                  <a [href]="'//'+sponsor.url" target="_blank">
+                  <a [href]="'//'+sponsor.url" target="_blank" *ngIf="sponsor.url">
                     <img
                       [src]="sponsor.photo"
                       style="

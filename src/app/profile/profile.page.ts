@@ -242,22 +242,24 @@ export class ProfilePage implements OnInit {
     });
     await modal.present();
     const { data } = await modal.onWillDismiss();
-    console.log("SPONSORS DATA FOR CREATE");
-    console.log(data);
-    const user = this.userService.User;
-    user.sponsors[i] = data;
-    this.userService
-      .update(user)
-      .pipe(take(1))
-      .subscribe((u: any) => {
-        console.log(u);
-        this.userService
-          .getUserByUsername(this.userService.User.username)
-          .pipe(take(1))
-          .subscribe((u: any) => {
-            console.log(u);
-            this.userService.User = u.user;
-          });
-      });
+    if (data) {
+      console.log("SPONSORS DATA FOR CREATE");
+      console.log(data);
+      const user = this.userService.User;
+      user.sponsors[i] = data;
+      this.userService
+        .update(user)
+        .pipe(take(1))
+        .subscribe((u: any) => {
+          console.log(u);
+          this.userService
+            .getUserByUsername(this.userService.User.username)
+            .pipe(take(1))
+            .subscribe((u: any) => {
+              console.log(u);
+              this.userService.User = u.user;
+            });
+        });
+    }
   }
 }

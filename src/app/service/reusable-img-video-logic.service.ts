@@ -73,8 +73,10 @@ export class ImgVideoUpload {
         console.log(modal);
         await modal.present();
         const { data } = await modal.onWillDismiss();
-        console.log(data);
-        this.content.next(data);
+        if (data) {
+          console.log(data);
+          this.content.next(data);
+        }
       });
   }
 
@@ -176,10 +178,10 @@ export class ImgVideoUpload {
     let file = event.target.files[0];
     if (file.type.split("/")[0] == "video") {
       formData.append("video", file);
-      this.uploadVideo(formData,loading);
+      this.uploadVideo(formData, loading);
     } else if (file.type.split("/")[0] == "image") {
       formData.append("image", file);
-      this.uploadImage(formData,loading);
+      this.uploadImage(formData, loading);
     } else {
       // handle
     }
@@ -191,17 +193,16 @@ export class ImgVideoUpload {
    */
 
   uploadVideo(formData: FormData, loading?) {
-
     this.imageAPI
       .uploadVideo(formData)
       .toPromise()
       .then((url) => {
-        if(loading) loading.dismiss()
+        if (loading) loading.dismiss();
         this.content.next(url);
       })
       .catch((err) => {
         // handle
-        if(loading) loading.dismiss()
+        if (loading) loading.dismiss();
         console.log(err);
       });
   }
@@ -216,11 +217,11 @@ export class ImgVideoUpload {
       .toPromise()
       .then((url) => {
         this.content.next(url);
-        if(loading) loading.dismiss()
+        if (loading) loading.dismiss();
       })
       .catch((err) => {
         // handle err
-        if(loading) loading.dismiss()
+        if (loading) loading.dismiss();
       });
   }
 
