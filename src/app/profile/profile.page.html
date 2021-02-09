@@ -228,7 +228,8 @@
                userService.User.profile_user === 'association' ||
                userService.User.profile_user === 'federation' ||
                userService.User.profile_user === 'representative' ||
-               userService.User.profile_user === 'foundation'
+               userService.User.profile_user === 'foundation' || 
+               userService.User.profile_user === 'club'
              "
           ></app-structure>
 
@@ -240,6 +241,7 @@
               userService.User.profile_user !== 'foundation' &&
               userService.User.profile_user !== 'federation' &&
               userService.User.profile_user !== 'amateur' &&
+              userService.User.profile_user !== 'club' &&
               userService.User.profile_user !== 'association'
             "
           >

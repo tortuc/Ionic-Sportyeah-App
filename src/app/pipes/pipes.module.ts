@@ -1,22 +1,20 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { LinksPipe } from './links.pipe';
-import { IconsPipe } from './icons.pipe';
-import { LikedPipe } from './liked.pipe';
-import { YoutubePipe } from './youtube.pipe';
-import { DiffTimePipe } from './diff-time.pipe';
-import { ScrollChatPipe } from './scroll-chat.pipe';
-import { MentionsPipe } from './mentions.pipe';
-import { SafeUrlPipe } from './safe-url.pipe';
-import { CustomDisplayDatePipe } from './custom-display-date.pipe';
-import { CommentedPipe } from './commented.pipe';
-import { SharedPipe } from './shared.pipe';
-import { CustomCurrencyPipe } from './custom-currency.pipe';
+import { NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { LinksPipe } from "./links.pipe";
+import { IconsPipe } from "./icons.pipe";
+import { LikedPipe } from "./liked.pipe";
+import { YoutubePipe } from "./youtube.pipe";
+import { DiffTimePipe } from "./diff-time.pipe";
+import { ScrollChatPipe } from "./scroll-chat.pipe";
+import { MentionsPipe } from "./mentions.pipe";
+import { SafeUrlPipe } from "./safe-url.pipe";
+import { CustomDisplayDatePipe } from "./custom-display-date.pipe";
+import { CommentedPipe } from "./commented.pipe";
+import { SharedPipe } from "./shared.pipe";
+import { CustomCurrencyPipe } from "./custom-currency.pipe";
 
 @NgModule({
-  imports: [
-    CommonModule
-  ],
+  imports: [CommonModule],
   declarations: [
     LinksPipe,
     LikedPipe,
@@ -30,9 +28,9 @@ import { CustomCurrencyPipe } from './custom-currency.pipe';
     CustomDisplayDatePipe,
     CommentedPipe,
     SharedPipe,
-    CustomCurrencyPipe
+    CustomCurrencyPipe,
   ],
-  exports:[
+  exports: [
     LinksPipe,
     LikedPipe,
     IconsPipe,
@@ -44,7 +42,7 @@ import { CustomCurrencyPipe } from './custom-currency.pipe';
     CustomDisplayDatePipe,
     CommentedPipe,
     SharedPipe,
-    CustomCurrencyPipe
-  ]
+    CustomCurrencyPipe,
+  ],
 })
-export class PipesModule { }
+export class PipesModule {}

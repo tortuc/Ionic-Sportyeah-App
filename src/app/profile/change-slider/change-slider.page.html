@@ -25,7 +25,7 @@
       </div>
       <ion-row>
         <ng-container *ngFor="let img of sliderLogic.content">
-          <ion-col size="4">
+          <ion-col size-sm="12" size-xs="12" size-md="4">
             <div
               *ngIf="img.indexOf('youtube') === -1 && img.indexOf('video') === -1"
             >
@@ -34,7 +34,7 @@
                 class="trashIcon"
                 (click)="sliderLogic.delete(img)"
               ></ion-icon>
-              <img [src]="img" alt="" />
+              <img [src]="img" width="300px" height="200px" alt="" />
             </div>
             <div *ngIf="img.indexOf('video') !== -1">
               <ion-icon
@@ -44,6 +44,8 @@
               ></ion-icon>
 
               <video
+                width="300px"
+                height="200px"
                 controlslist="nodownload"
                 controls="controls"
                 preload="metadata"
@@ -64,7 +66,7 @@
                 class="trashIconVideo"
                 (click)="sliderLogic.delete(img)"
               ></ion-icon>
-              <iframe width="100%" height="100%" [src]="img | youtube">
+              <iframe width="300px" height="200px" [src]="img | youtube">
               </iframe>
             </div>
           </ion-col>
