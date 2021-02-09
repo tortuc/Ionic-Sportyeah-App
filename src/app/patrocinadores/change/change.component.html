@@ -15,8 +15,12 @@
       <div *ngIf="icons === null">
         <ion-spinner name="lines"></ion-spinner>
       </div>
-      <a *ngFor="let icon of icons" style="cursor: pointer;" >
-        <ion-icon [name]="icon" style="font-size: 32px" (click)="saveIcon(icon)"></ion-icon
+      <a *ngFor="let icon of icons" style="cursor: pointer">
+        <ion-icon
+          [name]="icon"
+          style="font-size: 32px"
+          (click)="saveIcon(icon)"
+        ></ion-icon
       ></a>
     </div>
   </form>
