@@ -1,5 +1,22 @@
-<ion-content *ngIf="data">
+<ion-content *ngIf="data" class="text-center">
   <div *ngFor="let photo of data">
-    <ion-img [src]="photo.webformatURL" (click)="send(photo)" style="cursor: pointer;"></ion-img>
+    <ion-img
+      [src]="photo.webformatURL"
+      (click)="send(photo)"
+      style="cursor: pointer"
+    ></ion-img>
   </div>
+  <ion-button
+    color="light"
+    style="
+      position: absolute;
+      z-index: 9;
+      top: 5px;
+      margin-right: auto;
+      margin-left: auto;
+    "
+    (click)="close()"
+  >
+    Cerrar
+  </ion-button>
 </ion-content>

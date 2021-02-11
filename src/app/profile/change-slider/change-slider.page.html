@@ -25,28 +25,35 @@
       </div>
       <ion-row>
         <ng-container *ngFor="let img of sliderLogic.content">
-          <ion-col size="4">
+          <ion-col
+            size-sm="12"
+            size-xs="12"
+            size-md="6"
+            size-lg="6"
+            size-xl="4"
+          >
             <div
               *ngIf="img.indexOf('youtube') === -1 && img.indexOf('video') === -1"
             >
               <ion-icon
-                name="close-outline"
-                class="trashIcon"
+                name="trash-outline"
+                class="trashIconVideo"
                 (click)="sliderLogic.delete(img)"
               ></ion-icon>
+              <br />
               <img [src]="img" width="300px" height="200px" alt="" />
             </div>
             <div *ngIf="img.indexOf('video') !== -1">
               <ion-icon
-                name="close-outline"
+                name="trash-outline"
                 class="trashIconVideo"
                 (click)="sliderLogic.delete(img)"
               ></ion-icon>
+              <br />
 
               <video
-                width="300px"
-                height="200px"
                 controlslist="nodownload"
+                style="width: 300px !important; height: 200px !important"
                 controls="controls"
                 preload="metadata"
                 webkit-playsinline="webkit-playsinline"
@@ -57,16 +64,17 @@
                 <br />
               </video>
             </div>
-            <div
-              *ngIf="img.indexOf('youtube') !== -1 && img | youtube"
-              class="card"
-            >
+            <div *ngIf="img.indexOf('youtube') !== -1 && img | youtube">
               <ion-icon
-                name="close-outline"
+                name="trash-outline"
                 class="trashIconVideo"
                 (click)="sliderLogic.delete(img)"
               ></ion-icon>
-              <iframe width="300px" height="200px" [src]="img | youtube">
+              <br />
+              <iframe
+                style="width: 300px !important; height: 200px !important"
+                [src]="img | youtube"
+              >
               </iframe>
             </div>
           </ion-col>
@@ -74,5 +82,7 @@
       </ion-row>
     </ion-card-content>
   </ion-card>
-  <ion-fab-button  color="secondary" (click)="addContent()" class="new"><ion-icon name="add"></ion-icon></ion-fab-button>
+  <ion-fab-button color="secondary" (click)="addContent()" class="new"
+    ><ion-icon name="add"></ion-icon
+  ></ion-fab-button>
 </ion-content>

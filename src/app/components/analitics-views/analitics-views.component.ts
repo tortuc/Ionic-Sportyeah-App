@@ -75,7 +75,7 @@ export class AnaliticsViewsComponent implements OnInit {
       })
     })
   }
- //eliminar////////////////////////////////////////////////////////////////////
+//Datos para los post,en seccion de post
 todolosPost = [];
 likes = [];
 comments = [];
@@ -163,7 +163,7 @@ this.sortable.sort(function(b, a) {
      } 
    }
   ngOnInit() {
-     //eliminar////////////////////////////////////////////////////////////////////
+     //obtiene todos los post del usuario
      this.postService.getPostUser(this.userService.User._id).subscribe((response:any)=>{
        this.todolosPost = response
        
@@ -193,10 +193,6 @@ this.sortable.sort(function(b, a) {
       this.shareds.sort(function(b, a) {
         return a.shareds.length - b.shareds.length ;
     });
-      console.log(this.likes)
-      console.log(this.comments)
-      console.log(this.shareds)
-      console.log(response)
 
      })
 

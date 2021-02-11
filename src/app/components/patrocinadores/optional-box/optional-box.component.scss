@@ -10,20 +10,21 @@
   font-size: 1rem;
   font-weight: 400;
   font-style: italic;
-  font-family: "Droid Serif", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-family: "Droid Serif", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   margin-bottom: 2rem;
 }
-.icons{
-  font-size:60px;
-  background-color: var(--ion-color-primary) !important;
+.icons {
+  font-size: 60px;
   border-radius: 60%;
+  background-color:#6c757d;
   padding: 20px;
-  color:white;
+  color: white;
 }
 .text-muted {
   color: #6c757d !important;
 }
-.my-3{
+.my-3 {
   font-weight: bold;
 }
-

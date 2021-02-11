@@ -46,7 +46,6 @@ export class PostPage implements OnInit {
     this.postService.getPost(id).toPromise()
     .then((post)=>{
       this.item = post
-      console.log(this.item)
     })
     .catch((err)=>{
       // handle err

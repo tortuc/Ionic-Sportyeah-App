@@ -1,26 +1,32 @@
-<div class="text-center" style="padding: 20px;">
-<form [formGroup]="form">
-  <ion-item>
-    <ion-label position="stacked"
-     style="font-weight: bold;" 
-    >{{landingService.editing | uppercase}}</ion-label>
-    <ion-textarea type="text" 
-      [placeholder]="'enterText' | translate"
-      style="background: transparent;"
-      formControlName="a"></ion-textarea>
-  </ion-item>
-  <div *ngIf="galeriaIconos" class="text-center"
-    style="margin-top: 10px;"   
-  >
-    <a 
-      href="https://ionicons.com/"
-      target="_blank" 
-    > {{'MoreIcons' | translate}}</a>
-  </div>
-  <ion-button style="margin-top: 20px;"
-    (click)="save(form.value.a)"   
-  >
-    {{'profile_edit.btn' | translate}}
-  </ion-button>
-</form>
-</div>
+<ion-content class="text-center" style="padding: 20px">
+  <form [formGroup]="form">
+    <ion-item *ngIf="!galeriaIconos">
+      <ion-label position="stacked" style="font-weight: bold">{{
+        'landing.'+landingService.editing | translate
+      }}</ion-label>
+      <ion-textarea
+        type="text"
+        [placeholder]="'enterText' | translate"
+        style="background: transparent"
+        formControlName="a"
+      ></ion-textarea>
+    </ion-item>
+    <div *ngIf="galeriaIconos" class="text-center" style="margin-top: 10px">
+      <div *ngIf="icons === null">
+        <ion-spinner name="lines"></ion-spinner>
+      </div>
+      <a *ngFor="let icon of icons" style="cursor: pointer">
+        <ion-icon
+          [name]="icon"
+          style="font-size: 32px"
+          (click)="saveIcon(icon)"
+        ></ion-icon
+      ></a>
+    </div>
+    <div>
+      <ion-button color="primary" (click)="save(form.value.a)">{{
+        "save" | translate
+      }}</ion-button>
+    </div>
+  </form>
+</ion-content>

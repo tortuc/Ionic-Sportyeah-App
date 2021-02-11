@@ -23,38 +23,16 @@
     class="profile-name date"
     >editado el {{ post.edited | customDisplayDate }}</span
   >
-  <span
-    (click)="goToPost(post._id)"
-    class="profile-name date"
-    style="width: 50%"
-  >
+  <span (click)="goToPost(post._id)" class="profile-name date">
     <!-- SPONSORS -->
-    <div class="text-center">
-      <!-- <h1 class="text-center">
-        {{'Sponsors' | translate}}
-        <span>
-          <ion-button style="margin-top: -13px" (click)="createSponsor()">
-            <ion-icon name="add-circle-outline"> </ion-icon>
-          </ion-button>
-        </span>
-      </h1> -->
-      <!-- <p>{{'sponsorText' | translate}}</p> -->
+    <div>
       <ion-grid>
-        <ion-row>
-          <ion-col *ngFor="let sponsor of post.user.sponsors; let i = index">
-            <!-- <ion-icon
-              name="trash-outline"
-              style="cursor: pointer"
-              class="botonEliminar"
-              (click)="deleteSponsor(i)"
-            ></ion-icon>
-            <ion-icon
-              name="create-outline"
-              style="cursor: pointer"
-              class="botonEditar"
-              (click)="editSponsor(i)"
-            ></ion-icon> -->
-            <a [href]="'//'+sponsor.url" target="_blank">
+        <ion-row style="margin-left: -70px; margin-top: 10px">
+          <ion-col
+            size="4"
+            *ngFor="let sponsor of post.user.sponsors; let i = index"
+          >
+            <a [href]="'//' + sponsor.url" target="_blank">
               <img
                 [src]="sponsor.photo"
                 style="

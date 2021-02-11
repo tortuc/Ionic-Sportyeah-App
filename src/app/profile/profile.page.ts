@@ -11,7 +11,7 @@ import { PostService } from "../service/post.service";
 import { UserService } from "../service/user.service";
 import { ProfileService } from "../service/profile.service";
 import { ViewsProfileService } from "../service/views-profile.service";
-import { NewsService } from '../service/news.service';
+import { NewsService } from "../service/news.service";
 import { ModalController } from "@ionic/angular";
 
 @Component({
@@ -40,7 +40,7 @@ export class ProfilePage implements OnInit {
     public bannerLogic: BannerLogic,
     public loginService: LoginService,
     private viewsProfileService: ViewsProfileService,
-    public newsService:NewsService
+    public newsService: NewsService
   ) {
     this.viewsProfileService
       .getProfileView(this.userService.User._id)
@@ -50,14 +50,14 @@ export class ProfilePage implements OnInit {
         this.views = views.visits;
       });
     const uP = this.userService.User.profile_user;
-    if(
-      uP === 'club' ||
-      uP === 'representative' ||
-      uP === 'association' ||
-      uP === 'foundation' ||
-      uP === 'federation' ||
-      uP === 'brand' ||
-      uP === 'sponsor' 
+    if (
+      uP === "club" ||
+      uP === "representative" ||
+      uP === "association" ||
+      uP === "foundation" ||
+      uP === "federation" ||
+      uP === "brand" ||
+      uP === "sponsor"
     )
       this.landingButton = true;
     else this.landingButton = false;
@@ -67,10 +67,12 @@ export class ProfilePage implements OnInit {
   posts: IPostC[] = [];
   views: [];
   ngOnInit() {
-    this.newsService.findUserNews(this.userService.User._id).subscribe((response:any)=>{
-      this.news = response
-      console.log(response)
-    })
+    this.newsService
+      .findUserNews(this.userService.User._id)
+      .subscribe((response: any) => {
+        this.news = response;
+        console.log(response);
+      });
 
     this.loginService.getIP().subscribe((geo) => {
       this.banderaIP = geo.country;
@@ -80,16 +82,16 @@ export class ProfilePage implements OnInit {
     this.getCountPost();
   }
 
-  OpenNews(id){
-    this.newsService.openNews = id
-    this.router.navigate(["news/read"])
+  OpenNews(id) {
+    this.newsService.openNews = id;
+    this.router.navigate(["news/read"]);
   }
-  deleteNew(id){
-   this.newsService.delete(id)
+  deleteNew(id) {
+    this.newsService.delete(id);
   }
-  editNews(idNews){
-    this.newsService.editNews = idNews
-    this.router.navigate(["news/edit"])
+  editNews(idNews) {
+    this.newsService.editNews = idNews;
+    this.router.navigate(["news/edit"]);
   }
   /* updateNew(){
     this.newsService.updateNews()
@@ -170,16 +172,16 @@ export class ProfilePage implements OnInit {
   segmentChanged(e: CustomEvent) {
     if (e.detail.value === "posts") {
       this.profile = false;
-      this.newsB = false
+      this.newsB = false;
       this.postsB = true;
-    }else if(e.detail.value === 'profile'){
+    } else if (e.detail.value === "profile") {
       this.postsB = false;
-      this.newsB = false
-      this.profile = true; 
-    }else{
-      this.newsB = true
+      this.newsB = false;
+      this.profile = true;
+    } else {
+      this.newsB = true;
       this.postsB = false;
-      this.profile = false; 
+      this.profile = false;
     }
   }
 
@@ -191,23 +193,25 @@ export class ProfilePage implements OnInit {
     });
     await modal.present();
     const { data } = await modal.onWillDismiss();
-    console.log("SPONSORS DATA FOR CREATE");
-    console.log(data);
-    const user = this.userService.User;
-    user.sponsors.push(data);
-    this.userService
-      .update(user)
-      .pipe(take(1))
-      .subscribe((u: any) => {
-        console.log(u);
-        this.userService
-          .getUserByUsername(this.userService.User.username)
-          .pipe(take(1))
-          .subscribe((u: any) => {
-            console.log(u);
-            this.userService.User = u.user;
-          });
-      });
+    if (data) {
+      console.log("SPONSORS DATA FOR CREATE");
+      console.log(data);
+      const user = this.userService.User;
+      user.sponsors.push(data);
+      this.userService
+        .update(user)
+        .pipe(take(1))
+        .subscribe((u: any) => {
+          console.log(u);
+          this.userService
+            .getUserByUsername(this.userService.User.username)
+            .pipe(take(1))
+            .subscribe((u: any) => {
+              console.log(u);
+              this.userService.User = u.user;
+            });
+        });
+    }
   }
 
   public deleteSponsor(i: number) {
@@ -238,22 +242,24 @@ export class ProfilePage implements OnInit {
     });
     await modal.present();
     const { data } = await modal.onWillDismiss();
-    console.log("SPONSORS DATA FOR CREATE");
-    console.log(data);
-    const user = this.userService.User;
-    user.sponsors[i] = data;
-    this.userService
-      .update(user)
-      .pipe(take(1))
-      .subscribe((u: any) => {
-        console.log(u);
-        this.userService
-          .getUserByUsername(this.userService.User.username)
-          .pipe(take(1))
-          .subscribe((u: any) => {
-            console.log(u);
-            this.userService.User = u.user;
-          });
-      });
+    if (data) {
+      console.log("SPONSORS DATA FOR CREATE");
+      console.log(data);
+      const user = this.userService.User;
+      user.sponsors[i] = data;
+      this.userService
+        .update(user)
+        .pipe(take(1))
+        .subscribe((u: any) => {
+          console.log(u);
+          this.userService
+            .getUserByUsername(this.userService.User.username)
+            .pipe(take(1))
+            .subscribe((u: any) => {
+              console.log(u);
+              this.userService.User = u.user;
+            });
+        });
+    }
   }
 }

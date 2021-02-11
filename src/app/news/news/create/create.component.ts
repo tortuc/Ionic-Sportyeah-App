@@ -60,7 +60,7 @@ publicar(){
     this.form.value.principalVideo = this.videoSelected;
     this.form.value.principalImage = this.imagenSelected;
     this.form.value.user = this.userService.User._id 
-    this.form.value.headline = this.titulo1;
+    //this.form.value.headline = this.titulo1;
     this.form.value.content = this.parrafos
     //this.form.value.image = this.arrayImagenes
     this.form.value.sport = this.deporte
@@ -78,8 +78,8 @@ parrafoAntesEdicion;
 parrafos=[];
 
   text1 = `Escribe el párrafo # ${this.parrafos.length+1} `;
-  titulo1= ``;
-  deporte= ``;
+  titulo1= null;
+  deporte= null;
   sports=['soccer', 'basketball','tennis',
   'baseball','golf','running','volleyball',
   'swimming','boxing','table_tennis','rugby',
@@ -104,7 +104,7 @@ parrafos=[];
  
   /* this.titulo1= `Escribe el Titulo # ${this.parrafos.length+1} `;
   this.deporte= `Escribe el Subtitulo # ${this.parrafos.length+1} `; */
-  console.log(this.parrafos)
+ this.agregandoParrafo = false
 }
 selectParrafo(){
   this.text1 =  this.parrafos[this.number].parrafo
@@ -126,13 +126,14 @@ selectParrafoCards(position){
 
 EditParrafo(){
   this.parrafos[this.positionEditactual].parrafo = this.text1;
-  this.parrafos[this.positionEditactual].title = this.titulo1;
+  //this.parrafos[this.positionEditactual].title = this.titulo1;
  // this.parrafos[this.positionEditactual].subtitle = this.deporte;
   this.positionEditactual = null
   this.editando = false
   this.text1 = `Escribe el párrafo # ${this.parrafos.length+1} `
 /*   this.titulo1= `Escribe el Título # ${this.parrafos.length+1} `;
   this.deporte= `Escribe el Subtítulo # ${this.parrafos.length+1} `; */
+  this.agregandoParrafo = false;
 }
 eliminarParrafo(){
   this.parrafos.splice(this.positionEditactual,1)
@@ -148,6 +149,7 @@ eliminarParrafo(){
   this.text1 = `Escribe el párrafo # ${this.parrafos.length+1} `
 /*   this.titulo1= `Escribe el Título # ${this.parrafos.length+1} `;
   this.deporte= `Escribe el Subtítulo # ${this.parrafos.length+1} `; */
+  this.agregandoParrafo = false;
 }
 numberPositionSelect(number){
   this.number += number
@@ -159,6 +161,7 @@ cancelar(){
   this.text1 = `Escribe el párrafo # ${this.parrafos.length+1} `
  /*  this.titulo1= `Escribe el Título # ${this.parrafos.length+1} `;
   this.deporte= `Escribe el Subtítulo # ${this.parrafos.length+1} `; */
+this.agregandoParrafo = false;
 }
 
 ////Imagenes
@@ -405,68 +408,25 @@ uploadVideoNotPrincipal(video,i){
   })
 }
 
-
+///
+//Para verificar si exite un titulo o no
+titlebool:boolean= false;
+deportebool:boolean = false;
+tituloListo(){
+this.titlebool = !this.titlebool;
+}
+deporteListo(){
+  this.deporte = null
+}
+// es true si se esta agregando un parrafo
+agregandoParrafo:boolean = false;
+/* agregarParrafo(){
+  agregandoParrafo
+} */
 
   ngOnInit(): void {
  
   }
-  /* 
-
-  ngOnInit() {}
-console(){
  
-}
-
-texto;
-  profileForm = new FormGroup({
-    htmlContent1: new FormControl(''),
-    htmlContent2: new FormControl(''),
-  });
-
-  editorConfig: AngularEditorConfig = {
-    editable: true,
-      spellcheck: true,
-      height: 'auto',
-      minHeight: '0',
-      maxHeight: 'auto',
-      width: 'auto',
-      minWidth: '0',
-      translate: 'yes',
-      enableToolbar: true,
-      showToolbar: true,
-      placeholder: 'Enter text here...',
-      defaultParagraphSeparator: '',
-      defaultFontName: '',
-      defaultFontSize: '',
-      fonts: [
-        {class: 'arial', name: 'Arial'},
-        {class: 'times-new-roman', name: 'Times New Roman'},
-        {class: 'calibri', name: 'Calibri'},
-        {class: 'comic-sans-ms', name: 'Comic Sans MS'}
-      ],
-      customClasses: [
-      {
-        name: 'quote',
-        class: 'quote',
-      },
-      {
-        name: 'redText',
-        class: 'redText'
-      },
-      {
-        name: 'titleText',
-        class: 'titleText',
-        tag: 'h1',
-      },
-    ],
-    uploadUrl: 'v1/image',
-    uploadWithCredentials: false,
-    sanitize: true,
-    toolbarPosition: 'top',
-    toolbarHiddenButtons: [
-      ['bold', 'italic'],
-      ['fontSize','backgroundColor']
-    ]
-}; */
 
 }

@@ -8,7 +8,7 @@ import { Component, Input, OnInit } from "@angular/core";
 })
 export class ImageSeeComponent implements OnInit {
   @Input() data: any;
-  constructor( public modalCtrl: ModalController) {}
+  constructor(public modalCtrl: ModalController) {}
 
   ngOnInit() {
     console.log(this.data);
@@ -17,6 +17,10 @@ export class ImageSeeComponent implements OnInit {
   send(url: any) {
     console.log(url);
     // this.img.content.next(url.webformatURL);
-    this.modalCtrl.dismiss(url.webformatURL );
+    this.modalCtrl.dismiss(url.webformatURL);
+  }
+
+  close() {
+    this.modalCtrl.dismiss();
   }
 }
