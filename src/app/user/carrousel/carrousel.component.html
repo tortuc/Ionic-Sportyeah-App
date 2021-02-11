@@ -1,29 +1,33 @@
-<ion-slides pager="true" [options]="slideOpts">
-  <ion-slide *ngFor="let img of slider" class="slide" style="height: 300px">
-    <img [src]="img" style="height: 300px !important" alt="" />
-    <video
-      *ngIf="img.indexOf('video/') !== -1"
-      controlslist="nodownload"
-      controls="controls"
-      preload="metadata"
-      webkit-playsinline="webkit-playsinline"
-      class="videoPlayer"
-    >
-      <source [src]="img | safeUrl" type="video/mp4" />
-      <source [src]="img | safeUrl" type="video/ogg" />
-    </video>
-    <iframe
-      [src]="img | youtube"
-      *ngIf="img.indexOf('youtube') !== -1 && img | youtube"
-    >
-    </iframe>
-  </ion-slide>
-
-  <ion-slide *ngIf="slider.length === 0">
-    <img
-      src="https://trello-attachments.s3.amazonaws.com/5ff9d47572424648014190dc/700x422/29f3e5ed0cea0a6b7439bfb986a090cd/original.jpg"
-      class="img"
-      alt=""
-    />
-  </ion-slide>
-</ion-slides>
+<div class="slides-content">
+  <ion-slides pager="true" [options]="slideOpts">
+    <ion-slide *ngFor="let img of slider" class="slide" style="height: 300px">
+      <img [src]="img" class="img" style="height: 300px !important" alt="" />
+      <video
+        *ngIf="img.indexOf('video/') !== -1"
+        controlslist="nodownload"
+        controls="controls"
+        preload="metadata"
+        webkit-playsinline="webkit-playsinline"
+        class="img"
+      >
+        <source [src]="img | safeUrl" type="video/mp4" />
+        <source [src]="img | safeUrl" type="video/ogg" />
+      </video>
+      <iframe
+        [src]="img | youtube"
+        *ngIf="img.indexOf('youtube') !== -1 && img | youtube"
+      >
+      </iframe>
+    </ion-slide>
+  
+    <ion-slide *ngIf="slider.length === 0">
+      <img
+        src="https://trello-attachments.s3.amazonaws.com/5ff9d47572424648014190dc/700x422/29f3e5ed0cea0a6b7439bfb986a090cd/original.jpg"
+        class="img"
+        alt=""
+      />
+    </ion-slide>
+  </ion-slides>
+  
+  
+</div>
