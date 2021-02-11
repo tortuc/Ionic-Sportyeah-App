@@ -114,13 +114,6 @@ export class ImgVideoUpload {
           },
         },
         {
-          text: this.translate.instant("free-img"),
-          icon: "image-outline",
-          handler: () => {
-            this.freeImg();
-          },
-        },
-        {
           text: this.translate.instant("img-options.video"),
           icon: "camera",
           handler: () => {
