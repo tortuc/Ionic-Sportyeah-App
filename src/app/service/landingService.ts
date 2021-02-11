@@ -55,19 +55,19 @@ export class LandingService {
   private route: string = "landing";
   public editing: string = `hola`;
   public productArray: any = { index: null, property: null };
-  private photoTest: string = `https://hbr.org/resources/images/article_assets/2019/11/Nov19_14_sb10067951dd-001.jpg`;
+  private photoTest: string = `https://wallpapercave.com/wp/cAO5uXj.jpg`;
   public defaultLanding: ILanding = {
     _id: null,
     username: null,
     logo: null,
-    banner: `https://images.unsplash.com/photo-1461896836934-ffe607ba8211?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80`,
-    title: `THIS CAN BE YOUR LANDING`,
-    description: `This can be your LANDING`,
+    banner: `https://wallpaperaccess.com/full/343552.jpg`,
+    title: `LANDING SPORTYEAH`,
+    description: `SUBTITLE LANDING SPORTYEAH`,
     button: `Learn More`,
-    divider: `This is a divider thanks`,
+    divider: `HERE YOU CAN MAKE IT`,
     dividerImg: `https://i.ibb.co/Gp1Nr3N/map-image.png`,
-    ptitle: `Products`,
-    psubtitle: `Products Subtitle`,
+    ptitle: `PRODUCTS`,
+    psubtitle: `PRODUCTS SUBTITLE`,
     products: [
       {
         photo: this.photoTest,
@@ -88,8 +88,8 @@ export class LandingService {
         url: `https://www.google.com`,
       },
     ],
-    stitle: `Services`,
-    ssubtitle: `Services Subtitle`,
+    stitle: `SERVICES`,
+    ssubtitle: `SERVICES SUBTITLE`,
     s1title: `E-commerce`,
     s1description: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into `,
     s1iconName: `cart`,
