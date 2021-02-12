@@ -39,6 +39,7 @@ export class CreateChallengeComponent implements OnInit {
   public createAward: boolean = true;
   public instructions: string = null;
   public videoInvalid: boolean = true;
+  public novideo: boolean = null;
   constructor(
     public toast: ToastController,
     public fb: FormBuilder,
@@ -58,9 +59,11 @@ export class CreateChallengeComponent implements OnInit {
   }
 
   async challenge() {
+    this.novideo = true;
     this.img.takeOnlyVideo(this.fileChooser);
     this.img.content.pipe(take(1)).subscribe((r) => {
       this.form.controls.challenge.setValue(r);
+      this.novideo = false;
       const int = setInterval(() => {
         if (this.verifyVideoMinutes() === 1) clearInterval(int);
       }, 2000);
@@ -82,9 +85,11 @@ export class CreateChallengeComponent implements OnInit {
     );
     console.log(video);
     if (video) {
-      console.log(video.duration / 60);
+      console.log(video.duration);
       console.log(video.duration / 60 > 1);
       if (video.duration / 60 > 1) {
+        this.alertINIT();
+      } else if (isNaN(video.duration)) {
         this.alertINIT();
       } else {
         console.log("Video valido");

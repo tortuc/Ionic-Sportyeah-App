@@ -747,7 +747,7 @@
     "upload": "Sube tu Desafío",
     "title": "Titulo del Desafío",
     "description": "Descripción",
-    "createAward": "Crear desafío",
+    "createAward": "Crear Premio",
     "place": "Posición",
     "titleAward": "Titulo del Premio",
     "mediaAward": "Imagen del Premio",
@@ -788,5 +788,7 @@
       "alert": "Alerta"
     }
   },
-  "sponsorDescription": "Aqui puedes colocar tus patrocinadores"
+  "sponsorDescription": "Aqui puedes colocar tus patrocinadores",
+  "back": "Cerrar",
+  "uploadAgain":"Subir otro video"
 }

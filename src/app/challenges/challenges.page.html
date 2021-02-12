@@ -15,7 +15,7 @@
 >
   <div size="12" style="margin: 0px">
     <div
-      *ngIf="!challenges || challenges.length === 0"
+      *ngIf="!challenges || challenges.length === 0 "
       class="text-center"
       style="margin: auto"
     >
@@ -94,7 +94,7 @@
         *ngIf="challenge.challenging.media === challenge.challenged.media"
         style="height: 70vh"
       >
-        <video width="100%" height="100%" autoplay id="video">
+        <video width="100%" height="100%" autoplay>
           <source
             [src]="challenge.challenging.media | safeUrl"
             type="video/mp4"
@@ -145,6 +145,24 @@
           />
           <br />
         </video>
+      </div>
+
+      <div class="buttonsLike">
+        <ion-button>
+          <ion-icon name="heart-outline"></ion-icon>
+        </ion-button>
+      </div>
+
+      <div class="buttonsComment">
+        <ion-button>
+          <ion-icon name="chatbox-ellipses-outline"></ion-icon>
+        </ion-button>
+      </div>
+
+      <div class="buttonsShare">
+        <ion-button>
+          <ion-icon name="arrow-redo-outline"></ion-icon>
+        </ion-button>
       </div>
 
       <div
