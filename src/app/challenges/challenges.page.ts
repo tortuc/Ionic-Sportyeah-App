@@ -1,5 +1,5 @@
-import { IComment } from './../models/iPost';
-import { IChallenge } from './../service/challenge.service';
+import { IComment } from "./../models/iPost";
+import { IChallenge } from "./../service/challenge.service";
 import { ChallengeReactionsComponent } from "./../components/challenge-reactions/challenge-reactions.component";
 import { UserService } from "./../service/user.service";
 import { take } from "rxjs/operators";
@@ -80,7 +80,11 @@ export class ChallengesPage implements OnInit {
   async createModalComments(comments: any[]) {
     const modal = await this.mc.create({
       component: ChallengeCommentsComponent,
-      componentProps: comments,
+      componentProps: {
+        comments,
+        referenceId: this.challenge.challenging._id,
+        challenge: this.challenge._id,
+      },
     });
     await modal.present();
     return modal;
@@ -99,9 +103,8 @@ export class ChallengesPage implements OnInit {
     return modal;
   }
 
-
-  async challengeShare(){
-    alert("share logic")
+  async challengeShare() {
+    alert("share logic");
   }
 
   async aceptarReto(challenged) {

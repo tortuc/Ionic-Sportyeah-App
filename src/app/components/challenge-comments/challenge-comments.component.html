@@ -1,13 +1,15 @@
 <ion-content>
-  <div *ngFor="let comment of comments">
-    <ion-label>
-      <ion-avatar>
-        <ion-img [src]="comment.userData.photo"></ion-img>
-      </ion-avatar>
-      {{ comment.comment }}
-    </ion-label>
-    <p>{{ comment.createdAt | customDisplayDate }}</p>
-  </div>
+  <ion-list>
+    <ion-item *ngFor="let comment of comments">
+      <ion-label>
+        <ion-avatar>
+          <ion-img [src]="comment.userData.photo"></ion-img>
+        </ion-avatar>
+        {{ comment.comment }}
+      </ion-label>
+      <p>{{ comment.createdAt | customDisplayDate }}</p>
+    </ion-item>
+  </ion-list>
 
   <form [formGroup]="form">
     <span *ngIf="form.controls.message.value == ''" class="fake-placeholder">{{
@@ -41,7 +43,7 @@
 
     <ion-avatar
       style="width: 150px; height: 150px; position: relative"
-      *ngIf="form.controls.image.value != ''"
+      *ngIf="form.controls.image.value != '' && form.controls.image.value != null"
     >
       <ion-icon
         (click)="removeImg()"
@@ -56,6 +58,35 @@
       >
       </ion-img>
     </ion-avatar>
+
+    <div style="text-align: right">
+      <div #emojisContainer>
+        <emoji-mart
+          *ngIf="emoji"
+          (emojiClick)="addEmoji($event)"
+          title="Pick your emoji…"
+          emoji="point_up"
+          [showPreview]="false"
+          #emojisContainer
+        ></emoji-mart>
+      </div>
+      <input
+        #openImage
+        type="file"
+        accept="image/*"
+        (change)="uploadImg($event)"
+        hidden
+      />
+
+      <span #emojiButton>
+        <ion-button (click)="openEmojis()">
+          <ion-icon name="happy"></ion-icon>
+        </ion-button>
+      </span>
+      <ion-button (click)="openImage.click()">
+        <ion-icon name="image"></ion-icon>
+      </ion-button>
+    </div>
   </form>
   <div class="text-center">
     <ion-button

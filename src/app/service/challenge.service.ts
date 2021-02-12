@@ -27,7 +27,7 @@ export interface IReference {
   reactions: [];
   comments: [];
   display: number;
-  _id?:string;
+  _id?: string;
   createdAt?: string;
   modifiedAt?: string;
   deleted?: string;
@@ -60,7 +60,15 @@ export class ChallengeService {
     return this.http.post(`${this.route}/create`, challenge);
   }
 
-  getAll(){
+  getAll() {
     return this.http.get(`${this.route}/all`);
+  }
+
+  getById(id:string){
+    return this.http.get(`${this.route}/${id}`)
+  }
+
+  createComment(comment: any) {
+    return this.http.post(`${this.route}/comment`, comment);
   }
 }
