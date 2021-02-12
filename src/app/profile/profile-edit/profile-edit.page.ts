@@ -1,5 +1,5 @@
 import { Component, OnInit, ElementRef, ViewChild } from "@angular/core";
-import { UserService } from "src/app/service/user.service";
+import { User, UserService } from "src/app/service/user.service";
 import {
   ActionSheetController,
   AlertController,
@@ -106,25 +106,17 @@ export class ProfileEditPage implements OnInit {
     this.userService
       .update(body)
       .toPromise()
-      .then((resp) => {
-        this.userService.User = null;
-        this.userService
-          .verifyToken()
-          .then(() => {
-            loading.dismiss();
-            this.clearPass();
-
-            this.alert(
-              this.translate.instant("profile_edit.success.header"),
-              this.translate.instant("profile_edit.success.message"),
-              this.translate.instant("profile_edit.success.btn")
-            );
-          })
-          .catch(() => {
-            this.clearPass();
-
-            loading.dismiss();
-          });
+      .then((user:User) => {
+        
+        this.userService.User = user;
+        loading.dismiss();
+        this.clearPass();
+        this.alert(
+          this.translate.instant("profile_edit.success.header"),
+          this.translate.instant("profile_edit.success.message"),
+          this.translate.instant("profile_edit.success.btn")
+        );
+       
       })
       .catch((err) => {
         loading.dismiss();

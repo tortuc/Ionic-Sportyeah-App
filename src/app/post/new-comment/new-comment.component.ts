@@ -7,7 +7,7 @@ import { IPost, INew } from "src/app/models/iPost";
 import { JdvimageService } from "src/app/service/jdvimage.service";
 import { PostService } from "src/app/service/post.service";
 import { UserService } from "src/app/service/user.service";
-import { NewsService } from 'src/app/service/news.service';
+import { NewsService } from "src/app/service/news.service";
 
 @Component({
   selector: "app-new-comment",
@@ -30,7 +30,7 @@ export class NewCommentComponent implements OnInit {
     private translate: TranslateService,
     private imageService: JdvimageService,
     private postService: PostService,
-    public newsService:NewsService,
+    public newsService: NewsService
   ) {}
 
   form = this.fb.group({
@@ -39,7 +39,7 @@ export class NewCommentComponent implements OnInit {
   });
 
   ngOnInit() {
-    console.log(this.news)
+    console.log(this.news);
     window.onclick = () => {
       this.emoji = false;
     };
@@ -100,37 +100,37 @@ export class NewCommentComponent implements OnInit {
   send() {
     if (this.form.value.message != null || this.form.value.image != null) {
       let comment = this.form.value;
-      if(this.post){
+      if (this.post) {
         comment.post = this.post._id;
         this.postService
-        .newComment(comment)
-        .toPromise()
-        .then((comments) => {
-          this.modalCtrl.dismiss({
-            action: "comment",
-            comments,
-            post: this.post,
-          });        
-        })
-        .catch((err) => {
-          // handle err
-        });
-      }else if(this.news){
-        console.log('es el new-comment')
+          .newComment(comment)
+          .toPromise()
+          .then((comments) => {
+            this.modalCtrl.dismiss({
+              action: "comment",
+              comments,
+              post: this.post,
+            });
+          })
+          .catch((err) => {
+            // handle err
+          });
+      } else if (this.news) {
+        console.log("es el new-comment");
         comment.news = this.news._id;
         this.newsService
-        .newComment(comment)
-        .toPromise()
-        .then((comments) => {
-          this.modalCtrl.dismiss({
-            action: "comment",
-            comments,
-            news: this.news,
-          });       
-        })
-        .catch((err) => {
-          // handle err
-        });
+          .newComment(comment)
+          .toPromise()
+          .then((comments) => {
+            this.modalCtrl.dismiss({
+              action: "comment",
+              comments,
+              news: this.news,
+            });
+          })
+          .catch((err) => {
+            // handle err
+          });
       }
     }
   }
@@ -177,5 +177,4 @@ export class NewCommentComponent implements OnInit {
   newValue($event) {
     this.form.controls.message.setValue($event);
   }
-  
 }

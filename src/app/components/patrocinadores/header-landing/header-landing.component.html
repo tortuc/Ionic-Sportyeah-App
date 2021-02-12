@@ -1,29 +1,30 @@
 <!-- Masthead-->
-<div 
-                class="button-photo-banner"
-                (click)="change()"
-                *ngIf="creator"
+<div class="button-photo-banner" (click)="change()" *ngIf="creator">
+  <ion-icon
+    name="camera-outline"
+    style="margin-top: 6px; margin-left: 7px"
+  ></ion-icon>
+</div>
 
-    ><ion-icon name="camera-outline"
-                  style="margin-top: 6px; margin-left:7px;"
-      ></ion-icon></div>
-
-<header class="masthead" [style.backgroundImage]="'url('+ls.ls.banner+')'">
-      <div class="container">
-      <div class="masthead-subheading">
-        {{landingService.ls.description}} 
-        <ion-icon name="create" class="editIcons"
-          (click)="changeText('description')"   
-          *ngIf="creator"
-        ></ion-icon>
-      </div>
-        <div class="masthead-heading text-uppercase">
-          {{landingService.ls.title}}
-          <ion-icon name="create" class="editIcons"
-            (click)="changeText('title')"   
-            *ngIf="creator"
-          ></ion-icon>
-        </div>
+<header class="masthead" [style.backgroundImage]="'url(' + ls.ls.banner + ')'">
+  <div class="container">
+    <div class="masthead-subheading">
+      {{ landingService.ls.description }}
+      <ion-icon
+        name="create"
+        class="editIcons"
+        (click)="changeText('description')"
+        *ngIf="creator"
+      ></ion-icon>
     </div>
+    <div class="masthead-heading text-uppercase">
+      {{ landingService.ls.title }}
+      <ion-icon
+        name="create"
+        class="editIcons"
+        (click)="changeText('title')"
+        *ngIf="creator"
+      ></ion-icon>
+    </div>
+  </div>
 </header>
-

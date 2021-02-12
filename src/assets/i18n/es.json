@@ -634,7 +634,26 @@
     "articles": "Artículos"
   },
   "landing": {
-    "title": "Landing"
+    "title": "Titulo Landing",
+    "description": "Descripcion",
+    "stitle": "Subtitulo",
+    "ssubtitle": "Texto",
+    "s1title": "Titulo",
+    "s2title": "Titulo",
+    "s3title": "Titulo",
+    "s1description": "Descripcion",
+    "s2description": "Descripcion",
+    "s3description": "Descripcion",
+    "ptitle": "Titulo Productos",
+    "psubtitle": "Subtitulo Productos",
+    "productArray": "Productos",
+    "divider": "Divisor",
+    "copyright": "Copyrighht",
+    "facebook": "Facebook",
+    "twitter": "Twitter",
+    "instagram": "Instagram",
+    "linkedin": "LinkedIn",
+    "tiktok": "TikTok"
   },
   "enterText": "Ingrese texto",
   "Photo": "Imagen",
@@ -725,14 +744,17 @@
     "recomended": "Cuentas Recomendadas",
     "norecomended": "Aun no hemos podido descifrar tus gustos :(",
     "nocontent": "Sin contenido disponible",
-    "upload": "Sube tu desafío",
-    "title": "Titulo del desafío",
+    "upload": "Sube tu Desafío",
+    "title": "Titulo del Desafío",
     "description": "Descripción",
-    "createAward": "Crear desafío",
+    "createAward": "Crear Premio",
     "place": "Posición",
     "titleAward": "Titulo del Premio",
-    "mediaAward": "Imagen del desafío",
-    "retar": "Aceptar Reto"
+    "mediaAward": "Imagen del Premio",
+    "retar": "Aceptar Reto",
+    "first": "¡Se el primero en crear un reto!",
+    "videoErr": "El video no es valido, tiene mas de un minuto de duracion.",
+    "repeat": "Intentar de nuevo"
   },
   "save": "Guardar Cambios",
 
@@ -766,5 +788,8 @@
       "accept": "Aceptar",
       "alert": "Alerta"
     }
-  }
+  },
+  "sponsorDescription": "Aqui puedes colocar tus patrocinadores",
+  "back": "Cerrar",
+  "uploadAgain":"Subir otro video"
 }

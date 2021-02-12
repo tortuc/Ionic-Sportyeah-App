@@ -1,28 +1,25 @@
-import { UserService } from 'src/app/service/user.service';
-import { Router } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
-import { BannerLogic } from './../../service/banner-profile-logic.service';
+import { UserService } from "src/app/service/user.service";
+import { Router } from "@angular/router";
+import { Component, OnInit } from "@angular/core";
+import { BannerLogic } from "./../../service/banner-profile-logic.service";
 
 @Component({
-  selector: 'app-carrousel',
-  templateUrl: './carrousel.component.html',
-  styleUrls: ['./carrousel.component.scss'],
+  selector: "app-carrousel",
+  templateUrl: "./carrousel.component.html",
+  styleUrls: ["./carrousel.component.scss"],
 })
 export class CarrouselComponent implements OnInit {
-
   constructor(
-    public  bannerLogic      : BannerLogic,
-    public  router           : Router,
-    public userService       : UserService
+    public bannerLogic: BannerLogic,
+    public router: Router,
+    public userService: UserService
   ) {}
 
-  goTo(ruta:string){
-    this.router.navigate([ruta])
+  goTo(ruta: string) {
+    this.router.navigate([ruta]);
   }
 
-  ngOnInit() {
-    
-  }
+  ngOnInit() {}
 
   slideOpts = {
     on: {
@@ -39,7 +36,10 @@ export class CarrouselComponent implements OnInit {
           virtualTranslate: true,
         };
         swiper.params = Object.assign(swiper.params, overwriteParams);
-        swiper.originalParams = Object.assign(swiper.originalParams, overwriteParams);
+        swiper.originalParams = Object.assign(
+          swiper.originalParams,
+          overwriteParams
+        );
       },
       setTranslate() {
         const swiper = this;
@@ -64,26 +64,42 @@ export class CarrouselComponent implements OnInit {
           } else if (rtl) {
             rotateY = -rotateY;
           }
-  
-           $slideEl[0].style.zIndex = -Math.abs(Math.round(progress)) + slides.length;
-  
-           if (swiper.params.flipEffect.slideShadows) {
+
+          $slideEl[0].style.zIndex =
+            -Math.abs(Math.round(progress)) + slides.length;
+
+          if (swiper.params.flipEffect.slideShadows) {
             // Set shadows
-            let shadowBefore = swiper.isHorizontal() ? $slideEl.find('.swiper-slide-shadow-left') : $slideEl.find('.swiper-slide-shadow-top');
-            let shadowAfter = swiper.isHorizontal() ? $slideEl.find('.swiper-slide-shadow-right') : $slideEl.find('.swiper-slide-shadow-bottom');
+            let shadowBefore = swiper.isHorizontal()
+              ? $slideEl.find(".swiper-slide-shadow-left")
+              : $slideEl.find(".swiper-slide-shadow-top");
+            let shadowAfter = swiper.isHorizontal()
+              ? $slideEl.find(".swiper-slide-shadow-right")
+              : $slideEl.find(".swiper-slide-shadow-bottom");
             if (shadowBefore.length === 0) {
-              shadowBefore = swiper.$(`<div class="swiper-slide-shadow-${swiper.isHorizontal() ? 'left' : 'top'}"></div>`);
+              shadowBefore = swiper.$(
+                `<div class="swiper-slide-shadow-${
+                  swiper.isHorizontal() ? "left" : "top"
+                }"></div>`
+              );
               $slideEl.append(shadowBefore);
             }
             if (shadowAfter.length === 0) {
-              shadowAfter = swiper.$(`<div class="swiper-slide-shadow-${swiper.isHorizontal() ? 'right' : 'bottom'}"></div>`);
+              shadowAfter = swiper.$(
+                `<div class="swiper-slide-shadow-${
+                  swiper.isHorizontal() ? "right" : "bottom"
+                }"></div>`
+              );
               $slideEl.append(shadowAfter);
             }
-            if (shadowBefore.length) shadowBefore[0].style.opacity = Math.max(-progress, 0);
-            if (shadowAfter.length) shadowAfter[0].style.opacity = Math.max(progress, 0);
+            if (shadowBefore.length)
+              shadowBefore[0].style.opacity = Math.max(-progress, 0);
+            if (shadowAfter.length)
+              shadowAfter[0].style.opacity = Math.max(progress, 0);
           }
-          $slideEl
-            .transform(`translate3d(${tx}px, ${ty}px, 0px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`);
+          $slideEl.transform(
+            `translate3d(${tx}px, ${ty}px, 0px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`
+          );
         }
       },
       setTransition(duration) {
@@ -91,7 +107,9 @@ export class CarrouselComponent implements OnInit {
         const { slides, activeIndex, $wrapperEl } = swiper;
         slides
           .transition(duration)
-          .find('.swiper-slide-shadow-top, .swiper-slide-shadow-right, .swiper-slide-shadow-bottom, .swiper-slide-shadow-left')
+          .find(
+            ".swiper-slide-shadow-top, .swiper-slide-shadow-right, .swiper-slide-shadow-bottom, .swiper-slide-shadow-left"
+          )
           .transition(duration);
         if (swiper.params.virtualTranslate && duration !== 0) {
           let eventTriggered = false;
@@ -99,17 +117,16 @@ export class CarrouselComponent implements OnInit {
           slides.eq(activeIndex).transitionEnd(function onTransitionEnd() {
             if (eventTriggered) return;
             if (!swiper || swiper.destroyed) return;
-  
+
             eventTriggered = true;
             swiper.animating = false;
-            const triggerEvents = ['webkitTransitionEnd', 'transitionend'];
+            const triggerEvents = ["webkitTransitionEnd", "transitionend"];
             for (let i = 0; i < triggerEvents.length; i += 1) {
               $wrapperEl.trigger(triggerEvents[i]);
             }
           });
         }
-      }
-    }
+      },
+    },
   };
-
 }

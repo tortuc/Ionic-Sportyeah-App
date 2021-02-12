@@ -1,10 +1,14 @@
+import { IComment } from "./../models/iPost";
+import { IChallenge } from "./../service/challenge.service";
+import { ChallengeReactionsComponent } from "./../components/challenge-reactions/challenge-reactions.component";
 import { UserService } from "./../service/user.service";
 import { take } from "rxjs/operators";
 import { CreateChallengeComponent } from "./../components/challenge/create/create.component";
-import { ModalController } from "@ionic/angular";
+import { IonContent, ModalController } from "@ionic/angular";
 import { TranslateService } from "@ngx-translate/core";
 import { Component, OnInit, ViewChild } from "@angular/core";
 import { ChallengeService } from "../service/challenge.service";
+import { ChallengeCommentsComponent } from "../components/challenge-comments/challenge-comments.component";
 
 @Component({
   selector: "app-challenges",
@@ -12,8 +16,11 @@ import { ChallengeService } from "../service/challenge.service";
   styleUrls: ["./challenges.page.scss"],
 })
 export class ChallengesPage implements OnInit {
-  // @ViewChild(Content) content:Content;
+  @ViewChild(IonContent) content: IonContent;
   public challenges: any[] = null;
+  public scrolling: boolean = true;
+  public challenge: any = null;
+  public challengeNumber: number = 0;
   constructor(
     public translate: TranslateService,
     public mc: ModalController,
@@ -22,6 +29,7 @@ export class ChallengesPage implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.challengeNumber = 0;
     this.challengeService
       .getAll()
       .pipe(take(1))
@@ -36,8 +44,8 @@ export class ChallengesPage implements OnInit {
   }
 
   async getUsers(challenges) {
-    const challengesNew:any[] = await Promise.all(
-      challenges.map(async (challenge:any) => {
+    const challengesNew: any[] = await Promise.all(
+      challenges.map(async (challenge: any) => {
         const r = await this.userService
           .getUserById(challenge.challenged.userId.referenceId)
           .toPromise();
@@ -49,37 +57,84 @@ export class ChallengesPage implements OnInit {
         return challenge;
       })
     );
-    console.log(challengesNew[0].challenged.userId.data);
     this.challenges = challengesNew.reverse();
+    this.challenge = this.challenges[this.challengeNumber];
   }
 
   async create() {
     const modal = await this.mc.create({
       component: CreateChallengeComponent,
       cssClass: "a",
-      componentProps:{
-        challenged:null
-      }
+      componentProps: {
+        challenged: null,
+      },
     });
     modal.onDidDismiss().then(() => this.ngOnInit());
     await modal.present();
   }
 
-  async aceptarReto(challenged){
-    const modal = await this.mc.create({
-      component: CreateChallengeComponent,
-      cssClass:"a",
-      componentProps:{
-        challenged
-      }
-    })
-    modal.onDidDismiss().then(()=> this.ngOnInit())
-    await modal.present()
+  async challengeComments(comments: any[]) {
+    const modal = await this.createModalComments(comments);
   }
 
-  async onScroll(e){
-    e.preventDefault()
-    // this.content.scrollToTop();
-    console.log('Is scrolling',e);
+  async createModalComments(comments: any[]) {
+    const modal = await this.mc.create({
+      component: ChallengeCommentsComponent,
+      componentProps: {
+        comments,
+        referenceId: this.challenge.challenging._id,
+        challenge: this.challenge._id,
+      },
+    });
+    await modal.present();
+    return modal;
+  }
+
+  async challengeReactions(reactions: any[]) {
+    const modal = await this.createModalReactions(reactions);
+  }
+
+  async createModalReactions(reactions: any) {
+    const modal = await this.mc.create({
+      component: ChallengeReactionsComponent,
+      componentProps: reactions,
+    });
+    await modal.present();
+    return modal;
+  }
+
+  async challengeShare() {
+    alert("share logic");
+  }
+
+  async aceptarReto(challenged) {
+    const modal = await this.mc.create({
+      component: CreateChallengeComponent,
+      cssClass: "a",
+      componentProps: {
+        challenged,
+      },
+    });
+    modal.onDidDismiss().then(() => this.ngOnInit());
+    await modal.present();
+  }
+
+  async onScroll(e) {
+    this.challenge = null;
+    this.scrolling = false;
+    this.challengeNumber += 1;
+    this.content.scrollToTop();
+    const detail = e.detail;
+    if (detail.currentX === 0) {
+      if (this.challengeNumber >= this.challenges.length) {
+        this.challengeNumber = 0;
+        this.ngOnInit();
+      }
+      setTimeout(() => {
+        this.scrolling = true;
+        this.content.scrollToTop();
+        this.challenge = this.challenges[this.challengeNumber];
+      }, 500);
+    }
   }
 }

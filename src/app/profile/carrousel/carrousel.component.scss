@@ -1,20 +1,8 @@
-ion-slides {
-  height: 100%;
-}
 
+
+// todo lo que este comentado y los comentarios puedes eliminarlos para que no se vea tan llena de informacion innecesaria 
 .swiper-slide {
   display: block;
-}
-
-.swiper-slide h2 {
-  margin-top: 2.8rem;
-}
-
-.swiper-slide img {
-  max-height: 50%;
-  max-width: 80%;
-  margin: 60px 0 40px;
-  pointer-events: none;
 }
 
 b {
@@ -32,25 +20,55 @@ p b {
   color: var(--ion-text-color, #000000);
 }
 
+// .slider {
+// height: 100%;
+// }
 
-.img-background{
-  background-size: cover;
-  height: 100%;
+// .slide-container {
+// height: 40vh;
+// }
+// .slide-zoom {
+// height:200px;
+// height: 100%;
+// width: 100%;
+// overflow:hidden;
+// }
+.slideroption {
+  // max-width: 100% !important;
+  // max-height: 100% !important;
+  // min-width: 100%;
+  // min-height: 100%;
+  height: 400px;
+  border-radius: 5px;
+  z-index: 0;
 }
 
-.img{
-  max-width: 100% !important;
-  max-height: 100% !important;
-  margin:0!important;
+// esta clase la comente ya que no estaba siendo utilizada
+// .slide-zoom {
+//   max-width: 100% !important;
+//   max-height: 100% !important;
+//   min-width: 100%;
+//   min-height: 100%;
+//   z-index: -1;
+// }
+
+.img {
+  width: 100% !important;  // esto es lo unico que importa para que agarre el tamanio, lo demas es irrelevante
+  height: 100% !important; // igual que esto, lo demas de min o max... no sirve nada de eso
+  // min-width: 100%;
+  // min-height: 100%;
+  // max-width: 100% !important;
+  // max-height: 100% !important;
 }
 
-.slide{
-  width: 100%;
-  height: 300px;
+ion-slides{
+  background: black;
 }
 
-.swiper-slide img {
-  max-height: 100% !important;
-  max-width: 100% !important;
-  margin: 0 !important;
+.slides-content{
+  max-width: 700px; // esto para que no pase lo demas
+  margin: auto; // para que siempre este en el medio
+  padding: 10px 0px; // este padding para que tenga una separacion de arriba y abajo pero a los costados se vea del mismo tamanio de los demas
+  position: relative; // para que los objetos dentro que sean position absolute se guien a partir de aqui
+
 }

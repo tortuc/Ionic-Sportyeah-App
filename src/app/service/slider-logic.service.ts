@@ -90,11 +90,10 @@ export class SliderLogic {
         await this.loading.dismiss(null, null, "loading");
         const modal = await this.presentModal(r.hits);
         console.log(modal);
-        console.log('aquitoy');
+        console.log("aquitoy");
         await modal.present();
         const { data } = await modal.onWillDismiss();
-        this.content.push(data);
-
+        if (data) this.content.push(data);
       });
   }
 

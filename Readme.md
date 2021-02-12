@@ -10,6 +10,11 @@ mongod
 2. ssh-add ~/.ssh/id_rsa_sportyeah.pub
 3. ssh-add ~/.ssh/id_rsa_kecuki.pub
 
+## TAREAS 11-12-2020
+
+1. Create component for see comments.
+2. Create component for like and react.
+
 ## TAREAS 03-02-2021
 
 1. Create component challenges.

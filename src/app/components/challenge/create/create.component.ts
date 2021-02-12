@@ -1,3 +1,4 @@
+import { TranslateService } from "@ngx-translate/core";
 import {
   ChallengeService,
   IChallenge,
@@ -5,6 +6,7 @@ import {
   IAward,
   IUserc,
 } from "./../../../service/challenge.service";
+import { AlertController } from "@ionic/angular";
 import { UserService } from "src/app/service/user.service";
 import { LoadingController } from "@ionic/angular";
 import { take } from "rxjs/operators";
@@ -36,11 +38,15 @@ export class CreateChallengeComponent implements OnInit {
   public award: boolean = false;
   public createAward: boolean = true;
   public instructions: string = null;
+  public videoInvalid: boolean = true;
+  public novideo: boolean = null;
   constructor(
     public toast: ToastController,
     public fb: FormBuilder,
+    public trans: TranslateService,
     public img: ImgVideoUpload,
     public mc: ModalController,
+    public alert: AlertController,
     public loadingController: LoadingController,
     public userService: UserService,
     public challengeService: ChallengeService
@@ -53,10 +59,44 @@ export class CreateChallengeComponent implements OnInit {
   }
 
   async challenge() {
+    this.novideo = true;
     this.img.takeOnlyVideo(this.fileChooser);
     this.img.content.pipe(take(1)).subscribe((r) => {
       this.form.controls.challenge.setValue(r);
+      this.novideo = false;
+      const int = setInterval(() => {
+        if (this.verifyVideoMinutes() === 1) clearInterval(int);
+      }, 2000);
     });
+  }
+
+  async alertINIT() {
+    const alert = await this.alert.create({
+      header: "Alert",
+      subHeader: this.trans.instant("challenge.videoErr"),
+      buttons: [this.trans.instant("challenge.repeat")],
+    });
+    await alert.present();
+  }
+
+  verifyVideoMinutes() {
+    const video: HTMLVideoElement = <HTMLVideoElement>(
+      document.getElementById("video")
+    );
+    console.log(video);
+    if (video) {
+      console.log(video.duration);
+      console.log(video.duration / 60 > 1);
+      if (video.duration / 60 > 1) {
+        this.alertINIT();
+      } else if (isNaN(video.duration)) {
+        this.alertINIT();
+      } else {
+        console.log("Video valido");
+        this.videoInvalid = false;
+      }
+      return 1;
+    }
   }
 
   awardMedia() {
@@ -69,10 +109,7 @@ export class CreateChallengeComponent implements OnInit {
   async saveChallenge() {
     console.log(this.form.value);
     console.log(this.awards);
-    const loading = await this.loadingController.create({
-      message: `Loading...`,
-    });
-    await loading.present();
+    const loading = await this.loadingI();
     const userReference: IUserc = {
       appName: "SportYeah",
       referenceId: this.userService.User._id,
@@ -99,7 +136,7 @@ export class CreateChallengeComponent implements OnInit {
       console.log(this.challenged);
       newChallenge = {
         challenging: this.challenged._id,
-        challenged:challenging,
+        challenged: challenging,
         awards: this.awards,
         title: this.form.value.title,
         description: this.form.value.description,
@@ -124,5 +161,12 @@ export class CreateChallengeComponent implements OnInit {
           console.log(err);
         }
       );
+  }
+  async loadingI() {
+    const loading = await this.loadingController.create({
+      message: `Loading...`,
+    });
+    await loading.present();
+    return loading;
   }
 }

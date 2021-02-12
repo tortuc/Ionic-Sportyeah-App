@@ -1,47 +1,58 @@
-import {
-  Component,
-  OnInit,
-} from "@angular/core";
+import { take } from "rxjs/operators";
+import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
-import {
-  AlertController,
-  ModalController
-} from "@ionic/angular";
+import { AlertController, ModalController } from "@ionic/angular";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { UserService } from "src/app/service/user.service";
 import { LandingService } from "src/app/service/landingService";
 
 @Component({
-  selector: 'app-change',
-  templateUrl: './change.component.html',
-  styleUrls: ['./change.component.scss'],
+  selector: "app-change",
+  templateUrl: "./change.component.html",
+  styleUrls: ["./change.component.scss"],
 })
 export class ChangeComponent implements OnInit {
   form: FormGroup = null;
   galeriaIconos: boolean = false;
+  icons: string[] = null;
+
   constructor(
     private fb: FormBuilder,
     private alertController: AlertController,
-    public landingService : LandingService,
-    public ls : LandingService,
+    public landingService: LandingService,
+    public ls: LandingService,
     public userService: UserService,
     public router: Router,
-    public mc: ModalController,
+    public mc: ModalController
   ) {
-    console.log("Lo que hay dentro de product array",this.ls.productArray);
+    console.log("Lo que hay dentro de product array", this.ls.productArray);
     this.generateForm();
-    this.ls.editing.indexOf('iconName') !== -1 ? this.galeriaIconos = true: null;
+    this.ls.editing.indexOf("iconName") !== -1
+      ? (this.galeriaIconos = true)
+      : null;
   }
   ngOnInit() {
+    if (this.galeriaIconos)
+      this.ls
+        .getIcons()
+        .pipe(take(1))
+        .subscribe((r: string[]) => {
+          console.log(r);
+          this.icons = r;
+        });
   }
   generateForm() {
-    if(this.ls.editing === "productArray"){
+    if (this.ls.editing === "productArray") {
       this.form = this.fb.group({
-        a: [this.ls.ls.products[this.ls.productArray.index][this.ls.productArray.property]],
+        a: [
+          this.ls.ls.products[this.ls.productArray.index][
+            this.ls.productArray.property
+          ],
+        ],
       });
-    }else{
+    } else {
       this.form = this.fb.group({
-        a: [this.landingService.ls[this.landingService.editing]]
+        a: [this.landingService.ls[this.landingService.editing]],
       });
     }
   }
@@ -53,12 +64,14 @@ export class ChangeComponent implements OnInit {
     });
     await alert.present();
   }
-  save(text:string) {
+  save(text: string) {
     let landing = null;
-    if(this.ls.editing === 'productArray'){
+    if (this.ls.editing === "productArray") {
       landing = this.landingService.ls;
-      landing.products[this.ls.productArray.index][this.ls.productArray.property] = text 
-    }else{
+      landing.products[this.ls.productArray.index][
+        this.ls.productArray.property
+      ] = text;
+    } else {
       landing = this.landingService.ls;
       landing[this.landingService.editing] = text;
     }
@@ -66,4 +79,11 @@ export class ChangeComponent implements OnInit {
     this.mc.dismiss();
   }
 
+  saveIcon(text:string) {
+    let landing = null;
+    landing = this.landingService.ls;
+    landing[this.landingService.editing] = text;
+    this.ls.edit(landing);
+    this.mc.dismiss();
+  }
 }

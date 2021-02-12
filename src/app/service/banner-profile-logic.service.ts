@@ -1,6 +1,6 @@
-import { ImageSeeComponent } from './../components/image-see/image-see.component';
-import { take } from 'rxjs/operators';
-import { FreeImgService } from './freeImg.service';
+import { ImageSeeComponent } from "./../components/image-see/image-see.component";
+import { take } from "rxjs/operators";
+import { FreeImgService } from "./freeImg.service";
 import { Injectable, Input } from "@angular/core";
 import {
   ActionSheetController,
@@ -26,7 +26,7 @@ export class BannerLogic {
     private modalCtrl: ModalController,
     private loading: LoadingController,
     private jdvImage: JdvimageService,
-    private freeImgService: FreeImgService,
+    private freeImgService: FreeImgService
   ) {}
 
   @Input() take: boolean = true;
@@ -107,10 +107,10 @@ export class BannerLogic {
         await this.loading.dismiss(null, null, "loading");
         const modal = await this.presentModal(r.hits);
         console.log(modal);
-        console.log('aquitoy');
+        console.log("aquitoy");
         await modal.present();
         const { data } = await modal.onWillDismiss();
-        this.userService.User.photoBanner = data;
+        if (data) this.userService.User.photoBanner = data;
       });
   }
 
@@ -134,7 +134,6 @@ export class BannerLogic {
     });
     await loadingC.present();
   }
-
 
   async takePicture(source) {
     let formData = new FormData();

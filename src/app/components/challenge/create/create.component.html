@@ -7,20 +7,21 @@
     type="file"
   />
   <div class="text-center" *ngIf="!award">
-    <div *ngIf="form.value.challenge === ''" style="margin-top: 20px">
+    <div *ngIf="form.value.challenge === '' || novideo" style="margin-top: 20px">
       <img
-        src="https://byspel.com/wp-content/uploads/2017/01/upload-cloud.png"
+        src="https://img.icons8.com/nolan/64/image.png"
         alt=""
         style="width: 100px; cursor: pointer"
         (click)="challenge()"
       />
       <h6 style="color: grey">{{ "challenge.upload" | translate }}</h6>
     </div>
-    <div *ngIf="form.value.challenge !== ''">
+    <div *ngIf="form.value.challenge !== '' && !novideo">
       <video
         controlslist="nodownload"
         controls="controls"
         preload="metadata"
+        id="video"
         webkit-playsinline="webkit-playsinline"
         class="videoPlayer"
       >
@@ -28,6 +29,9 @@
         <source [src]="form.value.challenge | safeUrl" type="video/ogg" />
         <br />
       </video>
+      <ion-button color="primary" (click)="challenge()">
+        {{ "uploadAgain" | translate }}
+      </ion-button>
     </div>
 
     <!-- CHALLENGE FORM -->
@@ -48,9 +52,9 @@
   </div>
   <!-- AWARD FORM -->
   <form [formGroup]="formAward" [hidden]="!award" class="text-center">
-    <div *ngIf="formAward.value.media === ''" style="margin-top: 20px">
+    <div [hidden]="formAward.value.media !== ''" style="margin-top: 20px">
       <img
-        src="https://byspel.com/wp-content/uploads/2017/01/upload-cloud.png"
+        src="https://img.icons8.com/nolan/64/image.png"
         alt=""
         style="width: 100px; cursor: pointer"
         (click)="awardMedia()"
@@ -66,6 +70,7 @@
       }}</ion-label>
       <ion-input type="text" fromControlName="place"></ion-input>
     </ion-item>
+    {{formAward.value.place}}
     <ion-item>
       <ion-label position="floating">{{
         "challenge.titleAward" | translate
@@ -79,7 +84,11 @@
       <ion-textarea type="text" fromControlName="description"></ion-textarea>
     </ion-item>
   </form>
-  <div class="text-center" style="margin-top: 20px" *ngIf="!award && createAward">
+  <div
+    class="text-center"
+    style="margin-top: 20px"
+    [hidden]="award && !createAward"
+  >
     <ion-button (click)="award = true">
       <ion-icon name="trophy-outline"></ion-icon>
       {{ "challenge.createAward" | translate }}
@@ -87,11 +96,17 @@
   </div>
 
   <div class="text-center" style="margin-top: 20px" *ngIf="!award">
-    <ion-button [disabled]="form.status !== 'VALID'" (click)="saveChallenge()">
+    <ion-button
+      [disabled]="form.status !== 'VALID' || videoInvalid === true"
+      (click)="saveChallenge()"
+    >
       {{ "save" | translate }}
     </ion-button>
+    <ion-button color="light" (click)="mc.dismiss()">
+      {{ "back" | translate }}
+    </ion-button>
   </div>
-  <div class="text-center" style="margin-top: 20px" *ngIf="award ">
+  <div class="text-center" style="margin-top: 20px" *ngIf="award">
     <ion-button
       (click)="createAward(formAward)"
       [disabled]="formAward.status !== 'VALID'"

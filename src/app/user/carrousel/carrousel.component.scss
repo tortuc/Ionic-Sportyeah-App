@@ -1,5 +1,7 @@
 ion-slides {
   height: 100%;
+  background: black;
+
 }
 
 .swiper-slide {
@@ -10,12 +12,7 @@ ion-slides {
   margin-top: 2.8rem;
 }
 
-.swiper-slide img {
-  max-height: 50%;
-  max-width: 80%;
-  margin: 60px 0 40px;
-  pointer-events: none;
-}
+
 
 b {
   font-weight: 500;
@@ -54,12 +51,19 @@ p b {
 }
 
 .img{
-  max-width: 100% !important;
-  max-height: 100% !important;
-  margin:0!important;
+  width: 100% !important;
+  height: 100% !important;
 }
 
 .slide{
   width: 100%;
-  height: 300px;
+  height: 350px;
+}
+
+.slides-content{
+  max-width: 700px; // esto para que no pase lo demas
+  margin: auto; // para que siempre este en el medio
+  padding: 10px 0px; // este padding para que tenga una separacion de arriba y abajo pero a los costados se vea del mismo tamanio de los demas
+  position: relative; // para que los objetos dentro que sean position absolute se guien a partir de aqui
+
 }

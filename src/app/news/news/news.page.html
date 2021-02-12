@@ -146,7 +146,7 @@
 
 
 <!-- Noticias Propias del usuario (press) -->
-<ion-card>
+<ion-card *ngIf="userService.User?.profile_user == 'press'">
   <ion-card-header>
     <ion-text color="black">
       <h1 style="font-size:35px;color: black; text-align: center;"><i>Mis noticias</i></h1> 

@@ -4,60 +4,74 @@
       <ion-icon name="medal-outline"></ion-icon>
       {{'challenges' | translate}}
     </ion-title>
-    <ion-buttons slot="end">
-      <ion-button
-        style="
-          border-radius: 5px;
-          background-color: var(--ion-color-primary, #3880ff);
-          color: white;
-        "
-      >
-        <ion-icon name="home-outline" style="margin-right: 10px"></ion-icon>
-        {{'challenge.foryou' | translate}}
-      </ion-button>
-      <ion-button
-        style="
-          border-radius: 5px;
-          background-color: var(--ion-color-primary, #3880ff);
-          color: white;
-        "
-      >
-        <ion-icon name="people-outline" style="margin-right: 10px"></ion-icon>
-        {{'challenge.following' | translate}}
-      </ion-button>
-    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content
   class="bg-gradient-person"
   style="margin: 0px"
-  [scrollEvents]="true"
+  [scrollEvents]="scrolling"
   (ionScroll)="onScroll($event)"
 >
   <div size="12" style="margin: 0px">
-    <div *ngIf="!challenges">{{'challenge.nocontent' | translate}}</div>
     <div
-      *ngFor="let challenge of challenges"
+      *ngIf="!challenges || challenges.length === 0 "
+      class="text-center"
+      style="margin: auto"
+    >
+      <h1 style="color: white">{{'challenge.first' | translate}}</h1>
+      <img src="https://img.icons8.com/dusk/64/000000/planning-skill.png" />
+
+      <div
+        style="
+          position: fixed;
+          bottom: 25px;
+          text-align: center;
+          margin: auto;
+          left: 0;
+          right: 0;
+        "
+      >
+        <ion-button (click)="create()">
+          <ion-icon name="medal-outline"></ion-icon>
+          ¡Crea tu propio reto!
+        </ion-button>
+      </div>
+    </div>
+    <div
+      class="text-center"
+      *ngIf="challenge === null"
+      style="left: 0; right: 0; margin: auto; margin-top: 40vh"
+    >
+      <ion-spinner style="color: white; width: 150px"></ion-spinner>
+    </div>
+    <div
+      *ngIf="challenge"
       style="
         border-bottom: 1px grey;
         width: 100%;
-        height: 92vh;
-        margin-bottom: 20px;
-        background-color: white;
+        height: 93vh;
         padding: 10px;
         border-radius: 5px;
+        background-color: black;
       "
     >
-      <div style="text-align: left">
+      <div style="text-align: center; margin: auto; justify-content: center">
         <ion-grid>
-          <ion-row>
-            <ion-col size="3" class="quitar" style="justify-content: center">
-              <ion-avatar>
-                <img [src]="challenge.challenged.userId.data.photo" />
-              </ion-avatar>
-            </ion-col>
-            <ion-col size="3" style="text-align: left">
+          <ion-row style="position: absolute; color: white; left: 0; right: 0">
+            <ion-col
+              size="12"
+              style="
+                text-align: center;
+                justify-content: center;
+                background-color: rgba(0, 0, 0, 0.5);
+              "
+            >
+              <img
+                [src]="challenge.challenged.userId.data.photo"
+                style="width: 30px; border-radius: 50%"
+              />
+              <br />
               <span
                 style="font-weight: bold; margin-right: 5px; font-size: 13px"
                 >{{challenge.challenged.userId.data.name}}</span
@@ -66,49 +80,12 @@
                 style="font-weight: bold; margin-right: 5px; font-size: 13px"
                 >{{challenge.challenged.userId.data.last_name}}</span
               >
-              <!-- <span
-                  style="font-weight: bold; margin-right: 5px; font-size: 13px"
-                  >{{challenge.challenged.userId.data.email}}</span
-                > -->
-              <p style="line-height: 4px; font-size: 11px; font-weight: bold">
-                {{challenge.title}}
-              </p>
-              <p style="line-height: 4px; font-size: 11px; font-weight: bold">
-                {{challenge.description}}
-              </p>
-            </ion-col>
-            <ion-col
-              size="3"
-              *ngIf="challenge.challenging.media !== challenge.challenged.media"
-              style="text-align: right"
-            >
-              <ion-avatar>
-                <img [src]="challenge.challenging.userId.data.photo" alt="" />
-              </ion-avatar>
-            </ion-col>
-            <ion-col
-              size="3"
-              *ngIf="challenge.challenging.media !== challenge.challenged.media"
-              style="text-align: left"
-            >
+              <br />
               <span
-                style="font-weight: bold; margin-right: 5px; font-size: 13px"
-                >{{challenge.challenged.userId.data.name}}</span
+                style="line-height: 4px; font-size: 11px; font-weight: bold"
               >
-              <span
-                style="font-weight: bold; margin-right: 5px; font-size: 13px"
-                >{{challenge.challenged.userId.data.last_name}}</span
-              >
-              <!-- <span
-                  style="font-weight: bold; margin-right: 5px; font-size: 13px"
-                  >{{challenge.challenged.userId.data.email}}</span
-                > -->
-              <p style="line-height: 4px; font-size: 11px; font-weight: bold">
                 {{challenge.title}}
-              </p>
-              <p style="line-height: 4px; font-size: 11px; font-weight: bold">
-                {{challenge.description}}
-              </p>
+              </span>
             </ion-col>
           </ion-row>
         </ion-grid>
@@ -117,14 +94,7 @@
         *ngIf="challenge.challenging.media === challenge.challenged.media"
         style="height: 70vh"
       >
-        <video
-          width="100%"
-          height="100%"
-          autoplay
-          controlslist="nodownload"
-          controls="controls"
-          preload="metadata"
-        >
+        <video width="100%" height="100%" autoplay>
           <source
             [src]="challenge.challenging.media | safeUrl"
             type="video/mp4"
@@ -147,8 +117,6 @@
           style="border-radius: 5px"
           autoplay
           controlslist="nodownload"
-          controls="controls"
-          preload="metadata"
         >
           <source
             [src]="challenge.challenging.media | safeUrl"
@@ -166,8 +134,6 @@
           style="border-radius: 5px"
           autoplay
           controlslist="nodownload"
-          controls="controls"
-          preload="metadata"
         >
           <source
             [src]="challenge.challenged.media | safeUrl"
@@ -180,7 +146,53 @@
           <br />
         </video>
       </div>
-      <div style="text-align: center">
+
+      <div class="buttonsLike">
+        <ion-button (click)="challengeReactions(challenge.challenging.comments)">
+          <ion-icon name="heart-outline"></ion-icon>
+        </ion-button>
+      </div>
+
+      <div class="buttonsComment">
+        <ion-button
+          (click)="challengeComments(challenge.challenging.reactions)"
+        >
+          <ion-icon name="chatbox-ellipses-outline"></ion-icon>
+        </ion-button>
+      </div>
+
+      <div class="buttonsShare">
+        <ion-button (click)="challengeShare()">
+          <ion-icon name="arrow-redo-outline"></ion-icon>
+        </ion-button>
+      </div>
+
+      <div
+        style="
+          position: fixed;
+          bottom: 25px;
+          text-align: center;
+          margin: auto;
+          left: 0;
+          right: 0;
+        "
+      >
+        <ion-button (click)="create()">
+          <ion-icon name="medal-outline"></ion-icon>
+          ¡Crea tu propio reto!
+        </ion-button>
+      </div>
+
+      <div
+        style="
+          text-align: center;
+          position: fixed;
+          bottom: 85px;
+          text-align: center;
+          left: 0;
+          right: 0;
+        "
+      >
         <ion-button (click)="aceptarReto(challenge.challenged)">
           <ion-icon
             name="arrow-undo-outline"
@@ -192,10 +204,3 @@
     </div>
   </div>
 </ion-content>
-
-<div style="position: fixed; bottom: 25px; right: 25px">
-  <ion-button (click)="create()">
-    <ion-icon name="medal-outline"></ion-icon>
-    ¡Crea tu propio reto!
-  </ion-button>
-</div>
