@@ -1,0 +1,71 @@
+<ion-content>
+  <div *ngFor="let comment of comments">
+    <ion-label>
+      <ion-avatar>
+        <ion-img [src]="comment.userData.photo"></ion-img>
+      </ion-avatar>
+      {{ comment.comment }}
+    </ion-label>
+    <p>{{ comment.createdAt | customDisplayDate }}</p>
+  </div>
+
+  <form [formGroup]="form">
+    <span *ngIf="form.controls.message.value == ''" class="fake-placeholder">{{
+      "new_comment_placeholder" | translate
+    }}</span>
+    <div
+      style="max-height: 200px; color: #222121"
+      formControlName="message"
+      contenteditable
+      class="custom-textarea"
+      Mentions
+      (usersRender)="usersChange($event)"
+      (mention)="newValue($event)"
+      #FormElementRef
+    ></div>
+    <div style="max-height: 400px; overflow: auto">
+      <div
+        class="users-mentions"
+        id="mentionsUser"
+        *ngFor="let user of users"
+        (click)="setUser(user.user)"
+      >
+        <ion-avatar class="mention">
+          <ion-img [src]="user.user.photo"></ion-img>
+        </ion-avatar>
+        <span style="align-self: center; margin-left: 3px; user-select: none">
+          {{ user.user.name }} {{ user.user.last_name }}</span
+        >
+      </div>
+    </div>
+
+    <ion-avatar
+      style="width: 150px; height: 150px; position: relative"
+      *ngIf="form.controls.image.value != ''"
+    >
+      <ion-icon
+        (click)="removeImg()"
+        class="icon-remove"
+        style="cursor: pointer"
+        name="close"
+      ></ion-icon>
+
+      <ion-img
+        style="border-radius: 5px !important"
+        [src]="form.controls.image.value"
+      >
+      </ion-img>
+    </ion-avatar>
+  </form>
+  <div class="text-center">
+    <ion-button
+      [disabled]="form.value.message === '' && form.value.image === ''"
+      (click)="send()"
+    >
+      {{ "new_comment.btn" | translate }}
+    </ion-button>
+    <ion-button (click)="mc.dismiss()">
+      {{ "back" | translate }}
+    </ion-button>
+  </div>
+</ion-content>

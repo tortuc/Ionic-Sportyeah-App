@@ -148,19 +148,21 @@
       </div>
 
       <div class="buttonsLike">
-        <ion-button>
+        <ion-button (click)="challengeReactions(challenge.challenging.comments)">
           <ion-icon name="heart-outline"></ion-icon>
         </ion-button>
       </div>
 
       <div class="buttonsComment">
-        <ion-button>
+        <ion-button
+          (click)="challengeComments(challenge.challenging.reactions)"
+        >
           <ion-icon name="chatbox-ellipses-outline"></ion-icon>
         </ion-button>
       </div>
 
       <div class="buttonsShare">
-        <ion-button>
+        <ion-button (click)="challengeShare()">
           <ion-icon name="arrow-redo-outline"></ion-icon>
         </ion-button>
       </div>

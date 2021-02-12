@@ -1,3 +1,6 @@
+import { IComment } from './../models/iPost';
+import { IChallenge } from './../service/challenge.service';
+import { ChallengeReactionsComponent } from "./../components/challenge-reactions/challenge-reactions.component";
 import { UserService } from "./../service/user.service";
 import { take } from "rxjs/operators";
 import { CreateChallengeComponent } from "./../components/challenge/create/create.component";
@@ -5,6 +8,7 @@ import { IonContent, ModalController } from "@ionic/angular";
 import { TranslateService } from "@ngx-translate/core";
 import { Component, OnInit, ViewChild } from "@angular/core";
 import { ChallengeService } from "../service/challenge.service";
+import { ChallengeCommentsComponent } from "../components/challenge-comments/challenge-comments.component";
 
 @Component({
   selector: "app-challenges",
@@ -69,6 +73,37 @@ export class ChallengesPage implements OnInit {
     await modal.present();
   }
 
+  async challengeComments(comments: any[]) {
+    const modal = await this.createModalComments(comments);
+  }
+
+  async createModalComments(comments: any[]) {
+    const modal = await this.mc.create({
+      component: ChallengeCommentsComponent,
+      componentProps: comments,
+    });
+    await modal.present();
+    return modal;
+  }
+
+  async challengeReactions(reactions: any[]) {
+    const modal = await this.createModalReactions(reactions);
+  }
+
+  async createModalReactions(reactions: any) {
+    const modal = await this.mc.create({
+      component: ChallengeReactionsComponent,
+      componentProps: reactions,
+    });
+    await modal.present();
+    return modal;
+  }
+
+
+  async challengeShare(){
+    alert("share logic")
+  }
+
   async aceptarReto(challenged) {
     const modal = await this.mc.create({
       component: CreateChallengeComponent,
@@ -82,7 +117,7 @@ export class ChallengesPage implements OnInit {
   }
 
   async onScroll(e) {
-    this.challenge = null
+    this.challenge = null;
     this.scrolling = false;
     this.challengeNumber += 1;
     this.content.scrollToTop();
