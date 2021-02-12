@@ -20,7 +20,18 @@
     margin-bottom:10%;
 }
 
-ion-slides {
-    height: 100%;
-  }
+.editIcon{
+   font-size: 20px;
+    border-radius: 50%;
+    color: white;
+    background-color:#1b9211;
+    cursor: pointer;
+    position: relative;
+    left: 10px;
+}
 
+
+.videoPlayerNews {
+    width: 100% !important;
+    height: 114px !important;
+  }

@@ -56,7 +56,7 @@ export class EditComponent implements OnInit {
   ngOnInit() {
     this.newsService.findById(this.newsService.editNews).subscribe((response:any)=>{
       this.news = response.news
-      console.log(response.news)
+     
       this.videoSelected = response.news.principalVideo;
       this.urlVideo = response.news.principalVideo;
       this.imagenSelected = response.news.principalImage;
@@ -78,7 +78,7 @@ editar(){
     this.newsService.updateNews(this.form.value).subscribe((response)=>{
       this.presentToastWithOptions()
       this.newsService.openNews = this.newsService.editNews
-      this.router.navigate(["news/read"])
+      this.router.navigate([`news/read/${this.news._id}`])
     })
 }
 
@@ -114,8 +114,7 @@ parrafos=[];
     this.parrafos.push({parrafo:this.text1,position:this.parrafos.length,image:'',video:null})
     this.text1 = `Escribe el párrafo # ${this.parrafos.length+1} `
    
-   
-    console.log(this.parrafos)
+    this.agregandoParrafo = false
   }
   selectParrafo(){
     this.text1 =  this.parrafos[this.number].parrafo
@@ -140,7 +139,7 @@ parrafos=[];
     this.positionEditactual = null
     this.editando = false
     this.text1 = `Escribe el párrafo # ${this.parrafos.length+1} `
-  
+    this.agregandoParrafo = false
   }
   eliminarParrafo(){
     this.parrafos.splice(this.positionEditactual,1)
@@ -412,7 +411,25 @@ uploadVideoNotPrincipal(video,i){
   })
 }
  
-
+///
+//Para verificar si exite un titulo o no
+titlebool:boolean= true;
+deportebool:boolean = false;
+tituloListo(){
+this.titlebool = !this.titlebool;
+}
+deporteListo(){
+  this.deporte = null
+}
+// es true si se esta agregando un parrafo
+agregandoParrafo:boolean = false;
+/* agregarParrafo(){
+  agregandoParrafo
+} */
+listoPublicar:boolean = false
+listoParaPublicar(){
+  this.listoPublicar = !this.listoPublicar
+}
 
 
 }

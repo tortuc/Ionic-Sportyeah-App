@@ -423,7 +423,10 @@ agregandoParrafo:boolean = false;
 /* agregarParrafo(){
   agregandoParrafo
 } */
-
+listoPublicar:boolean = false
+listoParaPublicar(){
+  this.listoPublicar = !this.listoPublicar
+}
   ngOnInit(): void {
  
   }

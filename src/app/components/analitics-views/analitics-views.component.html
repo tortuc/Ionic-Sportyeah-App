@@ -19,11 +19,11 @@
   <ion-card>
     <ion-card-header>
       <ion-row>
-        <ion-col size-lg="4"  size-xs="12" >
+        <ion-col size-lg="12"  size-xs="12" >
           <ion-card-title>{{'analytics-views.subTilte' | translate}}</ion-card-title>
           <ion-card-subtitle>{{'analytics-views.info' | translate}}</ion-card-subtitle>
         </ion-col>
-        <ion-col size-lg="4"  size-xs="12" >
+       <!--  <ion-col size-lg="4"  size-xs="12" >
           <div style="text-align: center;" class="button">
             <ion-button class="botons"  (click)="pieData()">
               {{'analytics-views.all' | translate}}
@@ -33,17 +33,28 @@
         </ion-col>
         <ion-col size-lg="4"  size-xs="12" >
           <div style="text-align: center;"  class="button">
-            <ion-button  class="botons" (click)="postLines()"  > <!-- (click)="postLines()" -->
+            <ion-button  class="botons" (click)="postLines()"  >
               {{'analytics-views.post' | translate}}
               <ion-icon class="icon" name="browsers"></ion-icon>
             </ion-button>
           </div>
-        </ion-col>
+        </ion-col> -->
       </ion-row>
       
     </ion-card-header>
 
-    <ion-card-content *ngIf="option == 'all'" >
+    <ion-card-content>
+      <ion-segment scrollable class="segement"   >
+        <ion-segment-button  (click)="pieData()" >     
+          <p style="visibility: visible">Todas</p>
+        </ion-segment-button>
+    
+        <ion-segment-button (click)="postLines()" >
+          <p style="visibility: visible">Publicaciones</p>
+        </ion-segment-button>
+      </ion-segment>
+
+      <div  *ngIf="segement == 0">
       <ion-row>
 
         <ion-col size-xs="6" size-md="4"  size-lg="2">
@@ -83,9 +94,10 @@
         </ion-col>
 
       </ion-row>
-    </ion-card-content>
+    </div>
 
-    <ion-card-content *ngIf="option == 'post'" >
+
+    <div *ngIf="segement == 1">
       <ion-row>
 
         <ion-col size-xs="6" size-md="4"  size-lg="4">
@@ -107,8 +119,8 @@
         </ion-col>
 
       </ion-row>
+    </div>
     </ion-card-content>
-
   </ion-card>
 
   
@@ -117,50 +129,49 @@
       <ion-grid>
         <ion-row >
           <ion-col size-xs="12"  size-lg="5">
-            <ion-item>
-              <ion-label>
-                <ion-text color="black">
-                  <h1>{{'analytics-views.views' | translate}}: </h1>
-                </ion-text>
-              </ion-label>
-              <ion-text color="black">
-                <h2>{{allViews.length}}</h2>
-              </ion-text>   
-            </ion-item>
+            <ion-card style="background: #e0eaff;">
+                  <ion-grid>
+                    <ion-row >
+                      <ion-col size-xs="5" size-lg="7">
+                        <h1 style="float:left;">{{'analytics-views.views' | translate}}: </h1>
+                      </ion-col>
+                      <ion-col size-xs="1" size-lg="1"></ion-col>
+                      <ion-col size-xs="6" size-lg="4">
+                        <h1 style="float:left; text-align: end;font-size: 35px;">{{allViews.length}}</h1>
+                      </ion-col>
+                    </ion-row>
+                  </ion-grid>
+          </ion-card>
             <ion-row>
 
-              <ion-col>
+              <ion-col class="columDates" size="6">
                 <div >
                   <ion-button  class="botons" (click)="generateDay()" >
                     <span >{{'analytics-views.today'| translate}}</span>
-                    <ion-icon class="calendar icon" name="today-outline"></ion-icon>
                   </ion-button>
                 </div>
               </ion-col>
 
-              <ion-col>
+              <ion-col class="columDates" size="6">
                 <div >
                   <ion-button  class="botons" (click)="generateWeek()" >
                     <span >{{'analytics-views.weeks'| translate}}</span>
-                    <ion-icon class="calendar icon" name="today-outline"></ion-icon>
                   </ion-button>
                 </div>
               </ion-col>
 
-              <ion-col>
+              <ion-col class="columDates" size="6">
                 <div >
                   <ion-button  class="botons" (click)="generateMonth()" >
                     <span >{{'analytics-views.months'| translate}}</span>
-                    <ion-icon class="calendar icon" name="today-outline"></ion-icon>
                   </ion-button>
                 </div>
               </ion-col>
 
-              <ion-col>
+              <ion-col class="columDates" size="6">
                 <div>
                   <ion-button  class="botons" (click)="generateYear()" >
                     <span >{{'analytics-views.years'| translate}}</span>
-                    <ion-icon class="calendar icon" name="calendar-outline"></ion-icon>
                   </ion-button>
                 </div>
               </ion-col>
@@ -168,21 +179,26 @@
               <ion-col size="12" *ngIf="analyticsToShow == 'years'">
                 <ion-row>
                   <ion-col size="12">
-                  <ion-item>
-                    <ion-label>
-                      <ion-text color="black">
-                        <h1>{{'analytics-views.year' | translate}}: </h1>
-                      </ion-text>
-                    </ion-label>
-                    <ion-text color="black">
-                      <h2> {{year}}</h2>
-                    </ion-text>   
-                  </ion-item>      
-                  </ion-col>
-                  <ion-col size="6">
+                  <ion-card style="background: #e0eaff;">
+                    <ion-grid>
+                      <ion-row >
+                        <ion-col size-xs="5" size-lg="7" >
+                          <h1>{{'analytics-views.year' | translate}}: </h1>
+                        </ion-col>
+                        <ion-col size-xs="1" size-lg="1" ></ion-col>
+                        <ion-col size-xs="6" size-lg="4" >
+                          <h1 style="float:left; text-align: end;font-size: 20px;">{{year}}</h1>
+                        </ion-col>
+                      </ion-row>
+                    </ion-grid>
+                 </ion-card>
+                </ion-col>
+                      
+                  
+                  <ion-col class="columDates" size="6">
                     <ion-button class="week-button"  (click)="changeYear(-1)">{{'analytics-views.last' | translate}}</ion-button>
                   </ion-col>
-                  <ion-col size="6">
+                  <ion-col class="columDates" size="6">
                     <ion-button class="week-button"  (click)="changeYear(1)">{{'analytics-views.next' | translate}}</ion-button>
                   </ion-col>
                 </ion-row>
@@ -192,22 +208,25 @@
               <ion-col size="12" *ngIf="analyticsToShow == 'months'">
                 <ion-row>
                   <ion-col size="12">
-                    <ion-item>
-                      <ion-label>
-                        <ion-text color="black">
-                          <h1>{{'analytics-views.month' | translate}}:  </h1>
-                        </ion-text>
-                      </ion-label>
-                      <ion-text color="black">
-                        <h2>{{monthName}}</h2>
-                      </ion-text>   
-                    </ion-item>  
+                    <ion-card style="background: #e0eaff;">
+                      <ion-grid>
+                        <ion-row >
+                          <ion-col size-xs="5" size-lg="6" >
+                            <h1>{{'analytics-views.month' | translate}}: </h1>
+                          </ion-col>
+                          <ion-col size-xs="1" size-lg="1" ></ion-col>
+                          <ion-col size-xs="6" size-lg="5" >
+                            <h1 style="float:left; text-align: end;font-size: 20px;">{{monthName}}</h1>
+                          </ion-col>
+                        </ion-row>
+                      </ion-grid>
+                   </ion-card> 
                   </ion-col>
 
-                  <ion-col size="6">
+                  <ion-col class="columDates" size="6">
                     <ion-button class="week-button"  (click)="changeMonth(-1)">{{'analytics-views.last' | translate}}</ion-button>
                   </ion-col>
-                  <ion-col size="6">
+                  <ion-col class="columDates" size="6">
                     <ion-button class="week-button"  (click)="changeMonth(1)">{{'analytics-views.next' | translate}}</ion-button>
                   </ion-col>
                 </ion-row>
@@ -216,22 +235,24 @@
               <ion-col size="12" *ngIf="analyticsToShow == 'weeks'">
                 <ion-row>
                   <ion-col size="12">
-                    <ion-item>
-                      <ion-label>
-                        <ion-text color="black">
-                          <h1>{{'analytics-views.days' | translate}}:  </h1>
-                        </ion-text>
-                      </ion-label>
-                      <ion-text color="black">
-                        <h2>{{daysWeek[0].date}} - {{daysWeek[6].date}}</h2>
-                      </ion-text>   
-                    </ion-item>  
+                    <ion-card style="background: #e0eaff;">
+                      <ion-grid>
+                        <ion-row >
+                          <ion-col size-xs="12" size-lg="12" >
+                            <h1>{{'analytics-views.days' | translate}}:  </h1>
+                          </ion-col>
+                          <ion-col size-xs="12" size-lg="12" >
+                            <h1 style="float:left; text-align: end;font-size: 18px;">{{daysWeek[0].date}} - {{daysWeek[6].date}}</h1>
+                          </ion-col>
+                        </ion-row>
+                      </ion-grid>
+                   </ion-card>  
                   </ion-col>
 
-                  <ion-col size="6">
+                  <ion-col class="columDates" size="6">
                     <ion-button class="week-button"  (click)="changeWeek(-1)">{{'analytics-views.last' | translate}}</ion-button>
                   </ion-col>
-                  <ion-col size="6">
+                  <ion-col class="columDates" size="6">
                     <ion-button class="week-button"  (click)="changeWeek(1)">{{'analytics-views.next' | translate}}</ion-button>
                   </ion-col>
                 </ion-row>
@@ -240,22 +261,24 @@
               <ion-col size="12" *ngIf="analyticsToShow == 'hours'">
                 <ion-row>
                   <ion-col size="12">
-                    <ion-item>
-                      <ion-label>
-                        <ion-text color="black">
-                          <h1>{{'analytics-views.day' | translate}}:  </h1>
-                        </ion-text>
-                      </ion-label>
-                      <ion-text color="black">
-                        <h2>{{day.format('YYYY-MM-DD')}}</h2>
-                      </ion-text>   
-                    </ion-item>  
+                    <ion-card style="background: #e0eaff;">
+                      <ion-grid>
+                        <ion-row >
+                          <ion-col size-xs="5" size-lg="5" >
+                            <h1>{{'analytics-views.day' | translate}}:  </h1>
+                          </ion-col>
+                          <ion-col size-xs="7" size-lg="7" >
+                            <h1 style="float:left; text-align: end;font-size: 20px;">{{day.format('YYYY-MM-DD')}}</h1>
+                          </ion-col>
+                        </ion-row>
+                      </ion-grid>
+                   </ion-card> 
                   </ion-col>
 
-                  <ion-col size="6">
+                  <ion-col class="columDates" size="6">
                     <ion-button class="week-button"  (click)="changeDay(-1)">{{'analytics-views.last' | translate}}</ion-button>
                   </ion-col>
-                  <ion-col size="6">
+                  <ion-col class="columDates" size="6">
                     <ion-button class="week-button"  (click)="changeDay(1)">{{'analytics-views.next' | translate}}</ion-button>
                   </ion-col>
                 </ion-row>
