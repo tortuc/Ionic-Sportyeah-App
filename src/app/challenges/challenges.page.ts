@@ -90,14 +90,15 @@ export class ChallengesPage implements OnInit {
     return modal;
   }
 
-  async challengeReactions(reactions: any[]) {
-    const modal = await this.createModalReactions(reactions);
+  async challengeReactions() {
+    const modal = await this.createModalReactions();
   }
 
-  async createModalReactions(reactions: any) {
+  async createModalReactions() {
     const modal = await this.mc.create({
       component: ChallengeReactionsComponent,
-      componentProps: reactions,
+      componentProps: { challenge: this.challenge },
+      cssClass: "reactionModal"
     });
     await modal.present();
     return modal;
