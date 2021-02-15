@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { take } from "rxjs/operators";
 import { ChallengeService } from "./../../service/challenge.service";
 import { TranslateService } from "@ngx-translate/core";
@@ -39,8 +40,10 @@ export class ChallengeCommentsComponent implements OnInit {
     public loadingCtrl: LoadingController,
     public imageService: JdvimageService,
     public translate: TranslateService,
-    public challengeService: ChallengeService
+    public challengeService: ChallengeService,
+    public router: Router
   ) {}
+
 
   ngOnInit() {
     window.onclick = () => {
@@ -66,8 +69,7 @@ export class ChallengeCommentsComponent implements OnInit {
       .getById(this.challenge)
       .toPromise();
     console.log(r.challenge.challenging.comments);
-    this.comments = r.challenge.challenging.comments;
-    this.comments.reverse();
+    this.comments = r.challenge.challenging.comments.reverse();
     this.generatepag();
   }
 
@@ -89,7 +91,8 @@ export class ChallengeCommentsComponent implements OnInit {
   }
 
   setUser(user) {
-    this.mentions.setUser(user);
+    this.router.navigate([`/user/${user.username}`])
+    this.mc.dismiss()
   }
   addEmoji(ev) {
     this.mentions.usersMetions.forEach((element) => {
