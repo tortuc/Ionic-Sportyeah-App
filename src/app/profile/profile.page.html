@@ -67,15 +67,6 @@
               {{userService.User?.name}} {{userService.User?.last_name}}
               <ion-icon class="edit" name="settings-outline"></ion-icon>
             </ion-card-title>
-            <ion-button
-              class="analythics"
-              [routerLink]="'/landing/'+userService.User._id+'/analytics-views'"
-              ><ion-icon
-                name="analytics-outline"
-                style="cursor: pointer; color: black"
-              ></ion-icon
-              >{{'analytics-views.title' | translate}}</ion-button
-            >
             <ion-card-subtitle
               style="color: rgba(35, 112, 61, 0.993); font-weight: bold"
               (click)="goTo('/profile/edit')"
@@ -92,17 +83,25 @@
                 >
               </span>
             </ion-card-subtitle>
-            <ion-card-subtitle
-              *ngIf="userService.User?.profile_user == 'press'"
-            >
-              <ion-button [routerLink]="'/news/create'"
-                ><ion-icon
-                  style="margin-right: 8px"
-                  name="newspaper-outline"
-                ></ion-icon>
-                {{'news.article' | translate}}</ion-button
-              >
-            </ion-card-subtitle>
+            <ion-grid>
+              <ion-row>
+                <ion-col>
+                  <ion-button
+                  class="analythics"
+                  [routerLink]="'/landing/'+userService.User._id+'/analytics-views'"
+                  ><ion-icon
+                    name="analytics-outline"
+                    style="cursor: pointer; color: black"
+                  ></ion-icon
+                  >{{'analytics-views.title' | translate}}</ion-button
+                >
+                </ion-col>
+                <ion-col  *ngIf="userService.User?.profile_user == 'press'">
+                  <ion-button [routerLink]="'/news/create'" ><ion-icon style="margin-right: 8px;" name="newspaper-outline"></ion-icon> {{'news.article' | translate}}</ion-button>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+         
             <ion-card-subtitle class="estado">
               {{userService.User?.estado}}
             </ion-card-subtitle>

@@ -60,7 +60,7 @@ publicar(){
     this.form.value.principalVideo = this.videoSelected;
     this.form.value.principalImage = this.imagenSelected;
     this.form.value.user = this.userService.User._id 
-    //this.form.value.headline = this.titulo1;
+    this.form.value.headline = this.titulo1;
     this.form.value.content = this.parrafos
     //this.form.value.image = this.arrayImagenes
     this.form.value.sport = this.deporte
@@ -423,7 +423,10 @@ agregandoParrafo:boolean = false;
 /* agregarParrafo(){
   agregandoParrafo
 } */
-
+listoPublicar:boolean = false
+listoParaPublicar(){
+  this.listoPublicar = !this.listoPublicar
+}
   ngOnInit(): void {
  
   }

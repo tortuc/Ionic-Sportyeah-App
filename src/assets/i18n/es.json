@@ -760,8 +760,9 @@
 
   "news": {
     "news": "Noticias",
+    "notNews":"No se encontraron noticias",
     "newsSport": "Noticias Sportyeah!",
-    "create": "Crear",
+    "create": "Crear Nuevo Artículo",
     "read": "Leer",
     "article": "Artículo",
     "title": "Título",
@@ -777,7 +778,7 @@
     "changeImage": "Editar Imagen",
     "preview": "Vista Previa",
     "next": "Siguiente",
-    "prev": "Anterior",
+    "newNews": "Nueva Noticia",
     "publish": "Publicar",
     "published": "Artículo publicado con exito!",
     "edited": "Artículo editado con exito!",

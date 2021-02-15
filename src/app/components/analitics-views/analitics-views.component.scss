@@ -49,6 +49,9 @@ height: 400px;
     --background: #3d7dff ;
     height: 30px;
   }
+  .columDates{
+    text-align: center;
+  }
 
   .scale{
     transform:scale(0.9);
@@ -70,10 +73,12 @@ height: 400px;
   color:black;
   position: relative;
   left: 15;
+  text-align: center;
 }
 
 .botons{
-  background: #50c8ff;
+  --background: #3d7dff;
+  width: 100px;
 }
 
   @media screen and (max-width:470px){
@@ -87,9 +92,7 @@ height: 400px;
       transform: scale(0.9);
     }
 
-    .botons{
-      background: #50c8ff;
-    }
+    
     .h1Work{
       transform: scale(0.8);
     }
@@ -184,4 +187,8 @@ text-align: right;
   color: #ff0000bf; 
   cursor: pointer;
 
+}
+
+.ion-segment-button{
+	width:100% !important
 }

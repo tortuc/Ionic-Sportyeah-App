@@ -1,5 +1,97 @@
+.cardNews{
+    width: 100%;
+    height: 100%;
+    margin-bottom:10%; 
+    cursor: pointer;
+}
 .imageMiniCard{
-    width: 66%;
+    width: 150px;
     margin-left: auto;
     margin-right: auto;
+    cursor: pointer;
 }
+
+.iconNotNews{
+    width: 21%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 12%;
+}
+
+.videoPlayerNews {
+    width: 100% !important;
+    height: 114px !important;
+  }
+
+  .title {
+    font-family: sans-serif;
+    margin:0px auto;
+    text-align: center;
+    font-size: 30px;
+    max-width: 530px;
+    position: relative;
+    color: white;
+  }
+  
+  .title:before {
+    content: "";
+    display: block;
+    width: 140px;
+    height: 2px;
+    background: white;
+    left: -100px;
+    top: 50%;
+    position: absolute;
+  }
+  
+  .title:after {
+    content: "";
+    display: block;
+    width: 140px;
+    height: 2px;
+    background: white;
+    right: -100px;
+    top: 50%;
+    position: absolute;
+  }
+
+  @media screen and (max-width:440px){
+    .title:before {
+        content: "";
+        display: block;
+        width: 120px;
+        height: 2px;
+        background: white;
+        left: -100px;
+        top: 50%;
+        position: absolute;
+      }
+      
+      .title:after {
+        content: "";
+        display: block;
+        width: 120px;
+        height: 2px;
+        background: white;
+        right: -100px;
+        top: 50%;
+        position: absolute;
+      }
+      
+     
+   
+  }
+
+  .threeNews{
+    background: white;height: 300px;
+    cursor: pointer;
+  }
+
+  .deporteTitle{
+    font-size: 9px !important;
+  }
+  .newsTitle{
+    font-size: 18px !important;
+    color:black ;
+    cursor: pointer;
+  }

@@ -21,6 +21,9 @@ export class AnaliticsViewsComponent implements OnInit {
     private postService:PostService,
     public toastController: ToastController
   ) {}
+
+  segement = 0;
+
   async presentToastWithOptions(message) {
     const toast = await this.toastController.create({
       header: this.translate.instant('analytics-views.information'),
@@ -231,8 +234,9 @@ this.sortable.sort(function(b, a) {
     }
     })
     
+
    }
-   segment='vistas';
+  
 postInfoUser=[]
 postUserInfo(){
   this.option="postInfo"
@@ -247,6 +251,7 @@ async postUsersViews(){
 }
 
  pieData(){
+   this.segement = 0;
    if(this.allViews != undefined){
 
     if(this.allViews.length != 0){
@@ -1030,6 +1035,7 @@ changeDay(n){
   option:string='';
   postLines(){
     this.option = 'post'
+    this.segement = 1;
   }
 
 

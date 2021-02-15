@@ -1,7 +1,8 @@
-<div>
+<div >
   <p  style="white-space:pre-wrap"><span class="message" [innerHTML]="post.message | links"></span></p>
-               
-  <img (click)="goToPost(post._id)" class="img-post"  *ngIf="post.image != null" [src]="post.image"/>
+  <div style="text-align: center;">
+    <img (click)="goToPost(post._id)" class="img-post"  *ngIf="post.image != null" [src]="post.image"/>
+  </div>             
   
   
     <video *ngIf="post.video != null && post.video != ''" controlslist="nodownload"  controls="controls" preload="metadata"  webkit-playsinline="webkit-playsinline" class="videoPlayer">
