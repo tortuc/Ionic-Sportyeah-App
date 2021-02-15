@@ -147,12 +147,73 @@
         </video>
       </div>
 
-      <div class="buttonsLike">
-        <ion-button (click)="challengeReactions(challenge.challenging.comments)">
+      <div
+        class="buttonsLike"
+        (mouseover)="time = true"
+        (mouseout)="time = false"
+      >
+        <!-- <ion-button
+          (click)="challengeReactions(challenge.challenging.comments)"
+        > -->
+        <ion-button (click)="reactionon()" *ngIf="reactionsBool === false">
           <ion-icon name="heart-outline"></ion-icon>
         </ion-button>
-      </div>
+        <ion-button (click)="reactionoff()" *ngIf="reactionsBool === true">
+          <ion-icon name="heart-outline"></ion-icon>
+        </ion-button>
 
+        <!-- <ion-grid *ngIf="item" style="position: relative"> -->
+        <div class="reacts" #reacts>
+          <div class="circle" #circle (click)="like('like')">
+            <img
+              #img
+              src="https://res.cloudinary.com/prvnbist/image/upload/v1492531171/XZOPuv9_eyqlr2.png"
+              alt=""
+            />
+            <p>{{ "post.like" | translate }}</p>
+          </div>
+          <div class="circle" (click)="like('love')" #circle>
+            <img
+              #img
+              src="https://res.cloudinary.com/prvnbist/image/upload/v1492531172/uIjLl6R_cmbnqb.png"
+              alt=""
+            />
+            <p>{{ "post.love" | translate }}</p>
+          </div>
+          <div class="circle" (click)="like('haha')" #circle>
+            <img
+              #img
+              src="https://res.cloudinary.com/prvnbist/image/upload/v1492531177/lsHmtDy_ycqnbp.png"
+              alt=""
+            />
+            <p>{{ "post.haha" | translate }}</p>
+          </div>
+          <div class="circle" #circle (click)="like('wow')">
+            <img
+              #img
+              src="https://res.cloudinary.com/prvnbist/image/upload/v1492531177/s475u9d_o8trbg.png"
+              alt=""
+            />
+            <p>{{ "post.wow" | translate }}</p>
+          </div>
+          <div class="circle" #circle (click)="like('sad')">
+            <img
+              #img
+              src="https://res.cloudinary.com/prvnbist/image/upload/v1492531172/JJuD9qb_a7gkmu.png"
+              alt=""
+            />
+            <p>{{ "post.sad" | translate }}</p>
+          </div>
+          <div class="circle" #circle (click)="like('angry')">
+            <img
+              #img
+              src="https://res.cloudinary.com/prvnbist/image/upload/v1492531178/VDM3zOV_qy9fqj.png"
+              alt=""
+            />
+            <p>{{ "post.angry" | translate }}</p>
+          </div>
+        </div>
+      </div>
       <div class="buttonsComment">
         <ion-button
           (click)="challengeComments(challenge.challenging.reactions)"

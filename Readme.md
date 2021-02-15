@@ -10,6 +10,14 @@ mongod
 2. ssh-add ~/.ssh/id_rsa_sportyeah.pub
 3. ssh-add ~/.ssh/id_rsa_kecuki.pub
 
+## TAREAS 15-02-2021
+
+1. Copiar la funcionalidad de likes y reacciones.
+2. Desplegar de forma vertical.
+3. Que guarde las reacciones.
+4. Y permita ver que reaccione.
+5. Eliminar las reacciones duplicadas.
+
 ## TAREAS 11-12-2020
 
 1. Create component for see comments.
