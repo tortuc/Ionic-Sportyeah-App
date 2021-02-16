@@ -64,11 +64,15 @@ export class ChallengeService {
     return this.http.get(`${this.route}/all`);
   }
 
-  getById(id:string){
-    return this.http.get(`${this.route}/${id}`)
+  getById(id: string) {
+    return this.http.get(`${this.route}/${id}`);
   }
 
   createComment(comment: any) {
     return this.http.post(`${this.route}/comment`, comment);
+  }
+
+  createReaction(reaction: any) {
+    return this.http.post(`${this.route}/reaction`, reaction);
   }
 }

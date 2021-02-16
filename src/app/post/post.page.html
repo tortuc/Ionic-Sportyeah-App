@@ -1,136 +1,154 @@
 <ion-header>
-  <ion-toolbar  class="bg-gradient-person">
+  <ion-toolbar class="bg-gradient-person">
     <ion-buttons slot="start">
-      <ion-back-button style="--color:white"></ion-back-button>
+      <ion-back-button style="--color: white"></ion-back-button>
     </ion-buttons>
-
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="bg-gradient-person " >
-  <ion-grid  style="padding: 0;" class="height-100vh" >
-    <ion-row  >
-      <ion-col size-xs="12"  size-lg="8" ngClass.xs="p-0">
+<ion-content class="bg-gradient-person">
+  <ion-grid style="padding: 0" class="height-100vh">
+    <ion-row>
+      <ion-col size-xs="12" size-lg="8" ngClass.xs="p-0">
         <ion-grid>
-         
-         
-       
           <ion-row *ngIf="item && item != 404" class="post-card">
-            <ion-card ngClass.xs="m-p-0"  style="width: 100%;">
+            <ion-card ngClass.xs="m-p-0" style="width: 100%">
               <ion-card-header>
-                <header-post class="user-header" [post]="item.post" (deleted)="goBack()" (getPost)="getPost(item.post._id)"></header-post>       
-
+                <header-post
+                  class="user-header"
+                  [post]="item.post"
+                  (deleted)="goBack()"
+                  (getPost)="getPost(item.post._id)"
+                ></header-post>
               </ion-card-header>
-            
+
               <ion-card-content>
                 <post-content [post]="item.post"></post-content>
-                <post-shared *ngIf="item.post.post" [post]="item.post.post" ></post-shared>
-                <post-shared *ngIf="item.post?.news" [news]="item.post?.news" ></post-shared>
+                <post-shared
+                  *ngIf="item.post.post"
+                  [post]="item.post.post"
+                ></post-shared>
+                <post-shared
+                  *ngIf="item.post?.news"
+                  [news]="item.post?.news"
+                ></post-shared>
               </ion-card-content>
-              <post-options
-                [item]="item"
-                isPost="true"
-              ></post-options>
+              <post-options [item]="item" isPost="true"></post-options>
               <ion-grid>
                 <ion-row>
                   <ion-col size="12">
-                    <comment-post [post]="item.post" (newComment)="comments($event)"></comment-post>
+                    <comment-post
+                      [post]="item.post"
+                      (newComment)="comments($event)"
+                    ></comment-post>
                   </ion-col>
-                  <ion-col *ngFor="let comment of item.comments"  size="12">
-                    <ion-card class="comment"  >
+                  <ion-col *ngFor="let comment of item.comments" size="12">
+                    <ion-card class="comment">
                       <ion-card-header>
                         <ion-card-subtitle class="user-header">
                           <ion-avatar class="mini">
-                          <ion-img class="img-user-mini" [src]="comment.user.photo"></ion-img>
-                          <div class="connectedDIVlittle" *ngIf="comment.user.connected"></div>
-                        </ion-avatar>
-                        <div class="user-name">
-                          <span class="message profile-name" (click)="goToProfile(comment.user._id,comment.user.username)" >{{comment.user.name}} {{comment.user.last_name}}</span><br>
-                          <span>{{comment.date | customDisplayDate}}</span>
-                        </div>
-                        
+                            <ion-img
+                              class="img-user-mini"
+                              [src]="comment.user.photo"
+                            ></ion-img>
+                            <div
+                              class="connectedDIVlittle"
+                              *ngIf="comment.user.connected"
+                            ></div>
+                          </ion-avatar>
+                          <div class="user-name">
+                            <span
+                              class="message profile-name"
+                              (click)="goToProfile(comment.user._id,comment.user.username)"
+                              >{{comment.user.name}}
+                              {{comment.user.last_name}}</span
+                            ><br />
+                            <span>{{comment.date | customDisplayDate}}</span>
+                          </div>
                         </ion-card-subtitle>
                       </ion-card-header>
                       <ion-card-content>
-                        <span *ngIf="comment.message" [innerHTML]="comment.message | links"></span>
-                        <ion-img (click)="openImg(comment)" class="img-comment" *ngIf="comment.image" [src]="comment.image">
-
+                        <span
+                          *ngIf="comment.message"
+                          [innerHTML]="comment.message | links"
+                        ></span>
+                        <ion-img
+                          (click)="openImg(comment)"
+                          class="img-comment"
+                          *ngIf="comment.image"
+                          [src]="comment.image"
+                        >
                         </ion-img>
                       </ion-card-content>
-                      </ion-card>
-               
+                    </ion-card>
                   </ion-col>
                 </ion-row>
               </ion-grid>
             </ion-card>
-        
-         
-        </ion-row>
-       
-        <ion-row  *ngIf="item == 404"  class=" ion-justify-content-center">
-          <ion-col class="max-widht-520" size-lg="5" size-md="8" size-sm="12">
-            <ion-card ngClass.xs="login-xs" >
-            
-              <ion-card-header class="text-center" >
-                <ion-img class="img-login" src="https://i.ibb.co/g6TFj6G/Logo-TRANSPARENTE.png"></ion-img>
-                <ion-card-title>{{'404.title' | translate}}</ion-card-title>
-                <ion-card-subtitle>{{'404.subtitle' | translate}}</ion-card-subtitle>
-                <div class="max-widht-300 center margin-top-10 text-center">
-                  <a routerLink="/login">{{'404.back'| translate}}</a>
-                </div>
-              </ion-card-header> 
-            
-              <ion-card-content>
-                
-             
-              </ion-card-content>
-            </ion-card>
-          </ion-col>
-        </ion-row>
+          </ion-row>
+
+          <ion-row *ngIf="item == 404" class="ion-justify-content-center">
+            <ion-col class="max-widht-520" size-lg="5" size-md="8" size-sm="12">
+              <ion-card ngClass.xs="login-xs">
+                <ion-card-header class="text-center">
+                  <ion-img
+                    class="img-login"
+                    src="https://i.ibb.co/g6TFj6G/Logo-TRANSPARENTE.png"
+                  ></ion-img>
+                  <ion-card-title>{{'404.title' | translate}}</ion-card-title>
+                  <ion-card-subtitle
+                    >{{'404.subtitle' | translate}}</ion-card-subtitle
+                  >
+                  <div class="max-widht-300 center margin-top-10 text-center">
+                    <a routerLink="/login">{{'404.back'| translate}}</a>
+                  </div>
+                </ion-card-header>
+
+                <ion-card-content> </ion-card-content>
+              </ion-card>
+            </ion-col>
+          </ion-row>
         </ion-grid>
-       
-     
-        
-      
-     
       </ion-col>
-      <ion-col size-lg="4" fxShow.lt-md="false" class="ion-justify-content-center ion-align-items-center" >
-        <ion-card class="friends-card" >
+      <ion-col
+        size-lg="4"
+        fxShow.lt-md="false"
+        class="ion-justify-content-center ion-align-items-center"
+      >
+        <ion-card class="friends-card">
           <ion-card-header>
             {{'dashboard.profile' | translate}}
-            <ion-item lines="none" (click)="goToMyProfile()" style="cursor: pointer;">
+            <ion-item
+              lines="none"
+              (click)="goToMyProfile()"
+              style="cursor: pointer"
+            >
               <ion-thumbnail slot="start">
                 <ion-avatar class="mini">
-                  <img [src]="userService.User?.photo">
+                  <img [src]="userService.User?.photo" />
                 </ion-avatar>
               </ion-thumbnail>
-              <ion-label >{{userService.User?.name}}</ion-label>
-
+              <ion-label>{{userService.User?.name}}</ion-label>
             </ion-item>
           </ion-card-header>
           <ion-card-content>
             {{'dashboard.friends' | translate}}
-            <ion-item (click)="searchFriend()" style="cursor: pointer;">
-              
+            <ion-item (click)="searchFriend()" style="cursor: pointer">
               <ion-label>{{'dashboard.search_friend' | translate}}</ion-label>
             </ion-item>
             <ion-item *ngFor="let friend of userService.followings">
               <ion-thumbnail slot="start">
                 <ion-avatar class="mini">
-                  <img [src]="friend.user.photo">
+                  <img [src]="friend.user.photo" />
                 </ion-avatar>
               </ion-thumbnail>
-              <ion-label>{{friend.user.name}} {{friend.user.last_name}}</ion-label>
+              <ion-label
+                >{{friend.user.name}} {{friend.user.last_name}}</ion-label
+              >
             </ion-item>
-           
-             
-                
           </ion-card-content>
         </ion-card>
       </ion-col>
-  
-   
-  </ion-row>
-  
+    </ion-row>
   </ion-grid>
 </ion-content>

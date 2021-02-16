@@ -792,5 +792,13 @@
   },
   "sponsorDescription": "Aqui puedes colocar tus patrocinadores",
   "back": "Cerrar",
-  "uploadAgain":"Subir otro video"
+  "uploadAgain":"Subir otro video",
+  "levels-challenge":{
+    "nivel1":"Epico",
+    "nivel2":"Increible",
+    "nivel3":"Casi Bien",
+    "nivel4":"Cobarde",
+    "nivel5":"Asco",
+    "nivel6":"Hasta mi abuela lo hace mejor"
+  }
 }

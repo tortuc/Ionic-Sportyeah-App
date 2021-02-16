@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { take } from "rxjs/operators";
 import { ChallengeService } from "./../../service/challenge.service";
 import { TranslateService } from "@ngx-translate/core";
@@ -24,6 +25,8 @@ export class ChallengeCommentsComponent implements OnInit {
 
   // public referenceId: any = null;
   // public comments: any[] = null;
+  public index = 0;
+  public commentsShown = [];
   public lastCaretPosition = 0;
   public emoji = false;
   public form = this.fb.group({
@@ -37,8 +40,10 @@ export class ChallengeCommentsComponent implements OnInit {
     public loadingCtrl: LoadingController,
     public imageService: JdvimageService,
     public translate: TranslateService,
-    public challengeService: ChallengeService
+    public challengeService: ChallengeService,
+    public router: Router
   ) {}
+
 
   ngOnInit() {
     window.onclick = () => {
@@ -49,12 +54,23 @@ export class ChallengeCommentsComponent implements OnInit {
     this.actualizar();
   }
 
+  generatepag() {
+    this.index += 4;
+    this.commentsShown = [];
+    var comments = [];
+    for (let i = 0; i < this.index; i++) {
+      if (this.comments[i]) comments.push(this.comments[i]);
+    }
+    this.getUsersAllInfo(comments);
+  }
+
   async actualizar() {
     const r: any = await this.challengeService
       .getById(this.challenge)
       .toPromise();
-    console.log(r);
-    this.getUsersAllInfo(r.challenge.challenging.comments);
+    console.log(r.challenge.challenging.comments);
+    this.comments = r.challenge.challenging.comments.reverse();
+    this.generatepag();
   }
 
   openEmojis() {
@@ -75,7 +91,8 @@ export class ChallengeCommentsComponent implements OnInit {
   }
 
   setUser(user) {
-    this.mentions.setUser(user);
+    this.router.navigate([`/user/${user.username}`])
+    this.mc.dismiss()
   }
   addEmoji(ev) {
     this.mentions.usersMetions.forEach((element) => {
@@ -110,16 +127,13 @@ export class ChallengeCommentsComponent implements OnInit {
     });
   }
   async getUsersAllInfo(comments: any[]) {
-    this.comments = [];
-    comments.reverse().map(async (comment: any) => {
-      console.log(comment);
-      console.log(comment.userReference);
+    this.commentsShown = [];
+    comments.map(async (comment: any) => {
       const user = await this.userService
         .getUserById(comment.userReference.referenceId)
         .toPromise();
-      console.log(user);
       comment.userData = user;
-      this.comments.push(comment);
+      this.commentsShown.push(comment);
     });
   }
 
