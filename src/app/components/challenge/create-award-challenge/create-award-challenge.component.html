@@ -1,0 +1,57 @@
+<form [formGroup]="formAward" class="text-center">
+  <div
+    [hidden]="
+      formAward.value.media !== '' &&
+      formAward.value.media !== null &&
+      formAward.value.media !== undefined
+    "
+    style="margin-top: 20px"
+  >
+    <img
+      src="https://img.icons8.com/nolan/64/image.png"
+      alt=""
+      style="width: 100px; cursor: pointer"
+      (click)="awardMedia()"
+    />
+    <h6 style="color: grey">{{ "challenge.mediaAward" | translate }}</h6>
+  </div>
+  <div
+    *ngIf="
+      formAward.value.media !== '' &&
+      formAward.value.media !== null &&
+      formAward.value.media !== undefined
+    "
+  >
+    <img [src]="formAward.value.media" alt="" (click)="awardMedia()" />
+  </div>
+  <ion-item>
+    <ion-label position="floating">{{
+      "challenge.place" | translate
+    }}</ion-label>
+    <ion-input type="text" fromControlName="place"></ion-input>
+  </ion-item>
+  {{ formAward.value.place }}
+  <ion-item>
+    <ion-label position="floating">{{
+      "challenge.titleAward" | translate
+    }}</ion-label>
+    <ion-input type="text" fromControlName="title"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">{{
+      "challenge.description" | translate
+    }}</ion-label>
+    <ion-textarea type="text" fromControlName="description"></ion-textarea>
+  </ion-item>
+  <div style="margin-top: 20px">
+    <ion-button (click)="saveAward()" [disabled]="formAward.status !== 'VALID'">
+      {{ "save" | translate }}
+    </ion-button>
+    <ion-button color="light" (click)="close()">
+      {{ "back" | translate }}
+    </ion-button>
+    <ion-button color="light" (click)="finalizado()">
+      {{ "back" | translate }}
+    </ion-button>
+  </div>
+</form>
