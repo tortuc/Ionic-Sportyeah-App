@@ -23,15 +23,15 @@ export class NewsPage implements OnInit {
   newsFollowthree = []; //Contiene las 3 ultimas noticias de los seguidos
   newsSportUser = []; //Contiene las noticias del deporte del usuario
   myNews = []; // Contiene las noticias del reportero en caso de ser user press
-  indexLast=3;
+  indexLast = 3;
    verMasSport(){
        this.indexLast += 3 
    }
-  indexLastFollow =3;
+  indexLastFollow = 3;
    verMasfollow(){
     this.indexLastFollow += 3 
    }
-   indexLastMy
+   indexLastMy = 3;
    verMasMy(){
     this.indexLastMy += 3 
    }

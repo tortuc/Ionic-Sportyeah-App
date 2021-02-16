@@ -40,7 +40,7 @@ constructor(
     user:['',[Validators.required]],
     headline:['',[Validators.required]],
     content:['',[Validators.required]],
-    //image:['',[Validators.required]],
+    principalSubtitle:['',[Validators.required]],
     principalImage:['',[Validators.required]],
     principalVideo:['',[Validators.required]],
     sport:['',[Validators.required]]
@@ -57,17 +57,20 @@ constructor(
   }
 
 publicar(){
-    this.form.value.principalVideo = this.videoSelected;
+     this.form.value.principalVideo = this.videoSelected;
     this.form.value.principalImage = this.imagenSelected;
     this.form.value.user = this.userService.User._id 
     this.form.value.headline = this.titulo1;
+    this.form.value.principalSubtitle = this.subTitle;
     this.form.value.content = this.parrafos
     //this.form.value.image = this.arrayImagenes
     this.form.value.sport = this.deporte
-    this.newsService.create(this.form.value).subscribe((response)=>{
+   /* */this.newsService.create(this.form.value).subscribe((response)=>{
       this.presentToastWithOptions()
       this.router.navigate(["news"])
-    })
+    }) 
+  
+
 }
 fecha = new Date().getDate() + '/'+ (new Date().getMonth()+1) + '/' + new Date().getFullYear()
 editando:boolean=false//si esta editando el agregar es disabled
@@ -78,8 +81,9 @@ parrafoAntesEdicion;
 parrafos=[];
 
   text1 = `Escribe el párrafo # ${this.parrafos.length+1} `;
-  titulo1= null;
-  deporte= null;
+  titulo1 = null;
+  deporte = null;
+  subTitle = null;
   sports=['soccer', 'basketball','tennis',
   'baseball','golf','running','volleyball',
   'swimming','boxing','table_tennis','rugby',
@@ -99,12 +103,20 @@ parrafos=[];
 
 
   consol(){
-  this.parrafos.push({parrafo:this.text1,position:this.parrafos.length,image:'',video:null})//title:this.titulo1,subtitle:this.deporte
+  let subtitulo
+  if(this.parrafos.length == 0){
+    subtitulo = null 
+  }else{
+    subtitulo = this.subTitleParrafo 
+  } 
+
+  this.parrafos.push({subtitle:subtitulo,parrafo:this.text1,position:this.parrafos.length,image:'',video:null})//title:this.titulo1,subtitle:this.deporte
   this.text1 = `Escribe el párrafo # ${this.parrafos.length+1} `
- 
+
   /* this.titulo1= `Escribe el Titulo # ${this.parrafos.length+1} `;
   this.deporte= `Escribe el Subtitulo # ${this.parrafos.length+1} `; */
  this.agregandoParrafo = false
+ this.subTitleParrafo = null
 }
 selectParrafo(){
   this.text1 =  this.parrafos[this.number].parrafo
@@ -412,17 +424,53 @@ uploadVideoNotPrincipal(video,i){
 //Para verificar si exite un titulo o no
 titlebool:boolean= false;
 deportebool:boolean = false;
+subTitlebool:boolean = false;
 tituloListo(){
 this.titlebool = !this.titlebool;
+}
+subTituloListo(i){
+  this.subTitlebool = !this.subTitlebool;
 }
 deporteListo(){
   this.deporte = null
 }
 // es true si se esta agregando un parrafo
 agregandoParrafo:boolean = false;
-/* agregarParrafo(){
-  agregandoParrafo
-} */
+//es true si se esta agregando un subtitulo
+subTitleParrafo;
+numberSubtitle;
+agregandoSubtitulo:boolean = false;
+editandoSubTitle:boolean = false;
+positionEditactualSubtitle:number=null;
+poisionAgregarSubtitulo; 
+agregarSubtitulo(i){
+this.parrafos[i].subtitle = this.subTitleParrafo
+this.agregandoSubtitulo = false;
+}
+cancelarSubtitle(){
+  this.numberSubtitle = null;
+  this.editandoSubTitle = false;
+  this.subTitleParrafo = null;
+  this.positionEditactualSubtitle = null;
+}
+editandoSubtitulo(){
+  this.parrafos[this.positionEditactualSubtitle].subtitle = this.subTitleParrafo;
+  this.editandoSubTitle = false
+  this.positionEditactualSubtitle = null;
+  this.subTitleParrafo = null;
+}
+selectsubTitulo(position){
+  this.positionEditactualSubtitle = position;
+  this.numberSubtitle = position
+  this.subTitleParrafo =  this.parrafos[position].subtitle
+  this.editandoSubTitle = true
+}
+eliminarSubtitulo(){
+  this.parrafos[this.positionEditactualSubtitle].subtitle = null;
+  this.editandoSubTitle = false
+  this.positionEditactualSubtitle = null;
+  this.subTitleParrafo = null;
+}
 listoPublicar:boolean = false
 listoParaPublicar(){
   this.listoPublicar = !this.listoPublicar

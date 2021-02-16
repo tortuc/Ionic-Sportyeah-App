@@ -37,6 +37,7 @@ export class EditComponent implements OnInit {
     headline:['',[Validators.required]],
     content:['',[Validators.required]],
     //image:['',[Validators.required]],
+    principalSubtitle:['',[Validators.required]],
     principalImage:['',[Validators.required]],
     principalVideo:['',[Validators.required]],
     sport:['',[Validators.required]]
@@ -64,6 +65,10 @@ export class EditComponent implements OnInit {
       this.parrafos = response.news.content;
       this.titulo1 = response.news.headline;
       this.deporte = response.news.sport;
+      if(response.news.principalSubtitle){
+        this.subTitlebool = true;
+      }
+      this.subTitle = response.news.principalSubtitle;
     })
   }
 
@@ -72,6 +77,7 @@ editar(){
     this.form.value.principalImage = this.imagenSelected;
     this.form.value.user = this.userService.User._id 
     this.form.value.headline = this.titulo1;
+    this.form.value.principalSubtitle = this.subTitle;
     this.form.value.content = this.parrafos
     //this.form.value.image = this.arrayImagenes
     this.form.value.sport = this.deporte
@@ -91,6 +97,7 @@ parrafoAntesEdicion;
 parrafos=[];
   text1 = `Escribe el párrafo # ${this.parrafos.length+1} `;
   titulo1= ``;
+  subTitle = null;
   deporte= ``;
   sports=['soccer', 'basketball','tennis',
   'baseball','golf','running','volleyball',
@@ -111,9 +118,15 @@ parrafos=[];
 
 
   consol(){
-    this.parrafos.push({parrafo:this.text1,position:this.parrafos.length,image:'',video:null})
+    let subtitulo
+    if(this.parrafos.length == 0){
+      subtitulo = null 
+    }else{
+      subtitulo = this.subTitleParrafo 
+    } 
+    this.parrafos.push({subtitle:subtitulo,parrafo:this.text1,position:this.parrafos.length,image:'',video:null})
     this.text1 = `Escribe el párrafo # ${this.parrafos.length+1} `
-   
+    this.subTitleParrafo = null
     this.agregandoParrafo = false
   }
   selectParrafo(){
@@ -414,9 +427,13 @@ uploadVideoNotPrincipal(video,i){
 ///
 //Para verificar si exite un titulo o no
 titlebool:boolean= true;
+subTitlebool:boolean = false;
 deportebool:boolean = false;
 tituloListo(){
 this.titlebool = !this.titlebool;
+}
+subTituloListo(i){
+  this.subTitlebool = !this.subTitlebool;
 }
 deporteListo(){
   this.deporte = null
@@ -429,6 +446,45 @@ agregandoParrafo:boolean = false;
 listoPublicar:boolean = false
 listoParaPublicar(){
   this.listoPublicar = !this.listoPublicar
+}
+
+
+
+
+//es true si se esta agregando un subtitulo
+subTitleParrafo;
+numberSubtitle;
+agregandoSubtitulo:boolean = false;
+editandoSubTitle:boolean = false;
+positionEditactualSubtitle:number=null;
+poisionAgregarSubtitulo; 
+agregarSubtitulo(i){
+this.parrafos[i].subtitle = this.subTitleParrafo
+this.agregandoSubtitulo = false;
+}
+cancelarSubtitle(){
+  this.numberSubtitle = null;
+  this.editandoSubTitle = false;
+  this.subTitleParrafo = null;
+  this.positionEditactualSubtitle = null;
+}
+editandoSubtitulo(){
+  this.parrafos[this.positionEditactualSubtitle].subtitle = this.subTitleParrafo;
+  this.editandoSubTitle = false
+  this.positionEditactualSubtitle = null;
+  this.subTitleParrafo = null;
+}
+selectsubTitulo(position){
+  this.positionEditactualSubtitle = position;
+  this.numberSubtitle = position
+  this.subTitleParrafo =  this.parrafos[position].subtitle
+  this.editandoSubTitle = true
+}
+eliminarSubtitulo(){
+  this.parrafos[this.positionEditactualSubtitle].subtitle = null;
+  this.editandoSubTitle = false
+  this.positionEditactualSubtitle = null;
+  this.subTitleParrafo = null;
 }
 
 

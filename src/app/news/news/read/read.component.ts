@@ -14,6 +14,7 @@ export class ReadComponent implements OnInit {
     this.newsService.findById(this.newsService.openNews).toPromise()
     .then((response:any)=>{
       this.news = response 
+      console.log(this.news)
     })
     .catch((err)=>{
       this.news = 404
