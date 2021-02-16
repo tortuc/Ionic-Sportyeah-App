@@ -50,7 +50,7 @@
       style="
         border-bottom: 1px grey;
         width: 100%;
-        height: 93vh;
+        height: 97vh;
         padding: 10px;
         border-radius: 5px;
         background-color: black;
@@ -147,14 +147,7 @@
         </video>
       </div>
 
-      <div
-        class="buttonsLike"
-        (mouseover)="time = true"
-        (mouseout)="time = false"
-      >
-        <!-- <ion-button
-          (click)="challengeReactions(challenge.challenging.comments)"
-        > -->
+      <div class="buttonsLike">
         <ion-button (click)="reactionon()" *ngIf="reactionsBool === false">
           <ion-icon name="heart-outline"></ion-icon>
         </ion-button>
@@ -162,9 +155,16 @@
           <ion-icon name="heart-outline"></ion-icon>
         </ion-button>
 
-        <!-- <ion-grid *ngIf="item" style="position: relative"> -->
+        <div *ngIf="myVote  && reactionsBool === false" class="VoteDavid">
+          <img [src]="myVote" alt="" />
+        </div>
+
         <div class="reacts" #reacts>
-          <div class="circle" #circle (click)="like('like')">
+          <div
+            class="circle"
+            #circle
+            (click)="like('like','https://img.icons8.com/nolan/64/best-seller.png')"
+          >
             <img
               #img
               src="https://img.icons8.com/nolan/64/best-seller.png"
@@ -172,7 +172,11 @@
             />
             <p>{{ "levels-challenge.nivel1" | translate }}</p>
           </div>
-          <div class="circle" (click)="like('love')" #circle>
+          <div
+            class="circle"
+            (click)="like('love','https://img.icons8.com/ios/50/000000/wow-button.png')"
+            #circle
+          >
             <img
               #img
               src="https://img.icons8.com/ios/50/000000/wow-button.png"
@@ -180,7 +184,11 @@
             />
             <p>{{ "levels-challenge.nivel2" | translate }}</p>
           </div>
-          <div class="circle" (click)="like('haha')" #circle>
+          <div
+            class="circle"
+            (click)="like('haha','https://img.icons8.com/nolan/64/poor-quality.png')"
+            #circle
+          >
             <img
               #img
               src="https://img.icons8.com/nolan/64/poor-quality.png"
@@ -188,7 +196,11 @@
             />
             <p>{{ "levels-challenge.nivel3" | translate }}</p>
           </div>
-          <div class="circle" #circle (click)="like('wow')">
+          <div
+            class="circle"
+            #circle
+            (click)="like('wow','https://img.icons8.com/ios/50/000000/disgusting.png')"
+          >
             <img
               #img
               src="https://img.icons8.com/ios/50/000000/disgusting.png"
@@ -196,7 +208,11 @@
             />
             <p>{{ "levels-challenge.nivel4" | translate }}</p>
           </div>
-          <div class="circle" #circle (click)="like('sad')">
+          <div
+            class="circle"
+            #circle
+            (click)="like('sad','https://img.icons8.com/emoji/48/000000/skunk.png')"
+          >
             <img
               #img
               src="https://img.icons8.com/emoji/48/000000/skunk.png"
@@ -204,7 +220,11 @@
             />
             <p>{{ "levels-challenge.nivel5" | translate }}</p>
           </div>
-          <div class="circle" #circle (click)="like('angry')">
+          <div
+            class="circle"
+            #circle
+            (click)="like('angry','https://img.icons8.com/dusk/64/000000/old-woman-skin-type-4.png')"
+          >
             <img
               #img
               src="https://img.icons8.com/dusk/64/000000/old-woman-skin-type-4.png"

@@ -21,6 +21,7 @@ export class ChallengesPage implements OnInit {
   @ViewChild("img") img: ElementRef;
   @ViewChild("like") likee: ElementRef;
   @ViewChild(IonContent) content: IonContent;
+  public myVote: any = null;
   public time: boolean = false;
   public challenges: any[] = null;
   public scrolling: boolean = true;
@@ -179,7 +180,9 @@ export class ChallengesPage implements OnInit {
     }
   }
 
-  like(type: string) {
+  like(type: string, img:string) {
+    this.myVote = img;
+    console.log(this.myVote);
     const reaction = {
       userReference: {
         appName: "SportYeah",

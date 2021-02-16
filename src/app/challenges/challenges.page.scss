@@ -139,10 +139,27 @@
     top: -35px !important;
     right: 50px;
   }
+  .VoteDavid{
+    right: 58px;
+  }
 }
 
 @media screen and (min-width: 377px) {
   .reacts {
     left: 50px;
   }
+  .VoteDavid{
+    left: 18px;
+  }
+}
+
+.VoteDavid {
+  width: 30px;
+  height: 30px;
+  position: absolute !important;
+  margin-left: 50px;
+  top: 10px;
+  border-radius: 50%;
+  background-color: white;
+  visibility: visible !important;
 }
