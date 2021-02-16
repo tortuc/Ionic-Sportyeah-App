@@ -1,3 +1,4 @@
+import { CreateAwardChallengeComponent } from './challenge/create-award-challenge/create-award-challenge.component';
 import { ChallengeReactionsComponent } from "./challenge-reactions/challenge-reactions.component";
 import { ChallengeCommentsComponent } from "./challenge-comments/challenge-comments.component";
 import { CreateChallengeComponent } from "./challenge/create/create.component";
@@ -111,6 +112,7 @@ import { StructureComponent } from "src/app/profile/structure/structure.componen
     ButtonSearchFriendComponent,
     ViewFilesComponent,
     WishItemComponent,
+    CreateAwardChallengeComponent,
     CreateWishComponent,
     PreviewFilesComponent,
     OptionsWishComponent,
@@ -141,6 +143,7 @@ import { StructureComponent } from "src/app/profile/structure/structure.componen
     PostOptionsComponent,
     ErrorComponent,
     PostContentComponent,
+    CreateAwardChallengeComponent,
     FriendsMobileComponent,
     HeaderPostComponent,
     CommentPostComponent,

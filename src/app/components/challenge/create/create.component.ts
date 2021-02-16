@@ -169,4 +169,11 @@ export class CreateChallengeComponent implements OnInit {
     await loading.present();
     return loading;
   }
+
+  saveAward(award: IAward) {
+    console.log(award);
+    console.log(this.award);
+    this.award = false;
+    console.log(this.award);
+  }
 }
