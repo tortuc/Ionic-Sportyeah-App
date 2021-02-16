@@ -28,12 +28,6 @@ export class CreateChallengeComponent implements OnInit {
     title: ["", Validators.required],
     description: ["", Validators.required],
   });
-  public formAward: FormGroup = this.fb.group({
-    media: ["", [Validators.required]],
-    place: ["", [Validators.required]],
-    title: ["", [Validators.required]],
-    description: ["", [Validators.required]],
-  });
   public awards: IAward[] = [];
   public award: boolean = false;
   public createAward: boolean = true;
@@ -97,13 +91,6 @@ export class CreateChallengeComponent implements OnInit {
       }
       return 1;
     }
-  }
-
-  awardMedia() {
-    this.img.takeOnlyPhoto();
-    this.img.content.pipe(take(1)).subscribe((r) => {
-      this.formAward.controls.media.setValue(r);
-    });
   }
 
   async saveChallenge() {
@@ -170,10 +157,9 @@ export class CreateChallengeComponent implements OnInit {
     return loading;
   }
 
-  saveAward(award: IAward) {
-    console.log(award);
-    console.log(this.award);
+  saveAward($event) {
+    console.log($event);
     this.award = false;
-    console.log(this.award);
+    if ($event) this.awards.push($event.event);
   }
 }

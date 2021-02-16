@@ -162,6 +162,7 @@ export class ChallengesPage implements OnInit {
   }
 
   async onScroll(e) {
+    this.myVote = null;
     this.challenge = null;
     this.scrolling = false;
     this.challengeNumber += 1;

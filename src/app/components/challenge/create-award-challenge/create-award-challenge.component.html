@@ -1,9 +1,7 @@
-<form [formGroup]="formAward" class="text-center">
+<div class="text-center">
   <div
     [hidden]="
-      formAward.value.media !== '' &&
-      formAward.value.media !== null &&
-      formAward.value.media !== undefined
+      form.media !== '' && form.media !== null && form.media !== undefined
     "
     style="margin-top: 20px"
   >
@@ -16,42 +14,42 @@
     <h6 style="color: grey">{{ "challenge.mediaAward" | translate }}</h6>
   </div>
   <div
-    *ngIf="
-      formAward.value.media !== '' &&
-      formAward.value.media !== null &&
-      formAward.value.media !== undefined
-    "
+    *ngIf="form.media !== '' && form.media !== null && form.media !== undefined"
   >
-    <img [src]="formAward.value.media" alt="" (click)="awardMedia()" />
+    <img [src]="form.media" alt="" (click)="awardMedia()" />
   </div>
   <ion-item>
     <ion-label position="floating">{{
       "challenge.place" | translate
     }}</ion-label>
-    <ion-input type="text" fromControlName="place"></ion-input>
+    <ion-input type="number" [(ngModel)]="form.place"></ion-input>
   </ion-item>
-  {{ formAward.value.place }}
   <ion-item>
     <ion-label position="floating">{{
       "challenge.titleAward" | translate
     }}</ion-label>
-    <ion-input type="text" fromControlName="title"></ion-input>
+    <ion-input type="text" [(ngModel)]="form.title"></ion-input>
   </ion-item>
   <ion-item>
     <ion-label position="floating">{{
       "challenge.description" | translate
     }}</ion-label>
-    <ion-textarea type="text" fromControlName="description"></ion-textarea>
+    <ion-textarea type="text" [(ngModel)]="form.description"></ion-textarea>
   </ion-item>
   <div style="margin-top: 20px">
-    <ion-button (click)="saveAward()" [disabled]="formAward.status !== 'VALID'">
+    <ion-button
+      (click)="saveAward()"
+      [disabled]="
+        form.place === '' ||
+        form.title === '' ||
+        form.description === '' ||
+        form.media === ''
+      "
+    >
       {{ "save" | translate }}
     </ion-button>
     <ion-button color="light" (click)="close()">
       {{ "back" | translate }}
     </ion-button>
-    <ion-button color="light" (click)="finalizado()">
-      {{ "back" | translate }}
-    </ion-button>
   </div>
-</form>
+</div>

@@ -28,12 +28,7 @@ export class CreateAwardChallengeComponent implements OnInit {
   @ViewChild("fileChooser") fileChooser: ElementRef;
   @Input() challenged: IReference | null;
   @Output("save") save: EventEmitter<any> = new EventEmitter();
-  public formAward: FormGroup = this.fb.group({
-    media: ["", [Validators.required]],
-    place: ["", [Validators.required]],
-    title: ["", [Validators.required]],
-    description: ["", [Validators.required]],
-  });
+  public form: any = { place: "", title: "", description: "", media: "" };
   public videoInvalid: boolean = true;
   public novideo: boolean = null;
   constructor(
@@ -53,21 +48,23 @@ export class CreateAwardChallengeComponent implements OnInit {
   awardMedia() {
     this.img.takeOnlyPhoto();
     this.img.content.pipe(take(1)).subscribe((r) => {
-      this.formAward.controls.media.setValue(r);
+      // this.formAward.controls.media.setValue(r);
+      this.form.media = r;
     });
   }
 
   saveAward() {
-    this.save.emit(this.formAward.value);
-    this.formAward.reset();
+    console.log(this.form);
+    this.save.emit({ event: this.form });
+    this.reset();
   }
 
   close() {
     this.save.emit(null);
-    this.formAward.reset();
+    this.reset();
   }
 
-  finalizado(){
-    console.log(this.formAward.value);
+  reset() {
+    this.form = { place: "", title: "", description: "", media: "" };
   }
 }

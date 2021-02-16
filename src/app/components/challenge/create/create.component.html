@@ -56,12 +56,13 @@
   <!-- AWARD FORM -->
   <app-create-award-challenge
     [hidden]="!award"
-    (save)="saveAward()"
+    (save)="saveAward($event)"
   ></app-create-award-challenge>
   <div
     class="text-center"
     style="margin-top: 20px"
-    [hidden]="award && !createAward"
+    [hidden]="award"
+    *ngIf="createAward"
   >
     <ion-button (click)="award = true">
       <ion-icon name="trophy-outline"></ion-icon>
@@ -69,6 +70,22 @@
     </ion-button>
   </div>
 
+  <ion-list *ngIf="!award">
+    <ion-item *ngFor="let a of awards; let i = index">
+      <ion-avatar>
+        <img [src]="a.media" />
+      </ion-avatar>
+      <p style="font-weight: bold; margin-left: 30px; margin-right: 10px">
+        {{ a.place }}
+      </p>
+      <p>{{ a.title }}</p>
+      <ion-icon
+        (click)="awards.splice(i, 1)"
+        name="trash-outline"
+        style="cursor: pointer; color: red; right: 30px; position: absolute"
+      ></ion-icon>
+    </ion-item>
+  </ion-list>
   <div class="text-center" style="margin-top: 20px" *ngIf="!award">
     <ion-button
       [disabled]="form.status !== 'VALID' || videoInvalid === true"
