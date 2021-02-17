@@ -78,7 +78,7 @@ export class CreateChallengeComponent implements OnInit {
       document.getElementById("video")
     );
     console.log(video);
-    if (video) {
+    if (video && !isNaN(video.duration)) {
       console.log(video.duration);
       console.log(video.duration / 60 > 1);
       if (video.duration / 60 > 1) {
