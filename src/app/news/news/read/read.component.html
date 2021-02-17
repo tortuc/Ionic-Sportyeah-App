@@ -162,7 +162,6 @@
           <ion-icon
             name="close"
             class="close-video"
-            (click)="closeVideoNotPrincipal(parrafo.position)"
           ></ion-icon>
           <video
             controls="controls"
@@ -205,7 +204,8 @@
             <div class="connectedDIVlittle" *ngIf="comment.user.connected"></div>
           </ion-avatar>
           <div class="user-name">
-            <span class="message profile-name" (click)="goToProfile(comment.user._id,comment.user.username)" >{{comment.user.name}} {{comment.user.last_name}}</span><br>
+            <span class="message profile-name"
+             >{{comment.user.name}} {{comment.user.last_name}}</span><br>
             <span>{{comment.date | customDisplayDate}}</span>
           </div>
           
@@ -213,7 +213,8 @@
         </ion-card-header>
         <ion-card-content>
           <span *ngIf="comment.message" [innerHTML]="comment.message | links"></span>
-          <ion-img (click)="openImg(comment)" class="img-comment" *ngIf="comment.image" [src]="comment.image">
+          <ion-img 
+           class="img-comment" *ngIf="comment.image" [src]="comment.image">
 
           </ion-img>
         </ion-card-content>

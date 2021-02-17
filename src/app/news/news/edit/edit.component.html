@@ -229,7 +229,7 @@
     <ion-item *ngIf="!subTitlebool">
       <ion-label>{{'news.subTitle' | translate}}</ion-label>
       <ion-input  style="background: white; color: black;" placeholder="Subtítulo" [(ngModel)]="subTitle"></ion-input>
-      <ion-button (click)="subTituloListo()" [disabled]="(subTitle != null && subTitle != '')?false:true"  float-right ion-button ><ion-icon name="add"></ion-icon></ion-button>
+      <ion-button (click)="subTituloListo(1)" [disabled]="(subTitle != null && subTitle != '')?false:true"  float-right ion-button ><ion-icon name="add"></ion-icon></ion-button>
     </ion-item>
     <ion-item *ngIf="!deporte">
     <ion-label position="floating">{{'sport.sport' | translate}}</ion-label>
@@ -239,7 +239,7 @@
     </ion-item> 
     <h4 *ngIf="deporte" style="text-align: center;color: #737373;font-size: 14px;">{{ 'sport.'+deporte| translate}}<ion-icon  (click)="deporteListo()" class="editIcon" name="pencil-outline" ></ion-icon></h4>
     <h1 *ngIf="titlebool" style="text-align: center;font-size: 30px;">{{titulo1}}<ion-icon (click)="tituloListo()"  class="editIcon" name="pencil-outline" ></ion-icon></h1>
-    <h2 *ngIf="subTitlebool" style="text-align: center;color: #5a5a5a;">{{subTitle}}<ion-icon (click)="subTituloListo()"  class="editIcon" name="pencil-outline" ></ion-icon></h2>
+    <h2 *ngIf="subTitlebool" style="text-align: center;color: #5a5a5a;">{{subTitle}}<ion-icon (click)="subTituloListo(1)"  class="editIcon" name="pencil-outline" ></ion-icon></h2>
     <ion-item>
       <ion-label>
         <ion-text color="black">
@@ -258,7 +258,7 @@
   <ion-col size="6">
     <!-- Boton para imagen Principal -->
    <p *ngIf="!imagenSelected && !urlVideo">Imagen principal</p> 
-   <ion-button *ngIf="!imagenSelected && !urlVideo" style="text-align: center;" (click)="takePhotoFrom('principal')"  >
+   <ion-button *ngIf="!imagenSelected && !urlVideo" style="text-align: center;" (click)="takePhotoFrom('principal',1)"  >
     <ion-icon  name="images" style="--color: black;font-size:30px" ></ion-icon>
   </ion-button> 
 </ion-col>
@@ -269,7 +269,7 @@
             #openVideo
             type="file"
             accept="video/*"
-            (change)="uploadVideo($event,'principal')"
+            (change)="uploadVideo($event,'principal',1)"
             hidden
           />
           <p *ngIf="!imagenSelected && !urlVideo">Video principal</p> 
@@ -286,7 +286,7 @@
       </ion-card-header>
         <ion-card-content>
           <!-- Boton para cambiar imagen Principal -->
-          <ion-button  style="text-align: center;" (click)="takePhotoFrom('principal')"  >
+          <ion-button  style="text-align: center;" (click)="takePhotoFrom('principal', 1)"  >
             <ion-icon  name="images" style="--color: black;font-size:30px" ></ion-icon>
           </ion-button>
           <ion-button  style="text-align: center;" (click)="deleteImagePrincipal()"  >
