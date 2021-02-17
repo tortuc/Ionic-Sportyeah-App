@@ -6,6 +6,7 @@ cd "..\..\cygwin64\home\DELL E6430 ATG\proyectos\espana\gitlab-sportyeha\jdvimag
 cd "..\..\cygwin64\home\DELL E6430 ATG\proyectos\espana\sportyea\backend\src"
 mongod
 
+
 1. eval "$(ssh-agent -s)"
 2. ssh-add ~/.ssh/id_rsa_sportyeah.pub
 3. ssh-add ~/.ssh/id_rsa_kecuki.pub
