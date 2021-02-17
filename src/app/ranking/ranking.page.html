@@ -101,7 +101,7 @@
             <!--  <div class="connectedDIVlittle" *ngIf="(item.chat.sender?._id != userService.User?._id)?item.chat.sender?.connected:item.chat.receiver?.connected"></div> -->
             </ion-avatar>
             <div  style="margin-left: 13%;color: black;"
-            (click)="goToProfile(post.user._id, post.user.username, post._id)"
+            
             >{{ userLike.post.user.name }} {{ userLike.post.user.last_name }}
             </div>
           </ion-col>
@@ -200,7 +200,7 @@
             <!--  <div class="connectedDIVlittle" *ngIf="(item.chat.sender?._id != userService.User?._id)?item.chat.sender?.connected:item.chat.receiver?.connected"></div> -->
             </ion-avatar>
             <div  style="margin-left: 13%;color: black;"
-            (click)="goToProfile(post.user._id, post.user.username, post._id)"
+           
             >{{ userComment.post.user.name }} {{ userComment.post.user.last_name }}
             </div>
           </ion-col>
@@ -299,7 +299,7 @@
               <!--  <div class="connectedDIVlittle" *ngIf="(item.chat.sender?._id != userService.User?._id)?item.chat.sender?.connected:item.chat.receiver?.connected"></div> -->
               </ion-avatar>
               <div  style="margin-left: 13%;color: black;"
-              (click)="goToProfile(post.user._id, post.user.username, post._id)"
+             
               >{{ userShared.post.user.name }} {{ userShared.post.user.last_name }}
               </div>
             </ion-col>
