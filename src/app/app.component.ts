@@ -84,6 +84,11 @@ export class AppComponent implements OnInit {
       url: "/news",
       icon: "newspaper",
     },
+    {
+      title: "sidebar.ranking",
+      url: "/ranking",
+      icon: "ribbon",
+    },
   ];
 
   public giftPages = [

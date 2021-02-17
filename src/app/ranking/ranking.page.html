@@ -5,32 +5,304 @@
 </ion-header>
 
 <ion-content class="bg-gradient-person ">
+  <div style="background: white;border-radius: 5px;width: 96%;margin-left: auto;margin-right: auto;margin-top: 10px;">
+    <ion-segment scrollable class="segment"  [(ngModel)]="segment"  >
+      <ion-segment-button  value=0 >     
+        <p style="visibility: visible">Reacciones</p>
+      </ion-segment-button>
   
-  <ion-img class="podium" src="https://i.dlpng.com/static/png/6826890_preview.png" alt="Podium"></ion-img>  
-  <div class="contenedor">
-    
+      <ion-segment-button  value=1 >
+        <p style="visibility: visible">Comentarios</p>
+      </ion-segment-button>
+
+      <ion-segment-button  value=2 >
+        <p style="visibility: visible">Compartidos</p>
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+
+
+  <!-- REACCIONES -->
+  <div *ngIf="segment == 0">
+    <ion-img class="iconsPost"  src="https://img.icons8.com/bubbles/344/facebook-like.png" alt="Reaction icon"></ion-img>
+  </div>
+ <div *ngIf="segment == 0" style="background: white;border-radius: 10px;width: 96%;margin-left: auto;margin-right: auto;">
+  <div class="podium">
     <ion-grid >
-      <ion-row>
-        <ion-col size="4" >
-          <ion-avatar style="margin-left: auto;margin-right: auto;" class="2place">
+      <ion-row >
+         <!--  SEGUNDO LUGAR -->
+        <ion-col size="4" style="margin-top: 20px;" >
+          <ion-avatar style="margin-left: auto;margin-right: auto;" >
             <img [src]="likes[1]?.post.user.photo">
           <!--  <div class="connectedDIVlittle" *ngIf="(item.chat.sender?._id != userService.User?._id)?item.chat.sender?.connected:item.chat.receiver?.connected"></div> -->
-            </ion-avatar>
+
+        </ion-avatar>
+        
+
+        
+        <div style="text-align: center;height: 30px;"
+        (click)="goToProfile(post.user._id, post.user.username, post._id)"
+        >{{ likes[1]?.post.user.name }} {{ likes[1]?.post.user.last_name }}
+        </div> 
+            <div style="height: 130px; width:60px; background: silver;margin-top: 10px;  margin-left: auto;margin-right: auto;" >
+              <div style="border-bottom-right-radius : 17px;border-bottom-left-radius : 17px;height: 110px; width:50px; background: brown; margin: auto;">
+                <ion-img class="medalla" src="https://img.icons8.com/emoji/344/2nd-place-medal-emoji.png" alt="Podium"></ion-img>  
+              </div>
+            </div>
+         
         </ion-col>
+
+       <!--  PRIMER LUGAR -->
         <ion-col size="4" >
-          <ion-avatar style="margin-left: auto;margin-right: auto;" class="1place">
+          <ion-avatar style="margin-left: auto;margin-right: auto;" >
             <img [src]="likes[0]?.post.user.photo">
           <!--  <div class="connectedDIVlittle" *ngIf="(item.chat.sender?._id != userService.User?._id)?item.chat.sender?.connected:item.chat.receiver?.connected"></div> -->
           </ion-avatar>
+          <div style="text-align: center;height: 30px;"
+          (click)="goToProfile(post.user._id, post.user.username, post._id)"
+          >{{ likes[0]?.post.user.name }} {{ likes[0]?.post.user.last_name }}
+          </div> 
+          <div style="height: 150px; width:60px; background: gold;margin-top: 10px; margin-left: auto;margin-right: auto;" >
+            <div style="
+              border-bottom-right-radius : 17px;border-bottom-left-radius : 17px;height: 130px; width:50px; background: brown; margin: auto;">
+              <ion-img class="medalla" src="https://img.icons8.com/emoji/344/1st-place-medal-emoji.png" alt="Podium"></ion-img>  
+            </div>
+          </div>
         </ion-col>
-        <ion-col size="4" >
-          <ion-avatar style="margin-left: auto;margin-right: auto;" class="3place">
+
+         <!--  TERCER LUGAR -->
+        <ion-col size="4" style="margin-top: 27px;" >
+          <ion-avatar style="margin-left: auto;margin-right: auto;" >
             <img [src]="likes[2]?.post.user.photo">
           <!--  <div class="connectedDIVlittle" *ngIf="(item.chat.sender?._id != userService.User?._id)?item.chat.sender?.connected:item.chat.receiver?.connected"></div> -->
             </ion-avatar>
+            <div style="text-align: center;height: 30px;"
+            (click)="goToProfile(post.user._id, post.user.username, post._id)"
+            >{{ likes[2]?.post.user.name }} {{ likes[2]?.post.user.last_name }}
+            </div> 
+            <div style="height: 122px; width:60px; background: #cd7f32;margin-top: 10px; margin-left: auto;margin-right: auto;" >
+              <div style="border-bottom-right-radius : 17px;border-bottom-left-radius : 17px;height: 103px; width:50px; background: brown; margin: auto;">
+                <ion-img class="medalla" src="https://img.icons8.com/emoji/344/3rd-place-medal-emoji.png" alt="Podium"></ion-img>  
+              </div>
+            </div>
+          </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+ </div>
+<div style="border-radius: 5px;width: 96%;margin-left: auto;margin-right: auto;" *ngIf="segment == 0 && userLike">
+  <ion-grid>
+    <ion-row>
+      <ion-col size="6">
+        <ion-avatar style="margin-left: 15%;margin-top: 30px;" >
+          <img [src]="userLike.post.user.photo">
+        <!--  <div class="connectedDIVlittle" *ngIf="(item.chat.sender?._id != userService.User?._id)?item.chat.sender?.connected:item.chat.receiver?.connected"></div> -->
+        </ion-avatar>
+        <div  style="margin-left: 13%;color: white;"
+        (click)="goToProfile(post.user._id, post.user.username, post._id)"
+        >{{ userLike.post.user.name }} {{ userLike.post.user.last_name }}
+        </div>
+      </ion-col>
+      <ion-col size="6">
+        <div style="margin-top: 30px;color:white;">
+          <h3 style="font-size: 55px;"><span style="font-size: 30px;">Posición</span> {{positionLike}}</h3> 
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  
+</div>
+<div style="border-radius: 5px;width: 96%;margin-left: auto;margin-right: auto;" *ngIf="segment == 0 && !userLike">
+  <h1 style="text-align: center;color: white;">No han reaccionado tus post </h1>
+</div>
+
+ <!-- COMENTARIOS --> 
+ <div *ngIf="segment == 1">
+  <ion-img class="iconsPost"  src="https://img.icons8.com/bubbles/344/comments.png" alt="Reaction icon"></ion-img>
+</div>
+ <div *ngIf="segment == 1" style="background: white;border-radius: 10px;width: 96%;margin-left: auto;margin-right: auto;">
+  <div class="podium">
+    <ion-grid >
+      <ion-row >
+         <!--  SEGUNDO LUGAR -->
+        <ion-col size="4" style="margin-top: 20px;" >
+          <ion-avatar style="margin-left: auto;margin-right: auto;" >
+            <img [src]="comments[1]?.post.user.photo">
+          <!--  <div class="connectedDIVlittle" *ngIf="(item.chat.sender?._id != userService.User?._id)?item.chat.sender?.connected:item.chat.receiver?.connected"></div> -->
+
+        </ion-avatar>
+        
+
+        
+        <div style="text-align: center;height: 30px;"
+        (click)="goToProfile(post.user._id, post.user.username, post._id)"
+        >{{ comments[1]?.post.user.name }} {{ comments[1]?.post.user.last_name }}
+        </div> 
+            <div style="height: 130px; width:60px; background: silver;margin-top: 10px;  margin-left: auto;margin-right: auto;" >
+              <div style="border-bottom-right-radius : 17px;border-bottom-left-radius : 17px;height: 110px; width:50px; background: brown; margin: auto;">
+                <ion-img class="medalla" src="https://img.icons8.com/emoji/344/2nd-place-medal-emoji.png" alt="Podium"></ion-img>  
+              </div>
+            </div>
+         
+        </ion-col>
+
+       <!--  PRIMER LUGAR -->
+        <ion-col size="4" >
+          <ion-avatar style="margin-left: auto;margin-right: auto;" >
+            <img [src]="comments[0]?.post.user.photo">
+          <!--  <div class="connectedDIVlittle" *ngIf="(item.chat.sender?._id != userService.User?._id)?item.chat.sender?.connected:item.chat.receiver?.connected"></div> -->
+          </ion-avatar>
+          <div style="text-align: center;height: 30px;"
+          (click)="goToProfile(post.user._id, post.user.username, post._id)"
+          >{{ comments[0]?.post.user.name }} {{ comments[0]?.post.user.last_name }}
+          </div> 
+          <div style="height: 150px; width:60px; background: gold;margin-top: 10px; margin-left: auto;margin-right: auto;" >
+            <div style="
+              border-bottom-right-radius : 17px;border-bottom-left-radius : 17px;height: 130px; width:50px; background: brown; margin: auto;">
+              <ion-img class="medalla" src="https://img.icons8.com/emoji/344/1st-place-medal-emoji.png" alt="Podium"></ion-img>  
+            </div>
+          </div>
+        </ion-col>
+
+         <!--  TERCER LUGAR -->
+        <ion-col size="4" style="margin-top: 27px;" >
+          <ion-avatar style="margin-left: auto;margin-right: auto;" >
+            <img [src]="comments[2]?.post.user.photo">
+          <!--  <div class="connectedDIVlittle" *ngIf="(item.chat.sender?._id != userService.User?._id)?item.chat.sender?.connected:item.chat.receiver?.connected"></div> -->
+            </ion-avatar>
+            <div style="text-align: center;height: 30px;"
+            (click)="goToProfile(post.user._id, post.user.username, post._id)"
+            >{{ comments[2]?.post.user.name }} {{ comments[2]?.post.user.last_name }}
+            </div> 
+            <div style="height: 122px; width:60px; background: #cd7f32;margin-top: 10px; margin-left: auto;margin-right: auto;" >
+              <div style="border-bottom-right-radius : 17px;border-bottom-left-radius : 17px;height: 103px; width:50px; background: brown; margin: auto;">
+                <ion-img class="medalla" src="https://img.icons8.com/emoji/344/3rd-place-medal-emoji.png" alt="Podium"></ion-img>  
+              </div>
+            </div>
+          </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+ </div>
+ <div style="border-radius: 5px;width: 96%;margin-left: auto;margin-right: auto;" *ngIf="segment == 1 && userComment">
+  <ion-grid>
+    <ion-row>
+      <ion-col size="6">
+        <ion-avatar style="margin-left: 15%;margin-top: 30px;" >
+          <img [src]="userComment.post.user.photo">
+        <!--  <div class="connectedDIVlittle" *ngIf="(item.chat.sender?._id != userService.User?._id)?item.chat.sender?.connected:item.chat.receiver?.connected"></div> -->
+        </ion-avatar>
+        <div  style="margin-left: 13%;color: white;"
+        (click)="goToProfile(post.user._id, post.user.username, post._id)"
+        >{{ userComment.post.user.name }} {{ userComment.post.user.last_name }}
+        </div>
+      </ion-col>
+      <ion-col size="6">
+        <div style="margin-top: 30px;color:white;">
+          <h3 style="font-size: 55px;"><span style="font-size: 30px;">Posición</span> {{positionComment}}</h3> 
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  
+</div>
+<div style="border-radius: 5px;width: 96%;margin-left: auto;margin-right: auto;" *ngIf="segment == 1 && !userComment">
+<h1 style="text-align: center;color: white;">No hay comentarios en tus post </h1>
+</div>
+
+
+<!-- COMPARTIDOS -->
+<div *ngIf="segment == 2">
+  <ion-img class="iconsPost"  src="https://img.icons8.com/bubbles/452/undo.png" alt="Reaction icon"></ion-img>
+</div>
+  <div *ngIf="segment == 2" style="background: white;border-radius: 10px;width: 96%;margin-left: auto;margin-right: auto;">
+    <div class="podium">
+      <ion-grid >
+        <ion-row >
+           <!--  SEGUNDO LUGAR -->
+          <ion-col size="4" style="margin-top: 20px;" >
+            <ion-avatar style="margin-left: auto;margin-right: auto;" >
+              <img [src]="shareds[1]?.post.user.photo">
+            <!--  <div class="connectedDIVlittle" *ngIf="(item.chat.sender?._id != userService.User?._id)?item.chat.sender?.connected:item.chat.receiver?.connected"></div> -->
+  
+          </ion-avatar>
+          
+  
+          
+          <div style="text-align: center;height: 30px;"
+          (click)="goToProfile(post.user._id, post.user.username, post._id)"
+          >{{ shareds[1]?.post.user.name }} {{ shareds[1]?.post.user.last_name }}
+          </div> 
+              <div style="height: 130px; width:60px; background: silver;margin-top: 10px;  margin-left: auto;margin-right: auto;" >
+                <div style="border-bottom-right-radius : 17px;border-bottom-left-radius : 17px;height: 110px; width:50px; background: brown; margin: auto;">
+                  <ion-img class="medalla" src="https://img.icons8.com/emoji/344/2nd-place-medal-emoji.png" alt="Podium"></ion-img>  
+                </div>
+              </div>
+           
+          </ion-col>
+  
+         <!--  PRIMER LUGAR -->
+          <ion-col size="4" >
+            <ion-avatar style="margin-left: auto;margin-right: auto;" >
+              <img [src]="shareds[0]?.post.user.photo">
+            <!--  <div class="connectedDIVlittle" *ngIf="(item.chat.sender?._id != userService.User?._id)?item.chat.sender?.connected:item.chat.receiver?.connected"></div> -->
+            </ion-avatar>
+            <div style="text-align: center;height: 30px;"
+            (click)="goToProfile(post.user._id, post.user.username, post._id)"
+            >{{ shareds[0]?.post.user.name }} {{ shareds[0]?.post.user.last_name }}
+            </div> 
+            <div style="height: 150px; width:60px; background: gold;margin-top: 10px; margin-left: auto;margin-right: auto;" >
+              <div style="
+                border-bottom-right-radius : 17px;border-bottom-left-radius : 17px;height: 130px; width:50px; background: brown; margin: auto;">
+                <ion-img class="medalla" src="https://img.icons8.com/emoji/344/1st-place-medal-emoji.png" alt="Podium"></ion-img>  
+              </div>
+            </div>
+          </ion-col>
+  
+           <!--  TERCER LUGAR -->
+          <ion-col size="4" style="margin-top: 27px;" >
+            <ion-avatar style="margin-left: auto;margin-right: auto;" >
+              <img [src]="shareds[2]?.post.user.photo">
+            <!--  <div class="connectedDIVlittle" *ngIf="(item.chat.sender?._id != userService.User?._id)?item.chat.sender?.connected:item.chat.receiver?.connected"></div> -->
+              </ion-avatar>
+              <div style="text-align: center;height: 30px;"
+              (click)="goToProfile(post.user._id, post.user.username, post._id)"
+              >{{ shareds[2]?.post.user.name }} {{ shareds[2]?.post.user.last_name }}
+              </div> 
+              <div style="height: 122px; width:60px; background: #cd7f32;margin-top: 10px; margin-left: auto;margin-right: auto;" >
+                <div style="border-bottom-right-radius : 17px;border-bottom-left-radius : 17px;height: 103px; width:50px; background: brown; margin: auto;">
+                  <ion-img class="medalla" src="https://img.icons8.com/emoji/344/3rd-place-medal-emoji.png" alt="Podium"></ion-img>  
+                </div>
+              </div>
+            </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+   </div>
+   <div style="border-radius: 5px;width: 96%;margin-left: auto;margin-right: auto;" *ngIf="segment == 2 && userShared">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="6">
+          <ion-avatar style="margin-left: 15%;margin-top: 30px;" >
+            <img [src]="userShared.post.user.photo">
+          <!--  <div class="connectedDIVlittle" *ngIf="(item.chat.sender?._id != userService.User?._id)?item.chat.sender?.connected:item.chat.receiver?.connected"></div> -->
+          </ion-avatar>
+          <div  style="margin-left: 13%;color: white;"
+          (click)="goToProfile(post.user._id, post.user.username, post._id)"
+          >{{ userShared.post.user.name }} {{ userShared.post.user.last_name }}
+          </div>
+        </ion-col>
+        <ion-col size="6">
+          <div style="margin-top: 30px;color:white;">
+            <h3 style="font-size: 55px;"><span style="font-size: 30px;">Posición</span> {{positionShared}}</h3> 
+          </div>
         </ion-col>
       </ion-row>
     </ion-grid>
+    
+  </div>
+  <div style="border-radius: 5px;width: 96%;margin-left: auto;margin-right: auto;" *ngIf="segment == 2 && !userShared">
+    <h1 style="text-align: center;color: white;">No han compartido tus post </h1>
   </div>
 </ion-content>
 
