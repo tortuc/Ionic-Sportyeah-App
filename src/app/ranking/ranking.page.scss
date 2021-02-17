@@ -1,32 +1,35 @@
 .podium{
-    width: 30%;
+   margin-left: auto;
+   margin-right: auto;
+   width: 50%;
+   margin-top: 1%;
+}
+
+.medalla{
+    width: 80%;
     margin-left: auto;
     margin-right: auto;
     margin-top: 7%;
 }
 
-@media screen and (max-width:470px) {
+ @media screen and (max-width:730px) {
 
     .podium{
-        width: 55%;
-        margin-left: auto;
-        margin-right: auto;
-        margin-top:30%;
+     transform: scale(0.8);
+     width: 90%;
     }
 
 }
 
 
-@media screen and (max-width:350px) {
+@media screen and (max-width:360px) {
 
     .podium{
-        width: 55%;
-        margin-left: auto;
-        margin-right: auto;
-        margin-top:57%;
+        transform: scale(0.8);
+        width: 100%;
     }
 
-}
+} 
 
 .contenedor{
     width: 37%;
@@ -35,3 +38,13 @@
     margin-top: -25%;
 }
   
+
+.ion-segment-button{
+	width:100% !important
+}
+
+.iconsPost{
+    width: 90px;
+    margin-right: auto;
+    margin-left: auto;
+  }

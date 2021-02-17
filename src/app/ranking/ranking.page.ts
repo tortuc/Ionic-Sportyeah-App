@@ -14,6 +14,8 @@ export class RankingPage implements OnInit {
     private userService:UserService
   ) { }
 
+  segment=0;
+
   ngOnInit() {
     this.postService.getAllPost().subscribe((post:any)=>{
       this.todolosPost = post;
@@ -46,18 +48,56 @@ export class RankingPage implements OnInit {
     return a.shareds.length - b.shareds.length ;
 });
 
+//Revisar para que sirve
 this.postUser = this.todolosPost.filter((post:any)=>{
-  console.log(post.post.user._id)
-  console.log(this.userService.User._id)
   return post.post.user._id == this.userService.User._id
 })
-console.log(this.postUser)
+
+//encuentra el post con mas likes del usuario
+let position = 0;
+for(let like of this.likes){
+  if(like.post.user._id == this.userService.User._id){
+    this.userLike = like
+    this.positionLike = position + 1
+    break
+  }
+  position += 1
+}
+console.log(this.userLike)
+//encuentra el post con mas comentarios del usuario
+let positionC = 0;
+for(let comment of this.comments){
+  if(comment.post.user._id == this.userService.User._id){
+    this.userComment = comment
+    this.positionComment = positionC + 1
+    break
+  }
+  positionC += 1
+}
+
+//encuentra el post con mas compartidos del usuario
+let positionS = 0;
+for(let shared of this.shareds){
+  if(shared.post.user._id == this.userService.User._id){
+    this.userShared = shared
+    this.positionShared = positionS + 1
+    break
+  }
+  positionS += 1
+}
+
     })
    
 
     
   }
 
+positionLike
+userLike;
+positionComment
+userComment;
+positionShared
+userShared;
 //Datos para los post,en seccion de post
 todolosPost = [];
 postUser = [];
