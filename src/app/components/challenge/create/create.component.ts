@@ -60,7 +60,7 @@ export class CreateChallengeComponent implements OnInit {
       this.novideo = false;
       const int = setInterval(() => {
         if (this.verifyVideoMinutes() === 1) clearInterval(int);
-      }, 2000);
+      }, 4000);
     });
   }
 
@@ -78,7 +78,7 @@ export class CreateChallengeComponent implements OnInit {
       document.getElementById("video")
     );
     console.log(video);
-    if (video) {
+    if (video && !isNaN(video.duration)) {
       console.log(video.duration);
       console.log(video.duration / 60 > 1);
       if (video.duration / 60 > 1) {
