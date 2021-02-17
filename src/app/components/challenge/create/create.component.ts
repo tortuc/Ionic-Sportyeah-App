@@ -60,7 +60,7 @@ export class CreateChallengeComponent implements OnInit {
       this.novideo = false;
       const int = setInterval(() => {
         if (this.verifyVideoMinutes() === 1) clearInterval(int);
-      }, 2000);
+      }, 4000);
     });
   }
 
