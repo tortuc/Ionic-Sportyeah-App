@@ -90,26 +90,31 @@
     </ion-grid>
   </div>
  </div>
-<div style="border-radius: 5px;width: 96%;margin-left: auto;margin-right: auto;" *ngIf="segment == 0 && userLike">
-  <ion-grid>
-    <ion-row>
-      <ion-col size="6">
-        <ion-avatar style="margin-left: 15%;margin-top: 30px;" >
-          <img [src]="userLike.post.user.photo">
-        <!--  <div class="connectedDIVlittle" *ngIf="(item.chat.sender?._id != userService.User?._id)?item.chat.sender?.connected:item.chat.receiver?.connected"></div> -->
-        </ion-avatar>
-        <div  style="margin-left: 13%;color: white;"
-        (click)="goToProfile(post.user._id, post.user.username, post._id)"
-        >{{ userLike.post.user.name }} {{ userLike.post.user.last_name }}
-        </div>
-      </ion-col>
-      <ion-col size="6">
-        <div style="margin-top: 30px;color:white;">
-          <h3 style="font-size: 55px;"><span style="font-size: 30px;">Posición</span> {{positionLike}}</h3> 
-        </div>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+<div style="width: 99%;margin-left: auto;margin-right: auto;" *ngIf="segment == 0 && userLike">
+  <ion-card>
+    <ion-card-content>
+      <ion-grid>
+        <ion-row>
+          <ion-col size="6">
+            <ion-avatar style="margin-left: 15%;margin-top: 30px;" >
+              <img [src]="userLike.post.user.photo">
+            <!--  <div class="connectedDIVlittle" *ngIf="(item.chat.sender?._id != userService.User?._id)?item.chat.sender?.connected:item.chat.receiver?.connected"></div> -->
+            </ion-avatar>
+            <div  style="margin-left: 13%;color: black;"
+            (click)="goToProfile(post.user._id, post.user.username, post._id)"
+            >{{ userLike.post.user.name }} {{ userLike.post.user.last_name }}
+            </div>
+          </ion-col>
+          <ion-col size="6">
+            <div style="margin-top: 30px;">
+              <h3 style="font-size: 55px; color: black;"><span style="font-size: 30px;">Posición</span> {{positionLike}}</h3> 
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+ 
   
 </div>
 <div style="border-radius: 5px;width: 96%;margin-left: auto;margin-right: auto;" *ngIf="segment == 0 && !userLike">
@@ -184,26 +189,30 @@
     </ion-grid>
   </div>
  </div>
- <div style="border-radius: 5px;width: 96%;margin-left: auto;margin-right: auto;" *ngIf="segment == 1 && userComment">
-  <ion-grid>
-    <ion-row>
-      <ion-col size="6">
-        <ion-avatar style="margin-left: 15%;margin-top: 30px;" >
-          <img [src]="userComment.post.user.photo">
-        <!--  <div class="connectedDIVlittle" *ngIf="(item.chat.sender?._id != userService.User?._id)?item.chat.sender?.connected:item.chat.receiver?.connected"></div> -->
-        </ion-avatar>
-        <div  style="margin-left: 13%;color: white;"
-        (click)="goToProfile(post.user._id, post.user.username, post._id)"
-        >{{ userComment.post.user.name }} {{ userComment.post.user.last_name }}
-        </div>
-      </ion-col>
-      <ion-col size="6">
-        <div style="margin-top: 30px;color:white;">
-          <h3 style="font-size: 55px;"><span style="font-size: 30px;">Posición</span> {{positionComment}}</h3> 
-        </div>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+ <div style="border-radius: 5px;width: 99%;margin-left: auto;margin-right: auto;" *ngIf="segment == 1 && userComment">
+  <ion-card>
+    <ion-card-content>
+      <ion-grid>
+        <ion-row>
+          <ion-col size="6">
+            <ion-avatar style="margin-left: 15%;margin-top: 30px;" >
+              <img [src]="userComment.post.user.photo">
+            <!--  <div class="connectedDIVlittle" *ngIf="(item.chat.sender?._id != userService.User?._id)?item.chat.sender?.connected:item.chat.receiver?.connected"></div> -->
+            </ion-avatar>
+            <div  style="margin-left: 13%;color: black;"
+            (click)="goToProfile(post.user._id, post.user.username, post._id)"
+            >{{ userComment.post.user.name }} {{ userComment.post.user.last_name }}
+            </div>
+          </ion-col>
+          <ion-col size="6">
+            <div style="margin-top: 30px;color:black;">
+              <h3 style="font-size: 55px;"><span style="font-size: 30px;">Posición</span> {{positionComment}}</h3> 
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
   
 </div>
 <div style="border-radius: 5px;width: 96%;margin-left: auto;margin-right: auto;" *ngIf="segment == 1 && !userComment">
@@ -279,27 +288,30 @@
       </ion-grid>
     </div>
    </div>
-   <div style="border-radius: 5px;width: 96%;margin-left: auto;margin-right: auto;" *ngIf="segment == 2 && userShared">
-    <ion-grid>
-      <ion-row>
-        <ion-col size="6">
-          <ion-avatar style="margin-left: 15%;margin-top: 30px;" >
-            <img [src]="userShared.post.user.photo">
-          <!--  <div class="connectedDIVlittle" *ngIf="(item.chat.sender?._id != userService.User?._id)?item.chat.sender?.connected:item.chat.receiver?.connected"></div> -->
-          </ion-avatar>
-          <div  style="margin-left: 13%;color: white;"
-          (click)="goToProfile(post.user._id, post.user.username, post._id)"
-          >{{ userShared.post.user.name }} {{ userShared.post.user.last_name }}
-          </div>
-        </ion-col>
-        <ion-col size="6">
-          <div style="margin-top: 30px;color:white;">
-            <h3 style="font-size: 55px;"><span style="font-size: 30px;">Posición</span> {{positionShared}}</h3> 
-          </div>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-    
+   <div style="border-radius: 5px;width: 99%;margin-left: auto;margin-right: auto;" *ngIf="segment == 2 && userShared">
+    <ion-card>
+      <ion-card-content>
+        <ion-grid>
+          <ion-row>
+            <ion-col size="6">
+              <ion-avatar style="margin-left: 15%;margin-top: 30px;" >
+                <img [src]="userShared.post.user.photo">
+              <!--  <div class="connectedDIVlittle" *ngIf="(item.chat.sender?._id != userService.User?._id)?item.chat.sender?.connected:item.chat.receiver?.connected"></div> -->
+              </ion-avatar>
+              <div  style="margin-left: 13%;color: black;"
+              (click)="goToProfile(post.user._id, post.user.username, post._id)"
+              >{{ userShared.post.user.name }} {{ userShared.post.user.last_name }}
+              </div>
+            </ion-col>
+            <ion-col size="6">
+              <div style="margin-top: 30px;color:black;">
+                <h3 style="font-size: 55px;"><span style="font-size: 30px;">Posición</span> {{positionShared}}</h3> 
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>   
   </div>
   <div style="border-radius: 5px;width: 96%;margin-left: auto;margin-right: auto;" *ngIf="segment == 2 && !userShared">
     <h1 style="text-align: center;color: white;">No han compartido tus post </h1>
