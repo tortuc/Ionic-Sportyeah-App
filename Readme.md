@@ -16,9 +16,9 @@ mongod
 
 ## TAREAS DESAFIOS 19-02-2021
 
-1- Cambiar lo que se tiene actualmente en desafios por un layout similar al muro de publicaciones.
-2- Colocar perfiles amigos arriba siempre visible.
-3- Modificar boton aceptar reto para que de subir video de una vez.
+1. Cambiar lo que se tiene actualmente en desafios por un layout similar al muro de publicaciones.
+2. Colocar perfiles amigos arriba siempre visible.
+3. Modificar boton aceptar reto para que de subir video de una vez.
 
 ## TAREAS 15-02-2021
 

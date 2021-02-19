@@ -1,3 +1,4 @@
+import { IChallenge } from './../../../service/challenge.service';
 import { ModalController } from "@ionic/angular";
 import { take } from "rxjs/operators";
 import { ChallengeService } from "../../../service/challenge.service";
@@ -14,7 +15,7 @@ interface IReactionChallengeIMG {
   styleUrls: ["./challenge-reactions.component.scss"],
 })
 export class ChallengeReactionsComponent implements OnInit {
-  @Input() challenge: any;
+  @Input() challenge: IChallenge;
   @ViewChild("circle") circle: ElementRef;
   @ViewChild("reacts") reacts: ElementRef;
   @ViewChild("img") img: ElementRef;
@@ -95,8 +96,6 @@ export class ChallengeReactionsComponent implements OnInit {
     }
   }
   Changefalse() {
-    //this.time = false;
-    //this.reactionsOFF();
     this.timeOutClose = setTimeout(() => this.reactionoff(), 1000);
     clearTimeout(this.timeOut);
   }

@@ -17,6 +17,16 @@
     </span>
   </ion-button>
 </div>
+<p
+  style="margin: 0"
+  *ngIf="challenge.challenging.reactions"
+  (click)="goToPost(item.post._id)"
+  class="profile-name"
+  style="margin-left: 25px;"
+>
+  {{challenge.challenging.reactions.length }} {{ "post.likes" | translate }}
+</p>
+
 <div class="reacts" #reacts (mouseover)="time = true" (mouseout)="time = false">
   <div class="overlay" fxShow="false" fxShow.xs="true"></div>
   <div
