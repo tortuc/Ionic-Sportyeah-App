@@ -1,0 +1,19 @@
+<ion-button
+  fill="clean"
+  [ngClass]="Challenge"
+  (click)="shared2(news.news)"
+>
+  <ion-icon name="arrow-redo-outline" style="margin-right: 2px"></ion-icon>
+  <span fxShow.gt-xs="true" fxShow="false">{{ "post.share" | translate }}</span>
+</ion-button>
+<p
+  style="margin: 0"
+  *ngIf="!isPost"
+  (click)="goToPost(news.news._id)"
+  class="profile-name"
+>
+  {{ news.shareds.length }} {{ "post.shared" | translate }}
+</p>
+<p style="margin: 0" *ngIf="isPost" (click)="seeShareds()" class="profile-name">
+  {{ news.shareds.length }} {{ "post.shared" | translate }}
+</p>

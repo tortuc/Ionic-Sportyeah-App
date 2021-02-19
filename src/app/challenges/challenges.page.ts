@@ -29,7 +29,7 @@ export class ChallengesPage implements OnInit {
   public challengeNumber: number = 0;
   public timeOut: any = null;
   public timeOutClose: any = null;
-  reactionsBool: boolean = false;
+  public reactionsBool: boolean = false;
   constructor(
     public translate: TranslateService,
     public mc: ModalController,
@@ -147,18 +147,6 @@ export class ChallengesPage implements OnInit {
 
   async challengeShare() {
     alert("share logic");
-  }
-
-  async aceptarReto(challenged) {
-    const modal = await this.mc.create({
-      component: CreateChallengeComponent,
-      cssClass: "a",
-      componentProps: {
-        challenged,
-      },
-    });
-    modal.onDidDismiss().then(() => this.ngOnInit());
-    await modal.present();
   }
 
   async onScroll(e) {

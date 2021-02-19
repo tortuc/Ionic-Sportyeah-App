@@ -1,7 +1,31 @@
-<ion-content class="text-center">
-  <p>challenge-reactions works!</p>
-
-  <ion-button (click)="mc.dismiss()">
-    {{ "back" | translate }}
+<!-- <div *ngIf="myVote && reactionsBool === false" class="VoteDavid"> -->
+<!-- <img [src]="myVote" alt="" /> -->
+<!-- </div> -->
+<div>
+  <ion-button
+    fill="clean"
+    (mouseover)="reactionsON()"
+    (mouseout)="Changefalse()"
+    (touchstart)="reactionsON()"
+    (click)="like(item.post._id, item.likes, 1, true)"
+  >
+    <ion-icon *ngIf="!myVote" name="heart" style="margin-right: 2px"></ion-icon>
+    <span *ngIf="!myVote">{{ "levels-challenge.reaction" | translate }}</span>
+    <ion-icon *ngIf="myVote" [name]="myVote.src"></ion-icon>
+    <span *ngIf="myVote">
+      {{ "levels-challenge." + reaction.level | translate }}
+    </span>
   </ion-button>
-</ion-content>
+</div>
+<div class="reacts" #reacts (mouseover)="time = true" (mouseout)="time = false">
+  <div class="overlay" fxShow="false" fxShow.xs="true"></div>
+  <div
+    class="circle"
+    #circle
+    (click)="like(reaction.level, reaction.src)"
+    *ngFor="let reaction of reactions"
+  >
+    <img #img [src]="reaction.src" alt="" />
+    <p>{{ "levels-challenge." + reaction.level | translate }}</p>
+  </div>
+</div>

@@ -1,3 +1,5 @@
+import { ButtonSharedComponent } from "./challenges/button-shared/button-shared.component";
+import { ButtonCommentsComponent } from "./challenges/button-comments/button-comments.component";
 import { ChallengeContentComponent } from "./challenges/challenge-content/challenge-content.component";
 import { ChallengesPostHeaderComponent } from "./challenges/challenges-post-header/challenges-post-header.component";
 import { ChallengesPostComponent } from "./challenges/challenges-post/challenges-post.component";
@@ -137,7 +139,9 @@ import { ChallengesPostOptionsComponent } from "./challenges/challenges-post-opt
     ViewProfileComponent,
     CreateChallengeComponent,
     ChallengesPostComponent,
-    ChallengesPostOptionsComponent
+    ChallengesPostOptionsComponent,
+    ButtonCommentsComponent,
+    ButtonSharedComponent,
   ],
   exports: [
     ImageComponent,
@@ -193,7 +197,9 @@ import { ChallengesPostOptionsComponent } from "./challenges/challenges-post-opt
     ChallengeCommentsComponent,
     ChallengeReactionsComponent,
     CreateChallengeComponent,
-    ChallengesPostOptionsComponent
+    ChallengesPostOptionsComponent,
+    ButtonCommentsComponent,
+    ButtonSharedComponent,
   ],
 })
 export class ComponentsModule {}

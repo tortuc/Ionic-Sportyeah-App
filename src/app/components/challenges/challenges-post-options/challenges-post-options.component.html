@@ -1,3 +1,24 @@
-<p>
-  challenges-post-options works!
-</p>
+<div class="text-center">
+  <ion-button
+    shape="round"
+    fill="outline"
+    (click)="aceptarReto(Challenge.challenged)"
+  >
+    <img
+      src="https://img.icons8.com/color/48/000000/kicking.png"
+      style="width: 30px"
+    />
+    {{ "challenge.retar" | translate }} {{ userService.User.name }}?
+  </ion-button>
+</div>
+<ion-row>
+  <ion-col size="4">
+    <app-challenge-reactions></app-challenge-reactions>
+  </ion-col>
+  <ion-col size="4">
+    <app-button-comments [Challenge]="Challenge"></app-button-comments>
+  </ion-col>
+  <ion-col size="4">
+    <app-button-shared [Challenge]="Challenge"></app-button-shared>
+  </ion-col>
+</ion-row>
