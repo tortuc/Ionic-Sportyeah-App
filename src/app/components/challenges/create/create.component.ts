@@ -5,7 +5,7 @@ import {
   IReference,
   IAward,
   IUserc,
-} from "./../../../service/challenge.service";
+} from "../../../service/challenge.service";
 import { AlertController } from "@ionic/angular";
 import { UserService } from "src/app/service/user.service";
 import { LoadingController } from "@ionic/angular";

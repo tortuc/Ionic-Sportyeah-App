@@ -1,0 +1,66 @@
+<ion-avatar
+  class="mini"
+  (click)="
+    userService.goToProfile(
+      Challenge.challenging.userId.data._id,
+      Challenge.challenging.userId.data.username
+    )
+  "
+>
+  <ion-img
+    class="img-user-mini"
+    [src]="Challenge.challenging.userId.data.photo"
+  ></ion-img>
+  <div
+    class="connectedDIVlittlePost"
+    *ngIf="Challenge.challenging.userId.data.connected"
+  ></div>
+</ion-avatar>
+<div class="user-name">
+  <span
+    class="message profile-name"
+    (click)="
+      userService.goToProfile(
+        Challenge.challenging.userId.data._id,
+        Challenge.challenging.userId.data.username
+      )
+    "
+    >{{ Challenge.challenging.userId.data.name }}
+    {{ Challenge.challenging.userId.data.last_name }}</span
+  ><br />
+  <span
+    class="profile-name date"
+    >{{ Challenge.modifiedAt | customDisplayDate }}</span
+  >
+  <span class="profile-name date">
+    <!-- SPONSORS -->
+    <div>
+      <ion-grid>
+        <ion-row style="margin-left: -70px; margin-top: 10px">
+          <ion-col
+            size="4"
+            *ngFor="let sponsor of Challenge.challenging.userId.data.sponsors; let i = index"
+          >
+            <a [href]="'//' + sponsor.url" target="_blank">
+              <img
+                [src]="sponsor.photo"
+                style="
+                  height: 30px;
+                  width: 60px;
+                  border-radius: 10px;
+                  object-fit: cover;
+                  object-position: cover;
+                "
+            /></a>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+    <!-- TERMINO SPONSORS -->
+  </span>
+</div>
+<ion-icon
+  *ngIf="Challenge.challenging.userId.data._id == userService.User?._id && displayOptions"
+  name="chevron-down"
+  class="options-down"
+></ion-icon>

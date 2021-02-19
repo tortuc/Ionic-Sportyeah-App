@@ -1,7 +1,10 @@
-import { CreateAwardChallengeComponent } from './challenge/create-award-challenge/create-award-challenge.component';
-import { ChallengeReactionsComponent } from "./challenge-reactions/challenge-reactions.component";
-import { ChallengeCommentsComponent } from "./challenge-comments/challenge-comments.component";
-import { CreateChallengeComponent } from "./challenge/create/create.component";
+import { ChallengeContentComponent } from "./challenges/challenge-content/challenge-content.component";
+import { ChallengesPostHeaderComponent } from "./challenges/challenges-post-header/challenges-post-header.component";
+import { ChallengesPostComponent } from "./challenges/challenges-post/challenges-post.component";
+import { CreateAwardChallengeComponent } from "./challenges/create-award-challenge/create-award-challenge.component";
+import { ChallengeReactionsComponent } from "./challenges/challenge-reactions/challenge-reactions.component";
+import { ChallengeCommentsComponent } from "./challenges/challenge-comments/challenge-comments.component";
+import { CreateChallengeComponent } from "./challenges/create/create.component";
 import { SponsorsComponent } from "./../profile/sponsors/sponsors.component";
 import { ImageSeeComponent } from "./image-see/image-see.component";
 import { ErrorComponent } from "./error/error.component";
@@ -62,6 +65,7 @@ import { ExperiencePage } from "../profile/experience/experience.page";
 import { AptitudesPage } from "../profile/aptitudes/aptitudes.page";
 import { IonicRatingModule } from "ionic4-rating";
 import { StructureComponent } from "src/app/profile/structure/structure.component";
+import { ChallengesPostOptionsComponent } from "./challenges/challenges-post-options/challenges-post-options.component";
 @NgModule({
   imports: [
     CommonModule,
@@ -114,6 +118,8 @@ import { StructureComponent } from "src/app/profile/structure/structure.componen
     WishItemComponent,
     CreateAwardChallengeComponent,
     CreateWishComponent,
+    ChallengesPostHeaderComponent,
+    ChallengeContentComponent,
     PreviewFilesComponent,
     OptionsWishComponent,
     EditWishComponent,
@@ -130,6 +136,8 @@ import { StructureComponent } from "src/app/profile/structure/structure.componen
     ReactionsPostsComponent,
     ViewProfileComponent,
     CreateChallengeComponent,
+    ChallengesPostComponent,
+    ChallengesPostOptionsComponent
   ],
   exports: [
     ImageComponent,
@@ -147,6 +155,7 @@ import { StructureComponent } from "src/app/profile/structure/structure.componen
     FriendsMobileComponent,
     HeaderPostComponent,
     CommentPostComponent,
+    ChallengeContentComponent,
     StructureComponent,
     LikesPostComponent,
     SharedsPostComponent,
@@ -176,12 +185,15 @@ import { StructureComponent } from "src/app/profile/structure/structure.componen
     MessageBasicComponent,
     MessageDocumentComponent,
     UrlPreviewComponent,
+    ChallengesPostComponent,
+    ChallengesPostHeaderComponent,
     ReactionsPostsComponent,
     SponsorsComponent,
     ViewProfileComponent,
     ChallengeCommentsComponent,
     ChallengeReactionsComponent,
     CreateChallengeComponent,
+    ChallengesPostOptionsComponent
   ],
 })
 export class ComponentsModule {}

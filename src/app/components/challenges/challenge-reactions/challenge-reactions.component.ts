@@ -1,6 +1,6 @@
 import { ModalController } from "@ionic/angular";
 import { take } from "rxjs/operators";
-import { ChallengeService } from "./../../service/challenge.service";
+import { ChallengeService } from "../../../service/challenge.service";
 import { Component, OnInit, Input } from "@angular/core";
 
 @Component({

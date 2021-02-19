@@ -10,6 +10,16 @@ mongod
 2. ssh-add ~/.ssh/id_rsa_sportyeah.pub
 3. ssh-add ~/.ssh/id_rsa_kecuki.pub
 
+## TAREAS DESAFIOS 20-02-2021
+
+1. b
+
+## TAREAS DESAFIOS 19-02-2021
+
+1- Cambiar lo que se tiene actualmente en desafios por un layout similar al muro de publicaciones.
+2- Colocar perfiles amigos arriba siempre visible.
+3- Modificar boton aceptar reto para que de subir video de una vez.
+
 ## TAREAS 15-02-2021
 
 1. Copiar la funcionalidad de likes y reacciones.
@@ -44,23 +54,22 @@ mongod
 ## Tareas 29-01-2020
 
 1- QA APLICATION:
-  CUENTAS:
-    1- d@v.com
-    2- david@asocia.com
-    3- davidvalor@patro.com
-    4- davidvalor@club.com
-    5- davidvalorwork@gmail.com
+CUENTAS:
+1- d@v.com
+2- david@asocia.com
+3- davidvalor@patro.com
+4- davidvalor@club.com
+5- davidvalorwork@gmail.com
 
-  HISTORIAS:
-    1- Estoy aqui en Sportyeah para divertirme y descubrir cada vez mas el mundo del deporte.
-    2- Hola! Escribeme y conoceme, podremos hacer negocios juntos.
-    3- Patro la mejor marca de bebidas energizantes.
-    4- Club, el mejor club de futbol de todos los tiempos en busca de nuevos jugadores.
-    5- Hey, estoy aqui para hacer amigos escribeme!
+HISTORIAS:
+1- Estoy aqui en Sportyeah para divertirme y descubrir cada vez mas el mundo del deporte.
+2- Hola! Escribeme y conoceme, podremos hacer negocios juntos.
+3- Patro la mejor marca de bebidas energizantes.
+4- Club, el mejor club de futbol de todos los tiempos en busca de nuevos jugadores.
+5- Hey, estoy aqui para hacer amigos escribeme!
 
 1- Encuadre de imagen en banner change slider y products.
--2- Banco de emojis.
-    - Revisando directiva mentions en busca de cambios. Efectivo habian cambios listo.
+-2- Banco de emojis. - Revisando directiva mentions en busca de cambios. Efectivo habian cambios listo.
 
 ## Tareas 28-01-2020
 

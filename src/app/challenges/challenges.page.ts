@@ -1,14 +1,14 @@
 import { IComment } from "./../models/iPost";
 import { IChallenge } from "./../service/challenge.service";
-import { ChallengeReactionsComponent } from "./../components/challenge-reactions/challenge-reactions.component";
+import { ChallengeReactionsComponent } from "../components/challenges/challenge-reactions/challenge-reactions.component";
 import { UserService } from "./../service/user.service";
 import { take } from "rxjs/operators";
-import { CreateChallengeComponent } from "./../components/challenge/create/create.component";
+import { CreateChallengeComponent } from "../components/challenges/create/create.component";
 import { IonContent, ModalController } from "@ionic/angular";
 import { TranslateService } from "@ngx-translate/core";
 import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
 import { ChallengeService } from "../service/challenge.service";
-import { ChallengeCommentsComponent } from "../components/challenge-comments/challenge-comments.component";
+import { ChallengeCommentsComponent } from "../components/challenges/challenge-comments/challenge-comments.component";
 
 @Component({
   selector: "app-challenges",
@@ -181,7 +181,7 @@ export class ChallengesPage implements OnInit {
     }
   }
 
-  like(type: string, img:string) {
+  like(type: string, img: string) {
     this.myVote = img;
     console.log(this.myVote);
     const reaction = {
@@ -196,7 +196,7 @@ export class ChallengesPage implements OnInit {
       .pipe(take(1))
       .subscribe((r) => {
         console.log(r);
-        this.reactionoff()
+        this.reactionoff();
       });
   }
 }

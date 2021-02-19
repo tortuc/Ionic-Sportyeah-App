@@ -11,9 +11,11 @@
   class="bg-gradient-person"
   style="margin: 0px"
   [scrollEvents]="scrolling"
-  (ionScroll)="onScroll($event)"
 >
-  <div size="12" style="margin: 0px">
+  <div *ngFor="let challenge of challenges">
+    <app-challenges-post [Challenge]="challenge"></app-challenges-post>
+  </div>
+  <!-- <div size="12" style="margin: 0px">
     <div
       *ngIf="!challenges || challenges.length === 0 "
       class="text-center"
@@ -52,8 +54,8 @@
         width: 100%;
         height: 97vh;
         padding: 10px;
+        background-color: white;
         border-radius: 5px;
-        background-color: black;
       "
     >
       <div style="text-align: center; margin: auto; justify-content: center">
@@ -86,7 +88,7 @@
               >
                 {{challenge.title}}
               </span>
-              <br>
+              <br />
             </ion-col>
           </ion-row>
         </ion-grid>
@@ -284,5 +286,5 @@
         </ion-button>
       </div>
     </div>
-  </div>
+  </div> -->
 </ion-content>

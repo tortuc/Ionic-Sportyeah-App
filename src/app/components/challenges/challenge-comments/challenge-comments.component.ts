@@ -1,11 +1,11 @@
-import { Router } from '@angular/router';
+import { Router } from "@angular/router";
 import { take } from "rxjs/operators";
-import { ChallengeService } from "./../../service/challenge.service";
+import { ChallengeService } from "../../../service/challenge.service";
 import { TranslateService } from "@ngx-translate/core";
-import { JdvimageService } from "./../../service/jdvimage.service";
+import { JdvimageService } from "../../../service/jdvimage.service";
 import { FormBuilder } from "@angular/forms";
-import { MentionsDirective } from "./../../directives/mentions.directive";
-import { UserService } from "./../../service/user.service";
+import { MentionsDirective } from "../../../directives/mentions.directive";
+import { UserService } from "../../../service/user.service";
 import { ModalController, LoadingController } from "@ionic/angular";
 import { Component, OnInit, Input, ViewChild } from "@angular/core";
 
@@ -43,7 +43,6 @@ export class ChallengeCommentsComponent implements OnInit {
     public challengeService: ChallengeService,
     public router: Router
   ) {}
-
 
   ngOnInit() {
     window.onclick = () => {
@@ -91,8 +90,8 @@ export class ChallengeCommentsComponent implements OnInit {
   }
 
   setUser(user) {
-    this.router.navigate([`/user/${user.username}`])
-    this.mc.dismiss()
+    this.router.navigate([`/user/${user.username}`]);
+    this.mc.dismiss();
   }
   addEmoji(ev) {
     this.mentions.usersMetions.forEach((element) => {
