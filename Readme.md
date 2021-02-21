@@ -10,9 +10,16 @@ mongod
 2. ssh-add ~/.ssh/id_rsa_sportyeah.pub
 3. ssh-add ~/.ssh/id_rsa_kecuki.pub
 
-## TAREAS DESAFIOS 20-02-2021
+## TAREAS DESAFIOS 21-02-2021 12 HORAS DE TRABAJO
 
-1. b
+1. Resolver responsive de botones like comentarios y shared.
+2. Colocar fixed la caja de amigos y que recomienda desafios.
+3. La caja de amigos debe posibilitar la creacion de un reto.
+4. Opcion de colocar un reto publico o privado con un toggle.
+5. Que muestre 5 videos y los demas los vaya agregando con forme vaya bajando.
+6. Pausar video al darle click.
+7. Comenzar video solo al posicionarse justo en su rango.
+8. Smooth scroll, que se posicione en el video.
 
 ## TAREAS DESAFIOS 19-02-2021
 
