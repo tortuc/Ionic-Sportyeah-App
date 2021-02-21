@@ -1,6 +1,3 @@
-<!-- <div *ngIf="myVote && reactionsBool === false" class="VoteDavid"> -->
-<!-- <img [src]="myVote" alt="" /> -->
-<!-- </div> -->
 <div>
   <ion-button
     fill="clean"
@@ -10,21 +7,21 @@
     (click)="like(item.post._id, item.likes, 1, true)"
   >
     <ion-icon *ngIf="!myVote" name="heart" style="margin-right: 2px"></ion-icon>
-    <span *ngIf="!myVote">{{ "levels-challenge.reaction" | translate }}</span>
+    <span *ngIf="!myVote" fxShow.gt-xs="true" fxShow="false">{{
+      "levels-challenge.reaction" | translate
+    }}</span>
     <ion-icon *ngIf="myVote" [name]="myVote.src"></ion-icon>
-    <span *ngIf="myVote">
+    <span *ngIf="myVote" fxShow.gt-xs="true" fxShow="false">
       {{ "levels-challenge." + reaction.level | translate }}
     </span>
   </ion-button>
 </div>
 <p
-  style="margin: 0"
   *ngIf="challenge.challenging.reactions"
   (click)="goToPost(item.post._id)"
-  class="profile-name"
-  style="margin-left: 25px;"
+  class="profile-name marginleftforletters"
 >
-  {{challenge.challenging.reactions.length }} {{ "post.likes" | translate }}
+  {{ challenge.challenging.reactions.length }} {{ "post.likes" | translate }}
 </p>
 
 <div class="reacts" #reacts (mouseover)="time = true" (mouseout)="time = false">
