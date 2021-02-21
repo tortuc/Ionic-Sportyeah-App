@@ -12,10 +12,22 @@
   style="margin: 0px"
   [scrollEvents]="scrolling"
 >
-  <div *ngFor="let challenge of challenges">
-    <app-challenges-post [Challenge]="challenge"></app-challenges-post>
-  </div>
-  <!-- <div size="12" style="margin: 0px">
+  <ion-grid style="padding: 0">
+    <ion-row>
+      <ion-col size-xs="12" size-lg="8" ngClass.xs="p-0" class="center">
+        <app-friends-mobile-c
+          (new_challenge)="create()"
+          class="absoluteFriendsC"
+        ></app-friends-mobile-c>
+        <div *ngFor="let challenge of challenges">
+          <app-challenges-post [Challenge]="challenge"></app-challenges-post>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+
+<!-- <div size="12" style="margin: 0px">
     <div
       *ngIf="!challenges || challenges.length === 0 "
       class="text-center"
@@ -287,4 +299,3 @@
       </div>
     </div>
   </div> -->
-</ion-content>

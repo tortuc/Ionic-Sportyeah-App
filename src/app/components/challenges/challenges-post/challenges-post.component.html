@@ -1,32 +1,22 @@
-<ion-grid style="padding: 0">
-  <ion-row>
-    <ion-col size-xs="12" size-lg="8" ngClass.xs="p-0" class="center">
-      <ion-grid>
-        <ion-row *ngIf="Challenge" class="post-card">
-          <ion-card ngClass.xs="m-p-0" style="width: 100%">
-            <ion-card-content
-              style="
-                padding-top: 0px !important;
-                padding-left: 0px !important;
-                padding-right: 0px !important;
-              "
-            >
-              <div class="bg-black pt15" style="border-radius: 0">
-                <app-challenges-post-header
-                  class="text-center centerAbsolute pb15"
-                  [Challenge]="Challenge"
-                ></app-challenges-post-header>
-                <app-challenge-content
-                  [Challenge]="Challenge"
-                ></app-challenge-content>
-              </div>
-              <app-challenges-post-options
-                [Challenge]="Challenge"
-              ></app-challenges-post-options>
-            </ion-card-content>
-          </ion-card>
-        </ion-row>
-      </ion-grid>
-    </ion-col>
-  </ion-row>
-</ion-grid>
+<ion-row *ngIf="Challenge" class="post-card">
+  <ion-card ngClass.xs="m-p-0" style="width: 100%">
+    <ion-card-content
+      style="
+        padding-top: 0px !important;
+        padding-left: 0px !important;
+        padding-right: 0px !important;
+      "
+    >
+      <div class="bg-black pt15" style="border-radius: 0">
+        <app-challenges-post-header
+          class="text-center centerAbsolute pb15"
+          [Challenge]="Challenge"
+        ></app-challenges-post-header>
+        <app-challenge-content [Challenge]="Challenge"></app-challenge-content>
+      </div>
+      <app-challenges-post-options
+        [Challenge]="Challenge"
+      ></app-challenges-post-options>
+    </ion-card-content>
+  </ion-card>
+</ion-row>

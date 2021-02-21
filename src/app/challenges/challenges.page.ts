@@ -110,7 +110,7 @@ export class ChallengesPage implements OnInit {
         challenged: null,
       },
     });
-    modal.onDidDismiss().then(() => this.ngOnInit());
+    // modal.onDidDismiss().then(() => this.ngOnInit());
     await modal.present();
   }
 

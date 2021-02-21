@@ -755,7 +755,8 @@
     "retar": "¿Aceptas el Reto",
     "first": "¡Se el primero en crear un reto!",
     "videoErr": "El video no es valido, tiene mas de un minuto de duracion.",
-    "repeat": "Intentar de nuevo"
+    "repeat": "Intentar de nuevo",
+    "new_challenge":"¡Comienza a retar!"
   },
   "save": "Guardar Cambios",
 
@@ -802,5 +803,6 @@
     "nivel5":"Cobarde",
     "nivel6":"Mariquita",
     "reaction":"Reaccionar"
-  }
+  },
+  "followed":"Siguiendo / Recomendados"
 }

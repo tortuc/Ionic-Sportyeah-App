@@ -1,3 +1,4 @@
+import { FriendsMobileCComponent } from './challenges/friends-mobile-c/friends-mobile-c.component';
 import { ButtonSharedComponent } from "./challenges/button-shared/button-shared.component";
 import { ButtonCommentsComponent } from "./challenges/button-comments/button-comments.component";
 import { ChallengeContentComponent } from "./challenges/challenge-content/challenge-content.component";
@@ -142,6 +143,7 @@ import { ChallengesPostOptionsComponent } from "./challenges/challenges-post-opt
     ChallengesPostOptionsComponent,
     ButtonCommentsComponent,
     ButtonSharedComponent,
+    FriendsMobileCComponent
   ],
   exports: [
     ImageComponent,
@@ -200,6 +202,7 @@ import { ChallengesPostOptionsComponent } from "./challenges/challenges-post-opt
     ChallengesPostOptionsComponent,
     ButtonCommentsComponent,
     ButtonSharedComponent,
+    FriendsMobileCComponent
   ],
 })
 export class ComponentsModule {}
