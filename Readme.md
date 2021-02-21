@@ -12,7 +12,7 @@ mongod
 
 ## TAREAS DESAFIOS 21-02-2021 12 HORAS DE TRABAJO
 
-1. Resolver responsive de botones like comentarios y shared.
+1. Resolver responsive de botones like comentarios y shared. cumplido.
 2. Colocar fixed la caja de amigos y que recomienda desafios.
 3. La caja de amigos debe posibilitar la creacion de un reto.
 4. Opcion de colocar un reto publico o privado con un toggle.
@@ -20,6 +20,7 @@ mongod
 6. Pausar video al darle click.
 7. Comenzar video solo al posicionarse justo en su rango.
 8. Smooth scroll, que se posicione en el video.
+9. Colocar boton en responsive para abrir la sidebar.
 
 ## TAREAS DESAFIOS 19-02-2021
 
