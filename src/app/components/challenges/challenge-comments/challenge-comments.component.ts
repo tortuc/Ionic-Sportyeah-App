@@ -6,7 +6,11 @@ import { JdvimageService } from "../../../service/jdvimage.service";
 import { FormBuilder } from "@angular/forms";
 import { MentionsDirective } from "../../../directives/mentions.directive";
 import { UserService } from "../../../service/user.service";
-import { ModalController, LoadingController } from "@ionic/angular";
+import {
+  ModalController,
+  LoadingController,
+  IonInfiniteScroll,
+} from "@ionic/angular";
 import { Component, OnInit, Input, ViewChild } from "@angular/core";
 
 @Component({
@@ -22,6 +26,7 @@ export class ChallengeCommentsComponent implements OnInit {
   @ViewChild("FormElementRef") inputNode: any;
   @ViewChild("emojisContainer") emojisContainer: any;
   @ViewChild("emojiButton") emojiButton: any;
+  @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
 
   // public referenceId: any = null;
   // public comments: any[] = null;
@@ -53,10 +58,22 @@ export class ChallengeCommentsComponent implements OnInit {
     this.actualizar();
   }
 
+  loadData() {
+    console.log(this.index);
+    let anterior = this.index;
+    this.index += 8;
+    let comments = [];
+    for (let i = anterior; i < this.index; i++) {
+      if (this.comments[i]) comments.push(this.comments[i]);
+    }
+    this.getUsersAllInfo(comments);
+  }
+
   generatepag() {
-    this.index += 4;
-    this.commentsShown = [];
+    this.index = 0;
+    this.index += 8;
     var comments = [];
+    this.commentsShown = [];
     for (let i = 0; i < this.index; i++) {
       if (this.comments[i]) comments.push(this.comments[i]);
     }
@@ -67,8 +84,10 @@ export class ChallengeCommentsComponent implements OnInit {
     const r: any = await this.challengeService
       .getById(this.challenge)
       .toPromise();
-    console.log(r.challenge.challenging.comments);
-    this.comments = r.challenge.challenging.comments.reverse();
+    console.log(r.challenge.challenged.comments);
+    this.commentsShown = [];
+    this.index = 0;
+    this.comments = r.challenge.challenged.comments.reverse();
     this.generatepag();
   }
 
@@ -126,13 +145,13 @@ export class ChallengeCommentsComponent implements OnInit {
     });
   }
   async getUsersAllInfo(comments: any[]) {
-    this.commentsShown = [];
     comments.map(async (comment: any) => {
       const user = await this.userService
         .getUserById(comment.userReference.referenceId)
         .toPromise();
       comment.userData = user;
       this.commentsShown.push(comment);
+      this.infiniteScroll.complete();
     });
   }
 
@@ -165,10 +184,9 @@ export class ChallengeCommentsComponent implements OnInit {
       .pipe(take(1))
       .subscribe((r: any) => {
         console.log(r);
-
-        this.ngOnInit();
+        this.actualizar();
       });
-    this.form.reset();
+    this.form.controls.message.setValue("");
   }
 
   async uploadImg($event) {

@@ -60,7 +60,7 @@ export class ChallengeReactionsComponent implements OnInit {
       .subscribe(
         (r: any) => {
           console.log(r);
-          console.log(r.challenge.challenging.reactions);
+          console.log(r.challenge.challenged.reactions);
         },
         (err) => console.log(err)
       );

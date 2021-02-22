@@ -23,7 +23,7 @@ export class ButtonCommentsComponent implements OnInit {
       component: ChallengeCommentsComponent,
       componentProps: {
         comments,
-        referenceId: this.Challenge.challenging._id,
+        referenceId: this.Challenge.challenged._id,
         challenge: this.Challenge._id,
       },
     });

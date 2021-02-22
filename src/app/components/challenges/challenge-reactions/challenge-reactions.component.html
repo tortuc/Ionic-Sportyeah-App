@@ -17,11 +17,11 @@
   </ion-button>
 </div>
 <p
-  *ngIf="challenge.challenging.reactions"
+  *ngIf="challenge.challenged.reactions"
   (click)="goToPost(item.post._id)"
   class="profile-name marginleftforletters"
 >
-  {{ challenge.challenging.reactions.length }} {{ "post.likes" | translate }}
+  {{ challenge.challenged.reactions.length }} {{ "post.likes" | translate }}
 </p>
 
 <div class="reacts" #reacts (mouseover)="time = true" (mouseout)="time = false">
