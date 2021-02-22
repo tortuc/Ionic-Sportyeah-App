@@ -14,6 +14,14 @@
           (new_challenge)="create()"
           class="absoluteFriendsC"
         ></app-friends-mobile-c>
+        <div
+          *ngIf="!challenges || challenges.length === 0 "
+          class="text-center"
+          style="margin: auto"
+        >
+          <h1 style="color: white">{{'challenge.first' | translate}}</h1>
+          <img src="https://img.icons8.com/dusk/64/000000/planning-skill.png" />
+        </div>
         <div *ngFor="let challenge of showc">
           <app-challenges-post [Challenge]="challenge"></app-challenges-post>
         </div>
@@ -25,7 +33,10 @@
     (ionInfinite)="loadData($event)"
     class="text-center"
   >
-    <ion-infinite-scroll-content loadingSpinner="bubbles" *ngIf="showc !== challenges">
+    <ion-infinite-scroll-content
+      loadingSpinner="bubbles"
+      *ngIf="showc !== challenges"
+    >
     </ion-infinite-scroll-content>
   </ion-infinite-scroll>
 </ion-content>

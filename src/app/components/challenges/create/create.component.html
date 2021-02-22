@@ -37,6 +37,14 @@
       </ion-button>
     </div>
 
+    <div class="text-center">
+      <ion-list>
+        <ion-item>
+          <ion-label>{{ "challenge.public" | translate }}</ion-label>
+          <ion-toggle color="primary" [(ngModel)]="public"></ion-toggle>
+        </ion-item>
+      </ion-list>
+    </div>
     <!-- CHALLENGE FORM -->
     <form [formGroup]="form">
       <ion-item>

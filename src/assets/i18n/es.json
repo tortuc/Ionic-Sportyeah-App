@@ -756,7 +756,8 @@
     "first": "¡Se el primero en crear un reto!",
     "videoErr": "El video no es valido, tiene mas de un minuto de duracion.",
     "repeat": "Intentar de nuevo",
-    "new_challenge":"¡Comienza a retar!"
+    "new_challenge":"¡Comienza a retar!",
+    "public": "¡Deseo que todo SportYeah vea mi desafio!"
   },
   "save": "Guardar Cambios",
 

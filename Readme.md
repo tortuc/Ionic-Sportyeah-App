@@ -15,7 +15,7 @@ mongod
 1. Resolver responsive de botones like comentarios y shared. cumplido.
 2. Colocar fixed la caja de amigos y que recomienda desafios. cumplido.
 3. La caja de amigos debe posibilitar la creacion de un reto. cumplido.
-4. Opcion de colocar un reto publico o privado con un toggle.
+4. Opcion de colocar un reto publico o privado con un toggle. cumplido.
 5. Que muestre 2 videos y los demas los vaya agregando con forme vaya bajando. cumplido.
 6. Pausar video al darle click.
 7. Comenzar video solo al posicionarse justo en su rango.
@@ -24,6 +24,8 @@ mongod
 10. Animacion boton aceptas el reto. cumplido.
 11. Boton actualizar.
 12. Corregir bugs de comentarios.
+13. Al pulsar al usuario o la fecha de creacion llevar a su perfil en el header.
+14. Quitar titulo y descripcion del aceptar reto.
 
 ## TAREAS DESAFIOS 19-02-2021
 

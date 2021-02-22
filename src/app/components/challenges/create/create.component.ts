@@ -23,6 +23,7 @@ import { ToastController, ModalController } from "@ionic/angular";
 export class CreateChallengeComponent implements OnInit {
   @ViewChild("fileChooser") fileChooser: ElementRef;
   @Input() challenged: IReference | null;
+  public public: boolean = true;
   public form: FormGroup = this.fb.group({
     challenge: ["", [Validators.required]],
     title: ["", Validators.required],
@@ -114,6 +115,7 @@ export class CreateChallengeComponent implements OnInit {
       newChallenge = {
         challenging,
         challenged: challenging,
+        public: this.public,
         awards: this.awards,
         title: this.form.value.title,
         description: this.form.value.description,
@@ -124,6 +126,7 @@ export class CreateChallengeComponent implements OnInit {
       newChallenge = {
         challenging: this.challenged._id,
         challenged: challenging,
+        public: this.public,
         awards: this.awards,
         title: this.form.value.title,
         description: this.form.value.description,

@@ -41,6 +41,7 @@ export interface IChallenge {
   title: string;
   description: string;
   challenges: IChallenge[];
+  public: boolean;
   _id?:string;
   createdAt?: string;
   modifiedAt?: string;
