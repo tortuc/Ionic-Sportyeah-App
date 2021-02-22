@@ -23,7 +23,7 @@ mongod
 9. Colocar boton en responsive para abrir la sidebar.
 10. Animacion boton aceptas el reto. cumplido.
 11. Boton actualizar.
-12. Corregir bugs de comentarios.
+12. Corregir bugs de comentarios. cumplido.
 13. Al pulsar al usuario o la fecha de creacion llevar a su perfil en el header.
 14. Quitar titulo y descripcion del aceptar reto.
 

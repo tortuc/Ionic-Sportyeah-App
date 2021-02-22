@@ -1,11 +1,6 @@
 <ion-avatar
   class="mini center"
-  (click)="
-    userService.goToProfile(
-      Challenge.challenging.userId.data._id,
-      Challenge.challenging.userId.data.username
-    )
-  "
+  (click)="userService.goToProfile(Challenge.challenging.userId.data.username)"
 >
   <ion-img
     class="img-user-mini"
@@ -20,10 +15,7 @@
   <span
     class="messageC profile-name"
     (click)="
-      userService.goToProfile(
-        Challenge.challenging.userId.data._id,
-        Challenge.challenging.userId.data.username
-      )
+      userService.goToProfile(Challenge.challenging.userId.data.username)
     "
     >{{ Challenge.challenging.userId.data.name }}
     {{ Challenge.challenging.userId.data.last_name }}</span

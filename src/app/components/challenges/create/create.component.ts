@@ -23,6 +23,7 @@ import { ToastController, ModalController } from "@ionic/angular";
 export class CreateChallengeComponent implements OnInit {
   @ViewChild("fileChooser") fileChooser: ElementRef;
   @Input() challenged: IReference | null;
+  @Input() Challenge: any;
   public public: boolean = true;
   public form: FormGroup = this.fb.group({
     challenge: ["", [Validators.required]],
@@ -49,7 +50,10 @@ export class CreateChallengeComponent implements OnInit {
 
   ngOnInit() {
     if (this.challenged !== null) {
+      console.log(this.Challenge);
       this.createAward = false;
+      this.form.controls.title.setValue(this.Challenge.title);
+      this.form.controls.description.setValue(this.Challenge.description);
     }
   }
 

@@ -14,12 +14,13 @@ export class ChallengesPostOptionsComponent implements OnInit {
 
   constructor(public mc: ModalController, public userService: UserService) {}
 
-  async aceptarReto(challenged) {
+  async aceptarReto(challenged,challenge) {
     const modal = await this.mc.create({
       component: CreateChallengeComponent,
       cssClass: "a",
       componentProps: {
         challenged,
+        Challenge:challenge
       },
     });
     modal.onDidDismiss().then(() => this.ngOnInit());
