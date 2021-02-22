@@ -4,6 +4,9 @@
       <ion-icon name="medal-outline"></ion-icon>
       {{'challenges' | translate}}
     </ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button style="color: white"></ion-menu-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 <ion-content class="bg-gradient-person" style="margin: 0px">
@@ -14,7 +17,10 @@
           (new_challenge)="create()"
           class="absoluteFriendsC"
         ></app-friends-mobile-c>
-        <ion-row style="justify-content: center; margin-bottom: -20px" *ngIf="challenges">
+        <ion-row
+          style="justify-content: center; margin-bottom: -20px"
+          *ngIf="challenges"
+        >
           <ion-button
             *ngIf="challenges.length > 0"
             style="z-index: 10"

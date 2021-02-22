@@ -10,6 +10,26 @@ mongod
 2. ssh-add ~/.ssh/id_rsa_sportyeah.pub
 3. ssh-add ~/.ssh/id_rsa_kecuki.pub
 
+## TAREAS DESAFIOS 22-02-2021 12 HORAS DE TRABAJO
+
+1. Mostrar premios en los videos.
+2. Hay que asegurarse que los videos que sean dobles se inicien al mismo tiempo.
+3. Mostrar stepper cuando se acepte el reto mostrando la descripcion de como hacer el reto y darle a un boton de estoy listo.
+4. Grabadora de pantalla PWA IONIC.
+5. Premio solidario descripcion y toggle.
+6. Debe dar la opcion de subir otro intento del reto guardandose los intentos.
+7. Deben mostrarse los intentos mas abajo y un toggle que indique si mostrar los intentos o no.
+8. Al subir un desafio abrir una modal de comparticion y mostrar link para compartir y en esa modal le saldra la opcion de retar a sus seguidores.
+9. Permitir enviar mensaje privado con el reto por whatsapp.
+10. Permitir retar por facebook.
+11. Permitir retar por whatsapp.
+12. Permitir retar por Linkedin.
+13. Permitir retar por Instagram.
+14. Permitir retar por twitter.
+15. Buscador por nick.
+16. Boton de retar personas.
+17. Visualizacion del numero de visualizaciones del reto.
+
 ## TAREAS DESAFIOS 21-02-2021 12 HORAS DE TRABAJO
 
 1. Resolver responsive de botones like comentarios y shared. cumplido.
@@ -18,18 +38,16 @@ mongod
 4. Opcion de colocar un reto publico o privado con un toggle. cumplido.
 5. Que muestre 2 videos y los demas los vaya agregando con forme vaya bajando. cumplido.
 6. Pausar video al darle click. cumplido.
-7. Comenzar video solo al posicionarse justo en su rango.
-8. Smooth scroll, que se posicione en el video.
-9. Colocar boton en responsive para abrir la sidebar.
+7. Comenzar video solo al posicionarse justo en su rango. cumplido.
+8. Smooth scroll, que se posicione en el video. cumplido.
+9. Colocar boton en responsive para abrir la sidebar. cumplido
 10. Animacion boton aceptas el reto. cumplido.
 11. Boton actualizar. cumplido.
 12. Corregir bugs de comentarios. cumplido.
 13. Al pulsar al usuario o la fecha de creacion llevar a su perfil en el header. cumplido.
 14. Quitar titulo y descripcion del aceptar reto. cumplido.
-15. Agregar funcionalidad a reaccionar.
-16. Al volver a reaccionar eliminar la reaccion anterior y cambiarla por la nueva reaccion.
-17. Mostrar premios en los videos.
-18. Hay que asegurarse que los videos que sean dobles se inicien al mismo tiempo.
+15. Agregar funcionalidad a reaccionar. cumplido.
+16. Al volver a reaccionar eliminar la reaccion anterior y cambiarla por la nueva reaccion. cumplido.
 
 ## TAREAS DESAFIOS 19-02-2021
 
