@@ -22,10 +22,12 @@ mongod
 8. Smooth scroll, que se posicione en el video.
 9. Colocar boton en responsive para abrir la sidebar.
 10. Animacion boton aceptas el reto. cumplido.
-11. Boton actualizar.
+11. Boton actualizar. cumplido.
 12. Corregir bugs de comentarios. cumplido.
-13. Al pulsar al usuario o la fecha de creacion llevar a su perfil en el header.
-14. Quitar titulo y descripcion del aceptar reto.
+13. Al pulsar al usuario o la fecha de creacion llevar a su perfil en el header. cumplido.
+14. Quitar titulo y descripcion del aceptar reto. cumplido.
+15. Agregar funcionalidad a reaccionar.
+16. Al volver a reaccionar eliminar la reaccion anterior y cambiarla por la nueva reaccion.
 
 ## TAREAS DESAFIOS 19-02-2021
 

@@ -41,7 +41,9 @@ export class ChallengesPage implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.index = 0;
     this.challengeNumber = 0;
+    this.showc = []
     this.challengeService
       .getAll()
       .pipe(take(1))
@@ -192,10 +194,10 @@ export class ChallengesPage implements OnInit {
 
   loadData(e) {
     console.log(e);
-    this.index+=1;
+    this.index += 1;
     if (this.challenges[this.index])
       this.showc.push(this.challenges[this.index]);
     console.log(this.showc);
-    this.infiniteScroll.complete()
+    this.infiniteScroll.complete();
   }
 }

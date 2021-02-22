@@ -1,7 +1,13 @@
-<div>
-  <div >
+<div (click)="pause()">
+  <div>
     <div *ngIf="Challenge.challenging.media === Challenge.challenged.media">
-      <video width="100%" height="100%" autoplay class="videoChallenge">
+      <video
+        width="100%"
+        height="100%"
+        autoplay
+        class="videoChallenge"
+        [id]="Challenge.challenged.media + Challenge._id"
+      >
         <source
           [src]="Challenge.challenging.media | safeUrl"
           type="video/mp4"
@@ -19,6 +25,7 @@
         height="100%"
         style="border-radius: 5px"
         autoplay
+        [id]="Challenge.challenged.media + Challenge._id"
         controlslist="nodownload"
         class="videoChallenge"
       >
@@ -37,6 +44,7 @@
         style="border-radius: 5px"
         autoplay
         controlslist="nodownload"
+        [id]="Challenge.challenging.media + Challenge._id"
         class="videoChallenge"
       >
         <source [src]="Challenge.challenged.media | safeUrl" type="video/mp4" />
