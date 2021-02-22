@@ -17,7 +17,7 @@ mongod
 3. La caja de amigos debe posibilitar la creacion de un reto. cumplido.
 4. Opcion de colocar un reto publico o privado con un toggle. cumplido.
 5. Que muestre 2 videos y los demas los vaya agregando con forme vaya bajando. cumplido.
-6. Pausar video al darle click.
+6. Pausar video al darle click. cumplido.
 7. Comenzar video solo al posicionarse justo en su rango.
 8. Smooth scroll, que se posicione en el video.
 9. Colocar boton en responsive para abrir la sidebar.
@@ -28,6 +28,8 @@ mongod
 14. Quitar titulo y descripcion del aceptar reto. cumplido.
 15. Agregar funcionalidad a reaccionar.
 16. Al volver a reaccionar eliminar la reaccion anterior y cambiarla por la nueva reaccion.
+17. Mostrar premios en los videos.
+18. Hay que asegurarse que los videos que sean dobles se inicien al mismo tiempo.
 
 ## TAREAS DESAFIOS 19-02-2021
 

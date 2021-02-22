@@ -25,7 +25,7 @@
         height="100%"
         style="border-radius: 5px"
         autoplay
-        [id]="Challenge.challenged.media + Challenge._id"
+        [id]="Challenge.challenged.media + Challenge.challenged._id + n"
         controlslist="nodownload"
         class="videoChallenge"
       >
@@ -44,7 +44,7 @@
         style="border-radius: 5px"
         autoplay
         controlslist="nodownload"
-        [id]="Challenge.challenging.media + Challenge._id"
+        [id]="Challenge.challenging.media + Challenge.challenging._id + n"
         class="videoChallenge"
       >
         <source [src]="Challenge.challenged.media | safeUrl" type="video/mp4" />
