@@ -4,7 +4,7 @@ import { ChallengeReactionsComponent } from "../components/challenges/challenge-
 import { UserService } from "./../service/user.service";
 import { take } from "rxjs/operators";
 import { CreateChallengeComponent } from "../components/challenges/create/create.component";
-import { IonContent, ModalController } from "@ionic/angular";
+import { IonContent, IonInfiniteScroll, ModalController } from "@ionic/angular";
 import { TranslateService } from "@ngx-translate/core";
 import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
 import { ChallengeService } from "../service/challenge.service";
@@ -16,6 +16,7 @@ import { ChallengeCommentsComponent } from "../components/challenges/challenge-c
   styleUrls: ["./challenges.page.scss"],
 })
 export class ChallengesPage implements OnInit {
+  @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
   @ViewChild("circle") circle: ElementRef;
   @ViewChild("reacts") reacts: ElementRef;
   @ViewChild("img") img: ElementRef;
@@ -26,10 +27,12 @@ export class ChallengesPage implements OnInit {
   public challenges: any[] = null;
   public scrolling: boolean = true;
   public challenge: any = null;
+  public showc: any[] = [];
   public challengeNumber: number = 0;
   public timeOut: any = null;
   public timeOutClose: any = null;
   public reactionsBool: boolean = false;
+  public index: number = 2;
   constructor(
     public translate: TranslateService,
     public mc: ModalController,
@@ -79,8 +82,6 @@ export class ChallengesPage implements OnInit {
   }
 
   Changefalse() {
-    //this.time = false;
-    //this.reactionsOFF();
     this.timeOutClose = setTimeout(() => this.reactionoff(), 1000);
     clearTimeout(this.timeOut);
   }
@@ -100,6 +101,7 @@ export class ChallengesPage implements OnInit {
     );
     this.challenges = challengesNew.reverse();
     this.challenge = this.challenges[this.challengeNumber];
+    for (let i = 0; i < 1; i++) this.showc.push(this.challenges[i]);
   }
 
   async create() {
@@ -186,5 +188,14 @@ export class ChallengesPage implements OnInit {
         console.log(r);
         this.reactionoff();
       });
+  }
+
+  loadData(e) {
+    console.log(e);
+    this.index+=1;
+    if (this.challenges[this.index])
+      this.showc.push(this.challenges[this.index]);
+    console.log(this.showc);
+    this.infiniteScroll.complete()
   }
 }

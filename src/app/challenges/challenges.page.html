@@ -6,12 +6,7 @@
     </ion-title>
   </ion-toolbar>
 </ion-header>
-
-<ion-content
-  class="bg-gradient-person"
-  style="margin: 0px"
-  [scrollEvents]="scrolling"
->
+<ion-content class="bg-gradient-person" style="margin: 0px">
   <ion-grid style="padding: 0">
     <ion-row>
       <ion-col size-xs="12" size-lg="8" ngClass.xs="p-0" class="center">
@@ -19,12 +14,20 @@
           (new_challenge)="create()"
           class="absoluteFriendsC"
         ></app-friends-mobile-c>
-        <div *ngFor="let challenge of challenges">
+        <div *ngFor="let challenge of showc">
           <app-challenges-post [Challenge]="challenge"></app-challenges-post>
         </div>
       </ion-col>
     </ion-row>
   </ion-grid>
+  <ion-infinite-scroll
+    threshold="1px"
+    (ionInfinite)="loadData($event)"
+    class="text-center"
+  >
+    <ion-infinite-scroll-content loadingSpinner="bubbles" *ngIf="showc !== challenges">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </ion-content>
 
 <!-- <div size="12" style="margin: 0px">

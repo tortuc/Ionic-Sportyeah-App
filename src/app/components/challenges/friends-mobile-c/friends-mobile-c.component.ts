@@ -28,8 +28,12 @@ export class FriendsMobileCComponent implements OnInit {
         // this.userService.followings.map((user: any) =>
         //   this.users.push(user.user)
         // );
-        for (let i = 0; i < 5; i++)
-          this.users.indexOf(r[i]) === -1 ? this.users.push(r[i]) : null;
+        for (let i = 0; i < 10; i++)
+          if (r[i])
+            this.users.indexOf(r[i]) === -1 &&
+            r[i]._id !== this.userService.User._id
+              ? this.users.push(r[i])
+              : null;
       });
   }
 
