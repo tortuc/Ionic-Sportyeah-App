@@ -13,9 +13,8 @@
       <video *ngIf="post.video != null && post.video != ''"  controls="controls" preload="metadata"  webkit-playsinline="webkit-playsinline" class="videoPlayer">
         <source [src]="post.video | safeUrl" type="video/mp4" />
         <source [src]="post.video | safeUrl" type="video/ogg" />
-       </video>
-  
-    
+      </video>
+   
     </ion-card-content>
    
   </ion-card>
@@ -49,5 +48,16 @@
         <source [src]="news.principalVideo | safeUrl" type="video/mp4" />
       </video>
     </div> 
+  </ion-card>
+</div>
+
+<!-- Se usa cuando proviene del shared-Post -->
+<div *ngIf="newsShared" [ngClass]="{'disabled':disabled}">
+  
+  <ion-card style="width: 40%;margin: auto;height: 82%; cursor: pointer;" (click)="OpenNews()">
+    <ion-card-header>
+      <header-post [displayOptions]="false" class="user-header" [post]="newsShared" ></header-post>       
+    </ion-card-header>
+    
   </ion-card>
 </div>

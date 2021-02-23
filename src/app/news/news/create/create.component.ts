@@ -43,6 +43,8 @@ constructor(
     principalSubtitle:['',[Validators.required]],
     principalImage:['',[Validators.required]],
     principalVideo:['',[Validators.required]],
+    origin:['',[Validators.required]],
+    originPrincipaMedia:['',[Validators.required]],
     sport:['',[Validators.required]]
   })
 
@@ -63,9 +65,11 @@ publicar(){
     this.form.value.headline = this.titulo1;
     this.form.value.principalSubtitle = this.subTitle;
     this.form.value.content = this.parrafos
-    //this.form.value.image = this.arrayImagenes
+    this.form.value.origin = this.origen
+    this.form.value.originPrincipaMedia = this.originPrincipaMedia
+
     this.form.value.sport = this.deporte
-   /* */this.newsService.create(this.form.value).subscribe((response)=>{
+   this.newsService.create(this.form.value).subscribe((response)=>{
       this.presentToastWithOptions()
       this.router.navigate(["news"])
     }) 
@@ -110,7 +114,7 @@ parrafos=[];
     subtitulo = this.subTitleParrafo 
   } 
 
-  this.parrafos.push({subtitle:subtitulo,parrafo:this.text1,position:this.parrafos.length,image:'',video:null})//title:this.titulo1,subtitle:this.deporte
+  this.parrafos.push({subtitle:subtitulo,parrafo:this.text1,position:this.parrafos.length,image:null,video:null,originMedia:null})//title:this.titulo1,subtitle:this.deporte
   this.text1 = `Escribe el párrafo # ${this.parrafos.length+1} `
 
   /* this.titulo1= `Escribe el Titulo # ${this.parrafos.length+1} `;
@@ -300,6 +304,8 @@ async takePrincipal(source) {
 }
 deleteImagePrincipal(){
   this.imagenSelected = null
+  this.originPrincipaMedia = null;
+  this.agregandoOrigenPrincipaMedia = false;
   this.open = false;
 }
 
@@ -375,6 +381,8 @@ closeVideoPrincipal(){
   this.urlVideo = null
   this.videoFile = null
   this.videoSelected = null;
+  this.originPrincipaMedia = null;
+  this.agregandoOrigenPrincipaMedia = false;
 }
 closeVideoNotPrincipal(i){
   console.log(i)
@@ -475,6 +483,123 @@ listoPublicar:boolean = false
 listoParaPublicar(){
   this.listoPublicar = !this.listoPublicar
 }
+
+//Origen de la noticia
+agregandoOrigen:boolean = false;
+origen;
+origenListo(){
+  this.agregandoOrigen = !this.agregandoOrigen;
+}
+
+
+//Origen de las imagenes de parrafos
+agregandoOrigenParrafo;
+originParrafoMedia;
+todosParrafosConOrigen:boolean = false;
+origenParrafoListo(i){
+  if(this.originParrafoMedia){
+    this.parrafos[i].originMedia = this.originParrafoMedia;
+    console.log('sirve')
+  }
+  this.agregandoOrigenParrafo = !this.agregandoOrigenParrafo;
+  this.originParrafoMedia = null;
+}
+origenParrafoEditar(i){
+ this.originParrafoMedia = this.parrafos[i].originMedia
+ this.parrafos[i].originMedia = null
+}
+todoConOrigen(){
+  this.todosParrafosConOrigen = false
+  for(let parrafo of this.parrafos){
+    if((parrafo.video || parrafo.image ) && (parrafo.originMedia == null) ){
+      this.todosParrafosConOrigen = true
+    }
+  }
+  this.checkNoVacio() 
+  if(this.todosParrafosConOrigen ){
+    this.ToastError('Asegurate de que todos los archivos multimedia tengan origen')
+  }
+  if(!this.todosParrafosConOrigen && this.checkNoVacio()){
+    this.listoParaPublicar()
+  }
+}
+
+//cheka que no exista campo importante vacio 
+ checkNoVacio() {
+   let ok:boolean = true
+  this.titulo1 = this.titulo1.trim();
+  console.log(this.titulo1.length)
+  if ( this.titulo1.length != 0) {
+    console.log('Sin espacios')
+  } else { 
+    this.ToastError('El título no puede estar vacio')
+    this.titlebool = false;
+    ok = false
+}
+
+  this.subTitle = this.subTitle.trim();
+  console.log(this.subTitle.length)
+  if ( this.subTitle.length != 0) {
+    console.log('Sin espacios')
+  } else { 
+    this.ToastError('El subtítulo no puede estar vacio')
+    this.subTitlebool = false;
+    ok = false
+  }
+
+  this.origen = this.origen.trim();
+  console.log(this.origen.length)
+  if ( this.origen.length != 0) {
+    console.log('Sin espacios')
+  } else {
+  this.ToastError('El origen no puede estar vacio')
+  this.agregandoOrigen = false;  
+  ok = false
+}
+
+  if(this.urlVideo || this.imagenSelected){
+    this.originPrincipaMedia = this.originPrincipaMedia.trim();
+    console.log(this.originPrincipaMedia.length)
+    if ( this.originPrincipaMedia.length != 0) {
+      console.log('Sin espacios')
+    } else { 
+      this.ToastError('El origen de foto o video no puede estar vacio')
+      this.agregandoOrigenPrincipaMedia = false;
+      ok = false
+    }
+  }
+
+  return ok
+}
+
+async ToastError(message) {
+  const toast = await this.toastController.create({
+    header: this.translate.instant('analytics-views.information'),
+    message:this.translate.instant(message),
+    position: 'top',
+    color: 'dark',
+    duration: 4000,
+    buttons: [
+      {
+        text: 'Cerrar',
+        role: 'cancel',
+        handler: () => {
+          
+        }
+      }
+    ]
+  });
+  toast.present();
+}
+
+
+//Origen de las imagenes Principal
+agregandoOrigenPrincipaMedia:boolean = false;
+originPrincipaMedia;
+originPrincipaMediaListo(){
+  this.agregandoOrigenPrincipaMedia = !this.agregandoOrigenPrincipaMedia;
+}
+
   ngOnInit(): void {
  
   }

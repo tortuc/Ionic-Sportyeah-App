@@ -61,7 +61,6 @@ export class NewsPage implements OnInit {
     })
   }
   OpenNews(idNews){
-    this.newsService.openNews = idNews
     this.router.navigate([`news/read/${idNews}`])
   }
 

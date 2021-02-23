@@ -83,15 +83,13 @@ export class ProfilePage implements OnInit {
   }
 
   OpenNews(id) {
-    this.newsService.openNews = id;
-    this.router.navigate(["news/read"]);
+    this.router.navigate([`news/read/${id}`]);
   }
   deleteNew(id) {
     this.newsService.delete(id);
   }
   editNews(idNews) {
-    this.newsService.editNews = idNews;
-    this.router.navigate(["news/edit"]);
+    this.router.navigate([`news/edit/${idNews}`]);
   }
   /* updateNew(){
     this.newsService.updateNews()

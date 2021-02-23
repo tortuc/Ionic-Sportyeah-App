@@ -29,13 +29,13 @@ import { ComponentsModule } from '../../components/components.module';
     HttpClientModule,
     TranslateModule,
     PipesModule,
-    ComponentsModule
+    ComponentsModule,
   ],
   declarations: [
     NewsPage,
     CreateComponent,
     EditComponent,
-    ReadComponent
+    ReadComponent,
   ],
   schemas:[CUSTOM_ELEMENTS_SCHEMA]
 })

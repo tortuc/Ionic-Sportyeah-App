@@ -421,9 +421,22 @@ export class PostOptionsComponent implements OnInit {
   }
 
   async seeShareds() {
+    let itemShareds;
+    let newsShareds;
+    if(this.item){
+     itemShareds = this.item.shareds
+     newsShareds = null
+    }else if(this.news){
+     itemShareds = null
+     newsShareds = this.news.shareds
+    }
+
     let modal = await this.modalController.create({
       component: SharedsPostComponent,
-      componentProps: { shareds: this.item.shareds },
+      componentProps: { 
+        shareds: itemShareds,
+        sharedsNews: newsShareds
+       },
     });
 
     return modal.present();
