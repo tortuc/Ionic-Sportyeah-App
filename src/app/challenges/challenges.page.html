@@ -4,16 +4,59 @@
       <ion-icon name="medal-outline"></ion-icon>
       {{'challenges' | translate}}
     </ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button style="color: white"></ion-menu-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
+<ion-content class="bg-gradient-person" style="margin: 0px">
+  <ion-grid style="padding: 0">
+    <ion-row>
+      <ion-col size-xs="12" size-lg="8" ngClass.xs="p-0" class="center">
+        <app-friends-mobile-c
+          (new_challenge)="create()"
+          class="absoluteFriendsC"
+        ></app-friends-mobile-c>
+        <ion-row
+          style="justify-content: center; margin-bottom: -20px"
+          *ngIf="challenges"
+        >
+          <ion-button
+            *ngIf="challenges.length > 0"
+            style="z-index: 10"
+            shape="round"
+            (click)="ngOnInit()"
+            >Actualizar</ion-button
+          >
+        </ion-row>
+        <div
+          *ngIf="!challenges || challenges.length === 0 "
+          class="text-center"
+          style="margin: auto"
+        >
+          <h1 style="color: white">{{'challenge.first' | translate}}</h1>
+          <img src="https://img.icons8.com/dusk/64/000000/planning-skill.png" />
+        </div>
+        <div *ngFor="let challenge of showc">
+          <app-challenges-post [Challenge]="challenge"></app-challenges-post>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-infinite-scroll
+    threshold="1px"
+    (ionInfinite)="loadData($event)"
+    class="text-center"
+  >
+    <ion-infinite-scroll-content
+      loadingSpinner="bubbles"
+      *ngIf="showc !== challenges"
+    >
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>
 
-<ion-content
-  class="bg-gradient-person"
-  style="margin: 0px"
-  [scrollEvents]="scrolling"
-  (ionScroll)="onScroll($event)"
->
-  <div size="12" style="margin: 0px">
+<!-- <div size="12" style="margin: 0px">
     <div
       *ngIf="!challenges || challenges.length === 0 "
       class="text-center"
@@ -52,8 +95,8 @@
         width: 100%;
         height: 97vh;
         padding: 10px;
+        background-color: white;
         border-radius: 5px;
-        background-color: black;
       "
     >
       <div style="text-align: center; margin: auto; justify-content: center">
@@ -86,7 +129,7 @@
               >
                 {{challenge.title}}
               </span>
-              <br>
+              <br />
             </ion-col>
           </ion-row>
         </ion-grid>
@@ -284,5 +327,4 @@
         </ion-button>
       </div>
     </div>
-  </div>
-</ion-content>
+  </div> -->

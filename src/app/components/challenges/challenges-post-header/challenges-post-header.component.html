@@ -1,0 +1,41 @@
+<ion-avatar
+  class="mini center"
+  (click)="userService.goToProfile(Challenge.challenging.userId.data.username)"
+>
+  <ion-img
+    class="img-user-mini"
+    [src]="Challenge.challenging.userId.data.photo"
+  ></ion-img>
+  <div
+    class="connectedDIVlittlePost"
+    *ngIf="Challenge.challenging.userId.data.connected"
+  ></div>
+</ion-avatar>
+<div class="user-name">
+  <span
+    class="messageC profile-name"
+    (click)="
+      userService.goToProfile(Challenge.challenging.userId.data.username)
+    "
+    >{{ Challenge.challenging.userId.data.name }}
+    {{ Challenge.challenging.userId.data.last_name }}</span
+  ><br />
+  <span class="profile-name dateC">{{
+    Challenge.modifiedAt | customDisplayDate
+  }}</span>
+
+  <p style="white-space: pre-wrap" class="text-center">
+    <span
+      class="message colorWhiteI"
+      [innerHTML]="Challenge.title | links"
+    ></span>
+  </p>
+</div>
+<ion-icon
+  *ngIf="
+    Challenge.challenging.userId.data._id == userService.User?._id &&
+    displayOptions
+  "
+  name="chevron-down"
+  class="options-down"
+></ion-icon>
