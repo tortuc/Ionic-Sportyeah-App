@@ -1,0 +1,13 @@
+<ion-button
+  fill="clean"
+  [ngClass]="Challenge.challenging.comments"
+  (click)="challengeComments(Challenge.challenging.comments)"
+>
+  <ion-icon name="chatbox-outline" style="margin-right: 2px"></ion-icon>
+  <span fxShow.gt-xs="true" fxShow="false">{{
+    "post.comment" | translate
+  }}</span>
+</ion-button>
+<p class="marginleftforletters">
+  {{ Challenge.challenged.comments.length }} {{ "post.comments" | translate }}
+</p>

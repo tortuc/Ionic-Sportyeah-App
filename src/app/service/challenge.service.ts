@@ -10,6 +10,7 @@ export interface IAward {
   place: number;
   title: string;
   description: string;
+  _id?:string;
   createdAt?: string;
   modifiedAt?: string;
   deleted?: string;
@@ -17,6 +18,7 @@ export interface IAward {
 export interface IUserc {
   appName: string;
   referenceId: string;
+  _id?:string;
   createdAt?: string;
   modifiedAt?: string;
   deleted?: string;
@@ -33,12 +35,14 @@ export interface IReference {
   deleted?: string;
 }
 export interface IChallenge {
-  challenging: IReference | string;
-  challenged: IReference | string;
+  challenging: any ;
+  challenged: any ;
   awards: IAward[];
   title: string;
   description: string;
   challenges: IChallenge[];
+  public: boolean;
+  _id?:string;
   createdAt?: string;
   modifiedAt?: string;
   deleted?: string;

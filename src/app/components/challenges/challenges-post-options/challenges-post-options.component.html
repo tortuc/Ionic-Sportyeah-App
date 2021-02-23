@@ -1,0 +1,32 @@
+<div class="bg-black text-center body">
+  <ion-button
+    shape="round"
+    class="movement"
+    fill="solid"
+    color="light"
+    style="padding: 0; margin: 0"
+    (click)="aceptarReto(Challenge.challenged, Challenge)"
+  >
+    <img
+      src="https://img.icons8.com/color/48/000000/kicking.png"
+      style="width: 30px"
+    />
+    {{ "challenge.retar" | translate }} {{ userService.User.name }}?
+  </ion-button>
+</div>
+<div class="text-center" *ngIf="Challenge.awards.length > 0">
+  <ion-button fill="outline" (click)="showAwards()"
+    ><ion-icon name="trophy-outline"></ion-icon
+  ></ion-button>
+</div>
+<ion-row>
+  <ion-col size="4">
+    <app-challenge-reactions [challenge]="Challenge"></app-challenge-reactions>
+  </ion-col>
+  <ion-col size="4">
+    <app-button-comments [Challenge]="Challenge"></app-button-comments>
+  </ion-col>
+  <ion-col size="4">
+    <app-button-shared [Challenge]="Challenge"></app-button-shared>
+  </ion-col>
+</ion-row>

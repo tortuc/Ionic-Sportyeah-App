@@ -11,27 +11,20 @@
         <ion-input
           readonly
           (ionFocus)="newPost()"
-          placeholder="{{ 'dashboard.new_post_placeholder' | translate }}"
+          placeholder="{{ 'challenge.new_challenge' | translate }}"
         ></ion-input>
       </ion-label>
     </ion-item>
-    {{ "dashboard.friends" | translate }}
-    <div class="friends-mobile">
-      <ion-fab-button
-        class="bg-gradient-person-fab"
-        (click)="searchFriend()"
-        size="small"
-      >
-        <ion-icon name="add"></ion-icon>
-      </ion-fab-button>
+    {{ "followed" | translate }}
+    <div class="friends-mobile" *ngIf="users !== null">
       <ion-avatar
-        *ngFor="let friend of userService.followings"
-        (click)="goToProfile(friend.user._id, friend.user.username)"
+        *ngFor="let friend of users"
+        (click)="goToProfile(friend._id, friend.username)"
         class="mini"
         style="margin: 0 5px"
       >
-        <img [src]="friend.user.photo" />
-        <div class="connectedDIVlittle" *ngIf="friend.user.connected"></div>
+        <img [src]="friend.photo" />
+        <div class="connectedDIVlittle" *ngIf="friend.connected"></div>
       </ion-avatar>
     </div>
   </ion-card-header>

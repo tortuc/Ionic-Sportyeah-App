@@ -13,7 +13,7 @@
 @import "~@ionic/angular/css/core.css";
 @font-face {
   font-family: fast;
-  src: url(./assets/fonts/carter.ttf)
+  src: url(./assets/fonts/carter.ttf);
 }
 
 /* Basic CSS for apps built with Ionic */
@@ -66,10 +66,10 @@
   background: transparent !important;
 }
 
-.title-project{
+.title-project {
   font-size: 40px;
   font-family: "fast";
-  color:#006400;
+  color: #006400;
 }
 
 ion-avatar.mini {
@@ -174,14 +174,17 @@ ion-item {
 }
 
 .bg-gradient-person {
-  --background: linear-gradient(90deg, rgb(16 42 82) 0%, rgb(131 197 247) 100%)!important 
-
+  --background: linear-gradient(
+    90deg,
+    rgb(16 42 82) 0%,
+    rgb(131 197 247) 100%
+  ) !important;
 }
 .bg-gradient-person-fab {
-  --background:linear-gradient(150deg, #499091 1%, #c0ffd0 70%)!important;
+  --background: linear-gradient(150deg, #499091 1%, #c0ffd0 70%) !important;
 }
 .bg-gradient-purple {
-  --background: linear-gradient(150deg, #499091 1%, #c0ffd0 70%)!important;
+  --background: linear-gradient(150deg, #499091 1%, #c0ffd0 70%) !important;
 }
 
 .max-widht-300 {
@@ -229,7 +232,7 @@ a {
   --border-color: var(--color-primary);
   --color: var(--color-primary);
 }
- 
+
 .img-login {
   width: 200px;
   margin: auto;
@@ -308,7 +311,7 @@ a {
   width: 30%;
   position: fixed;
   right: 20px;
-  overflow-y: scroll; 
+  overflow-y: scroll;
 }
 
 .no-img {
@@ -453,76 +456,75 @@ a {
   font-size: 20px !important;
 }
 
-
-ion-segment-button{
+ion-segment-button {
   --color: black !important;
-  }
+}
 
-  .connectedDIV{
-    border-radius: 50%;
-    border: black solid 3px;
-    background-color: #31a24c;
-    width: 30px;
-    height: 30px;
-    z-index: 1;
-    margin-top: -35px;
-    margin-left: 103px;
-    position: absolute;
-  }
-  
-  .connectedDIVlittle{
-    border-radius: 50%;
-    border: black solid 3px;
-    background-color: #31a24c;
-    width: 15px;
-    height: 15px;
-    z-index: 1;
-    margin-top: -20px;
-    margin-left: 32px;
-    position: absolute;
-  }
-  
-  .connectedDIVlittlePost{
-    border-radius: 50%;
-    border: black solid 3px;
-    background-color: #31a24c;
-    width: 15px;
-    height: 15px;
-    z-index: 1;
-    margin-top: -12px;
-    margin-left: 32px;
-    position: absolute;
-  }
-  
-  .connectedDIVlittlexs{
-    border-radius: 50%;
-    border: black solid 1px;
-    background-color: #31a24c;
-    width: 7px;
-    height: 7px;
-    z-index: 1;
-    margin-top: -8px;
-    margin-left: 10px;
-    position: absolute;
-  }
+.connectedDIV {
+  border-radius: 50%;
+  border: black solid 3px;
+  background-color: #31a24c;
+  width: 30px;
+  height: 30px;
+  z-index: 1;
+  margin-top: -35px;
+  margin-left: 103px;
+  position: absolute;
+}
 
-  .notificationP{
-    color: black;
-  }
+.connectedDIVlittle {
+  border-radius: 50%;
+  border: black solid 3px;
+  background-color: #31a24c;
+  width: 15px;
+  height: 15px;
+  z-index: 1;
+  margin-top: -20px;
+  margin-left: 32px;
+  position: absolute;
+}
 
-  .editIcons{
-    color: var(--ion-color-primary);
-    font-size: 30px;
-    cursor:pointer;
-  }
+.connectedDIVlittlePost {
+  border-radius: 50%;
+  border: black solid 3px;
+  background-color: #31a24c;
+  width: 15px;
+  height: 15px;
+  z-index: 1;
+  margin-top: -12px;
+  margin-left: 32px;
+  position: absolute;
+}
 
- .modalText .modal-wrapper {
-     height:190px;
-     width:300px;
-       top: 40%;
-         position: absolute; 
-           display: block;  
-} 
+.connectedDIVlittlexs {
+  border-radius: 50%;
+  border: black solid 1px;
+  background-color: #31a24c;
+  width: 7px;
+  height: 7px;
+  z-index: 1;
+  margin-top: -8px;
+  margin-left: 10px;
+  position: absolute;
+}
+
+.notificationP {
+  color: black;
+}
+
+.editIcons {
+  color: var(--ion-color-primary);
+  font-size: 30px;
+  cursor: pointer;
+}
+
+.modalText .modal-wrapper {
+  height: 190px;
+  width: 300px;
+  top: 40%;
+  position: absolute;
+  display: block;
+}
 .button-photo-banner {
   color: rgba(35, 112, 61, 0.993);
   margin-top: 10px;
@@ -539,13 +541,87 @@ ion-segment-button{
   right: 4px;
 }
 
-.eyeIcon{
+.eyeIcon {
   color: rgba(0, 0, 0, 0.479);
 }
 
-.reactionModal{
+.reactionModal {
   height: 10vh;
   width: 50vh;
   margin-top: auto;
   margin-bottom: auto;
+}
+.bg-black {
+  background-color: black !important;
+  border-radius: 5px;
+}
+.center {
+  margin-left: auto;
+  margin-right: auto;
+}
+.videoChallenge {
+  max-height: 50vh;
+}
+.centerAbsolute {
+  left: 0;
+  right: 0;
+}
+.colorWhiteI {
+  color: rgb(172, 172, 172) !important;
+}
+.pt15 {
+  padding-top: 15px;
+}
+.pb15 {
+  padding-bottom: 15px;
+}
+
+.dateC {
+  font-size: 12px;
+  color: #808080;
+}
+.messageC {
+  color: white;
+  font-family: sans-serif;
+}
+
+// Mobile
+@media screen and (min-width: 400px) {
+  .marginleftforletters {
+    margin-left: 25px !important;
+  }
+}
+
+.absoluteFriendsC {
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50vh;
+  z-index: 9999;
+  // position: fixed;
+}
+
+.movement {
+  -webkit-animation: spin 2s linear alternate infinite;
+  -moz-animation: spin 2s linear alternate infinite;
+  animation: spin 2s linear alternate infinite;
+  transform: rotate(-2deg);
+}
+
+@-moz-keyframes spin {
+  100% {
+    -moz-transform: rotate(2deg);
+  }
+}
+@-webkit-keyframes spin {
+  100% {
+    -webkit-transform: rotate(2deg);
+  }
+}
+@keyframes spin {
+  100% {
+    -webkit-transform: rotate(2deg);
+    transform: rotate(2deg);
+  }
 }

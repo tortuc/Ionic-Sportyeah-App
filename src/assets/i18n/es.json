@@ -752,10 +752,12 @@
     "place": "Posición",
     "titleAward": "Titulo del Premio",
     "mediaAward": "Imagen del Premio",
-    "retar": "Aceptar Reto",
+    "retar": "¿Aceptas el Reto",
     "first": "¡Se el primero en crear un reto!",
     "videoErr": "El video no es valido, tiene mas de un minuto de duracion.",
-    "repeat": "Intentar de nuevo"
+    "repeat": "Intentar de nuevo",
+    "new_challenge":"¡Comienza a retar!",
+    "public": "¡Deseo que todo SportYeah vea mi desafio!"
   },
   "save": "Guardar Cambios",
 
@@ -792,14 +794,18 @@
     }
   },
   "sponsorDescription": "Aqui puedes colocar tus patrocinadores",
-  "back": "Cerrar",
+  "back": "Volver",
   "uploadAgain":"Subir otro video",
   "levels-challenge":{
-    "nivel1":"Epico",
-    "nivel2":"Increible",
-    "nivel3":"Casi Bien",
-    "nivel4":"Cobarde",
-    "nivel5":"Asco",
-    "nivel6":"Hasta mi abuela lo hace mejor"
-  }
+    "nivel1":"NIVEL DIOS",
+    "nivel2":"Héroe",
+    "nivel3":"Pana",
+    "nivel4":"Flojo",
+    "nivel5":"Cobarde",
+    "nivel6":"Mariquita",
+    "reaction":"Reaccionar"
+  },
+  "followed":"Siguiendo / Recomendados",
+  "place":"El Puesto",
+  "got": "obtiene"
 }
