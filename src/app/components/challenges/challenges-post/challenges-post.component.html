@@ -12,7 +12,10 @@
           class="text-center centerAbsolute pb15"
           [Challenge]="Challenge"
         ></app-challenges-post-header>
-        <app-challenge-content [Challenge]="Challenge"></app-challenge-content>
+        <app-challenge-content
+          [Challenge]="Challenge"
+          [destroy]="destroy"
+        ></app-challenge-content>
       </div>
       <app-challenges-post-options
         [Challenge]="Challenge"

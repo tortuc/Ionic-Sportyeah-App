@@ -38,7 +38,7 @@
           <img src="https://img.icons8.com/dusk/64/000000/planning-skill.png" />
         </div>
         <div *ngFor="let challenge of showc">
-          <app-challenges-post [Challenge]="challenge"></app-challenges-post>
+          <app-challenges-post [destroy]="destroy" [Challenge]="challenge"></app-challenges-post>
         </div>
       </ion-col>
     </ion-row>

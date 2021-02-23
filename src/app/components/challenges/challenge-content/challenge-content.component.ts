@@ -1,3 +1,5 @@
+import { take } from "rxjs/operators";
+import { Subject } from "rxjs";
 import { IChallenge } from "./../../../service/challenge.service";
 import { Component, OnInit, Input } from "@angular/core";
 
@@ -8,25 +10,18 @@ import { Component, OnInit, Input } from "@angular/core";
 })
 export class ChallengeContentComponent implements OnInit {
   @Input() Challenge: IChallenge;
+  @Input() destroy: Subject<void>;
   public pauseVideo: boolean = false;
   public n: number = Math.random();
   public video = null;
   public video2 = null;
   public oneVideo: boolean = null;
+  public Mostrar: boolean = true;
 
   constructor() {}
 
   ngOnInit() {
-    console.log(
-      document.getElementById(
-        this.Challenge.challenged.media + this.Challenge._id
-      )
-    );
-    console.log(
-      document.getElementById(
-        this.Challenge.challenged.media + this.Challenge.challenged._id + this.n
-      ) 
-    );
+    this.subscribeDestroy();
     if (
       document.getElementById(
         this.Challenge.challenged.media + this.Challenge._id
@@ -39,6 +34,27 @@ export class ChallengeContentComponent implements OnInit {
         ? this.initOneVideo()
         : this.initTwoVideos();
     else setTimeout(() => this.ngOnInit(), 1500);
+  }
+
+  subscribeDestroy() {
+    console.log("DESTRoy");
+    this.destroy.pipe(take(1)).subscribe(() => {
+      console.log("DESTRoy");
+      this.Mostrar = false;
+      this.oneVideo ? this.destroyOneVideo() : this.destroyTwoVideos();
+    });
+  }
+
+  destroyOneVideo() {
+    this.video.delete();
+    console.log(this.video);
+  }
+
+  destroyTwoVideos() {
+    this.video.delete();
+    this.video2.delete();
+    console.log(this.video);
+    console.log(this.video2);
   }
 
   initOneVideo() {
@@ -83,7 +99,9 @@ export class ChallengeContentComponent implements OnInit {
     const bottomShown = rect.bottom <= window.innerHeight;
     if (this.oneVideo) {
       if (this.video) {
-        topShown && bottomShown && this.pauseVideo ? this.video.play() : this.video.pause();
+        topShown && bottomShown && this.pauseVideo
+          ? this.video.play()
+          : this.video.pause();
       }
     } else {
       if (this.video) {

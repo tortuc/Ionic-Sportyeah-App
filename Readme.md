@@ -30,6 +30,11 @@ mongod
 16. Boton de retar personas.
 17. Visualizacion del numero de visualizaciones del reto.
 
+Poder ver las reacciones dejadas al darle click a las reacciones.
+Buscador de retos.
+Buscador de imagenes gratis.
+Colocar los premios en el siguiente desafio a crear.
+
 ## TAREAS DESAFIOS 22-02-2021 12 HORAS DE TRABAJO
 
 1. Mostrar premios en los videos. cumplido.

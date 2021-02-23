@@ -1,4 +1,4 @@
-<div (click)="pause()">
+<div (click)="pause()" *ngIf="Mostrar">
   <div>
     <div *ngIf="Challenge.challenging.media === Challenge.challenged.media">
       <video

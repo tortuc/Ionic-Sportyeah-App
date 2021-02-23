@@ -1,3 +1,4 @@
+import { Subject } from 'rxjs';
 import { IComment } from "./../models/iPost";
 import { IChallenge } from "./../service/challenge.service";
 import { ChallengeReactionsComponent } from "../components/challenges/challenge-reactions/challenge-reactions.component";
@@ -6,7 +7,7 @@ import { take } from "rxjs/operators";
 import { CreateChallengeComponent } from "../components/challenges/create/create.component";
 import { IonContent, IonInfiniteScroll, ModalController } from "@ionic/angular";
 import { TranslateService } from "@ngx-translate/core";
-import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
+import { Component, OnInit, ViewChild, ElementRef, OnDestroy } from "@angular/core";
 import { ChallengeService } from "../service/challenge.service";
 import { ChallengeCommentsComponent } from "../components/challenges/challenge-comments/challenge-comments.component";
 
@@ -15,7 +16,7 @@ import { ChallengeCommentsComponent } from "../components/challenges/challenge-c
   templateUrl: "./challenges.page.html",
   styleUrls: ["./challenges.page.scss"],
 })
-export class ChallengesPage implements OnInit {
+export class ChallengesPage implements OnInit, OnDestroy {
   @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
   @ViewChild("circle") circle: ElementRef;
   @ViewChild("reacts") reacts: ElementRef;
@@ -23,6 +24,7 @@ export class ChallengesPage implements OnInit {
   @ViewChild("like") likee: ElementRef;
   @ViewChild(IonContent) content: IonContent;
   public myVote: any = null;
+  public destroy:Subject<void> = new Subject<void>();
   public time: boolean = false;
   public challenges: any[] = null;
   public scrolling: boolean = true;
@@ -199,5 +201,18 @@ export class ChallengesPage implements OnInit {
       this.showc.push(this.challenges[this.index]);
     console.log(this.showc);
     this.infiniteScroll.complete();
+  }
+
+  ionViewWillLeave	() {
+    this.destroyVid();
+  }
+
+  destroyVid(){
+    this.destroy.next();
+  }
+
+  ngOnDestroy(): void {
+    //Called once, before the instance is destroyed.
+    //Add 'implements OnDestroy' to the class.
   }
 }
