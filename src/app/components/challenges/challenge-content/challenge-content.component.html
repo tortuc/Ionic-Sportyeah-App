@@ -10,10 +10,12 @@
       >
         <source
           [src]="Challenge.challenging.media | safeUrl"
+          [id]="Challenge.challenged.media + Challenge._id"
           type="video/mp4"
         />
         <source
           [src]="Challenge.challenging.media | safeUrl"
+          [id]="Challenge.challenged.media + Challenge._id"
           type="video/ogg"
         />
         <br />
@@ -31,24 +33,14 @@
       >
         <source
           [src]="Challenge.challenging.media | safeUrl"
+          [id]="Challenge.challenged.media + Challenge.challenged._id + n"
           type="video/mp4"
         />
         <source
           [src]="Challenge.challenging.media | safeUrl"
+          [id]="Challenge.challenged.media + Challenge.challenged._id + n"
           type="video/ogg"
         />
-      </video>
-      <video
-        width="50%"
-        height="100%"
-        style="border-radius: 5px"
-        autoplay
-        controlslist="nodownload"
-        [id]="Challenge.challenging.media + Challenge.challenging._id + n"
-        class="videoChallenge"
-      >
-        <source [src]="Challenge.challenged.media | safeUrl" type="video/mp4" />
-        <source [src]="Challenge.challenged.media | safeUrl" type="video/ogg" />
       </video>
     </div>
   </div>

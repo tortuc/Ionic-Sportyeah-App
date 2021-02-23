@@ -14,7 +14,9 @@ export class ChallengeContentComponent implements OnInit {
   public pauseVideo: boolean = false;
   public n: number = Math.random();
   public video = null;
+  public src = null;
   public video2 = null;
+  public src2 = null;
   public oneVideo: boolean = null;
   public Mostrar: boolean = true;
 
@@ -46,13 +48,16 @@ export class ChallengeContentComponent implements OnInit {
   }
 
   destroyOneVideo() {
-    this.video.delete();
+    this.src.removeAttribute("src");
+    this.video.play();
     console.log(this.video);
   }
 
   destroyTwoVideos() {
-    this.video.delete();
-    this.video2.delete();
+    this.src.removeAttribute("src");
+    this.src2.removeAttribute("src");
+    this.video.play();
+    this.video2.play();
     console.log(this.video);
     console.log(this.video2);
   }
@@ -63,6 +68,12 @@ export class ChallengeContentComponent implements OnInit {
         this.Challenge.challenged.media + this.Challenge._id
       )
     );
+    this.src = <HTMLSourceElement>(
+      document.getElementById(
+        this.Challenge.challenged.media + this.Challenge._id
+      )
+    );
+
     this.video.pause();
     this.oneVideo = true;
     this.interval();
@@ -81,6 +92,19 @@ export class ChallengeContentComponent implements OnInit {
           this.n
       )
     );
+    this.src = <HTMLSourceElement>(
+      document.getElementById(
+        this.Challenge.challenged.media + this.Challenge.challenged._id + this.n
+      )
+    );
+    this.src2 = <HTMLSourceElement>(
+      document.getElementById(
+        this.Challenge.challenging.media +
+          this.Challenge.challenging._id +
+          this.n
+      )
+    );
+
     this.video.pause();
     this.video2.pause();
     this.oneVideo = false;
