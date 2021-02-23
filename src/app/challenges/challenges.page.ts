@@ -1,7 +1,4 @@
 import { Subject } from 'rxjs';
-import { IComment } from "./../models/iPost";
-import { IChallenge } from "./../service/challenge.service";
-import { ChallengeReactionsComponent } from "../components/challenges/challenge-reactions/challenge-reactions.component";
 import { UserService } from "./../service/user.service";
 import { take } from "rxjs/operators";
 import { CreateChallengeComponent } from "../components/challenges/create/create.component";
@@ -43,6 +40,7 @@ export class ChallengesPage implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
+    this.destroy.next();
     this.index = 0;
     this.challengeNumber = 0;
     this.showc = []
@@ -62,7 +60,6 @@ export class ChallengesPage implements OnInit, OnDestroy {
   reactionoff() {
     this.reactionsBool = false;
     this.time = false;
-    // this.reacts.nativeElement.style.display = "none";
     this.reacts.nativeElement.classList.remove("show");
   }
   reactionsOFF() {
@@ -76,7 +73,6 @@ export class ChallengesPage implements OnInit, OnDestroy {
   reactionsON() {
     clearTimeout(this.timeOutClose);
     this.timeOut = setTimeout(() => this.reactionon(), 100);
-    //this.time = true;
   }
   Close() {
     if (this.reacts.nativeElement.classList.contains("show")) {
@@ -116,7 +112,6 @@ export class ChallengesPage implements OnInit, OnDestroy {
         challenged: null,
       },
     });
-    // modal.onDidDismiss().then(() => this.ngOnInit());
     await modal.present();
   }
 
