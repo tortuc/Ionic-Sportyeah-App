@@ -12,8 +12,6 @@ import {Howl, Howler} from 'howler';
 })
 export class NewsService {
 
-  public openNews;
-  public editNews;
 
   public news = []
   constructor(

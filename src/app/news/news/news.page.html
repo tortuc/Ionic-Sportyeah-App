@@ -18,7 +18,7 @@
     </ion-col>
     <ion-col *ngFor="let new of newsFollowthree" size-md="4"  size-sm="12">
       <div (click)="OpenNews(new._id)" class="threeNews">
-        <div>
+        <div style="background: black;">
           <ion-img *ngIf="new.principalImage" style=" width: 100%;
           margin-left: auto;
           margin-right: auto;"  [src]="new.principalImage"></ion-img>
@@ -35,7 +35,9 @@
           </div> 
         </div>
         <div >
-          <h3 style="margin-bottom: -8px;padding-left: 10px;color: rgb(58, 58, 58);text-align: justify; font-size: 9px;">{{ 'sport.'+new.sport| translate}}<span style="font-size: 8 !important;margin-left:8px !important">{{new.date | customDisplayDate}}</span></h3>
+          <h3 style="margin-bottom: -8px;padding-left: 10px;color: rgb(58, 58, 58);text-align: justify; font-size: 9px;">{{ 'sport.'+new.sport| translate}}<span style="font-size: 8 !important;margin-left:8px !important">{{new.date | customDisplayDate}}</span>
+            <span  style="font-size: 8 !important;margin-left:8px !important;color: rgb(0, 0, 0)">{{new.user.name}} {{new.user.last_name}}</span>
+          </h3>
           <h2 style="padding-right: 10px;padding-left: 10px;padding-bottom: 10px; color: black;text-align: justify; font-size: 15px;"><b>{{new.headline}}</b></h2>
         </div>
       </div>
@@ -71,7 +73,9 @@
           </ion-note>
           <br>
           <div>
-            <h5 class="deporteTitle">{{ 'sport.'+new.sport| translate}}<span style="font-size: 8 !important;color: rgb(58, 58, 58);margin-left:15px">{{new.date | customDisplayDate}}</span></h5><br>
+            <h5 class="deporteTitle">{{ 'sport.'+new.sport| translate}}<span style="font-size: 8 !important;color: rgb(58, 58, 58);margin-left:15px">{{new.date | customDisplayDate}}</span>
+              <span  style="font-size: 8 !important;margin-left:8px !important;color: rgb(0, 0, 0)">{{new.user.name}} {{new.user.last_name}}</span>
+            </h5><br>
             <h3 (click)="OpenNews(new._id)" class="newsTitle">{{new.headline}}</h3>
           </div>   
         </ion-item>
@@ -121,7 +125,9 @@
           </ion-note>
           <br>
           <div>
-            <h5 class="deporteTitle">{{ 'sport.'+new.sport| translate}}<span style="font-size: 8 !important;color: rgb(58, 58, 58);margin-left:15px">{{new.date | customDisplayDate}}</span></h5><br>
+            <h5 class="deporteTitle">{{ 'sport.'+new.sport| translate}}<span style="font-size: 8 !important;color: rgb(58, 58, 58);margin-left:15px">{{new.date | customDisplayDate}}</span>
+              <span  style="font-size: 8 !important;margin-left:8px !important;color: rgb(0, 0, 0)">{{new.user.name}} {{new.user.last_name}}</span>
+            </h5><br>
             <h3 (click)="OpenNews(new._id)" class="newsTitle">{{new.headline}}</h3>
           </div>   
         </ion-item>
@@ -172,7 +178,9 @@
           </ion-note>
           <br>
           <div>
-            <h5 class="deporteTitle">{{ 'sport.'+new.sport| translate}}<span style="font-size: 8 !important;color: rgb(58, 58, 58);margin-left:15px">{{new.date | customDisplayDate}}</span></h5><br>
+            <h5 class="deporteTitle">{{ 'sport.'+new.sport| translate}}<span style="font-size: 8 !important;color: rgb(58, 58, 58);margin-left:15px">{{new.date | customDisplayDate}}</span>
+              <span  style="font-size: 8 !important;margin-left:8px !important;color: rgb(0, 0, 0)">{{new.user.name}} {{new.user.last_name}}</span>
+            </h5><br>
             <h3 (click)="OpenNews(new._id)" class="newsTitle">{{new.headline}}</h3>
           </div>   
         </ion-item>

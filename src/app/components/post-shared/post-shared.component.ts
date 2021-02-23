@@ -19,8 +19,10 @@ export class PostSharedComponent implements OnInit {
 
   @Input() post:IPost
   @Input() news: INew
+  @Input() newsShared: INew
+
   @Input() disabled:boolean = false
-  ngOnInit() {
+  ngOnInit() {console.log(this.newsShared)
   }
 
   goToProfile(id,username){
@@ -37,7 +39,6 @@ export class PostSharedComponent implements OnInit {
   }
   
   OpenNews(){
-    this.newsService.openNews = this.news._id
     this.router.navigate([`news/read/${this.news._id}`])
   }
 

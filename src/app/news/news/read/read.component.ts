@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NewsService } from '../../../service/news.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-read',
@@ -10,11 +11,12 @@ export class ReadComponent implements OnInit {
 
   constructor(
     public newsService:NewsService,
+    private route:ActivatedRoute,
+
   ) {
-    this.newsService.findById(this.newsService.openNews).toPromise()
+    this.newsService.findById(route.snapshot.paramMap.get('id')).toPromise()
     .then((response:any)=>{
       this.news = response 
-      console.log(this.news)
     })
     .catch((err)=>{
       this.news = 404
@@ -23,6 +25,8 @@ export class ReadComponent implements OnInit {
       console.log(response)
       this.new = response
       this.news = response.news */
+    
+     console.log() 
     }
    
 news = undefined;

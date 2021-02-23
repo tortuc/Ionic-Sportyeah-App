@@ -9,8 +9,15 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content  class="bg-gradient-person">
+<ion-content *ngIf="shareds"  class="bg-gradient-person">
   <div *ngFor="let post of shareds" style="padding: 16px;cursor: pointer;max-height: 160px; overflow: hidden;" (click)="goToPost(post._id)">
     <post-shared [post]="post" disabled="true"></post-shared>
+  </div>
+</ion-content>
+
+
+<ion-content *ngIf="sharedsNews"  class="bg-gradient-person">
+  <div *ngFor="let news of sharedsNews" style="padding: 16px;cursor: pointer;max-height: 160px; overflow: hidden;" (click)="goToPost(news._id)">
+    <post-shared [newsShared]="news" sharedsNews="true"></post-shared>
   </div>
 </ion-content>

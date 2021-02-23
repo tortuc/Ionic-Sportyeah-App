@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { NewsService } from '../../../service/news.service';
 import { ToastController } from '@ionic/angular';
-import { Router } from '@angular/router';
 import { UserService } from "../../../service/user.service";
 import { FormBuilder, FormGroup, FormControl, Validators} from '@angular/forms';
 import { Plugins, CameraResultType, CameraSource } from '@capacitor/core';
 import { ActionSheetController, LoadingController, ModalController   } from '@ionic/angular';
 import { TranslateService } from "@ngx-translate/core";
 import { JdvimageService } from 'src/app/service/jdvimage.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 const { Camera ,Filesystem} = Plugins;
 
@@ -28,11 +28,15 @@ export class EditComponent implements OnInit {
     private actionSheetCtrl:ActionSheetController,
     private jdvImage:JdvimageService,
     private loading:LoadingController,
-
-  ) { }
+    private route:ActivatedRoute,
+  ) {
+this.idNews = route.snapshot.paramMap.get('id')
+this.form.value.id = this.idNews
+   }
+idNews
 
   form = this.fb.group({
-    id:[this.newsService.editNews],
+    id:[''],
     user:['',[Validators.required]],
     headline:['',[Validators.required]],
     content:['',[Validators.required]],
@@ -40,6 +44,8 @@ export class EditComponent implements OnInit {
     principalSubtitle:['',[Validators.required]],
     principalImage:['',[Validators.required]],
     principalVideo:['',[Validators.required]],
+    origin:['',[Validators.required]],
+    originPrincipaMedia:['',[Validators.required]],
     sport:['',[Validators.required]]
   })
   news
@@ -55,20 +61,26 @@ export class EditComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.newsService.findById(this.newsService.editNews).subscribe((response:any)=>{
+    this.newsService.findById(this.idNews).subscribe((response:any)=>{
       this.news = response.news
      
       this.videoSelected = response.news.principalVideo;
       this.urlVideo = response.news.principalVideo;
       this.imagenSelected = response.news.principalImage;
-     // this.arrayImagenes = response.news.image;
       this.parrafos = response.news.content;
       this.titulo1 = response.news.headline;
       this.deporte = response.news.sport;
+      this.origen = response.news.origin;
+      this.originPrincipaMedia = response.news.originPrincipaMedia;
+
       if(response.news.principalSubtitle){
         this.subTitlebool = true;
       }
+      if(response.news.principalImage || response.news.principalVideo){
+        this.agregandoOrigenPrincipaMedia = true
+      }
       this.subTitle = response.news.principalSubtitle;
+      this.agregandoOrigen = true;
     })
   }
 
@@ -79,11 +91,11 @@ editar(){
     this.form.value.headline = this.titulo1;
     this.form.value.principalSubtitle = this.subTitle;
     this.form.value.content = this.parrafos
-    //this.form.value.image = this.arrayImagenes
+    this.form.value.origin = this.origen
+    this.form.value.originPrincipaMedia = this.originPrincipaMedia
     this.form.value.sport = this.deporte
     this.newsService.updateNews(this.form.value).subscribe((response)=>{
       this.presentToastWithOptions()
-      this.newsService.openNews = this.newsService.editNews
       this.router.navigate([`news/read/${this.news._id}`])
     })
 }
@@ -311,6 +323,8 @@ async takePrincipal(source) {
 }
 deleteImagePrincipal(){
   this.imagenSelected = null
+  this.originPrincipaMedia = null;
+  this.agregandoOrigenPrincipaMedia = false;
   this.open = false;
 }
 
@@ -379,6 +393,8 @@ closeVideoPrincipal(){
   this.urlVideo = null
   this.videoFile = null
   this.videoSelected = null;
+  this.originPrincipaMedia = null;
+  this.agregandoOrigenPrincipaMedia = false;
 }
 closeVideoNotPrincipal(i){
   console.log(i)
@@ -487,5 +503,122 @@ eliminarSubtitulo(){
   this.subTitleParrafo = null;
 }
 
+
+
+//Origen de la noticia
+agregandoOrigen:boolean = false;
+origen;
+origenListo(){
+  this.agregandoOrigen = !this.agregandoOrigen;
+}
+
+
+//Origen de las imagenes de parrafos
+agregandoOrigenParrafo;
+originParrafoMedia;
+todosParrafosConOrigen:boolean = false;
+origenParrafoListo(i){
+  if(this.originParrafoMedia){
+    this.parrafos[i].originMedia = this.originParrafoMedia;
+    console.log('sirve')
+  }
+  this.agregandoOrigenParrafo = !this.agregandoOrigenParrafo;
+  this.originParrafoMedia = null;
+}
+origenParrafoEditar(i){
+ this.originParrafoMedia = this.parrafos[i].originMedia
+ this.parrafos[i].originMedia = null
+}
+todoConOrigen(){
+  this.todosParrafosConOrigen = false
+  for(let parrafo of this.parrafos){
+    if((parrafo.video || parrafo.image ) && (parrafo.originMedia == null) ){
+      this.todosParrafosConOrigen = true
+    }
+  }
+  this.checkNoVacio() 
+  if(this.todosParrafosConOrigen ){
+    this.ToastError('Asegurate de que todos los archivos multimedia tengan origen')
+  }
+  if(!this.todosParrafosConOrigen && this.checkNoVacio()){
+    this.listoParaPublicar()
+  }
+}
+
+//cheka que no exista campo importante vacio 
+ checkNoVacio() {
+   let ok:boolean = true
+  this.titulo1 = this.titulo1.trim();
+  console.log(this.titulo1.length)
+  if ( this.titulo1.length != 0) {
+    console.log('Sin espacios')
+  } else { 
+    this.ToastError('El título no puede estar vacio')
+    this.titlebool = false;
+    ok = false
+}
+
+  this.subTitle = this.subTitle.trim();
+  console.log(this.subTitle.length)
+  if ( this.subTitle.length != 0) {
+    console.log('Sin espacios')
+  } else { 
+    this.ToastError('El subtítulo no puede estar vacio')
+    this.subTitlebool = false;
+    ok = false
+  }
+
+  this.origen = this.origen.trim();
+  console.log(this.origen.length)
+  if ( this.origen.length != 0) {
+    console.log('Sin espacios')
+  } else {
+  this.ToastError('El origen no puede estar vacio')
+  this.agregandoOrigen = false;  
+  ok = false
+}
+
+  if(this.urlVideo || this.imagenSelected){
+    this.originPrincipaMedia = this.originPrincipaMedia.trim();
+    console.log(this.originPrincipaMedia.length)
+    if ( this.originPrincipaMedia.length != 0) {
+      console.log('Sin espacios')
+    } else { 
+      this.ToastError('El origen de foto o video no puede estar vacio')
+      this.agregandoOrigenPrincipaMedia = false;
+      ok = false
+    }
+  }
+
+  return ok
+}
+
+async ToastError(message) {
+  const toast = await this.toastController.create({
+    header: this.translate.instant('analytics-views.information'),
+    message:this.translate.instant(message),
+    position: 'top',
+    color: 'dark',
+    duration: 4000,
+    buttons: [
+      {
+        text: 'Cerrar',
+        role: 'cancel',
+        handler: () => {
+          
+        }
+      }
+    ]
+  });
+  toast.present();
+}
+
+
+//Origen de las imagenes Principal
+agregandoOrigenPrincipaMedia:boolean = false;
+originPrincipaMedia;
+originPrincipaMediaListo(){
+  this.agregandoOrigenPrincipaMedia = !this.agregandoOrigenPrincipaMedia;
+}
 
 }

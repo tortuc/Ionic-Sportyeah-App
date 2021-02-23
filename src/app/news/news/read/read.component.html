@@ -133,6 +133,8 @@
        <source [src]="news?.news.principalVideo | safeUrl" type="video/mp4" />
      </video>
    </div> 
+   <p *ngIf="news?.news.principalVideo != null || news?.news.principalImage != null " style="text-align: center;color: #737373;font-size: 14px;"><i>{{news?.news.originPrincipaMedia }}</i></p>
+
 </ion-col> 
 
   <!--  Cuerpo de la noticia -->
@@ -173,14 +175,18 @@
             <source [src]="parrafo.video | safeUrl" type="video/mp4" />
           </video>
         </div> 
+        <p *ngIf="parrafo.originMedia" style="text-align: center;color: #737373;font-size: 14px;"><i>{{parrafo.originMedia}}</i></p>
+
       </ion-col>
-     
-      
+
       </ion-row>
     </ion-grid>
      </div>
     </ion-col>
-      
+    <ion-col  size="12" >
+      <p style="text-align: center;color: #737373;font-size: 14px;"><i>{{news?.news.origin}}</i></p>
+     </ion-col>
+    
    </ion-row>
  </ion-grid>
  </div>

@@ -183,8 +183,7 @@ news = [];
   }
 
   OpenNews(id){
-    this.newsService.openNews = id
-    this.router.navigate(["news/read"])
+    this.router.navigate([`news/read/${id}`])
   }
 
   //Contendra el _id del viewProfile al que se visita

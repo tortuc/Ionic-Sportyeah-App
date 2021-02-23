@@ -9,14 +9,14 @@ import { ModalController } from '@ionic/angular';
 })
 export class SharedsPostComponent implements OnInit {
   @Input() shareds:any[]
+  @Input() sharedsNews:any[]
   constructor(
     private modalCtrl:ModalController,
     private router:Router
   ) { }
 
   ngOnInit() {
- 
-    
+
   }
 
   dismiss(){
@@ -24,9 +24,9 @@ export class SharedsPostComponent implements OnInit {
   }
 
   goToPost(id){
+    console.log('presiono el de Shareds-post')
     this.router.navigate([`/post/${id}`])
     this.dismiss()
   }
   
-
 }

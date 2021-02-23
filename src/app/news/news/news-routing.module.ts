@@ -19,7 +19,7 @@ const routes: Routes = [
     component: ReadComponent
   },
   {
-    path: 'edit',
+    path: 'edit/:id',
     component: EditComponent
   },
 ];
