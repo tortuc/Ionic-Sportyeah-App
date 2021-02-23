@@ -14,6 +14,11 @@
     {{ "challenge.retar" | translate }} {{ userService.User.name }}?
   </ion-button>
 </div>
+<div class="text-center" *ngIf="Challenge.awards.length > 0">
+  <ion-button fill="outline" (click)="showAwards()"
+    ><ion-icon name="trophy-outline"></ion-icon
+  ></ion-button>
+</div>
 <ion-row>
   <ion-col size="4">
     <app-challenge-reactions [challenge]="Challenge"></app-challenge-reactions>

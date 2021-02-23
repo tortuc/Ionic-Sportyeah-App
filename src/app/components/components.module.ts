@@ -1,3 +1,6 @@
+import { AwardsAccordionComponent } from './challenges/awards-accordion/awards-accordion.component';
+import { AwardsListComponent } from './challenges/awards-list/awards-list.component';
+import { ShowAwardsComponent } from './challenges/show-awards/show-awards.component';
 import { FriendsMobileCComponent } from './challenges/friends-mobile-c/friends-mobile-c.component';
 import { ButtonSharedComponent } from "./challenges/button-shared/button-shared.component";
 import { ButtonCommentsComponent } from "./challenges/button-comments/button-comments.component";
@@ -143,7 +146,10 @@ import { ChallengesPostOptionsComponent } from "./challenges/challenges-post-opt
     ChallengesPostOptionsComponent,
     ButtonCommentsComponent,
     ButtonSharedComponent,
-    FriendsMobileCComponent
+    FriendsMobileCComponent,
+    ShowAwardsComponent,
+    AwardsListComponent,
+    AwardsAccordionComponent
   ],
   exports: [
     ImageComponent,
@@ -202,7 +208,10 @@ import { ChallengesPostOptionsComponent } from "./challenges/challenges-post-opt
     ChallengesPostOptionsComponent,
     ButtonCommentsComponent,
     ButtonSharedComponent,
-    FriendsMobileCComponent
+    FriendsMobileCComponent,
+    ShowAwardsComponent,
+    AwardsListComponent,
+    AwardsAccordionComponent
   ],
 })
 export class ComponentsModule {}

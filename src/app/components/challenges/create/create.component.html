@@ -48,13 +48,13 @@
     <!-- CHALLENGE FORM -->
     <form [formGroup]="form" [hidden]="!createAward">
       <ion-item>
-        <ion-label position="floating" >
+        <ion-label position="floating">
           {{ "challenge.title" | translate }}
         </ion-label>
         <ion-input type="text" formControlName="title"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label position="floating" >
+        <ion-label position="floating">
           {{ "challenge.description" | translate }}
         </ion-label>
         <ion-textarea type="text" formControlName="description"></ion-textarea>
@@ -78,7 +78,7 @@
     </ion-button>
   </div>
 
-  <ion-list *ngIf="!award">
+  <!-- <ion-list *ngIf="!award">
     <ion-item *ngFor="let a of awards; let i = index">
       <ion-avatar>
         <img [src]="a.media" />
@@ -93,7 +93,8 @@
         style="cursor: pointer; color: red; right: 30px; position: absolute"
       ></ion-icon>
     </ion-item>
-  </ion-list>
+  </ion-list> -->
+  <app-awards-list *ngIf="!award" [awards]="awards" [creator]="true"></app-awards-list>
   <div class="text-center" style="margin-top: 20px" *ngIf="!award">
     <ion-button
       [disabled]="form.status !== 'VALID' || videoInvalid === true"

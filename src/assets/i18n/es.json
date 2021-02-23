@@ -794,7 +794,7 @@
     }
   },
   "sponsorDescription": "Aqui puedes colocar tus patrocinadores",
-  "back": "Cerrar",
+  "back": "Volver",
   "uploadAgain":"Subir otro video",
   "levels-challenge":{
     "nivel1":"NIVEL DIOS",
@@ -805,5 +805,7 @@
     "nivel6":"Mariquita",
     "reaction":"Reaccionar"
   },
-  "followed":"Siguiendo / Recomendados"
+  "followed":"Siguiendo / Recomendados",
+  "place":"El Puesto",
+  "got": "obtiene"
 }

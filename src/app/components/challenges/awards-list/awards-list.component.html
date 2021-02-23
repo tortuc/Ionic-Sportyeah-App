@@ -1,0 +1,5 @@
+<ion-list>
+  <ng-container *ngFor="let a of awards; let i = index">
+    <app-awards-accordion [a]="a" [creator]="creator"></app-awards-accordion>
+  </ng-container>
+</ion-list>

@@ -10,12 +10,9 @@ mongod
 2. ssh-add ~/.ssh/id_rsa_sportyeah.pub
 3. ssh-add ~/.ssh/id_rsa_kecuki.pub
 
-## TAREAS DESAFIOS 22-02-2021 12 HORAS DE TRABAJO
+## TAREAS DESAFIOS 23-02-2021 12 HORAS DE TRABAJO
 
-1. Mostrar premios en los videos.
-  Primero subir un desafio con 3 premios.
-  Habilitar un boton que permita abrir modal para ver.
-  Toggle premios solidario.
+1. Se escuchan todos los videos a la vez cuando sales del componente BUG.
 2. Hay que asegurarse que los videos que sean dobles se inicien al mismo tiempo.
 3. Mostrar stepper cuando se acepte el reto mostrando la descripcion de como hacer el reto y darle a un boton de estoy listo.
 4. Grabadora de pantalla PWA IONIC.
@@ -32,7 +29,28 @@ mongod
 15. Buscador por nick.
 16. Boton de retar personas.
 17. Visualizacion del numero de visualizaciones del reto.
-18. Solventar intervals que buguean la App.
+
+## TAREAS DESAFIOS 22-02-2021 12 HORAS DE TRABAJO
+
+1. Mostrar premios en los videos. cumplido.
+2. Hay que asegurarse que los videos que sean dobles se inicien al mismo tiempo.
+3. Mostrar stepper cuando se acepte el reto mostrando la descripcion de como hacer el reto y darle a un boton de estoy listo.
+4. Grabadora de pantalla PWA IONIC.
+5. Premio solidario descripcion y toggle.
+6. Debe dar la opcion de subir otro intento del reto guardandose los intentos.
+7. Deben mostrarse los intentos mas abajo y un toggle que indique si mostrar los intentos o no.
+8. Al subir un desafio abrir una modal de comparticion y mostrar link para compartir y en esa modal le saldra la opcion de retar a sus seguidores.
+9. Permitir enviar mensaje privado con el reto por whatsapp.
+10. Permitir retar por facebook.
+11. Permitir retar por whatsapp.
+12. Permitir retar por Linkedin.
+13. Permitir retar por Instagram.
+14. Permitir retar por twitter.
+15. Buscador por nick.
+16. Boton de retar personas.
+17. Visualizacion del numero de visualizaciones del reto.
+18. Solventar intervals que buguean la App. cumplido.
+19. Se escuchan todos los videos a la vez cuando sales del componente BUG.
 
 ## TAREAS DESAFIOS 21-02-2021 12 HORAS DE TRABAJO
 

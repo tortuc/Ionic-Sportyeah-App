@@ -1,3 +1,4 @@
+import { ShowAwardsComponent } from "./../show-awards/show-awards.component";
 import { UserService } from "./../../../service/user.service";
 import { CreateChallengeComponent } from "./../create/create.component";
 import { ModalController } from "@ionic/angular";
@@ -14,13 +15,13 @@ export class ChallengesPostOptionsComponent implements OnInit {
 
   constructor(public mc: ModalController, public userService: UserService) {}
 
-  async aceptarReto(challenged,challenge) {
+  async aceptarReto(challenged, challenge) {
     const modal = await this.mc.create({
       component: CreateChallengeComponent,
       cssClass: "a",
       componentProps: {
         challenged,
-        Challenge:challenge
+        Challenge: challenge,
       },
     });
     modal.onDidDismiss().then(() => this.ngOnInit());
@@ -28,4 +29,13 @@ export class ChallengesPostOptionsComponent implements OnInit {
   }
 
   ngOnInit() {}
+
+  async showAwards() {
+    const modal = await this.mc.create({
+      component: ShowAwardsComponent,
+      cssClass: "a",
+      componentProps: { awards: this.Challenge.awards },
+    });
+    await modal.present();
+  }
 }

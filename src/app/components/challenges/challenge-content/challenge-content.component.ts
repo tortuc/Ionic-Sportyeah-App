@@ -17,6 +17,16 @@ export class ChallengeContentComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {
+    console.log(
+      document.getElementById(
+        this.Challenge.challenged.media + this.Challenge._id
+      )
+    );
+    console.log(
+      document.getElementById(
+        this.Challenge.challenged.media + this.Challenge.challenged._id + this.n
+      ) 
+    );
     if (
       document.getElementById(
         this.Challenge.challenged.media + this.Challenge._id
@@ -28,7 +38,7 @@ export class ChallengeContentComponent implements OnInit {
       this.Challenge.challenging.media === this.Challenge.challenged.media
         ? this.initOneVideo()
         : this.initTwoVideos();
-    else setTimeout(()=>this.ngOnInit(), 2000);
+    else setTimeout(() => this.ngOnInit(), 1500);
   }
 
   initOneVideo() {
@@ -64,7 +74,7 @@ export class ChallengeContentComponent implements OnInit {
   interval() {
     setInterval(() => {
       this.isScrolledIntoView();
-    }, 2000);
+    }, 1000);
   }
 
   isScrolledIntoView() {
@@ -73,7 +83,7 @@ export class ChallengeContentComponent implements OnInit {
     const bottomShown = rect.bottom <= window.innerHeight;
     if (this.oneVideo) {
       if (this.video) {
-        topShown && bottomShown ? this.video.play() : this.video.pause();
+        topShown && bottomShown && this.pauseVideo ? this.video.play() : this.video.pause();
       }
     } else {
       if (this.video) {
