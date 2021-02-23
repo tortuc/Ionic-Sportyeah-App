@@ -13,6 +13,9 @@ mongod
 ## TAREAS DESAFIOS 22-02-2021 12 HORAS DE TRABAJO
 
 1. Mostrar premios en los videos.
+  Primero subir un desafio con 3 premios.
+  Habilitar un boton que permita abrir modal para ver.
+  Toggle premios solidario.
 2. Hay que asegurarse que los videos que sean dobles se inicien al mismo tiempo.
 3. Mostrar stepper cuando se acepte el reto mostrando la descripcion de como hacer el reto y darle a un boton de estoy listo.
 4. Grabadora de pantalla PWA IONIC.
@@ -29,6 +32,7 @@ mongod
 15. Buscador por nick.
 16. Boton de retar personas.
 17. Visualizacion del numero de visualizaciones del reto.
+18. Solventar intervals que buguean la App.
 
 ## TAREAS DESAFIOS 21-02-2021 12 HORAS DE TRABAJO
 
