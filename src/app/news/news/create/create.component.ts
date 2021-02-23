@@ -10,7 +10,7 @@ import { JdvimageService } from 'src/app/service/jdvimage.service';
 import { NewsService } from '../../../service/news.service';
 import { ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
-
+ 
 const { Camera ,Filesystem} = Plugins;
 
 @Component({
