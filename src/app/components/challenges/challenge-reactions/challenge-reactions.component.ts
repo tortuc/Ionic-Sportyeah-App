@@ -56,14 +56,11 @@ export class ChallengeReactionsComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    console.log(this.challenge);
     this.challengeService
       .getById(this.challenge._id)
       .pipe(take(1))
       .subscribe(
         (r: any) => {
-          console.log(r);
-          console.log(r.challenge.challenged.reactions);
           const reactions = r.challenge.challenged.reactions;
           this.reactionsNum = reactions.length
           const r2 = reactions
@@ -115,7 +112,6 @@ export class ChallengeReactionsComponent implements OnInit {
   }
   like(type: string, img: string) {
     // this.myVote = img;
-    console.log(this.myVote);
     const reaction = {
       userReference: {
         appName: "SportYeah",
@@ -127,7 +123,6 @@ export class ChallengeReactionsComponent implements OnInit {
       .createReaction({ reaction, referenceId: this.challenge.challenged._id })
       .pipe(take(1))
       .subscribe((r: any) => {
-        console.log(r);
         this.Close()
         this.ngOnInit();
       });

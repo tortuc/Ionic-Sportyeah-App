@@ -1,3 +1,5 @@
+import { CreateChallengeFormComponent } from './challenges/create-challenge-form/create-challenge-form.component';
+import { VideosCComponent } from './challenges/videos-c/videos-c.component';
 import { AwardsAccordionComponent } from './challenges/awards-accordion/awards-accordion.component';
 import { AwardsListComponent } from './challenges/awards-list/awards-list.component';
 import { ShowAwardsComponent } from './challenges/show-awards/show-awards.component';
@@ -149,7 +151,9 @@ import { ChallengesPostOptionsComponent } from "./challenges/challenges-post-opt
     FriendsMobileCComponent,
     ShowAwardsComponent,
     AwardsListComponent,
-    AwardsAccordionComponent
+    AwardsAccordionComponent,
+    CreateChallengeFormComponent,
+    VideosCComponent
   ],
   exports: [
     ImageComponent,
@@ -211,7 +215,9 @@ import { ChallengesPostOptionsComponent } from "./challenges/challenges-post-opt
     FriendsMobileCComponent,
     ShowAwardsComponent,
     AwardsListComponent,
-    AwardsAccordionComponent
+    AwardsAccordionComponent,
+    CreateChallengeFormComponent,
+    VideosCComponent
   ],
 })
 export class ComponentsModule {}

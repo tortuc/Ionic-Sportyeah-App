@@ -25,6 +25,7 @@ export class ChallengeContentComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {
+    console.log("ON INIT");
     this.subscribeDestroy();
     if (
       document.getElementById(
@@ -42,10 +43,10 @@ export class ChallengeContentComponent implements OnInit {
   subscribeDestroy() {
     this.destroy.pipe(take(1)).subscribe(() => {
       console.log("DESTRoy", this.destroy);
-      if (this.Mostrar) {
-        this.oneVideo ? this.destroyOneVideo() : this.destroyTwoVideos();
-        this.Mostrar = false;
-      }
+      // if (this.Mostrar) {
+      this.oneVideo ? this.destroyOneVideo() : this.destroyTwoVideos();
+      this.Mostrar = false;
+      // }
     });
   }
 

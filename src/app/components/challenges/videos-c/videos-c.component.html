@@ -1,0 +1,40 @@
+<input
+  #fileChooser
+  (change)="img.uploadFile($event)"
+  hidden="true"
+  accept="video/*"
+  type="file"
+/>
+<div *ngIf="!media" style="margin-top: 20px" class="text-center">
+  <img
+    src="https://img.icons8.com/nolan/64/image.png"
+    alt=""
+    style="width: 100px; cursor: pointer"
+    (click)="challenge()"
+  />
+  <h6 style="color: grey">{{ "challenge.upload" | translate }}</h6>
+</div>
+<div *ngIf="media" class="text-center">
+  <video
+    controlslist="nodownload"
+    controls="controls"
+    preload="metadata"
+    id="video"
+    webkit-playsinline="webkit-playsinline"
+    class="videoPlayer"
+  >
+    <source [src]="media | safeUrl" type="video/mp4" />
+    <source [src]="media | safeUrl" type="video/ogg" />
+    <br />
+  </video>
+  <ion-button color="primary" (click)="challenge()">
+    {{ "uploadAgain" | translate }}
+  </ion-button>
+</div>
+<ion-button
+  *ngIf="videoValid"
+  expand="full"
+  class="bottom-button"
+  (click)="nextFunc()"
+  >{{ "next" | translate }}</ion-button
+>

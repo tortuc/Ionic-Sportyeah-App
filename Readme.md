@@ -10,6 +10,25 @@ mongod
 2. ssh-add ~/.ssh/id_rsa_sportyeah.pub
 3. ssh-add ~/.ssh/id_rsa_kecuki.pub
 
+## TAREAS DESAFIOS 24-02-2021
+
+1. Mostrar stepper cuando se acepte el reto mostrando la descripcion de como hacer el reto y darle a un boton de estoy listo. cumplido.
+2. Grabadora de pantalla PWA IONIC.
+3. Premio solidario descripcion y toggle.
+4. Debe dar la opcion de subir otro intento del reto guardandose los intentos.
+5. Deben mostrarse los intentos mas abajo y un toggle que indique si mostrar los intentos o no.
+6. Al subir un desafio abrir una modal de comparticion y mostrar link para compartir y en esa modal le saldra la opcion de retar a sus seguidores.
+7. Permitir enviar mensaje privado con el reto por whatsapp.
+8. Buscador por nick.
+9. Boton de retar personas.
+10. Visualizacion del numero de visualizaciones del reto.
+11. Poder ver las reacciones dejadas al darle click a las reacciones.
+12. Buscador de retos.
+13. Buscador de imagenes gratis.
+14. Colocar los premios en el siguiente desafio a crear.
+15. Logo a la izquierda del numero por posicion.
+16. Ejecutar view scroll cuando vea el video.
+
 ## TAREAS DESAFIOS 23-02-2021 12 HORAS DE TRABAJO
 
 1. Se escuchan todos los videos a la vez cuando sales del componente BUG. cumplido.

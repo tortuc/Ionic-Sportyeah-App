@@ -10,6 +10,9 @@
   </ion-toolbar>
 </ion-header>
 <ion-content class="bg-gradient-person" style="margin: 0px">
+  <ion-fab-button color="secondary" (click)="create()" class="new"
+    ><ion-icon name="add"></ion-icon
+  ></ion-fab-button>
   <ion-grid style="padding: 0">
     <ion-row>
       <ion-col size-xs="12" size-lg="8" ngClass.xs="p-0" class="center">
@@ -38,7 +41,10 @@
           <img src="https://img.icons8.com/dusk/64/000000/planning-skill.png" />
         </div>
         <div *ngFor="let challenge of showc">
-          <app-challenges-post [destroy]="destroy" [Challenge]="challenge"></app-challenges-post>
+          <app-challenges-post
+            [destroy]="destroy"
+            [Challenge]="challenge"
+          ></app-challenges-post>
         </div>
       </ion-col>
     </ion-row>
