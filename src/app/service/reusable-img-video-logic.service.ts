@@ -32,20 +32,20 @@ export class ImgVideoUpload {
     private actionSheetCtrl: ActionSheetController,
     private imageAPI: JdvimageService,
     private translate: TranslateService,
-    private mediaCapture: MediaCapture,
+    public mediaCapture: MediaCapture,
     private modalCtrl: ModalController,
     private loading: LoadingController,
     private jdvImage: JdvimageService,
     private freeImgService: FreeImgService
   ) {}
 
-  // mediaCaptureFunc() {
-  //   let options: CaptureImageOptions = { limit: 3 };
-  //   this.mediaCapture.captureImage(options).then(
-  //     (data: MediaFile[]) => console.log(data),
-  //     (err: CaptureError) => console.error(err)
-  //   );
-  // }
+  mediaCaptureFunc() {
+    let options: CaptureImageOptions = { limit: 3 };
+    this.mediaCapture.captureImage(options).then(
+      (data: MediaFile[]) => console.log(data),
+      (err: CaptureError) => console.error(err)
+    );
+  }
 
   content = new Subject();
   async takeOnlyPhoto() {
@@ -155,11 +155,11 @@ export class ImgVideoUpload {
     let action = await this.actionSheetCtrl.create({
       header: this.translate.instant("img-options.header"),
       buttons: [
-        {
-          text: this.translate.instant("img-options.video"),
-          icon: "camera",
-          // handler: () => this.mediaCaptureFunc(),
-        },
+        // {
+        //   text: this.translate.instant("img-options.video"),
+        //   icon: "camera",
+        //   handler: () => this.mediaCaptureFunc(),
+        // },
         {
           text: this.translate.instant("img-options.video"),
           icon: "camera",

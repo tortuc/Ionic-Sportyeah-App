@@ -28,6 +28,7 @@ mongod
 14. Colocar los premios en el siguiente desafio a crear.
 15. Logo a la izquierda del numero por posicion.
 16. Ejecutar view scroll cuando vea el video.
+17. El video no deberia iniciarse de una vez.
 
 ## TAREAS DESAFIOS 23-02-2021 12 HORAS DE TRABAJO
 
