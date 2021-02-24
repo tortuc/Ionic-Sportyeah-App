@@ -1,7 +1,8 @@
 {
   "name": "sportyeah-front",
   "integrations": {
-    "capacitor": {}
+    "capacitor": {},
+    "cordova": {}
   },
   "type": "angular"
 }

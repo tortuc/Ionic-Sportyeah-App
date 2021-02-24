@@ -1,4 +1,10 @@
 import { ImageSeeComponent } from "./../components/image-see/image-see.component";
+import {
+  MediaCapture,
+  MediaFile,
+  CaptureError,
+  CaptureImageOptions,
+} from "@ionic-native/media-capture/ngx";
 import { take } from "rxjs/operators";
 import { FreeImgService } from "./freeImg.service";
 import { LinkYoutubeComponent } from "./../components/link-youtube/link-youtube.component";
@@ -26,11 +32,20 @@ export class ImgVideoUpload {
     private actionSheetCtrl: ActionSheetController,
     private imageAPI: JdvimageService,
     private translate: TranslateService,
+    private mediaCapture: MediaCapture,
     private modalCtrl: ModalController,
     private loading: LoadingController,
     private jdvImage: JdvimageService,
     private freeImgService: FreeImgService
   ) {}
+
+  // mediaCaptureFunc() {
+  //   let options: CaptureImageOptions = { limit: 3 };
+  //   this.mediaCapture.captureImage(options).then(
+  //     (data: MediaFile[]) => console.log(data),
+  //     (err: CaptureError) => console.error(err)
+  //   );
+  // }
 
   content = new Subject();
   async takeOnlyPhoto() {
@@ -140,6 +155,11 @@ export class ImgVideoUpload {
     let action = await this.actionSheetCtrl.create({
       header: this.translate.instant("img-options.header"),
       buttons: [
+        {
+          text: this.translate.instant("img-options.video"),
+          icon: "camera",
+          // handler: () => this.mediaCaptureFunc(),
+        },
         {
           text: this.translate.instant("img-options.video"),
           icon: "camera",

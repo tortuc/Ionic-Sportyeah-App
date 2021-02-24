@@ -47,8 +47,8 @@ export class VideosCComponent implements OnInit {
     console.log(video);
     if (video && !isNaN(video.duration)) {
       console.log(video.duration);
-      console.log(video.duration / 60 > 1);
-      if (video.duration / 60 > 1) {
+      console.log(video.duration / 60 > 3);
+      if (video.duration / 60 > 3) {
         this.alertINIT();
       } else if (isNaN(video.duration)) {
         this.alertINIT();

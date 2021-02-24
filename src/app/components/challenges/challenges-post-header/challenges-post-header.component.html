@@ -21,7 +21,7 @@
     {{ Challenge.challenged.userId.data.last_name }}</span
   ><br />
   <span class="profile-name dateC">{{
-    Challenge.modifiedAt | customDisplayDate
+    date | customDisplayDate
   }}</span>
 
   <p style="white-space: pre-wrap" class="text-center">
@@ -31,11 +31,3 @@
     ></span>
   </p>
 </div>
-<ion-icon
-  *ngIf="
-    Challenge.challenging.userId.data._id == userService.User?._id &&
-    displayOptions
-  "
-  name="chevron-down"
-  class="options-down"
-></ion-icon>

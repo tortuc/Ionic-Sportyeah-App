@@ -110,7 +110,7 @@ export class ChallengeReactionsComponent implements OnInit {
     this.timeOutClose = setTimeout(() => this.reactionoff(), 1000);
     clearTimeout(this.timeOut);
   }
-  like(type: string, img: string) {
+  like(type: string) {
     // this.myVote = img;
     const reaction = {
       userReference: {

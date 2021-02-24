@@ -7,11 +7,15 @@ import { IAward } from "src/app/service/challenge.service";
   styleUrls: ["./awards-list.component.scss"],
 })
 export class AwardsListComponent implements OnInit {
-  @Input() awards: IAward;
+  @Input() awards: IAward[];
   @Input() creator: boolean = false;
-  @Output() next = new EventEmitter<void>();
+  @Output() next = new EventEmitter<any>();
 
   constructor() {}
 
   ngOnInit() {}
+
+  delete(i) {
+    this.awards.splice(i, 1);
+  }
 }
