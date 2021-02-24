@@ -19,6 +19,8 @@ export class ChallengeContentComponent implements OnInit {
   public src2 = null;
   public oneVideo: boolean = null;
   public Mostrar: boolean = true;
+  public intervalID: any = null;
+  public paused: boolean = false;
 
   constructor() {}
 
@@ -37,9 +39,7 @@ export class ChallengeContentComponent implements OnInit {
         : this.initTwoVideos();
     else setTimeout(() => this.ngOnInit(), 1500);
   }
-
   subscribeDestroy() {
-    console.log("DESTRoy");
     this.destroy.pipe(take(1)).subscribe(() => {
       console.log("DESTRoy");
       this.Mostrar = false;
@@ -49,17 +49,20 @@ export class ChallengeContentComponent implements OnInit {
 
   destroyOneVideo() {
     this.src.removeAttribute("src");
-    this.video.play();
-    console.log(this.video);
+    this.video.load();
+    this.video.pause();
+    this.video.remove();
+    console.log(this.src);
+    clearInterval(this.intervalID);
   }
 
   destroyTwoVideos() {
     this.src.removeAttribute("src");
-    this.src2.removeAttribute("src");
-    this.video.play();
-    this.video2.play();
-    console.log(this.video);
-    console.log(this.video2);
+    this.video.load();
+    this.video.pause();
+    this.video.remove();
+    console.log(this.src);
+    clearInterval(this.intervalID);
   }
 
   initOneVideo() {
@@ -74,7 +77,9 @@ export class ChallengeContentComponent implements OnInit {
       )
     );
 
+    this.video.load();
     this.video.pause();
+    this.paused = true;
     this.oneVideo = true;
     this.interval();
   }
@@ -85,34 +90,19 @@ export class ChallengeContentComponent implements OnInit {
         this.Challenge.challenged.media + this.Challenge.challenged._id + this.n
       )
     );
-    this.video2 = <HTMLVideoElement>(
-      document.getElementById(
-        this.Challenge.challenging.media +
-          this.Challenge.challenging._id +
-          this.n
-      )
-    );
     this.src = <HTMLSourceElement>(
       document.getElementById(
         this.Challenge.challenged.media + this.Challenge.challenged._id + this.n
       )
     );
-    this.src2 = <HTMLSourceElement>(
-      document.getElementById(
-        this.Challenge.challenging.media +
-          this.Challenge.challenging._id +
-          this.n
-      )
-    );
-
+    this.video.load();
     this.video.pause();
-    this.video2.pause();
-    this.oneVideo = false;
+    this.paused = true;
     this.interval();
   }
 
   interval() {
-    setInterval(() => {
+    this.intervalID = setInterval(() => {
       this.isScrolledIntoView();
     }, 1000);
   }
@@ -121,20 +111,17 @@ export class ChallengeContentComponent implements OnInit {
     const rect = this.video.getBoundingClientRect();
     const topShown = rect.top >= 0;
     const bottomShown = rect.bottom <= window.innerHeight;
-    if (this.oneVideo) {
-      if (this.video) {
-        topShown && bottomShown && this.pauseVideo
-          ? this.video.play()
-          : this.video.pause();
-      }
-    } else {
-      if (this.video) {
-        if (topShown && bottomShown && this.pauseVideo === false) {
+    if (this.video) {
+      if (topShown && bottomShown) {
+        if (!this.pauseVideo) {
           this.video.play();
-          this.video2.play();
-        } else {
+          this.paused = false;
+        }
+      } else {
+        if (!this.paused) {
+          this.video.load();
           this.video.pause();
-          this.video2.pause();
+          this.paused = true;
         }
       }
     }
@@ -152,11 +139,9 @@ export class ChallengeContentComponent implements OnInit {
       if (!this.pauseVideo) {
         this.pauseVideo = true;
         this.video.pause();
-        this.video2.pause();
       } else {
         this.pauseVideo = false;
         this.video.play();
-        this.video2.play();
       }
     }
   }

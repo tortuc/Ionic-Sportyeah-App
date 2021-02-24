@@ -1,6 +1,9 @@
 <div (click)="pause()" *ngIf="Mostrar">
   <div>
-    <div *ngIf="Challenge.challenging.media === Challenge.challenged.media">
+    <div
+      *ngIf="Challenge.challenging.media === Challenge.challenged.media"
+      style="height: 400px"
+    >
       <video
         width="100%"
         height="100%"
@@ -21,7 +24,10 @@
         <br />
       </video>
     </div>
-    <div *ngIf="Challenge.challenging.media !== Challenge.challenged.media">
+    <div
+      *ngIf="Challenge.challenging.media !== Challenge.challenged.media"
+      style="height: 400px"
+    >
       <video
         width="100%"
         height="100%"
