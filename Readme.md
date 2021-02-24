@@ -12,7 +12,7 @@ mongod
 
 ## TAREAS DESAFIOS 23-02-2021 12 HORAS DE TRABAJO
 
-1. Se escuchan todos los videos a la vez cuando sales del componente BUG.
+1. Se escuchan todos los videos a la vez cuando sales del componente BUG. cumplido.
 2. Mostrar stepper cuando se acepte el reto mostrando la descripcion de como hacer el reto y darle a un boton de estoy listo.
 3. Grabadora de pantalla PWA IONIC.
 4. Premio solidario descripcion y toggle.

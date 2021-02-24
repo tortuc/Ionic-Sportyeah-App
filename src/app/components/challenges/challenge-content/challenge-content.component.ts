@@ -41,9 +41,11 @@ export class ChallengeContentComponent implements OnInit {
   }
   subscribeDestroy() {
     this.destroy.pipe(take(1)).subscribe(() => {
-      console.log("DESTRoy");
-      this.Mostrar = false;
-      this.oneVideo ? this.destroyOneVideo() : this.destroyTwoVideos();
+      console.log("DESTRoy", this.destroy);
+      if (this.Mostrar) {
+        this.oneVideo ? this.destroyOneVideo() : this.destroyTwoVideos();
+        this.Mostrar = false;
+      }
     });
   }
 
