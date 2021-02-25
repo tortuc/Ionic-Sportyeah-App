@@ -12,6 +12,11 @@ mongod
 
 ## TAREAS DESAFIOS 25-02-2021
 
+Boton mejorar visual colocarle circulo rojo cuando este grabando.
+Cuando se detenga agregar video a media y mostrarlo.
+Funcionalidad de pausar un video y seguir grabando despues.
+En boton nuevo intento guardar media en un array llamado intentos.
+
 1. Premio solidario descripcion y toggle.
 2. Debe dar la opcion de subir otro intento del reto guardandose los intentos.
 3. Deben mostrarse los intentos mas abajo y un toggle que indique si mostrar los intentos o no.

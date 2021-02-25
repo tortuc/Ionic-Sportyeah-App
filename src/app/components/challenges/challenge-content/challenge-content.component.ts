@@ -40,33 +40,6 @@ export class ChallengeContentComponent implements OnInit {
         : this.initTwoVideos();
     else setTimeout(() => this.ngOnInit(), 1500);
   }
-  subscribeDestroy() {
-    this.destroy.pipe(take(1)).subscribe(() => {
-      console.log("DESTRoy", this.destroy);
-      // if (this.Mostrar) {
-      this.oneVideo ? this.destroyOneVideo() : this.destroyTwoVideos();
-      this.Mostrar = false;
-      // }
-    });
-  }
-
-  destroyOneVideo() {
-    this.src.removeAttribute("src");
-    this.video.load();
-    this.video.pause();
-    this.video.remove();
-    console.log(this.src);
-    clearInterval(this.intervalID);
-  }
-
-  destroyTwoVideos() {
-    this.src.removeAttribute("src");
-    this.video.load();
-    this.video.pause();
-    this.video.remove();
-    console.log(this.src);
-    clearInterval(this.intervalID);
-  }
 
   initOneVideo() {
     this.video = <HTMLVideoElement>(
@@ -79,7 +52,6 @@ export class ChallengeContentComponent implements OnInit {
         this.Challenge.challenged.media + this.Challenge._id
       )
     );
-
     this.video.load();
     this.video.pause();
     this.paused = true;
@@ -102,6 +74,30 @@ export class ChallengeContentComponent implements OnInit {
     this.video.pause();
     this.paused = true;
     this.interval();
+  }
+  subscribeDestroy() {
+    this.destroy.pipe(take(1)).subscribe(() => {
+      this.oneVideo ? this.destroyOneVideo() : this.destroyTwoVideos();
+      this.Mostrar = false;
+    });
+  }
+
+  destroyOneVideo() {
+    this.src.removeAttribute("src");
+    this.video.load();
+    this.video.pause();
+    this.video.remove();
+    console.log(this.src);
+    clearInterval(this.intervalID);
+  }
+
+  destroyTwoVideos() {
+    this.src.removeAttribute("src");
+    this.video.load();
+    this.video.pause();
+    this.video.remove();
+    console.log(this.src);
+    clearInterval(this.intervalID);
   }
 
   interval() {
