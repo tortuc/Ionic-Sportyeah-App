@@ -1,10 +1,20 @@
 # IMPORTANTES
 
 Iniciar sportyeah
-cd "..\..\cygwin64\home\DELL E6430 ATG\proyectos\espana\sportyea\frontend"
-cd "..\..\cygwin64\home\DELL E6430 ATG\proyectos\espana\gitlab-sportyeha\jdvimage\src"
-cd "..\..\cygwin64\home\DELL E6430 ATG\proyectos\espana\sportyea\backend\src"
-mongod
+
+## EN CMDS
+
+1. mongod
+2. cd "..\..\cygwin64\home\DELL E6430 ATG\proyectos\espana\sportyea\frontend"
+   ionic serve
+3. cd "..\..\cygwin64\home\DELL E6430 ATG\proyectos\espana\sportyea\jdvimage\src"
+   nodemon app.ts
+4. cd "..\..\cygwin64\home\DELL E6430 ATG\proyectos\espana\sportyea\backend\src"
+   nodemon sportyeah.ts
+5. cd "..\..\cygwin64\home\DELL E6430 ATG\proyectos\espana\sportyea\api-retos\src"
+   nodemon challenge.ts
+
+## EN CMD PARA GIT PULL PUSH ETC
 
 1. eval "$(ssh-agent -s)"
 2. ssh-add ~/.ssh/id_rsa_sportyeah.pub
@@ -24,7 +34,7 @@ Habilitar siguiente solo cuando se tenga media. cumplido.
 Guardar los intentos en la API. cumplido.
 Bug en media cuando aceptas el reto se ve el anterior. Cumplido.
 Pausar video de fondo cuando abra la modal. Cumplido
-Que no se sobrecargue el sistema cuando este en apartado retos, refactorizar codigo y optimizar funciones.
+Que no se sobrecargue el sistema cuando este en apartado retos, refactorizar codigo y optimizar funciones. Cumplido.
 
 1. Premio solidario descripcion y toggle.
 2. Debe dar la opcion de subir otro intento del reto guardandose los intentos.
@@ -46,9 +56,9 @@ Que no se sobrecargue el sistema cuando este en apartado retos, refactorizar cod
 
 1. Mostrar stepper cuando se acepte el reto mostrando la descripcion de como hacer el reto y darle a un boton de estoy listo. cumplido.
 2. Grabadora de pantalla PWA IONIC.
-2.1. Habilitar "Media Camara" para telefonos moviles IONIC. cumplido.
-2.2. INVESTIGAR SOBRE WEBRTC. cumplido
-2.3. Habilitar una camara web que grabe y guarde el video. El video ya se guarda falta mejorar la interfaz.
+   2.1. Habilitar "Media Camara" para telefonos moviles IONIC. cumplido.
+   2.2. INVESTIGAR SOBRE WEBRTC. cumplido
+   2.3. Habilitar una camara web que grabe y guarde el video. El video ya se guarda falta mejorar la interfaz.
 3. Premio solidario descripcion y toggle.
 4. Debe dar la opcion de subir otro intento del reto guardandose los intentos.
 5. Deben mostrarse los intentos mas abajo y un toggle que indique si mostrar los intentos o no.

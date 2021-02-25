@@ -13,7 +13,7 @@ import { ChallengeCommentsComponent } from "../components/challenges/challenge-c
   templateUrl: "./challenges.page.html",
   styleUrls: ["./challenges.page.scss"],
 })
-export class ChallengesPage implements OnInit, OnDestroy {
+export class ChallengesPage implements OnInit {
   @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
   @ViewChild("circle") circle: ElementRef;
   @ViewChild("reacts") reacts: ElementRef;
@@ -22,7 +22,7 @@ export class ChallengesPage implements OnInit, OnDestroy {
   @ViewChild(IonContent) content: IonContent;
 
   // FOR START THE VIDEO IF IS IN SCREEN.
-  public srollEvent: Subject<void> = new Subject();
+  public scrollEvent: Subject<void> = new Subject();
 
   public myVote: any = null;
   public destroy:Subject<void> = new Subject<void>();
@@ -210,8 +210,8 @@ export class ChallengesPage implements OnInit, OnDestroy {
     this.destroy.next();
   }
 
-  ngOnDestroy(): void {
-    //Called once, before the instance is destroyed.
-    //Add 'implements OnDestroy' to the class.
+  sendScrollEvent(){
+    console.log('Doing scroll');
+    this.scrollEvent.next()
   }
 }
