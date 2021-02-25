@@ -331,7 +331,8 @@
     "camera": "Camara",
     "galery": "Galeria",
     "avatar": "Avatares",
-    "video": "Video"
+    "video": "Video",
+    "grabar":"Grabar video"
   },
   "avatar": {
     "title": "Selecciona un avatar",

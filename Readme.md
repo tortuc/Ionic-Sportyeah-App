@@ -12,6 +12,8 @@ mongod
 
 ## TAREAS DESAFIOS 25-02-2021
 
+Si el size es 0 no permitir subir a jdv. cumplido.
+Deshabilitar el sonido del video replicado.
 Boton mejorar visual colocarle circulo rojo cuando este grabando.
 Cuando se detenga agregar video a media y mostrarlo.
 Funcionalidad de pausar un video y seguir grabando despues.
@@ -31,7 +33,7 @@ En boton nuevo intento guardar media en un array llamado intentos.
 12. Colocar los premios en el siguiente desafio a crear.
 13. Logo a la izquierda del numero por posicion.
 14. Ejecutar view scroll cuando vea el video.
-15. El video no deberia iniciarse de una vez.
+15. El video no deberia iniciarse de una vez. cumplido
 
 ## TAREAS DESAFIOS 24-02-2021
 

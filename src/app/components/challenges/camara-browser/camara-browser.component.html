@@ -1,0 +1,18 @@
+<!-- <p> -->
+<div class="video-wrap text-center bg-black">
+  <video id="video2" autoplay  style="height: 300px"></video>
+</div>
+
+<!-- Trigger canvas web API -->
+<div class="controller">
+  <ion-button expand="full" (click)="startRecording.next()" *ngIf="!recording"
+    >start</ion-button
+  >
+  <ion-button expand="full" (click)="stopRecording.next()" *ngIf="recording"
+    >stop</ion-button
+  >
+</div>
+
+<!-- Webcam video snapshot -->
+<span id="errorMsg"></span>
+<!-- </p> -->

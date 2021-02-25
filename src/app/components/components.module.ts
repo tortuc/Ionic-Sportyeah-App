@@ -1,3 +1,4 @@
+import { CamaraBrowserComponent } from './challenges/camara-browser/camara-browser.component';
 import { CreateChallengeFormComponent } from './challenges/create-challenge-form/create-challenge-form.component';
 import { VideosCComponent } from './challenges/videos-c/videos-c.component';
 import { AwardsAccordionComponent } from './challenges/awards-accordion/awards-accordion.component';
@@ -153,7 +154,8 @@ import { ChallengesPostOptionsComponent } from "./challenges/challenges-post-opt
     AwardsListComponent,
     AwardsAccordionComponent,
     CreateChallengeFormComponent,
-    VideosCComponent
+    VideosCComponent,
+    CamaraBrowserComponent
   ],
   exports: [
     ImageComponent,
@@ -217,7 +219,8 @@ import { ChallengesPostOptionsComponent } from "./challenges/challenges-post-opt
     AwardsListComponent,
     AwardsAccordionComponent,
     CreateChallengeFormComponent,
-    VideosCComponent
+    VideosCComponent,
+    CamaraBrowserComponent
   ],
 })
 export class ComponentsModule {}

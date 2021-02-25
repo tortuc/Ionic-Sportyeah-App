@@ -156,7 +156,7 @@ export class ImgVideoUpload {
       header: this.translate.instant("img-options.header"),
       buttons: [
         {
-          text: this.translate.instant("img-options.video"),
+          text: this.translate.instant("img-options.grabar"),
           icon: "camera",
           handler: () => {
             this.content.next(null);
