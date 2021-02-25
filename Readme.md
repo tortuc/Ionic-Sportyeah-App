@@ -22,40 +22,46 @@ Iniciar sportyeah
 
 ## TAREAS DESAFIOS 25-02-2021
 
-Si el size es 0 no permitir subir a jdv. cumplido.
-Deshabilitar el sonido del video replicado. cumplido.
-Boton mejorar visual colocarle circulo rojo cuando este grabando. cumplido.
-Cuando se detenga agregar video a media y mostrarlo. cumplido
-Funcionalidad de pausar un video y seguir grabando despues. cumplido.
-En boton nuevo intento guardar media en un array llamado intentos. cumplido.
-Mostrar intentos en fila. cumplido.
-Toggle subir intentos o no. cumplido.
-Habilitar siguiente solo cuando se tenga media. cumplido.
-Guardar los intentos en la API. cumplido.
-Bug en media cuando aceptas el reto se ve el anterior. Cumplido.
-Pausar video de fondo cuando abra la modal. Cumplido
-Que no se sobrecargue el sistema cuando este en apartado retos, refactorizar codigo y optimizar funciones. Cumplido.
-Al refactorizar el codigo dano la funcionalidad de destruir los videos, hay que reacerla. cumplido.
-Ejecutar view scroll cuando vea el video. cumplido
-El video no deberia iniciarse de una vez. cumplido.
-Reparar error arrojado en reacciones 73. cumplido.
-Colocar los premios en el siguiente desafio a crear. Cumplido.
-Debe dar la opcion de subir otro intento del reto guardandose los intentos. Cumplido.
-Deben mostrarse los intentos mas abajo y un toggle que indique si mostrar los intentos o no. Cumplido.
-Buscador por nick. Cumplido
-Boton de retar personas. Cumplido
+1. Si el size es 0 no permitir subir a jdv. cumplido.
+2. Deshabilitar el sonido del video replicado. cumplido.
+3. Boton mejorar visual colocarle circulo rojo cuando este grabando. cumplido.
+4. Cuando se detenga agregar video a media y mostrarlo. cumplido
+5. Funcionalidad de pausar un video y seguir grabando despues. cumplido.
+6. En boton nuevo intento guardar media en un array llamado intentos. cumplido.
+7. Mostrar intentos en fila. cumplido.
+8. Toggle subir intentos o no. cumplido.
+9. Habilitar siguiente solo cuando se tenga media. cumplido.
+10. Guardar los intentos en la API. cumplido.
+11. Bug en media cuando aceptas el reto se ve el anterior. Cumplido.
+12. Pausar video de fondo cuando abra la modal. Cumplido
+13. Que no se sobrecargue el sistema cuando este en apartado retos, refactorizar codigo y optimizar funciones. Cumplido.
+14. Al refactorizar el codigo dano la funcionalidad de destruir los videos, hay que reacerla. cumplido.
+15. Ejecutar view scroll cuando vea el video. cumplido
+16. El video no deberia iniciarse de una vez. cumplido.
+17. Reparar error arrojado en reacciones 73. cumplido.
+18. Colocar los premios en el siguiente desafio a crear. Cumplido.
+19. Debe dar la opcion de subir otro intento del reto guardandose los intentos. Cumplido.
+20. Deben mostrarse los intentos mas abajo y un toggle que indique si mostrar los intentos o no. Cumplido.
+21. Buscador por nick. Cumplido
+22. Boton de retar personas. Cumplido
+
+Faltante:
 
 1. Premio solidario descripcion y toggle.
-4. Al subir un desafio abrir una modal de comparticion y mostrar link para compartir y en esa modal le saldra la opcion de retar a sus seguidores. Cumplido.
+2. Al subir un desafio abrir una modal de comparticion y mostrar link para compartir y en esa modal le saldra la opcion de retar a sus seguidores. Cumplido.
 Logica para compartir reto a amigos.
-5. Permitir enviar mensaje privado con el reto por whatsapp.
-8. Visualizacion del numero de visualizaciones del reto.
-9. Poder ver las reacciones dejadas al darle click a las reacciones.
-10. Buscador de retos.
-11. Buscador de imagenes gratis.
-13. Logo a la izquierda del numero por posicion.
-17. Quitar console.logs de toda la parte de desafios.
-18. Colocar limite de intentos a 3.
+3. Permitir enviar mensaje privado con el reto por whatsapp.
+4. Visualizacion del numero de visualizaciones del reto.
+5. Poder ver las reacciones dejadas al darle click a las reacciones.
+6. Buscador de retos.
+7. Buscador de imagenes gratis.
+8. Logo a la izquierda del numero por posicion.
+9. Quitar console.logs de toda la parte de desafios.
+10. Colocar limite de intentos a 3.
+
+Dudas:
+
+1. Como se desea visualizar los intentos? en las publicaciones para no danar la visual.
 
 ## TAREAS DESAFIOS 24-02-2021
 
