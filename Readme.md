@@ -35,24 +35,24 @@ Guardar los intentos en la API. cumplido.
 Bug en media cuando aceptas el reto se ve el anterior. Cumplido.
 Pausar video de fondo cuando abra la modal. Cumplido
 Que no se sobrecargue el sistema cuando este en apartado retos, refactorizar codigo y optimizar funciones. Cumplido.
-Al refactorizar el codigo dano la funcionalidad de destruir los videos, hay que reacerla.
+Al refactorizar el codigo dano la funcionalidad de destruir los videos, hay que reacerla. cumplido.
+Ejecutar view scroll cuando vea el video. cumplido
+El video no deberia iniciarse de una vez. cumplido.
+Reparar error arrojado en reacciones 73. cumplido.
+Colocar los premios en el siguiente desafio a crear. Cumplido.
+Debe dar la opcion de subir otro intento del reto guardandose los intentos. Cumplido.
+Deben mostrarse los intentos mas abajo y un toggle que indique si mostrar los intentos o no. Cumplido.
 
 1. Premio solidario descripcion y toggle.
-2. Debe dar la opcion de subir otro intento del reto guardandose los intentos. Cumplido.
-3. Deben mostrarse los intentos mas abajo y un toggle que indique si mostrar los intentos o no. Cumplido.
-4. Al subir un desafio abrir una modal de comparticion y mostrar link para compartir y en esa modal le saldra la opcion de retar a sus seguidores.
+4. Al subir un desafio abrir una modal de comparticion y mostrar link para compartir y en esa modal le saldra la opcion de retar a sus seguidores. Cumplido.
 5. Permitir enviar mensaje privado con el reto por whatsapp.
 6. Buscador por nick.
 7. Boton de retar personas.
 8. Visualizacion del numero de visualizaciones del reto.
-9. Poder ver las reacciones dejadas al darle click a las reacciones.
+9. Poder ver las reacciones dejadas al darle click a las reacciones.d
 10. Buscador de retos.
 11. Buscador de imagenes gratis.
-12. Colocar los premios en el siguiente desafio a crear. Cumplido.
 13. Logo a la izquierda del numero por posicion.
-14. Ejecutar view scroll cuando vea el video.
-15. El video no deberia iniciarse de una vez. cumplido
-16. Reparar error arrojado en reacciones 73.
 17. Quitar console.logs de toda la parte de desafios.
 18. Colocar limite de intentos a 3.
 

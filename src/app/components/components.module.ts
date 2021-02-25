@@ -1,10 +1,11 @@
-import { CamaraBrowserComponent } from './challenges/camara-browser/camara-browser.component';
-import { CreateChallengeFormComponent } from './challenges/create-challenge-form/create-challenge-form.component';
-import { VideosCComponent } from './challenges/videos-c/videos-c.component';
-import { AwardsAccordionComponent } from './challenges/awards-accordion/awards-accordion.component';
-import { AwardsListComponent } from './challenges/awards-list/awards-list.component';
-import { ShowAwardsComponent } from './challenges/show-awards/show-awards.component';
-import { FriendsMobileCComponent } from './challenges/friends-mobile-c/friends-mobile-c.component';
+import { ModalCreatedComponent } from "./challenges/modal-created/modal-created.component";
+import { CamaraBrowserComponent } from "./challenges/camara-browser/camara-browser.component";
+import { CreateChallengeFormComponent } from "./challenges/create-challenge-form/create-challenge-form.component";
+import { VideosCComponent } from "./challenges/videos-c/videos-c.component";
+import { AwardsAccordionComponent } from "./challenges/awards-accordion/awards-accordion.component";
+import { AwardsListComponent } from "./challenges/awards-list/awards-list.component";
+import { ShowAwardsComponent } from "./challenges/show-awards/show-awards.component";
+import { FriendsMobileCComponent } from "./challenges/friends-mobile-c/friends-mobile-c.component";
 import { ButtonSharedComponent } from "./challenges/button-shared/button-shared.component";
 import { ButtonCommentsComponent } from "./challenges/button-comments/button-comments.component";
 import { ChallengeContentComponent } from "./challenges/challenge-content/challenge-content.component";
@@ -155,7 +156,8 @@ import { ChallengesPostOptionsComponent } from "./challenges/challenges-post-opt
     AwardsAccordionComponent,
     CreateChallengeFormComponent,
     VideosCComponent,
-    CamaraBrowserComponent
+    CamaraBrowserComponent,
+    ModalCreatedComponent,
   ],
   exports: [
     ImageComponent,
@@ -220,7 +222,8 @@ import { ChallengesPostOptionsComponent } from "./challenges/challenges-post-opt
     AwardsAccordionComponent,
     CreateChallengeFormComponent,
     VideosCComponent,
-    CamaraBrowserComponent
+    CamaraBrowserComponent,
+    ModalCreatedComponent,
   ],
 })
 export class ComponentsModule {}

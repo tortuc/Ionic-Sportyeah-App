@@ -1,3 +1,4 @@
+import { ModalCreatedComponent } from './../modal-created/modal-created.component';
 import { Subject } from 'rxjs';
 import { ShowAwardsComponent } from "./../show-awards/show-awards.component";
 import { UserService } from "./../../../service/user.service";
@@ -27,7 +28,16 @@ export class ChallengesPostOptionsComponent implements OnInit {
       },
     });
     this.pause.next()
-    modal.onDidDismiss().then(() => this.ngOnInit());
+    modal.onDidDismiss().then(() => this.modalFinishedCreated());
+    await modal.present();
+  }
+
+  async modalFinishedCreated() {
+    const modal = await this.mc.create({
+      component: ModalCreatedComponent,
+      cssClass: "a",
+      componentProps: null,
+    });
     await modal.present();
   }
 

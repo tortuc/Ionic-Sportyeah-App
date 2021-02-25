@@ -1,3 +1,4 @@
+import { ModalCreatedComponent } from "./../components/challenges/modal-created/modal-created.component";
 import { Subject } from "rxjs";
 import { UserService } from "./../service/user.service";
 import { take } from "rxjs/operators";
@@ -124,6 +125,16 @@ export class ChallengesPage implements OnInit {
       componentProps: {
         challenged: null,
       },
+    });
+    modal.onDidDismiss().then(() => this.modalFinishedCreated());
+    await modal.present();
+  }
+
+  async modalFinishedCreated() {
+    const modal = await this.mc.create({
+      component: ModalCreatedComponent,
+      cssClass: "a",
+      componentProps: null,
     });
     await modal.present();
   }

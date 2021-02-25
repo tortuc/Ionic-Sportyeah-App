@@ -763,7 +763,8 @@
     "repeat": "Intentar de nuevo",
     "new_challenge": "¡Comienza a retar!",
     "create": "¡Sube tu reto!",
-    "public": "¡Deseo que todo SportYeah vea mi desafio!"
+    "public": "¡Deseo que todo SportYeah vea mi desafio!",
+    "Compartir":"¡Comparte tu Reto!"
   },
   "save": "Guardar Cambios",
 
@@ -823,5 +824,7 @@
     "reanude": "Reanudar",
     "stop": "Detener"
   },
-  "intentos":"¿Desea subir los intentos?"
+  "intentos":"¿Desea subir los intentos?",
+  "search":"Buscar",
+  "challengePerson":"Retar"
 }

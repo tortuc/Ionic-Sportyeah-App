@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-toolbar class="bg-gradient-person">
+    <ion-title style="--color: white" *ngIf="!retoExistente"
+      ><ion-icon name="medal-outline" style="margin-right: 10px"></ion-icon
+      >{{ "challenge.Compartir" | translate }}</ion-title
+    >
+  </ion-toolbar>
+</ion-header>
+<ion-content class="text-center">
+  <h1>Reta a tus amigos</h1>
+  <ion-input
+    type="text"
+    placeholder="Awesome Input"
+    [value]="challengeLink"
+    readonly
+  ></ion-input>
+  <ion-list>
+    <ion-input
+      type="text"
+      position="stacked"
+      placeholder="{{ 'search' | translate }}"
+      [(ngModel)]="name" (ngModelChange)="onChange($event)"
+    ></ion-input>
+    <ion-item *ngFor="let user of users">
+      <ion-thumbnail slot="start">
+        <ion-avatar class="mini">
+          <img [src]="user.user.photo" />
+        </ion-avatar>
+      </ion-thumbnail>
+      <ion-label>{{ user.user.name }} {{ user.user.last_name }}</ion-label>
+      <ion-button>{{ "challengePerson" | translate }}</ion-button>
+    </ion-item>
+  </ion-list>
+</ion-content>
