@@ -13,6 +13,7 @@ export class ChallengeContentComponent implements OnInit {
   @Input() destroy: Subject<void>;
   @Input() pauseS: Subject<void>;
   @Input() scrollEvent: Subject<void>;
+  scrollEvent$:any;
   public pauseVideo: boolean = false;
   public n: number = Math.random();
   public video = null;
@@ -28,7 +29,9 @@ export class ChallengeContentComponent implements OnInit {
 
   ngOnInit() {
     console.log("ON INIT");
+    // SE SUBSCRIBE PARA DESTRUIR EL VIDEO EN CASO DE SER NECESARIO.
     this.subscribeDestroy();
+    // VERIFICA SI LOS VIDEOS ESTAN INICIALIZADOS
     if (
       document.getElementById(
         this.Challenge.challenged.media + this.Challenge._id
@@ -37,16 +40,20 @@ export class ChallengeContentComponent implements OnInit {
         this.Challenge.challenged.media + this.Challenge.challenged._id + this.n
       ) !== null
     ) {
+      // INICIALIZA LOS VIDEOS
       this.Challenge.challenging.media === this.Challenge.challenged.media
         ? this.initOneVideo()
         : this.initTwoVideos();
+      // PAUSA UN VIDEO
       this.pauseS.subscribe(() => {
         this.video.pause();
         this.pauseVideo = true;
       });
-      this.scrollEvent.subscribe(() => {
+      // VERIFICA SI HUBO UN SCROLL PARA VER QUE VIDEO QUEDO ACTIVO.
+      this.scrollEvent$ = this.scrollEvent.subscribe(() => {
         this.isScrolledIntoView();
       });
+      // SI NO ENCONTRO EL VIDEO INICIALIZADO VUELVE A INTENTAR
     } else setTimeout(() => this.ngOnInit(), 1500);
   }
 
@@ -86,6 +93,8 @@ export class ChallengeContentComponent implements OnInit {
   }
   subscribeDestroy() {
     this.destroy.pipe(take(1)).subscribe(() => {
+      console.log('Destroying videos');
+      this.scrollEvent$.unsubscribe();
       this.oneVideo ? this.destroyOneVideo() : this.destroyTwoVideos();
       this.Mostrar = false;
     });
@@ -96,8 +105,6 @@ export class ChallengeContentComponent implements OnInit {
     this.video.load();
     this.video.pause();
     this.video.remove();
-    console.log(this.src);
-    clearInterval(this.intervalID);
   }
 
   destroyTwoVideos() {
@@ -105,11 +112,14 @@ export class ChallengeContentComponent implements OnInit {
     this.video.load();
     this.video.pause();
     this.video.remove();
-    console.log(this.src);
-    clearInterval(this.intervalID);
   }
 
+  // FUNCION QUE VERIFICA SI ESTA EL VIDEO EN PANTALLA PARA ACTIVARLO.
   isScrolledIntoView() {
+    console.log('##################');
+    console.log(this.n);
+    console.log('##################');
+
     const rect = this.video.getBoundingClientRect();
     const topShown = rect.top >= 0;
     const bottomShown = rect.bottom <= window.innerHeight;

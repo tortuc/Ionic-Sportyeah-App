@@ -1,10 +1,17 @@
-import { Subject } from 'rxjs';
+import { Subject } from "rxjs";
 import { UserService } from "./../service/user.service";
 import { take } from "rxjs/operators";
 import { CreateChallengeComponent } from "../components/challenges/create/create.component";
 import { IonContent, IonInfiniteScroll, ModalController } from "@ionic/angular";
 import { TranslateService } from "@ngx-translate/core";
-import { Component, OnInit, ViewChild, ElementRef, OnDestroy, EventEmitter } from "@angular/core";
+import {
+  Component,
+  OnInit,
+  ViewChild,
+  ElementRef,
+  OnDestroy,
+  EventEmitter,
+} from "@angular/core";
 import { ChallengeService } from "../service/challenge.service";
 import { ChallengeCommentsComponent } from "../components/challenges/challenge-comments/challenge-comments.component";
 
@@ -23,9 +30,11 @@ export class ChallengesPage implements OnInit {
 
   // FOR START THE VIDEO IF IS IN SCREEN.
   public scrollEvent: Subject<void> = new Subject();
+  // PARA DESTRUIR EL DESAFIO Y NO SE SOBRECARGUE EL SISTEMA.
+  public destroy: Subject<void> = new Subject<void>();
 
   public myVote: any = null;
-  public destroy:Subject<void> = new Subject<void>();
+
   public time: boolean = false;
   public challenges: any[] = null;
   public scrolling: boolean = true;
@@ -47,7 +56,7 @@ export class ChallengesPage implements OnInit {
     this.destroy.next();
     this.index = 0;
     this.challengeNumber = 0;
-    this.showc = []
+    this.showc = [];
     this.challengeService
       .getAll()
       .pipe(take(1))
@@ -202,16 +211,15 @@ export class ChallengesPage implements OnInit {
     this.infiniteScroll.complete();
   }
 
-  ionViewWillLeave	() {
+  ionViewWillLeave() {
     this.destroyVid();
   }
 
-  destroyVid(){
+  destroyVid() {
     this.destroy.next();
   }
 
-  sendScrollEvent(){
-    console.log('Doing scroll');
-    this.scrollEvent.next()
+  sendScrollEvent() {
+    this.scrollEvent.next();
   }
 }

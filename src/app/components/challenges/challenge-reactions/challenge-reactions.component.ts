@@ -23,7 +23,7 @@ export class ChallengeReactionsComponent implements OnInit {
   @ViewChild("like") likee: ElementRef;
 
   myVote: any = null;
-  reactionsNum: number= null;
+  reactionsNum: number = null;
 
   public reactions: IReactionChallengeIMG[] = [
     { level: "nivel1", src: "https://img.icons8.com/nolan/64/best-seller.png" },
@@ -62,16 +62,17 @@ export class ChallengeReactionsComponent implements OnInit {
       .subscribe(
         (r: any) => {
           const reactions = r.challenge.challenged.reactions;
-          this.reactionsNum = reactions.length
+          this.reactionsNum = reactions.length;
           const r2 = reactions
             .filter(
               (reaction) =>
                 reaction.userReference.referenceId === this.userService.User._id
             )
             .reverse()[0];
-          this.myVote = this.reactions.filter(
-            (reaction) => reaction.level === r2.reaction
-          )[0];
+          if (r2)
+            this.myVote = this.reactions.filter(
+              (reaction) => reaction.level === r2.reaction
+            )[0];
         },
         (err) => console.log(err)
       );
@@ -123,7 +124,7 @@ export class ChallengeReactionsComponent implements OnInit {
       .createReaction({ reaction, referenceId: this.challenge.challenged._id })
       .pipe(take(1))
       .subscribe((r: any) => {
-        this.Close()
+        this.Close();
         this.ngOnInit();
       });
   }
