@@ -42,14 +42,15 @@ Reparar error arrojado en reacciones 73. cumplido.
 Colocar los premios en el siguiente desafio a crear. Cumplido.
 Debe dar la opcion de subir otro intento del reto guardandose los intentos. Cumplido.
 Deben mostrarse los intentos mas abajo y un toggle que indique si mostrar los intentos o no. Cumplido.
+Buscador por nick. Cumplido
+Boton de retar personas. Cumplido
 
 1. Premio solidario descripcion y toggle.
 4. Al subir un desafio abrir una modal de comparticion y mostrar link para compartir y en esa modal le saldra la opcion de retar a sus seguidores. Cumplido.
+Logica para compartir reto a amigos.
 5. Permitir enviar mensaje privado con el reto por whatsapp.
-6. Buscador por nick.
-7. Boton de retar personas.
 8. Visualizacion del numero de visualizaciones del reto.
-9. Poder ver las reacciones dejadas al darle click a las reacciones.d
+9. Poder ver las reacciones dejadas al darle click a las reacciones.
 10. Buscador de retos.
 11. Buscador de imagenes gratis.
 13. Logo a la izquierda del numero por posicion.
