@@ -13,11 +13,14 @@ mongod
 ## TAREAS DESAFIOS 25-02-2021
 
 Si el size es 0 no permitir subir a jdv. cumplido.
-Deshabilitar el sonido del video replicado.
-Boton mejorar visual colocarle circulo rojo cuando este grabando.
-Cuando se detenga agregar video a media y mostrarlo.
-Funcionalidad de pausar un video y seguir grabando despues.
-En boton nuevo intento guardar media en un array llamado intentos.
+Deshabilitar el sonido del video replicado. cumplido.
+Boton mejorar visual colocarle circulo rojo cuando este grabando. cumplido.
+Cuando se detenga agregar video a media y mostrarlo. cumplido
+Funcionalidad de pausar un video y seguir grabando despues. cumplido.
+En boton nuevo intento guardar media en un array llamado intentos. cumplido.
+Mostrar intentos en fila. cumplido.
+Guardar los intentos en la API.
+Bug en media cuando aceptas el reto se ve el anterior.
 
 1. Premio solidario descripcion y toggle.
 2. Debe dar la opcion de subir otro intento del reto guardandose los intentos.

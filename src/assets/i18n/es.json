@@ -332,7 +332,7 @@
     "galery": "Galeria",
     "avatar": "Avatares",
     "video": "Video",
-    "grabar":"Grabar video"
+    "grabar": "Grabar video"
   },
   "avatar": {
     "title": "Selecciona un avatar",
@@ -816,5 +816,12 @@
   "place": "El Puesto",
   "got": "obtiene",
   "next": "Siguiente",
-  "ready":"Estoy listo"
+  "ready": "Estoy listo",
+  "recording": {
+    "start": "Comenzar a grabar",
+    "pause": "Pausar",
+    "reanude": "Reanudar",
+    "stop": "Detener"
+  },
+  "intentos":"INTENTOS"
 }

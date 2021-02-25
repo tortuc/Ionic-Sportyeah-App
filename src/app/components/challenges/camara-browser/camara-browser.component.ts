@@ -18,6 +18,8 @@ export class CamaraBrowserComponent implements OnInit {
   public recording: boolean = false;
   public stream: any = null;
 
+  public paused: boolean = false;
+
   constructor(public jdvService: JdvimageService, public img: ImgVideoUpload) {}
 
   ngOnInit() {
@@ -54,17 +56,13 @@ export class CamaraBrowserComponent implements OnInit {
   }
 
   initRecord() {
-    console.log("This is the stream", this.stream);
     this.recording = true;
-    this.streamRecorder = this.stream.start();
-    console.log("This stream state after start", this.stream.state);
+    this.stream.start();
   }
 
   finisheRecord() {
     this.recording = false;
     this.stream.ondataavailable = (data) => {
-      console.log(data);
-      console.log("On data available", data.data);
       let form = new FormData();
       // new blob
       if (data.data.size > 0) {
@@ -80,8 +78,16 @@ export class CamaraBrowserComponent implements OnInit {
       }
     };
     this.stream.requestData();
-    console.log("This is stream after requesting data", this.stream);
     this.stream.stop();
-    console.log("This stream state after stop", this.stream);
+  }
+
+  pause() {
+    this.stream.pause();
+    this.paused = true;
+  }
+
+  reanude() {
+    this.stream.resume();
+    this.paused = false;
   }
 }

@@ -23,12 +23,20 @@ export class VideosCComponent implements OnInit {
   public videoValid: boolean = false;
   public streamRecorder = null;
   public videoHere: boolean = false;
+  public intentos: string[] = [];
   constructor(
     public img: ImgVideoUpload,
     public alert: AlertController,
     public trans: TranslateService,
     public loadingController: LoadingController
   ) {}
+
+  again() {
+    this.intentos.push(this.media);
+    this.media = null;
+    this.challenge();
+  }
+
   async challenge() {
     this.img.takeOnlyVideo(this.fileChooser);
     this.img.content.pipe(take(1)).subscribe((r: string | null) => {
@@ -67,11 +75,9 @@ export class VideosCComponent implements OnInit {
           video.ontimeupdate = () => {
             this.verifyVideoMinutes();
           };
-          video.currentTime = 0;
           this.verifyVideoMinutes();
         };
-      }
-      else if (video.duration / 60 > 3) {
+      } else if (video.duration / 60 > 3) {
         this.alertINIT();
       } else if (isNaN(video.duration)) {
         this.alertINIT();

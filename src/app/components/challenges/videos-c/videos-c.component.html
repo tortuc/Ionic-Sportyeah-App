@@ -29,9 +29,30 @@
     <source [src]="media | safeUrl" type="video/ogg" />
     <br />
   </video>
-  <ion-button color="primary" (click)="challenge()">
+  <ion-button color="primary" (click)="again()">
     {{ "uploadAgain" | translate }}
   </ion-button>
+</div>
+<div *ngIf="intentos.length > 0 && media" class="text-center" style="margin-bottom: 100px;">
+  <h3>{{ "intentos" | translate }}</h3>
+  <hr>
+  <ion-row >
+    <ion-col *ngFor="let intento of intentos">
+      <video
+        controlslist="nodownload"
+        controls="controls"
+        preload="metadata"
+        id="video"
+        style="width: 80px; height: 80px"
+        webkit-playsinline="webkit-playsinline"
+        class="videoPlayer bg-black"
+      >
+        <source [src]="intento | safeUrl" type="video/mp4" />
+        <source [src]="intento | safeUrl" type="video/ogg" />
+        <br />
+      </video>
+    </ion-col>
+  </ion-row>
 </div>
 <ion-button
   *ngIf="videoValid"
