@@ -1,7 +1,5 @@
 import { NgModule } from "@angular/core";
 import { MediaCapture } from "@ionic-native/media-capture/ngx";
-import { take } from "rxjs/operators";
-import { FreeImgService } from "./freeImg.service";
 import {
   BrowserModule,
   BrowserTransferStateModule,

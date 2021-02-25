@@ -10,10 +10,31 @@ mongod
 2. ssh-add ~/.ssh/id_rsa_sportyeah.pub
 3. ssh-add ~/.ssh/id_rsa_kecuki.pub
 
+## TAREAS DESAFIOS 25-02-2021
+
+1. Premio solidario descripcion y toggle.
+2. Debe dar la opcion de subir otro intento del reto guardandose los intentos.
+3. Deben mostrarse los intentos mas abajo y un toggle que indique si mostrar los intentos o no.
+4. Al subir un desafio abrir una modal de comparticion y mostrar link para compartir y en esa modal le saldra la opcion de retar a sus seguidores.
+5. Permitir enviar mensaje privado con el reto por whatsapp.
+6. Buscador por nick.
+7. Boton de retar personas.
+8. Visualizacion del numero de visualizaciones del reto.
+9. Poder ver las reacciones dejadas al darle click a las reacciones.
+10. Buscador de retos.
+11. Buscador de imagenes gratis.
+12. Colocar los premios en el siguiente desafio a crear.
+13. Logo a la izquierda del numero por posicion.
+14. Ejecutar view scroll cuando vea el video.
+15. El video no deberia iniciarse de una vez.
+
 ## TAREAS DESAFIOS 24-02-2021
 
 1. Mostrar stepper cuando se acepte el reto mostrando la descripcion de como hacer el reto y darle a un boton de estoy listo. cumplido.
 2. Grabadora de pantalla PWA IONIC.
+2.1. Habilitar "Media Camara" para telefonos moviles IONIC. cumplido.
+2.2. INVESTIGAR SOBRE WEBRTC. cumplido
+2.3. Habilitar una camara web que grabe y guarde el video. El video ya se guarda falta mejorar la interfaz.
 3. Premio solidario descripcion y toggle.
 4. Debe dar la opcion de subir otro intento del reto guardandose los intentos.
 5. Deben mostrarse los intentos mas abajo y un toggle que indique si mostrar los intentos o no.

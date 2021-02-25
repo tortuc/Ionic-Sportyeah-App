@@ -155,13 +155,15 @@ export class ImgVideoUpload {
     let action = await this.actionSheetCtrl.create({
       header: this.translate.instant("img-options.header"),
       buttons: [
-        // {
-        //   text: this.translate.instant("img-options.video"),
-        //   icon: "camera",
-        //   handler: () => this.mediaCaptureFunc(),
-        // },
         {
           text: this.translate.instant("img-options.video"),
+          icon: "camera",
+          handler: () => {
+            this.content.next(null);
+          },
+        },
+        {
+          text: this.translate.instant("img-options.galery"),
           icon: "camera",
           handler: () => {
             this.video(fileChooser);

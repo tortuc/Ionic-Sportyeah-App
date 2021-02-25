@@ -5,7 +5,21 @@
   accept="video/*"
   type="file"
 />
-<div *ngIf="!media" style="margin-top: 20px" class="text-center">
+<div *ngIf="videoHere">
+  <div class="video-wrap">
+    <video id="video2" autoplay style="width: 100%"></video>
+  </div>
+
+  <!-- Trigger canvas web API -->
+  <div class="controller">
+    <button (click)="startRecording.next()" *ngIf="!recording">start</button>
+    <button (click)="stopRecording.next()" *ngIf="recording">stop</button>
+  </div>
+
+  <!-- Webcam video snapshot -->
+ <span id="errorMsg"></span>
+</div>
+<div *ngIf="!media && !videoHere" style="margin-top: 20px" class="text-center">
   <img
     src="https://img.icons8.com/nolan/64/image.png"
     alt=""
