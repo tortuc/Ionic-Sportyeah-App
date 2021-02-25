@@ -11,12 +11,12 @@
         [id]="Challenge.challenged.media + Challenge._id"
       >
         <source
-          [src]="Challenge.challenging.media | safeUrl"
+          [src]="Challenge.challenged.media | safeUrl"
           [id]="Challenge.challenged.media + Challenge._id"
           type="video/mp4"
         />
         <source
-          [src]="Challenge.challenging.media | safeUrl"
+          [src]="Challenge.challenged.media | safeUrl"
           [id]="Challenge.challenged.media + Challenge._id"
           type="video/ogg"
         />
@@ -36,12 +36,12 @@
         class="videoChallenge"
       >
         <source
-          [src]="Challenge.challenging.media | safeUrl"
+          [src]="Challenge.challenged.media | safeUrl"
           [id]="Challenge.challenged.media + Challenge.challenged._id + n"
           type="video/mp4"
         />
         <source
-          [src]="Challenge.challenging.media | safeUrl"
+          [src]="Challenge.challenged.media | safeUrl"
           [id]="Challenge.challenged.media + Challenge.challenged._id + n"
           type="video/ogg"
         />

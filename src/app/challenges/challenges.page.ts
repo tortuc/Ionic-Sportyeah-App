@@ -4,7 +4,7 @@ import { take } from "rxjs/operators";
 import { CreateChallengeComponent } from "../components/challenges/create/create.component";
 import { IonContent, IonInfiniteScroll, ModalController } from "@ionic/angular";
 import { TranslateService } from "@ngx-translate/core";
-import { Component, OnInit, ViewChild, ElementRef, OnDestroy } from "@angular/core";
+import { Component, OnInit, ViewChild, ElementRef, OnDestroy, EventEmitter } from "@angular/core";
 import { ChallengeService } from "../service/challenge.service";
 import { ChallengeCommentsComponent } from "../components/challenges/challenge-comments/challenge-comments.component";
 
@@ -20,6 +20,10 @@ export class ChallengesPage implements OnInit, OnDestroy {
   @ViewChild("img") img: ElementRef;
   @ViewChild("like") likee: ElementRef;
   @ViewChild(IonContent) content: IonContent;
+
+  // FOR START THE VIDEO IF IS IN SCREEN.
+  public srollEvent: Subject<void> = new Subject();
+
   public myVote: any = null;
   public destroy:Subject<void> = new Subject<void>();
   public time: boolean = false;

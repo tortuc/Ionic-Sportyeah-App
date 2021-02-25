@@ -1,3 +1,4 @@
+import { Subject } from 'rxjs';
 import { ShowAwardsComponent } from "./../show-awards/show-awards.component";
 import { UserService } from "./../../../service/user.service";
 import { CreateChallengeComponent } from "./../create/create.component";
@@ -12,6 +13,7 @@ import { Component, OnInit, Input } from "@angular/core";
 })
 export class ChallengesPostOptionsComponent implements OnInit {
   @Input() Challenge: IChallenge;
+  @Input() pause: Subject<void>;
 
   constructor(public mc: ModalController, public userService: UserService) {}
 
@@ -24,6 +26,7 @@ export class ChallengesPostOptionsComponent implements OnInit {
         Challenge: challenge,
       },
     });
+    this.pause.next()
     modal.onDidDismiss().then(() => this.ngOnInit());
     await modal.present();
   }

@@ -19,10 +19,12 @@ Cuando se detenga agregar video a media y mostrarlo. cumplido
 Funcionalidad de pausar un video y seguir grabando despues. cumplido.
 En boton nuevo intento guardar media en un array llamado intentos. cumplido.
 Mostrar intentos en fila. cumplido.
-Toggle subir intentos o no.
-Habilitar siguiente solo cuando se tenga media.
-Guardar los intentos en la API.
-Bug en media cuando aceptas el reto se ve el anterior.
+Toggle subir intentos o no. cumplido.
+Habilitar siguiente solo cuando se tenga media. cumplido.
+Guardar los intentos en la API. cumplido.
+Bug en media cuando aceptas el reto se ve el anterior. Cumplido.
+Pausar video de fondo cuando abra la modal. Cumplido
+Que no se sobrecargue el sistema cuando este en apartado retos, refactorizar codigo y optimizar funciones.
 
 1. Premio solidario descripcion y toggle.
 2. Debe dar la opcion de subir otro intento del reto guardandose los intentos.

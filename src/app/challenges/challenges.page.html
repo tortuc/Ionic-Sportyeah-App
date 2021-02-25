@@ -9,7 +9,12 @@
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
-<ion-content class="bg-gradient-person" style="margin: 0px">
+<ion-content
+  class="bg-gradient-person"
+  style="margin: 0px"
+  [scrollEvents]="true"
+  (ionScroll)="scrollEvent.next()"
+>
   <ion-fab-button color="secondary" (click)="create()" class="new"
     ><ion-icon name="add"></ion-icon
   ></ion-fab-button>
@@ -44,6 +49,7 @@
           <app-challenges-post
             [destroy]="destroy"
             [Challenge]="challenge"
+            [srollEvent]="srollEvent"
           ></app-challenges-post>
         </div>
       </ion-col>

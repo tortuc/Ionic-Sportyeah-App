@@ -11,6 +11,8 @@ import { Component, OnInit, Input } from "@angular/core";
 export class ChallengeContentComponent implements OnInit {
   @Input() Challenge: IChallenge;
   @Input() destroy: Subject<void>;
+  @Input() pauseS: Subject<void>;
+  @Input() scrollEvent: Subject<void>;
   public pauseVideo: boolean = false;
   public n: number = Math.random();
   public video = null;
@@ -34,11 +36,18 @@ export class ChallengeContentComponent implements OnInit {
       document.getElementById(
         this.Challenge.challenged.media + this.Challenge.challenged._id + this.n
       ) !== null
-    )
+    ) {
       this.Challenge.challenging.media === this.Challenge.challenged.media
         ? this.initOneVideo()
         : this.initTwoVideos();
-    else setTimeout(() => this.ngOnInit(), 1500);
+      this.pauseS.subscribe(() => {
+        this.video.pause();
+        this.pauseVideo = true;
+      });
+      this.scrollEvent.subscribe(() => {
+        this.isScrolledIntoView();
+      });
+    } else setTimeout(() => this.ngOnInit(), 1500);
   }
 
   initOneVideo() {
@@ -56,7 +65,7 @@ export class ChallengeContentComponent implements OnInit {
     this.video.pause();
     this.paused = true;
     this.oneVideo = true;
-    this.interval();
+    this.isScrolledIntoView();
   }
 
   initTwoVideos() {
@@ -73,7 +82,7 @@ export class ChallengeContentComponent implements OnInit {
     this.video.load();
     this.video.pause();
     this.paused = true;
-    this.interval();
+    this.isScrolledIntoView();
   }
   subscribeDestroy() {
     this.destroy.pipe(take(1)).subscribe(() => {
@@ -98,12 +107,6 @@ export class ChallengeContentComponent implements OnInit {
     this.video.remove();
     console.log(this.src);
     clearInterval(this.intervalID);
-  }
-
-  interval() {
-    this.intervalID = setInterval(() => {
-      this.isScrolledIntoView();
-    }, 1000);
   }
 
   isScrolledIntoView() {

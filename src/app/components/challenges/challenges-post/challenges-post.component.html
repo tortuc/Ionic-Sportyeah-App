@@ -15,10 +15,13 @@
         <app-challenge-content
           [Challenge]="Challenge"
           [destroy]="destroy"
+          [pauseS]="pause"
+          [srollEvent]="srollEvent"
         ></app-challenge-content>
       </div>
       <app-challenges-post-options
         [Challenge]="Challenge"
+        [pause]="pause"
       ></app-challenges-post-options>
     </ion-card-content>
   </ion-card>
