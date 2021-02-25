@@ -19,6 +19,8 @@ Cuando se detenga agregar video a media y mostrarlo. cumplido
 Funcionalidad de pausar un video y seguir grabando despues. cumplido.
 En boton nuevo intento guardar media en un array llamado intentos. cumplido.
 Mostrar intentos en fila. cumplido.
+Toggle subir intentos o no.
+Habilitar siguiente solo cuando se tenga media.
 Guardar los intentos en la API.
 Bug en media cuando aceptas el reto se ve el anterior.
 

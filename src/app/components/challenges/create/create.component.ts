@@ -75,9 +75,10 @@ export class CreateChallengeComponent implements OnInit {
     this.step0 = false;
     this.step1 = true;
   }
-
-  guardarMedia(media: string) {
-    this.media = media;
+  intentos:any[]= [];
+  guardarMedia(res: any) {
+    this.media = res.media;
+    this.intentos = res.intentos;
     this.step1 = false;
     this.retoExistente ? (this.step4 = true) : (this.step2 = true);
   }
@@ -124,8 +125,9 @@ export class CreateChallengeComponent implements OnInit {
       referenceId: this.userService.User._id,
     };
 
-    const challenging: IReference = {
+    const challenged: IReference = {
       userId: userReference,
+      intentos: this.intentos,
       media: this.media,
       reactions: [],
       comments: [],
@@ -134,8 +136,8 @@ export class CreateChallengeComponent implements OnInit {
     var newChallenge: IChallenge = null;
     if (this.challenged === null) {
       newChallenge = {
-        challenging,
-        challenged: challenging,
+        challenging: challenged,
+        challenged: challenged,
         public: this.public,
         awards: this.awards,
         title: this.form.title,
@@ -146,7 +148,7 @@ export class CreateChallengeComponent implements OnInit {
       console.log(this.challenged);
       newChallenge = {
         challenging: this.challenged._id,
-        challenged: challenging,
+        challenged: challenged,
         public: this.public,
         awards: this.awards,
         title: this.form.title,

@@ -29,6 +29,7 @@ export interface IReference {
   reactions: [];
   comments: [];
   display: number;
+  intentos?: any[];
   _id?: string;
   createdAt?: string;
   modifiedAt?: string;

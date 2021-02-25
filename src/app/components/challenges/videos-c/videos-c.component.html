@@ -33,10 +33,19 @@
     {{ "uploadAgain" | translate }}
   </ion-button>
 </div>
-<div *ngIf="intentos.length > 0 && media" class="text-center" style="margin-bottom: 100px;">
-  <h3>{{ "intentos" | translate }}</h3>
-  <hr>
-  <ion-row >
+<div
+  *ngIf="intentos.length > 0 && media"
+  class="text-center"
+  style="margin-bottom: 100px"
+>
+  <ion-list>
+    <ion-item>
+      <ion-label>{{ "intentos" | translate }}</ion-label>
+      <ion-toggle color="primary" [(ngModel)]="subirIntentos"></ion-toggle>
+    </ion-item>
+  </ion-list>
+  <hr />
+  <ion-row>
     <ion-col *ngFor="let intento of intentos">
       <video
         controlslist="nodownload"

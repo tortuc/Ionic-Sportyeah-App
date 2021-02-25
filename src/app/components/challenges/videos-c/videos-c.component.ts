@@ -18,12 +18,13 @@ import {
 })
 export class VideosCComponent implements OnInit {
   @ViewChild("fileChooser") fileChooser: any;
-  @Output() next = new EventEmitter<string>();
+  @Output() next = new EventEmitter<any>();
   public media: string = null;
   public videoValid: boolean = false;
   public streamRecorder = null;
   public videoHere: boolean = false;
   public intentos: string[] = [];
+  public subirIntentos:boolean = true;
   constructor(
     public img: ImgVideoUpload,
     public alert: AlertController,
@@ -38,6 +39,7 @@ export class VideosCComponent implements OnInit {
   }
 
   async challenge() {
+    this.videoValid = false
     this.img.takeOnlyVideo(this.fileChooser);
     this.img.content.pipe(take(1)).subscribe((r: string | null) => {
       if (r !== null) {
@@ -96,7 +98,7 @@ export class VideosCComponent implements OnInit {
   }
 
   nextFunc() {
-    this.next.emit(this.media);
+    this.subirIntentos ? this.next.emit({ media: this.media, intentos: this.intentos }) : this.next.emit({media:this.media,intentos:[]});
   }
 
   ngOnInit() {}
