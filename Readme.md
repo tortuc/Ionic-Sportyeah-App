@@ -20,6 +20,10 @@ Iniciar sportyeah
 2. ssh-add ~/.ssh/id_rsa_sportyeah.pub
 3. ssh-add ~/.ssh/id_rsa_kecuki.pub
 
+## Importante
+
+1. Siempre al finalizar la jornada hacer ionic build y ver los errores solucionarlos y merge master.
+
 ## TAREAS DESAFIOS 25-02-2021
 
 1. Si el size es 0 no permitir subir a jdv. cumplido.
