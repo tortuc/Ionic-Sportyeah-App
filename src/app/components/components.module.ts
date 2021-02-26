@@ -1,3 +1,4 @@
+import { SeeTrysComponent } from "./challenges/see-trys/see-trys.component";
 import { ModalCreatedComponent } from "./challenges/modal-created/modal-created.component";
 import { CamaraBrowserComponent } from "./challenges/camara-browser/camara-browser.component";
 import { CreateChallengeFormComponent } from "./challenges/create-challenge-form/create-challenge-form.component";
@@ -158,6 +159,7 @@ import { ChallengesPostOptionsComponent } from "./challenges/challenges-post-opt
     VideosCComponent,
     CamaraBrowserComponent,
     ModalCreatedComponent,
+    SeeTrysComponent,
   ],
   exports: [
     ImageComponent,
@@ -224,6 +226,7 @@ import { ChallengesPostOptionsComponent } from "./challenges/challenges-post-opt
     VideosCComponent,
     CamaraBrowserComponent,
     ModalCreatedComponent,
+    SeeTrysComponent,
   ],
 })
 export class ComponentsModule {}

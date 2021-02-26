@@ -30,27 +30,15 @@ Iniciar sportyeah
 2. Al subir un desafio abrir una modal de comparticion y mostrar link para compartir y en esa modal le saldra la opcion de retar a sus seguidores.
 3. Logica para compartir reto a amigos.
 4. Permitir enviar mensaje privado con el reto por whatsapp.
-5. Visualizacion del numero de visualizaciones del reto.
-
-  Agregar array visualizaciones de tipo mixed() o json en backend api-retos. cumplido.
-
-  Realizar funcion que verifique si el reto ya cuenta con la visualizacion del usuario, si esto no es cierto entonces crea una visualizacion mas en el array visualizaciones. cumplido
-
-  Una vez guardada la visualizacion marcar el video con la variable guardado para no consultarlo todo el tiempo. cumplido.
-
-  El codigo solo debe de ejecutarse cuando el video este en pantalla, solo en ese caso. cumplido
-
-  Mostrar numero de visualizaciones en video parte derecha inferior en blanco con logo de ojito.
-
+5. Visualizacion del numero de visualizaciones del reto. cumplido.
 6. Poder ver las reacciones dejadas al darle click a las reacciones.
 7. Buscador de retos.
 8. Buscador de imagenes gratis.
 9. Logo a la izquierda del numero por posicion.
 10. Quitar console.logs de toda la parte de desafios.
-11. Colocar limite de intentos a 3.
-12. Mostrar los intentos.
-13. Poder reaccionar a los intentos.
-14. Poder commentar los intentos.
+11. Colocar limite de intentos a 3. cumplido.
+12. Mostrar los intentos. cumplido.
+13. Colocar max height al tamano de los videos.
 
 ## TAREAS DESAFIOS 25-02-2021
 

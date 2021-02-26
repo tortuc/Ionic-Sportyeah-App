@@ -825,6 +825,7 @@
     "stop": "Detener"
   },
   "intentos":"¿Desea subir los intentos?",
+  "verIntentos":"Ver Intentos",
   "search":"Buscar",
   "challengePerson":"Retar"
 }
