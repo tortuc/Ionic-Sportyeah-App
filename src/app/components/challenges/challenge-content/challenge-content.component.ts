@@ -1,6 +1,10 @@
+import { UserService } from "src/app/service/user.service";
 import { take } from "rxjs/operators";
 import { Subject } from "rxjs";
-import { IChallenge } from "./../../../service/challenge.service";
+import {
+  ChallengeService,
+  IChallenge,
+} from "./../../../service/challenge.service";
 import { Component, OnInit, Input } from "@angular/core";
 
 @Component({
@@ -13,7 +17,8 @@ export class ChallengeContentComponent implements OnInit {
   @Input() destroy: Subject<void>;
   @Input() pauseS: Subject<void>;
   @Input() scrollEvent: Subject<void>;
-  scrollEvent$:any;
+  scrollEvent$: any;
+  public viewVerified: boolean = false;
   public pauseVideo: boolean = false;
   public n: number = Math.random();
   public video = null;
@@ -25,7 +30,10 @@ export class ChallengeContentComponent implements OnInit {
   public intervalID: any = null;
   public paused: boolean = false;
 
-  constructor() {}
+  constructor(
+    public userService: UserService,
+    public cService: ChallengeService
+  ) {}
 
   ngOnInit() {
     console.log("ON INIT");
@@ -93,7 +101,7 @@ export class ChallengeContentComponent implements OnInit {
   }
   subscribeDestroy() {
     this.destroy.pipe(take(1)).subscribe(() => {
-      console.log('Destroying videos');
+      console.log("Destroying videos");
       this.scrollEvent$.unsubscribe();
       this.oneVideo ? this.destroyOneVideo() : this.destroyTwoVideos();
       this.Mostrar = false;
@@ -116,10 +124,6 @@ export class ChallengeContentComponent implements OnInit {
 
   // FUNCION QUE VERIFICA SI ESTA EL VIDEO EN PANTALLA PARA ACTIVARLO.
   isScrolledIntoView() {
-    console.log('##################');
-    console.log(this.n);
-    console.log('##################');
-
     const rect = this.video.getBoundingClientRect();
     const topShown = rect.top >= 0;
     const bottomShown = rect.bottom <= window.innerHeight;
@@ -128,6 +132,7 @@ export class ChallengeContentComponent implements OnInit {
         if (!this.pauseVideo) {
           this.video.play();
           this.paused = false;
+          this.viewVerified ? null : this.verifyViews();
         }
       } else {
         if (!this.paused) {
@@ -137,6 +142,23 @@ export class ChallengeContentComponent implements OnInit {
         }
       }
     }
+  }
+
+  verifyViews() {
+    this.Challenge.views.indexOf(this.userService.User._id) !== -1
+      ? (this.viewVerified = true)
+      : this.createView();
+  }
+
+  createView() {
+    this.viewVerified = true;
+    this.Challenge.views.push(this.userService.User._id);
+    this.cService
+      .updateViews(this.Challenge._id, this.Challenge.views)
+      .subscribe(
+        (r) => {},
+        (e) => {}
+      );
   }
   pause() {
     if (this.oneVideo) {
