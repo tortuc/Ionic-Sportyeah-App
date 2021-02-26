@@ -24,21 +24,24 @@ Iniciar sportyeah
 
 1. Siempre al finalizar la jornada hacer ionic build y ver los errores solucionarlos y merge master.
 
-## TAREAS DESAFIOS 26-02-2021
+## TAREAS DESAFIOS 27-02-2021
 
 1. Reto solidario descripcion y toggle mas imagen tipo banner.
 2. Al subir un desafio abrir una modal de comparticion y mostrar link para compartir y en esa modal le saldra la opcion de retar a sus seguidores.
 3. Logica para compartir reto a amigos.
 4. Permitir enviar mensaje privado con el reto por whatsapp.
-5. Visualizacion del numero de visualizaciones del reto. cumplido.
-6. Poder ver las reacciones dejadas al darle click a las reacciones.
-7. Buscador de retos.
-8. Buscador de imagenes gratis.
-9. Logo a la izquierda del numero por posicion.
-10. Quitar console.logs de toda la parte de desafios.
-11. Colocar limite de intentos a 3. cumplido.
-12. Mostrar los intentos. cumplido.
-13. Colocar max height al tamano de los videos.
+5. Poder ver las reacciones dejadas al darle click a las reacciones.
+6. Buscador de retos.
+7. Buscador de imagenes gratis.
+8. Logo a la izquierda del numero por posicion.
+9. Quitar console.logs de toda la parte de desafios.
+10. Colocar max height al tamano de los videos.
+
+## TAREAS DESAFIOS 26-02-2021
+
+1. Colocar limite de intentos a 3. cumplido.
+2. Visualizacion del numero de visualizaciones del reto. cumplido.
+3. Mostrar los intentos. cumplido.
 
 ## TAREAS DESAFIOS 25-02-2021
 
@@ -69,7 +72,7 @@ Faltante:
 
 1. Premio solidario descripcion y toggle.
 2. Al subir un desafio abrir una modal de comparticion y mostrar link para compartir y en esa modal le saldra la opcion de retar a sus seguidores. Cumplido.
-Logica para compartir reto a amigos.
+   Logica para compartir reto a amigos.
 3. Permitir enviar mensaje privado con el reto por whatsapp.
 4. Visualizacion del numero de visualizaciones del reto.
 5. Poder ver las reacciones dejadas al darle click a las reacciones.

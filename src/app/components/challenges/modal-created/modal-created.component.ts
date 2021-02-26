@@ -10,6 +10,7 @@ export class ModalCreatedComponent implements OnInit {
   challengeLink: string =
     "https://localhost:8100/challenge/abcjiajkasjdufeiwrjqr";
   users: any[] = null;
+  name:string = '';
 
   constructor(public userService: UserService) {}
 
