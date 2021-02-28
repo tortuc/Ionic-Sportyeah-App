@@ -66,7 +66,6 @@ export class ChallengesPage implements OnInit {
           this.getUsers(r.challenges);
         },
         (err) => {
-          console.log(err);
         }
       );
   }
@@ -196,7 +195,6 @@ export class ChallengesPage implements OnInit {
 
   like(type: string, img: string) {
     this.myVote = img;
-    console.log(this.myVote);
     const reaction = {
       userReference: {
         appName: "SportYeah",
@@ -208,17 +206,14 @@ export class ChallengesPage implements OnInit {
       .createReaction({ reaction, referenceId: this.challenge.challenging._id })
       .pipe(take(1))
       .subscribe((r) => {
-        console.log(r);
         this.reactionoff();
       });
   }
 
   loadData(e) {
-    console.log(e);
     this.index += 1;
     if (this.challenges[this.index])
       this.showc.push(this.challenges[this.index]);
-    console.log(this.showc);
     this.infiniteScroll.complete();
   }
 

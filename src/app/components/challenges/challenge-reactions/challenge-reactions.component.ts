@@ -74,7 +74,8 @@ export class ChallengeReactionsComponent implements OnInit {
               (reaction) => reaction.level === r2.reaction
             )[0];
         },
-        (err) => console.log(err)
+        (err) => {
+        }
       );
   }
   time: boolean = false;

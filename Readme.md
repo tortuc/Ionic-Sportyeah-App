@@ -24,6 +24,14 @@ Iniciar sportyeah
 
 1. Siempre al finalizar la jornada hacer ionic build y ver los errores solucionarlos y merge master.
 
+## NOTAS QA JOGEIKER LIZARRAGA
+
+1. No se puede reproducir el video.
+2. Boton de usuario que subio el reto redirige a mi perfil no al otro.
+3. Al moverme al perfil de otra persona me desaparece los videos al volver.
+4. Slider de intentos.
+5. Los preomios deben llevar condicion.
+
 ## TAREAS DESAFIOS 27-02-2021
 
 1. Reto solidario descripcion y toggle mas imagen tipo banner.
