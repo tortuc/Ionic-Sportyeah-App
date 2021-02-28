@@ -31,8 +31,11 @@ Iniciar sportyeah
 3. Al moverme al perfil de otra persona me desaparece los videos al volver.
 4. Slider de intentos.
 5. Los preomios deben llevar condicion.
+6. Al no dar permisos de camara debe mostrar un mejor error.
+7. La descripcion de los premios no se muestra correctamente.
+8. Debe mostrar pantalla de carga una vez pida la data en videos-c.
 
-## TAREAS DESAFIOS 27-02-2021
+## TAREAS DESAFIOS 01-03-2021
 
 1. Reto solidario descripcion y toggle mas imagen tipo banner.
 2. Al subir un desafio abrir una modal de comparticion y mostrar link para compartir y en esa modal le saldra la opcion de retar a sus seguidores.

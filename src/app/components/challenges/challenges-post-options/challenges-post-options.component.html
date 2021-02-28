@@ -16,7 +16,7 @@
 </div>
 <div
   class="text-center"
-  *ngIf="Challenge.awards.length > 0 || Challenge.intentos.length > 0"
+  *ngIf="Challenge.awards.length > 0 || Challenge.intentos?.length > 0"
 >
   <ion-button *ngIf="Challenge.awards.length > 0" (click)="showAwards()"
     ><ion-icon name="trophy-outline"></ion-icon>
@@ -25,7 +25,7 @@
   <ion-button
     shape="round"
     fill="solid"
-    *ngIf="Challenge.intentos.length > 0"
+    *ngIf="Challenge.intentos?.length > 0"
     (click)="openTrys()"
     >{{ "verIntentos" | translate }}</ion-button
   >
