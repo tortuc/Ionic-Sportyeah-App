@@ -37,7 +37,6 @@ export class CamaraBrowserComponent implements OnInit {
           });
           handleSuccess(stream);
         } catch (e) {
-          console.log(e);
           errorMsgElement.innerHTML = `navigator.getUserMedia error:${e.toString()}`;
         }
       }
@@ -72,7 +71,6 @@ export class CamaraBrowserComponent implements OnInit {
           .uploadVideo(form)
           .pipe(take(1))
           .subscribe((r) => {
-            console.log(r);
             this.media.emit(r);
           });
       }

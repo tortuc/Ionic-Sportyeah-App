@@ -53,13 +53,10 @@ export class ChallengeCommentsComponent implements OnInit {
     window.onclick = () => {
       this.emoji = false;
     };
-    console.log(this.referenceId);
-    console.log(this.comments);
     this.actualizar();
   }
 
   loadData() {
-    console.log(this.index);
     let anterior = this.index;
     this.index += 8;
     let comments = [];
@@ -84,7 +81,6 @@ export class ChallengeCommentsComponent implements OnInit {
     const r: any = await this.challengeService
       .getById(this.challenge)
       .toPromise();
-    console.log(r.challenge.challenged.comments);
     this.commentsShown = [];
     this.index = 0;
     this.comments = r.challenge.challenged.comments.reverse();
@@ -165,7 +161,6 @@ export class ChallengeCommentsComponent implements OnInit {
   }
 
   send() {
-    console.log(this.form.value);
     const user = {
       appName: "SportYeah",
       referenceId: this.userService.User._id,
@@ -183,7 +178,6 @@ export class ChallengeCommentsComponent implements OnInit {
       .createComment(body)
       .pipe(take(1))
       .subscribe((r: any) => {
-        console.log(r);
         this.actualizar();
       });
     this.form.controls.message.setValue("");

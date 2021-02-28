@@ -36,7 +36,6 @@ export class ChallengeContentComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    console.log("ON INIT");
     // SE SUBSCRIBE PARA DESTRUIR EL VIDEO EN CASO DE SER NECESARIO.
     this.subscribeDestroy();
     // VERIFICA SI LOS VIDEOS ESTAN INICIALIZADOS
@@ -101,7 +100,6 @@ export class ChallengeContentComponent implements OnInit {
   }
   subscribeDestroy() {
     this.destroy.pipe(take(1)).subscribe(() => {
-      console.log("Destroying videos");
       this.scrollEvent$.unsubscribe();
       this.oneVideo ? this.destroyOneVideo() : this.destroyTwoVideos();
       this.Mostrar = false;

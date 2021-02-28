@@ -22,7 +22,6 @@ export class CreateChallengeFormComponent implements OnInit {
   ngOnInit() {}
 
   saveForm(){
-    console.log(this.form.value);
     this.next.emit(this.form.value);
   }
 }

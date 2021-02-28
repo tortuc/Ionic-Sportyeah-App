@@ -59,7 +59,6 @@ export class CreateChallengeComponent implements OnInit {
 
   ngOnInit() {
     if (this.challenged !== null) {
-      console.log(this.Challenge);
       this.retoExistente = true;
       this.form = {
         title: this.Challenge.title,
@@ -99,7 +98,6 @@ export class CreateChallengeComponent implements OnInit {
   }
 
   nextAward(awards) {
-    console.log(awards);
     if (awards) {
       this.step3 = false;
       this.step4 = true;
@@ -110,15 +108,12 @@ export class CreateChallengeComponent implements OnInit {
   }
 
   saveAward($event) {
-    console.log($event);
     if ($event) this.awards.push($event.event);
     this.createAward = false;
     this.step3 = true;
   }
 
   async saveChallenge() {
-    // console.log(this.form.value);
-    console.log(this.awards);
     const loading = await this.loadingI();
     const userReference: IUserc = {
       appName: "SportYeah",
@@ -146,7 +141,6 @@ export class CreateChallengeComponent implements OnInit {
         challenges: [],
       };
     } else {
-      console.log(this.challenged);
       newChallenge = {
         challenging: this.challenged._id,
         challenged: challenged,
@@ -164,7 +158,6 @@ export class CreateChallengeComponent implements OnInit {
       .pipe(take(1))
       .subscribe(
         async (r: IChallenge) => {
-          console.log(r);
           loading.dismiss();
           const toast = await this.toast.create({
             message: `Desafío creado.`,
@@ -174,7 +167,6 @@ export class CreateChallengeComponent implements OnInit {
           this.mc.dismiss();
         },
         (err) => {
-          console.log(err);
         }
       );
   }
