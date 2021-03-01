@@ -1,0 +1,45 @@
+
+<ion-header>
+  <ion-toolbar class="bg-gradient-person">
+    <ion-buttons slot="start">
+      <ion-back-button style="color: white"></ion-back-button>
+    </ion-buttons>
+  <!--   <ion-buttons slot="end">
+      <ion-icon style="color: white;font-size:30px;cursor: pointer;" name="person-outline" [routerLink]="'/profile'"></ion-icon>
+    </ion-buttons> -->
+    <ion-title style="--color: white">{{ 'news.streaming'| translate}}</ion-title>
+    
+  </ion-toolbar>
+</ion-header>
+<ion-content *ngIf="!listoPublicar" class="bg-gradient-person">
+  <ion-grid>
+    <ion-row  class="rowStyle">
+      <ion-col size="12">
+        <ion-grid>
+          <ion-row >
+            <ion-col  style="text-align: center;" *ngIf="!isSubscribe">
+              <ion-button  (click)="subscribe()">subcribir Call</ion-button>
+            </ion-col>
+
+            <ion-col  style="text-align: center;"  *ngIf="isSubscribe">
+              <ion-button   (click)="unSubscribe()">unSubscribe Call</ion-button>
+            </ion-col>
+
+          </ion-row>
+        </ion-grid>
+      </ion-col>
+       
+        <ion-col style="text-align: center;" size="12">
+        <div style="margin-left: auto;margin-right: auto; width: 57%;">     
+          <div *ngIf="isSubscribe" id="localPlayer" class="player"></div>
+         
+          <div class="w-100"></div>   
+          <!-- <div id="remotePlayerlist"></div> -->       
+        </div>
+      </ion-col>
+<!--         <ion-input  style="background: white; color: black;" placeholder="channel" [(ngModel)]="channel"></ion-input>
+ -->  
+      
+    </ion-row>
+  </ion-grid>
+</ion-content>

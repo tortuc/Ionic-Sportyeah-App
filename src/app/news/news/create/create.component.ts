@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild  } from '@angular/core';
+import { Component, OnInit   } from '@angular/core';
 //import { FormBuilder, FormControl,FormGroup} from '@angular/forms';
 import { TranslateService } from "@ngx-translate/core";
 import { UserService } from "../../../service/user.service";
@@ -10,7 +10,7 @@ import { JdvimageService } from 'src/app/service/jdvimage.service';
 import { NewsService } from '../../../service/news.service';
 import { ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
- 
+
 const { Camera ,Filesystem} = Plugins;
 
 @Component({
@@ -19,7 +19,6 @@ const { Camera ,Filesystem} = Plugins;
   styleUrls: ['./create.component.scss'],
 })
 export class CreateComponent implements OnInit {
-
 
 constructor(
     private fb:FormBuilder,
@@ -33,8 +32,8 @@ constructor(
     public toastController: ToastController,
     private router:Router,
 
-  ) { }
-
+  ) {  }
+ 
 
   form = this.fb.group({
     user:['',[Validators.required]],
@@ -45,7 +44,9 @@ constructor(
     principalVideo:['',[Validators.required]],
     origin:['',[Validators.required]],
     originPrincipaMedia:['',[Validators.required]],
-    sport:['',[Validators.required]]
+    sport:['',[Validators.required]],
+    stream:['',[Validators.required]],
+    postStream:['',[Validators.required]],
   })
 
   async presentToastWithOptions() {
@@ -67,6 +68,8 @@ publicar(){
     this.form.value.content = this.parrafos
     this.form.value.origin = this.origen
     this.form.value.originPrincipaMedia = this.originPrincipaMedia
+    this.form.value.stream = false;
+    this.form.value.postStream = null
 
     this.form.value.sport = this.deporte
    this.newsService.create(this.form.value).subscribe((response)=>{
@@ -600,8 +603,23 @@ originPrincipaMediaListo(){
   this.agregandoOrigenPrincipaMedia = !this.agregandoOrigenPrincipaMedia;
 }
 
-  ngOnInit(): void {
- 
+
+//Stream
+id;
+ makeid(length) {
+  var result           = '';
+  var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  var charactersLength = characters.length;
+  for ( var i = 0; i < length; i++ ) {
+     result += characters.charAt(Math.floor(Math.random() * charactersLength));
+  }
+ return result
+}
+createStream(){
+  this.router.navigate([`/news/createStream/${this.makeid(22)}`])
+}
+   ngOnInit(): void {
+  
   }
  
 

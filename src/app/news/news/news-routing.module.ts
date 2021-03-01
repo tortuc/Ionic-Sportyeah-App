@@ -4,6 +4,8 @@ import { CreateComponent } from './create/create.component';
 import { NewsPage } from './news.page';
 import { ReadComponent } from './read/read.component'
 import { EditComponent } from './edit/edit.component';
+import { StreamComponent } from './stream/stream.component';
+import { CreateStreamComponent } from './create-stream/create-stream.component';
 
 const routes: Routes = [
   {
@@ -21,6 +23,14 @@ const routes: Routes = [
   {
     path: 'edit/:id',
     component: EditComponent
+  },
+  {
+    path: 'streamNews/:id',
+    component: StreamComponent
+  },
+  {
+    path: 'createStream/:id',
+    component: CreateStreamComponent
   },
 ];
 

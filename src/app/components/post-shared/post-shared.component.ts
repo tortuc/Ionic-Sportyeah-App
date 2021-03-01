@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { IPost,INew } from 'src/app/models/iPost';
 import { UserService } from 'src/app/service/user.service';
 import { NewsService } from 'src/app/service/news.service';
+import { response } from 'express';
 
 @Component({
   selector: 'post-shared',
@@ -22,8 +23,19 @@ export class PostSharedComponent implements OnInit {
   @Input() newsShared: INew
 
   @Input() disabled:boolean = false
-  ngOnInit() {console.log(this.newsShared)
+  ngOnInit() {
+    if(this.news){
+      this.userService.getUserById(this.news.user).subscribe((response:any)=>{
+        delete(response.password)
+        delete(response.email)
+        this.news.user = response
+      })
+    }
   }
+
+goToStream(){
+  this.router.navigate([`/news/streamNews/${this.news.postStream}`])
+}
 
   goToProfile(id,username){
     if(id == this.userService.User._id){

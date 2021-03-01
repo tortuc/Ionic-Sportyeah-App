@@ -212,7 +212,28 @@
                     <h3 style="color:white" >{{ 'news.newNews' | translate }}</h3>
                   </ion-text>
                   <ion-button  (click)="todoConOrigen()" [disabled]="(titulo1 != null && titulo1 != '') && (deporte != null && deporte != '') && ((urlVideo != null && urlVideo != '') || (parrafos.length > 0)) && ((origen != null && origen != '')) ?false:true"  >Listo para publicar</ion-button>
+                  <ion-button  (click)="createStream()"  >Transmitir</ion-button>
+
                 </ion-col>
+               <!--  <ion-col size="12">
+                  <ion-select [(ngModel)]="formateSelected">
+                    <ion-select-option  *ngFor="let video of videoProfiles" [value]="sport" >{{video.value}}</ion-select-option>              
+                  </ion-select>
+                  <button (click)="startBasicCall()">Start Call</button>
+                  <button (click)="subscribe()">subcribir Call</button>
+                  <button (click)="leaveCall()">leave Call</button>
+
+                  <div class="row video-group">
+                      <p id="local-player-name" class="player-name"></p>
+                      <div id="localPlayer" class="player"></div>
+                    
+                    <div class="w-100"></div>
+                   
+                      <div id="remote-playerlist"></div>
+                  
+                  </div>
+                
+                </ion-col> -->
         <ion-col size="12">
           <div style="background:white; text-align: center;width: 85%;margin: auto;">
            

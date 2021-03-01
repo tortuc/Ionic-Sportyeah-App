@@ -71,7 +71,6 @@ export class ProfilePage implements OnInit {
       .findUserNews(this.userService.User._id)
       .subscribe((response: any) => {
         this.news = response;
-        console.log(response);
       });
 
     this.loginService.getIP().subscribe((geo) => {

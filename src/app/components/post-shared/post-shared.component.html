@@ -20,7 +20,7 @@
   </ion-card>
 </div>
 
-<div *ngIf="news" [ngClass]="{'disabled':disabled}">
+<div *ngIf="news && news.stream == false" [ngClass]="{'disabled':disabled}">
   <ion-card style="width: 40%;margin: auto;height: 82%; cursor: pointer;" (click)="OpenNews()">
     <ion-card-header>
       <ion-card-subtitle style="text-align: center;">{{ 'sport.'+news.sport| translate}}</ion-card-subtitle>
@@ -49,6 +49,24 @@
       </video>
     </div> 
   </ion-card>
+</div>
+<div *ngIf="news && news.stream == true" (click)="goToStream()" [ngClass]="{'disabled':disabled}">
+  <ion-grid>
+    <ion-row>
+      <ion-col style="margin-top: -40px;text-align: center;" size="12">
+        <ion-text  color="black">
+          <h1 style="font-size:20px; color: black;">{{news.user.name}} {{news.user.last_name}} </h1>
+          <h3 style="font-size:10px">Esta transmitiendo bajo el nomre de: </h3><br>
+        </ion-text>
+        <ion-text  color="black">
+          <h3 style="font-size:15px; color: black;">{{news.headline}}</h3>
+        </ion-text>
+      </ion-col>
+      <ion-col style="text-align: center;" size="12">
+        <ion-button (click)="goToStream()" >Ver Stream </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </div>
 
 <!-- Se usa cuando proviene del shared-Post -->

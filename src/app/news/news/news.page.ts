@@ -38,8 +38,10 @@ export class NewsPage implements OnInit {
   
   ngOnInit() {
     this.newsService.find().subscribe((response:any)=>{
-      this.news = response;
-      response.forEach((news)=>{
+      this.news = response.filter((news)=>{
+        return news.stream == false;
+      })
+      this.news .forEach((news)=>{
         let noticia = news.user._id
         for(let user of this.userService.followings){
           if(noticia == user.user._id ){

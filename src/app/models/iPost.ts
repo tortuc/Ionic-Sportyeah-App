@@ -22,6 +22,8 @@ export interface INew {
     sport:string
     date:Date
     edited:Date
+    stream  : boolean,
+    postStream : string
 }
 
 export interface ILike {
