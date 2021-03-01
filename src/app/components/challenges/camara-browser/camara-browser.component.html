@@ -1,0 +1,28 @@
+<!-- <p> -->
+<div class="video-wrap text-center bg-black">
+  <video id="video2" autoplay style="height: 300px"></video>
+</div>
+
+<!-- Trigger canvas web API -->
+<div class="controller text-center" style="height: 100px">
+  <ion-button (click)="startRecording.next()" *ngIf="!recording"
+    ><ion-icon name="play-outline"></ion-icon
+    >{{ "recording.start" | translate }}</ion-button
+  >
+  <ion-button (click)="pause()" *ngIf="recording && !paused">
+    <ion-icon name="stop-circle-outline"></ion-icon>
+    {{ "recording.pause" | translate }}</ion-button
+  >
+  <ion-button (click)="reanude()" *ngIf="recording && paused"
+    ><ion-icon name="stop-circle-outline"></ion-icon
+    >{{ "recording.reanude" | translate }}</ion-button
+  >
+  <ion-button (click)="stopRecording.next()" *ngIf="recording"
+    ><ion-icon name="stop-outline"></ion-icon
+    >{{ "recording.stop" | translate }}</ion-button
+  >
+</div>
+
+<!-- Webcam video snapshot -->
+<span id="errorMsg"></span>
+<!-- </p> -->

@@ -1,12 +1,18 @@
-import { IComment } from "./../models/iPost";
-import { IChallenge } from "./../service/challenge.service";
-import { ChallengeReactionsComponent } from "../components/challenges/challenge-reactions/challenge-reactions.component";
+import { ModalCreatedComponent } from "./../components/challenges/modal-created/modal-created.component";
+import { Subject } from "rxjs";
 import { UserService } from "./../service/user.service";
 import { take } from "rxjs/operators";
 import { CreateChallengeComponent } from "../components/challenges/create/create.component";
 import { IonContent, IonInfiniteScroll, ModalController } from "@ionic/angular";
 import { TranslateService } from "@ngx-translate/core";
-import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
+import {
+  Component,
+  OnInit,
+  ViewChild,
+  ElementRef,
+  OnDestroy,
+  EventEmitter,
+} from "@angular/core";
 import { ChallengeService } from "../service/challenge.service";
 import { ChallengeCommentsComponent } from "../components/challenges/challenge-comments/challenge-comments.component";
 
@@ -22,7 +28,14 @@ export class ChallengesPage implements OnInit {
   @ViewChild("img") img: ElementRef;
   @ViewChild("like") likee: ElementRef;
   @ViewChild(IonContent) content: IonContent;
+
+  // FOR START THE VIDEO IF IS IN SCREEN.
+  public scrollEvent: Subject<void> = new Subject();
+  // PARA DESTRUIR EL DESAFIO Y NO SE SOBRECARGUE EL SISTEMA.
+  public destroy: Subject<void> = new Subject<void>();
+
   public myVote: any = null;
+
   public time: boolean = false;
   public challenges: any[] = null;
   public scrolling: boolean = true;
@@ -41,18 +54,21 @@ export class ChallengesPage implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.destroy.next();
     this.index = 0;
     this.challengeNumber = 0;
-    this.showc = []
+    this.showc = [];
     this.challengeService
       .getAll()
       .pipe(take(1))
       .subscribe(
         (r: any) => {
+          console.log('%cStop!', "color:red;font-family:system-ui;font-size:5rem;-webkit-text-stroke: 1px black;font-weight:bold");
+          console.log('%cHackers can hack you if you open this dev tools!', "color:red;font-family:system-ui;font-size:2rem;-webkit-text-stroke: 1px black;font-weight:bold");
+          console.log('Challenges',r.challenges);
           this.getUsers(r.challenges);
         },
         (err) => {
-          console.log(err);
         }
       );
   }
@@ -60,7 +76,6 @@ export class ChallengesPage implements OnInit {
   reactionoff() {
     this.reactionsBool = false;
     this.time = false;
-    // this.reacts.nativeElement.style.display = "none";
     this.reacts.nativeElement.classList.remove("show");
   }
   reactionsOFF() {
@@ -74,7 +89,6 @@ export class ChallengesPage implements OnInit {
   reactionsON() {
     clearTimeout(this.timeOutClose);
     this.timeOut = setTimeout(() => this.reactionon(), 100);
-    //this.time = true;
   }
   Close() {
     if (this.reacts.nativeElement.classList.contains("show")) {
@@ -114,7 +128,16 @@ export class ChallengesPage implements OnInit {
         challenged: null,
       },
     });
-    // modal.onDidDismiss().then(() => this.ngOnInit());
+    modal.onDidDismiss().then(() => this.modalFinishedCreated());
+    await modal.present();
+  }
+
+  async modalFinishedCreated() {
+    const modal = await this.mc.create({
+      component: ModalCreatedComponent,
+      cssClass: "a",
+      componentProps: null,
+    });
     await modal.present();
   }
 
@@ -175,7 +198,6 @@ export class ChallengesPage implements OnInit {
 
   like(type: string, img: string) {
     this.myVote = img;
-    console.log(this.myVote);
     const reaction = {
       userReference: {
         appName: "SportYeah",
@@ -187,17 +209,26 @@ export class ChallengesPage implements OnInit {
       .createReaction({ reaction, referenceId: this.challenge.challenging._id })
       .pipe(take(1))
       .subscribe((r) => {
-        console.log(r);
         this.reactionoff();
       });
   }
 
   loadData(e) {
-    console.log(e);
     this.index += 1;
     if (this.challenges[this.index])
       this.showc.push(this.challenges[this.index]);
-    console.log(this.showc);
     this.infiniteScroll.complete();
+  }
+
+  ionViewWillLeave() {
+    this.destroyVid();
+  }
+
+  destroyVid() {
+    this.destroy.next();
+  }
+
+  sendScrollEvent() {
+    this.scrollEvent.next();
   }
 }

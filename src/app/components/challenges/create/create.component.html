@@ -1,109 +1,76 @@
-<ion-content>
-  <input
-    #fileChooser
-    (change)="img.uploadFile($event)"
-    hidden="true"
-    accept="video/*"
-    type="file"
-  />
-  <div class="text-center" *ngIf="!award">
-    <div
-      *ngIf="form.value.challenge === '' || novideo"
-      style="margin-top: 20px"
+<ion-header>
+  <ion-toolbar class="bg-gradient-person">
+    <ion-title style="--color: white" *ngIf="!retoExistente"
+      ><ion-icon name="medal-outline" style="margin-right: 10px;"></ion-icon
+      >{{ "challenge.createChallenge" | translate }}</ion-title
     >
-      <img
-        src="https://img.icons8.com/nolan/64/image.png"
-        alt=""
-        style="width: 100px; cursor: pointer"
-        (click)="challenge()"
-      />
-      <h6 style="color: grey">{{ "challenge.upload" | translate }}</h6>
-    </div>
-    <div *ngIf="form.value.challenge !== '' && !novideo">
-      <video
-        controlslist="nodownload"
-        controls="controls"
-        preload="metadata"
-        id="video"
-        webkit-playsinline="webkit-playsinline"
-        class="videoPlayer"
-      >
-        <source [src]="form.value.challenge | safeUrl" type="video/mp4" />
-        <source [src]="form.value.challenge | safeUrl" type="video/ogg" />
-        <br />
-      </video>
-      <ion-button color="primary" (click)="challenge()">
-        {{ "uploadAgain" | translate }}
-      </ion-button>
-    </div>
+    <ion-title style="--color: white" *ngIf="retoExistente"
+      ><ion-icon name="medal-outline" style="margin-right: 10px;"></ion-icon
+      >{{ "challenge.acceptChallenge" | translate }}</ion-title
+    >
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div *ngIf="step0" class="text-center" style="padding-bottom:100px;">
+    <video
+      controlslist="nodownload"
+      style="background-color: black;"
+      controls="controls"
+      preload="metadata"
+      webkit-playsinline="webkit-playsinline"
+      class="videoPlayer"
+    >
+      <source [src]="Challenge.challenged.media | safeUrl" type="video/mp4" />
+      <source [src]="Challenge.challenged.media | safeUrl" type="video/ogg" />
+      <br />
+    </video>
 
-    <div class="text-center">
-      <ion-list>
-        <ion-item>
-          <ion-label>{{ "challenge.public" | translate }}</ion-label>
-          <ion-toggle color="primary" [(ngModel)]="public"></ion-toggle>
-        </ion-item>
-      </ion-list>
+    <h3>{{ Challenge.title }}</h3>
+    <br />
+    <p>{{ Challenge.description }}</p>
+    <br />
+    <div class="text-center" *ngIf="Challenge.awards.length > 0">
+      <ion-button (click)="showAwards()"
+        ><ion-icon name="trophy-outline"></ion-icon
+        >{{ "challenge.awards" | translate }}</ion-button
+      >
     </div>
-    <!-- CHALLENGE FORM -->
-    <form [formGroup]="form" [hidden]="!createAward">
-      <ion-item>
-        <ion-label position="floating">
-          {{ "challenge.title" | translate }}
-        </ion-label>
-        <ion-input type="text" formControlName="title"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label position="floating">
-          {{ "challenge.description" | translate }}
-        </ion-label>
-        <ion-textarea type="text" formControlName="description"></ion-textarea>
-      </ion-item>
-    </form>
+    <ion-button expand="full" (click)="ready()" class="bottom-button">{{
+      "ready" | translate
+    }}</ion-button>
   </div>
-  <!-- AWARD FORM -->
+  <app-videos-c *ngIf="step1" (next)="guardarMedia($event)"></app-videos-c>
+  <app-create-challenge-form
+    *ngIf="step2"
+    (next)="guardaForm($event)"
+  ></app-create-challenge-form>
+  <app-awards-list
+    *ngIf="step3"
+    [awards]="awards"
+    [creator]="true"
+    (next)="nextAward($event)"
+  ></app-awards-list>
   <app-create-award-challenge
-    [hidden]="!award"
+    *ngIf="createAward"
     (save)="saveAward($event)"
   ></app-create-award-challenge>
-  <div
-    class="text-center"
-    style="margin-top: 20px"
-    [hidden]="award"
-    *ngIf="createAward"
-  >
-    <ion-button (click)="award = true">
-      <ion-icon name="trophy-outline"></ion-icon>
-      {{ "challenge.createAward" | translate }}
-    </ion-button>
-  </div>
-
-  <!-- <ion-list *ngIf="!award">
-    <ion-item *ngFor="let a of awards; let i = index">
-      <ion-avatar>
-        <img [src]="a.media" />
-      </ion-avatar>
-      <p style="font-weight: bold; margin-left: 30px; margin-right: 10px">
-        {{ a.place }}
-      </p>
-      <p>{{ a.title }}</p>
-      <ion-icon
-        (click)="awards.splice(i, 1)"
-        name="trash-outline"
-        style="cursor: pointer; color: red; right: 30px; position: absolute"
-      ></ion-icon>
-    </ion-item>
-  </ion-list> -->
-  <app-awards-list *ngIf="!award" [awards]="awards" [creator]="true"></app-awards-list>
-  <div class="text-center" style="margin-top: 20px" *ngIf="!award">
+  <div class="text-center" *ngIf="step4">
+    <ion-list>
+      <ion-item>
+        <ion-label>{{ "challenge.public" | translate }}</ion-label>
+        <ion-toggle color="primary" [(ngModel)]="public"></ion-toggle>
+      </ion-item>
+    </ion-list>
     <ion-button
-      [disabled]="form.status !== 'VALID' || videoInvalid === true"
+      shape="round"
+      expand="full"
+      class="bottom-button"
       (click)="saveChallenge()"
+      ><ion-icon name="medal"></ion-icon
+      >{{ "challenge.create" | translate }}</ion-button
     >
-      {{ "save" | translate }}
-    </ion-button>
-    <ion-button color="light" (click)="mc.dismiss()">
-      {{ "back" | translate }}
-    </ion-button>
   </div>
 </ion-content>
+<ion-button color="light" (click)="mc.dismiss()">
+  {{ "back" | translate }}
+</ion-button>

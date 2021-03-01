@@ -54,7 +54,6 @@ export class CreateAwardChallengeComponent implements OnInit {
   }
 
   saveAward() {
-    console.log(this.form);
     this.save.emit({ event: this.form });
     this.reset();
   }

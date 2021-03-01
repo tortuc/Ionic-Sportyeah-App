@@ -4,11 +4,11 @@
 >
   <ion-img
     class="img-user-mini"
-    [src]="Challenge.challenging.userId.data.photo"
+    [src]="Challenge.challenged.userId.data.photo"
   ></ion-img>
   <div
     class="connectedDIVlittlePost"
-    *ngIf="Challenge.challenging.userId.data.connected"
+    *ngIf="Challenge.challenged.userId.data.connected"
   ></div>
 </ion-avatar>
 <div class="user-name">
@@ -17,11 +17,11 @@
     (click)="
       userService.goToProfile(Challenge.challenging.userId.data.username)
     "
-    >{{ Challenge.challenging.userId.data.name }}
-    {{ Challenge.challenging.userId.data.last_name }}</span
+    >{{ Challenge.challenged.userId.data.name }}
+    {{ Challenge.challenged.userId.data.last_name }}</span
   ><br />
   <span class="profile-name dateC">{{
-    Challenge.modifiedAt | customDisplayDate
+    date | customDisplayDate
   }}</span>
 
   <p style="white-space: pre-wrap" class="text-center">
@@ -31,11 +31,3 @@
     ></span>
   </p>
 </div>
-<ion-icon
-  *ngIf="
-    Challenge.challenging.userId.data._id == userService.User?._id &&
-    displayOptions
-  "
-  name="chevron-down"
-  class="options-down"
-></ion-icon>

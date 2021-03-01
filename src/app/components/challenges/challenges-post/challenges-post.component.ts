@@ -1,3 +1,4 @@
+import { Subject } from 'rxjs';
 import { IChallenge } from '../../../service/challenge.service';
 import { Component, OnInit, Input } from '@angular/core';
 
@@ -8,6 +9,9 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class ChallengesPostComponent implements OnInit {
   @Input() Challenge: IChallenge;
+  @Input() destroy: Subject<void>;
+  @Input() scrollEvent: Subject<void>;
+  pause: Subject<void> = new Subject();
 
   constructor() { }
 

@@ -1,0 +1,72 @@
+<input
+  #fileChooser
+  (change)="img.uploadFile($event)"
+  hidden="true"
+  accept="video/*"
+  type="file"
+/>
+<app-camara-browser *ngIf="videoHere" (media)="camaraBrowserAns($event)">
+</app-camara-browser>
+<div *ngIf="!media && !videoHere" style="margin-top: 20px" class="text-center">
+  <img
+    src="https://img.icons8.com/nolan/64/image.png"
+    alt=""
+    style="width: 100px; cursor: pointer"
+    (click)="challenge()"
+  />
+  <h6 style="color: grey">{{ "challenge.upload" | translate }}</h6>
+</div>
+<div *ngIf="media && !videoHere" class="text-center">
+  <video
+    controlslist="nodownload"
+    controls="controls"
+    preload="metadata"
+    id="video"
+    webkit-playsinline="webkit-playsinline"
+    class="videoPlayer bg-black"
+  >
+    <source [src]="media | safeUrl" type="video/mp4" />
+    <source [src]="media | safeUrl" type="video/ogg" />
+    <br />
+  </video>
+  <ion-button color="primary" (click)="again()">
+    {{ "uploadAgain" | translate }}
+  </ion-button>
+</div>
+<div
+  *ngIf="intentos.length > 0 && media"
+  class="text-center"
+  style="margin-bottom: 100px"
+>
+  <ion-list>
+    <ion-item>
+      <ion-label>{{ "intentos" | translate }}</ion-label>
+      <ion-toggle color="primary" [(ngModel)]="subirIntentos"></ion-toggle>
+    </ion-item>
+  </ion-list>
+  <hr />
+  <ion-row>
+    <ion-col *ngFor="let intento of intentos">
+      <video
+        controlslist="nodownload"
+        controls="controls"
+        preload="metadata"
+        id="video"
+        style="width: 80px; height: 80px"
+        webkit-playsinline="webkit-playsinline"
+        class="videoPlayer bg-black"
+      >
+        <source [src]="intento | safeUrl" type="video/mp4" />
+        <source [src]="intento | safeUrl" type="video/ogg" />
+        <br />
+      </video>
+    </ion-col>
+  </ion-row>
+</div>
+<ion-button
+  *ngIf="videoValid"
+  expand="full"
+  class="bottom-button"
+  (click)="nextFunc()"
+  >{{ "next" | translate }}</ion-button
+>

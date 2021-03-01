@@ -28,7 +28,7 @@
   <div
     class="circle"
     #circle
-    (click)="like(reaction.level, reaction.src)"
+    (click)="like(reaction.level)"
     *ngFor="let reaction of reactions"
   >
     <img #img [src]="reaction.src" alt="" />

@@ -1,3 +1,5 @@
+import { ShowAwardsComponent } from "./../show-awards/show-awards.component";
+import { PickerModule } from "@ctrl/ngx-emoji-mart";
 import { TranslateService } from "@ngx-translate/core";
 import {
   ChallengeService,
@@ -25,17 +27,24 @@ export class CreateChallengeComponent implements OnInit {
   @Input() challenged: IReference | null;
   @Input() Challenge: any;
   public public: boolean = true;
-  public form: FormGroup = this.fb.group({
-    challenge: ["", [Validators.required]],
-    title: ["", Validators.required],
-    description: ["", Validators.required],
-  });
+  public media: string = null;
   public awards: IAward[] = [];
-  public award: boolean = false;
-  public createAward: boolean = true;
+  public retoExistente: boolean = false;
   public instructions: string = null;
-  public videoInvalid: boolean = true;
-  public novideo: boolean = null;
+  form: any = null;
+  // STEPPERS
+
+  // description
+  step0: boolean = false;
+  // video
+  step1: boolean = true;
+  // form
+  step2: boolean = false;
+  // awards list
+  step3: boolean = false;
+  createAward: boolean = false;
+  // public or not
+  step4: boolean = false;
   constructor(
     public toast: ToastController,
     public fb: FormBuilder,
@@ -50,66 +59,70 @@ export class CreateChallengeComponent implements OnInit {
 
   ngOnInit() {
     if (this.challenged !== null) {
-      console.log(this.Challenge);
-      this.createAward = false;
-      this.form.controls.title.setValue(this.Challenge.title);
-      this.form.controls.description.setValue(this.Challenge.description);
+      this.retoExistente = true;
+      this.form = {
+        title: this.Challenge.title,
+        description: this.Challenge.description,
+      };
+      this.awards = this.Challenge.awards;
+      this.step0 = true;
+      this.step1 = false;
     }
   }
 
-  async challenge() {
-    this.novideo = true;
-    this.img.takeOnlyVideo(this.fileChooser);
-    this.img.content.pipe(take(1)).subscribe((r) => {
-      this.form.controls.challenge.setValue(r);
-      this.novideo = false;
-      const int = setInterval(() => {
-        if (this.verifyVideoMinutes() === 1) clearInterval(int);
-      }, 4000);
-    });
+  ready() {
+    this.step0 = false;
+    this.step1 = true;
+  }
+  intentos: any[] = [];
+  guardarMedia(res: any) {
+    this.media = res.media;
+    this.intentos = res.intentos;
+    this.step1 = false;
+    this.retoExistente ? (this.step4 = true) : (this.step2 = true);
   }
 
-  async alertINIT() {
-    const alert = await this.alert.create({
-      header: "Alert",
-      subHeader: this.trans.instant("challenge.videoErr"),
-      buttons: [this.trans.instant("challenge.repeat")],
-    });
-    await alert.present();
+  guardaForm(form: any) {
+    this.form = form;
+    this.step2 = false;
+    this.step3 = true;
   }
 
-  verifyVideoMinutes() {
-    const video: HTMLVideoElement = <HTMLVideoElement>(
-      document.getElementById("video")
-    );
-    console.log(video);
-    if (video && !isNaN(video.duration)) {
-      console.log(video.duration);
-      console.log(video.duration / 60 > 1);
-      if (video.duration / 60 > 1) {
-        this.alertINIT();
-      } else if (isNaN(video.duration)) {
-        this.alertINIT();
-      } else {
-        console.log("Video valido");
-        this.videoInvalid = false;
-      }
-      return 1;
+  async showAwards() {
+    const modal = await this.mc.create({
+      component: ShowAwardsComponent,
+      cssClass: "a",
+      componentProps: { awards: this.Challenge.awards },
+    });
+    await modal.present();
+  }
+
+  nextAward(awards) {
+    if (awards) {
+      this.step3 = false;
+      this.step4 = true;
+    } else {
+      this.step3 = false;
+      this.createAward = true;
     }
+  }
+
+  saveAward($event) {
+    if ($event) this.awards.push($event.event);
+    this.createAward = false;
+    this.step3 = true;
   }
 
   async saveChallenge() {
-    console.log(this.form.value);
-    console.log(this.awards);
     const loading = await this.loadingI();
     const userReference: IUserc = {
       appName: "SportYeah",
       referenceId: this.userService.User._id,
     };
 
-    const challenging: IReference = {
+    const challenged: IReference = {
       userId: userReference,
-      media: this.form.value.challenge,
+      media: this.media,
       reactions: [],
       comments: [],
       display: 0,
@@ -117,23 +130,26 @@ export class CreateChallengeComponent implements OnInit {
     var newChallenge: IChallenge = null;
     if (this.challenged === null) {
       newChallenge = {
-        challenging,
-        challenged: challenging,
+        challenging: challenged,
+        challenged: challenged,
+        intentos: this.intentos,
+        views: [],
         public: this.public,
         awards: this.awards,
-        title: this.form.value.title,
-        description: this.form.value.description,
+        title: this.form.title,
+        description: this.form.description,
         challenges: [],
       };
     } else {
-      console.log(this.challenged);
       newChallenge = {
         challenging: this.challenged._id,
-        challenged: challenging,
+        challenged: challenged,
+        intentos: this.intentos,
+        views: [],
         public: this.public,
         awards: this.awards,
-        title: this.form.value.title,
-        description: this.form.value.description,
+        title: this.form.title,
+        description: this.form.description,
         challenges: [],
       };
     }
@@ -142,7 +158,6 @@ export class CreateChallengeComponent implements OnInit {
       .pipe(take(1))
       .subscribe(
         async (r: IChallenge) => {
-          console.log(r);
           loading.dismiss();
           const toast = await this.toast.create({
             message: `Desafío creado.`,
@@ -152,7 +167,6 @@ export class CreateChallengeComponent implements OnInit {
           this.mc.dismiss();
         },
         (err) => {
-          console.log(err);
         }
       );
   }
@@ -162,11 +176,5 @@ export class CreateChallengeComponent implements OnInit {
     });
     await loading.present();
     return loading;
-  }
-
-  saveAward($event) {
-    console.log($event);
-    this.award = false;
-    if ($event) this.awards.push($event.event);
   }
 }

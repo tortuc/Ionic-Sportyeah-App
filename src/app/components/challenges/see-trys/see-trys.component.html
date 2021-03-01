@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar class="bg-gradient-person">
+    <ion-title>
+      <ion-icon name="medal-outline"></ion-icon>
+      {{ "verIntentos" | translate }}
+    </ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button style="color: white"></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-row>
+    <ion-col *ngFor="let intento of intentos">
+      <video
+        controlslist="nodownload"
+        controls="controls"
+        preload="metadata"
+        id="video"
+        style="width: 80px; height: 80px"
+        webkit-playsinline="webkit-playsinline"
+        class="videoPlayer bg-black"
+      >
+        <source [src]="intento | safeUrl" type="video/mp4" />
+        <source [src]="intento | safeUrl" type="video/ogg" />
+        <br />
+      </video>
+    </ion-col>
+  </ion-row>
+</ion-content>

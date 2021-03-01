@@ -10,7 +10,7 @@ export interface IAward {
   place: number;
   title: string;
   description: string;
-  _id?:string;
+  _id?: string;
   createdAt?: string;
   modifiedAt?: string;
   deleted?: string;
@@ -18,7 +18,7 @@ export interface IAward {
 export interface IUserc {
   appName: string;
   referenceId: string;
-  _id?:string;
+  _id?: string;
   createdAt?: string;
   modifiedAt?: string;
   deleted?: string;
@@ -34,15 +34,18 @@ export interface IReference {
   modifiedAt?: string;
   deleted?: string;
 }
+
 export interface IChallenge {
-  challenging: any ;
-  challenged: any ;
+  challenging: any;
+  challenged: any;
+  views: string[];
   awards: IAward[];
   title: string;
   description: string;
   challenges: IChallenge[];
   public: boolean;
-  _id?:string;
+  intentos?: any[];
+  _id?: string;
   createdAt?: string;
   modifiedAt?: string;
   deleted?: string;
@@ -78,5 +81,9 @@ export class ChallengeService {
 
   createReaction(reaction: any) {
     return this.http.post(`${this.route}/reaction`, reaction);
+  }
+
+  updateViews(idC: string, views: string[]) {
+    return this.http.post(`${this.route}/updateviews`, { idC, views });
   }
 }

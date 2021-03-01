@@ -1,5 +1,5 @@
 import { IAward } from './../../../service/challenge.service';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-awards-accordion',
@@ -8,7 +8,9 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class AwardsAccordionComponent implements OnInit {
   @Input() a: IAward;
+  @Input() i:number;
   @Input() creator: boolean = false;
+  @Output() delete = new EventEmitter<any>();
   open:boolean = false;
 
   constructor() { }

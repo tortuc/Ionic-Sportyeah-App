@@ -1,9 +1,9 @@
 {
-  "appId": "io.ionic.starter",
-  "appName": "sportyeah-front",
+  "appId": "com.sportyeah.app",
+  "appName": "sportyeah",
   "bundledWebRuntime": false,
   "npmClient": "npm",
-  "webDir": "www",
+  "webDir": "dist/app/browser",
   "plugins": {
     "SplashScreen": {
       "launchShowDuration": 0

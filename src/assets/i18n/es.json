@@ -211,7 +211,7 @@
     "profile": "Mi Perfil",
     "chat": "Chatear",
     "news": "Noticias",
-    "ranking":"Ranking",
+    "ranking": "Ranking",
     "calendar": "Calendario",
     "logout": "Cerrar sesión",
     "wishes": "Lista de deseos",
@@ -331,7 +331,8 @@
     "camera": "Camara",
     "galery": "Galeria",
     "avatar": "Avatares",
-    "video": "Video"
+    "video": "Video",
+    "grabar": "Grabar video"
   },
   "avatar": {
     "title": "Selecciona un avatar",
@@ -741,6 +742,7 @@
   "challenges": "Desafíos",
   "challenge": {
     "foryou": "Para ti",
+    "awards": "¡Puedes ganar estos premios!",
     "following": "Siguiendo",
     "recomended": "Cuentas Recomendadas",
     "norecomended": "Aun no hemos podido descifrar tus gustos :(",
@@ -749,6 +751,9 @@
     "title": "Titulo del Desafío",
     "description": "Descripción",
     "createAward": "Crear Premio",
+    "createChallenge": "Crea tu Desafío",
+    "acceptChallenge": "Acepta este Desafío",
+    "noAwards": "Sin premios",
     "place": "Posición",
     "titleAward": "Titulo del Premio",
     "mediaAward": "Imagen del Premio",
@@ -756,20 +761,22 @@
     "first": "¡Se el primero en crear un reto!",
     "videoErr": "El video no es valido, tiene mas de un minuto de duracion.",
     "repeat": "Intentar de nuevo",
-    "new_challenge":"¡Comienza a retar!",
-    "public": "¡Deseo que todo SportYeah vea mi desafio!"
+    "new_challenge": "¡Comienza a retar!",
+    "create": "¡Sube tu reto!",
+    "public": "¡Deseo que todo SportYeah vea mi desafio!",
+    "Compartir":"¡Comparte tu Reto!"
   },
   "save": "Guardar Cambios",
 
   "news": {
     "news": "Noticias",
-    "notNews":"No se encontraron noticias",
+    "notNews": "No se encontraron noticias",
     "newsSport": "Noticias Sportyeah!",
     "create": "Crear Nuevo Artículo",
     "read": "Leer",
     "article": "Artículo",
     "title": "Título",
-    "subTitle":"Subtítulo",
+    "subTitle": "Subtítulo",
     "writeParagraph": "Escribe el párrafo",
     "images": "Imágenes",
     "add": "Agregar",
@@ -783,7 +790,7 @@
     "preview": "Vista Previa",
     "next": "Siguiente",
     "newNews": "Nueva Noticia",
-    "editNews":"Editando Noticia",
+    "editNews": "Editando Noticia",
     "publish": "Publicar",
     "published": "Artículo publicado con exito!",
     "edited": "Artículo editado con exito!",
@@ -797,17 +804,29 @@
   },
   "sponsorDescription": "Aqui puedes colocar tus patrocinadores",
   "back": "Volver",
-  "uploadAgain":"Subir otro video",
-  "levels-challenge":{
-    "nivel1":"NIVEL DIOS",
-    "nivel2":"Héroe",
-    "nivel3":"Pana",
-    "nivel4":"Flojo",
-    "nivel5":"Cobarde",
-    "nivel6":"Mariquita",
-    "reaction":"Reaccionar"
+  "uploadAgain": "Intentar de nuevo",
+  "levels-challenge": {
+    "nivel1": "NIVEL DIOS",
+    "nivel2": "Héroe",
+    "nivel3": "Pana",
+    "nivel4": "Flojo",
+    "nivel5": "Cobarde",
+    "nivel6": "Mariquita",
+    "reaction": "Reaccionar"
   },
-  "followed":"Siguiendo / Recomendados",
-  "place":"El Puesto",
-  "got": "obtiene"
+  "followed": "Siguiendo / Recomendados",
+  "place": "El Puesto",
+  "got": "obtiene",
+  "next": "Siguiente",
+  "ready": "Estoy listo",
+  "recording": {
+    "start": "Comenzar a grabar",
+    "pause": "Pausar",
+    "reanude": "Reanudar",
+    "stop": "Detener"
+  },
+  "intentos":"¿Desea subir los intentos?",
+  "verIntentos":"Ver Intentos",
+  "search":"Buscar",
+  "challengePerson":"Retar"
 }

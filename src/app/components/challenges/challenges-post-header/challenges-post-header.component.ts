@@ -1,5 +1,5 @@
-import { UserService } from './../../../service/user.service';
-import { IChallenge } from './../../../service/challenge.service';
+import { UserService } from "./../../../service/user.service";
+import { IChallenge } from "./../../../service/challenge.service";
 import { Component, Input, OnInit } from "@angular/core";
 
 @Component({
@@ -9,8 +9,11 @@ import { Component, Input, OnInit } from "@angular/core";
 })
 export class ChallengesPostHeaderComponent implements OnInit {
   @Input() Challenge: IChallenge;
+  date: Date = null;
 
   constructor(public userService: UserService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.date = new Date(this.Challenge.modifiedAt);
+  }
 }

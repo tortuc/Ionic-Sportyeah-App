@@ -1,34 +1,145 @@
 # IMPORTANTES
 
 Iniciar sportyeah
-cd "..\..\cygwin64\home\DELL E6430 ATG\proyectos\espana\sportyea\frontend"
-cd "..\..\cygwin64\home\DELL E6430 ATG\proyectos\espana\gitlab-sportyeha\jdvimage\src"
-cd "..\..\cygwin64\home\DELL E6430 ATG\proyectos\espana\sportyea\backend\src"
-mongod
+
+## EN CMDS
+
+1. mongod
+2. cd "..\..\cygwin64\home\DELL E6430 ATG\proyectos\espana\sportyea\frontend"
+   ionic serve
+3. cd "..\..\cygwin64\home\DELL E6430 ATG\proyectos\espana\sportyea\jdvimage\src"
+   nodemon app.ts
+4. cd "..\..\cygwin64\home\DELL E6430 ATG\proyectos\espana\sportyea\backend\src"
+   nodemon sportyeah.ts
+5. cd "..\..\cygwin64\home\DELL E6430 ATG\proyectos\espana\sportyea\api-retos\src"
+   nodemon challenge.ts
+
+## EN CMD PARA GIT PULL PUSH ETC
 
 1. eval "$(ssh-agent -s)"
 2. ssh-add ~/.ssh/id_rsa_sportyeah.pub
 3. ssh-add ~/.ssh/id_rsa_kecuki.pub
 
+## Importante
+
+1. Siempre al finalizar la jornada hacer ionic build y ver los errores solucionarlos y merge master.
+
+## NOTAS QA JOGEIKER LIZARRAGA
+
+1. No se puede reproducir el video.
+2. Boton de usuario que subio el reto redirige a mi perfil no al otro.
+3. Al moverme al perfil de otra persona me desaparece los videos al volver.
+4. Slider de intentos.
+5. Los preomios deben llevar condicion.
+6. Al no dar permisos de camara debe mostrar un mejor error.
+7. La descripcion de los premios no se muestra correctamente.
+8. Debe mostrar pantalla de carga una vez pida la data en videos-c.
+
+## TAREAS DESAFIOS 01-03-2021
+
+1. Reto solidario descripcion y toggle mas imagen tipo banner.
+2. Al subir un desafio abrir una modal de comparticion y mostrar link para compartir y en esa modal le saldra la opcion de retar a sus seguidores.
+3. Logica para compartir reto a amigos.
+4. Permitir enviar mensaje privado con el reto por whatsapp.
+5. Poder ver las reacciones dejadas al darle click a las reacciones.
+6. Buscador de retos.
+7. Buscador de imagenes gratis.
+8. Logo a la izquierda del numero por posicion.
+9. Quitar console.logs de toda la parte de desafios.
+10. Colocar max height al tamano de los videos.
+
+## TAREAS DESAFIOS 26-02-2021
+
+1. Colocar limite de intentos a 3. cumplido.
+2. Visualizacion del numero de visualizaciones del reto. cumplido.
+3. Mostrar los intentos. cumplido.
+
+## TAREAS DESAFIOS 25-02-2021
+
+1. Si el size es 0 no permitir subir a jdv. cumplido.
+2. Deshabilitar el sonido del video replicado. cumplido.
+3. Boton mejorar visual colocarle circulo rojo cuando este grabando. cumplido.
+4. Cuando se detenga agregar video a media y mostrarlo. cumplido
+5. Funcionalidad de pausar un video y seguir grabando despues. cumplido.
+6. En boton nuevo intento guardar media en un array llamado intentos. cumplido.
+7. Mostrar intentos en fila. cumplido.
+8. Toggle subir intentos o no. cumplido.
+9. Habilitar siguiente solo cuando se tenga media. cumplido.
+10. Guardar los intentos en la API. cumplido.
+11. Bug en media cuando aceptas el reto se ve el anterior. Cumplido.
+12. Pausar video de fondo cuando abra la modal. Cumplido
+13. Que no se sobrecargue el sistema cuando este en apartado retos, refactorizar codigo y optimizar funciones. Cumplido.
+14. Al refactorizar el codigo dano la funcionalidad de destruir los videos, hay que reacerla. cumplido.
+15. Ejecutar view scroll cuando vea el video. cumplido
+16. El video no deberia iniciarse de una vez. cumplido.
+17. Reparar error arrojado en reacciones 73. cumplido.
+18. Colocar los premios en el siguiente desafio a crear. Cumplido.
+19. Debe dar la opcion de subir otro intento del reto guardandose los intentos. Cumplido.
+20. Deben mostrarse los intentos mas abajo y un toggle que indique si mostrar los intentos o no. Cumplido.
+21. Buscador por nick. Cumplido
+22. Boton de retar personas. Cumplido
+
+Faltante:
+
+1. Premio solidario descripcion y toggle.
+2. Al subir un desafio abrir una modal de comparticion y mostrar link para compartir y en esa modal le saldra la opcion de retar a sus seguidores. Cumplido.
+   Logica para compartir reto a amigos.
+3. Permitir enviar mensaje privado con el reto por whatsapp.
+4. Visualizacion del numero de visualizaciones del reto.
+5. Poder ver las reacciones dejadas al darle click a las reacciones.
+6. Buscador de retos.
+7. Buscador de imagenes gratis.
+8. Logo a la izquierda del numero por posicion.
+9. Quitar console.logs de toda la parte de desafios.
+10. Colocar limite de intentos a 3.
+
+Dudas:
+
+1. Como se desea visualizar los intentos? en las publicaciones para no danar la visual.
+
+## TAREAS DESAFIOS 24-02-2021
+
+1. Mostrar stepper cuando se acepte el reto mostrando la descripcion de como hacer el reto y darle a un boton de estoy listo. cumplido.
+2. Grabadora de pantalla PWA IONIC.
+   2.1. Habilitar "Media Camara" para telefonos moviles IONIC. cumplido.
+   2.2. INVESTIGAR SOBRE WEBRTC. cumplido
+   2.3. Habilitar una camara web que grabe y guarde el video. El video ya se guarda falta mejorar la interfaz.
+3. Premio solidario descripcion y toggle.
+4. Debe dar la opcion de subir otro intento del reto guardandose los intentos.
+5. Deben mostrarse los intentos mas abajo y un toggle que indique si mostrar los intentos o no.
+6. Al subir un desafio abrir una modal de comparticion y mostrar link para compartir y en esa modal le saldra la opcion de retar a sus seguidores.
+7. Permitir enviar mensaje privado con el reto por whatsapp.
+8. Buscador por nick.
+9. Boton de retar personas.
+10. Visualizacion del numero de visualizaciones del reto.
+11. Poder ver las reacciones dejadas al darle click a las reacciones.
+12. Buscador de retos.
+13. Buscador de imagenes gratis.
+14. Colocar los premios en el siguiente desafio a crear.
+15. Logo a la izquierda del numero por posicion.
+16. Ejecutar view scroll cuando vea el video.
+17. El video no deberia iniciarse de una vez.
+
 ## TAREAS DESAFIOS 23-02-2021 12 HORAS DE TRABAJO
 
-1. Se escuchan todos los videos a la vez cuando sales del componente BUG.
-2. Hay que asegurarse que los videos que sean dobles se inicien al mismo tiempo.
-3. Mostrar stepper cuando se acepte el reto mostrando la descripcion de como hacer el reto y darle a un boton de estoy listo.
-4. Grabadora de pantalla PWA IONIC.
-5. Premio solidario descripcion y toggle.
-6. Debe dar la opcion de subir otro intento del reto guardandose los intentos.
-7. Deben mostrarse los intentos mas abajo y un toggle que indique si mostrar los intentos o no.
-8. Al subir un desafio abrir una modal de comparticion y mostrar link para compartir y en esa modal le saldra la opcion de retar a sus seguidores.
-9. Permitir enviar mensaje privado con el reto por whatsapp.
-10. Permitir retar por facebook.
-11. Permitir retar por whatsapp.
-12. Permitir retar por Linkedin.
-13. Permitir retar por Instagram.
-14. Permitir retar por twitter.
-15. Buscador por nick.
-16. Boton de retar personas.
-17. Visualizacion del numero de visualizaciones del reto.
+1. Se escuchan todos los videos a la vez cuando sales del componente BUG. cumplido.
+2. Mostrar stepper cuando se acepte el reto mostrando la descripcion de como hacer el reto y darle a un boton de estoy listo.
+3. Grabadora de pantalla PWA IONIC.
+4. Premio solidario descripcion y toggle.
+5. Debe dar la opcion de subir otro intento del reto guardandose los intentos.
+6. Deben mostrarse los intentos mas abajo y un toggle que indique si mostrar los intentos o no.
+7. Al subir un desafio abrir una modal de comparticion y mostrar link para compartir y en esa modal le saldra la opcion de retar a sus seguidores.
+8. Permitir enviar mensaje privado con el reto por whatsapp.
+9. Buscador por nick.
+10. Boton de retar personas.
+11. Visualizacion del numero de visualizaciones del reto.
+
+Poder ver las reacciones dejadas al darle click a las reacciones.
+Buscador de retos.
+Buscador de imagenes gratis.
+Colocar los premios en el siguiente desafio a crear.
+Logo a la izquierda del numero por posicion.
+Ejecutar view scroll cuando vea el video.
 
 ## TAREAS DESAFIOS 22-02-2021 12 HORAS DE TRABAJO
 

@@ -23,7 +23,6 @@ export class FriendsMobileCComponent implements OnInit {
       .getUsers()
       .pipe(take(1))
       .subscribe((r: any) => {
-        console.log(this.userService.followings);
         this.users = [];
         // this.userService.followings.map((user: any) =>
         //   this.users.push(user.user)

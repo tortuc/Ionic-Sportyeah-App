@@ -23,7 +23,7 @@ export class ChallengeReactionsComponent implements OnInit {
   @ViewChild("like") likee: ElementRef;
 
   myVote: any = null;
-  reactionsNum: number= null;
+  reactionsNum: number = null;
 
   public reactions: IReactionChallengeIMG[] = [
     { level: "nivel1", src: "https://img.icons8.com/nolan/64/best-seller.png" },
@@ -56,27 +56,26 @@ export class ChallengeReactionsComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    console.log(this.challenge);
     this.challengeService
       .getById(this.challenge._id)
       .pipe(take(1))
       .subscribe(
         (r: any) => {
-          console.log(r);
-          console.log(r.challenge.challenged.reactions);
           const reactions = r.challenge.challenged.reactions;
-          this.reactionsNum = reactions.length
+          this.reactionsNum = reactions.length;
           const r2 = reactions
             .filter(
               (reaction) =>
                 reaction.userReference.referenceId === this.userService.User._id
             )
             .reverse()[0];
-          this.myVote = this.reactions.filter(
-            (reaction) => reaction.level === r2.reaction
-          )[0];
+          if (r2)
+            this.myVote = this.reactions.filter(
+              (reaction) => reaction.level === r2.reaction
+            )[0];
         },
-        (err) => console.log(err)
+        (err) => {
+        }
       );
   }
   time: boolean = false;
@@ -113,9 +112,8 @@ export class ChallengeReactionsComponent implements OnInit {
     this.timeOutClose = setTimeout(() => this.reactionoff(), 1000);
     clearTimeout(this.timeOut);
   }
-  like(type: string, img: string) {
+  like(type: string) {
     // this.myVote = img;
-    console.log(this.myVote);
     const reaction = {
       userReference: {
         appName: "SportYeah",
@@ -127,8 +125,7 @@ export class ChallengeReactionsComponent implements OnInit {
       .createReaction({ reaction, referenceId: this.challenge.challenged._id })
       .pipe(take(1))
       .subscribe((r: any) => {
-        console.log(r);
-        this.Close()
+        this.Close();
         this.ngOnInit();
       });
   }

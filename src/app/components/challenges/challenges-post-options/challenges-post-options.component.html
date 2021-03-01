@@ -14,10 +14,21 @@
     {{ "challenge.retar" | translate }} {{ userService.User.name }}?
   </ion-button>
 </div>
-<div class="text-center" *ngIf="Challenge.awards.length > 0">
-  <ion-button fill="outline" (click)="showAwards()"
-    ><ion-icon name="trophy-outline"></ion-icon
-  ></ion-button>
+<div
+  class="text-center"
+  *ngIf="Challenge.awards.length > 0 || Challenge.intentos?.length > 0"
+>
+  <ion-button *ngIf="Challenge.awards.length > 0" (click)="showAwards()"
+    ><ion-icon name="trophy-outline"></ion-icon>
+    {{ "challenge.awards" | translate }}</ion-button
+  >
+  <ion-button
+    shape="round"
+    fill="solid"
+    *ngIf="Challenge.intentos?.length > 0"
+    (click)="openTrys()"
+    >{{ "verIntentos" | translate }}</ion-button
+  >
 </div>
 <ion-row>
   <ion-col size="4">

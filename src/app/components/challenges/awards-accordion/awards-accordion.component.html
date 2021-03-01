@@ -11,7 +11,7 @@
   ></ion-button>
   <ion-icon
     *ngIf="creator"
-    (click)="awards.splice(i, 1)"
+    (click)="delete.emit(i)"
     name="trash-outline"
     style="cursor: pointer; color: red"
     class="last2"
