@@ -42,7 +42,7 @@ export class ImgVideoUpload {
   mediaCaptureFunc() {
     let options: CaptureImageOptions = { limit: 3 };
     this.mediaCapture.captureImage(options).then(
-      (data: MediaFile[]) => console.log(data),
+      (data: MediaFile[]) => {console.log(data)},
       (err: CaptureError) => console.error(err)
     );
   }
@@ -82,14 +82,11 @@ export class ImgVideoUpload {
       .getImages()
       .pipe(take(1))
       .subscribe(async (r: any) => {
-        console.log(r);
         await this.loading.dismiss(null, null, "loading");
         const modal = await this.presentModal(r.hits);
-        console.log(modal);
         await modal.present();
         const { data } = await modal.onWillDismiss();
         if (data) {
-          console.log(data);
           this.content.next(data);
         }
       });
@@ -180,7 +177,6 @@ export class ImgVideoUpload {
   }
 
   video(fileChooser: ElementRef) {
-    console.log(fileChooser.nativeElement);
     fileChooser.nativeElement.click();
   }
 

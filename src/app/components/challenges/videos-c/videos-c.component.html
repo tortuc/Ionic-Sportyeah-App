@@ -29,6 +29,20 @@
     <source [src]="media | safeUrl" type="video/ogg" />
     <br />
   </video>
+  <video
+    controlslist="nodownload"
+    hidden
+    controls="controls"
+    preload="metadata"
+    id="video2"
+    webkit-playsinline="webkit-playsinline"
+    class="videoPlayer bg-black"
+  >
+    <source [src]="media | safeUrl" type="video/mp4" />
+    <source [src]="media | safeUrl" type="video/ogg" />
+    <br />
+  </video>
+
   <ion-button color="primary" (click)="again()">
     {{ "uploadAgain" | translate }}
   </ion-button>

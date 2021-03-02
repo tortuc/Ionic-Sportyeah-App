@@ -1,3 +1,4 @@
+import { LoadingController } from "@ionic/angular";
 import { take } from "rxjs/operators";
 import { Subject } from "rxjs";
 import { Component, EventEmitter, OnInit, Output } from "@angular/core";
@@ -20,7 +21,11 @@ export class CamaraBrowserComponent implements OnInit {
 
   public paused: boolean = false;
 
-  constructor(public jdvService: JdvimageService, public img: ImgVideoUpload) {}
+  constructor(
+    public jdvService: JdvimageService,
+    public img: ImgVideoUpload,
+    public loading: LoadingController
+  ) {}
 
   ngOnInit() {
     setTimeout(() => {
@@ -59,8 +64,14 @@ export class CamaraBrowserComponent implements OnInit {
     this.stream.start();
   }
 
-  finisheRecord() {
+  async finisheRecord() {
     this.recording = false;
+    const loading = await this.loading.create({
+      cssClass: "",
+      message: "Cargando...",
+      duration: 1000000,
+    });
+    await loading.present();
     this.stream.ondataavailable = (data) => {
       let form = new FormData();
       // new blob
@@ -70,9 +81,12 @@ export class CamaraBrowserComponent implements OnInit {
         this.jdvService
           .uploadVideo(form)
           .pipe(take(1))
-          .subscribe((r) => {
-            this.media.emit(r);
-          });
+          .subscribe(
+            (r) => {
+              this.media.emit({r,loading});
+            },
+            (err) => loading.dismiss()
+          );
       }
     };
     this.stream.requestData();

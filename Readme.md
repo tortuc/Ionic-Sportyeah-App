@@ -26,7 +26,9 @@ Iniciar sportyeah
 
 ## NOTAS QA JOGEIKER LIZARRAGA
 
-1. No se puede reproducir el video.
+1. No se puede reproducir el video al subirlo en intento.
+  colocar un loading despues de pedir la data.
+
 2. Boton de usuario que subio el reto redirige a mi perfil no al otro.
 3. Al moverme al perfil de otra persona me desaparece los videos al volver.
 4. Slider de intentos.
@@ -34,6 +36,7 @@ Iniciar sportyeah
 6. Al no dar permisos de camara debe mostrar un mejor error.
 7. La descripcion de los premios no se muestra correctamente.
 8. Debe mostrar pantalla de carga una vez pida la data en videos-c.
+9. Modal al crear reto no deberia abrirse si no hay data como el link.
 
 ## TAREAS DESAFIOS 01-03-2021
 
@@ -47,6 +50,8 @@ Iniciar sportyeah
 8. Logo a la izquierda del numero por posicion.
 9. Quitar console.logs de toda la parte de desafios.
 10. Colocar max height al tamano de los videos.
+11. Crear componente para ver el reto y abajo sus demas retos relacionados por orden de mas likes.
+12. Para entrar en la pantalla de reto individual colocar boton de "cadena" de retos.
 
 ## TAREAS DESAFIOS 26-02-2021
 
