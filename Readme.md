@@ -50,10 +50,11 @@ Iniciar sportyeah
    Crear input de la causa.cumplido.
    Crear imagen de la causa.cumplido.
    Crear objeto de la causa.cumplido.
-   Crear campo solidary en api.
-   Crear validacion para el campo causa.
-   Crear validacion para el campo src.
-   Que la validacion solo se active cuando se active causa solidaria.
+   Crear campo solidary en api.cumplido.
+   Crear validacion para el campo causa.cumplido.
+   Crear validacion para el campo src.cumplido.
+   Que la validacion solo se active cuando se active causa solidaria.cumplido.
+   Subida de imagenes en cause.cumplido.
    Mostrar boton causa solidaria y mostrar la causa en una modal dentro del desafio.
    Preguntar opciones para mejorar el diseno de este apartado por el grupo.
 2. Al subir un desafio abrir una modal de comparticion y mostrar link para compartir y en esa modal le saldra la opcion de retar a sus seguidores.

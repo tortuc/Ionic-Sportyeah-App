@@ -67,13 +67,13 @@
         <ion-toggle color="primary" [(ngModel)]="solidary"></ion-toggle>
       </ion-item>
     </ion-list>
-    <div>
+    <div *ngIf="solidary">
       <div *ngIf="cause.src === null">
         <img
           src="https://img.icons8.com/nolan/64/image.png"
           alt=""
           style="width: 100px; cursor: pointer"
-          (click)="awardMedia()"
+          (click)="solidarySrc()"
         />
       </div>
       <div *ngIf="cause.src">
@@ -81,21 +81,30 @@
           [src]="cause.src"
           alt=""
           style="width: 100px; cursor: pointer"
-          (click)="awardMedia()"
+          (click)="solidarySrc()"
         />
       </div>
-
-      <ion-input
-        type="text"
-        placeholder="{{ 'cause' | translate }}"
-        [(ngModel)]="cause.cause"
-      ></ion-input>
+      <ion-item>
+        <ion-label>{{ "reason" | translate }}</ion-label>
+        <ion-input
+          type="text"
+          placeholder=""
+          [(ngModel)]="cause.cause"
+        ></ion-input>
+      </ion-item>
     </div>
     <ion-button
       shape="round"
       expand="full"
       class="bottom-button"
       (click)="saveChallenge()"
+      [disabled]="
+        solidary
+          ? cause.src !== null && cause.cause !== ''
+            ? false
+            : true
+          : false
+      "
       ><ion-icon name="medal"></ion-icon
       >{{ "challenge.create" | translate }}</ion-button
     >
