@@ -144,7 +144,6 @@ formateSelected
     // Publish the local audio and video tracks to the channel.
     await this.rtc.client.publish([this.rtc.localVideoTrack]);
     console.log("publish success!");
-    console.log(this.rtc.localVideoTrack)
    this.publicar()
    loading.dismiss();
 
