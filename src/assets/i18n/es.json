@@ -828,5 +828,7 @@
   "intentos":"¿Desea subir los intentos?",
   "verIntentos":"Ver Intentos",
   "search":"Buscar",
-  "challengePerson":"Retar"
+  "challengePerson":"Retar",
+  "solidary": "Mi desafio es solidario",
+  "reason":"Causa"
 }

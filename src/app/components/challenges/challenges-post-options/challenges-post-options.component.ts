@@ -29,15 +29,19 @@ export class ChallengesPostOptionsComponent implements OnInit {
       },
     });
     this.pause.next();
-    modal.onDidDismiss().then(() => this.modalFinishedCreated());
+    modal
+      .onDidDismiss()
+      .then((data) =>
+        data.data?.intentos ? this.modalFinishedCreated(data.data) : null
+      );
     await modal.present();
   }
 
-  async modalFinishedCreated() {
+  async modalFinishedCreated(challengeNew:IChallenge) {
     const modal = await this.mc.create({
       component: ModalCreatedComponent,
       cssClass: "a",
-      componentProps: null,
+      componentProps: challengeNew,
     });
     await modal.present();
   }

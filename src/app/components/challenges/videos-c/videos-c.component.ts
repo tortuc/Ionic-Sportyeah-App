@@ -74,9 +74,7 @@ export class VideosCComponent implements OnInit {
     );
     if (video && !isNaN(video.duration)) {
       if (video.duration === Infinity) {
-        console.log("Video duration infinity changing to 1e101");
         video.currentTime = 1e101;
-        console.log("On time update changinng to time 0");
       } else if (video.duration / 60 > 3) {
         this.videoValid = false;
         this.alertINIT();
@@ -86,7 +84,6 @@ export class VideosCComponent implements OnInit {
         this.alertINIT();
         return 1;
       } else {
-        console.log("Video valid");
         this.videoValid = true;
         video.currentTime = 0.00001;
         return 1;

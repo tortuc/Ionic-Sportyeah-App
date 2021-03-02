@@ -27,25 +27,35 @@ Iniciar sportyeah
 ## NOTAS QA JOGEIKER LIZARRAGA 02-03-2021
 
 1. No se puede reproducir el video al subirlo en intento.cumplido.
-  colocar un loading despues de pedir la data.cumplido.
-  colocar otro video de donde extraer la duracion sin afectar al video principal.cumplido.
+   colocar un loading despues de pedir la data.cumplido.
+   colocar otro video de donde extraer la duracion sin afectar al video principal.cumplido.
 2. Boton de usuario que subio el reto redirige a mi perfil no al usuario que subio el desafio.cumplido.
 3. Al moverme al perfil de otra persona me desaparece los videos al volver.cumplido.
-  Ionwillenter recargue los videos.cumplido.
+   Ionwillenter recargue los videos.cumplido.
 4. Slider de intentos.cumplido.
-  Agregar un ion slider con los intentos.cumplido.
+   Agregar un ion slider con los intentos.cumplido.
 5. Los premios deben llevar condicion.
-  Crear campo condicion en la api con un enum.
-  Crear select para las condiciones.
-  Las condiciones son: Mas likes de tal, mas vistas, mas compartido, mas comentarios.
+   Crear campo condicion en la api con un enum.
+   Crear select para las condiciones.
+   Las condiciones son: Mas likes de tal, mas vistas, mas compartido, mas comentarios.
+   Calendario para seleccionar la fecha en la que se dara el premio, dar un mes por defecto.
 6. Al no dar permisos de camara debe mostrar un mejor error.
 7. La descripcion de los premios no se muestra correctamente.cumplido.
 8. Debe mostrar pantalla de carga una vez pida la data en videos-c.cumplido.
-9. Modal al crear reto no deberia abrirse si no hay data como el link.
+9. Modal al crear reto no deberia abrirse si no hay data como el link.cumplido.
 
 ## TAREAS DESAFIOS 01-03-2021
 
 1. Reto solidario descripcion y toggle mas imagen tipo banner.
+   Crear input de la causa.cumplido.
+   Crear imagen de la causa.cumplido.
+   Crear objeto de la causa.cumplido.
+   Crear campo solidary en api.
+   Crear validacion para el campo causa.
+   Crear validacion para el campo src.
+   Que la validacion solo se active cuando se active causa solidaria.
+   Mostrar boton causa solidaria y mostrar la causa en una modal dentro del desafio.
+   Preguntar opciones para mejorar el diseno de este apartado por el grupo.
 2. Al subir un desafio abrir una modal de comparticion y mostrar link para compartir y en esa modal le saldra la opcion de retar a sus seguidores.
 3. Logica para compartir reto a amigos.
 4. Permitir enviar mensaje privado con el reto por whatsapp.
@@ -57,6 +67,9 @@ Iniciar sportyeah
 10. Colocar max height al tamano de los videos.
 11. Crear componente para ver el reto y abajo sus demas retos relacionados por orden de mas likes.
 12. Para entrar en la pantalla de reto individual colocar boton de "cadena" de retos.
+
+13. Cron function para manejar los premios de los desafios y darlos por fecha.
+14. Boton de compartir debe abrir la misma modal que se abre al crear un desafio.
 
 ## TAREAS DESAFIOS 26-02-2021
 

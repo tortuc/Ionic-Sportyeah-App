@@ -31,6 +31,9 @@ export class CreateChallengeComponent implements OnInit {
   public awards: IAward[] = [];
   public retoExistente: boolean = false;
   public instructions: string = null;
+
+
+  // FORM
   form: any = null;
   // STEPPERS
 
@@ -164,10 +167,9 @@ export class CreateChallengeComponent implements OnInit {
             duration: 1000,
           });
           await toast.present();
-          this.mc.dismiss();
+          this.mc.dismiss(r);
         },
-        (err) => {
-        }
+        (err) => {}
       );
   }
   async loadingI() {
@@ -177,4 +179,10 @@ export class CreateChallengeComponent implements OnInit {
     await loading.present();
     return loading;
   }
+
+
+
+  // SOLIDARY CHALLENGE
+  public solidary: boolean = false;
+  public cause: any = {src:null,cause:''} 
 }
