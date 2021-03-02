@@ -73,6 +73,10 @@ export class ChallengesPage implements OnInit {
       );
   }
 
+  ionViewWillEnter() {
+    this.ngOnInit()
+  }
+
   reactionoff() {
     this.reactionsBool = false;
     this.time = false;

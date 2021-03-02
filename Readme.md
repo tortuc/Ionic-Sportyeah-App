@@ -26,13 +26,18 @@ Iniciar sportyeah
 
 ## NOTAS QA JOGEIKER LIZARRAGA
 
-1. No se puede reproducir el video al subirlo en intento.
-  colocar un loading despues de pedir la data.
-
-2. Boton de usuario que subio el reto redirige a mi perfil no al otro.
+1. No se puede reproducir el video al subirlo en intento.cumplido.
+  colocar un loading despues de pedir la data.cumplido.
+  colocar otro video de donde extraer la duracion sin afectar al video principal.cumplido.
+2. Boton de usuario que subio el reto redirige a mi perfil no al usuario que subio el desafio.cumplido.
 3. Al moverme al perfil de otra persona me desaparece los videos al volver.
+  Ionwillenter recargue los videos.
 4. Slider de intentos.
+  Agregar un ion slider con los intentos.
 5. Los preomios deben llevar condicion.
+  Crear campo condicion en la api con un enum.
+  Crear select para las condiciones.
+  Las condiciones son: Mas likes de tal, mas vistas, mas compartido, mas comentarios.
 6. Al no dar permisos de camara debe mostrar un mejor error.
 7. La descripcion de los premios no se muestra correctamente.
 8. Debe mostrar pantalla de carga una vez pida la data en videos-c.
