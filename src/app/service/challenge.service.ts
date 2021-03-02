@@ -63,7 +63,6 @@ export class ChallengeService {
   private route: string = `${environment.URL_CHALLENGE}/v001/challenge`;
 
   create(challenge: IChallenge) {
-    console.log(`${this.route}/create`);
     return this.http.post(`${this.route}/create`, challenge);
   }
 

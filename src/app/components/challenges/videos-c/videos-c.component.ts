@@ -20,7 +20,7 @@ export class VideosCComponent implements OnInit {
   @ViewChild("fileChooser") fileChooser: any;
   @Output() next = new EventEmitter<any>();
   public media: string = null;
-  public videoValid: boolean = false;
+  public videoValid: boolean = null;
   public streamRecorder = null;
   public videoHere: boolean = false;
   public intentos: string[] = [];
@@ -70,25 +70,27 @@ export class VideosCComponent implements OnInit {
 
   verifyVideoMinutes() {
     const video: HTMLVideoElement = <HTMLVideoElement>(
-      document.getElementById("video")
+      document.getElementById("video2")
     );
     if (video && !isNaN(video.duration)) {
       if (video.duration === Infinity) {
+        console.log("Video duration infinity changing to 1e101");
         video.currentTime = 1e101;
-        video.ontimeupdate = () => {
-          video.ontimeupdate = () => {
-            this.verifyVideoMinutes();
-          };
-          this.verifyVideoMinutes();
-        };
+        console.log("On time update changinng to time 0");
       } else if (video.duration / 60 > 3) {
+        this.videoValid = false;
         this.alertINIT();
+        return 1;
       } else if (isNaN(video.duration)) {
+        this.videoValid = false;
         this.alertINIT();
+        return 1;
       } else {
+        console.log("Video valid");
         this.videoValid = true;
+        video.currentTime = 0.00001;
+        return 1;
       }
-      return 1;
     }
   }
   async loadingI() {
@@ -107,11 +109,14 @@ export class VideosCComponent implements OnInit {
 
   ngOnInit() {}
 
-  camaraBrowserAns(media: string) {
-    this.media = media;
+  camaraBrowserAns(ans: any) {
+    this.media = ans.r;
     this.videoHere = false;
     const int = setInterval(() => {
-      if (this.verifyVideoMinutes() === 1) clearInterval(int);
+      if (this.verifyVideoMinutes() === 1) {
+        clearInterval(int);
+        ans.loading.dismiss();
+      }
     }, 1000);
   }
 }
