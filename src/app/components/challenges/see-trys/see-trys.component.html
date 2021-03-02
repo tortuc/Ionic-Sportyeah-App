@@ -10,7 +10,27 @@
   </ion-toolbar>
 </ion-header>
 <ion-content>
-  <ion-row>
+  <ion-slides pager="true" [options]="slideOpts">
+    <ion-slide
+      class="slide"
+      
+      *ngFor="let intento of intentos"
+    >
+      <video
+        controlslist="nodownload"
+        controls="controls"
+        id="video"
+        preload="metadata"
+        webkit-playsinline="webkit-playsinline"
+        class="img"
+      >
+        <source [src]="intento | safeUrl" type="video/mp4" />
+        <source [src]="intento | safeUrl" type="video/ogg" />
+      </video>
+    </ion-slide>
+  </ion-slides>
+
+  <!-- <ion-row>
     <ion-col *ngFor="let intento of intentos">
       <video
         controlslist="nodownload"
@@ -26,5 +46,5 @@
         <br />
       </video>
     </ion-col>
-  </ion-row>
+  </ion-row> -->
 </ion-content>

@@ -11,11 +11,9 @@ export class ImageSeeComponent implements OnInit {
   constructor(public modalCtrl: ModalController) {}
 
   ngOnInit() {
-    console.log(this.data);
   }
 
   send(url: any) {
-    console.log(url);
     // this.img.content.next(url.webformatURL);
     this.modalCtrl.dismiss(url.webformatURL);
   }

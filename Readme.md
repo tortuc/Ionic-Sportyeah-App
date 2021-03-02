@@ -24,23 +24,23 @@ Iniciar sportyeah
 
 1. Siempre al finalizar la jornada hacer ionic build y ver los errores solucionarlos y merge master.
 
-## NOTAS QA JOGEIKER LIZARRAGA
+## NOTAS QA JOGEIKER LIZARRAGA 02-03-2021
 
 1. No se puede reproducir el video al subirlo en intento.cumplido.
   colocar un loading despues de pedir la data.cumplido.
   colocar otro video de donde extraer la duracion sin afectar al video principal.cumplido.
 2. Boton de usuario que subio el reto redirige a mi perfil no al usuario que subio el desafio.cumplido.
-3. Al moverme al perfil de otra persona me desaparece los videos al volver.
-  Ionwillenter recargue los videos.
-4. Slider de intentos.
-  Agregar un ion slider con los intentos.
-5. Los preomios deben llevar condicion.
+3. Al moverme al perfil de otra persona me desaparece los videos al volver.cumplido.
+  Ionwillenter recargue los videos.cumplido.
+4. Slider de intentos.cumplido.
+  Agregar un ion slider con los intentos.cumplido.
+5. Los premios deben llevar condicion.
   Crear campo condicion en la api con un enum.
   Crear select para las condiciones.
   Las condiciones son: Mas likes de tal, mas vistas, mas compartido, mas comentarios.
 6. Al no dar permisos de camara debe mostrar un mejor error.
-7. La descripcion de los premios no se muestra correctamente.
-8. Debe mostrar pantalla de carga una vez pida la data en videos-c.
+7. La descripcion de los premios no se muestra correctamente.cumplido.
+8. Debe mostrar pantalla de carga una vez pida la data en videos-c.cumplido.
 9. Modal al crear reto no deberia abrirse si no hay data como el link.
 
 ## TAREAS DESAFIOS 01-03-2021
