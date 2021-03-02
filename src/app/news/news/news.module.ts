@@ -12,11 +12,13 @@ import {NgxWigModule} from 'ngx-wig';
 import{ CreateComponent } from './create/create.component'
 import { EditComponent } from './edit/edit.component';
 import { ReadComponent } from './read/read.component';
+import { StreamComponent } from './stream/stream.component';
+import { CreateStreamComponent } from './create-stream/create-stream.component';
+
 import { HttpClientModule} from '@angular/common/http';
 import { TranslateModule } from '@ngx-translate/core';
 import { PipesModule } from '../../pipes/pipes.module';
 import { ComponentsModule } from '../../components/components.module';
-
 
 @NgModule({
   imports: [
@@ -36,6 +38,8 @@ import { ComponentsModule } from '../../components/components.module';
     CreateComponent,
     EditComponent,
     ReadComponent,
+    StreamComponent,
+    CreateStreamComponent
   ],
   schemas:[CUSTOM_ELEMENTS_SCHEMA]
 })

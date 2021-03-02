@@ -799,7 +799,8 @@
       "confirm": "Esta seguro que desea eliminar este artículo.",
       "accept": "Aceptar",
       "alert": "Alerta"
-    }
+    },
+    "streaming":"Transmisión"
   },
   "sponsorDescription": "Aqui puedes colocar tus patrocinadores",
   "back": "Volver",
