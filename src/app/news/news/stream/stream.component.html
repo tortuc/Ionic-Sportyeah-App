@@ -11,7 +11,7 @@
     
   </ion-toolbar>
 </ion-header>
-<ion-content *ngIf="!listoPublicar" class="bg-gradient-person">
+<ion-content  class="bg-gradient-person">
   <ion-grid>
     <ion-row  class="rowStyle">
       <ion-col size="12">
@@ -21,18 +21,22 @@
               <ion-button  (click)="subscribe()">subcribir Call</ion-button>
             </ion-col>
 
-            <ion-col  style="text-align: center;"  *ngIf="isSubscribe">
+           <!--  <ion-col  style="text-align: center;"  *ngIf="isSubscribe">
               <ion-button   (click)="unSubscribe()">unSubscribe Call</ion-button>
-            </ion-col>
-
+            </ion-col> 
+            <ion-col  style="text-align: center;" >
+              <ion-button   (click)="remove()">unSubscribe Call</ion-button>
+              <div id="azul">
+                MArico el que lo lea
+              </div>
+            </ion-col>-->
           </ion-row>
         </ion-grid>
       </ion-col>
        
         <ion-col style="text-align: center;" size="12">
         <div style="margin-left: auto;margin-right: auto; width: 57%;">     
-          <div *ngIf="isSubscribe" id="localPlayer" class="player"></div>
-         
+          <div  id="localPlayer" class="player"></div>
           <div class="w-100"></div>   
           <!-- <div id="remotePlayerlist"></div> -->       
         </div>

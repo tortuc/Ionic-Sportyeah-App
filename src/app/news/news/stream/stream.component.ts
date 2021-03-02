@@ -85,7 +85,7 @@ formateSelected
     });
     loading.present();
     this.isSubscribe = true
-  await this.join()
+    await this.join()
     this.rtc.client.on("user-published", async (user, mediaType) => {
       // Subscribe to a remote user.
       await this.rtc.client.subscribe(user, mediaType);
@@ -96,9 +96,8 @@ formateSelected
         const remoteVideoTrack = user.videoTrack;
         // Dynamically create a container in the form of a DIV element for playing the remote video track.
         const playerContainer = document.createElement("div");
-        console.log('me creo VIDEO VIDEO VIDEO VIDEO VIDEO  ')
         // Specify the ID of the DIV container. You can use the `uid` of the remote user.
-        playerContainer.id = user.uid.toString();
+        playerContainer.id = user.uid;
         playerContainer.style.width = "100%";
         playerContainer.style.height = "100%";
         playerContainer.style.marginLeft = "auto"
@@ -113,7 +112,6 @@ formateSelected
        
         // Or just pass the ID of the DIV container.
         // remoteVideoTrack.play(playerContainer.id);
-        
       }
     
       // If the subscribed track is audio.
@@ -122,31 +120,30 @@ formateSelected
         const remoteAudioTrack = user.audioTrack;
         // Play the audio track. No need to pass any DOM element.
         remoteAudioTrack.play();
-        console.log('me creo AUDIO AUDIO AUDIO AUDIO AUDIO  ')
-
       }
     });
     loading.dismiss();
 
   } 
+  /* remove(){
+    const playerContainer = document.getElementById("video");
+    playerContainer.remove();
+  } */
 
  async unSubscribe(){
+  this.isSubscribe = false
   let loading = await this.loadingCtrl.create({
     message: this.translate.instant("loading"),
   });
   loading.present();
-  this.isSubscribe = false;
-    this.rtc.client.on("user-unpublished", user => {
-      // Get the dynamically created DIV container.
-      const playerContainer = document.getElementById(user.uid);
-      // Destroy the container.
-       playerContainer.remove();
-    });
-
-    
-      // Leave the channel.
-      await this.rtc.client.leave();
-    
+  this.rtc.client.on("user-unpublished", user => {
+    // Get the dynamically created DIV container.
+    const playerContainer = document.getElementById(user.uid);
+    // Destroy the container.
+    playerContainer.remove();
+  });
+    // Leave the channel.
+    await this.rtc.client.leave();
       loading.dismiss();
   }
   async  leaveCall() {
