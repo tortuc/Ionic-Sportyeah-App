@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { IChallenge } from '../../../service/challenge.service';
 import { Component, OnInit, Input } from '@angular/core';
@@ -13,7 +14,7 @@ export class ChallengesPostComponent implements OnInit {
   @Input() scrollEvent: Subject<void>;
   pause: Subject<void> = new Subject();
 
-  constructor() { }
+  constructor(public router: Router) { }
 
   ngOnInit() {}
 

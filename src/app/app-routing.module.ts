@@ -113,6 +113,23 @@ const routes: Routes = [
       import("./challenges/challenges.module").then(
         (m) => m.ChallengesPageModule
       ),
+    canActivate: [AuthGuardService],
+  },
+ {
+    path: "challenge/:id",
+    loadChildren: () =>
+      import("./challenge/challenge.module").then(
+        (m) => m.ChallengePageModule
+      ),
+    canActivate: [AuthGuardService],
+  },
+ {
+    path: "challenge/:username/:id",
+    loadChildren: () =>
+      import("./challenge/challenge.module").then(
+        (m) => m.ChallengePageModule
+      ),
+    canActivate: [AuthGuardService],
   },
   {
     path: 'ranking',
@@ -124,6 +141,11 @@ const routes: Routes = [
     loadChildren: () => import('./not-found/not-found.module').then( m => m.NotFoundPageModule)
   
   },
+  {
+    path: 'challenge',
+    loadChildren: () => import('./challenge/challenge.module').then( m => m.ChallengePageModule)
+  },
+
   
 
  

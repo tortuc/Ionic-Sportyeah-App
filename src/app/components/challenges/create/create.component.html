@@ -1,20 +1,20 @@
 <ion-header>
   <ion-toolbar class="bg-gradient-person">
     <ion-title style="--color: white" *ngIf="!retoExistente"
-      ><ion-icon name="medal-outline" style="margin-right: 10px;"></ion-icon
+      ><ion-icon name="medal-outline" style="margin-right: 10px"></ion-icon
       >{{ "challenge.createChallenge" | translate }}</ion-title
     >
     <ion-title style="--color: white" *ngIf="retoExistente"
-      ><ion-icon name="medal-outline" style="margin-right: 10px;"></ion-icon
+      ><ion-icon name="medal-outline" style="margin-right: 10px"></ion-icon
       >{{ "challenge.acceptChallenge" | translate }}</ion-title
     >
   </ion-toolbar>
 </ion-header>
 <ion-content>
-  <div *ngIf="step0" class="text-center" style="padding-bottom:100px;">
+  <div *ngIf="step0" class="text-center" style="padding-bottom: 100px">
     <video
       controlslist="nodownload"
-      style="background-color: black;"
+      style="background-color: black"
       controls="controls"
       preload="metadata"
       webkit-playsinline="webkit-playsinline"
@@ -61,11 +61,50 @@
         <ion-toggle color="primary" [(ngModel)]="public"></ion-toggle>
       </ion-item>
     </ion-list>
+    <ion-list>
+      <ion-item>
+        <ion-label>{{ "solidary" | translate }}</ion-label>
+        <ion-toggle color="primary" [(ngModel)]="solidary"></ion-toggle>
+      </ion-item>
+    </ion-list>
+    <div *ngIf="solidary">
+      <div *ngIf="cause.src === null">
+        <img
+          src="https://img.icons8.com/nolan/64/image.png"
+          alt=""
+          style="width: 100px; cursor: pointer"
+          (click)="solidarySrc()"
+        />
+      </div>
+      <div *ngIf="cause.src">
+        <img
+          [src]="cause.src"
+          alt=""
+          style="width: 100px; cursor: pointer"
+          (click)="solidarySrc()"
+        />
+      </div>
+      <ion-item>
+        <ion-label>{{ "reason" | translate }}</ion-label>
+        <ion-input
+          type="text"
+          placeholder=""
+          [(ngModel)]="cause.cause"
+        ></ion-input>
+      </ion-item>
+    </div>
     <ion-button
       shape="round"
       expand="full"
       class="bottom-button"
       (click)="saveChallenge()"
+      [disabled]="
+        solidary
+          ? cause.src !== null && cause.cause !== ''
+            ? false
+            : true
+          : false
+      "
       ><ion-icon name="medal"></ion-icon
       >{{ "challenge.create" | translate }}</ion-button
     >

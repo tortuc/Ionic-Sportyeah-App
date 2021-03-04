@@ -741,6 +741,8 @@
   "sponsorText": "Revisa estos perfiles",
   "challenges": "Desafíos",
   "challenge": {
+    "shared":"Retar",
+    "shareds":"Retados",
     "foryou": "Para ti",
     "awards": "¡Puedes ganar estos premios!",
     "following": "Siguiendo",
@@ -764,7 +766,7 @@
     "new_challenge": "¡Comienza a retar!",
     "create": "¡Sube tu reto!",
     "public": "¡Deseo que todo SportYeah vea mi desafio!",
-    "Compartir":"¡Comparte tu Reto!"
+    "Compartir":"¡Comparte el Reto!"
   },
   "save": "Guardar Cambios",
 
@@ -828,5 +830,9 @@
   "intentos":"¿Desea subir los intentos?",
   "verIntentos":"Ver Intentos",
   "search":"Buscar",
-  "challengePerson":"Retar"
+  "challengePerson":"Retar",
+  "solidary": "Mi desafio es solidario",
+  "reason":"Describa su causa",
+  "follow":"Seguir",
+  "copyLink":"Copiar Enlace"
 }

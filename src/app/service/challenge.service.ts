@@ -44,6 +44,7 @@ export interface IChallenge {
   description: string;
   challenges: IChallenge[];
   public: boolean;
+  solidary?:any;
   intentos?: any[];
   _id?: string;
   createdAt?: string;

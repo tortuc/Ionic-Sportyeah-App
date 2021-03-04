@@ -139,7 +139,7 @@
     top: -35px !important;
     right: 50px;
   }
-  .VoteDavid{
+  .VoteDavid {
     right: 58px;
   }
 }
@@ -148,7 +148,7 @@
   .reacts {
     left: 50px;
   }
-  .VoteDavid{
+  .VoteDavid {
     left: 18px;
   }
 }
@@ -162,4 +162,13 @@
   border-radius: 50%;
   background-color: white;
   visibility: visible !important;
+}
+
+.actualizar {
+  justify-content: center;
+  margin-bottom: -20px;
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  right: 0;
 }

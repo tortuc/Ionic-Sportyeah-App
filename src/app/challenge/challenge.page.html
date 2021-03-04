@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar class="bg-gradient-person">
+    <ion-title *ngIf="challenge">
+      <ion-icon name="medal-outline"></ion-icon>
+      {{challenge.title}}
+    </ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button style="color: white"></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content *ngIf="challenge" style="background: white; z-index: 1">
+  <ion-row style="height: 100%">
+    <ion-col size="6">
+      <app-parte-izquierda-web
+        [Challenge]="challenge"
+        [destroy]="destroy"
+        [pauseS]="pause"
+        [scrollEvent]="scroll"
+      ></app-parte-izquierda-web>
+    </ion-col>
+    <ion-col size="6" style="background: white">
+      <app-parte-derecha-web
+        [Challenge]="challenge"
+        [destroy]="destroy"
+        [pauseS]="pause"
+        [scrollEvent]="scroll"
+      ></app-parte-derecha-web>
+    </ion-col>
+  </ion-row>
+</ion-content>

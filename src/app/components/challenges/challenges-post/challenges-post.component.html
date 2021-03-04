@@ -1,28 +1,23 @@
-<ion-row *ngIf="Challenge" class="post-card">
-  <ion-card ngClass.xs="m-p-0" style="width: 100%">
-    <ion-card-content
-      style="
-        padding-top: 0px !important;
-        padding-left: 0px !important;
-        padding-right: 0px !important;
-      "
-    >
-      <div class="bg-black pt15" style="border-radius: 0">
-        <app-challenges-post-header
-          class="text-center centerAbsolute pb15"
-          [Challenge]="Challenge"
-        ></app-challenges-post-header>
-        <app-challenge-content
-          [Challenge]="Challenge"
-          [destroy]="destroy"
-          [pauseS]="pause"
-          [scrollEvent]="scrollEvent"
-        ></app-challenge-content>
-      </div>
-      <app-challenges-post-options
+<ion-row *ngIf="Challenge" style="margin: 0; padding: 0">
+  <ion-card
+    ngClass.xs="m-p-0"
+    style="margin: 0 !important; padding: 0 !important; width: 100%"
+  >
+    <div class="bg-black pt15" style="border-radius: 0">
+      <app-challenges-post-header
+        class="text-center centerAbsolute pb15"
         [Challenge]="Challenge"
-        [pause]="pause"
-      ></app-challenges-post-options>
-    </ion-card-content>
+      ></app-challenges-post-header>
+      <app-challenge-content
+        [Challenge]="Challenge"
+        [destroy]="destroy"
+        [pauseS]="pause"
+        [scrollEvent]="scrollEvent"
+      ></app-challenge-content>
+    </div>
+    <app-challenges-post-options
+      [Challenge]="Challenge"
+      [pause]="pause"
+    ></app-challenges-post-options>
   </ion-card>
 </ion-row>

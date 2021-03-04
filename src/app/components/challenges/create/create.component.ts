@@ -23,7 +23,6 @@ import { ToastController, ModalController } from "@ionic/angular";
   styleUrls: ["./create.component.scss"],
 })
 export class CreateChallengeComponent implements OnInit {
-  @ViewChild("fileChooser") fileChooser: ElementRef;
   @Input() challenged: IReference | null;
   @Input() Challenge: any;
   public public: boolean = true;
@@ -31,6 +30,8 @@ export class CreateChallengeComponent implements OnInit {
   public awards: IAward[] = [];
   public retoExistente: boolean = false;
   public instructions: string = null;
+
+  // FORM
   form: any = null;
   // STEPPERS
 
@@ -132,6 +133,7 @@ export class CreateChallengeComponent implements OnInit {
       newChallenge = {
         challenging: challenged,
         challenged: challenged,
+        solidary:this.solidary,
         intentos: this.intentos,
         views: [],
         public: this.public,
@@ -145,6 +147,7 @@ export class CreateChallengeComponent implements OnInit {
         challenging: this.challenged._id,
         challenged: challenged,
         intentos: this.intentos,
+        solidary:this.solidary,
         views: [],
         public: this.public,
         awards: this.awards,
@@ -164,10 +167,9 @@ export class CreateChallengeComponent implements OnInit {
             duration: 1000,
           });
           await toast.present();
-          this.mc.dismiss();
+          this.mc.dismiss(r);
         },
-        (err) => {
-        }
+        (err) => {}
       );
   }
   async loadingI() {
@@ -176,5 +178,15 @@ export class CreateChallengeComponent implements OnInit {
     });
     await loading.present();
     return loading;
+  }
+
+  // SOLIDARY CHALLENGE
+  public solidary: boolean = false;
+  public cause: any = { src: null, cause: "" };
+  solidarySrc() {
+    this.img.takeOnlyPhoto();
+    this.img.content
+      .pipe(take(1))
+      .subscribe((r: string) => (this.cause.src = r));
   }
 }

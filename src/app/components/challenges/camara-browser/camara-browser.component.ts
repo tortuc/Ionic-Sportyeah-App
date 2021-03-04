@@ -18,6 +18,7 @@ export class CamaraBrowserComponent implements OnInit {
   public startRecording = new Subject<void>();
   public recording: boolean = false;
   public stream: any = null;
+  video = null;
 
   public paused: boolean = false;
 
@@ -30,6 +31,7 @@ export class CamaraBrowserComponent implements OnInit {
   ngOnInit() {
     setTimeout(() => {
       const video = <HTMLVideoElement>document.getElementById("video2");
+      this.video = video;
       video.muted = true;
       const errorMsgElement = document.querySelector("span#errorMsg");
 

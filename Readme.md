@@ -24,34 +24,93 @@ Iniciar sportyeah
 
 1. Siempre al finalizar la jornada hacer ionic build y ver los errores solucionarlos y merge master.
 
-## NOTAS QA JOGEIKER LIZARRAGA
+## TAREAS DESAFIOS 04-03-2021
 
-1. No se puede reproducir el video al subirlo en intento.
-  colocar un loading despues de pedir la data.
+1. Modal de comparticion: Mejorar link para compartir visual/funcional.cumplido.
+2. Boton de compartir: Cambiar texto a "retar" y "retados".cumplido.
+3. Modal de comparticion: Botones para compartir redes sociales.cumplido.
+4. Componente desafio individual: colocar video justo en medio de la parte izquierda.cumplido.
+5. Componente desafio individual: colocar video de fondo con blur para la parte sobrante.cumplido.
+6. Componente desafio individual: recibir parametro userName.
+  colocar username
+7. Componente desafio individual: Colocar en tab quien te esta retando
+8. Componente desafio individual: Colocar boton de aceptar reto.
+9. Componente desafio individual: quitar titulo de tab y colocar justo debajo del usuario para mejorar la visual.
+10. Componente desafio individual: Logica boton seguir: no debe permitir seguir si el usuario soy yo, si ya lo sigo debe salir marcado y si no esta marcado poder marcarlo y seguir a la persona.
+11. Componente desafio individual: Colocar listado de retos del mismo tipo debajo de los botones de reaccion, comentar y compartir.
+12. Componente desafio individual: Colocar boton tipo tiktok en video para poder ver otro desafio del mismo tipo.
+13. Componente desafio individual Responsive: disenar una vista y definir tareas.
+14. Premios de retos: Dar condiciones para entrega del premio.
+15. Premios de retos: Manejar los premios de los desafios y darlos por fecha, default 1 mes.
+16. Premios de retos: Poder agregar emojis a los premios.
+17. Retos generales: Buscador de retos.
+18. Modal imagenes gratis: Buscador de imagenes gratis.
+19. Componente Crear Desafios: Poder agregar emojis al titulo y a la descripcion.
+20. Componente Crear Desafios: Guardar en api la persona que te ha retado.
+21. Reacciones retos: Al clickear la reaccion debe de eliminarse.
+22. Modal de comparticion: Funcionalidad para compartir reto en redes sociales.
+23. Modal de comparticion: Logica y funcionalidad boton retar seguidor.
 
-2. Boton de usuario que subio el reto redirige a mi perfil no al otro.
-3. Al moverme al perfil de otra persona me desaparece los videos al volver.
-4. Slider de intentos.
-5. Los preomios deben llevar condicion.
+## TAREAS DESAFIOS 03-03-2021
+
+0. componente desafio individual:
+   colocar nombre del desafio en la tab del componente.
+   colocar estilo descripcion del desafio debajo del nombre. cumplido.
+   crear visual para reto individual tipo tiktok. 50%
+   colocar imagen con blur en fondo div de parte izquierda.cumplido.
+   colocar video en medio de la imagen con padding.cumplido.
+   al pausar el video colocar icono de pause.
+   que solo rellene el espacio deseable en la pantalla challenges ajustar.
+   corregir bug con reaccion en vista individual referenceId undefined.
+   Un desafio component y abajo una lista de retos de la misma familia.
+   La lista de desafios de abajo debe tener scroll infinite.
+   El link debe aparecer clickeable y copiable en la modal de reto creado.
+   Debe abrir la modal de reto creado el boton de shared.
+   Colocar iconos de redes sociales en modal de comparticion.
+1. Al subir un desafio abrir una modal de comparticion y mostrar link para compartir y en esa modal le saldra la opcion de retar a sus seguidores.
+2. Logica para compartir reto a amigos.
+3. Permitir enviar mensaje privado con el reto por whatsapp.
+4. Poder ver las reacciones dejadas al darle click a las reacciones.
+5. Buscador de retos.
+6. Buscador de imagenes gratis.
+7. Logo a la izquierda del numero por posicion.
+8. Quitar console.logs de toda la parte de desafios.
+9. Colocar max height al tamano de los videos.
+10. Crear componente para ver el reto y abajo sus demas retos relacionados por orden de mas likes.
+11. Para entrar en la pantalla de reto individual colocar boton de "cadena" de retos.
+12. Cron function para manejar los premios de los desafios y darlos por fecha.
+13. Boton de compartir debe abrir la misma modal que se abre al crear un desafio.
+
+## NOTAS QA JOGEIKER LIZARRAGA 02-03-2021
+
+1. No se puede reproducir el video al subirlo en intento.cumplido.
+   colocar un loading despues de pedir la data.cumplido.
+   colocar otro video de donde extraer la duracion sin afectar al video principal.cumplido.
+2. Boton de usuario que subio el reto redirige a mi perfil no al usuario que subio el desafio.cumplido.
+3. Al moverme al perfil de otra persona me desaparece los videos al volver.cumplido.
+   Ionwillenter recargue los videos.cumplido.
+4. Slider de intentos.cumplido.
+   Agregar un ion slider con los intentos.cumplido.
+5. Los premios deben llevar condicion.
+   Crear campo condicion en la api con un enum.
+   Crear select para las condiciones.
+   Las condiciones son: Mas likes de tal, mas vistas, mas compartido, mas comentarios.
+   Calendario para seleccionar la fecha en la que se dara el premio, dar un mes por defecto.
 6. Al no dar permisos de camara debe mostrar un mejor error.
-7. La descripcion de los premios no se muestra correctamente.
-8. Debe mostrar pantalla de carga una vez pida la data en videos-c.
-9. Modal al crear reto no deberia abrirse si no hay data como el link.
-
-## TAREAS DESAFIOS 01-03-2021
-
-1. Reto solidario descripcion y toggle mas imagen tipo banner.
-2. Al subir un desafio abrir una modal de comparticion y mostrar link para compartir y en esa modal le saldra la opcion de retar a sus seguidores.
-3. Logica para compartir reto a amigos.
-4. Permitir enviar mensaje privado con el reto por whatsapp.
-5. Poder ver las reacciones dejadas al darle click a las reacciones.
-6. Buscador de retos.
-7. Buscador de imagenes gratis.
-8. Logo a la izquierda del numero por posicion.
-9. Quitar console.logs de toda la parte de desafios.
-10. Colocar max height al tamano de los videos.
-11. Crear componente para ver el reto y abajo sus demas retos relacionados por orden de mas likes.
-12. Para entrar en la pantalla de reto individual colocar boton de "cadena" de retos.
+7. La descripcion de los premios no se muestra correctamente.cumplido.
+8. Debe mostrar pantalla de carga una vez pida la data en videos-c.cumplido.
+9. Modal al crear reto no deberia abrirse si no hay data como el link.cumplido.
+10. Reto solidario descripcion y toggle mas imagen tipo banner.
+    Crear input de la causa.cumplido.
+    Crear imagen de la causa.cumplido.
+    Crear objeto de la causa.cumplido.
+    Crear campo solidary en api.cumplido.
+    Crear validacion para el campo causa.cumplido.
+    Crear validacion para el campo src.cumplido.
+    Que la validacion solo se active cuando se active causa solidaria.cumplido.
+    Subida de imagenes en cause.cumplido.
+    Mostrar boton causa solidaria y mostrar la causa en una modal dentro del desafio.
+    Preguntar opciones para mejorar el diseno de este apartado por el grupo.
 
 ## TAREAS DESAFIOS 26-02-2021
 

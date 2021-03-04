@@ -560,7 +560,7 @@ ion-segment-button {
   margin-right: auto;
 }
 .videoChallenge {
-  max-height: 50vh;
+  max-height: 60vh;
 }
 .centerAbsolute {
   left: 0;
@@ -634,4 +634,7 @@ ion-segment-button {
   position: fixed;
   bottom: 80px;
   width: 100%;
+}
+.centerToast{
+  text-align: center;
 }
