@@ -18,7 +18,7 @@ export class PostService {
 
 constructor(
   private http:HttpClient,
-  private userService:UserService
+  private userService:UserService,
 ) { }
 audio = new Howl({
   src:['../../assets/sounds/comment.mp3']

@@ -205,10 +205,10 @@ export class UserService {
               headers: new HttpHeaders({ "access-token": getToken() }),
             })
             .subscribe(
-              async (resp: any) => {
+               (resp: any) => {
                 this.getFollowings();
                 this.getFollowers();
-                await this.setUser(<User>resp.user);
+                this.setUser(<User>resp.user);
                 this.socketService.socket.emit("login", { user: resp.user._id });
                 resolve(true);
               },

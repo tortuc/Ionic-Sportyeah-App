@@ -34,16 +34,121 @@
         </ion-grid>
       </ion-col>
        
-        <ion-col style="text-align: center;" size="12">
+        <ion-col style="text-align: center;position: relative;" size="12" >
         <div style="margin-left: auto;margin-right: auto; width: 57%;">     
           <div  id="localPlayer" class="player"></div>
-          <div class="w-100"></div>   
+          <div class="w-100"></div>
           <!-- <div id="remotePlayerlist"></div> -->       
         </div>
+<!-- REACCIONES -->
+<div
+class="reactsDiv"
+(mouseover)="time = true"
+(mouseout)="time = false"
+#reacts
+>
+<div class="overlay" fxShow="false" fxShow.xs="true"></div>
+<div class="liveReactionsLike" (click)="like(item.post._id, item.likes, 1)" #liveReactions>
+  <img
+    #img
+    src="https://res.cloudinary.com/prvnbist/image/upload/v1492531171/XZOPuv9_eyqlr2.png"
+    alt=""
+  />
+</div>
+<div class="liveReactionsLove" (click)="like(item.post._id, item.likes, 2)" #liveReactions>
+  <img
+    #img
+    src="https://res.cloudinary.com/prvnbist/image/upload/v1492531172/uIjLl6R_cmbnqb.png"
+    alt=""
+  />
+
+</div>
+<div class="liveReactionsHaha" (click)="like(item.post._id, item.likes, 3)" #liveReactions>
+  <img
+    #img
+    src="https://res.cloudinary.com/prvnbist/image/upload/v1492531177/lsHmtDy_ycqnbp.png"
+    alt=""
+  />
+
+</div>
+<div class="liveReactionsWow" (click)="like(item.post._id, item.likes, 4)" #liveReactions>
+  <img
+    #img
+    src="https://res.cloudinary.com/prvnbist/image/upload/v1492531177/s475u9d_o8trbg.png"
+    alt=""
+  />
+
+</div>
+<div class="liveReactionsSad" (click)="like(item.post._id, item.likes, 5)" #liveReactions>
+  <img
+    #img
+    src="https://res.cloudinary.com/prvnbist/image/upload/v1492531172/JJuD9qb_a7gkmu.png"
+    alt=""
+  />
+
+</div>
+<div class="liveReactionsAngry" (click)="like(item.post._id, item.likes, 6)" #liveReactionsAngry>
+  <img
+    #img
+    src="https://res.cloudinary.com/prvnbist/image/upload/v1492531178/VDM3zOV_qy9fqj.png"
+    alt=""
+  />
+
+</div>
+</div>
+<!-- FIN REACCIONES -->
       </ion-col>
 <!--         <ion-input  style="background: white; color: black;" placeholder="channel" [(ngModel)]="channel"></ion-input>
  -->  
-      
+      <ion-col size="12" *ngIf="news">
+        <div style="--background: white;width: 85%;margin-top: 5%;margin-left: auto;margin-right: auto;">
+          <post-options style="background: white;"
+           [news]="news"
+           isPost="false"
+         ></post-options>
+         <ion-grid>
+           <ion-row>
+             <ion-col size="12">
+               <comment-post  [news]="news?.news" (newComment)="comments($event)"></comment-post>
+             </ion-col>
+             <ion-col *ngFor="let comment of news?.comments"  size="12">
+               <ion-card class="comment"  >
+                 <ion-card-header>
+                   <ion-card-subtitle class="user-header">
+                     <ion-avatar class="mini">
+                     <ion-img class="img-user-mini" [src]="comment.user.photo"></ion-img>
+                     <div class="connectedDIVlittle" *ngIf="comment.user.connected"></div>
+                   </ion-avatar>
+                   <div class="user-name">
+                     <span class="message profile-name"
+                      >{{comment.user.name}} {{comment.user.last_name}}</span><br>
+                     <span>{{comment.date | customDisplayDate}}</span>
+                   </div>
+                   
+                   </ion-card-subtitle>
+                 </ion-card-header>
+                 <ion-card-content>
+                   <span *ngIf="comment.message" [innerHTML]="comment.message | links"></span>
+                   <ion-img 
+                    class="img-comment" *ngIf="comment.image" [src]="comment.image">
+         
+                   </ion-img>
+                 </ion-card-content>
+                 </ion-card>
+          
+             </ion-col>
+           </ion-row>
+         </ion-grid>
+         </div>
+      </ion-col>
+      <ion-col>
+        <ion-button (click)="esta()">
+          show
+        </ion-button>
+        <ion-button (click)="esta2()">
+          close
+        </ion-button>
+      </ion-col>
     </ion-row>
   </ion-grid>
 </ion-content>

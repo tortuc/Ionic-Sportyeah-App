@@ -53,7 +53,8 @@ export class PostOptionsComponent implements OnInit {
     public actionSheetCtrl: ActionSheetController,
     private clipboard: Clipboard,
     private popoverController: PopoverController,
-    public newsService: NewsService
+    public newsService: NewsService,
+
   ) {}
   ngOnInit() {
     if (this.item == undefined) {

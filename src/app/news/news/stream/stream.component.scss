@@ -23,3 +23,299 @@
     margin-left: auto;
     margin-right: auto;
  }
+
+
+
+ 
+//Reacctions
+ .particlesContainer{
+     position: fixed;
+     top: 0;
+     bottom: 0;
+     left: 0;
+     right: 0;
+     margin: auto;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+ }
+ .particle{
+     display: inline-flex;
+     position: absolute;
+     height: 5rem;
+     width: 5rem;
+     left: 0;
+     right: 0;
+     top: 10%;
+     border: 2px solid;
+     margin:auto;
+     background-image: url("https://res.cloudinary.com/prvnbist/image/upload/v1492531172/uIjLl6R_cmbnqb.png");
+     background-size: 4rem;
+     background-repeat: no-repeat;
+     border-radius: 500px;
+     background-color: white;
+ }
+
+ .particle.like{
+     background-position: 8px 8px;
+ }
+
+
+
+
+  
+
+    .liveReactionsLike {
+    width: 40px;
+    height: 40px;
+    margin-left: auto;
+    margin-right: auto;
+      border-radius: 50%;
+      //transform-origin: 50% 500%;
+      animation: slide2 3s ;//ease-in-in forwards;
+      //opacity: 1;
+      cursor: pointer;
+      left: 50%;
+     // transform: translateY(600px);
+      @keyframes slide2 {
+        /* 0% {
+          //transform: translateY(0px);
+          from {top: 0px;opacity: 1;}
+          to {top: -500px; background-color: blue;opacity: 0;}
+          //opacity: 0;
+        } */
+        0%{
+         top:300px; opacity: 0;
+        }
+        100%{
+          top: -325px; opacity: 1;
+        }
+        /*Todos salen del reaction y caen
+         100% {
+            transform: translateY(600px);
+            opacity: 1;
+          } */
+      }
+      
+     /*  &:hover {
+        transform: scale(1.3);
+      } */
+      img {
+        width: 100%;
+      }
+      position: absolute;
+    }
+    .liveReactionsLove {
+          width: 40px;
+    height: 40px;
+    margin-left: auto;
+    margin-right: auto;
+      border-radius: 50%;
+      //transform-origin: 50% 500%;
+      animation: slide2 3s ;//ease-in-in forwards;
+      //opacity: 1;
+      cursor: pointer;
+      top: 325px;
+      left: 50%;
+     // transform: translateY(600px);
+      @keyframes slide2 {
+        /* 0% {
+          //transform: translateY(0px);
+          from {top: 0px;opacity: 1;}
+          to {top: -500px; background-color: blue;opacity: 0;}
+          //opacity: 0;
+        } */
+        0%{
+          top:0px;opacity: 1;
+        }
+        100%{
+          top: -300px; opacity: 0;
+        }
+        /*Todos salen del reaction y caen
+         100% {
+            transform: translateY(600px);
+            opacity: 1;
+          } */
+      }
+      
+     /*  &:hover {
+        transform: scale(1.3);
+      } */
+      img {
+        width: 100%;
+      }
+      position: absolute;
+    }
+    .liveReactionsHaha {
+          width: 40px;
+    height: 40px;
+    margin-left: auto;
+    margin-right: auto;
+      border-radius: 50%;
+      //transform-origin: 50% 500%;
+      animation: slide2 3s ;//ease-in-in forwards;
+      //opacity: 1;
+      cursor: pointer;
+      top: 325px;
+      left: 50%;
+     // transform: translateY(600px);
+      @keyframes slide2 {
+        /* 0% {
+          //transform: translateY(0px);
+          from {top: 0px;opacity: 1;}
+          to {top: -500px; background-color: blue;opacity: 0;}
+          //opacity: 0;
+        } */
+        0%{
+          top:0px;opacity: 1;
+        }
+        100%{
+          top: -300px; opacity: 0;
+        }
+        /*Todos salen del reaction y caen
+         100% {
+            transform: translateY(600px);
+            opacity: 1;
+          } */
+      }
+      
+     /*  &:hover {
+        transform: scale(1.3);
+      } */
+      img {
+        width: 100%;
+      }
+      position: absolute;
+    }
+    .liveReactionsWow {
+          width: 40px;
+    height: 40px;
+    margin-left: auto;
+    margin-right: auto;
+      border-radius: 50%;
+      //transform-origin: 50% 500%;
+      animation: slide2 3s ;//ease-in-in forwards;
+      //opacity: 1;
+      cursor: pointer;
+      top: 325px;
+      left: 50%;
+     // transform: translateY(600px);
+      @keyframes slide2 {
+        /* 0% {
+          //transform: translateY(0px);
+          from {top: 0px;opacity: 1;}
+          to {top: -500px; background-color: blue;opacity: 0;}
+          //opacity: 0;
+        } */
+        0%{
+          top:0px;opacity: 1;
+        }
+        100%{
+          top: -300px; opacity: 0;
+        }
+        /*Todos salen del reaction y caen
+         100% {
+            transform: translateY(600px);
+            opacity: 1;
+          } */
+      }
+      
+     /*  &:hover {
+        transform: scale(1.3);
+      } */
+      img {
+        width: 100%;
+      }
+      position: absolute;
+    }
+  
+    .liveReactionsSad {
+          width: 40px;
+    height: 40px;
+    margin-left: auto;
+    margin-right: auto;
+      border-radius: 50%;
+      //transform-origin: 50% 500%;
+      animation: slide2 3s ;//ease-in-in forwards;
+      //opacity: 1;
+      cursor: pointer;
+      top: 325px;
+      left: 50%;
+     // transform: translateY(600px);
+      @keyframes slide2 {
+        /* 0% {
+          //transform: translateY(0px);
+          from {top: 0px;opacity: 1;}
+          to {top: -500px; background-color: blue;opacity: 0;}
+          //opacity: 0;
+        } */
+        0%{
+          top:0px;opacity: 1;
+        }
+        100%{
+          top: -300px; opacity: 0;
+        }
+        /*Todos salen del reaction y caen
+         100% {
+            transform: translateY(600px);
+            opacity: 1;
+          } */
+      }
+      
+     /*  &:hover {
+        transform: scale(1.3);
+      } */
+      img {
+        width: 100%;
+      }
+      position: absolute;
+    }
+    .liveReactionsAngry {
+          width: 40px;
+    height: 40px;
+    margin-left: auto;
+    margin-right: auto;
+      border-radius: 50%;
+      //transform-origin: 50% 500%;
+      animation: slide2 4s ;//ease-in-in forwards;
+      //opacity: 1;
+      cursor: pointer;
+//      bottom: 0px;
+      left: 50%;
+     // transform: translateY(600px);
+      @keyframes slide2 {
+        /*0%{
+          top:325px;opacity: 1;position: absolute;
+        }
+        100%{
+          top: -400px; opacity: 0;position: absolute;
+        } */
+        0%{
+          bottom:0px;opacity: 1;left: 47%;
+        }
+        50%{
+          opacity: 0;left: 52%;
+        }
+        100%{
+          bottom: 250px; opacity: 0;left: 46%;
+        }
+        /*Todos salen del reaction y caen
+         100% {
+            transform: translateY(600px);
+            opacity: 1;
+          } */
+      }
+      
+     /*  &:hover {
+        transform: scale(1.3);
+      } */
+      img {
+        width: 100%;
+      }
+      position: absolute;
+    }
+  .showLive {
+    opacity: 1;
+
+    visibility: visible !important;
+  }

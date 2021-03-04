@@ -12,13 +12,13 @@ import {Howl, Howler} from 'howler';
 })
 export class NewsService {
 
-
+  public idNews;
   public news = []
   constructor(
     private http:HttpClient,
     public alertController: AlertController,
     private translate: TranslateService,
-    private userService: UserService
+    private userService: UserService,
   ) { }
   audio = new Howl({
     src:['../../assets/sounds/comment.mp3']

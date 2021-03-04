@@ -34,6 +34,7 @@ export class PostSharedComponent implements OnInit {
   }
 
 goToStream(){
+  this.newsService.idNews = this.news._id
   this.router.navigate([`/news/streamNews/${this.news.postStream}`])
 }
 

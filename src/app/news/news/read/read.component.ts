@@ -25,8 +25,6 @@ export class ReadComponent implements OnInit {
       console.log(response)
       this.new = response
       this.news = response.news */
-    
-     console.log() 
     }
    
 news = undefined;

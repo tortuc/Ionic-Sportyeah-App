@@ -4,7 +4,8 @@ import { UserService } from "../../../service/user.service";
 import { ActivatedRoute, Router } from '@angular/router';
 import { LoadingController, ModalController, Platform } from "@ionic/angular";
 import { TranslateService } from "@ngx-translate/core";
-
+import { NewsService } from '../../../service/news.service';
+import { SocketService } from 'src/app/service/socket.service';
 const client: IAgoraRTCClient = AgoraRTC.createClient({ mode: "live", codec: "vp8" });
 
 @Component({
@@ -13,6 +14,7 @@ const client: IAgoraRTCClient = AgoraRTC.createClient({ mode: "live", codec: "vp
   styleUrls: ['./stream.component.scss'],
 })
 export class StreamComponent implements OnInit {
+  @ViewChild("liveReactionsAngry") liveReactionsAngry: ElementRef;
 
   @ViewChild("localPlayer") localPlayer: ElementRef;
 
@@ -21,7 +23,8 @@ export class StreamComponent implements OnInit {
     private route:ActivatedRoute,
     public loadingCtrl: LoadingController,
     public translate: TranslateService,
-
+    public newsService:NewsService,
+    public socketService:SocketService,
   ) {
     //client.setClientRole("audience")
   
@@ -29,7 +32,17 @@ export class StreamComponent implements OnInit {
       this.rtc.client = AgoraRTC.createClient({ mode: "live", codec: "vp8" ,role:"audience"});
      this.subscribe()
     //this.join()
-   }
+    this.newsService.findById(this.newsService.idNews).toPromise()
+    .then((response:any)=>{
+      this.news = response 
+      this.socketService.socket.emit('in-news',{id:response.news._id})
+    })
+    .catch((err)=>{
+      this.news = 404
+    }) 
+  }
+
+  news
    isSubscribe:boolean = true
   rtc = {
     // For the local client.
@@ -80,6 +93,11 @@ formateSelected
 
 
   async  subscribe(){
+    this.rtc.client.remoteUsers.forEach(user => {
+      // Destroy the dynamically created DIV container.
+      const playerContainer = document.getElementById(user.uid);
+      playerContainer && playerContainer.remove();
+    });
     let loading = await this.loadingCtrl.create({
       message: this.translate.instant("loading"),
     });
@@ -144,6 +162,7 @@ formateSelected
   });
     // Leave the channel.
     await this.rtc.client.leave();
+    this.socketService.socket.emit('out-news',this.news._id)
       loading.dismiss();
   }
   async  leaveCall() {
@@ -165,7 +184,24 @@ formateSelected
     // Leave the channel.
     await this.rtc.client.leave();
   }
-   
-  ngOnInit() {}
+  esta(){
+    if (!this.liveReactionsAngry.nativeElement.classList.contains("showLive")) {
+      this.liveReactionsAngry.nativeElement.style.display = "flex";
+      this.liveReactionsAngry.nativeElement.classList.add("showLive");
+    }
+  }
+  esta2(){
+    if (this.liveReactionsAngry.nativeElement.classList.contains("showLive")) {
+      this.liveReactionsAngry.nativeElement.style.display = "none";
+      this.liveReactionsAngry.nativeElement.classList.remove("showLive");
+    }
+  }
+  ngOnInit() {
+    this.socketService.socket.on('new-reaction',(data)=>{
+      console.log(data);
+    })
+  }
+ 
+
 
 }

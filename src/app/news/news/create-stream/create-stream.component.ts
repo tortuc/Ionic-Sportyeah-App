@@ -226,7 +226,6 @@ formateSelected
 
     this.begingStream = false;
     loading.dismiss();
-
   }
 
  async deletePublicar(){
@@ -242,6 +241,7 @@ await   this.newsService.deleteNews(this.newsId).subscribe((response)=>{
     this.postService.deleteOne(this.postId).subscribe((response)=>{
      console.log(response)
    }) 
+   
   }
   
 
