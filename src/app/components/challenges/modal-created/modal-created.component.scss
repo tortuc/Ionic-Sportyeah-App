@@ -1,0 +1,53 @@
+.copy-link-container {
+  display: flex;
+  flex-shrink: 0;
+  -webkit-box-pack: justify;
+  justify-content: space-between;
+  box-sizing: border-box;
+  margin-top: 18px;
+  margin-bottom: 18px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 94%;
+  height: 58px;
+  border: 1px solid rgba(18, 18, 18, 0.12);
+  border-radius: 2px;
+}
+.link-container {
+  font-family: proxima-regular, PingFangSC, sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  padding-left: 2%;
+  line-height: 20px;
+  color: rgba(22, 24, 35, 0.75);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.copy-container {
+  display: flex;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+.icon-link {
+  width: 12px;
+  height: 12px;
+  margin-top: auto;
+  margin-bottom: auto;
+  // background-image: url(https://sf16-scmcdn-va.ibytedtos.com/goofy/tiktok/web/node/_next/static/images/ic-copy-link-341e9fb….png);
+  // background-size: 12px;
+}
+.word-link {
+  font-family: proxima-semibold, PingFangSC, sans-serif;
+  font-weight: 600;
+  padding: 0px 16px 0px 9px;
+  font-size: 13px;
+  line-height: 32px;
+  // color: rgb(254, 44, 85);
+  color: var(--color-primary);
+}
+.link{
+  line-height: 32px;
+  font-size: 13px;
+  padding: 0px 16px 0px 9px;
+}

@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar class="bg-gradient-person">
-    <ion-title style="--color: white" 
+    <ion-title style="--color: white"
       ><ion-icon name="medal-outline" style="margin-right: 10px"></ion-icon
       >{{ "challenge.Compartir" | translate }}</ion-title
     >
@@ -8,18 +8,28 @@
 </ion-header>
 <ion-content class="text-center">
   <h1>Reta a tus amigos</h1>
-  <ion-input
+  <!-- <ion-input
     type="text"
     placeholder="Awesome Input"
     [value]="challengeLink"
     readonly
-  ></ion-input>
+  ></ion-input> -->
+  <div class="copy-link-container">
+    <div class="link-container">
+      <p class="link">{{ challengeLink }}</p>
+    </div>
+    <div class="copy-container" (click)="copyLink()">
+      <ion-icon name="link-outline" class="icon-link"> </ion-icon>
+      <p class="word-link">{{ "copyLink" | translate }}</p>
+    </div>
+  </div>
   <ion-list>
     <ion-input
       type="text"
       position="stacked"
       placeholder="{{ 'search' | translate }}"
-      [(ngModel)]="name" (ngModelChange)="onChange($event)"
+      [(ngModel)]="name"
+      (ngModelChange)="onChange($event)"
     ></ion-input>
     <ion-item *ngFor="let user of users">
       <ion-thumbnail slot="start">

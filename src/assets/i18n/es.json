@@ -741,6 +741,8 @@
   "sponsorText": "Revisa estos perfiles",
   "challenges": "Desafíos",
   "challenge": {
+    "shared":"Retar",
+    "shareds":"Retados",
     "foryou": "Para ti",
     "awards": "¡Puedes ganar estos premios!",
     "following": "Siguiendo",
@@ -831,5 +833,6 @@
   "challengePerson":"Retar",
   "solidary": "Mi desafio es solidario",
   "reason":"Describa su causa",
-  "follow":"Seguir"
+  "follow":"Seguir",
+  "copyLink":"Copiar Enlace"
 }

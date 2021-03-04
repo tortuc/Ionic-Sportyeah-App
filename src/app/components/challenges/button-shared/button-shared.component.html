@@ -1,11 +1,11 @@
-<ion-button fill="clean" [ngClass]="Challenge"  (click)="openShared()">
+<ion-button fill="clean" [ngClass]="Challenge" (click)="openShared()">
   <ion-icon name="arrow-redo-outline" style="margin-right: 2px"></ion-icon>
-  <span fxShow.gt-xs="true" fxShow="false">{{ "post.share" | translate }}</span>
+  <span fxShow.gt-xs="true" fxShow="false">{{ "challenge.shared" | translate }}</span>
 </ion-button>
 <p
   style="margin: 0"
   *ngIf="Challenge.challenging.shared"
   class="profile-name marginleftforletters"
 >
-  {{ Challenge.challenged.shared.length }} {{ "post.shared" | translate }}
+  {{ Challenge.challenged.shared.length }} {{ "challenge.shareds" | translate }}
 </p>
