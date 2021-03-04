@@ -4,8 +4,7 @@
     (click)="
       goToProfile(
         Challenge.challenged.userId.data._id,
-        Challenge.challenged.userId.data.username,
-        Challenge._id
+        Challenge.challenged.userId.data.username
       )
     "
   >
@@ -32,9 +31,9 @@
       {{ Challenge.challenged.userId.data.last_name }}
     </span>
     <br />
-    <span class="profile-name date">
-      {{ Challenge.createdAt | customDisplayDate }}
-    </span>
+    <!-- <span class="profile-name date"> -->
+      <!-- {{ Challenge.createdAt | customDisplayDate }} -->
+    <!-- </span> -->
   </div>
   <ion-button fill="outline" style="right: 0; position: absolute">{{
     "follow" | translate
