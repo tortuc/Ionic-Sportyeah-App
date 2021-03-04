@@ -27,32 +27,28 @@ Iniciar sportyeah
 ## TAREAS DESAFIOS 04-03-2021
 
 1. Modal de comparticion: Mejorar link para compartir visual/funcional.cumplido.
-   Estilo link como tik tok.cumplido.
-   Colocar estilo tipo input, solo lectura.cumplido.
-   Boton al final de copiar enlace con icono de cadena.cumplido.
-   Funcionalidad de copia portapapeles.cumplido.
 2. Boton de compartir: Cambiar texto a "retar" y "retados".cumplido.
-3. Modal de comparticion: Botones para compartir redes sociales.
-4. Modal de comparticion: Funcionalidad para compartir reto en redes sociales.
-5. Modal de comparticion: Logica y funcionalidad boton retar seguidor.
+3. Modal de comparticion: Botones para compartir redes sociales.cumplido.
+4. Componente desafio individual: colocar video justo en medio de la parte izquierda.cumplido.
+5. Componente desafio individual: colocar video de fondo con blur para la parte sobrante.cumplido.
 6. Componente desafio individual: recibir parametro userName.
 7. Componente desafio individual: Colocar en tab quien te esta retando
 8. Componente desafio individual: Colocar boton de aceptar reto.
 9. Componente desafio individual: quitar titulo de tab y colocar justo debajo del usuario para mejorar la visual.
-10. Componente desafio individual: colocar video justo en medio de la parte izquierda.
-11. Componente desafio individual: colocar video de fondo con blur para la parte sobrante.
-12. Componente desafio individual: Logica boton seguir: no debe permitir seguir si el usuario soy yo, si ya lo sigo debe salir marcado y si no esta marcado poder marcarlo y seguir a la persona.
-13. Componente desafio individual: Colocar listado de retos del mismo tipo debajo de los botones de reaccion, comentar y compartir.
-14. Componente desafio individual: Colocar boton tipo tiktok en video para poder ver otro desafio del mismo tipo.
-15. Componente desafio individual Responsive: disenar una vista y definir tareas.
-16. Reacciones retos: Al clickear la reaccion debe de eliminarse.
-17. Premios de retos: Dar condiciones para entrega del premio.
-18. Premios de retos: Manejar los premios de los desafios y darlos por fecha, default 1 mes.
-19. Premios de retos: Poder agregar emojis a los premios.
-20. Retos generales: Buscador de retos.
-21. Modal imagenes gratis: Buscador de imagenes gratis.
-22. Componente Crear Desafios: Poder agregar emojis al titulo y a la descripcion.
-23. Componente Crear Desafios: Guardar en api la persona que te ha retado.
+10. Componente desafio individual: Logica boton seguir: no debe permitir seguir si el usuario soy yo, si ya lo sigo debe salir marcado y si no esta marcado poder marcarlo y seguir a la persona.
+11. Componente desafio individual: Colocar listado de retos del mismo tipo debajo de los botones de reaccion, comentar y compartir.
+12. Componente desafio individual: Colocar boton tipo tiktok en video para poder ver otro desafio del mismo tipo.
+13. Componente desafio individual Responsive: disenar una vista y definir tareas.
+14. Premios de retos: Dar condiciones para entrega del premio.
+15. Premios de retos: Manejar los premios de los desafios y darlos por fecha, default 1 mes.
+16. Premios de retos: Poder agregar emojis a los premios.
+17. Retos generales: Buscador de retos.
+18. Modal imagenes gratis: Buscador de imagenes gratis.
+19. Componente Crear Desafios: Poder agregar emojis al titulo y a la descripcion.
+20. Componente Crear Desafios: Guardar en api la persona que te ha retado.
+21. Reacciones retos: Al clickear la reaccion debe de eliminarse.
+22. Modal de comparticion: Funcionalidad para compartir reto en redes sociales.
+23. Modal de comparticion: Logica y funcionalidad boton retar seguidor.
 
 ## TAREAS DESAFIOS 03-03-2021
 

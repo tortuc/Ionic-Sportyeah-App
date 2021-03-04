@@ -18,6 +18,7 @@ export class ChallengeContentComponent implements OnInit {
   @Input() destroy: Subject<void>;
   @Input() pauseS: Subject<void>;
   @Input() scrollEvent: Subject<void>;
+  @Input() individual?:boolean;
   scrollEvent$: any;
   public viewVerified: boolean = false;
   public pauseVideo: boolean = false;

@@ -14,3 +14,12 @@
   left: 0px;
   z-index: 99999999999999999999;
 }
+
+.videoBack {
+  position: absolute;
+  z-index: -9999999992;
+  filter: blur(1px);
+  opacity: 0.3;
+  min-height: 100%;
+  min-width: 100%;
+}
