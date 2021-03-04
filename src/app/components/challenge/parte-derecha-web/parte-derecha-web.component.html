@@ -1,0 +1,57 @@
+<ion-card-header class="user-header">
+  <ion-avatar
+    class="mini"
+    (click)="
+      goToProfile(
+        Challenge.challenged.userId.data._id,
+        Challenge.challenged.userId.data.username,
+        Challenge._id
+      )
+    "
+  >
+    <ion-img
+      class="img-user-mini"
+      [src]="Challenge.challenged.userId.data.photo"
+    ></ion-img>
+    <div
+      class="connectedDIVlittlePost"
+      *ngIf="Challenge.challenged.userId.data.connected"
+    ></div>
+  </ion-avatar>
+  <div class="user-name">
+    <span
+      class="message profile-name"
+      (click)="
+        goToProfile(
+          Challenge.challenged.userId.data._id,
+          Challenge.challenged.userId.data.username
+        )
+      "
+    >
+      {{ Challenge.challenged.userId.data.name }}
+      {{ Challenge.challenged.userId.data.last_name }}
+    </span>
+    <br />
+    <span class="profile-name date">
+      {{ Challenge.createdAt | customDisplayDate }}
+    </span>
+  </div>
+  <ion-button fill="outline" style="right: 0; position: absolute">{{
+    "follow" | translate
+  }}</ion-button>
+</ion-card-header>
+<div style="padding-left: 20px; padding-right: 20px">
+  <p class="description">{{ Challenge.description }}</p>
+</div>
+<ion-item-divider> </ion-item-divider>
+<ion-row>
+  <ion-col size="4">
+    <app-challenge-reactions [challenge]="Challenge"></app-challenge-reactions>
+  </ion-col>
+  <ion-col size="4">
+    <app-button-comments [Challenge]="Challenge"></app-button-comments>
+  </ion-col>
+  <ion-col size="4">
+    <app-button-shared [Challenge]="Challenge"></app-button-shared>
+  </ion-col>
+</ion-row>

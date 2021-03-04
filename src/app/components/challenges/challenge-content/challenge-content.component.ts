@@ -1,3 +1,4 @@
+import { Router } from "@angular/router";
 import { UserService } from "src/app/service/user.service";
 import { take } from "rxjs/operators";
 import { Subject } from "rxjs";
@@ -32,6 +33,7 @@ export class ChallengeContentComponent implements OnInit {
 
   constructor(
     public userService: UserService,
+    public router: Router,
     public cService: ChallengeService
   ) {}
 
@@ -42,15 +44,10 @@ export class ChallengeContentComponent implements OnInit {
     if (
       document.getElementById(
         this.Challenge.challenged.media + this.Challenge._id
-      ) !== null ||
-      document.getElementById(
-        this.Challenge.challenged.media + this.Challenge.challenged._id + this.n
-      ) !== null
+      ) !== null 
     ) {
-      // INICIALIZA LOS VIDEOS
-      this.Challenge.challenging.media === this.Challenge.challenged.media
-        ? this.initOneVideo()
-        : this.initTwoVideos();
+      // INICIALIZA EL VIDEOS
+      this.initOneVideo();
       // PAUSA UN VIDEO
       this.pauseS.subscribe(() => {
         this.video.pause();
@@ -81,27 +78,10 @@ export class ChallengeContentComponent implements OnInit {
     this.oneVideo = true;
     this.isScrolledIntoView();
   }
-
-  initTwoVideos() {
-    this.video = <HTMLVideoElement>(
-      document.getElementById(
-        this.Challenge.challenged.media + this.Challenge.challenged._id + this.n
-      )
-    );
-    this.src = <HTMLSourceElement>(
-      document.getElementById(
-        this.Challenge.challenged.media + this.Challenge.challenged._id + this.n
-      )
-    );
-    this.video.load();
-    this.video.pause();
-    this.paused = true;
-    this.isScrolledIntoView();
-  }
   subscribeDestroy() {
     this.destroy.pipe(take(1)).subscribe(() => {
       this.scrollEvent$.unsubscribe();
-      this.oneVideo ? this.destroyOneVideo() : this.destroyTwoVideos();
+      this.destroyOneVideo();
       this.Mostrar = false;
     });
   }
@@ -159,22 +139,15 @@ export class ChallengeContentComponent implements OnInit {
       );
   }
   pause() {
-    if (this.oneVideo) {
-      if (!this.pauseVideo) {
-        this.pauseVideo = true;
-        this.video.pause();
-      } else {
-        this.pauseVideo = false;
-        this.video.play();
-      }
+    if (!this.pauseVideo) {
+      this.pauseVideo = true;
+      this.video.pause();
     } else {
-      if (!this.pauseVideo) {
-        this.pauseVideo = true;
-        this.video.pause();
-      } else {
-        this.pauseVideo = false;
-        this.video.play();
-      }
+      this.pauseVideo = false;
+      this.video.play();
     }
+  }
+  goChallenge() {
+    this.router.navigate([`/challenge/${this.Challenge._id}`]);
   }
 }

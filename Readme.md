@@ -24,6 +24,36 @@ Iniciar sportyeah
 
 1. Siempre al finalizar la jornada hacer ionic build y ver los errores solucionarlos y merge master.
 
+## TAREAS DESAFIOS 03-03-2021
+
+0. componente desafio individual:
+   colocar nombre del desafio en la tab del componente.
+   colocar estilo descripcion del desafio debajo del nombre. cumplido.
+   crear visual para reto individual tipo tiktok. 50%
+   colocar imagen con blur en fondo div de parte izquierda.cumplido.
+   colocar video en medio de la imagen con padding.cumplido.
+   al pausar el video colocar icono de pause.
+   que solo rellene el espacio deseable en la pantalla challenges ajustar.
+   corregir bug con reaccion en vista individual referenceId undefined.
+   Un desafio component y abajo una lista de retos de la misma familia.
+   La lista de desafios de abajo debe tener scroll infinite.
+   El link debe aparecer clickeable y copiable en la modal de reto creado.
+   Debe abrir la modal de reto creado el boton de shared.
+   Colocar iconos de redes sociales en modal de comparticion.
+1. Al subir un desafio abrir una modal de comparticion y mostrar link para compartir y en esa modal le saldra la opcion de retar a sus seguidores.
+2. Logica para compartir reto a amigos.
+3. Permitir enviar mensaje privado con el reto por whatsapp.
+4. Poder ver las reacciones dejadas al darle click a las reacciones.
+5. Buscador de retos.
+6. Buscador de imagenes gratis.
+7. Logo a la izquierda del numero por posicion.
+8. Quitar console.logs de toda la parte de desafios.
+9. Colocar max height al tamano de los videos.
+10. Crear componente para ver el reto y abajo sus demas retos relacionados por orden de mas likes.
+11. Para entrar en la pantalla de reto individual colocar boton de "cadena" de retos.
+12. Cron function para manejar los premios de los desafios y darlos por fecha.
+13. Boton de compartir debe abrir la misma modal que se abre al crear un desafio.
+
 ## NOTAS QA JOGEIKER LIZARRAGA 02-03-2021
 
 1. No se puede reproducir el video al subirlo en intento.cumplido.
@@ -43,34 +73,17 @@ Iniciar sportyeah
 7. La descripcion de los premios no se muestra correctamente.cumplido.
 8. Debe mostrar pantalla de carga una vez pida la data en videos-c.cumplido.
 9. Modal al crear reto no deberia abrirse si no hay data como el link.cumplido.
-
-## TAREAS DESAFIOS 01-03-2021
-
-1. Reto solidario descripcion y toggle mas imagen tipo banner.
-   Crear input de la causa.cumplido.
-   Crear imagen de la causa.cumplido.
-   Crear objeto de la causa.cumplido.
-   Crear campo solidary en api.cumplido.
-   Crear validacion para el campo causa.cumplido.
-   Crear validacion para el campo src.cumplido.
-   Que la validacion solo se active cuando se active causa solidaria.cumplido.
-   Subida de imagenes en cause.cumplido.
-   Mostrar boton causa solidaria y mostrar la causa en una modal dentro del desafio.
-   Preguntar opciones para mejorar el diseno de este apartado por el grupo.
-2. Al subir un desafio abrir una modal de comparticion y mostrar link para compartir y en esa modal le saldra la opcion de retar a sus seguidores.
-3. Logica para compartir reto a amigos.
-4. Permitir enviar mensaje privado con el reto por whatsapp.
-5. Poder ver las reacciones dejadas al darle click a las reacciones.
-6. Buscador de retos.
-7. Buscador de imagenes gratis.
-8. Logo a la izquierda del numero por posicion.
-9. Quitar console.logs de toda la parte de desafios.
-10. Colocar max height al tamano de los videos.
-11. Crear componente para ver el reto y abajo sus demas retos relacionados por orden de mas likes.
-12. Para entrar en la pantalla de reto individual colocar boton de "cadena" de retos.
-
-13. Cron function para manejar los premios de los desafios y darlos por fecha.
-14. Boton de compartir debe abrir la misma modal que se abre al crear un desafio.
+10. Reto solidario descripcion y toggle mas imagen tipo banner.
+    Crear input de la causa.cumplido.
+    Crear imagen de la causa.cumplido.
+    Crear objeto de la causa.cumplido.
+    Crear campo solidary en api.cumplido.
+    Crear validacion para el campo causa.cumplido.
+    Crear validacion para el campo src.cumplido.
+    Que la validacion solo se active cuando se active causa solidaria.cumplido.
+    Subida de imagenes en cause.cumplido.
+    Mostrar boton causa solidaria y mostrar la causa en una modal dentro del desafio.
+    Preguntar opciones para mejorar el diseno de este apartado por el grupo.
 
 ## TAREAS DESAFIOS 26-02-2021
 

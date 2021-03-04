@@ -21,12 +21,8 @@
   <ion-grid style="padding: 0">
     <ion-row>
       <ion-col size-xs="12" size-lg="8" ngClass.xs="p-0" class="center">
-        <app-friends-mobile-c
-          (new_challenge)="create()"
-          class="absoluteFriendsC"
-        ></app-friends-mobile-c>
         <ion-row
-          style="justify-content: center; margin-bottom: -20px"
+        class="actualizar"
           *ngIf="challenges"
         >
           <ion-button
@@ -37,6 +33,10 @@
             >Actualizar</ion-button
           >
         </ion-row>
+        <app-friends-mobile-c
+          (new_challenge)="create()"
+          class="absoluteFriendsC"
+        ></app-friends-mobile-c>
         <div
           *ngIf="!challenges || challenges.length === 0 "
           class="text-center"
@@ -45,7 +45,7 @@
           <h1 style="color: white">{{'challenge.first' | translate}}</h1>
           <img src="https://img.icons8.com/dusk/64/000000/planning-skill.png" />
         </div>
-        <div *ngFor="let challenge of showc">
+        <div *ngFor="let challenge of showc" style="margin-top: 20px">
           <app-challenges-post
             [destroy]="destroy"
             [Challenge]="challenge"

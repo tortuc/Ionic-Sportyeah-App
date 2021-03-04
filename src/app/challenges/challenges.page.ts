@@ -61,15 +61,6 @@ export class ChallengesPage implements OnInit {
       .pipe(take(1))
       .subscribe(
         (r: any) => {
-          console.log(
-            "%cStop!",
-            "color:red;font-family:system-ui;font-size:5rem;-webkit-text-stroke: 1px black;font-weight:bold"
-          );
-          console.log(
-            "%cHackers can hack you if you open this dev tools!",
-            "color:red;font-family:system-ui;font-size:2rem;-webkit-text-stroke: 1px black;font-weight:bold"
-          );
-          console.log("Challenges", r.challenges);
           this.getUsers(r.challenges);
         },
         (err) => {}
@@ -145,7 +136,7 @@ export class ChallengesPage implements OnInit {
     const modal = await this.mc.create({
       component: ModalCreatedComponent,
       cssClass: "a",
-      componentProps: null,
+      componentProps: this.challenge,
     });
     await modal.present();
   }

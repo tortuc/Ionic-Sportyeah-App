@@ -1,3 +1,5 @@
+import { ParteIzquierdaWebComponent } from "./challenge/parte-izquierda-web/parte-izquierda-web.component";
+import { ParteDerechaWebComponent } from "./challenge/parte-derecha-web/parte-derecha-web.component";
 import { SeeTrysComponent } from "./challenges/see-trys/see-trys.component";
 import { ModalCreatedComponent } from "./challenges/modal-created/modal-created.component";
 import { CamaraBrowserComponent } from "./challenges/camara-browser/camara-browser.component";
@@ -160,6 +162,8 @@ import { ChallengesPostOptionsComponent } from "./challenges/challenges-post-opt
     CamaraBrowserComponent,
     ModalCreatedComponent,
     SeeTrysComponent,
+    ParteDerechaWebComponent,
+    ParteIzquierdaWebComponent,
   ],
   exports: [
     ImageComponent,
@@ -227,6 +231,8 @@ import { ChallengesPostOptionsComponent } from "./challenges/challenges-post-opt
     CamaraBrowserComponent,
     ModalCreatedComponent,
     SeeTrysComponent,
+    ParteDerechaWebComponent,
+    ParteIzquierdaWebComponent,
   ],
 })
 export class ComponentsModule {}

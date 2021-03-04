@@ -41,7 +41,7 @@ export class ChallengesPostOptionsComponent implements OnInit {
     const modal = await this.mc.create({
       component: ModalCreatedComponent,
       cssClass: "a",
-      componentProps: challengeNew,
+      componentProps: {challenge:challengeNew},
     });
     await modal.present();
   }
