@@ -123,6 +123,14 @@ const routes: Routes = [
       ),
     canActivate: [AuthGuardService],
   },
+ {
+    path: "challenge/:username/:id",
+    loadChildren: () =>
+      import("./challenge/challenge.module").then(
+        (m) => m.ChallengePageModule
+      ),
+    canActivate: [AuthGuardService],
+  },
   {
     path: 'ranking',
     loadChildren: () => import('./ranking/ranking.module').then( m => m.RankingPageModule),

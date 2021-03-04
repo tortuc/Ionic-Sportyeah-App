@@ -32,6 +32,7 @@ Iniciar sportyeah
 4. Componente desafio individual: colocar video justo en medio de la parte izquierda.cumplido.
 5. Componente desafio individual: colocar video de fondo con blur para la parte sobrante.cumplido.
 6. Componente desafio individual: recibir parametro userName.
+  colocar username
 7. Componente desafio individual: Colocar en tab quien te esta retando
 8. Componente desafio individual: Colocar boton de aceptar reto.
 9. Componente desafio individual: quitar titulo de tab y colocar justo debajo del usuario para mejorar la visual.

@@ -63,5 +63,6 @@ export class ChallengePage implements OnInit {
 
   ionViewWillEnter() {
     this.getchallenge();
+
   }
 }
