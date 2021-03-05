@@ -136,7 +136,7 @@ export class ChallengesPage implements OnInit {
     const modal = await this.mc.create({
       component: ModalCreatedComponent,
       cssClass: "a",
-      componentProps: this.challenge,
+      componentProps: {Challenge:this.challenge},
     });
     await modal.present();
   }

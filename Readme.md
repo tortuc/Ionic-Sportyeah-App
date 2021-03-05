@@ -31,9 +31,8 @@ Iniciar sportyeah
 3. Modal de comparticion: Botones para compartir redes sociales.cumplido.
 4. Componente desafio individual: colocar video justo en medio de la parte izquierda.cumplido.
 5. Componente desafio individual: colocar video de fondo con blur para la parte sobrante.cumplido.
-6. Componente desafio individual: recibir parametro userName.
-  colocar username
-7. Componente desafio individual: Colocar en tab quien te esta retando
+6. Componente desafio individual: recibir parametro userName.cumplido.
+7. Componente desafio individual: Colocar en tab quien te esta retando.cumplido.
 8. Componente desafio individual: Colocar boton de aceptar reto.
 9. Componente desafio individual: quitar titulo de tab y colocar justo debajo del usuario para mejorar la visual.
 10. Componente desafio individual: Logica boton seguir: no debe permitir seguir si el usuario soy yo, si ya lo sigo debe salir marcado y si no esta marcado poder marcarlo y seguir a la persona.

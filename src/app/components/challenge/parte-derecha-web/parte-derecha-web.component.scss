@@ -1,6 +1,14 @@
-.description{
+.description {
   font-family: proxima-regular, PingFangSC, sans-serif;
-    font-size: 16px;
-    line-height: 24px;
-    color: rgb(18, 18, 18);
+  font-size: 16px;
+  line-height: 24px;
+  color: rgb(18, 18, 18);
+}
+.title {
+  font-weight: bold;
+}
+.buttonNext{
+  text-align: center;
+  cursor: pointer;
+  margin-top: 20px;
 }

@@ -11,6 +11,9 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./challenge.page.scss"],
 })
 export class ChallengePage implements OnInit {
+  // Challenging
+  user: string = null;
+
   challenge: IChallenge = null;
 
   // For destroy video
@@ -63,6 +66,14 @@ export class ChallengePage implements OnInit {
 
   ionViewWillEnter() {
     this.getchallenge();
+    this.user = this.activeRouter.snapshot.params.username;
+    this.user ? this.getChallenging() : null;
+  }
 
+  getChallenging() {
+    this.userService
+      .getUserByUsername(this.user)
+      .pipe(take(1))
+      .subscribe((r:any) => {console.log('response',r);});
   }
 }

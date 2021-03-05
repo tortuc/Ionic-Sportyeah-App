@@ -1,8 +1,12 @@
 <ion-header>
   <ion-toolbar class="bg-gradient-person">
-    <ion-title *ngIf="challenge">
+    <ion-title *ngIf="challenge && user">
       <ion-icon name="medal-outline"></ion-icon>
-      {{challenge.title}}
+      {{user | uppercase }} {{'challenge.retado' | translate}}
+    </ion-title>
+    <ion-title *ngIf="challenge && !user">
+      <ion-icon name="medal-outline"></ion-icon>
+      {{'challenges' | translate}}
     </ion-title>
     <ion-buttons slot="start">
       <ion-menu-button style="color: white"></ion-menu-button>
