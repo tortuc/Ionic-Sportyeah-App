@@ -15,13 +15,14 @@
   <ion-grid>
     <ion-row  class="rowStyle">
       <ion-col size="12">
-        <ion-grid>
+        <h1  style="text-align: center;font-size: 30px;">{{news?.news.headline}}</h1>
+        <!--   <ion-grid>
           <ion-row >
             <ion-col  style="text-align: center;" *ngIf="!isSubscribe">
               <ion-button  (click)="subscribe()">subcribir Call</ion-button>
             </ion-col>
 
-           <!--  <ion-col  style="text-align: center;"  *ngIf="isSubscribe">
+          <ion-col  style="text-align: center;"  *ngIf="isSubscribe">
               <ion-button   (click)="unSubscribe()">unSubscribe Call</ion-button>
             </ion-col> 
             <ion-col  style="text-align: center;" >
@@ -29,9 +30,9 @@
               <div id="azul">
                 MArico el que lo lea
               </div>
-            </ion-col>-->
+            </ion-col>
           </ion-row>
-        </ion-grid>
+        </ion-grid>-->
       </ion-col>
        
         <ion-col style="text-align: center;position: relative;" size="12" >
@@ -42,28 +43,28 @@
         </div>
 <!-- REACCIONES -->
 <div
-class="reactsDiv"
+id="reactsDiv"
 (mouseover)="time = true"
 (mouseout)="time = false"
 #reacts
 >
 <div class="overlay" fxShow="false" fxShow.xs="true"></div>
-<div class="liveReactionsLike" (click)="like(item.post._id, item.likes, 1)" #liveReactions>
+<!-- <div  (click)="like(item.post._id, item.likes, 1)" #liveReactionsLike>
   <img
     #img
     src="https://res.cloudinary.com/prvnbist/image/upload/v1492531171/XZOPuv9_eyqlr2.png"
     alt=""
   />
 </div>
-<div class="liveReactionsLove" (click)="like(item.post._id, item.likes, 2)" #liveReactions>
+<div  (click)="like(item.post._id, item.likes, 2)" #liveReactionsLove>
   <img
     #img
     src="https://res.cloudinary.com/prvnbist/image/upload/v1492531172/uIjLl6R_cmbnqb.png"
     alt=""
   />
 
-</div>
-<div class="liveReactionsHaha" (click)="like(item.post._id, item.likes, 3)" #liveReactions>
+</div> 
+<div (click)="like(item.post._id, item.likes, 3)" #liveReactionsHaha>
   <img
     #img
     src="https://res.cloudinary.com/prvnbist/image/upload/v1492531177/lsHmtDy_ycqnbp.png"
@@ -71,7 +72,7 @@ class="reactsDiv"
   />
 
 </div>
-<div class="liveReactionsWow" (click)="like(item.post._id, item.likes, 4)" #liveReactions>
+ <div  (click)="like(item.post._id, item.likes, 4)" #liveReactionsWow>
   <img
     #img
     src="https://res.cloudinary.com/prvnbist/image/upload/v1492531177/s475u9d_o8trbg.png"
@@ -79,7 +80,7 @@ class="reactsDiv"
   />
 
 </div>
-<div class="liveReactionsSad" (click)="like(item.post._id, item.likes, 5)" #liveReactions>
+<div  (click)="like(item.post._id, item.likes, 5)" #liveReactionsSad>
   <img
     #img
     src="https://res.cloudinary.com/prvnbist/image/upload/v1492531172/JJuD9qb_a7gkmu.png"
@@ -87,14 +88,14 @@ class="reactsDiv"
   />
 
 </div>
-<div class="liveReactionsAngry" (click)="like(item.post._id, item.likes, 6)" #liveReactionsAngry>
+<div  (click)="like(item.post._id, item.likes, 6)" #liveReactionsAngry>
   <img
     #img
     src="https://res.cloudinary.com/prvnbist/image/upload/v1492531178/VDM3zOV_qy9fqj.png"
     alt=""
   />
 
-</div>
+</div> -->
 </div>
 <!-- FIN REACCIONES -->
       </ion-col>
@@ -141,14 +142,14 @@ class="reactsDiv"
          </ion-grid>
          </div>
       </ion-col>
-      <ion-col>
+      <!-- <ion-col>
         <ion-button (click)="esta()">
           show
         </ion-button>
         <ion-button (click)="esta2()">
           close
         </ion-button>
-      </ion-col>
+      </ion-col> -->
     </ion-row>
   </ion-grid>
 </ion-content>

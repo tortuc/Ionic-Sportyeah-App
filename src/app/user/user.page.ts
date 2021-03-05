@@ -178,7 +178,9 @@ news = [];
   getArticle(id){
     this.newsService.findUserNews(id).subscribe((response:any)=>{
       console.log(response)
-      this.news = response
+      this.news = response.filter((news)=>{
+        return news.stream == false;
+      })
     })
   }
 

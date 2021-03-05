@@ -31,7 +31,7 @@
     <ion-grid >
       <ion-row >
          <!--  SEGUNDO LUGAR -->
-        <ion-col size="4" style="margin-top: 20px;" >
+        <ion-col *ngIf="likes[1] != undefined" size="4" style="margin-top: 20px;" >
           <ion-avatar style="margin-left: auto;margin-right: auto;" >
             <img [src]="likes[1]?.post.user.photo">
           <!--  <div class="connectedDIVlittle" *ngIf="(item.chat.sender?._id != userService.User?._id)?item.chat.sender?.connected:item.chat.receiver?.connected"></div> -->
@@ -51,9 +51,25 @@
             </div>
          
         </ion-col>
+<!--         Si no hay segundo con mas likes --> 
+       <ion-col *ngIf="likes[1] == undefined" size="4" style="margin-top: 20px;" >
+          <ion-avatar style="margin-left: auto;margin-right: auto;" >
+            <img src="https://img.icons8.com/dusk/344/multiply.png">
+        </ion-avatar>
+        <div style="text-align: center;height: 30px;"
+        
+        >Segundo lugar
+        </div> 
+            <div style="height: 130px; width:60px; background: silver;margin-top: 10px;  margin-left: auto;margin-right: auto;" >
+              <div style="border-bottom-right-radius : 17px;border-bottom-left-radius : 17px;height: 110px; width:50px; background: brown; margin: auto;">
+                 
+              </div>
+            </div>
+         
+        </ion-col>
 
        <!--  PRIMER LUGAR -->
-        <ion-col size="4" >
+        <ion-col *ngIf="likes[0] != undefined" size="4" >
           <ion-avatar style="margin-left: auto;margin-right: auto;" >
             <img [src]="likes[0]?.post.user.photo">
           <!--  <div class="connectedDIVlittle" *ngIf="(item.chat.sender?._id != userService.User?._id)?item.chat.sender?.connected:item.chat.receiver?.connected"></div> -->
@@ -69,9 +85,25 @@
             </div>
           </div>
         </ion-col>
+       <!--  Si no hay Primer con mas likes --> 
+        <ion-col *ngIf="likes[0] == undefined" size="4" style="margin-top: 20px;" >
+           <ion-avatar style="margin-left: auto;margin-right: auto;" >
+             <img src="https://img.icons8.com/dusk/344/multiply.png">
+         </ion-avatar>
+         <div style="text-align: center;height: 30px;"
+         
+         >Primer lugar
+         </div> 
+             <div style="height: 130px; width:60px; background: gold;margin-top: 10px;  margin-left: auto;margin-right: auto;" >
+               <div style="border-bottom-right-radius : 17px;border-bottom-left-radius : 17px;height: 110px; width:50px; background: brown; margin: auto;">
+                  
+               </div>
+             </div>
+          
+         </ion-col>
 
          <!--  TERCER LUGAR -->
-        <ion-col size="4" style="margin-top: 27px;" >
+        <ion-col *ngIf="likes[2] != undefined" size="4" style="margin-top: 27px;" >
           <ion-avatar style="margin-left: auto;margin-right: auto;" >
             <img [src]="likes[2]?.post.user.photo">
           <!--  <div class="connectedDIVlittle" *ngIf="(item.chat.sender?._id != userService.User?._id)?item.chat.sender?.connected:item.chat.receiver?.connected"></div> -->
@@ -86,6 +118,23 @@
               </div>
             </div>
           </ion-col>
+
+          <!--  Si no hay Tercer con mas likes --> 
+        <ion-col *ngIf="likes[2] == undefined" size="4" style="margin-top: 20px;" >
+          <ion-avatar style="margin-left: auto;margin-right: auto;" >
+            <img src="https://img.icons8.com/dusk/344/multiply.png">
+        </ion-avatar>
+        <div style="text-align: center;height: 30px;"
+        
+        >Tercer lugar
+        </div> 
+            <div style="height: 130px; width:60px; background: #cd7f32;margin-top: 10px;  margin-left: auto;margin-right: auto;" >
+              <div style="border-bottom-right-radius : 17px;border-bottom-left-radius : 17px;height: 110px; width:50px; background: brown; margin: auto;">
+                 
+              </div>
+            </div>
+         
+        </ion-col>
       </ion-row>
     </ion-grid>
   </div>
@@ -130,7 +179,7 @@
     <ion-grid >
       <ion-row >
          <!--  SEGUNDO LUGAR -->
-        <ion-col size="4" style="margin-top: 20px;" >
+        <ion-col *ngIf="comments[1] != undefined" size="4" style="margin-top: 20px;" >
           <ion-avatar style="margin-left: auto;margin-right: auto;" >
             <img [src]="comments[1]?.post.user.photo">
           <!--  <div class="connectedDIVlittle" *ngIf="(item.chat.sender?._id != userService.User?._id)?item.chat.sender?.connected:item.chat.receiver?.connected"></div> -->
@@ -150,9 +199,25 @@
             </div>
          
         </ion-col>
+        <!--         Si no hay segundo con mas comments --> 
+       <ion-col *ngIf="comments[1] == undefined" size="4" style="margin-top: 20px;" >
+        <ion-avatar style="margin-left: auto;margin-right: auto;" >
+          <img src="https://img.icons8.com/dusk/344/multiply.png">
+      </ion-avatar>
+      <div style="text-align: center;height: 30px;"
+      
+      >Segundo lugar
+      </div> 
+          <div style="height: 130px; width:60px; background: silver;margin-top: 10px;  margin-left: auto;margin-right: auto;" >
+            <div style="border-bottom-right-radius : 17px;border-bottom-left-radius : 17px;height: 110px; width:50px; background: brown; margin: auto;">
+               
+            </div>
+          </div>
+       
+      </ion-col>
 
        <!--  PRIMER LUGAR -->
-        <ion-col size="4" >
+        <ion-col *ngIf="comments[0] != undefined" size="4" >
           <ion-avatar style="margin-left: auto;margin-right: auto;" >
             <img [src]="comments[0]?.post.user.photo">
           <!--  <div class="connectedDIVlittle" *ngIf="(item.chat.sender?._id != userService.User?._id)?item.chat.sender?.connected:item.chat.receiver?.connected"></div> -->
@@ -168,9 +233,25 @@
             </div>
           </div>
         </ion-col>
+         <!--  Si no hay Primer con mas comments --> 
+         <ion-col *ngIf="comments[0] == undefined" size="4" style="margin-top: 20px;" >
+          <ion-avatar style="margin-left: auto;margin-right: auto;" >
+            <img src="https://img.icons8.com/dusk/344/multiply.png">
+        </ion-avatar>
+        <div style="text-align: center;height: 30px;"
+        
+        >Primer lugar
+        </div> 
+            <div style="height: 130px; width:60px; background: gold;margin-top: 10px;  margin-left: auto;margin-right: auto;" >
+              <div style="border-bottom-right-radius : 17px;border-bottom-left-radius : 17px;height: 110px; width:50px; background: brown; margin: auto;">
+                 
+              </div>
+            </div>
+         
+        </ion-col>
 
          <!--  TERCER LUGAR -->
-        <ion-col size="4" style="margin-top: 27px;" >
+        <ion-col *ngIf="comments[2] != undefined" size="4" style="margin-top: 27px;" >
           <ion-avatar style="margin-left: auto;margin-right: auto;" >
             <img [src]="comments[2]?.post.user.photo">
           <!--  <div class="connectedDIVlittle" *ngIf="(item.chat.sender?._id != userService.User?._id)?item.chat.sender?.connected:item.chat.receiver?.connected"></div> -->
@@ -185,6 +266,22 @@
               </div>
             </div>
           </ion-col>
+             <!--  Si no hay Tercer con mas comments --> 
+        <ion-col *ngIf="comments[2] == undefined" size="4" style="margin-top: 20px;" >
+          <ion-avatar style="margin-left: auto;margin-right: auto;" >
+            <img src="https://img.icons8.com/dusk/344/multiply.png">
+        </ion-avatar>
+        <div style="text-align: center;height: 30px;"
+        
+        >Tercer lugar
+        </div> 
+            <div style="height: 130px; width:60px; background: #cd7f32;margin-top: 10px;  margin-left: auto;margin-right: auto;" >
+              <div style="border-bottom-right-radius : 17px;border-bottom-left-radius : 17px;height: 110px; width:50px; background: brown; margin: auto;">
+                 
+              </div>
+            </div>
+         
+        </ion-col>
       </ion-row>
     </ion-grid>
   </div>
@@ -229,7 +326,7 @@
       <ion-grid >
         <ion-row >
            <!--  SEGUNDO LUGAR -->
-          <ion-col size="4" style="margin-top: 20px;" >
+          <ion-col *ngIf="shareds[1] != undefined" size="4" style="margin-top: 20px;" >
             <ion-avatar style="margin-left: auto;margin-right: auto;" >
               <img [src]="shareds[1]?.post.user.photo">
             <!--  <div class="connectedDIVlittle" *ngIf="(item.chat.sender?._id != userService.User?._id)?item.chat.sender?.connected:item.chat.receiver?.connected"></div> -->
@@ -249,9 +346,25 @@
               </div>
            
           </ion-col>
+            <!--         Si no hay segundo con mas shareds --> 
+       <ion-col *ngIf="shareds[1] == undefined" size="4" style="margin-top: 20px;" >
+        <ion-avatar style="margin-left: auto;margin-right: auto;" >
+          <img src="https://img.icons8.com/dusk/344/multiply.png">
+      </ion-avatar>
+      <div style="text-align: center;height: 30px;"
+      
+      >Segundo lugar
+      </div> 
+          <div style="height: 130px; width:60px; background: silver;margin-top: 10px;  margin-left: auto;margin-right: auto;" >
+            <div style="border-bottom-right-radius : 17px;border-bottom-left-radius : 17px;height: 110px; width:50px; background: brown; margin: auto;">
+               
+            </div>
+          </div>
+       
+      </ion-col>
   
          <!--  PRIMER LUGAR -->
-          <ion-col size="4" >
+          <ion-col *ngIf="shareds[0] != undefined" size="4" >
             <ion-avatar style="margin-left: auto;margin-right: auto;" >
               <img [src]="shareds[0]?.post.user.photo">
             <!--  <div class="connectedDIVlittle" *ngIf="(item.chat.sender?._id != userService.User?._id)?item.chat.sender?.connected:item.chat.receiver?.connected"></div> -->
@@ -267,9 +380,25 @@
               </div>
             </div>
           </ion-col>
+          <!--  Si no hay Primer con mas comments --> 
+         <ion-col *ngIf="shareds[0] == undefined" size="4" style="margin-top: 20px;" >
+          <ion-avatar style="margin-left: auto;margin-right: auto;" >
+            <img src="https://img.icons8.com/dusk/344/multiply.png">
+        </ion-avatar>
+        <div style="text-align: center;height: 30px;"
+        
+        >Primer lugar
+        </div> 
+            <div style="height: 130px; width:60px; background: gold;margin-top: 10px;  margin-left: auto;margin-right: auto;" >
+              <div style="border-bottom-right-radius : 17px;border-bottom-left-radius : 17px;height: 110px; width:50px; background: brown; margin: auto;">
+                 
+              </div>
+            </div>
+         
+        </ion-col>
   
            <!--  TERCER LUGAR -->
-          <ion-col size="4" style="margin-top: 27px;" >
+          <ion-col *ngIf="shareds[2] != undefined" size="4" style="margin-top: 27px;" >
             <ion-avatar style="margin-left: auto;margin-right: auto;" >
               <img [src]="shareds[2]?.post.user.photo">
             <!--  <div class="connectedDIVlittle" *ngIf="(item.chat.sender?._id != userService.User?._id)?item.chat.sender?.connected:item.chat.receiver?.connected"></div> -->
@@ -284,6 +413,22 @@
                 </div>
               </div>
             </ion-col>
+              <!--  Si no hay Tercer con mas comments --> 
+        <ion-col *ngIf="shareds[2] == undefined" size="4" style="margin-top: 20px;" >
+          <ion-avatar style="margin-left: auto;margin-right: auto;" >
+            <img src="https://img.icons8.com/dusk/344/multiply.png">
+        </ion-avatar>
+        <div style="text-align: center;height: 30px;"
+        
+        >Tercer lugar
+        </div> 
+            <div style="height: 130px; width:60px; background: #cd7f32;margin-top: 10px;  margin-left: auto;margin-right: auto;" >
+              <div style="border-bottom-right-radius : 17px;border-bottom-left-radius : 17px;height: 110px; width:50px; background: brown; margin: auto;">
+                 
+              </div>
+            </div>
+         
+        </ion-col>
         </ion-row>
       </ion-grid>
     </div>

@@ -70,7 +70,9 @@ export class ProfilePage implements OnInit {
     this.newsService
       .findUserNews(this.userService.User._id)
       .subscribe((response: any) => {
-        this.news = response;
+        this.news = response.filter((news)=>{
+          return news.stream == false;
+        })
       });
 
     this.loginService.getIP().subscribe((geo) => {

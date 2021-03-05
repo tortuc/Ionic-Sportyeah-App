@@ -14,7 +14,13 @@ const client: IAgoraRTCClient = AgoraRTC.createClient({ mode: "live", codec: "vp
   styleUrls: ['./stream.component.scss'],
 })
 export class StreamComponent implements OnInit {
+  @ViewChild("liveReactionsLike") liveReactionsLike: ElementRef;
+  @ViewChild("liveReactionsLove") liveReactionsLove: ElementRef;
+  @ViewChild("liveReactionsHaha") liveReactionsHaha: ElementRef;
+  @ViewChild("liveReactionsWow") liveReactionsWow: ElementRef;
+  @ViewChild("liveReactionsSad") liveReactionsSad: ElementRef;
   @ViewChild("liveReactionsAngry") liveReactionsAngry: ElementRef;
+
 
   @ViewChild("localPlayer") localPlayer: ElementRef;
 
@@ -126,7 +132,7 @@ formateSelected
         // Pass the DIV container and the SDK dynamically creates a player in the container for playing the remote video track.
         remoteVideoTrack.play(playerContainer);
         var textnode = document.createTextNode(user.uid.toString());
-        document.getElementById("remotePlayerlist").appendChild(textnode);
+        //document.getElementById("remotePlayerlist").appendChild(textnode);
        
         // Or just pass the ID of the DIV container.
         // remoteVideoTrack.play(playerContainer.id);
@@ -184,21 +190,131 @@ formateSelected
     // Leave the channel.
     await this.rtc.client.leave();
   }
-  esta(){
-    if (!this.liveReactionsAngry.nativeElement.classList.contains("showLive")) {
-      this.liveReactionsAngry.nativeElement.style.display = "flex";
-      this.liveReactionsAngry.nativeElement.classList.add("showLive");
+  
+
+  /* esta(type,idReaction){
+    switch (type){
+      case 1 : {
+        const reaction = document.createElement("div");
+        reaction.id = idReaction.toString()
+        reaction.style.display = "flex"
+        reaction.classList.add("liveReactionsLike")
+        const image = document.createElement("img")
+        //image.style.height = "40px"
+        //image.style.width = "40px"
+        //image.style.position = "absolute"
+        //image.style.left = "50%" 
+        image.src = "https://res.cloudinary.com/prvnbist/image/upload/v1492531171/XZOPuv9_eyqlr2.png"
+        document.getElementById("reactsDiv").appendChild(reaction);
+        document.getElementById(idReaction).appendChild(image);
+       
+        
+         setTimeout(()=>{
+           reaction.remove()
+         },1500)
+
+        //if (!this.liveReactionsLike.nativeElement.classList.contains("liveReactionsLike")) {
+          //this.liveReactionsLike.nativeElement.style.display = "flex";
+         // this.liveReactionsLike.nativeElement.classList.add("liveReactionsLike");
+        //} 
+        console.log(image)
+        break
+      }
+      case 2 : {
+        if (!this.liveReactionsLove.nativeElement.classList.contains("liveReactionsLove")) {
+          this.liveReactionsLove.nativeElement.style.display = "flex";
+          this.liveReactionsLove.nativeElement.classList.add("liveReactionsLove");
+        }
+        break
+      }
+      case 3 : {
+        if (!this.liveReactionsHaha.nativeElement.classList.contains("liveReactionsHaha")) {
+          this.liveReactionsHaha.nativeElement.style.display = "flex";
+          this.liveReactionsHaha.nativeElement.classList.add("liveReactionsHaha");
+        }
+        break
+      }
+      case 4 : {
+        if (!this.liveReactionsWow.nativeElement.classList.contains("liveReactionsWow")) {
+          this.liveReactionsWow.nativeElement.style.display = "flex";
+          this.liveReactionsWow.nativeElement.classList.add("liveReactionsWow");
+        }
+        break
+      }
+      case 5 : {
+        if (!this.liveReactionsSad.nativeElement.classList.contains("liveReactionsSad")) {
+          this.liveReactionsSad.nativeElement.style.display = "flex";
+          this.liveReactionsSad.nativeElement.classList.add("liveReactionsSad");
+        }
+        break
+      }
+      case 6 : {
+        if (!this.liveReactionsAngry.nativeElement.classList.contains("liveReactionsAngry")) {
+          this.liveReactionsAngry.nativeElement.style.display = "flex";
+          this.liveReactionsAngry.nativeElement.classList.add("liveReactionsAngry");
+        }
+        break
+      }
+      default:
+        console.log("Tipo de reaccion no definido");
+        break;
     }
+    
   }
-  esta2(){
-    if (this.liveReactionsAngry.nativeElement.classList.contains("showLive")) {
-      this.liveReactionsAngry.nativeElement.style.display = "none";
-      this.liveReactionsAngry.nativeElement.classList.remove("showLive");
+
+  esta2(type){
+    switch (type){
+      case 1 : {
+        if (this.liveReactionsLike.nativeElement.classList.contains("showLive")) {
+          this.liveReactionsLike.nativeElement.style.display = "none";
+          this.liveReactionsLike.nativeElement.classList.remove("showLive");
+        }
+        break
+      }
+      case 2 : {
+        if (this.liveReactionsLove.nativeElement.classList.contains("showLive")) {
+          this.liveReactionsLove.nativeElement.style.display = "none";
+          this.liveReactionsLove.nativeElement.classList.remove("showLive");
+        }
+        break
+      }
+      case 3 : {
+        if (this.liveReactionsHaha.nativeElement.classList.contains("showLive")) {
+          this.liveReactionsHaha.nativeElement.style.display = "none";
+          this.liveReactionsHaha.nativeElement.classList.remove("showLive");
+        }
+        break
+      }
+      case 4 : {
+        if (this.liveReactionsWow.nativeElement.classList.contains("showLive")) {
+          this.liveReactionsWow.nativeElement.style.display = "none";
+          this.liveReactionsWow.nativeElement.classList.remove("showLive");
+        }
+        break
+      }
+      case 5 : {
+        if (this.liveReactionsSad.nativeElement.classList.contains("showLive")) {
+          this.liveReactionsSad.nativeElement.style.display = "none";
+          this.liveReactionsSad.nativeElement.classList.remove("showLive");
+        }
+        break
+      }
+      case 6 : {
+        if (this.liveReactionsAngry.nativeElement.classList.contains("showLive")) {
+          this.liveReactionsAngry.nativeElement.style.display = "none";
+          this.liveReactionsAngry.nativeElement.classList.remove("showLive");
+        }
+        break
+      }
+      default:
+        console.log("Tipo de reaccion no definido");
+        break;
     }
-  }
+  } */
   ngOnInit() {
-    this.socketService.socket.on('new-reaction',(data)=>{
-      console.log(data);
+    this.socketService.socket.on('new-reaction',(like)=>{
+      /* this.esta(like.like.type,like.like._id) */
+      console.log(like)
     })
   }
  

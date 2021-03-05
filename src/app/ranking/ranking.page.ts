@@ -32,7 +32,7 @@ export class RankingPage implements OnInit {
        return post.shareds.length > 0
      })
 
-
+console.log(this.likes[1])
   //Ordena de mayor a menor el post con mas reacciones
   this.likes.sort(function(b, a) {
     return a.likes.length - b.likes.length ;
@@ -63,7 +63,7 @@ for(let like of this.likes){
   }
   position += 1
 }
-console.log(this.userLike)
+
 //encuentra el post con mas comentarios del usuario
 let positionC = 0;
 for(let comment of this.comments){
