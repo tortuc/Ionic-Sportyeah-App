@@ -317,7 +317,9 @@ formateSelected
       console.log(like)
     })
   }
- 
+  comments($event){
+    this.news.comments = $event
+  }
 
 
 }
