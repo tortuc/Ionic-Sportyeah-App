@@ -74,6 +74,11 @@ export class ChallengePage implements OnInit {
     this.userService
       .getUserByUsername(this.user)
       .pipe(take(1))
-      .subscribe((r:any) => {console.log('response',r);});
+      .subscribe((r: any) => {
+        console.log("response", r);
+      });
+  }
+  ionViewWillLeave() {
+    this.destroy.next();
   }
 }
