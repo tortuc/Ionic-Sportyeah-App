@@ -32,7 +32,7 @@
     </span>
     <br />
     <!-- <span class="profile-name date"> -->
-      <!-- {{ Challenge.createdAt | customDisplayDate }} -->
+    <!-- {{ Challenge.createdAt | customDisplayDate }} -->
     <!-- </span> -->
   </div>
   <ion-button fill="outline" style="right: 0; position: absolute">{{
@@ -40,17 +40,14 @@
   }}</ion-button>
 </ion-card-header>
 <div style="padding-left: 20px; padding-right: 20px">
+  <p class="title">{{ Challenge.title }}</p>
   <p class="description">{{ Challenge.description }}</p>
 </div>
 <ion-item-divider> </ion-item-divider>
-<ion-row>
-  <ion-col size="4">
-    <app-challenge-reactions [challenge]="Challenge"></app-challenge-reactions>
-  </ion-col>
-  <ion-col size="4">
-    <app-button-comments [Challenge]="Challenge"></app-button-comments>
-  </ion-col>
-  <ion-col size="4">
-    <app-button-shared [Challenge]="Challenge"></app-button-shared>
-  </ion-col>
-</ion-row>
+<app-challenges-post-options
+  [Challenge]="Challenge"
+  [pause]="pauseS"
+></app-challenges-post-options>
+<div class="buttonNext" (click)="goNext()">
+  <img src="https://img.icons8.com/nolan/64/circled-chevron-right.png"/>
+</div>
