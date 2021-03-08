@@ -8,6 +8,7 @@ import { PostService } from "src/app/service/post.service";
 import { LoadingController, ModalController, Platform } from "@ionic/angular";
 import { TranslateService } from "@ngx-translate/core";
 import { response } from 'express';
+import { SocketService } from 'src/app/service/socket.service';
 const client: IAgoraRTCClient = AgoraRTC.createClient({ mode: "live", codec: "vp8" });
 
 @Component({
@@ -27,11 +28,11 @@ export class CreateStreamComponent implements OnInit {
     private postService: PostService,
     public loadingCtrl: LoadingController,
     public translate: TranslateService,
+    public socketService:SocketService,
 
   ) { 
   //client.setClientRole("audience")
   this.rtc.client = AgoraRTC.createClient({ mode: "live", codec: "vp8" ,role:"host"});
-  this.channel = this.makeid(22)
   //this.subscribe()
   //this.join()
   }
@@ -79,13 +80,16 @@ formateSelected
     await client.leave();
   }
  
-
+createChanel(){
+  this.channel = this.makeid(22)
+}
   /* async onAgoraUserPublished(user, mediaType) {
     const track = await client.subscribe(user, mediaType);
     track.play();
   } */
 
   async  startBasicCall() {
+    this.createChanel()
     let loading = await this.loadingCtrl.create({
       message: this.translate.instant("loading"),
     });
@@ -116,6 +120,7 @@ formateSelected
    loading.dismiss();
   }
   async startScreenTransmision() {
+    this.createChanel()
     let loading = await this.loadingCtrl.create({
       message: this.translate.instant("loading"),
     });
@@ -202,6 +207,7 @@ formateSelected
       await this.rtc.client.leave();
   }
   async  leaveCall() {
+    this.socketService.socket.emit('out-news',this.news._id)
     let loading = await this.loadingCtrl.create({
       message: this.translate.instant("loading"),
     });
@@ -311,6 +317,7 @@ async  publicar(){
     this.newsId = response._id
     let post = this.formNews.value; 
     post.news = response
+    this.socketService.socket.emit('in-news',{id:response._id})
     this.postService
     .create(post)
     .toPromise()
@@ -343,8 +350,12 @@ deportebool:boolean = false;
 deporteListo(){
   this.deporte = null
 }
-
-  ngOnInit() {}
+commnets = []
+  ngOnInit() {
+    this.socketService.socket.on('new-comment',(comment)=>{
+      this.commnets = comment.comment
+    })
+  }
   comments($event){
     this.news.comments = $event
   }

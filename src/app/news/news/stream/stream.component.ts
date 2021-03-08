@@ -72,7 +72,7 @@ export class StreamComponent implements OnInit {
 
     uid:null
   };
-  videoProfiles = [
+/*   videoProfiles = [
     { label: "480p_1", detail: "640×480, 15fps, 500Kbps", value: "480p_1" },
     { label: "480p_2", detail: "640×480, 30fps, 1000Kbps", value: "480p_2" },
     { label: "720p_1", detail: "1280×720, 15fps, 1130Kbps", value: "720p_1" },
@@ -80,7 +80,7 @@ export class StreamComponent implements OnInit {
     { label: "1080p_1", detail: "1920×1080, 15fps, 2080Kbps", value: "1080p_1" },
     { label: "1080p_2", detail: "1920×1080, 30fps, 3000Kbps", value: "1080p_2" },
   ]
-formateSelected
+formateSelected */
 
   uid
   async join(){
@@ -311,10 +311,15 @@ createReaction(idReaction,link){
         break;
     }
   } 
+
+  commnets= [];
+
   ngOnInit() {
     this.socketService.socket.on('new-reaction',(like)=>{
       this.esta(like.like.type,like.like._id)
-      console.log(like)
+    })
+    this.socketService.socket.on('new-comment',(comment)=>{
+      this.commnets = comment.comment
     })
   }
   comments($event){
