@@ -244,7 +244,7 @@ await   this.newsService.deleteNews(this.newsId).subscribe((response)=>{
    
   }
   
-
+  news
   newsId;
   postId;
   formNews = this.fb.group({
@@ -305,7 +305,10 @@ async  publicar(){
 
    this.form.value.sport = this.deporte
    this.newsService.create(this.form.value).subscribe((response:any)=>{
-     this.newsId = response._id
+    this.newsService.findById(response._id).subscribe((response)=>{
+      this.news = response;
+    }) 
+    this.newsId = response._id
     let post = this.formNews.value; 
     post.news = response
     this.postService
@@ -342,5 +345,7 @@ deporteListo(){
 }
 
   ngOnInit() {}
-
+  comments($event){
+    this.news.comments = $event
+  }
 }

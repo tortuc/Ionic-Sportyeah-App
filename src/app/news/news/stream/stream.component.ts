@@ -6,6 +6,8 @@ import { LoadingController, ModalController, Platform } from "@ionic/angular";
 import { TranslateService } from "@ngx-translate/core";
 import { NewsService } from '../../../service/news.service';
 import { SocketService } from 'src/app/service/socket.service';
+import { Hash } from 'crypto';
+import { keyframes } from '@angular/animations';
 const client: IAgoraRTCClient = AgoraRTC.createClient({ mode: "live", codec: "vp8" });
 
 @Component({
@@ -191,68 +193,66 @@ formateSelected
     await this.rtc.client.leave();
   }
   
+createReaction(idReaction,link){
+  const reaction = document.createElement("div");
+  const image = document.createElement("img")
+  image.src = link
+  reaction.id = idReaction.toString()
+  reaction.style.height = "40px"
+  reaction.style.width = "40px"
+  reaction.style.position = "absolute"
+  reaction.style.left = "50%" 
+  reaction.style.marginLeft = "auto" 
+  reaction.style.marginRight = "auto"
+  reaction.animate([
+     {
+      top:'300px',
+      left:(Math.floor(Math.random() * 30) + 37).toString()+'%',
+      opacity:'0.8'
+    },
+    {
+      opacity:'0.4'
+    },
+    {
+      top:'-125px',
+      left:(Math.floor(Math.random() * 30) + 37).toString()+'%',
+      opacity:'0'
+    }
+  ],{
+    duration:3000
+  })
 
-  /* esta(type,idReaction){
+  document.getElementById("reactsDiv").appendChild(reaction);
+  document.getElementById(idReaction).appendChild(image);
+ 
+  setTimeout(()=>{ 
+  reaction.remove()
+ },2300)
+}
+   esta(type,idReaction){
     switch (type){
       case 1 : {
-        const reaction = document.createElement("div");
-        reaction.id = idReaction.toString()
-        reaction.style.display = "flex"
-        reaction.classList.add("liveReactionsLike")
-        const image = document.createElement("img")
-        //image.style.height = "40px"
-        //image.style.width = "40px"
-        //image.style.position = "absolute"
-        //image.style.left = "50%" 
-        image.src = "https://res.cloudinary.com/prvnbist/image/upload/v1492531171/XZOPuv9_eyqlr2.png"
-        document.getElementById("reactsDiv").appendChild(reaction);
-        document.getElementById(idReaction).appendChild(image);
-       
-        
-         setTimeout(()=>{
-           reaction.remove()
-         },1500)
-
-        //if (!this.liveReactionsLike.nativeElement.classList.contains("liveReactionsLike")) {
-          //this.liveReactionsLike.nativeElement.style.display = "flex";
-         // this.liveReactionsLike.nativeElement.classList.add("liveReactionsLike");
-        //} 
-        console.log(image)
+        this.createReaction(idReaction,"https://res.cloudinary.com/prvnbist/image/upload/v1492531171/XZOPuv9_eyqlr2.png")
         break
       }
       case 2 : {
-        if (!this.liveReactionsLove.nativeElement.classList.contains("liveReactionsLove")) {
-          this.liveReactionsLove.nativeElement.style.display = "flex";
-          this.liveReactionsLove.nativeElement.classList.add("liveReactionsLove");
-        }
+        this.createReaction(idReaction,"https://res.cloudinary.com/prvnbist/image/upload/v1492531172/uIjLl6R_cmbnqb.png")
         break
       }
       case 3 : {
-        if (!this.liveReactionsHaha.nativeElement.classList.contains("liveReactionsHaha")) {
-          this.liveReactionsHaha.nativeElement.style.display = "flex";
-          this.liveReactionsHaha.nativeElement.classList.add("liveReactionsHaha");
-        }
+        this.createReaction(idReaction,"https://res.cloudinary.com/prvnbist/image/upload/v1492531177/lsHmtDy_ycqnbp.png")
         break
       }
       case 4 : {
-        if (!this.liveReactionsWow.nativeElement.classList.contains("liveReactionsWow")) {
-          this.liveReactionsWow.nativeElement.style.display = "flex";
-          this.liveReactionsWow.nativeElement.classList.add("liveReactionsWow");
-        }
+        this.createReaction(idReaction,"https://res.cloudinary.com/prvnbist/image/upload/v1492531177/s475u9d_o8trbg.png")
         break
       }
       case 5 : {
-        if (!this.liveReactionsSad.nativeElement.classList.contains("liveReactionsSad")) {
-          this.liveReactionsSad.nativeElement.style.display = "flex";
-          this.liveReactionsSad.nativeElement.classList.add("liveReactionsSad");
-        }
+        this.createReaction(idReaction,"https://res.cloudinary.com/prvnbist/image/upload/v1492531172/JJuD9qb_a7gkmu.png")
         break
       }
       case 6 : {
-        if (!this.liveReactionsAngry.nativeElement.classList.contains("liveReactionsAngry")) {
-          this.liveReactionsAngry.nativeElement.style.display = "flex";
-          this.liveReactionsAngry.nativeElement.classList.add("liveReactionsAngry");
-        }
+        this.createReaction(idReaction,"https://res.cloudinary.com/prvnbist/image/upload/v1492531178/VDM3zOV_qy9fqj.png")
         break
       }
       default:
@@ -310,10 +310,10 @@ formateSelected
         console.log("Tipo de reaccion no definido");
         break;
     }
-  } */
+  } 
   ngOnInit() {
     this.socketService.socket.on('new-reaction',(like)=>{
-      /* this.esta(like.like.type,like.like._id) */
+      this.esta(like.like.type,like.like._id)
       console.log(like)
     })
   }
