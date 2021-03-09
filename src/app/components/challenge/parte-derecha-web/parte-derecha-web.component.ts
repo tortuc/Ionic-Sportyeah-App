@@ -1,3 +1,5 @@
+import { User, Followings } from "src/app/service/user.service";
+import { UserService } from "./../../../service/user.service";
 import { Router } from "@angular/router";
 import { take } from "rxjs/operators";
 import { ChallengeService } from "./../../../service/challenge.service";
@@ -21,10 +23,56 @@ export class ParteDerechaWebComponent implements OnInit {
   @Input() scrollEvent: Subject<void>;
   next: any = null;
 
-  constructor(public cs: ChallengeService, public router: Router) {}
+  // si es null no aparece
+  // si es false lo sigue
+  // si es true no lo sigue
+  buttonFollowState: boolean = null;
+  buttonFollowText: string = "follow";
+
+  ownerChallengeId: string = null;
+
+  constructor(
+    public cs: ChallengeService,
+    public router: Router,
+    public userService: UserService
+  ) {}
 
   ngOnInit() {
     this.getNext();
+    this.followButton();
+  }
+
+  followButton() {
+    const idOwner = this.Challenge.challenged.userId.data._id;
+    this.ownerChallengeId = idOwner;
+    const MyId = this.userService.User._id;
+    if (idOwner === MyId) {
+      this.buttonFollowState = null;
+    } else {
+      if (this.verifyIdIfFollowing(idOwner)) {
+        this.buttonFollowState = false;
+        this.buttonFollowText = "unfollow";
+      } else {
+        this.buttonFollowState = true;
+        this.buttonFollowText = "follow";
+      }
+    }
+  }
+
+  verifyIdIfFollowing(id: string): boolean {
+    return this.userService.isFollow(id);
+  }
+
+  followUser(id: string) {
+    this.userService.follow(id);
+    this.buttonFollowState = false;
+    this.buttonFollowText = "unfollow";
+  }
+
+  unFollowUser(id: string) {
+    this.userService.unFollow(id);
+    this.buttonFollowState = true;
+    this.buttonFollowText = "follow";
   }
 
   async getNext() {
