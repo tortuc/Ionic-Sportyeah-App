@@ -836,5 +836,21 @@
   "reason":"Describa su causa",
   "follow":"Seguir",
   "unfollow":"Siguiendo",
-  "copyLink":"Copiar Enlace"
+  "copyLink":"Copiar Enlace",
+  "selectDesafiosPremios":{
+    "SelectOne": "Selecciona una",
+    "Title":"Condición para Ganar",
+    "Likes":"Más Likes",
+    "Likes1":"Más Likes (Diós)",
+    "Likes2":"Más Likes (Heroé)",
+    "Likes3":"Más Likes (Pana)",
+    "Likes4":"Más Likes (Flojo)",
+    "Likes5":"Más Likes (Cobarde)",
+    "Comments":"Más Comentarios",
+    "Challenges":"Más Retados",
+    "Shared":"Más Compartidos",
+    "f5":"Primeros 5 en hacerlo",
+    "f10":"Primeros 10 en hacerlo",
+    "f20":"Primeros 20 en hacerlo"
+  }
 }

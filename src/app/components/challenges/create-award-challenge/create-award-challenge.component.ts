@@ -19,6 +19,10 @@ import {
   Output,
 } from "@angular/core";
 import { ToastController, ModalController } from "@ionic/angular";
+
+interface IConditionAward {
+  value: string;
+}
 @Component({
   selector: "app-create-award-challenge",
   templateUrl: "./create-award-challenge.component.html",
@@ -28,9 +32,23 @@ export class CreateAwardChallengeComponent implements OnInit {
   @ViewChild("fileChooser") fileChooser: ElementRef;
   @Input() challenged: IReference | null;
   @Output("save") save: EventEmitter<any> = new EventEmitter();
-  public form: any = { place: "", title: "", description: "", media: "" };
+  public form: any = { place: "", title: "", description: "", media: "" , condition: ""};
   public videoInvalid: boolean = true;
   public novideo: boolean = null;
+  conditions: IConditionAward[] = [
+    { value: "Likes" },
+    { value: "Likes1" },
+    { value: "Likes2" },
+    { value: "Likes3" },
+    { value: "Likes4" },
+    { value: "Likes5" },
+    { value: "Comments" },
+    { value: "Challenges" },
+    { value: "Shared" },
+    { value: "f5" },
+    { value: "f10" },
+    { value: "f20" },
+  ];
   constructor(
     public toast: ToastController,
     public fb: FormBuilder,
@@ -48,7 +66,6 @@ export class CreateAwardChallengeComponent implements OnInit {
   awardMedia() {
     this.img.takeOnlyPhoto();
     this.img.content.pipe(take(1)).subscribe((r) => {
-      // this.formAward.controls.media.setValue(r);
       this.form.media = r;
     });
   }

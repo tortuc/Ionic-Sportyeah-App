@@ -36,6 +36,22 @@
     }}</ion-label>
     <ion-textarea type="text" [(ngModel)]="form.description"></ion-textarea>
   </ion-item>
+  <!-- SELECT CONDITIONS -->
+  <ion-item>
+    <ion-label>{{ "selectDesafiosPremios.Title" | translate }}</ion-label>
+    <ion-select
+      [(ngModel)]="form.condition"
+      placeholder="{{ 'selectDesafiosPremios.SelectOne' | translate }}"
+    >
+      <ion-select-option
+        [value]="condition.value"
+        *ngFor="let condition of conditions"
+        >{{
+          "selectDesafiosPremios." + condition.value | translate
+        }}</ion-select-option
+      >
+    </ion-select>
+  </ion-item>
   <div style="margin-top: 20px">
     <ion-button
       (click)="saveAward()"
@@ -43,6 +59,7 @@
         form.place === '' ||
         form.title === '' ||
         form.description === '' ||
+        form.condition === '' ||
         form.media === ''
       "
     >
