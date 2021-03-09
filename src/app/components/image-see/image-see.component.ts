@@ -1,5 +1,8 @@
+import { take } from "rxjs/operators";
+import { FreeImgService } from "./../../service/freeImg.service";
 import { ModalController } from "@ionic/angular";
 import { Component, Input, OnInit } from "@angular/core";
+import { IResponsePixabay } from "src/app/service/freeImg.service"
 
 @Component({
   selector: "app-image-see",
@@ -8,9 +11,23 @@ import { Component, Input, OnInit } from "@angular/core";
 })
 export class ImageSeeComponent implements OnInit {
   @Input() data: any;
-  constructor(public modalCtrl: ModalController) {}
+  search: string = "";
+  constructor(
+    public modalCtrl: ModalController,
+    public freeImg: FreeImgService
+  ) {}
 
-  ngOnInit() {
+  ngOnInit() {}
+
+  onsearch() {
+    console.log(this.search);
+    this.freeImg
+      .getSearch(this.search)
+      .pipe(take(1))
+      .subscribe((r:IResponsePixabay) => {
+        console.log(r);
+        this.data = r.hits
+      });
   }
 
   send(url: any) {

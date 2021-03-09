@@ -41,24 +41,8 @@ Iniciar sportyeah
 ## MARTES 09-03-2021
 
 1. Componente desafio individual - Logica boton seguir: no debe permitir seguir si el usuario soy yo, si ya lo sigo debe salir marcado y si no esta marcado poder marcarlo y seguir a la persona.2h-1h15m
-2. Premios de retos: Dar condiciones para entrega del premio select.1h-25m.
-   Crear ion select.listo.
-   Condiciones: Mas Likes (General)
-                Mas Likes (Dios)
-                Mas Likes (Heroe)
-                Mas Likes (Pana)
-                Mas Likes (Flojo)
-                Mas Likes (Cobarde)
-                Mas Comentarios
-                Mas Retados
-                Mas Compartidos
-                Primeros 5 en hacerlo
-                Primeros 10 en hacerlo
-                Primeros 20 en hacerlo
-   Agregar al diccionario. listo.
-   Agregar a la API BACKEND un enum con las opciones.
-   probar.
-3. Modal imagenes gratis: Buscador de imagenes gratis y mejorar visual.1h.
+2. Premios de retos: Dar condiciones para entrega del premio select.1h-50m.
+3. Modal imagenes gratis: Buscador de imagenes gratis y mejorar visual.1h-25m.
 
 ### Bugs encontrados
 
@@ -67,6 +51,10 @@ Iniciar sportyeah
 3. Encontrado error en el muro no se puede obtener photo de undefined. tuve que crear dos cuentas de nuevo.
 4. Error modal-created : 24 ts. property id of undefined.
 5. Error challenge-content unsubscribe of undefined.
+6. Bug error while trying to use the following icon from the Manifest: http://localhost:8100/assets/icons/icon-144x144.png (Download error or resource isn't a valid image)
+7. Console log banner-profile-logic.service.ts:106
+8. Console .log banner-profile-logic.service.ts:109
+9. console log banner-profile-logic.service.ts:110
 
 ## CAMBIOS
 
