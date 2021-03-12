@@ -1,0 +1,18 @@
+<ion-header>
+  <ion-toolbar class="bg-gradient-person">
+    <ion-title>{{ "seeImg" | translate }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button
+        (click)="mc.dismiss()"
+        color="dark"
+        shape="round"
+        style="background-color: white; border-radius: 10px"
+      >
+        {{ "langs.close" | translate }}
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <img [src]="img" alt="" />
+</ion-content>

@@ -25,6 +25,12 @@ Iniciar sportyeah
 1. Siempre al finalizar la jornada hacer ionic build y ver los errores solucionarlos y merge master.
 2. Trabajar por pomodoros de 25 minutos, cada vez que finalice uno anotar el tiempo dedicado a la tarea.
 
+## VIERNES 12-03-2021
+
+1. Mejorar slider. 3h-50m. listo
+  1.1. Que las imagenes puedan ser abiertas al hacer click.
+  1.2. Cuadro para agregar imagenes slider.
+
 ## JUEVES 11-03-2021
 
 1. Premios de retos: Manejar los premios de los desafios y darlos por fecha, default 1 mes - backend logica.6h.
