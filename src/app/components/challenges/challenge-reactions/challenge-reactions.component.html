@@ -4,7 +4,7 @@
     (mouseover)="reactionsON()"
     (mouseout)="Changefalse()"
     (touchstart)="reactionsON()"
-    (click)="like('nivel6')"
+    (click)="like(null)"
   >
     <ion-icon *ngIf="!myVote" name="heart" style="margin-right: 2px"></ion-icon>
     <span *ngIf="!myVote" fxShow.gt-xs="true" fxShow="false">{{

@@ -34,8 +34,8 @@ Iniciar sportyeah
 
 1. Premios de retos: Poder agregar emojis a los premios.3h.
 2. Componente Crear Desafios: Poder agregar emojis al titulo y a la descripcion.3h.
-3. Reacciones retos: Al clickear la reaccion debe de eliminarse.30m.
-4. Retos generales: Buscador de retos.1h.
+3. Reacciones retos: Al clickear la reaccion debe de eliminarse. 30m-10m.
+4. Retos generales: Buscador de retos. 1h-45m
 5. Componente Crear Desafios: Guardar en api la persona que te ha retado.1h.
 
 ## MARTES 09-03-2021

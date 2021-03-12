@@ -43,10 +43,6 @@ export class ChallengeReactionsComponent implements OnInit {
       level: "nivel5",
       src: "https://img.icons8.com/emoji/48/000000/yawning-face.png",
     },
-    {
-      level: "nivel6",
-      src: "https://img.icons8.com/emoji/48/000000/lady-beetle.png",
-    },
   ];
 
   constructor(
@@ -69,13 +65,14 @@ export class ChallengeReactionsComponent implements OnInit {
                 reaction.userReference.referenceId === this.userService.User._id
             )
             .reverse()[0];
-          if (r2)
+          if (r2) {
             this.myVote = this.reactions.filter(
               (reaction) => reaction.level === r2.reaction
             )[0];
+            this.myVote.level === null ? (this.myVote = null) : null;
+          }
         },
-        (err) => {
-        }
+        (err) => {}
       );
   }
   time: boolean = false;
@@ -112,21 +109,45 @@ export class ChallengeReactionsComponent implements OnInit {
     this.timeOutClose = setTimeout(() => this.reactionoff(), 1000);
     clearTimeout(this.timeOut);
   }
-  like(type: string) {
+  like(type: string | null) {
     // this.myVote = img;
-    const reaction = {
-      userReference: {
-        appName: "SportYeah",
-        referenceId: this.userService.User._id,
-      },
-      reaction: type,
-    };
-    this.challengeService
-      .createReaction({ reaction, referenceId: this.challenge.challenged._id })
-      .pipe(take(1))
-      .subscribe((r: any) => {
-        this.Close();
-        this.ngOnInit();
-      });
+    if (type !== null) {
+      const reaction = {
+        userReference: {
+          appName: "SportYeah",
+          referenceId: this.userService.User._id,
+        },
+        reaction: type,
+      };
+      this.challengeService
+        .createReaction({
+          reaction,
+          referenceId: this.challenge.challenged._id,
+        })
+        .pipe(take(1))
+        .subscribe((r: any) => {
+          this.Close();
+          this.ngOnInit();
+        });
+    } else {
+      this.myVote = null;
+      const reaction = {
+        userReference: {
+          appName: "SportYeah",
+          referenceId: this.userService.User._id,
+        },
+        reaction: type,
+      };
+      this.challengeService
+        .createReaction({
+          reaction,
+          referenceId: this.challenge.challenged._id,
+        })
+        .pipe(take(1))
+        .subscribe((r: any) => {
+          this.Close();
+          this.ngOnInit();
+        });
+    }
   }
 }
