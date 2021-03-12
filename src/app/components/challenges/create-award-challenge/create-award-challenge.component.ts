@@ -109,7 +109,7 @@ export class CreateAwardChallengeComponent implements OnInit {
   }
 
   reset() {
-    this.form = { place: "", title: "", description: "", media: "" };
+    this.form = { place: "", title: "", description: "", media: "",date:"" };
   }
   addEmoji(ev) {
     this.lastCaretPosition != 0 && this.lastCaretPosition == this.caretPosition
