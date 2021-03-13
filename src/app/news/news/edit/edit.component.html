@@ -211,8 +211,6 @@
           <h3 style="color:white" >{{ 'news.editNews' | translate }}</h3>
         </ion-text>
         <ion-button  (click)="todoConOrigen()" [disabled]="(titulo1 != null && titulo1 != '') && (deporte != null && deporte != '') && ((urlVideo != null && urlVideo != '') || (parrafos.length > 0)) && ((origen != null && origen != '')) ?false:true"  >Listo para publicar</ion-button>
-        <ion-button  (click)="createStream()"  >Transmitir</ion-button>
-
       </ion-col>
 
 <ion-col size="12">
@@ -425,7 +423,7 @@
     <ion-textarea [(ngModel)]="originParrafoMedia" placeholder="Porfavor introduce el origen del archio multimedia"></ion-textarea>
     <ion-button (click)="origenParrafoListo(i,0)" [disabled]="(originParrafoMedia != null && originParrafoMedia != '')?false:true"  float-right ion-button ><ion-icon name="add"></ion-icon></ion-button>
   </ion-item>
-  <p *ngIf="parrafo.originMedia" style="text-align: center;color: #737373;font-size: 14px;"><i>{{parrafo.originMedia}}</i><ion-icon  (click)="origenParrafoEditar(i,1)" class="editIcon" name="pencil-outline" ></ion-icon></p>
+  <p *ngIf="parrafo.originMedia" style="text-align: center;color: #737373;font-size: 14px;"><i>{{parrafo.originMedia}}</i><ion-icon  (click)="origenParrafoEditar(i)" class="editIcon" name="pencil-outline" ></ion-icon></p>
   <p *ngIf="!parrafo.originMedia && (parrafo.video != null || parrafo.image != null )  " style="color: rgb(255, 0, 0);">Porfavor introduce el origen de este archivo</p>
       </ion-col>
         <ion-col *ngIf="!parrafo.video && !parrafo.image" size="6">
