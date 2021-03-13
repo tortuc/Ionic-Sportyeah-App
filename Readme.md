@@ -28,8 +28,10 @@ Iniciar sportyeah
 ## VIERNES 12-03-2021
 
 1. Mejorar slider. 3h-50m. listo
-  1.1. Que las imagenes puedan ser abiertas al hacer click.
-  1.2. Cuadro para agregar imagenes slider.
+   1.1. Que las imagenes puedan ser abiertas al hacer click.
+   1.2. Cuadro para agregar imagenes slider.
+
+2. Mejorar estructura club.
 
 ## JUEVES 11-03-2021
 
