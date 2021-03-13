@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { RankingPageRoutingModule } from './ranking-routing.module';
 
 import { RankingPage } from './ranking.page';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    RankingPageRoutingModule
+    RankingPageRoutingModule,
+    TranslateModule
   ],
   declarations: [RankingPage]
 })

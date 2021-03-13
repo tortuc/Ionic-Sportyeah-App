@@ -99,7 +99,7 @@
 </ion-card>
 
 <!-- Noticias de mis seguidos -->
-<ion-card>
+<!-- <ion-card>
   <ion-card-header>
     <ion-text color="black">
       <h1 style="font-size:35px;color: black; text-align: center;"><i>Más noticias de mis seguidos</i></h1> 
@@ -148,8 +148,50 @@
       </ion-row>
     </ion-grid>
   </ion-card-content>
-</ion-card>
+</ion-card> -->
 
+<!-- Streamings -->
+<ion-card *ngIf="stream != undefined">
+  <ion-card-header>
+    <ion-text color="black">
+      <h1 style="font-size:35px;color: black; text-align: center;"><i>Directos</i></h1> 
+   </ion-text>
+  </ion-card-header>
+  
+  <ion-card-content *ngIf="stream.length > 0">
+      <ion-list>
+        <ion-item  *ngFor="let new of stream?.slice(0,indexStreaming )">
+          <ion-note slot="start">
+            <div>
+              Aqui el estream
+            </div> 
+          </ion-note>
+          <br>
+          <div>
+            <h5 class="deporteTitle">{{ 'sport.'+new.sport| translate}}<span style="font-size: 8 !important;color: rgb(58, 58, 58);margin-left:15px">{{new.date | customDisplayDate}}</span>
+              <span  style="font-size: 8 !important;margin-left:8px !important;color: rgb(0, 0, 0)">{{new.user.name}} {{new.user.last_name}}</span>
+            </h5><br>
+            <h3 (click)="goToStream(new.postStream,new._id)" class="newsTitle">{{new.headline}}</h3>
+          </div>   
+        </ion-item>
+        <div style="text-align: center;">
+          <ion-button *ngIf="indexStreaming < stream.length" class="bg-gradient-person"  (click)="verMasStreaming()">Ver Mas</ion-button>
+        </div>
+        
+      </ion-list>
+  </ion-card-content>
+
+  <ion-card-content *ngIf="stream.length == 0">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12"> 
+          <ion-img style=" width: 12%;margin-left: auto;margin-right: auto;" src="https://img.icons8.com/color/344/nothing-found.png" ></ion-img>
+          <h1 style="text-align: center;color:black">{{ 'news.notNews'| translate}}</h1>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card-content>
+</ion-card>
 
 <!-- Noticias Propias del usuario (press) -->
 <ion-card *ngIf="userService.User?.profile_user == 'press'">

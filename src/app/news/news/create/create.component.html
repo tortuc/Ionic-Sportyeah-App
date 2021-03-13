@@ -337,13 +337,33 @@
             </div>
 
             <!-- Origen de la imagen o video principal -->
-            <ion-item *ngIf="!agregandoOrigenPrincipaMedia && (urlVideo != null || imagenSelected != null ) ">
+            <ion-item *ngIf="MiprincipalMedia == undefined && (urlVideo != null || imagenSelected != null ) && !originPrincipaMedia">
+              <ion-label position="floating">{{'sport.sport' | translate}}</ion-label>
+                <ion-select [(ngModel)]="MiprincipalMedia" (ionChange)="originPrincipaMediaListoMio()">
+                  <ion-select-option  *ngFor="let propiedad of origenSelect"  [value]="propiedad.value" >{{ 'sport.'+propiedad.origenSelect| translate}}</ion-select-option>              
+                </ion-select>
+              </ion-item> 
+              <ion-item *ngIf="!agregandoOrigenPrincipaMedia && MiprincipalMedia == 1 ">
+                <ion-textarea [(ngModel)]="originPrincipaMedia" placeholder="Porfavor introduce el origen de la noticia"></ion-textarea>
+                <ion-button (click)="originPrincipaMediaListo(1)" [disabled]="(originPrincipaMedia != null && originPrincipaMedia != '')?false:true"  float-right ion-button ><ion-icon name="add"></ion-icon></ion-button>
+              </ion-item>
+              <p *ngIf="(originPrincipaMedia == null || originPrincipaMedia == '') && (urlVideo != null || imagenSelected != null )" style="color: rgb(255, 0, 0);">Porfavor introduce la propiedad de la noticia</p>
+              <p *ngIf="originPrincipaMedia && agregandoOrigenPrincipaMedia == true" style="text-align: center;color: #737373;font-size: 14px;"><i>{{originPrincipaMedia}}</i><ion-icon  (click)="originPrincipaMediaListo(0)" class="editIcon" name="pencil-outline" ></ion-icon></p>
+           
+        <!--     <ion-item *ngIf="MiprincipalMedia == undefined && (urlVideo != null || imagenSelected != null )">
+              <ion-label position="floating">{{'sport.sport' | translate}}</ion-label>
+                <ion-select  [(ngModel)]="MiprincipalMedia">
+                  <ion-select-option  *ngFor="let propiedad of principalMedia" [value]="propiedad.value" >{{ 'sport.'+propiedad.origenSelect| translate}}</ion-select-option>              
+                </ion-select>
+              </ion-item> 
+            <ion-item *ngIf="!agregandoOrigenPrincipaMedia && (urlVideo != null || imagenSelected != null ) && !MiprincipalMedia && MiprincipalMedia != undefined  ">
               <ion-textarea [(ngModel)]="originPrincipaMedia" placeholder="Porfavor introduce el origen del archio multimedia"></ion-textarea>
-              <ion-button (click)="originPrincipaMediaListo()" [disabled]="(originPrincipaMedia != null && originPrincipaMedia != '')?false:true"  float-right ion-button ><ion-icon name="add"></ion-icon></ion-button>
+              <ion-button (click)="originPrincipaMediaListo(1)" [disabled]="(originPrincipaMedia != null && originPrincipaMedia != '')?false:true"  float-right ion-button ><ion-icon name="add"></ion-icon></ion-button>
             </ion-item>
-            <p *ngIf=" agregandoOrigenPrincipaMedia == true && (urlVideo != null || imagenSelected != null )" style="text-align: center;color: #737373;font-size: 14px;"><i>{{originPrincipaMedia}}</i><ion-icon  (click)="originPrincipaMediaListo()" class="editIcon" name="pencil-outline" ></ion-icon></p>
+            <p *ngIf=" agregandoOrigenPrincipaMedia == true && (urlVideo != null || imagenSelected != null ) && !MiprincipalMedia" style="text-align: center;color: #737373;font-size: 14px;"><i>{{originPrincipaMedia}}</i><ion-icon  (click)="originPrincipaMediaListo(0)" class="editIcon" name="pencil-outline" ></ion-icon></p>
             <p *ngIf="(originPrincipaMedia == null || originPrincipaMedia == '') && (urlVideo != null || imagenSelected != null )  " style="color: rgb(255, 0, 0);">Porfavor introduce el origen de este archivo</p>
-          </ion-col> 
+            <p *ngIf="MiprincipalMedia" style="text-align: center;color: #737373;font-size: 14px;"><i>De mi propiedad</i><ion-icon  (click)="originPrincipaMediaListo(0)" class="editIcon" name="pencil-outline" ></ion-icon></p>
+          --> </ion-col> 
 
             <!--  Cuerpo de la noticia -->
           <ion-col size="12">
@@ -427,14 +447,18 @@
                   </div>
                   
                   <!-- Origen de la imagen o video Parrafo -->
-            <ion-item *ngIf="!parrafo.originMedia">
+              <ion-item *ngIf="!parrafo.originMedia && MiParrafoMedia == undefined ">
+                <ion-label position="floating">{{'sport.sport' | translate}}</ion-label>
+                  <ion-select  [(ngModel)]="MiParrafoMedia" (ionChange)="origenParrafoListoMio(i)">
+                    <ion-select-option  *ngFor="let propiedad of origenParrafoMedia" [value]="propiedad.value" >{{ 'sport.'+propiedad.origenSelect| translate}}</ion-select-option>              
+                  </ion-select>
+              </ion-item> 
+            <ion-item *ngIf="MiParrafoMedia == 1 && !parrafo.originMedia">
               <ion-textarea [(ngModel)]="originParrafoMedia" placeholder="Porfavor introduce el origen del archio multimedia"></ion-textarea>
-              <ion-button (click)="origenParrafoListo(i)" [disabled]="(originParrafoMedia != null && originParrafoMedia != '')?false:true"  float-right ion-button ><ion-icon name="add"></ion-icon></ion-button>
+              <ion-button (click)="origenParrafoListo(i,0)" [disabled]="(originParrafoMedia != null && originParrafoMedia != '')?false:true"  float-right ion-button ><ion-icon name="add"></ion-icon></ion-button>
             </ion-item>
-            <p *ngIf="parrafo.originMedia" style="text-align: center;color: #737373;font-size: 14px;"><i>{{parrafo.originMedia}}</i><ion-icon  (click)="origenParrafoEditar(i)" class="editIcon" name="pencil-outline" ></ion-icon></p>
+            <p *ngIf="parrafo.originMedia" style="text-align: center;color: #737373;font-size: 14px;"><i>{{parrafo.originMedia}}</i><ion-icon  (click)="origenParrafoEditar(i,1)" class="editIcon" name="pencil-outline" ></ion-icon></p>
             <p *ngIf="!parrafo.originMedia && (parrafo.video != null || parrafo.image != null )  " style="color: rgb(255, 0, 0);">Porfavor introduce el origen de este archivo</p>
-
-
                 </ion-col>
                   <ion-col *ngIf="!parrafo.video && !parrafo.image" size="6">
                     <div >
@@ -479,15 +503,34 @@
             <ion-button *ngIf="!agregandoParrafo" (click)="agregandoParrafo = true"  float-right ion-button ><ion-icon name="add"></ion-icon></ion-button>
             </ion-col>
             <ion-col  size="12">
-              <ion-item *ngIf="!agregandoOrigen">
+              <ion-item *ngIf="miNoticia == undefined && !origen">
+              <ion-label position="floating">{{'sport.sport' | translate}}</ion-label>
+                <ion-select [(ngModel)]="miNoticia" (ionChange)="origenListoMio()">
+                  <ion-select-option  *ngFor="let propiedad of origenSelect"  [value]="propiedad.value" >{{ 'sport.'+propiedad.origenSelect| translate}}</ion-select-option>              
+                </ion-select>
+              </ion-item> 
+              <ion-item *ngIf="!agregandoOrigen && miNoticia == 1 ">
                 <ion-textarea [(ngModel)]="origen" placeholder="Porfavor introduce el origen de la noticia"></ion-textarea>
-                <ion-button (click)="origenListo()" [disabled]="(origen != null && origen != '')?false:true"  float-right ion-button ><ion-icon name="add"></ion-icon></ion-button>
+                <ion-button (click)="origenListo(1)" [disabled]="(origen != null && origen != '')?false:true"  float-right ion-button ><ion-icon name="add"></ion-icon></ion-button>
               </ion-item>
-              <p *ngIf="origen == null || origen == '' " style="color: rgb(255, 0, 0);">Porfavor introduce el origen de la noticia</p>
-
-              <p *ngIf="origen && agregandoOrigen == true" style="text-align: center;color: #737373;font-size: 14px;"><i>{{origen}}</i><ion-icon  (click)="origenListo()" class="editIcon" name="pencil-outline" ></ion-icon></p>
-             </ion-col>
-            
+              <p *ngIf="origen == null || origen == ''" style="color: rgb(255, 0, 0);">Porfavor introduce la propiedad de la noticia</p>
+              <p *ngIf="origen && agregandoOrigen == true" style="text-align: center;color: #737373;font-size: 14px;"><i>{{origen}}</i><ion-icon  (click)="origenListo(0)" class="editIcon" name="pencil-outline" ></ion-icon></p>
+            </ion-col>
+            <!-- <ion-col  size="12">
+              <ion-item *ngIf="miNoticia == undefined ">
+              <ion-label position="floating">{{'sport.sport' | translate}}</ion-label>
+                <ion-select [(ngModel)]="miNoticia">
+                  <ion-select-option  *ngFor="let propiedad of origenSelect"  [value]="propiedad.value" >{{ 'sport.'+propiedad.origenSelect| translate}}</ion-select-option>              
+                </ion-select>
+              </ion-item> 
+              <ion-item *ngIf="!agregandoOrigen && !miNoticia && miNoticia != undefined ">
+                <ion-textarea [(ngModel)]="origen" placeholder="Porfavor introduce el origen de la noticia"></ion-textarea>
+                <ion-button (click)="origenListo(1)" [disabled]="(origen != null && origen != '')?false:true"  float-right ion-button ><ion-icon name="add"></ion-icon></ion-button>
+              </ion-item>
+              <p *ngIf="(origen == null || origen == '') && !miNoticia" style="color: rgb(255, 0, 0);">Porfavor introduce la propiedad de la noticia</p>
+              <p *ngIf="(origen && agregandoOrigen == true) && !miNoticia " style="text-align: center;color: #737373;font-size: 14px;"><i>{{origen}}</i><ion-icon  (click)="origenListo(0)" class="editIcon" name="pencil-outline" ></ion-icon></p>
+              <p *ngIf="miNoticia" style="text-align: center;color: #737373;font-size: 14px;"><i>De mi propiedad</i><ion-icon  (click)="origenListo(0)" class="editIcon" name="pencil-outline" ></ion-icon></p>
+            </ion-col> -->
              </ion-row>
            </ion-grid>
            </div>

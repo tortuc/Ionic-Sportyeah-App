@@ -17,7 +17,7 @@ export class NewsPage implements OnInit {
     public  userService:UserService,
   ) { }
 
-
+  stream = []; //Contiene todas los streaming
   news = [];  //Contiene todas las noticias
   newsFollow = []; //Contiene las noticias de los seguidos
   newsFollowthree = []; //Contiene las 3 ultimas noticias de los seguidos
@@ -35,11 +35,18 @@ export class NewsPage implements OnInit {
    verMasMy(){
     this.indexLastMy += 3 
    }
+   indexStreaming = 3;
+   verMasStreaming(){
+    this.indexStreaming += 3 
+   }
   
   ngOnInit() {
     this.newsService.find().subscribe((response:any)=>{
       this.news = response.filter((news)=>{
         return news.stream == false;
+      })
+      this.stream = response.filter((news)=>{
+        return news.stream == true;
       })
       this.news .forEach((news)=>{
         let noticia = news.user._id
@@ -65,6 +72,9 @@ export class NewsPage implements OnInit {
   OpenNews(idNews){
     this.router.navigate([`news/read/${idNews}`])
   }
-
+  goToStream(postStream,idNews){
+    this.newsService.idNews = idNews
+    this.router.navigate([`/news/streamNews/${postStream}`])
+  }
   
 }

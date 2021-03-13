@@ -8,7 +8,8 @@
       <ion-icon style="color: white;font-size:30px;cursor: pointer;" name="person-outline" [routerLink]="'/profile'"></ion-icon>
     </ion-buttons> -->
     <ion-title style="--color: white">{{ 'news.streaming'| translate}}</ion-title>
-    
+    <ion-button   (click)="unSubscribe()">unSubscribe Call</ion-button>
+
   </ion-toolbar>
 </ion-header>
 <ion-content  class="bg-gradient-person">
@@ -36,7 +37,10 @@
        
         <ion-col style="text-align: center;position: relative;" 	size-xl="8"	size-xs="12" >
         <div style="margin-right: auto; width: 100%;">     
-          <div  id="localPlayer" class="player"></div>
+          <div  id="localPlayer" class="player">
+          <!-- Corregir esto 
+             <h1  *ngIf="news?.deleted == true">Este directo esta fuera de línea </h1> -->
+          </div>
           <div class="w-100"></div>
           <!-- <div id="remotePlayerlist"></div> -->       
         </div>
@@ -47,7 +51,7 @@
 </div>
 <!-- FIN REACCIONES -->
 
-<div *ngIf="news" style="--background: white;width: 85%;margin-top: 5%;margin-left: auto;margin-right: auto;">
+<div *ngIf="news" style="--background: white;width: 100%;margin-top: 5%;margin-left: auto;margin-right: auto;">
   <post-options style="background: white;"
    [news]="news"
    isPost="false"
@@ -67,10 +71,9 @@
               </ion-avatar>
               <div class="user-name">
                 <span class="message profile-name"
-                 >{{comment.user.name}} {{comment.user.last_name}}</span><br>
+                 >{{comment.user.name}} {{comment.user.last_name}}<ion-icon *ngIf="comment.user?._id == news.news?.user._id" style="font-size: 10px;color: #ffb100;" name="star"></ion-icon></span><br>
                 <span>{{comment.date | customDisplayDate}}</span>
               </div>
-              
               </ion-card-subtitle>
             </ion-card-header>
             <ion-card-content>
@@ -90,3 +93,4 @@
     </ion-row>
   </ion-grid>
 </ion-content>
+

@@ -1,5 +1,18 @@
 <ion-header>
   <ion-toolbar class="bg-gradient-person">
+    <ion-buttons (click)="filterCountry()"  slot="end">
+      <img 
+                *ngIf="(ipLoaded | async) && country"
+                class="bandera"
+                [src]="'https://www.countryflags.io/'+banderaIP[0]+banderaIP[1]+'/flat/64.png'"
+                alt=""
+                style="width: 60%;margin-left: auto;"
+                
+              />
+              <img *ngIf="!country" src="https://img.icons8.com/offices/344/geography.png" style="width: 10%;margin-left: auto;" alt="planeta tierra">   
+
+    </ion-buttons>
+  
     <ion-title>ranking</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -25,6 +38,32 @@
   <!-- REACCIONES -->
   <div *ngIf="segment == 0">
     <ion-img class="iconsPost"  src="https://img.icons8.com/bubbles/344/facebook-like.png" alt="Reaction icon"></ion-img>
+  </div>
+  <div style="background: white;border-radius: 5px;width: 96%;margin-left: auto;margin-right: auto;margin-top: 10px;">
+    <ion-grid>
+      <ion-row style="text-align: center;">
+          <ion-col>
+            <ion-button  class="botons" (click)="today()" >
+              <span >{{'analytics-views.today'| translate}}</span>
+            </ion-button>
+          </ion-col>
+        <ion-col>
+          <ion-button  class="botons" (click)="week()" >
+            <span >{{'analytics-views.weeks'| translate}}</span>
+          </ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-button  class="botons" (click)="month()" >
+            <span >{{'analytics-views.months'| translate}}</span>
+          </ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-button  class="botons" (click)="year()" >
+            <span >{{'analytics-views.years'| translate}}</span>
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   </div>
  <div *ngIf="segment == 0" style="background: white;border-radius: 10px;width: 96%;margin-left: auto;margin-right: auto;">
   <div class="podium">
@@ -168,6 +207,7 @@
 </div>
 <div style="border-radius: 5px;width: 96%;margin-left: auto;margin-right: auto;" *ngIf="segment == 0 && !userLike">
   <h1 style="text-align: center;color: white;">No han reaccionado tus post </h1>
+  <h1 *ngIf="likes.length != 0" style="text-align: center;color: white;">Estas por debajo de la posicion: {{likes.length}} </h1>
 </div>
 
  <!-- COMENTARIOS --> 
@@ -314,6 +354,8 @@
 </div>
 <div style="border-radius: 5px;width: 96%;margin-left: auto;margin-right: auto;" *ngIf="segment == 1 && !userComment">
 <h1 style="text-align: center;color: white;">No hay comentarios en tus post </h1>
+<h1 *ngIf="comments.length != 0" style="text-align: center;color: white;">Estas por debajo de la posicion: {{comments.length}} </h1>
+
 </div>
 
 
@@ -460,6 +502,7 @@
   </div>
   <div style="border-radius: 5px;width: 96%;margin-left: auto;margin-right: auto;" *ngIf="segment == 2 && !userShared">
     <h1 style="text-align: center;color: white;">No han compartido tus post </h1>
+    <h1 *ngIf="shareds.length != 0" style="text-align: center;color: white;">Estas por debajo de la posicion: {{shareds.length}} </h1>
   </div>
 </ion-content>
 
