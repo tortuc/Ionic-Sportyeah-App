@@ -22,23 +22,26 @@
     <ion-segment scrollable class="segment"  [(ngModel)]="segment"  >
       <ion-segment-button  value=0 >     
         <p style="visibility: visible">Reacciones</p>
+        <ion-img class="iconsPost"  src="https://img.icons8.com/bubbles/344/facebook-like.png" alt="Reaction icon"></ion-img>
       </ion-segment-button>
   
       <ion-segment-button  value=1 >
         <p style="visibility: visible">Comentarios</p>
+        <ion-img class="iconsPost"  src="https://img.icons8.com/bubbles/344/comments.png" alt="Reaction icon"></ion-img>
       </ion-segment-button>
 
       <ion-segment-button  value=2 >
         <p style="visibility: visible">Compartidos</p>
+        <ion-img class="iconsPost"  src="https://img.icons8.com/bubbles/452/undo.png" alt="Reaction icon"></ion-img>
       </ion-segment-button>
     </ion-segment>
   </div>
 
 
   <!-- REACCIONES -->
-  <div *ngIf="segment == 0">
+  <!-- <div *ngIf="segment == 0">
     <ion-img class="iconsPost"  src="https://img.icons8.com/bubbles/344/facebook-like.png" alt="Reaction icon"></ion-img>
-  </div>
+  </div> -->
   <div style="background: white;border-radius: 5px;width: 96%;margin-left: auto;margin-right: auto;margin-top: 10px;">
     <ion-grid>
       <ion-row style="text-align: center;">
@@ -211,9 +214,9 @@
 </div>
 
  <!-- COMENTARIOS --> 
- <div *ngIf="segment == 1">
+<!--  <div *ngIf="segment == 1">
   <ion-img class="iconsPost"  src="https://img.icons8.com/bubbles/344/comments.png" alt="Reaction icon"></ion-img>
-</div>
+</div> -->
  <div *ngIf="segment == 1" style="background: white;border-radius: 10px;width: 96%;margin-left: auto;margin-right: auto;">
   <div class="podium">
     <ion-grid >
@@ -360,9 +363,9 @@
 
 
 <!-- COMPARTIDOS -->
-<div *ngIf="segment == 2">
+<!-- <div *ngIf="segment == 2">
   <ion-img class="iconsPost"  src="https://img.icons8.com/bubbles/452/undo.png" alt="Reaction icon"></ion-img>
-</div>
+</div> -->
   <div *ngIf="segment == 2" style="background: white;border-radius: 10px;width: 96%;margin-left: auto;margin-right: auto;">
     <div class="podium">
       <ion-grid >
