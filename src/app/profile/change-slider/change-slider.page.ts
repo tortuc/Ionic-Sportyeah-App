@@ -1,3 +1,4 @@
+import { OpenImgComponent } from './../../components/open-img/open-img.component';
 import { SliderLogic } from './../../service/slider-logic.service';
 import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
 import { UserService } from "src/app/service/user.service";
@@ -6,6 +7,7 @@ const { Camera, Filesystem } = Plugins;
 import {
   AlertController,
   LoadingController,
+  ModalController,
 } from "@ionic/angular";
 import { TranslateService } from "@ngx-translate/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
@@ -20,6 +22,7 @@ export class ChangeSliderPage implements OnInit {
   @ViewChild('fileChooser') fileChooser:ElementRef
   constructor(
     public userService: UserService,
+    public mc: ModalController,
     public translate: TranslateService,
     private fb: FormBuilder,
     private alertController: AlertController,
@@ -149,4 +152,11 @@ export class ChangeSliderPage implements OnInit {
 
   show = false;
   show1 = false;
+  async openImg(img:string){
+    const modal = await this.mc.create({
+      component:OpenImgComponent,
+      componentProps: {img}
+    })
+    await modal.present()
+  }
 }

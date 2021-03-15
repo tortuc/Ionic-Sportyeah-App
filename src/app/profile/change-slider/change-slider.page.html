@@ -20,10 +20,22 @@
       hidden
     />
     <ion-card-content class="text-center">
-      <div *ngIf="sliderLogic.content.length === 0">
-        No se encuentra contenido.
-      </div>
       <ion-row>
+        <ion-col size-sm="12" size-xs="12" size-md="6" size-lg="6" size-xl="4">
+          <div
+            (click)="addContent()"
+            width="300px"
+            height="225px"
+            alt=""
+            style="cursor: pointer; text-align: center"
+          >
+            <ion-icon
+              slot="start"
+              name="add-circle-outline"
+              style="height: 225px; width: 168px"
+            ></ion-icon>
+          </div>
+        </ion-col>
         <ng-container *ngFor="let img of sliderLogic.content">
           <ion-col
             size-sm="12"
@@ -41,7 +53,13 @@
                 (click)="sliderLogic.delete(img)"
               ></ion-icon>
               <br />
-              <img [src]="img" width="300px" height="200px" alt="" />
+              <img
+                [src]="img"
+                (click)="openImg(img)"
+                width="300px"
+                height="200px"
+                alt=""
+              />
             </div>
             <div *ngIf="img.indexOf('video') !== -1">
               <ion-icon

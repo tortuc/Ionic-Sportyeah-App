@@ -36,21 +36,11 @@ export class ChallengePage implements OnInit {
       .getById(this.activeRouter.snapshot.params.id)
       .pipe(take(1))
       .subscribe(async (r: any) => {
-        console.log(
-          "%cStop!",
-          "color:red;font-family:system-ui;font-size:5rem;-webkit-text-stroke: 1px black;font-weight:bold"
-        );
-        console.log(
-          "%cHackers can hack you if you open this dev tools!",
-          "color:red;font-family:system-ui;font-size:2rem;-webkit-text-stroke: 1px black;font-weight:bold"
-        );
-        console.log("Challenges", r.challenge);
         this.challenge = await this.getUserChallenge(r.challenge);
       });
   }
 
   async getUserChallenge(challenge: IChallenge): Promise<IChallenge> {
-    console.log(challenge.challenged.userId.referenceId);
     const r = await this.userService
       .getUserById(challenge.challenged.userId.referenceId)
       .toPromise();
@@ -75,7 +65,7 @@ export class ChallengePage implements OnInit {
       .getUserByUsername(this.user)
       .pipe(take(1))
       .subscribe((r: any) => {
-        console.log("response", r);
+        // console.log("response", r);
       });
   }
   ionViewWillLeave() {

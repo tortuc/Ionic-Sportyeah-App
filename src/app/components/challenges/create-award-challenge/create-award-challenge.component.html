@@ -19,6 +19,27 @@
     <img [src]="form.media" alt="" (click)="awardMedia()" />
   </div>
   <ion-item>
+    <ion-label>{{ "selectDesafiosPremios.Title" | translate }}</ion-label>
+    <ion-select
+      [(ngModel)]="form.condition"
+      placeholder="{{ 'selectDesafiosPremios.SelectOne' | translate }}"
+    >
+      <ion-select-option
+        [value]="condition.value"
+        *ngFor="let condition of conditions"
+        >{{
+          "selectDesafiosPremios." + condition.value | translate
+        }}</ion-select-option
+      >
+    </ion-select>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">{{
+      "challenge.date" | translate
+    }}</ion-label>
+    <ion-input type="date" [(ngModel)]="form.date"></ion-input>
+  </ion-item>
+  <ion-item>
     <ion-label position="floating">{{
       "challenge.place" | translate
     }}</ion-label>
@@ -28,14 +49,48 @@
     <ion-label position="floating">{{
       "challenge.titleAward" | translate
     }}</ion-label>
-    <ion-input type="text" [(ngModel)]="form.title"></ion-input>
+    <ion-input type="text" #FormElementRef [(ngModel)]="form.title"></ion-input>
   </ion-item>
+  <div #emojiButton>
+    <ion-button (click)="openEmojis($event)" style="float: right">
+      <ion-icon name="happy"></ion-icon>
+    </ion-button>
+  </div>
+  <div class="text-center" #emojiContainer2>
+    <emoji-mart
+      [hidden]="!emojis"
+      (emojiClick)="addEmoji($event)"
+      title="Pick your emoji…"
+      emoji="point_up"
+      [showPreview]="true"
+    ></emoji-mart>
+  </div>
   <ion-item>
     <ion-label position="floating">{{
       "challenge.description" | translate
     }}</ion-label>
-    <ion-textarea type="text" [(ngModel)]="form.description"></ion-textarea>
+    <ion-textarea
+      type="text"
+      #FormElementRef2
+      [(ngModel)]="form.description"
+    ></ion-textarea>
   </ion-item>
+  <div #emojiButton>
+    <ion-button (click)="openEmojis2($event)" style="float: right">
+      <ion-icon name="happy"></ion-icon>
+    </ion-button>
+  </div>
+  <div class="text-center" #emojiContainer>
+    <emoji-mart
+      [hidden]="!emojis2"
+      (emojiClick)="addEmoji2($event)"
+      title="Pick your emoji…"
+      emoji="point_up"
+      [showPreview]="true"
+    ></emoji-mart>
+  </div>
+  <!-- SELECT CONDITIONS -->
+
   <div style="margin-top: 20px">
     <ion-button
       (click)="saveAward()"
@@ -43,6 +98,7 @@
         form.place === '' ||
         form.title === '' ||
         form.description === '' ||
+        form.condition === '' ||
         form.media === ''
       "
     >

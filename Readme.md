@@ -23,29 +23,124 @@ Iniciar sportyeah
 ## Importante
 
 1. Siempre al finalizar la jornada hacer ionic build y ver los errores solucionarlos y merge master.
+2. Trabajar por pomodoros de 25 minutos, cada vez que finalice uno anotar el tiempo dedicado a la tarea.
 
-## Tareas Desafios 05-03-2021
+## VIERNES 12-03-2021
 
-1. Componente desafio individual: Logica boton seguir: no debe permitir seguir si el usuario soy yo, si ya lo sigo debe salir marcado y si no esta marcado poder marcarlo y seguir a la persona.
-2. Componente desafio individual Responsive: disenar una vista y definir tareas.
-3. Premios de retos: Dar condiciones para entrega del premio.
-4. Premios de retos: Manejar los premios de los desafios y darlos por fecha, default 1 mes.
-5. Premios de retos: Poder agregar emojis a los premios.
-6. Retos generales: Buscador de retos.
-7. Modal imagenes gratis: Buscador de imagenes gratis.
-8. Componente Crear Desafios: Poder agregar emojis al titulo y a la descripcion.
-9. Componente Crear Desafios: Guardar en api la persona que te ha retado.
-10. Reacciones retos: Al clickear la reaccion debe de eliminarse.
-11. Modal de comparticion: Funcionalidad para compartir reto en redes sociales.
-12. Modal de comparticion: Logica y funcionalidad boton retar seguidores.
+1. Mejorar slider. 3h-50m. listo
+   1.1. Que las imagenes puedan ser abiertas al hacer click.
+   1.2. Cuadro para agregar imagenes slider.
 
-### Por definir
+2. Mejorar estructura club.
+
+## JUEVES 11-03-2021
+
+1. Premios de retos: Manejar los premios de los desafios y darlos por fecha, default 1 mes - backend logica.6h.
+2. Testear lo faltante en desafios y dar a jogeiker luz verde para QA.
+
+## MIERCOLES 10-03-2021
+
+1. Premios de retos: Poder agregar emojis a los premios.3h-30m.
+2. Componente Crear Desafios: Poder agregar emojis al titulo y a la descripcion.3h-1h25m.
+3. Reacciones retos: Al clickear la reaccion debe de eliminarse. 30m-10m.
+4. Retos generales: Buscador de retos. 1h-45m
+5. Componente Crear Desafios: Guardar en api la persona que te ha retado.1h.
+
+## MARTES 09-03-2021
+
+1. Componente desafio individual - Logica boton seguir: no debe permitir seguir si el usuario soy yo, si ya lo sigo debe salir marcado y si no esta marcado poder marcarlo y seguir a la persona.2h-1h15m
+2. Premios de retos: Dar condiciones para entrega del premio select.1h-50m.
+3. Modal imagenes gratis: Buscador de imagenes gratis y mejorar visual.1h-25m.
+
+### Bugs encontrados
+
+1. klass.trim en componente desafio individual.
+2. Devtools failed.
+3. Encontrado error en el muro no se puede obtener photo de undefined. tuve que crear dos cuentas de nuevo.
+4. Error modal-created : 24 ts. property id of undefined.
+5. Error challenge-content unsubscribe of undefined.
+6. Bug error while trying to use the following icon from the Manifest: http://localhost:8100/assets/icons/icon-144x144.png (Download error or resource isn't a valid image)
+7. Console log banner-profile-logic.service.ts:106
+8. Console .log banner-profile-logic.service.ts:109
+9. console log banner-profile-logic.service.ts:110
+
+## CAMBIOS
+
+### Faltante en Desafios (Tareas definidas) 18 horas y media estimadas
+
+1. Componente desafio individual - Logica boton seguir: no debe permitir seguir si el usuario soy yo, si ya lo sigo debe salir marcado y si no esta marcado poder marcarlo y seguir a la persona.2h.
+2. Premios de retos: Dar condiciones para entrega del premio select.1h.
+3. Premios de retos: Manejar los premios de los desafios y darlos por fecha, default 1 mes - backend logica.6h.
+4. Premios de retos: Poder agregar emojis a los premios.3h.
+5. Retos generales: Buscador de retos.1h.
+6. Modal imagenes gratis: Buscador de imagenes gratis y mejorar visual.1h.
+7. Componente Crear Desafios: Poder agregar emojis al titulo y a la descripcion.3h.
+8. Componente Crear Desafios: Guardar en api la persona que te ha retado.1h.
+9. Reacciones retos: Al clickear la reaccion debe de eliminarse.30m.
+
+### Slider 3 horas estimadas
+
+1. Colocar boton mas entendible, como un cuadrado con simbolo + para agregar imagenes.1h.
+2. poder abrir imagenes.2h.
+
+### Estructura 10 horas estimadas
+
+1. Definir palabras clave y la estructura que debe tener cada rol (Ejemplo: club - categorias - equipos - plantilla).4h.
+2. Cambiar palabras clave para cada nivel de la herramienta estructura dependiendo de su rol en el perfil.4h.
+3. Poder subir patrocinadores por equipo o lo que requiera.2h.
+
+### Faltante en Desafios (Por definir tiempos y dificultad)
 
 1. Componente retos en cascada definir actividades.
 2. Muro ranking definir actividades.
 3. Tiempo de grabacion para finalizar el reto definir actividades.
 4. Funcionalidad grabar camara en Android y IOS definir actividades.
 5. Reacciones de las tomas falsas definir actividades.
+6. Componente Desafio Individual para Mobile (Responsive) definir actividades.
+
+### Cambios BUGS 41 horas estimadas
+
+1. Quitar mariquita.
+2. Bug buscar se quita cuando no hay coincidencias. 30m.
+3. Modal de desafios: Manejo de errores en "crea tu premio" - cuando un campo no este completado y sea obligatorio se muestre el error. 30m
+4. Modal de desafios: Ver tiempo del video en crear desafio. 4h.
+5. Modal de desafios: Boton de volver tiene que volver en el paso. 30m.
+6. Modal de desafios: Botones de modal crear en linea grandes. 1h.
+7. Modal de desafios: Cambiar texto de siguiente por lo que corresponda en ese momento. 15m
+8. Modal de desafios: Meter cabecera este es el video bueno, estas son tus tomas falsas titulo en cada video que no se entiende. 15m.
+9. Modal de desafios: Cambiar texto "Intentar de nuevo" a "Este video no te gusta crea otro en vez de intentar de nuevo". 15m.
+10. Modal de desafios: No permitir posicion negativa. 15m.
+11. Modal de desafios: No obligar a colocar imagen en causa opcional.15m.
+12. Modal de desafios: Todo en un solo paso toda la info.2h.
+13. Modal de desafios: Limitar el tope de grabaciones a 3 tomas falsas no dejar subir mas.30m.
+14. Modal de desafios: Una persona que ha aceptado el reto no tiene que decirle si es solidario o no.15m.
+15. Modal de Desafios: una sola modal para aceptar reto.30m.
+16. Modal de Compartir: Falta la posibilidad de compartir video en muro.4h.
+17. Modal de Compartir: Falta la posibilidad de compartir el reto en redes sociales.8h.
+18. Modal de Compartir: Link de comparticion visualizacion previa. 8h.
+19. Modal de Compartir: Boton de cerrar.15m.
+20. Retos Visual General: No actualiza el numero de comentarios cuando comentamos.15m.
+21. Retos Visual General: Boton de cadenas de retos cambiar mejor.1h.
+22. Retos Visual General:Cambiar boton ver intentos por los intentos pequenos con titulo arriba.4h.
+23. Retos Visual General: Numero de visualizaciones mas grande.15m.
+24. Componente Desafio Individual: bug video se destruye despues de aceptar reto.30m.
+25. Componente Desafio Individual: Falta visualizar retos similares abajo de reto individual.3h.
+
+## MOSTRAR 05-03-2021
+
+1. Nueva visualizacion de retos.
+2. Nueva visualizacion de retos individuales.
+3. Nuevas reacciones.
+4. Nueva modal de retar.
+5. Nueva vista para crear desafio.
+6. Nueva vista para aceptar desafio.
+7. Nueva grabacion pantalla para desafio, pausar y stop.
+8. Intentos de desafios.
+9. Nueva visual premios y subida de premios.
+10. Reto solidario check.
+11. Reto publico o privado check.
+
+## Tareas Desafios 05-03-2021
 
 ## TAREAS DESAFIOS 04-03-2021
 

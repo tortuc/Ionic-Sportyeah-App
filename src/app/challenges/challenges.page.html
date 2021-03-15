@@ -7,6 +7,17 @@
     <ion-buttons slot="start">
       <ion-menu-button style="color: white"></ion-menu-button>
     </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-searchbar
+      style="text-align: left;"
+        [(ngModel)]="search"
+        (ngModelChange)="makeSearch()"
+        placeholder="{{'search' | translate}}"
+        animated
+        debounce="500"
+        color="light"
+      ></ion-searchbar>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 <ion-content
@@ -19,12 +30,9 @@
     ><ion-icon name="add"></ion-icon
   ></ion-fab-button>
   <ion-grid style="padding: 0">
-    <ion-row class="bg-gradient-person" >
+    <ion-row class="bg-gradient-person">
       <ion-col size-xs="12" size-lg="8" ngClass.xs="p-0" class="center">
-        <ion-row
-        class="actualizar bg-gradient-person"
-          *ngIf="challenges"
-        >
+        <ion-row class="actualizar bg-gradient-person" *ngIf="challenges">
           <ion-button
             *ngIf="challenges.length > 0"
             style="z-index: 10"

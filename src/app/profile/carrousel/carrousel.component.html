@@ -1,52 +1,54 @@
-<div class="slides-content"  >
-
-<div class="button-photo-banner" (click)="goTo('profile/slider')">
-  <ion-icon
-    name="camera-outline"
-    style="margin-top: 6px; margin-left: 7px"
-  ></ion-icon>
-</div>
-<div style="height: 400px; z-index: -100000000000  !important;">
-  <ion-slides
-    pager="true"
-    [options]="slideOpts"
-    class="slide-container slideroption"
-  >
-    <ion-slide
-      *ngFor="let img of userService.User.slider"
-      class="slidezoom"
+<div class="slides-content">
+  <div class="button-photo-banner" (click)="goTo('profile/slider')">
+    <ion-icon
+      name="camera-outline"
+      style="margin-top: 6px; margin-left: 7px"
+    ></ion-icon>
+  </div>
+  <div style="height: 400px; z-index: -100000000000 !important">
+    <ion-slides
+      pager="true"
+      [options]="slideOpts"
+      class="slide-container slideroption"
     >
-      <img
-        [src]="img"
-        *ngIf="img.indexOf('video/') === -1 && img.indexOf('youtube') === -1"
-        alt=""
-        class="img"
-      />
-      <video
-        *ngIf="img.indexOf('video/') !== -1"
-        controlslist="nodownload"
-        controls="controls"
-        preload="metadata"
-        webkit-playsinline="webkit-playsinline"
-        class="videoPlayer img"
-      >
-        <source [src]="img | safeUrl" type="video/mp4" />
-        <source [src]="img | safeUrl" type="video/ogg" />
-      </video>
-      <iframe
-        [src]="img | youtube"
-        *ngIf="img.indexOf('youtube') !== -1 && img | youtube"
-        class="img"
-      >
-      </iframe>
-    </ion-slide>
+      <ion-slide *ngFor="let img of userService.User.slider" class="slidezoom">
+        <img
+          [src]="img"
+          *ngIf="img.indexOf('video/') === -1 && img.indexOf('youtube') === -1"
+          alt=""
+          class="img"
+          (click)="open(img)"
+        />
+        <video
+          *ngIf="img.indexOf('video/') !== -1"
+          controlslist="nodownload"
+          controls="controls"
+          preload="metadata"
+          webkit-playsinline="webkit-playsinline"
+          class="videoPlayer img"
+        >
+          <source [src]="img | safeUrl" type="video/mp4" />
+          <source [src]="img | safeUrl" type="video/ogg" />
+        </video>
+        <iframe
+          [src]="img | youtube"
+          *ngIf="img.indexOf('youtube') !== -1 && img | youtube"
+          class="img"
+        >
+        </iframe>
+      </ion-slide>
 
-    <ion-slide *ngIf="userService.User.slider.length === 0">
-      <img
-        src="https://trello-attachments.s3.amazonaws.com/5ff9d47572424648014190dc/700x422/29f3e5ed0cea0a6b7439bfb986a090cd/original.jpg"
-        class="img"
-      />
-    </ion-slide>
-  </ion-slides>
-</div>
+      <ion-slide *ngIf="userService.User.slider.length === 0">
+        <img
+          src="https://trello-attachments.s3.amazonaws.com/5ff9d47572424648014190dc/700x422/29f3e5ed0cea0a6b7439bfb986a090cd/original.jpg"
+          class="img"
+          (click)="
+            open(
+              'https://trello-attachments.s3.amazonaws.com/5ff9d47572424648014190dc/700x422/29f3e5ed0cea0a6b7439bfb986a090cd/original.jpg'
+            )
+          "
+        />
+      </ion-slide>
+    </ion-slides>
+  </div>
 </div>

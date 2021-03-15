@@ -19,6 +19,10 @@ import {
   Output,
 } from "@angular/core";
 import { ToastController, ModalController } from "@ionic/angular";
+
+interface IConditionAward {
+  value: string;
+}
 @Component({
   selector: "app-create-award-challenge",
   templateUrl: "./create-award-challenge.component.html",
@@ -27,10 +31,39 @@ import { ToastController, ModalController } from "@ionic/angular";
 export class CreateAwardChallengeComponent implements OnInit {
   @ViewChild("fileChooser") fileChooser: ElementRef;
   @Input() challenged: IReference | null;
+  @ViewChild("FormElementRef") inputNode: any;
+  @ViewChild("FormElementRef2") inputNode2: any;
+  @ViewChild("emojiButton") emojiButton: ElementRef;
+  @ViewChild("emojiContainer") emojiContainer: ElementRef;
+  @ViewChild("emojiContainer2") emojiContainer2: ElementRef;
   @Output("save") save: EventEmitter<any> = new EventEmitter();
-  public form: any = { place: "", title: "", description: "", media: "" };
+  public form: any = {
+    place: "",
+    title: "",
+    description: "",
+    media: "",
+    condition: "",
+  };
   public videoInvalid: boolean = true;
   public novideo: boolean = null;
+  conditions: IConditionAward[] = [
+    { value: "Likes" },
+    { value: "Likes1" },
+    { value: "Likes2" },
+    { value: "Likes3" },
+    { value: "Likes4" },
+    { value: "Likes5" },
+    { value: "Comments" },
+    { value: "Challenges" },
+    { value: "Shared" },
+    { value: "f5" },
+    { value: "f10" },
+    { value: "f20" },
+  ];
+  emojis: boolean = false;
+  emojis2: boolean = false;
+  public caretPosition = null;
+  public lastCaretPosition = 0;
   constructor(
     public toast: ToastController,
     public fb: FormBuilder,
@@ -43,12 +76,24 @@ export class CreateAwardChallengeComponent implements OnInit {
     public challengeService: ChallengeService
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    window.onclick = () => {
+      this.emojis = false;
+      this.emojis2 = false;
+    };
+    setTimeout(() => {
+      this.inputNode.el.addEventListener("focusout", (e) => {
+        this.caretPosition = e.target.selectionStart;
+      });
+      this.inputNode2.el.addEventListener("focusout", (e) => {
+        this.caretPosition = e.target.selectionStart;
+      });
+    }, 3000);
+  }
 
   awardMedia() {
     this.img.takeOnlyPhoto();
     this.img.content.pipe(take(1)).subscribe((r) => {
-      // this.formAward.controls.media.setValue(r);
       this.form.media = r;
     });
   }
@@ -64,6 +109,75 @@ export class CreateAwardChallengeComponent implements OnInit {
   }
 
   reset() {
-    this.form = { place: "", title: "", description: "", media: "" };
+    this.form = { place: "", title: "", description: "", media: "",date:"" };
+  }
+  addEmoji(ev) {
+    this.lastCaretPosition != 0 && this.lastCaretPosition == this.caretPosition
+      ? (this.caretPosition = this.caretPosition + 2)
+      : null;
+
+    this.lastCaretPosition = this.caretPosition;
+    let value = this.form.title;
+    const newText =
+      value.replace(/&nbsp;/g, " ").substring(0, this.caretPosition) +
+      ev.emoji.native +
+      value.replace(/nbsp;/g, "").substring(this.caretPosition);
+
+    this.form.title = newText;
+  }
+  addEmoji2(ev) {
+    this.lastCaretPosition != 0 && this.lastCaretPosition == this.caretPosition
+      ? (this.caretPosition = this.caretPosition + 2)
+      : null;
+
+    this.lastCaretPosition = this.caretPosition;
+    let value = this.form.description;
+    const newText =
+      value.replace(/&nbsp;/g, " ").substring(0, this.caretPosition) +
+      ev.emoji.native +
+      value.replace(/nbsp;/g, "").substring(this.caretPosition);
+
+    this.form.description = newText;
+  }
+  openEmojis(e) {
+    this.emojis = !this.emojis;
+    e.stopPropagation();
+    // this.inputNode.nativeElement.onclick = (e)=>{
+    //   e.stopPropagation();
+    // }
+    this.inputNode.el.onclick = function (e) {
+      e.stopPropagation();
+    };
+    this.inputNode2.el.onclick = function (e) {
+      e.stopPropagation();
+    };
+    this.emojiButton.nativeElement.onclick = (e) => {
+      e.stopPropagation();
+    };
+    this.emojiContainer.nativeElement.onclick = (e) => {
+      e.stopPropagation();
+    };
+  }
+  openEmojis2(e) {
+    this.emojis2 = !this.emojis2;
+    e.stopPropagation();
+    // this.inputNode.nativeElement.onclick = (e)=>{
+    //   e.stopPropagation();
+    // }
+    this.inputNode.el.onclick = function (e) {
+      e.stopPropagation();
+    };
+    this.inputNode2.el.onclick = function (e) {
+      e.stopPropagation();
+    };
+    this.emojiButton.nativeElement.onclick = (e) => {
+      e.stopPropagation();
+    };
+    this.emojiContainer.nativeElement.onclick = (e) => {
+      e.stopPropagation();
+    };
+    this.emojiContainer2.nativeElement.onclick = (e) => {
+      e.stopPropagation();
+    };
   }
 }

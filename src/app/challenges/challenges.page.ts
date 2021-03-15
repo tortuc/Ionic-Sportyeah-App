@@ -13,7 +13,7 @@ import {
   OnDestroy,
   EventEmitter,
 } from "@angular/core";
-import { ChallengeService } from "../service/challenge.service";
+import { ChallengeService, IChallenge } from "../service/challenge.service";
 import { ChallengeCommentsComponent } from "../components/challenges/challenge-comments/challenge-comments.component";
 
 @Component({
@@ -43,6 +43,9 @@ export class ChallengesPage implements OnInit {
   public timeOutClose: any = null;
   public reactionsBool: boolean = false;
   public index: number = 2;
+  // PARA EL BUSCADOR
+  search: string = "";
+  challengesBD: IChallenge[] = null;
   constructor(
     public translate: TranslateService,
     public mc: ModalController,
@@ -65,6 +68,22 @@ export class ChallengesPage implements OnInit {
         },
         (err) => {}
       );
+  }
+
+  // funcion del buscador
+  makeSearch() {
+    this.challenges = this.challengesBD;
+    this.challenges = this.challenges.filter((challenge: IChallenge) => {
+      return (
+        JSON.stringify(challenge)
+          .toLowerCase()
+          .indexOf(this.search.toLowerCase()) !== -1
+      );
+    });
+    this.showc = [];
+    this.index = 0;
+    if (this.challenges[this.index])
+      this.showc.push(this.challenges[this.index]);
   }
 
   ionViewWillEnter() {
@@ -114,6 +133,7 @@ export class ChallengesPage implements OnInit {
       })
     );
     this.challenges = challengesNew.reverse();
+    this.challengesBD = this.challenges;
     this.challenge = this.challenges[this.challengeNumber];
     for (let i = 0; i < 1; i++) this.showc.push(this.challenges[i]);
   }
@@ -128,7 +148,9 @@ export class ChallengesPage implements OnInit {
     });
     modal
       .onDidDismiss()
-      .then((data) => (data.data?.intentos ? this.modalFinishedCreated() : null));
+      .then((data) =>
+        data.data?.intentos ? this.modalFinishedCreated() : null
+      );
     await modal.present();
   }
 
@@ -136,7 +158,7 @@ export class ChallengesPage implements OnInit {
     const modal = await this.mc.create({
       component: ModalCreatedComponent,
       cssClass: "a",
-      componentProps: {Challenge:this.challenge},
+      componentProps: { Challenge: this.challenge },
     });
     await modal.present();
   }

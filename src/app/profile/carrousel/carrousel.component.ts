@@ -1,3 +1,5 @@
+import { OpenImgComponent } from "./../../components/open-img/open-img.component";
+import { ModalController } from "@ionic/angular";
 import { UserService } from "src/app/service/user.service";
 import { Router } from "@angular/router";
 import { Component, OnInit } from "@angular/core";
@@ -12,11 +14,20 @@ export class CarrouselComponent implements OnInit {
   constructor(
     public bannerLogic: BannerLogic,
     public router: Router,
-    public userService: UserService
+    public userService: UserService,
+    public mc: ModalController
   ) {}
 
   goTo(ruta: string) {
     this.router.navigate([ruta]);
+  }
+
+  async open(img: string) {
+    const modal = await this.mc.create({
+      component: OpenImgComponent,
+      componentProps: { img },
+    });
+    modal.present();
   }
 
   ngOnInit() {}
