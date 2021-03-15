@@ -1,3 +1,4 @@
+import { UserService } from './../../../service/user.service';
 import { Component, OnInit, Input } from "@angular/core";
 import { ModalController } from "@ionic/angular";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
@@ -16,18 +17,20 @@ export class NewNodeComponent implements OnInit {
 
   public structureDefault = {
     id: 1,
-    photo: `https://www.necg.com.lb/sites/default/files/images/organization.jpg`,
-    subtitle: `structure.subtitle`,
-    title: `structure.title`,
-    text: `structure.text`,
+    photo: this.userService.User.photoBanner,
+    subtitle: `structure.subtitle.club`,
+    title: `structure.title.club`,
+    text: `structure.text.club`,
     childs: [],
   };
 
-  public photo: string = `https://www.necg.com.lb/sites/default/files/images/organization.jpg`;
+
+  public photo: string = this.userService.User.photoBanner;
   public creating: boolean = false;
   public form: FormGroup = null;
   constructor(
     private fb: FormBuilder,
+    public userService: UserService,
     private viUp: ImgVideoUpload,
     public mc: ModalController
   ) {}
