@@ -186,7 +186,33 @@
     <ion-col  size="12" >
       <p style="text-align: center;color: #737373;font-size: 14px;"><i>{{news?.news.origin}}</i></p>
      </ion-col>
-    
+    <ion-col size="12">
+    <!-- SPONSORS -->
+    <h2 *ngIf="news?.news.principalSubtitle" style="text-align: center;color: #5a5a5a;">Patrocinado por:</h2> 
+    <div>
+      <ion-grid>
+        <ion-row style=" margin-top: 10px">
+          <ion-col
+           
+            *ngFor="let sponsor of news.news.user.sponsors; let i = index"
+          >
+            <a [href]="'//' + sponsor.url" target="_blank">
+              <img
+                [src]="sponsor.photo"
+                style="
+                  height: 30px;
+                  width: 60px;
+                  border-radius: 10px;
+                  object-fit: cover;
+                  object-position: cover;
+                "
+            /></a>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+    <!-- TERMINO SPONSORS -->
+    </ion-col>
    </ion-row>
  </ion-grid>
  </div>

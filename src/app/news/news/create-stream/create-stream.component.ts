@@ -207,7 +207,7 @@ createChanel(){
       await this.rtc.client.leave();
   }
   async  leaveCall() {
-    this.socketService.socket.emit('out-news',this.news._id)
+    this.socketService.socket.emit('out-news',{id:this.news.news._id})
     let loading = await this.loadingCtrl.create({
       message: this.translate.instant("loading"),
     });
@@ -231,6 +231,7 @@ createChanel(){
     await this.rtc.client.leave();
 
     this.begingStream = false;
+    this.commnets = [];
     loading.dismiss();
   }
 
@@ -313,6 +314,7 @@ async  publicar(){
    this.newsService.create(this.form.value).subscribe((response:any)=>{
     this.newsService.findById(response._id).subscribe((response)=>{
       this.news = response;
+      console.log(response)
     }) 
     this.newsId = response._id
     let post = this.formNews.value; 
@@ -354,6 +356,7 @@ commnets = []
   ngOnInit() {
     this.socketService.socket.on('new-comment',(comment)=>{
       this.commnets = comment.comment
+      console.log(comment.comment)
     })
   }
   comments($event){

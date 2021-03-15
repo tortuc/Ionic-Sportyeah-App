@@ -508,8 +508,29 @@ eliminarSubtitulo(){
 //Origen de la noticia
 agregandoOrigen:boolean = false;
 origen;
-origenListo(){
-  this.agregandoOrigen = !this.agregandoOrigen;
+origenSelect = [
+{value:0,origenSelect:"Mío"},
+{value:1,origenSelect:"Otra fuente"}
+]
+miNoticia = undefined;
+origenListoMio(){
+  if(this.miNoticia == 0){
+    this.origen = 'De mi propiedad'
+    this.miNoticia = undefined;
+    this.agregandoOrigen = true;
+  }else if(this.miNoticia == 1){
+    this.origen = undefined;
+    this.agregandoOrigen = false;
+  }
+}
+origenListo(change){
+  if(change == 0){
+this.miNoticia = undefined;
+this.origen = undefined
+this.agregandoOrigen = false;
+  }else if(change == 1){
+  this.agregandoOrigen = true;
+  }
 }
 
 
@@ -517,12 +538,29 @@ origenListo(){
 agregandoOrigenParrafo;
 originParrafoMedia;
 todosParrafosConOrigen:boolean = false;
-origenParrafoListo(i){
-  if(this.originParrafoMedia){
-    this.parrafos[i].originMedia = this.originParrafoMedia;
-    console.log('sirve')
+MiParrafoMedia = undefined;
+origenParrafoMedia = [
+  {value:0,origenSelect:"Mío"},
+  {value:1,origenSelect:"Otra fuente"}
+  ]
+  origenParrafoListoMio(i){
+    if(this.MiParrafoMedia == 0){
+      this.parrafos[i].originMedia = 'De mi propiedad'
+      this.MiParrafoMedia = undefined;
+    }else if(this.MiParrafoMedia == 1){
+      this.parrafos[i].originMedia = undefined;
+      this.originParrafoMedia = undefined;
+    }
   }
-  this.agregandoOrigenParrafo = !this.agregandoOrigenParrafo;
+origenParrafoListo(i,change){
+  if(change == 0){
+    this.parrafos[i].originMedia = this.originParrafoMedia;
+    this.MiParrafoMedia = undefined;
+  }else if(change == 1){
+    this.parrafos[i].originMedia = undefined;
+    this.MiParrafoMedia = undefined;
+  }
+  //this.agregandoOrigenParrafo = !this.agregandoOrigenParrafo;
   this.originParrafoMedia = null;
 }
 origenParrafoEditar(i){
@@ -617,8 +655,29 @@ async ToastError(message) {
 //Origen de las imagenes Principal
 agregandoOrigenPrincipaMedia:boolean = false;
 originPrincipaMedia;
-originPrincipaMediaListo(){
-  this.agregandoOrigenPrincipaMedia = !this.agregandoOrigenPrincipaMedia;
+MiprincipalMedia = undefined;
+principalMedia = [
+  {value:0,origenSelect:"Mío"},
+  {value:1,origenSelect:"Otra fuente"}
+  ]
+  originPrincipaMediaListoMio(){
+    if(this.MiprincipalMedia == 0){
+      this.originPrincipaMedia = 'De mi propiedad'
+      this.MiprincipalMedia = undefined;
+      this.agregandoOrigenPrincipaMedia = true;
+    }else if(this.MiprincipalMedia == 1){
+      this.originPrincipaMedia = undefined;
+      this.agregandoOrigenPrincipaMedia = false;
+    }
+  }
+originPrincipaMediaListo(change){
+  if(change == 0){
+    this.MiprincipalMedia = undefined;
+    this.originPrincipaMedia = undefined
+    this.agregandoOrigenPrincipaMedia = false;
+  }else if(change == 1){
+      this.agregandoOrigenPrincipaMedia = true;
+  }
 }
 
 }

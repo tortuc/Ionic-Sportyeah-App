@@ -44,8 +44,7 @@ export class LoginService {
   }
   
   create(body){
-    body.geo = this.geo
-    return this.http.post(`${environment.URL_API}/user/create`,body)
+  return this.http.post(`${environment.URL_API}/user/create`,body)
   }
   
   auth(body){

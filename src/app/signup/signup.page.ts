@@ -32,8 +32,12 @@ export class SignupPage implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.loginService.getIP().subscribe((geo) => {
+      this.geo = geo;
+      console.log(geo)
+    });
   }
-
+  geo;//para el país
   form = this.fb.group({
     name:['',[Validators.required,Validators.pattern(/^[A-Za-zÁÉÍÓÚáéíóúñÑ ]+$/)]],
     last_name:['',[Validators.required,Validators.pattern(/^[A-Za-zÁÉÍÓÚáéíóúñÑ ]+$/)]],
@@ -49,8 +53,8 @@ export class SignupPage implements OnInit {
     profile_user:['',[Validators.required]],
     sub_profile:['',[Validators.required]], 
     agree:[false], 
-    authorize:[true]
-    
+    authorize:[true],
+    geo:['']
   },{validator:this.checkPasswords})
 
   sports=['soccer', 'basketball','tennis',
@@ -153,6 +157,7 @@ usernameFormat(){
 }
 
 async create(){
+  this.form.value.geo = this.geo;
   let loading = await this.loadingCtrl.create({
     message:this.translate.instant('loading')
   })

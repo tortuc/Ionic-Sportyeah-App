@@ -45,6 +45,7 @@ export interface User {
   connected: boolean;
   sponsors: Sponsor[];
   structure: any;
+  geo:any;
 }
 export interface Followers {
   follower: User;

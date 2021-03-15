@@ -1,6 +1,9 @@
 import { Component, OnInit,ElementRef,ViewChild } from '@angular/core';
 import { PostService } from "src/app/service/post.service";
 import { UserService } from 'src/app/service/user.service';
+import { TranslateService } from "@ngx-translate/core";
+import * as moment from 'moment';
+import { couldStartTrivia } from 'typescript';
 
 @Component({
   selector: 'app-ranking',
@@ -11,87 +14,22 @@ export class RankingPage implements OnInit {
 
   constructor(
     private postService: PostService,
-    private userService:UserService
+    private userService:UserService,
+    private translate:TranslateService,
   ) { }
 
   segment=0;
 
   ngOnInit() {
-    this.postService.getAllPost().subscribe((post:any)=>{
-      this.todolosPost = post;
-     
-      this.likes = post.filter((post:any)=>{
-        return post.likes.length > 0
-      })
-      
-      this.comments = post.filter((post:any)=>{
-       return post.comments.length > 0
-     })
-  
-     this.shareds = post.filter((post:any)=>{
-       return post.shareds.length > 0
-     })
-
-console.log(this.likes[1])
-  //Ordena de mayor a menor el post con mas reacciones
-  this.likes.sort(function(b, a) {
-    return a.likes.length - b.likes.length ;
-});
-
-  //Ordena de mayor a menor el post con mas comentarios
-  this.comments.sort(function(b, a) {
-    return a.comments.length - b.comments.length ;
-});
-
-  //Ordena de mayor a menor el post con mas veces compartido
-  this.shareds.sort(function(b, a) {
-    return a.shareds.length - b.shareds.length ;
-});
-
-//Revisar para que sirve
-this.postUser = this.todolosPost.filter((post:any)=>{
-  return post.post.user._id == this.userService.User._id
-})
-
-//encuentra el post con mas likes del usuario
-let position = 0;
-for(let like of this.likes){
-  if(like.post.user._id == this.userService.User._id){
-    this.userLike = like
-    this.positionLike = position + 1
-    break
+    this.filterAllPost()
+    this.userPosition()
+    if(this.userService.User.geo != undefined){
+      this.banderaIP = this.userService.User.geo.country;
+      this.ipLoaded = Promise.resolve(true);
+    }
   }
-  position += 1
-}
-
-//encuentra el post con mas comentarios del usuario
-let positionC = 0;
-for(let comment of this.comments){
-  if(comment.post.user._id == this.userService.User._id){
-    this.userComment = comment
-    this.positionComment = positionC + 1
-    break
-  }
-  positionC += 1
-}
-
-//encuentra el post con mas compartidos del usuario
-let positionS = 0;
-for(let shared of this.shareds){
-  if(shared.post.user._id == this.userService.User._id){
-    this.userShared = shared
-    this.positionShared = positionS + 1
-    break
-  }
-  positionS += 1
-}
-
-    })
-   
-
-    
-  }
-
+ipLoaded
+banderaIP  
 positionLike
 userLike;
 positionComment
@@ -115,5 +53,399 @@ actualShareds(){
   this.interaccionActual = 'shareds';
 }
 
+ async filterAllPost(){
+  await this.postService.getAllPost().subscribe((post:any)=>{ 
+    this.todolosPost = post;
+    this.likes = post.filter((post:any)=>{
+      return post.likes.length > 0
+    })
+    
+    this.comments = post.filter((post:any)=>{
+     return post.comments.length > 0
+   })
+
+   this.shareds = post.filter((post:any)=>{
+     return post.shareds.length > 0
+   })
+//Ordena de mayor a menor el post con mas reacciones
+this.likes.sort(function(b, a) {
+  return a.likes.length - b.likes.length ;
+});
+
+//Ordena de mayor a menor el post con mas comentarios
+this.comments.sort(function(b, a) {
+  return a.comments.length - b.comments.length ;
+});
+
+//Ordena de mayor a menor el post con mas veces compartido
+this.shareds.sort(function(b, a) {
+  return a.shareds.length - b.shareds.length ;
+});
+
+//Revisar para que sirve
+this.postUser = this.todolosPost.filter((post:any)=>{
+return post.post.user._id == this.userService.User._id
+})
+
+  })
+  
+}
+country:boolean = false;
+filterCountry(){
+  if(this.userService.User.geo != null){
+    this.country = !this.country;
+  }
+}
+
+userPosition(){
+
+  //encuentra el post con mas likes del usuario
+let position = 0;
+for(let like of this.likes){
+  if(like.post.user._id == this.userService.User._id){
+    this.userLike = like
+    this.positionLike = position + 1
+    break
+  }
+  this.userLike = undefined;
+  this.positionLike = undefined;
+  position += 1
+}
+if(this.likes.length == 0){
+  this.userLike = undefined;
+  this.positionLike = undefined;
+}
+
+//encuentra el post con mas comentarios del usuario
+let positionC = 0;
+for(let comment of this.comments){
+  if(comment.post.user._id == this.userService.User._id){
+    this.userComment = comment
+    this.positionComment = positionC + 1
+    break
+  }
+  this.userComment = undefined;
+    this.positionComment = undefined;
+  positionC += 1
+}
+if(this.comments.length == 0){
+  this.userComment = undefined;
+    this.positionComment = undefined;
+}
+
+//encuentra el post con mas compartidos del usuario
+let positionS = 0;
+for(let shared of this.shareds){
+  if(shared.post.user._id == this.userService.User._id){
+    this.userShared = shared
+    this.positionShared = positionS + 1
+    break
+  }
+  this.userShared = undefined;
+    this.positionShared = undefined;
+  positionS += 1
+}
+if(this.shareds.length == 0){
+  this.userShared = undefined;
+  this.positionShared = undefined;
+}
+}
+
+//Muestra los resultados de hoy
+ async today(){
+  await this.filterAllPost()
+   setTimeout(()=>{ 
+   
+
+  if(!this.country){
+    this.likes.filter((post)=>{
+     post.user.geo != null && post.user.geo.country == this.userService.User.geo.country
+    })
+    this.comments.filter((post)=>{
+      post.user.geo != null && post.user.geo.country == this.userService.User.geo.country
+     })
+     this.shareds.filter((post)=>{
+      post.user.geo != null && post.user.geo.country == this.userService.User.geo.country
+     })
+  }
+  let today = new Date()
+
+  for(let i = 0; i <= this.likes.length-1;i++){
+    let newLikesPost = [];
+     this.likes[i].likes.filter((fecha)=>{
+        if(moment(fecha.date).format('YYYY-MM-DD') ==  moment(today).format('YYYY-MM-DD')){
+          newLikesPost.push(fecha)
+        }
+     }) 
+      this.likes[i].likes = newLikesPost
+    }
+
+  for(let i = 0; i <= this.comments.length-1;i++){
+    let newcommentPost = [];
+      this.comments[i].comments.filter((comment)=>{
+        if(moment(comment.date).format('YYYY-MM-DD') ==  moment(today).format('YYYY-MM-DD')){
+          newcommentPost.push(comment)
+        }
+     }) 
+     this.comments[i].comments = newcommentPost
+    }
+
+  for(let i = 0; i <= this.shareds.length-1;i++){
+    let newSharedPost = [];
+      this.shareds[i].shareds.filter((shared)=>{
+        if(moment(shared.date).format('YYYY-MM-DD') ==  moment(today).format('YYYY-MM-DD')){
+          newSharedPost.push(shared)
+        }
+     }) 
+     this.shareds[i].shareds = newSharedPost
+    }
+
+  this.likes = this.likes.filter((post:any)=>{ 
+      return post.likes.length > 0
+  })
+  this.comments = this.comments.filter((post:any)=>{
+    return post.comments.length > 0
+  })
+  this.shareds = this.shareds.filter((post:any)=>{
+    return post.shareds.length > 0
+  })
+  this.userPosition() 
+},300)
+}
+
+//Muestra los resultados de la semana
+async week(){
+  await this.filterAllPost()
+  setTimeout(()=>{ 
+  
+    if(!this.country){
+      this.likes.filter((post)=>{
+       post.user.geo != null && post.user.geo.country == this.userService.User.geo.country
+      })
+      this.comments.filter((post)=>{
+        post.user.geo != null && post.user.geo.country == this.userService.User.geo.country
+       })
+       this.shareds.filter((post)=>{
+        post.user.geo != null && post.user.geo.country == this.userService.User.geo.country
+       })
+    }
+  let currentDate = moment();
+  let weekStart = currentDate.clone().startOf('week');
+  let weekEnd = currentDate.clone().endOf('week');
+
+  let week = [];
+  for (let i = 0; i <= 6; i++) {
+
+    week.push(moment(weekStart).add(i, 'days').format('YYYY-MM-DD'));
+
+  };
+
+
+   for(let i = 0; i <= this.likes.length-1;i++){
+   let newLikesPost = [];
+     this.likes[i].likes.filter((fecha)=>{
+      for(let day of week){
+        if(moment(fecha.date).format('YYYY-MM-DD') ==  moment(day).format('YYYY-MM-DD')){
+          newLikesPost.push(fecha)
+        }
+      } 
+    }) 
+    this.likes[i].likes = newLikesPost
+   }
+
+ 
+   for(let i = 0; i <= this.comments.length-1;i++){
+    let newCommnetsPost = [];
+      this.comments[i].comments.filter((fecha)=>{
+       for(let day of week){
+         if(moment(fecha.date).format('YYYY-MM-DD') ==  moment(day).format('YYYY-MM-DD')){
+           newCommnetsPost.push(fecha)
+         }
+       } 
+     }) 
+     this.comments[i].comments = newCommnetsPost
+  }
+
+
+  for(let i = 0; i <= this.shareds.length-1;i++){
+    let newSharedsPost = [];
+      this.shareds[i].shareds.filter((fecha)=>{
+       for(let day of week){
+         if(moment(fecha.date).format('YYYY-MM-DD') ==  moment(day).format('YYYY-MM-DD')){
+           newSharedsPost.push('fecha')
+         }
+       } 
+     }) 
+     this.shareds[i].shareds = newSharedsPost
+     
+  }
+
+  this.likes = this.likes.filter((post:any)=>{
+    return post.likes.length > 0
+  })
+  this.comments = this.comments.filter((post:any)=>{
+    return post.comments.length > 0
+  })
+  this.shareds = this.shareds.filter((post:any)=>{
+    return post.shareds.length > 0
+  })
+  this.userPosition()  
+},300)
+}
+
+async month(){
+  await this.filterAllPost()
+  setTimeout(()=>{ 
+  
+    if(!this.country){
+      this.likes.filter((post)=>{
+       post.user.geo != null && post.user.geo.country == this.userService.User.geo.country
+      })
+      this.comments.filter((post)=>{
+        post.user.geo != null && post.user.geo.country == this.userService.User.geo.country
+       })
+       this.shareds.filter((post)=>{
+        post.user.geo != null && post.user.geo.country == this.userService.User.geo.country
+       })
+    }
+  let currentDate = moment();
+  let monthStart = currentDate.clone().startOf('month');
+  let monthEnd = currentDate.clone().endOf('month');
+
+  let month = [];
+  for (let i = 0; i <= moment(new Date, "YYYY-MM").daysInMonth()-1; i++) {
+
+    month.push(moment(monthStart).add(i, 'days').format('YYYY-MM-DD'));
+
+  };
+  
+  for(let i = 0; i <= this.likes.length-1;i++){
+    let newLikesPost = [];
+      this.likes[i].likes.filter((fecha)=>{
+       for(let day of month){
+         if(moment(fecha.date).format('YYYY-MM-DD') ==  moment(day).format('YYYY-MM-DD')){
+           newLikesPost.push(fecha)
+         }
+       } 
+     }) 
+     this.likes[i].likes = newLikesPost
+    }
+ 
+  
+    for(let i = 0; i <= this.comments.length-1;i++){
+     let newCommnetsPost = [];
+       this.comments[i].comments.filter((fecha)=>{
+        for(let day of month){
+          if(moment(fecha.date).format('YYYY-MM-DD') ==  moment(day).format('YYYY-MM-DD')){
+            newCommnetsPost.push(fecha)
+          }
+        } 
+      }) 
+      this.comments[i].comments = newCommnetsPost
+   }
+ 
+ 
+   for(let i = 0; i <= this.shareds.length-1;i++){
+     let newSharedsPost = [];
+       this.shareds[i].shareds.filter((fecha)=>{
+        for(let day of month){
+          if(moment(fecha.date).format('YYYY-MM-DD') ==  moment(day).format('YYYY-MM-DD')){
+            newSharedsPost.push('fecha')
+          }
+        } 
+      }) 
+      this.shareds[i].shareds = newSharedsPost
+      
+   }
+ 
+   this.likes = this.likes.filter((post:any)=>{
+     return post.likes.length > 0
+   })
+   this.comments = this.comments.filter((post:any)=>{
+     return post.comments.length > 0
+   })
+   this.shareds = this.shareds.filter((post:any)=>{
+     return post.shareds.length > 0
+   })
+   this.userPosition() 
+  },300)
+}
+
+async year(){
+  await this.filterAllPost()
+  setTimeout(()=>{ 
+  
+    if(!this.country){
+      this.likes.filter((post)=>{
+       post.user.geo != null && post.user.geo.country == this.userService.User.geo.country
+      })
+      this.comments.filter((post)=>{
+        post.user.geo != null && post.user.geo.country == this.userService.User.geo.country
+       })
+       this.shareds.filter((post)=>{
+        post.user.geo != null && post.user.geo.country == this.userService.User.geo.country
+       })
+    }
+  let currentDate = moment().dayOfYear(1);
+  let yearStart = currentDate.clone().startOf('year');
+  let yearEnd = currentDate.clone().endOf('year');
+
+  let year = [];
+  for (let i = 0; i <= 364; i++) {
+
+    year.push(moment(yearStart).add(i, 'days').format('YYYY-MM-DD'));
+
+  };
+  for(let i = 0; i <= this.likes.length-1;i++){
+    let newLikesPost = [];
+      this.likes[i].likes.filter((fecha)=>{
+       for(let day of year){
+         if(moment(fecha.date).format('YYYY-MM-DD') ==  moment(day).format('YYYY-MM-DD')){
+           newLikesPost.push(fecha)
+         }
+       } 
+     }) 
+     this.likes[i].likes = newLikesPost
+    }
+ 
+  
+    for(let i = 0; i <= this.comments.length-1;i++){
+     let newCommnetsPost = [];
+       this.comments[i].comments.filter((fecha)=>{
+        for(let day of year){
+          if(moment(fecha.date).format('YYYY-MM-DD') ==  moment(day).format('YYYY-MM-DD')){
+            newCommnetsPost.push(fecha)
+          }
+        } 
+      }) 
+      this.comments[i].comments = newCommnetsPost
+   }
+ 
+ 
+   for(let i = 0; i <= this.shareds.length-1;i++){
+     let newSharedsPost = [];
+       this.shareds[i].shareds.filter((fecha)=>{
+        for(let day of year){
+          if(moment(fecha.date).format('YYYY-MM-DD') ==  moment(day).format('YYYY-MM-DD')){
+            newSharedsPost.push('fecha')
+          }
+        } 
+      }) 
+      this.shareds[i].shareds = newSharedsPost
+      
+   }
+ 
+   this.likes = this.likes.filter((post:any)=>{
+     return post.likes.length > 0
+   })
+   this.comments = this.comments.filter((post:any)=>{
+     return post.comments.length > 0
+   })
+   this.shareds = this.shareds.filter((post:any)=>{
+     return post.shareds.length > 0
+   })
+   this.userPosition() 
+  },300)
+}
 
 }

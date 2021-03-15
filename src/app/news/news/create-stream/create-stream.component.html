@@ -15,14 +15,14 @@
 <ion-content  class="bg-gradient-person">
   <ion-grid>
     <ion-row class="rowStyle">
-      <ion-col size="12">
+      <ion-col *ngIf="!begingStream" size="12">
         <ion-grid>
           <ion-row >
-            <ion-col *ngIf="!begingStream"  style="text-align: center;" >
+            <ion-col style="text-align: center;" >
               <ion-button [disabled]="(titulo1 != '' && titulo1 != null) && (deporte != '' && deporte != null) && (titlebool) ?false:true" (click)="startBasicCall()">Start Directo</ion-button>
               <h3 style="font-size:10px">Transmitir desde la cámara</h3>
             </ion-col>
-            <ion-col *ngIf="!begingStream"  style="text-align: center;" >
+            <ion-col style="text-align: center;" >
               <ion-button [disabled]="(titulo1 != '' && titulo1 != null) && (deporte != '' && deporte != null) && (titlebool) ?false:true" (click)="startScreenTransmision()">Start Screen</ion-button>       
               <h3 style="font-size:10px">Transmision de pantalla</h3>
             </ion-col>
@@ -74,7 +74,7 @@
 </div>
 <!-- FIN REACCIONES -->
 
-<div *ngIf="news && begingStream" style="--background: white;width: 85%;margin-top: 5%;margin-left: auto;margin-right: auto;">
+<div *ngIf="news && begingStream" style="--background: white;width: 100%;margin-top: 5%;margin-left: auto;margin-right: auto;">
   <post-options style="background: white;"
    [news]="news"
    isPost="false"
@@ -94,7 +94,7 @@
               </ion-avatar>
               <div class="user-name">
                 <span class="message profile-name"
-                 >{{comment.user.name}} {{comment.user.last_name}}</span><br>
+                 >{{comment.user.name}} {{comment.user.last_name}}<ion-icon *ngIf="comment.user?._id == news.news?.user._id" style="font-size: 10px;color: #ffb100;" name="star"></ion-icon></span><br>
                 <span>{{comment.date | customDisplayDate}}</span>
               </div>
               

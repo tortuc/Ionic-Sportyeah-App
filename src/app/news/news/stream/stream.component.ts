@@ -157,6 +157,7 @@ formateSelected */
   } */
 
  async unSubscribe(){
+  this.socketService.socket.emit('out-news',{id:this.news.news._id})
   this.isSubscribe = false
   let loading = await this.loadingCtrl.create({
     message: this.translate.instant("loading"),
@@ -170,7 +171,7 @@ formateSelected */
   });
     // Leave the channel.
     await this.rtc.client.leave();
-    this.socketService.socket.emit('out-news',this.news._id)
+   
       loading.dismiss();
   }
   async  leaveCall() {
@@ -206,7 +207,7 @@ createReaction(idReaction,link){
   reaction.style.marginRight = "auto"
   reaction.animate([
      {
-      top:'300px',
+      top:'465px',
       left:(Math.floor(Math.random() * 30) + 37).toString()+'%',
       opacity:'0.8'
     },
@@ -317,6 +318,7 @@ createReaction(idReaction,link){
   ngOnInit() {
     this.socketService.socket.on('new-reaction',(like)=>{
       this.esta(like.like.type,like.like._id)
+      console.log(like)
     })
     this.socketService.socket.on('new-comment',(comment)=>{
       this.commnets = comment.comment
