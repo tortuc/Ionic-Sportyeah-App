@@ -13,6 +13,32 @@
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
-<ion-content>
-  <img [src]="img" alt="" />
+<ion-content style="background-color: black;">
+  <div class="slides-content">
+    <ion-slides pager="true" [options]="slideOpts">
+      <ion-slide class="slide" >
+        <img
+          [src]="img"
+          class="img"
+          alt=""
+        />
+        <!-- <video
+          *ngIf="img.indexOf('video/') !== -1"
+          controlslist="nodownload"
+          controls="controls"
+          preload="metadata"
+          webkit-playsinline="webkit-playsinline"
+          class="img"
+        >
+          <source [src]="img | safeUrl" type="video/mp4" />
+          <source [src]="img | safeUrl" type="video/ogg" />
+        </video>
+        <iframe
+          [src]="img | youtube"
+          *ngIf="img.indexOf('youtube') !== -1 && img | youtube"
+        >
+        </iframe> -->
+      </ion-slide>
+    </ion-slides>
+  </div>
 </ion-content>
