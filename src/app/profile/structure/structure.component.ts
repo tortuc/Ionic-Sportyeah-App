@@ -22,13 +22,59 @@ interface UserData {
 })
 export class StructureComponent implements OnInit {
   @Input() public ID: string;
+  public canteraMasculina = {
+    id: 2,
+    photo: this.userService.User.photoBanner,
+    subtitle: `Cantera Masculina`,
+    title: `Cantera Masculina`,
+    text: `Categorias`,
+    childs: [],
+  };
+  public canteraFemenina = {
+    id: 3,
+    photo: this.userService.User.photoBanner,
+    subtitle: `Cantera Femenina`,
+    title: `Cantera Femenina`,
+    text: `Categorias`,
+    childs: [],
+  };
+  public primerEquipo = {
+    id: 4,
+    photo: this.userService.User.photoBanner,
+    subtitle: `Primer Equipo`,
+    title: `Primer Equipo`,
+    text: `Plantilla`,
+    childs: [],
+  };
+  public equipoFemenino = {
+    id: 5,
+    photo: this.userService.User.photoBanner,
+    subtitle: `Equipo Femenino`,
+    title: `Equipo Femenino`,
+    text: `Plantilla`,
+    childs: [],
+  };
+  public otrosEquipos = {
+    id: 6,
+    photo: this.userService.User.photoBanner,
+    subtitle: `Otros Equipos`,
+    title: `Otros Equipos`,
+    text: `Equipos`,
+    childs: [],
+  };
   public structureDefault = {
     id: 1,
-    photo: `https://www.necg.com.lb/sites/default/files/images/organization.jpg`,
-    subtitle: `structure.subtitle`,
-    title: `structure.title`,
-    text: `structure.text`,
-    childs: [],
+    photo: this.userService.User.photoBanner,
+    subtitle: `structure.subtitle.club`,
+    title: `structure.title.club`,
+    text: `structure.text.club`,
+    childs: [
+      this.canteraMasculina,
+      this.canteraFemenina,
+      this.primerEquipo,
+      this.equipoFemenino,
+      this.otrosEquipos,
+    ],
   };
 
   public structure = this.structureDefault;

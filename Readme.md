@@ -25,6 +25,36 @@ Iniciar sportyeah
 1. Siempre al finalizar la jornada hacer ionic build y ver los errores solucionarlos y merge master.
 2. Trabajar por pomodoros de 25 minutos, cada vez que finalice uno anotar el tiempo dedicado a la tarea.
 
+## LUNES 15-03-2021
+
+1. Estructura Club. en pausa
+  1.1. Mejorar nombres en club.
+  1.2. Cambiar imagen principal club.
+  1.3. Mejorar usabilidad de usuario.
+  1.4. Boton de volver.
+
+  1.1.1 Comenzar en boton editar cuando sea la primera vez.
+  1.1.2 Cambiar imagen principal.
+
+  1.3.1 Cambiar breadcrumb por estilo de la pagina del madrid, al hacer hover salen hijos nodos.
+
+  Niveles
+
+  1. Cantera Masculina y Femenina:
+    Juvenil/Cadete
+    Infantiles
+    Alevines
+    Benjamines
+    Prebenjamines
+    Pruebas de Acceso
+  2. Primer Equipo.
+  3. Equipo Femenino.
+  4. Otros Equipos.
+
+### Detalles QA
+
+1. slider-change estilo.
+
 ## VIERNES 12-03-2021
 
 1. Mejorar slider. 3h-50m. listo
