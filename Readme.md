@@ -31,6 +31,10 @@ git remote set-url origin git+ssh://ubuntu@35.180.14.40/var/git/frontend
 1. Siempre al finalizar la jornada hacer ionic build y ver los errores solucionarlos y merge master.
 2. Trabajar por pomodoros de 25 minutos, cada vez que finalice uno anotar el tiempo dedicado a la tarea.
 
+## MARTES 16-03-2021
+
+1. Poder borrar desafios.
+
 ## LUNES 15-03-2021
 
 1. Estructura Club. en pausa
