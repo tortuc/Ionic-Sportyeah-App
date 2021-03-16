@@ -1,7 +1,7 @@
 import { NewPostPage } from "./../../dashboard/new-post/new-post.page";
 import { take } from "rxjs/operators";
 import { User, UserService } from "./../../service/user.service";
-import { ModalController } from "@ionic/angular";
+import { AlertController, ModalController } from "@ionic/angular";
 import { Component, Input, OnInit } from "@angular/core";
 
 @Component({
@@ -15,7 +15,11 @@ export class OpenImgComponent implements OnInit {
   @Input() delete: boolean;
   user: User = null;
 
-  constructor(public mc: ModalController, public userService: UserService) {}
+  constructor(
+    public mc: ModalController,
+    public userService: UserService,
+    public alertController: AlertController
+  ) {}
 
   ngOnInit() {
     this.userService
@@ -26,8 +30,38 @@ export class OpenImgComponent implements OnInit {
       });
   }
 
-  deleteImg() {
+  async deleteImg() {
+    const header = '¿Seguro quieres eliminar esta imagen?'
+    const res = await this.alert(header,'')
+    console.log(res)
+  }
+
+  async deleteImg2(){
     this.mc.dismiss({ res: true });
+  }
+
+
+  async alert(header: string, message: string): Promise<any> {
+    let alert = await this.alertController.create({
+      header,
+      message,
+      buttons: [
+        {
+          text: 'Si',
+          role: 'acept',
+          handler:()=>{
+            this.deleteImg2()
+          }
+        },
+        {
+          text:'No',
+          handler:()=>{
+          }
+        }
+      ],
+    });
+
+    await alert.present();
   }
 
   slideOpts = {

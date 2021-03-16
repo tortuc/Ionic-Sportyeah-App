@@ -24,6 +24,7 @@ Iniciar sportyeah
 
 git remote set-url origin git+ssh://ubuntu@35.180.196.119/var/git/backend
 git remote set-url origin git+ssh://ubuntu@35.180.14.40/var/git/backend
+git remote set-url origin git+ssh://ubuntu@35.180.14.40/var/git/frontend
 
 ## Importante
 
