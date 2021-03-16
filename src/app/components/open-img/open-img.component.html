@@ -1,44 +1,48 @@
-<ion-header>
-  <ion-toolbar class="bg-gradient-person">
-    <ion-title>{{ "seeImg" | translate }}</ion-title>
-    <ion-buttons slot="end">
-      <ion-button
-        (click)="mc.dismiss()"
-        color="dark"
-        shape="round"
-        style="background-color: white; border-radius: 10px"
-      >
-        {{ "langs.close" | translate }}
-      </ion-button>
-    </ion-buttons>
-  </ion-toolbar>
-</ion-header>
-<ion-content style="background-color: black;">
-  <div class="slides-content">
-    <ion-slides pager="true" [options]="slideOpts">
-      <ion-slide class="slide" >
-        <img
-          [src]="img"
-          class="img"
-          alt=""
-        />
-        <!-- <video
-          *ngIf="img.indexOf('video/') !== -1"
-          controlslist="nodownload"
-          controls="controls"
-          preload="metadata"
-          webkit-playsinline="webkit-playsinline"
-          class="img"
-        >
-          <source [src]="img | safeUrl" type="video/mp4" />
-          <source [src]="img | safeUrl" type="video/ogg" />
-        </video>
-        <iframe
-          [src]="img | youtube"
-          *ngIf="img.indexOf('youtube') !== -1 && img | youtube"
-        >
-        </iframe> -->
-      </ion-slide>
-    </ion-slides>
+<ion-content style="background-color: black">
+  <div class="usuario" *ngIf="user">
+    <ion-avatar>
+      <img [src]="user.photo" class="imgUsuario" />
+    </ion-avatar>
+    <p class="username">{{ user.username }}</p>
   </div>
+  <ion-icon
+    name="close-outline"
+    (click)="mc.dismiss()"
+    style="
+      color: gray;
+      right: 5px;
+      top: 15px;
+      position: absolute;
+      font-size: 40px;
+      z-index: 9999999;
+      cursor: pointer;
+    "
+  ></ion-icon>
+  <div class="button-share">
+    <ion-button (click)="share()"  fill="outline" shape="round">
+      {{ "post.share" | translate }}
+      <ion-icon slot="end" name="arrow-redo-outline"></ion-icon>
+    </ion-button>
+
+    <ion-button
+      (click)="deleteImg()"
+      fill="outline"
+      shape="round"
+      color="danger"
+      *ngIf="delete"
+    >
+      {{ "delete" | translate }}
+      <ion-icon slot="end" name="trash-outline"></ion-icon>
+    </ion-button>
+  </div>
+
+  <ion-slides
+    pager="true"
+    [options]="slideOpts"
+    style="background-color: black; height: 100%"
+  >
+    <ion-slide class="slide" style="width: 100%">
+      <img [src]="img" class="img" alt="" style="width: 100%" />
+    </ion-slide>
+  </ion-slides>
 </ion-content>

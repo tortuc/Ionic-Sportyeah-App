@@ -1,5 +1,5 @@
-import { OpenImgComponent } from './../../components/open-img/open-img.component';
-import { SliderLogic } from './../../service/slider-logic.service';
+import { OpenImgComponent } from "./../../components/open-img/open-img.component";
+import { SliderLogic } from "./../../service/slider-logic.service";
 import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
 import { UserService } from "src/app/service/user.service";
 import { Plugins } from "@capacitor/core";
@@ -19,7 +19,7 @@ import * as moment from "moment";
   styleUrls: ["./change-slider.page.scss"],
 })
 export class ChangeSliderPage implements OnInit {
-  @ViewChild('fileChooser') fileChooser:ElementRef
+  @ViewChild("fileChooser") fileChooser: ElementRef;
   constructor(
     public userService: UserService,
     public mc: ModalController,
@@ -32,10 +32,10 @@ export class ChangeSliderPage implements OnInit {
 
   ngOnInit() {}
 
-  images:any[]=[]
+  images: any[] = [];
 
-  addContent(){
-    this.sliderLogic.takePhotoFrom(this.fileChooser)
+  addContent() {
+    this.sliderLogic.takePhotoFrom(this.fileChooser);
   }
 
   form = this.fb.group(
@@ -146,17 +146,27 @@ export class ChangeSliderPage implements OnInit {
     await alert.present();
   }
 
-  ionViewWillLeave(){
-    this.sliderLogic.save()
+  ionViewWillLeave() {
+    this.sliderLogic.save();
   }
 
   show = false;
   show1 = false;
-  async openImg(img:string){
+  async openImg(img: string) {
     const modal = await this.mc.create({
-      component:OpenImgComponent,
-      componentProps: {img}
-    })
-    await modal.present()
+      component: OpenImgComponent,
+      componentProps: {
+        img,
+        idUser: this.userService.User.username,
+        delete: true,
+      },
+    });
+    modal.onDidDismiss().then((data: any) => {
+      if (data.data)
+        if (data.data.res === true) {
+          this.sliderLogic.delete(img);
+        }
+    });
+    await modal.present();
   }
 }

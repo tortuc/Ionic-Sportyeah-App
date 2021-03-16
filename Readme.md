@@ -53,7 +53,8 @@ Iniciar sportyeah
 
 ### Detalles QA
 
-1. slider-change estilo.
+1. slider-change estilo. revisando.
+2. modal abarque toda la pantalla.
 
 ## VIERNES 12-03-2021
 

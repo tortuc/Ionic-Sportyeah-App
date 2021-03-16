@@ -1,3 +1,5 @@
+import { take } from "rxjs/operators";
+import { User, UserService } from "./../../service/user.service";
 import { ModalController } from "@ionic/angular";
 import { Component, Input, OnInit } from "@angular/core";
 
@@ -8,10 +10,25 @@ import { Component, Input, OnInit } from "@angular/core";
 })
 export class OpenImgComponent implements OnInit {
   @Input() img: string;
+  @Input() idUser: string;
+  @Input() delete: boolean;
+  user: User = null;
 
-  constructor(public mc: ModalController) {}
+  constructor(public mc: ModalController, public userService: UserService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.userService
+      .getUserByUsername(this.idUser)
+      .pipe(take(1))
+      .subscribe((r: any) => {
+        this.user = r.user;
+      });
+  }
+
+  deleteImg() {
+    this.mc.dismiss({res:true})
+  }
+
   slideOpts = {
     on: {
       beforeInit() {

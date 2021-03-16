@@ -1,7 +1,7 @@
 import { ModalController } from "@ionic/angular";
 import { OpenImgComponent } from "./../../components/open-img/open-img.component";
 import { UserService } from "src/app/service/user.service";
-import { Router } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { Component, OnInit, Input } from "@angular/core";
 import { BannerLogic } from "./../../service/banner-profile-logic.service";
 
@@ -15,7 +15,8 @@ export class CarrouselComponent implements OnInit {
     public bannerLogic: BannerLogic,
     public router: Router,
     public userService: UserService,
-    public mc: ModalController
+    public mc: ModalController,
+    public route: ActivatedRoute
   ) {}
 
   goTo(ruta: string) {
@@ -24,7 +25,11 @@ export class CarrouselComponent implements OnInit {
   async open(img: string) {
     const modal = await this.mc.create({
       component: OpenImgComponent,
-      componentProps: { img },
+      componentProps: {
+        img,
+        idUser: this.route.snapshot.paramMap.get("username"),
+        delete:false
+      },
     });
     modal.present();
   }
