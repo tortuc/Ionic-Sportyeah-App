@@ -47,17 +47,18 @@ export class OpenImgComponent implements OnInit {
       message,
       buttons: [
         {
-          text: 'Si',
+          text:'Cancelar',
+          handler:()=>{
+          }
+        },
+
+        {
+          text: 'Eliminar',
           role: 'acept',
           handler:()=>{
             this.deleteImg2()
           }
         },
-        {
-          text:'No',
-          handler:()=>{
-          }
-        }
       ],
     });
 

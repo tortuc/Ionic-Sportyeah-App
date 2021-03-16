@@ -110,7 +110,6 @@ export class ChallengeReactionsComponent implements OnInit {
     clearTimeout(this.timeOut);
   }
   like(type: string | null) {
-    // this.myVote = img;
     if (type !== null) {
       const reaction = {
         userReference: {
@@ -130,24 +129,52 @@ export class ChallengeReactionsComponent implements OnInit {
           this.ngOnInit();
         });
     } else {
-      this.myVote = null;
-      const reaction = {
-        userReference: {
-          appName: "SportYeah",
-          referenceId: this.userService.User._id,
-        },
-        reaction: type,
-      };
-      this.challengeService
-        .createReaction({
-          reaction,
-          referenceId: this.challenge.challenged._id,
-        })
-        .pipe(take(1))
-        .subscribe((r: any) => {
-          this.Close();
-          this.ngOnInit();
-        });
+      if(this.myVote){
+        this.myVote = null;
+        const reaction = {
+          userReference: {
+            appName: "SportYeah",
+            referenceId: this.userService.User._id,
+          },
+          reaction: type,
+        };
+        this.challengeService
+          .createReaction({
+            reaction,
+            referenceId: this.challenge.challenged._id,
+          })
+          .pipe(take(1))
+          .subscribe((r: any) => {
+            this.Close();
+            this.ngOnInit();
+          });
+      }else{
+        type = "nivel3"
+        const reaction = {
+          userReference: {
+            appName: "SportYeah",
+            referenceId: this.userService.User._id,
+          },
+          reaction: type,
+        };
+        this.myVote = {
+          userReference: {
+            appName: "SportYeah",
+            referenceId: this.userService.User._id,
+          },
+          reaction: type,
+        }
+        this.challengeService
+          .createReaction({
+            reaction,
+            referenceId: this.challenge.challenged._id,
+          })
+          .pipe(take(1))
+          .subscribe((r: any) => {
+            this.Close();
+            this.ngOnInit();
+          });
+      }
     }
   }
 }
