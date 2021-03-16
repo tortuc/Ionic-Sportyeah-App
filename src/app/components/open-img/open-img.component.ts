@@ -1,3 +1,4 @@
+import { NewPostPage } from "./../../dashboard/new-post/new-post.page";
 import { take } from "rxjs/operators";
 import { User, UserService } from "./../../service/user.service";
 import { ModalController } from "@ionic/angular";
@@ -26,7 +27,7 @@ export class OpenImgComponent implements OnInit {
   }
 
   deleteImg() {
-    this.mc.dismiss({res:true})
+    this.mc.dismiss({ res: true });
   }
 
   slideOpts = {
@@ -137,4 +138,14 @@ export class OpenImgComponent implements OnInit {
       },
     },
   };
+
+  async share() {
+    const modal = await this.mc.create({
+      component: NewPostPage,
+      componentProps: {
+        img: this.img,
+      },
+    });
+    await modal.present();
+  }
 }
