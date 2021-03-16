@@ -20,6 +20,11 @@ Iniciar sportyeah
 2. ssh-add ~/.ssh/id_rsa_sportyeah.pub
 3. ssh-add ~/.ssh/id_rsa_kecuki.pub
 
+35.180.14.40
+
+git remote set-url origin git+ssh://ubuntu@35.180.196.119/var/git/backend
+git remote set-url origin git+ssh://ubuntu@35.180.14.40/var/git/backend
+
 ## Importante
 
 1. Siempre al finalizar la jornada hacer ionic build y ver los errores solucionarlos y merge master.
