@@ -34,6 +34,8 @@ git remote set-url origin git+ssh://ubuntu@35.180.14.40/var/git/frontend
 ## MARTES 16-03-2021
 
 1. Poder borrar desafios.
+slider tiene un bug.
+open img debe tener todas las imagenes.
 
 ## LUNES 15-03-2021
 
