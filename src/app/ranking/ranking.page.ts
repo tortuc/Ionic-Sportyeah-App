@@ -4,6 +4,8 @@ import { UserService } from 'src/app/service/user.service';
 import { TranslateService } from "@ngx-translate/core";
 import * as moment from 'moment';
 import { couldStartTrivia } from 'typescript';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ViewsProfileService } from "src/app/service/views-profile.service";
 
 @Component({
   selector: 'app-ranking',
@@ -11,15 +13,21 @@ import { couldStartTrivia } from 'typescript';
   styleUrls: ['./ranking.page.scss'],
 })
 export class RankingPage implements OnInit {
+  @ViewChild('slide') slide;
 
   constructor(
     private postService: PostService,
     private userService:UserService,
     private translate:TranslateService,
+    private router:Router,
+    private viewsProfileService: ViewsProfileService
   ) { }
 
   segment=0;
-
+  slideOpts = {
+    initialSlide: 0,
+    speed: 400
+  };
   ngOnInit() {
     this.filterAllPost()
     this.userPosition()
@@ -51,6 +59,53 @@ actualComments(){
 }
 actualShareds(){
   this.interaccionActual = 'shareds';
+}
+
+///////////////////////ELiminar su ni sirve//////////////
+fechaSelect(){
+  let indexSlide
+  this.slide.getActiveIndex().then(index => {
+    switch (index) {
+      case 0:
+        this.today()
+        break;
+      case 1:
+        this.week()    
+        break;  
+      case 2:
+        this.month()    
+        break;
+      case 3:
+        this.year()    
+        break;
+      case 4:
+        this.filterAllPost()    
+        break;
+      default:
+        console.log('Error, slide desconocido')
+        break;
+    }  
+ });
+
+
+}////////////////////ELiminar su ni sirve//////////////
+
+goToProfile(id,username){
+  if(id == this.userService.User._id){
+    this.router.navigate(["/profile"])
+  }else{
+    //this.router.navigate([`/user/${username}`])
+    this.userService.getUserByUsername(username)
+    .subscribe(
+      (resp:any)=>{
+        this.viewsProfileService
+          .updateProfileView(this.userService.User._id, resp.user._id,'ranking',null)
+          .subscribe((response) => {
+            this.router.navigate([`/user/${username}`])
+          });
+      }
+    )
+  }
 }
 
  async filterAllPost(){
@@ -159,13 +214,19 @@ if(this.shareds.length == 0){
 
   if(!this.country){
     this.likes.filter((post)=>{
-     post.user.geo != null && post.user.geo.country == this.userService.User.geo.country
+      if(post.post.user.geo){
+        post.user.geo != null && post.user.geo.country == this.userService.User.geo.country
+      }
     })
     this.comments.filter((post)=>{
-      post.user.geo != null && post.user.geo.country == this.userService.User.geo.country
+       if(post.post.user.geo){
+        post.user.geo != null && post.user.geo.country == this.userService.User.geo.country
+      }
      })
      this.shareds.filter((post)=>{
-      post.user.geo != null && post.user.geo.country == this.userService.User.geo.country
+       if(post.post.user.geo){
+        post.user.geo != null && post.user.geo.country == this.userService.User.geo.country
+      }
      })
   }
   let today = new Date()
@@ -220,13 +281,19 @@ async week(){
   
     if(!this.country){
       this.likes.filter((post)=>{
-       post.user.geo != null && post.user.geo.country == this.userService.User.geo.country
+        if(post.post.user.geo){
+        post.user.geo != null && post.user.geo.country == this.userService.User.geo.country
+      }
       })
       this.comments.filter((post)=>{
+         if(post.post.user.geo){
         post.user.geo != null && post.user.geo.country == this.userService.User.geo.country
+      }
        })
        this.shareds.filter((post)=>{
+         if(post.post.user.geo){
         post.user.geo != null && post.user.geo.country == this.userService.User.geo.country
+      }
        })
     }
   let currentDate = moment();
@@ -299,13 +366,19 @@ async month(){
   
     if(!this.country){
       this.likes.filter((post)=>{
-       post.user.geo != null && post.user.geo.country == this.userService.User.geo.country
+        if(post.post.user.geo){
+        post.user.geo != null && post.user.geo.country == this.userService.User.geo.country
+      }
       })
       this.comments.filter((post)=>{
+         if(post.post.user.geo){
         post.user.geo != null && post.user.geo.country == this.userService.User.geo.country
+      }
        })
        this.shareds.filter((post)=>{
+         if(post.post.user.geo){
         post.user.geo != null && post.user.geo.country == this.userService.User.geo.country
+      }
        })
     }
   let currentDate = moment();
@@ -377,13 +450,19 @@ async year(){
   
     if(!this.country){
       this.likes.filter((post)=>{
-       post.user.geo != null && post.user.geo.country == this.userService.User.geo.country
+        if(post.post.user.geo){
+        post.user.geo != null && post.user.geo.country == this.userService.User.geo.country
+      }
       })
       this.comments.filter((post)=>{
+         if(post.post.user.geo){
         post.user.geo != null && post.user.geo.country == this.userService.User.geo.country
+      }
        })
        this.shareds.filter((post)=>{
+         if(post.post.user.geo){
         post.user.geo != null && post.user.geo.country == this.userService.User.geo.country
+      }
        })
     }
   let currentDate = moment().dayOfYear(1);

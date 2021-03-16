@@ -12,6 +12,13 @@
     margin-top: 7%;
 }
 
+@media screen and (max-width:360px) {
+    .podium{
+        transform: scale(0.8);
+        width: 100%;
+    }
+   
+} 
  @media screen and (max-width:730px) {
 
     .podium{
@@ -21,16 +28,14 @@
 
 }
 
-
-@media screen and (max-width:360px) {
-
-    .podium{
-        transform: scale(0.8);
-        width: 100%;
-    }
-
+.segmentSection{
+ 
+    border-radius: 5px;
+    width: 96%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
 } 
-
 .contenedor{
     width: 37%;
     margin-left: auto;
@@ -44,7 +49,7 @@
 }
 
 .iconsPost{
-    width: 90px;
+    width: 32%;
     margin-right: auto;
     margin-left: auto;
   }
@@ -52,4 +57,14 @@
   .botons{
     --background: #3d7dff;
     width: 100px;
+  }
+
+.textoSegment{
+    visibility: visible;
+    font-size: 8px;
+}
+
+
+ion-slides {
+    height: 100%;
   }
