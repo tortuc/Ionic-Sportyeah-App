@@ -5,25 +5,25 @@
 </ion-header>
 
 <ion-content style="background: white;">
-  <div style="text-align: center;">
-    <img src="https://i.ibb.co/g6TFj6G/Logo-TRANSPARENTE.png" alt="logoSportyeah!" style="width: 20%;">
+  <div style="text-align: center;padding: 20px;">
+    <img src="https://i.ibb.co/g6TFj6G/Logo-TRANSPARENTE.png" alt="logoSportyeah!" style="height: 200px;">
     <h1>Ranking Sportyeah!</h1>
   </div>
   <div class="segmentSection">
-    <ion-segment scrollable class="segment"  [(ngModel)]="segment"  >
+    <ion-segment style="place-content: center !important;" scrollable class="segment"  [(ngModel)]="segment"  >
       <ion-segment-button  value=0 >     
         <p class="textoSegment">Reacciones</p>
-        <ion-img class="iconsPost"  src="https://img.icons8.com/bubbles/344/facebook-like.png" alt="Reaction icon"></ion-img>
+        <img class="iconsPost"  src="https://img.icons8.com/bubbles/344/facebook-like.png" alt="Reaction icon">
       </ion-segment-button>
   
       <ion-segment-button  value=1 >
         <p class="textoSegment">Comentarios</p>
-        <ion-img class="iconsPost"  src="https://img.icons8.com/bubbles/344/comments.png" alt="Reaction icon"></ion-img>
+        <img class="iconsPost"  src="https://img.icons8.com/bubbles/344/comments.png" alt="Reaction icon">
       </ion-segment-button>
 
       <ion-segment-button  value=2 >
         <p class="textoSegment">Compartidos</p>
-        <ion-img class="iconsPost"  src="https://img.icons8.com/bubbles/452/undo.png" alt="Reaction icon"></ion-img>
+        <img class="iconsPost"  src="https://img.icons8.com/bubbles/452/undo.png" alt="Reaction icon">
       </ion-segment-button>
     </ion-segment>
   </div>
