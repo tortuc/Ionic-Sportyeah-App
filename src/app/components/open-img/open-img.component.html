@@ -19,7 +19,9 @@
     "
   ></ion-icon>
   <div class="button-share">
-    <ion-button (click)="share()"  fill="outline" shape="round">
+    <ion-button (click)="share()"  fill="outline" shape="round"
+      style="background-color: rgba(0,0,0,0.5);"
+    >
       {{ "post.share" | translate }}
       <ion-icon slot="end" name="arrow-redo-outline"></ion-icon>
     </ion-button>
@@ -30,6 +32,7 @@
       shape="round"
       color="danger"
       *ngIf="delete"
+      style="background-color: rgba(0,0,0,0.5);"
     >
       {{ "delete" | translate }}
       <ion-icon slot="end" name="trash-outline"></ion-icon>

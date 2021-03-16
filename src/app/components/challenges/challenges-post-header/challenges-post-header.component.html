@@ -1,6 +1,7 @@
 <div class="flex">
   <ion-avatar
     (click)="userService.goToProfile(Challenge.challenging.userId.data.username)"
+    style="width:40px"
   >
     <ion-img
       class="img-user-mini"
@@ -22,8 +23,9 @@
     ><br />
     <span class="profile-name dateC">{{ date | customDisplayDate }}</span>
   
-    <p style="white-space: pre-wrap" >
+    <p style="white-space: pre-wrap; margin:1px;" >
       <span
+        style="color:white"
         class="message colorWhiteI"
         [innerHTML]="Challenge.title | links"
       ></span>
