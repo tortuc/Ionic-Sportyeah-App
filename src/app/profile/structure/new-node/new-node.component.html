@@ -1,18 +1,17 @@
 <ion-content class="text-center">
   <h3 *ngIf="creating">
-    {{ "creating" | translate }}
+    {{ structureDefault.subtitle | translate }}
   </h3>
-  <h3 *ngIf="!creating">
-    {{ "changing" | translate }}
-  </h3>
+  <h3 *ngIf="!creating"></h3>
   <form [formGroup]="form">
     <ion-img [src]="photo" (click)="editPhoto()" style="cursor: pointer">
     </ion-img>
 
     <ion-item>
-      <ion-label position="stacked">{{
-        "structure.modal.title" | translate
-      }}</ion-label>
+      <ion-label position="stacked">
+        {{ "structure.modal.title" | translate }}
+        {{ structureDefault.subtitle | translate }}
+      </ion-label>
       <ion-input
         type="text"
         [placeholder]="'enterText' | translate"
@@ -51,7 +50,12 @@
     >
       {{ "profile_edit.btn" | translate }}
     </ion-button>
-    <ion-button color="light" style="color: black" style="margin-top: 20px" (click)="mc.dismiss()">
+    <ion-button
+      color="light"
+      style="color: black"
+      style="margin-top: 20px"
+      (click)="mc.dismiss()"
+    >
       Cerrar
     </ion-button>
   </form>

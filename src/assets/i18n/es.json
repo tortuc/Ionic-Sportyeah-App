@@ -723,16 +723,23 @@
   "GoToLink": "Ir al producto",
   "MoreIcons": "Ver mas iconos",
   "structure": {
-    "title": "Estructura organizacional",
-    "subtitle": "Inicio",
-    "text": "Aqui puedes describir cada elemento de tu estructura.",
+    "title": {
+      "club": "Club"
+    },
+    "subtitle": {
+      "club": "Club"
+    },
+    "text": {
+      "club": "Ingresa la información de tu club."
+    },
     "edit": "Editar estructura",
     "see": "Ver más",
     "modal": {
-      "title": "Titulo",
+      "title": "Nombre",
       "subtitle": "Tipo",
       "text": "Descripción"
-    }
+    },
+    "start": "Comenzar"
   },
   "creating": "Creando nuevo elemento",
   "changing": "Editando elemento",
