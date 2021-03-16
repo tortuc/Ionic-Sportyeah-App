@@ -5,7 +5,7 @@
     <ion-img
       class="img-user-mini"
       [src]="Challenge.challenged.userId.data.photo"
-    style="width:40px"
+    style="width:40px; height:40px"
     ></ion-img>
     <div
       class="connectedDIVlittlePost"
@@ -26,7 +26,7 @@
     <p style="white-space: pre-wrap; margin:1px;" >
       <span
         style="color:white"
-        class="message colorWhiteI"
+        class="message "
         [innerHTML]="Challenge.title | links"
       ></span>
     </p>
