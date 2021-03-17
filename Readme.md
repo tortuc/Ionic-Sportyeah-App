@@ -29,7 +29,16 @@ git remote set-url origin git+ssh://ubuntu@35.180.14.40/var/git/frontend
 ## Importante
 
 1. Siempre al finalizar la jornada hacer ionic build y ver los errores solucionarlos y merge master.
-2. Trabajar por pomodoros de 25 minutos, cada vez que finalice uno anotar el tiempo dedicado a la tarea.
+2. Consejo: cuando comiences no te distraigas con nada, convencete de seguir
+   siempre y nunca detenerte, no quit, no pares cuando duela, para cuando
+   termines.
+
+## MIERCOLES 17-03-2021
+
+1. Slider bug al abrir la imagen.
+2. Traer todas las imagenes del slider en openImg.
+3. Guardar la imagen apenas se suba al slider.
+4. Guardar en la api de imagenes las imagenes gratis.
 
 ## MARTES 16-03-2021
 

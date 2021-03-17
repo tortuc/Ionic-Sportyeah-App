@@ -86,14 +86,14 @@ export class SliderLogic {
       .getImages()
       .pipe(take(1))
       .subscribe(async (r: any) => {
-        console.log(r);
-        await this.loading.dismiss(null, null, "loading");
-        const modal = await this.presentModal(r.hits);
-        console.log(modal);
-        console.log("aquitoy");
-        await modal.present();
-        const { data } = await modal.onWillDismiss();
-        if (data) this.content.push(data);
+        await this.loading.dismiss(null, null, "loading")
+        const modal = await this.presentModal(r.hits)
+        await modal.present()
+        const { data } = await modal.onWillDismiss()
+        if (data) {
+          this.content.push(data)
+          this.save()
+        }
       });
   }
 
@@ -122,7 +122,6 @@ export class SliderLogic {
     for (let i = 0; i < event.target.files.length; i++) {
       let formData = new FormData();
       let file = event.target.files[i];
-      console.log(file);
       if (file.type.split("/")[0] == "video") {
         formData.append("video", file);
         await this.uploadVideo(formData);
@@ -141,15 +140,14 @@ export class SliderLogic {
    */
 
   async uploadVideo(formData: FormData) {
-    console.log("Subiendo un video");
     await this.imageAPI
       .uploadVideo(formData)
       .toPromise()
       .then((url) => {
         this.content.push(url);
+          this.save()
       })
       .catch((err) => {
-        console.log(err);
       });
   }
 
@@ -158,10 +156,9 @@ export class SliderLogic {
    * @param formData
    */
   async uploadImage(formData: FormData) {
-    console.log("Subiendo una imagen");
     const url = await this.imageAPI.uploadImage(formData).toPromise();
-    console.log("Subida");
     this.content.push(url);
+          this.save()
   }
 
   async youtubeVideo() {
@@ -170,6 +167,7 @@ export class SliderLogic {
     });
     modal.onDidDismiss().then((data) => {
       data.data ? this.content.push(data.data) : null;
+          this.save()
     });
     return modal.present();
   }
@@ -223,10 +221,10 @@ export class SliderLogic {
           .then((url: string) => {
             loading.dismiss();
             url ? this.content.push(url) : null;
+          this.save()
           })
           .catch((err) => {
             loading.dismiss();
-            console.log(err);
           });
       })
       .catch((err) => {});
@@ -247,6 +245,7 @@ export class SliderLogic {
   }
   delete(name: string) {
     const index = this.content.indexOf(name);
+    this.save()
     this.content.splice(index, 1);
   }
   save() {
@@ -255,6 +254,7 @@ export class SliderLogic {
       .toPromise()
       .then((resp) => {
         this.userService.User.slider = this.content;
+          this.save()
       });
   }
 }

@@ -1,4 +1,6 @@
-<ion-avatar *ngIf="take" class="big">
+<ion-avatar *ngIf="take" class="big"
+  (click)="$event.stopPropagation()"
+>
   <ion-img (click)="takePhotoFrom()" class="img-user img-edit" [src]="userService.User?.photo">
 
   </ion-img>

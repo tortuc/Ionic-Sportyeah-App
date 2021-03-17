@@ -1,9 +1,10 @@
 import { SponsorsComponent } from "./sponsors/sponsors.component";
+import { OpenImgComponent } from "src/app/components/open-img/open-img.component";
 import { LoginService } from "./../service/login.service";
 import { take } from "rxjs/operators";
 import { BannerLogic } from "./../service/banner-profile-logic.service";
 import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
-import { Router } from "@angular/router";
+import { Router, ActivatedRoute } from "@angular/router";
 import { PopoverController } from "@ionic/angular";
 import { TranslateService } from "@ngx-translate/core";
 import { IPostC } from "../models/iPost";
@@ -30,12 +31,13 @@ export class ProfilePage implements OnInit {
   loadingPost: boolean;
   countPost = 0;
   constructor(
+    public router: Router,
+    public route: ActivatedRoute,
     public userService: UserService,
     public mc: ModalController,
     public translate: TranslateService,
     public popoverController: PopoverController,
     private postService: PostService,
-    private router: Router,
     public profileService: ProfileService,
     public bannerLogic: BannerLogic,
     public loginService: LoginService,
@@ -260,5 +262,17 @@ export class ProfilePage implements OnInit {
             });
         });
     }
+  }
+
+  async open(img: string) {
+    const modal = await this.mc.create({
+      component: OpenImgComponent,
+      componentProps: {
+        img,
+        idUser: this.userService.User.username,
+        delete:false
+      },
+    });
+    modal.present();
   }
 }

@@ -38,10 +38,16 @@
           >
             <ion-card
               class="banner"
+              (click)="open(userService.User?.photoBanner)"
               [ngStyle]="{'background-image': 'url(' + user?.photoBanner + ')'}"
             >
-              <ion-avatar class="big user_photo">
-                <ion-img class="img-user" [src]="user?.photo"></ion-img>
+              <ion-avatar 
+                class="big user_photo"
+                (click)="$event.stopPropagation()"
+              >
+                <ion-img class="img-user" [src]="user?.photo"
+                  (click)="open(user?.photo)"
+                ></ion-img>
                 <div class="connectedDIV" *ngIf="user?.connected"></div>
               </ion-avatar>
             </ion-card>

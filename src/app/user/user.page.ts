@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { OpenImgComponent } from "src/app/components/open-img/open-img.component";
 import { LandingService } from "src/app/service/landingService";
 import { ActivatedRoute, Router } from "@angular/router";
 import { IPostC } from "../models/iPost";
@@ -7,7 +8,7 @@ import { User, UserService } from "../service/user.service";
 import { ChatService } from "../service/chat.service";
 import { LoginService } from "./../service/login.service";
 import { ViewsProfileService } from "../service/views-profile.service";
-import { AngularDelegate } from "@ionic/angular";
+import { AngularDelegate, ModalController } from "@ionic/angular";
 import { take } from "rxjs/operators";
 import { response } from "express";
 import { NewsService } from '../service/news.service';
@@ -52,6 +53,7 @@ export class UserPage implements OnInit {
   id_visited: string;
   slider: any; //Para el carrousel
   constructor(
+    public mc: ModalController,
     public userService: UserService,
     private route: ActivatedRoute,
     private postService: PostService,
@@ -242,5 +244,17 @@ news = [];
       this.postsB = false;
       this.profile = false; 
     }
+  }
+
+  async open(img: string) {
+    const modal = await this.mc.create({
+      component: OpenImgComponent,
+      componentProps: {
+        img,
+        idUser: this.route.snapshot.params.username,
+        delete:false
+      },
+    });
+    modal.present();
   }
 }
