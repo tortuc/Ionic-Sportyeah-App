@@ -40,6 +40,7 @@ git remote set-url origin git+ssh://ubuntu@35.180.14.40/var/git/frontend
    a que algunas no son imagenes, podria ser mas complicado de lo pensado.
 3. Guardar la imagen apenas se suba al slider.
 4. Guardar en la api de imagenes las imagenes gratis.
+5. New post no esta compartiendo la imagen.
 
 ## MARTES 16-03-2021
 
