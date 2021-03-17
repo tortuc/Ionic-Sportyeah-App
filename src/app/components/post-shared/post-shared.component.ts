@@ -23,7 +23,7 @@ export class PostSharedComponent implements OnInit {
   @Input() newsShared: INew
 
   @Input() disabled:boolean = false
-  ngOnInit() {
+  ngOnInit(){
     if(this.news){
       this.userService.getUserById(this.news.user).subscribe((response:any)=>{
         delete(response.password)

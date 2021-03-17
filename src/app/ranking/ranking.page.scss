@@ -29,11 +29,10 @@
 }
 
 .segmentSection{
- 
+    place-content: center  !important;
     border-radius: 5px;
     width: 96%;
-    margin-left: auto;
-    margin-right: auto;
+
     margin-top: 10px;
 } 
 .contenedor{
@@ -49,7 +48,8 @@
 }
 
 .iconsPost{
-    width: 32%;
+    width: 100%;
+    max-width: 200px;
     margin-right: auto;
     margin-left: auto;
   }
@@ -61,7 +61,8 @@
 
 .textoSegment{
     visibility: visible;
-    font-size: 8px;
+    font-size: 10px;
+    font-weight: 600;
 }
 
 

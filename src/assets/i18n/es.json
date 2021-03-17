@@ -861,5 +861,13 @@
     "f10":"Primeros 10 en hacerlo",
     "f20":"Primeros 20 en hacerlo"
   },
-  "seeImg":"Ver Imagen"
+  "seeImg":"Ver Imagen",
+  "ranking":{
+    "today":"Hoy",
+    "week":"Semana",
+    "month":"Mes",
+    "year":"Año",
+    "sinceEver":"Desde siempre",
+    "slide":"Desliza para filtrar" 
+   }
 }
