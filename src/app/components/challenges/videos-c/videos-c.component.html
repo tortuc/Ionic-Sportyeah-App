@@ -7,14 +7,49 @@
 />
 <app-camara-browser *ngIf="videoHere" (media)="camaraBrowserAns($event)">
 </app-camara-browser>
-<div *ngIf="!media && !videoHere" style="margin-top: 20px" class="text-center">
-  <img
-    src="https://img.icons8.com/nolan/64/image.png"
-    alt=""
-    style="width: 100px; cursor: pointer"
+<div 
+    *ngIf="!media && !videoHere" 
+    class="text-center"
+    style=" 
+      cursor: pointer; 
+      margin: 8%;
+      height: 70%;
+      background-color:rgba(22, 24, 35, 0.03);
+      padding-left: 9%;
+      padding-right: 9%;
+      padding: 30px;
+    "
     (click)="challenge()"
-  />
-  <h6 style="color: grey">{{ "challenge.upload" | translate }}</h6>
+>
+  <ion-icon 
+    name="cloud-upload-outline"
+    style="
+      font-size: 100px; cursor: pointer;
+      color:rgba(22, 24, 35, 0.34)
+    "
+    (click)="challenge()"
+    ></ion-icon>
+  <h6 
+    style="color: rgba(22, 24, 35, 0.34)"
+  >{{ "challenge.upload" | translate }}
+  </h6>
+  <ul style="text-align:left">
+    <li 
+      style="color:rgba(22, 24, 35, 0.34)"
+    >
+      MP4 / WebM
+    </li>  
+    <li 
+      style="color:rgba(22, 24, 35, 0.34)"
+    >
+      Resolución de al menos 720X1280
+    </li>  
+    <li 
+      style="color:rgba(22, 24, 35, 0.34)"
+    >
+      Hasta 60 segundos
+    </li>  
+  </ul>
 </div>
 <div *ngIf="media && !videoHere" class="text-center">
   <video
