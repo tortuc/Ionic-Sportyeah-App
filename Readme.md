@@ -20,10 +20,22 @@ Iniciar sportyeah
 2. ssh-add ~/.ssh/id_rsa_sportyeah.pub
 3. ssh-add ~/.ssh/id_rsa_kecuki.pub
 
+35.180.14.40
+
+git remote set-url origin git+ssh://ubuntu@35.180.196.119/var/git/backend
+git remote set-url origin git+ssh://ubuntu@35.180.14.40/var/git/backend
+git remote set-url origin git+ssh://ubuntu@35.180.14.40/var/git/frontend
+
 ## Importante
 
 1. Siempre al finalizar la jornada hacer ionic build y ver los errores solucionarlos y merge master.
 2. Trabajar por pomodoros de 25 minutos, cada vez que finalice uno anotar el tiempo dedicado a la tarea.
+
+## MARTES 16-03-2021
+
+1. Poder borrar desafios.
+slider tiene un bug.
+open img debe tener todas las imagenes.
 
 ## LUNES 15-03-2021
 
@@ -54,6 +66,7 @@ Iniciar sportyeah
 ### Detalles QA
 
 1. slider-change estilo.
+2. modal abarque toda la pantalla.
 
 ## VIERNES 12-03-2021
 

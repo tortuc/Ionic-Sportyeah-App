@@ -1,4 +1,4 @@
-<h1 style="position: relative;"><span><p style="color: rgb(126, 126, 126);font-size: 9px;">{{'ranking.slide'| translate}}</p></span>{{'ranking.month'| translate}}</h1>
+<h1 style="position: relative;"><span><p style="color: rgb(126, 126, 126);font-size: 9px;">{{'ranking.slide'| translate}}</p></span>Desde siempre</h1>
 
 <div  style="width: 100%">
   <!-- REACCIONES -->
@@ -336,6 +336,7 @@
     <!-- FIN COMPARTIDOS --> 
   
   </div>
+
   <!-- REACCIONES -->
 
 <div style="width: 99%;margin-left: auto;margin-right: auto;" *ngIf="segment == 0 && userLike">
@@ -366,7 +367,7 @@
   
 </div>
 <div style="border-radius: 5px;width: 96%;margin-left: auto;margin-right: auto;" *ngIf="segment == 0 && !userLike">
-  <h1 style="text-align: center;">No han reaccionado tus publicaciones </h1>
+  <h1 style="text-align: center;">No han reaccionado tus publicación </h1>
   <h1 *ngIf="likes.length != 0" style="text-align: center;">Estas por debajo de la posicion: {{likes.length}} </h1>
 </div>
 
@@ -399,7 +400,7 @@
   
 </div>
 <div style="border-radius: 5px;width: 96%;margin-left: auto;margin-right: auto;" *ngIf="segment == 1 && !userComment">
-<h1 style="text-align: center;">No hay comentarios en tus publicaciones </h1>
+<h1 style="text-align: center;">No hay comentarios en tus publicación </h1>
 <h1 *ngIf="comments.length != 0" style="text-align: center;">Estas por debajo de la posicion: {{comments.length}} </h1>
 
 </div>
@@ -432,6 +433,6 @@
     </ion-card>   
   </div>
   <div style="border-radius: 5px;width: 96%;margin-left: auto;margin-right: auto;" *ngIf="segment == 2 && !userShared">
-    <h1 style="text-align: center;">No han compartido tus publicaciones </h1>
+    <h1 style="text-align: center;">No han compartido tus publicación </h1>
     <h1 *ngIf="shareds.length != 0" style="text-align: center;">Estas por debajo de la posicion: {{shareds.length}} </h1>
   </div>

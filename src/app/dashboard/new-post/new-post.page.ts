@@ -3,13 +3,10 @@ import { FormBuilder, Validators } from "@angular/forms";
 import { LoadingController, ModalController, Platform } from "@ionic/angular";
 import { TranslateService } from "@ngx-translate/core";
 import { MentionsDirective } from "src/app/directives/mentions.directive";
-import { IPost ,INew} from "src/app/models/iPost";
+import { IPost, INew } from "src/app/models/iPost";
 import { JdvimageService } from "src/app/service/jdvimage.service";
 import { PostService } from "src/app/service/post.service";
 import { UserService } from "src/app/service/user.service";
-import { createJsxClosingElement } from "typescript";
-import { element } from "protractor";
-import { ClassField } from "@angular/compiler";
 
 @Component({
   selector: "app-new-post",
@@ -18,7 +15,8 @@ import { ClassField } from "@angular/compiler";
 })
 export class NewPostPage implements OnInit {
   @Input() post: IPost;
-  @Input() news: INew
+  @Input() news: INew;
+  @Input() img: string;
   @ViewChild(MentionsDirective) mentions;
   @ViewChild("FormElementRef") inputNode: ElementRef;
   @ViewChild("emojisContainer") emojisContainer: ElementRef;
@@ -51,10 +49,13 @@ export class NewPostPage implements OnInit {
   users = [];
 
   ngOnInit() {
-    console.log(this.news)
     window.onclick = () => {
       this.emoji = false;
     };
+    if (this.img) {
+      this.form.controls.image.setValue(this.img);
+      this.videoFile = this.img;
+    }
   }
 
   urlVideo = null;
@@ -97,9 +98,9 @@ export class NewPostPage implements OnInit {
       .toPromise()
       .then((url) => {
         loading.dismiss();
-        if(!this.news ){
+        if (!this.news) {
           this.form.controls.image.setValue(url);
-        }else if(this.news){
+        } else if (this.news) {
           this.formNews.controls.image.setValue(url);
         }
       })
@@ -109,102 +110,100 @@ export class NewPostPage implements OnInit {
   }
 
   removeImg() {
-    if(!this.news ){
+    if (!this.news) {
       this.form.controls.image.setValue("");
-    }else if(this.news){
+    } else if (this.news) {
       this.formNews.controls.image.setValue("");
     }
   }
 
   newValue($event) {
-    if(!this.news ){
+    if (!this.news) {
       this.form.controls.message.setValue($event);
-    }else if(this.news){
+    } else if (this.news) {
       this.formNews.controls.message.setValue($event);
     }
-    
   }
 
-  async save() {        ///AQUI UN IF
-    if(!this.news){
+  async save() {
+    ///AQUI UN IF
+    if (!this.news) {
       if (this.videoFile == null) {
-      let loading = await this.loadingCtrl.create({
-        message: this.translate.instant("loading"),
-      });
-      loading.present();
-      let post = this.form.value; 
-      if (this.post) {
-        post.post = this.post._id;
-      }
-      this.postService
-        .create(post)
-        .toPromise()
-        .then((post) => {
-          loading.dismiss();
-          console.log(post)
-          this.modalController.dismiss({
-            dismissed: true,
-            create: true,
-            post,
-          });
-        })
-        .catch((err) => {
-          loading.dismiss();
+        let loading = await this.loadingCtrl.create({
+          message: this.translate.instant("loading"),
         });
-    } else {
-      let form = new FormData();
-      form.append("video", this.videoFile);
-      let post = this.form.value;        
-      if (this.post) {
-        post.post = this.post._id;
-      }
-      this.modalController.dismiss({
-        dismissed: true,
-        create: false,
-        video: form,
-        post: post,
-      });
-    }
-  }else if(this.news){
-    if (this.videoFile == null) {
-      let loading = await this.loadingCtrl.create({
-        message: this.translate.instant("loading"),
-      });
-      loading.present();
-      let news = this.formNews.value; ///AQUI UN IF///AQUI UN IF
-      if (this.news) {
-        news.news = this.news._id;
-      }
-      this.postService
-        .create(news)
-        .toPromise()
-        .then((post) => {
-          loading.dismiss();
-          console.log(post)
-          this.modalController.dismiss({
-            dismissed: true,
-            create: true,
-            post,
+        loading.present();
+        let post = this.form.value;
+        if (this.post) {
+          post.post = this.post._id;
+        }
+        this.postService
+          .create(post)
+          .toPromise()
+          .then((post) => {
+            loading.dismiss();
+            this.modalController.dismiss({
+              dismissed: true,
+              create: true,
+              post,
+            });
+          })
+          .catch((err) => {
+            loading.dismiss();
           });
-        })
-        .catch((err) => {
-          loading.dismiss();
+      } else {
+        let form = new FormData();
+        form.append("video", this.videoFile);
+        let post = this.form.value;
+        if (this.post) {
+          post.post = this.post._id;
+        }
+        this.modalController.dismiss({
+          dismissed: true,
+          create: false,
+          video: form,
+          post: post,
         });
-    } else {
-      let form = new FormData();
-      form.append("video", this.videoFile);
-      let news = this.formNews.value;        ///AQUI UN IF///AQUI UN IF
-      if (this.news) {
-        news.news = this.news._id;
       }
-      this.modalController.dismiss({
-        dismissed: true,
-        create: false,
-        video: form,
-        news: news,
-      });
+    } else if (this.news) {
+      if (this.videoFile == null) {
+        let loading = await this.loadingCtrl.create({
+          message: this.translate.instant("loading"),
+        });
+        loading.present();
+        let news = this.formNews.value; ///AQUI UN IF///AQUI UN IF
+        if (this.news) {
+          news.news = this.news._id;
+        }
+        this.postService
+          .create(news)
+          .toPromise()
+          .then((post) => {
+            loading.dismiss();
+            this.modalController.dismiss({
+              dismissed: true,
+              create: true,
+              post,
+            });
+          })
+          .catch((err) => {
+            loading.dismiss();
+          });
+      } else {
+        let form = new FormData();
+        form.append("video", this.videoFile);
+        let news = this.formNews.value; ///AQUI UN IF///AQUI UN IF
+        if (this.news) {
+          news.news = this.news._id;
+        }
+        this.modalController.dismiss({
+          dismissed: true,
+          create: false,
+          video: form,
+          news: news,
+        });
+      }
     }
-  }
   }
 
   dismiss() {
@@ -219,14 +218,14 @@ export class NewPostPage implements OnInit {
 
   addEmoji(ev) {
     this.mentions.usersMetions.forEach((element) => {
-      if(!this.news ){
+      if (!this.news) {
         this.form.controls.message.setValue(
           this.form.controls.message.value.replaceAll(
             element.url,
             element.fullname
           )
         );
-      }else if(this.news){
+      } else if (this.news) {
         this.formNews.controls.message.setValue(
           this.formNews.controls.message.value.replaceAll(
             element.url,
@@ -241,46 +240,45 @@ export class NewPostPage implements OnInit {
       : null;
 
     this.lastCaretPosition = this.mentions.pos;
-    if(!this.news ){
+    if (!this.news) {
       const newText =
-      this.form.controls.message.value
-        .replace(/&nbsp;/g, " ")
-        .substring(0, this.mentions.pos) +
-      ev.emoji.native +
-      this.form.controls.message.value
-        .replace(/&nbsp;/g, "")
-        .substring(this.mentions.pos);
-    this.form.controls.message.setValue(newText);
+        this.form.controls.message.value
+          .replace(/&nbsp;/g, " ")
+          .substring(0, this.mentions.pos) +
+        ev.emoji.native +
+        this.form.controls.message.value
+          .replace(/&nbsp;/g, "")
+          .substring(this.mentions.pos);
+      this.form.controls.message.setValue(newText);
 
-    this.mentions.usersMetions.forEach((element) => {
-      this.form.controls.message.setValue(
-        this.form.controls.message.value.replaceAll(
-          element.fullname,
-          element.url
-        )
-      );
-    });
-    }else if(this.news){
+      this.mentions.usersMetions.forEach((element) => {
+        this.form.controls.message.setValue(
+          this.form.controls.message.value.replaceAll(
+            element.fullname,
+            element.url
+          )
+        );
+      });
+    } else if (this.news) {
       const newText =
-      this.formNews.controls.message.value
-        .replace(/&nbsp;/g, " ")
-        .substring(0, this.mentions.pos) +
-      ev.emoji.native +
-      this.formNews.controls.message.value
-        .replace(/&nbsp;/g, "")
-        .substring(this.mentions.pos);
-    this.formNews.controls.message.setValue(newText);
+        this.formNews.controls.message.value
+          .replace(/&nbsp;/g, " ")
+          .substring(0, this.mentions.pos) +
+        ev.emoji.native +
+        this.formNews.controls.message.value
+          .replace(/&nbsp;/g, "")
+          .substring(this.mentions.pos);
+      this.formNews.controls.message.setValue(newText);
 
-    this.mentions.usersMetions.forEach((element) => {
-      this.formNews.controls.message.setValue(
-        this.formNews.controls.message.value.replaceAll(
-          element.fullname,
-          element.url
-        )
-      );
-    });
+      this.mentions.usersMetions.forEach((element) => {
+        this.formNews.controls.message.setValue(
+          this.formNews.controls.message.value.replaceAll(
+            element.fullname,
+            element.url
+          )
+        );
+      });
     }
-    
   }
 
   emoji = false;

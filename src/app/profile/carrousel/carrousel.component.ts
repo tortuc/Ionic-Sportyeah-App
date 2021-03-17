@@ -25,7 +25,11 @@ export class CarrouselComponent implements OnInit {
   async open(img: string) {
     const modal = await this.mc.create({
       component: OpenImgComponent,
-      componentProps: { img },
+      componentProps: {
+        img,
+        idUser: this.userService.User.username,
+        delete: false,
+      },
     });
     modal.present();
   }

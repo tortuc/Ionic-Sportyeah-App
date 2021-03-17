@@ -12,6 +12,7 @@ import { RankingTodayComponent } from './ranking-today/ranking-today.component';
 import { RankingWeekComponent } from './ranking-week/ranking-week.component';
 import { RankingMonthComponent } from './ranking-month/ranking-month.component';
 import { RakingYearComponent } from './raking-year/raking-year.component';
+import { RankingSinceEverComponent } from './ranking-since-ever/ranking-since-ever.component';
 
 @NgModule({
   imports: [
@@ -26,7 +27,8 @@ import { RakingYearComponent } from './raking-year/raking-year.component';
     RankingTodayComponent,
     RankingWeekComponent,
     RankingMonthComponent,
-    RakingYearComponent
+    RakingYearComponent,
+    RankingSinceEverComponent
   ]
 })
 export class RankingPageModule {}

@@ -1,4 +1,7 @@
-import { ModalController } from "@ionic/angular";
+import { NewPostPage } from "./../../dashboard/new-post/new-post.page";
+import { take } from "rxjs/operators";
+import { User, UserService } from "./../../service/user.service";
+import { AlertController, ModalController } from "@ionic/angular";
 import { Component, Input, OnInit } from "@angular/core";
 
 @Component({
@@ -8,10 +11,60 @@ import { Component, Input, OnInit } from "@angular/core";
 })
 export class OpenImgComponent implements OnInit {
   @Input() img: string;
+  @Input() idUser: string;
+  @Input() delete: boolean;
+  user: User = null;
 
-  constructor(public mc: ModalController) {}
+  constructor(
+    public mc: ModalController,
+    public userService: UserService,
+    public alertController: AlertController
+  ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.userService
+      .getUserByUsername(this.idUser)
+      .pipe(take(1))
+      .subscribe((r: any) => {
+        this.user = r.user;
+      });
+  }
+
+  async deleteImg() {
+    const header = '¿Seguro quieres eliminar esta imagen?'
+    const res = await this.alert(header,'')
+    console.log(res)
+  }
+
+  async deleteImg2(){
+    this.mc.dismiss({ res: true });
+  }
+
+
+  async alert(header: string, message: string): Promise<any> {
+    let alert = await this.alertController.create({
+      header,
+      message,
+      buttons: [
+        {
+          text:'Cancelar',
+          handler:()=>{
+          }
+        },
+
+        {
+          text: 'Eliminar',
+          role: 'acept',
+          handler:()=>{
+            this.deleteImg2()
+          }
+        },
+      ],
+    });
+
+    await alert.present();
+  }
+
   slideOpts = {
     on: {
       beforeInit() {
@@ -120,4 +173,14 @@ export class OpenImgComponent implements OnInit {
       },
     },
   };
+
+  async share() {
+    const modal = await this.mc.create({
+      component: NewPostPage,
+      componentProps: {
+        img: this.img,
+      },
+    });
+    await modal.present();
+  }
 }

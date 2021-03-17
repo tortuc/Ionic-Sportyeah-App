@@ -1,31 +1,34 @@
-<ion-avatar
-  class="mini center"
-  (click)="userService.goToProfile(Challenge.challenging.userId.data.username)"
->
-  <ion-img
-    class="img-user-mini"
-    [src]="Challenge.challenged.userId.data.photo"
-  ></ion-img>
-  <div
-    class="connectedDIVlittlePost"
-    *ngIf="Challenge.challenged.userId.data.connected"
-  ></div>
-</ion-avatar>
-<div class="user-name">
-  <span
-    class="messageC profile-name"
-    (click)="
-      userService.goToProfile(Challenge.challenging.userId.data.username)
-    "
-    >{{ Challenge.challenged.userId.data.name }}
-    {{ Challenge.challenged.userId.data.last_name }}</span
-  ><br />
-  <span class="profile-name dateC">{{ date | customDisplayDate }}</span>
-
-  <p style="white-space: pre-wrap" class="text-center">
+<div class="flex">
+  <ion-avatar
+    (click)="userService.goToProfile(Challenge.challenging.userId.data.username)"
+  >
+    <ion-img
+      class="img-user-mini"
+      [src]="Challenge.challenged.userId.data.photo"
+    style="width:40px; height:40px"
+    ></ion-img>
+    <div
+      class="connectedDIVlittlePost"
+      *ngIf="Challenge.challenged.userId.data.connected"
+    ></div>
+  </ion-avatar>
+  <div class="user-name">
     <span
-      class="message colorWhiteI"
-      [innerHTML]="Challenge.title | links"
-    ></span>
-  </p>
+      class="messageC profile-name"
+      (click)="
+        userService.goToProfile(Challenge.challenging.userId.data.username)
+      "
+      >{{ Challenge.challenged.userId.data.name }}
+      {{ Challenge.challenged.userId.data.last_name }}</span
+    ><br />
+    <span class="profile-name dateC">{{ date | customDisplayDate }}</span>
+  
+    <p style="white-space: pre-wrap; margin:1px;" >
+      <span
+        style="color:white"
+        class="message "
+        [innerHTML]="Challenge.title | links"
+      ></span>
+    </p>
+  </div>
 </div>

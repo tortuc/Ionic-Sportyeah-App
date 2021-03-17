@@ -1,29 +1,26 @@
-.podium{
+.podium {
     margin-left: auto;
     margin-right: auto;
     width: 50%;
     margin-top: 1%;
- }
- 
- .medalla{
-     width: 80%;
-     margin-left: auto;
-     margin-right: auto;
-     margin-top: 7%;
- }
- 
- @media screen and (max-width:360px) {
-     .podium{
-         transform: scale(0.8);
-         width: 100%;
-     }
-    
- } 
-  @media screen and (max-width:730px) {
- 
-     .podium{
+  }
+  
+  .medalla {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 7%;
+  }
+  
+  @media screen and (max-width: 360px) {
+    .podium {
+      transform: scale(0.8);
+      width: 100%;
+    }
+  }
+  @media screen and (max-width: 730px) {
+    .podium {
       transform: scale(0.8);
       width: 90%;
-     }
- 
- }
+    }
+  }

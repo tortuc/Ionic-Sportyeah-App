@@ -4,12 +4,13 @@ import { UserService } from 'src/app/service/user.service';
 import { NewsService } from 'src/app/service/news.service';
 import { ViewsProfileService } from "src/app/service/views-profile.service";
 import * as moment from 'moment';
+
 @Component({
-  selector: 'raking-year',
-  templateUrl: './raking-year.component.html',
-  styleUrls: ['./raking-year.component.scss'],
+  selector: 'ranking-since-ever',
+  templateUrl: './ranking-since-ever.component.html',
+  styleUrls: ['./ranking-since-ever.component.scss'],
 })
-export class RakingYearComponent implements OnInit {
+export class RankingSinceEverComponent implements OnInit {
 
   constructor(
     public userService:UserService,
@@ -18,12 +19,14 @@ export class RakingYearComponent implements OnInit {
     private viewsProfileService: ViewsProfileService
   ) { }
   @Input() AllPost:any
-  @Input() country:boolean
+  @Input() country:boolean 
   @Input() segment:any 
-
   ngOnInit() {
-    this.year();
-    }
+    this.filterAllPost()
+    .then(()=>{
+      this.userPosition()
+    })
+  }
   positionLike
   userLike;
   positionComment
@@ -53,27 +56,24 @@ export class RakingYearComponent implements OnInit {
   }
   async filterAllPost(){
     return new Promise((resolve)=>{
-     let todolosPost = this.AllPost
-     
-     if(this.country){
+      let todolosPost = this.AllPost
+      if(this.country){
         todolosPost = this.AllPost.filter((post)=>{
          if(post.post.user.geo){
            post.user.geo != null && post.user.geo.country == this.userService.User.geo.country
          }
        })
      }
-     this.likes = todolosPost.filter((post:any)=>{
-      console.log(post.likes.length)
-       return (post.likes.length > 0)
+     this.likes = this.AllPost.filter((post:any)=>{
+       return post.likes.length > 0
      })
-     console.log(this.likes) 
-
-     this.comments = todolosPost.filter((post:any)=>{
-     return (post.comments.length > 0)
+     
+     this.comments = this.AllPost.filter((post:any)=>{
+     return post.comments.length > 0
    })
-console.log(this.comments) 
-   this.shareds = todolosPost.filter((post:any)=>{
-     return (post.shareds.length > 0)
+ 
+   this.shareds = this.AllPost.filter((post:any)=>{
+     return post.shareds.length > 0
    })
    //Ordena de mayor a menor el post con mas reacciones
    this.likes.sort(function(b, a) {
@@ -159,86 +159,4 @@ console.log(this.comments)
    console.log(this.userShared)
     */
    }
-   year(){
-     this.filterAllPost()
-     .then(()=>{
-    
-      if(this.country){
-        this.likes.filter((post)=>{
-          if(post.post.user.geo){
-          post.user.geo != null && post.user.geo.country == this.userService.User.geo.country
-        }
-        })
-        this.comments.filter((post)=>{
-           if(post.post.user.geo){
-          post.user.geo != null && post.user.geo.country == this.userService.User.geo.country
-        }
-         })
-         this.shareds.filter((post)=>{
-           if(post.post.user.geo){
-          post.user.geo != null && post.user.geo.country == this.userService.User.geo.country
-        }
-         })
-      }
-    let currentDate = moment().dayOfYear(1);
-    let yearStart = currentDate.clone().startOf('year');
-    let yearEnd = currentDate.clone().endOf('year');
-  
-    let year = [];
-    for (let i = 0; i <= 364; i++) {
-  
-      year.push(moment(yearStart).add(i, 'days').format('YYYY-MM-DD'));
-  
-    };
-    for(let i = 0; i <= this.likes.length-1;i++){
-      let newLikesPost = [];
-        this.likes[i].likes.filter((fecha)=>{
-         for(let day of year){
-           if(moment(fecha.date).format('YYYY-MM-DD') ==  moment(day).format('YYYY-MM-DD')){
-             newLikesPost.push(fecha)
-           }
-         } 
-       }) 
-       this.likes[i].likes = newLikesPost
-      }
-   
-    
-      for(let i = 0; i <= this.comments.length-1;i++){
-       let newCommnetsPost = [];
-         this.comments[i].comments.filter((fecha)=>{
-          for(let day of year){
-            if(moment(fecha.date).format('YYYY-MM-DD') ==  moment(day).format('YYYY-MM-DD')){
-              newCommnetsPost.push(fecha)
-            }
-          } 
-        }) 
-        this.comments[i].comments = newCommnetsPost
-     }
-   
-   
-     for(let i = 0; i <= this.shareds.length-1;i++){
-       let newSharedsPost = [];
-         this.shareds[i].shareds.filter((fecha)=>{
-          for(let day of year){
-            if(moment(fecha.date).format('YYYY-MM-DD') ==  moment(day).format('YYYY-MM-DD')){
-              newSharedsPost.push('fecha')
-            }
-          } 
-        }) 
-        this.shareds[i].shareds = newSharedsPost
-        
-     }
-   
-     this.likes = this.likes.filter((post:any)=>{
-       return post.likes.length > 0
-     })
-     this.comments = this.comments.filter((post:any)=>{
-       return post.comments.length > 0
-     })
-     this.shareds = this.shareds.filter((post:any)=>{
-       return post.shareds.length > 0
-     })
-     this.userPosition() 
-    })
-  }
 }

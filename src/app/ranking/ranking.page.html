@@ -5,12 +5,12 @@
 </ion-header>
 
 <ion-content style="background: white;">
-  <div style="text-align: center;">
-    <img src="https://i.ibb.co/g6TFj6G/Logo-TRANSPARENTE.png" alt="logoSportyeah!" style="width: 150px;padding: 10px;">
+  <div style="text-align: center;padding: 20px;">
+    <img src="https://i.ibb.co/g6TFj6G/Logo-TRANSPARENTE.png" alt="logoSportyeah!" style="height: 200px;">
     <h1>Ranking Sportyeah!</h1>
   </div>
   <div class="segmentSection">
-    <ion-segment scrollable class="segment"  [(ngModel)]="segment"  >
+    <ion-segment style="place-content: center !important;" scrollable class="segment"  [(ngModel)]="segment"  >
       <ion-segment-button  value=0 >     
         <p class="textoSegment">Reacciones</p>
         <img class="iconsPost"  src="https://img.icons8.com/bubbles/344/facebook-like.png" alt="Reaction icon">
@@ -41,27 +41,23 @@
 
   </div>
 
-<div style="height: 100px;border-radius: 5px;width: 96%;margin-left: auto;margin-right: auto;margin-top: 10px;">
+<div style="border-radius: 5px;width: 96%;margin-left: auto;margin-right: auto;margin-top: 10px;">
 
     <ion-slides pager="true"  [options]="slideOpts" style="cursor: pointer;">
       <ion-slide>
-        <h1 style="position: relative;bottom: 7px;"><span><p style="color: rgb(126, 126, 126);font-size: 9px;">{{'ranking.slide'| translate}}</p></span>Desde siempre</h1>
+        <ranking-since-ever *ngIf="todolosPost.length != 0" style="width: 100%;padding-bottom: 20px;" [segment]="segment" [AllPost]="todolosPost" [country]="country" ></ranking-since-ever>
       </ion-slide>
       <ion-slide>
-        <h1 style="position: relative;bottom: 7px;"><span><p style="color: rgb(126, 126, 126);font-size: 9px;">{{'ranking.slide'| translate}}</p></span>{{'ranking.today'| translate}}</h1>
-        <ranking-today [AllPost]="todolosPost" [country]="country" ></ranking-today>
+        <ranking-today *ngIf="todolosPost.length != 0" style="width: 100%;padding-bottom: 20px;" [segment]="segment" [AllPost]="todolosPost" [country]="country" ></ranking-today>
       </ion-slide>
       <ion-slide>
-        <h1 style="position: relative;bottom: 7px;"><span><p style="color: rgb(126, 126, 126);font-size: 9px;">{{'ranking.slide'| translate}}</p></span>{{'ranking.week'| translate}}</h1>
-        <ranking-week [AllPost]="todolosPost" [country]="country" ></ranking-week>
+        <ranking-week *ngIf="todolosPost.length != 0" style="width: 100%;padding-bottom: 20px;" [segment]="segment"  [AllPost]="todolosPost" [country]="country" ></ranking-week>
       </ion-slide>
       <ion-slide>
-        <h1 style="position: relative;bottom: 7px;"><span><p style="color: rgb(126, 126, 126);font-size: 9px;">{{'ranking.slide'| translate}}</p></span>{{'ranking.month'| translate}}</h1>
-        <ranking-month [AllPost]="todolosPost" [country]="country" ></ranking-month>
+        <ranking-month *ngIf="todolosPost.length != 0" style="width: 100%;padding-bottom: 20px;" [segment]="segment"  [AllPost]="todolosPost" [country]="country" ></ranking-month>
       </ion-slide>
       <ion-slide>
-        <h1 style="position: relative;bottom: 7px;"><span><p style="color: rgb(126, 126, 126);font-size: 9px;">{{'ranking.slide'| translate}}</p></span>{{'ranking.year'| translate}}</h1>
-        <raking-year [AllPost]="todolosPost" [country]="country" ></raking-year>
+        <raking-year *ngIf="todolosPost.length != 0" style="width: 100%;padding-bottom: 20px;" [segment]="segment"  [AllPost]="todolosPost" [country]="country" ></raking-year>
       </ion-slide>
     </ion-slides>
 
@@ -115,7 +111,7 @@
 
 <!-- REACCIONES -->
 
-<div style="width: 99%;margin-left: auto;margin-right: auto;" *ngIf="segment == 0 && userLike">
+<!-- <div style="width: 99%;margin-left: auto;margin-right: auto;" *ngIf="segment == 0 && userLike">
   <ion-card>
     <ion-card-content>
       <ion-grid>
@@ -123,7 +119,6 @@
           <ion-col size="6">
             <ion-avatar style="margin-left: 15%;margin-top: 30px;" >
               <img [src]="userLike.post.user.photo">
-            <!--  <div class="connectedDIVlittle" *ngIf="(item.chat.sender?._id != userService.User?._id)?item.chat.sender?.connected:item.chat.receiver?.connected"></div> -->
             </ion-avatar>
             <div  style="margin-left: 13%;color: black;"
             
@@ -145,10 +140,10 @@
 <div style="border-radius: 5px;width: 96%;margin-left: auto;margin-right: auto;" *ngIf="segment == 0 && !userLike">
   <h1 style="text-align: center;">No han reaccionado tus publicación </h1>
   <h1 *ngIf="likes.length != 0" style="text-align: center;">Estas por debajo de la posicion: {{likes.length}} </h1>
-</div>
+</div> -->
 
 <!-- COMENTARIOS --> 
-
+<!-- 
  <div style="border-radius: 5px;width: 99%;margin-left: auto;margin-right: auto;" *ngIf="segment == 1 && userComment">
   <ion-card>
     <ion-card-content>
@@ -157,7 +152,6 @@
           <ion-col size="6">
             <ion-avatar style="margin-left: 15%;margin-top: 30px;" >
               <img [src]="userComment.post.user.photo">
-            <!--  <div class="connectedDIVlittle" *ngIf="(item.chat.sender?._id != userService.User?._id)?item.chat.sender?.connected:item.chat.receiver?.connected"></div> -->
             </ion-avatar>
             <div  style="margin-left: 13%;color: black;"
            
@@ -179,11 +173,11 @@
 <h1 style="text-align: center;">No hay comentarios en tus publicación </h1>
 <h1 *ngIf="comments.length != 0" style="text-align: center;">Estas por debajo de la posicion: {{comments.length}} </h1>
 
-</div>
+</div> -->
 
 <!-- COMPARTIDOS -->
 
-   <div style="border-radius: 5px;width: 99%;margin-left: auto;margin-right: auto;" *ngIf="segment == 2 && userShared">
+<!--    <div style="border-radius: 5px;width: 99%;margin-left: auto;margin-right: auto;" *ngIf="segment == 2 && userShared">
     <ion-card>
       <ion-card-content>
         <ion-grid>
@@ -191,7 +185,6 @@
             <ion-col size="6">
               <ion-avatar style="margin-left: 15%;margin-top: 30px;" >
                 <img [src]="userShared.post.user.photo">
-              <!--  <div class="connectedDIVlittle" *ngIf="(item.chat.sender?._id != userService.User?._id)?item.chat.sender?.connected:item.chat.receiver?.connected"></div> -->
               </ion-avatar>
               <div  style="margin-left: 13%;color: black;"
              
@@ -211,6 +204,6 @@
   <div style="border-radius: 5px;width: 96%;margin-left: auto;margin-right: auto;" *ngIf="segment == 2 && !userShared">
     <h1 style="text-align: center;">No han compartido tus publicación </h1>
     <h1 *ngIf="shareds.length != 0" style="text-align: center;">Estas por debajo de la posicion: {{shareds.length}} </h1>
-  </div>
+  </div> -->
 </ion-content>
 

@@ -26,8 +26,8 @@ export class RankingPage implements OnInit {
   ) {
      this.postService.getAllPost().subscribe((post:any)=>{ 
       this.todolosPost = post;
-      this.filterAllPost()
-      this.userPosition()
+     /*  this.filterAllPost()
+      this.userPosition() */
     })
    }
 
@@ -66,7 +66,12 @@ actualComments(){
 actualShareds(){
   this.interaccionActual = 'shareds';
 }
-
+country:boolean = false;
+filterCountry(){
+  if(this.userService.User.geo != null){
+    this.country = !this.country;
+  }
+}
 ///////////////////////ELiminar su ni sirve//////////////
 /* fechaSelect(){
   this.slide.getActiveIndex().then(index => {
@@ -94,7 +99,7 @@ actualShareds(){
  });
 } */////////////////////ELiminar su ni sirve//////////////
 
-goToProfile(id,username){
+/* goToProfile(id,username){
   if(id == this.userService.User._id){
     this.router.navigate(["/profile"])
   }else{
@@ -156,12 +161,7 @@ goToProfile(id,username){
 })
 } 
 
-country:boolean = false;
-filterCountry(){
-  if(this.userService.User.geo != null){
-    this.country = !this.country;
-  }
-}
+
 
 userPosition(){
 
@@ -221,11 +221,8 @@ if(this.shareds.length == 0){
     positionS += 1
   }
 }
-/* console.log(this.userLike)
-console.log(this.userComment)
-console.log(this.userShared)
- */
-}
+
+} */
 
 //Muestra los resultados de hoy
 

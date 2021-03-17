@@ -2,6 +2,7 @@ import { Component, OnInit, Input} from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/service/user.service';
 import { NewsService } from 'src/app/service/news.service';
+import { ViewsProfileService } from "src/app/service/views-profile.service";
 import * as moment from 'moment';
 @Component({
   selector: 'ranking-month',
@@ -14,9 +15,12 @@ export class RankingMonthComponent implements OnInit {
     public userService:UserService,
     private router:Router,
     public newsService:NewsService,
+    private viewsProfileService: ViewsProfileService
   ) { }
   @Input() AllPost:any
   @Input() country:boolean
+  @Input() segment:any 
+
   ngOnInit() {
     this.month();
   }
@@ -30,10 +34,26 @@ export class RankingMonthComponent implements OnInit {
   comments
   shareds
   postUser
-
+  goToProfile(id,username){
+    if(id == this.userService.User._id){
+      this.router.navigate(["/profile"])
+    }else{
+      //this.router.navigate([`/user/${username}`])
+      this.userService.getUserByUsername(username)
+      .subscribe(
+        (resp:any)=>{
+          this.viewsProfileService
+            .updateProfileView(this.userService.User._id, resp.user._id,'ranking',null)
+            .subscribe((response) => {
+              this.router.navigate([`/user/${username}`])
+            });
+        }
+      )
+    }
+  }
   async filterAllPost(){
     return new Promise((resolve)=>{
-     let todolosPost = []
+     let todolosPost = this.AllPost
      if(this.country){
         todolosPost = this.AllPost.filter((post)=>{
          if(post.post.user.geo){
@@ -135,10 +155,10 @@ export class RankingMonthComponent implements OnInit {
   console.log(this.userShared)
    */
   }
-  async month(){
-    await this.filterAllPost()
-    setTimeout(()=>{ 
-    
+   month(){
+     this.filterAllPost()
+     .then(()=>{
+
       if(this.country){
         this.likes.filter((post)=>{
           if(post.post.user.geo){
@@ -216,7 +236,7 @@ export class RankingMonthComponent implements OnInit {
        return post.shareds.length > 0
      })
      this.userPosition() 
-    },300)
+    })
   }
 
 }
