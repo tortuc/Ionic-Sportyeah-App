@@ -36,7 +36,8 @@ git remote set-url origin git+ssh://ubuntu@35.180.14.40/var/git/frontend
 ## MIERCOLES 17-03-2021
 
 1. Slider bug al abrir la imagen.
-2. Traer todas las imagenes del slider en openImg.
+2. Traer todas las imagenes del slider en openImg. No es buena idea debido
+   a que algunas no son imagenes, podria ser mas complicado de lo pensado.
 3. Guardar la imagen apenas se suba al slider.
 4. Guardar en la api de imagenes las imagenes gratis.
 
