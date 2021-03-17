@@ -80,6 +80,7 @@ import { AptitudesPage } from "../profile/aptitudes/aptitudes.page";
 import { IonicRatingModule } from "ionic4-rating";
 import { StructureComponent } from "src/app/profile/structure/structure.component";
 import { ChallengesPostOptionsComponent } from "./challenges/challenges-post-options/challenges-post-options.component";
+import { COptionsComponent } from "./challenges/c-options/c-options.component";
 @NgModule({
   imports: [
     CommonModule,
@@ -166,6 +167,7 @@ import { ChallengesPostOptionsComponent } from "./challenges/challenges-post-opt
     ParteDerechaWebComponent,
     ParteIzquierdaWebComponent,
     OpenImgComponent,
+    COptionsComponent
   ],
   exports: [
     ImageComponent,
@@ -236,6 +238,7 @@ import { ChallengesPostOptionsComponent } from "./challenges/challenges-post-opt
     ParteDerechaWebComponent,
     OpenImgComponent,
     ParteIzquierdaWebComponent,
+    COptionsComponent
   ],
 })
 export class ComponentsModule {}

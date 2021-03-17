@@ -33,7 +33,6 @@ export class OpenImgComponent implements OnInit {
   async deleteImg() {
     const header = '¿Seguro quieres eliminar esta imagen?'
     const res = await this.alert(header,'')
-    console.log(res)
   }
 
   async deleteImg2(){

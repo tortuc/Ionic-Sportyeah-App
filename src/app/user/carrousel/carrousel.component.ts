@@ -23,6 +23,7 @@ export class CarrouselComponent implements OnInit {
     this.router.navigate([ruta]);
   }
   async open(img: string) {
+    if(this.slider.length < 1) this.slider.push("https://trello-attachments.s3.amazonaws.com/5ff9d47572424648014190dc/700x422/29f3e5ed0cea0a6b7439bfb986a090cd/original.jpg")
     const modal = await this.mc.create({
       component: OpenImgComponent,
       componentProps: {

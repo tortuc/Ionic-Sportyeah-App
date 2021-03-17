@@ -41,6 +41,7 @@
           >
             <ion-card
               class="banner"
+              (click)="open(userService.User?.photoBanner)"
               [ngStyle]="{'background-image': 'url(' + userService.User?.photoBanner + ')'}"
             >
               <div
@@ -52,7 +53,9 @@
                   style="margin-top: 6px"
                 ></ion-icon>
               </div>
-              <div style="padding-top: 96px">
+              <div 
+                style="padding-top: 96px; z-index:9999999999;" 
+              >
                 <new-profile-photo></new-profile-photo>
               </div>
             </ion-card>

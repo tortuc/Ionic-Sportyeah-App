@@ -92,7 +92,6 @@ export class StructureComponent implements OnInit {
 
   getStructure() {
     // Obtenemos la estructura organizacional del usuario si y solo si, dicha estructura existe.
-    console.log(this.ID);
     if (this.ID === this.uS.User._id) {
       this.uS.User.structure !== undefined
         ? (this.structure = this.uS.User.structure)
@@ -104,8 +103,6 @@ export class StructureComponent implements OnInit {
         .getUserByUsername(this.route.snapshot.paramMap.get("username"))
         .pipe(take(1))
         .subscribe((r: UserData) => {
-          console.log("c%UserData", "color:green;");
-          console.log(r);
           if (r.user.structure) {
             this.structure = r.user.structure;
             this.actualNode = r.user.structure;
@@ -131,8 +128,6 @@ export class StructureComponent implements OnInit {
     await modal.present();
     const { data } = await modal.onWillDismiss();
     if (data) {
-      console.log("form", data);
-      console.log("node", node);
       node ? this.searchEdit(this.actualNode, data) : this.createNode();
     }
   }
@@ -151,7 +146,6 @@ export class StructureComponent implements OnInit {
     await modal.present();
     const { data } = await modal.onWillDismiss();
     if (data) {
-      console.log("form: ", data, "parent: ", this.actualNode);
       data.childs = [];
       this.insertNode(this.structure, data, this.actualNode);
     }
@@ -169,19 +163,14 @@ export class StructureComponent implements OnInit {
   }
 
   searchEdit(node: any, newNode: any) {
-    console.log("EDITANDO STRUCTURA", node, newNode);
     // Se buscara dentro de la estructura el nodo otorgado para su remplazo
     if (node.id === newNode.id) {
-      console.log("Editando");
       node.photo = newNode.photo;
       node.title = newNode.title;
       node.subtitle = newNode.subtitle;
       node.text = newNode.text;
-      console.log(node);
-      console.log(newNode);
       this.as();
     } else if (node.childs.length != 0) {
-      console.log("revisando hijos");
       for (let i = 0; i < node.childs.length; i++) {
         this.searchEdit(node.childs[i], newNode);
       }
@@ -189,15 +178,9 @@ export class StructureComponent implements OnInit {
   }
 
   deleteNode(node: any, nodeId: number) {
-    console.log(
-      "%cDeleting a NODE",
-      "color:red;font-size:30px;font-weight:bold;"
-    );
     if (node.childs !== null) {
       for (let i in node.childs) {
-        console.log("Revisando hijos");
         let filtered = node.childs.filter((f: any) => f.id === nodeId);
-        console.log("Filtro", filtered);
         if (filtered && filtered.length > 0) {
           node.childs = node.childs.filter((f: any) => f.id !== nodeId);
           this.as();
@@ -224,6 +207,7 @@ export class StructureComponent implements OnInit {
     this.userService
       .update(this.userService.User)
       .pipe(take(1))
-      .subscribe((r: any) => console.log(r));
+      .subscribe((r: any) => {
+      });
   }
 }
