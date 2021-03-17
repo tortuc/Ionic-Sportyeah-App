@@ -86,4 +86,8 @@ export class ChallengeService {
   updateViews(idC: string, views: string[]) {
     return this.http.post(`${this.route}/updateviews`, { idC, views });
   }
+
+  deleteChallenge(_id: string){
+    return this.http.get(`${this.route}/delete/${_id}`);
+  }
 }
