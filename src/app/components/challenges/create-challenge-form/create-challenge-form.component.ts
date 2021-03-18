@@ -47,6 +47,10 @@ export class CreateChallengeFormComponent implements OnInit {
         this.caretPosition = e.target.selectionStart;
       });
     }, 3000);
+
+    this.form.statusChanges.subscribe(()=>{
+      this.saveForm()
+    })
   }
 
   saveForm() {
@@ -98,6 +102,9 @@ export class CreateChallengeFormComponent implements OnInit {
       e.stopPropagation();
     };
     this.emojiContainer.nativeElement.onclick = (e) => {
+      e.stopPropagation();
+    };
+    this.emojiContainer2.nativeElement.onclick = (e) => {
       e.stopPropagation();
     };
   }

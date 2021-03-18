@@ -1,16 +1,47 @@
-<form [formGroup]="form">
+<div
+  class="text-center"
+  style="
+    margin-top:20px;
+  "
+>
+  <img src="https://i.ibb.co/g6TFj6G/Logo-TRANSPARENTE.png" 
+    style="width:100px"
+  />
+  <h1> ¡Crea tu reto para SportYeah! </h1>
+</div>
+
+
+<form [formGroup]="form" class="text-center">
+
   <ion-item>
-    <ion-label position="floating">
-      {{ "challenge.title" | translate }}
+    <ion-label position="end">
+
+      <div #emojiButton>
+        <ion-button (click)="openEmojis($event)" style="float: right">
+          <ion-icon name="happy"></ion-icon>
+        </ion-button>
+      </div>
     </ion-label>
-    <ion-input type="text" #FormElementRef formControlName="title"></ion-input>
+
+    <ion-input 
+      type="text" 
+      #FormElementRef 
+      formControlName="title"
+      placeholder=" {{ 'challenge.title' | translate }} "
+    ></ion-input>
+
   </ion-item>
 
-  <div #emojiButton>
-    <ion-button (click)="openEmojis($event)" style="float: right">
-      <ion-icon name="happy"></ion-icon>
-    </ion-button>
-  </div>
+  <p 
+    class="errormsj "
+    *ngIf="
+      (form.controls.title.dirty || form.controls.title.touched) &&
+      form.controls.title.status !== 'VALID'
+    "
+  >
+    Este campo es invalido
+  </p>
+
   <div class="text-center" #emojiContainer2>
     <emoji-mart
       [hidden]="!emojis"
@@ -20,22 +51,35 @@
       [showPreview]="true"
     ></emoji-mart>
   </div>
+
   <ion-item>
-    <ion-label position="floating">
-      {{ "challenge.description" | translate }}
+    <ion-label position="start">
+      <div #emojiButton>
+        <ion-button (click)="openEmojis2($event)" style="float: right">
+          <ion-icon name="happy"></ion-icon>
+        </ion-button>
+      </div>
     </ion-label>
+    
     <ion-textarea
       type="text"
       #FormElementRef2
       formControlName="description"
+      placeholder=" {{ 'challenge.description' | translate }} "
     ></ion-textarea>
+
   </ion-item>
 
-  <div #emojiButton>
-    <ion-button (click)="openEmojis2($event)" style="float: right">
-      <ion-icon name="happy"></ion-icon>
-    </ion-button>
-  </div>
+  <p 
+    class="errormsj "
+    *ngIf="
+      (form.controls.description.dirty || form.controls.description.touched) &&
+      form.controls.description.status !== 'VALID'
+    "
+  >
+    Este campo es invalido
+  </p>
+
   <div class="text-center" #emojiContainer>
     <emoji-mart
       [hidden]="!emojis2"
@@ -45,11 +89,6 @@
       [showPreview]="true"
     ></emoji-mart>
   </div>
+
 </form>
 
-<ion-button
-  class="bottom-button"
-  (click)="saveForm()"
-  [disabled]="this.form.status !== 'VALID'"
-  >{{ "next" | translate }}</ion-button
->

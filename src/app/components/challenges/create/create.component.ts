@@ -33,6 +33,7 @@ export class CreateChallengeComponent implements OnInit {
 
   // FORM
   form: any = null;
+  formbool:boolean = false;
   // STEPPERS
 
   // description
@@ -73,20 +74,23 @@ export class CreateChallengeComponent implements OnInit {
 
   ready() {
     this.step0 = false;
-    this.step1 = true;
+    this.step2 = true;
+  }
+  finishform(){
+    this.step1 = false;
+    this.step2 = true;
   }
   intentos: any[] = [];
   guardarMedia(res: any) {
     this.media = res.media;
     this.intentos = res.intentos;
-    this.step1 = false;
-    this.retoExistente ? (this.step4 = true) : (this.step2 = true);
+    this.saveChallenge();
   }
 
   guardaForm(form: any) {
     this.form = form;
-    this.step2 = false;
-    this.step3 = true;
+    if(form.title !== '' && form.description !== '') this.formbool = true
+    else this.formbool = false
   }
 
   async showAwards() {
@@ -100,10 +104,10 @@ export class CreateChallengeComponent implements OnInit {
 
   nextAward(awards) {
     if (awards) {
-      this.step3 = false;
+      this.step1 = false;
       this.step4 = true;
     } else {
-      this.step3 = false;
+      this.step1 = false;
       this.createAward = true;
     }
   }
@@ -111,7 +115,7 @@ export class CreateChallengeComponent implements OnInit {
   saveAward($event) {
     if ($event) this.awards.push($event.event);
     this.createAward = false;
-    this.step3 = true;
+    this.step1 = true;
   }
 
   async saveChallenge() {
@@ -174,7 +178,7 @@ export class CreateChallengeComponent implements OnInit {
   }
   async loadingI() {
     const loading = await this.loadingController.create({
-      message: `Loading...`,
+      message: `Cargando...`,
     });
     await loading.present();
     return loading;

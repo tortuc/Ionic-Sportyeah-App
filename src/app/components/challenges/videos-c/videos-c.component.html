@@ -1,3 +1,4 @@
+
 <input
   #fileChooser
   (change)="img.uploadFile($event)"
@@ -7,14 +8,25 @@
 />
 <app-camara-browser *ngIf="videoHere" (media)="camaraBrowserAns($event)">
 </app-camara-browser>
+<div
+  *ngIf="!media && !videoHere" 
+  class="text-center"
+  style="
+    margin-top:20px;
+  "
+>
+  <img src="https://i.ibb.co/g6TFj6G/Logo-TRANSPARENTE.png" 
+    style="width:100px"
+  />
+</div>
 <div 
     *ngIf="!media && !videoHere" 
     class="text-center"
     style=" 
       cursor: pointer; 
-      margin: 8%;
-      height: 70%;
-      background-color:rgba(22, 24, 35, 0.03);
+      margin-left: 8%;
+      margin-right: 8%;
+      height: 60%;
       padding-left: 9%;
       padding-right: 9%;
       padding: 30px;
@@ -25,74 +37,42 @@
     name="cloud-upload-outline"
     style="
       font-size: 100px; cursor: pointer;
-      color:rgba(22, 24, 35, 0.34)
+      color:rgba(22, 24, 35, 0.54)
     "
-    (click)="challenge()"
     ></ion-icon>
-  <h6 
-    style="color: rgba(22, 24, 35, 0.34)"
+  <h2 
+    style="color: rgba(22, 24, 35, 0.54)"
   >{{ "challenge.upload" | translate }}
-  </h6>
+  </h2>
   <ul style="text-align:left">
     <li 
-      style="color:rgba(22, 24, 35, 0.34)"
+      style="color:rgba(22, 24, 35, 0.54)"
     >
       MP4 / WebM
     </li>  
     <li 
-      style="color:rgba(22, 24, 35, 0.34)"
+      style="color:rgba(22, 24, 35, 0.54)"
     >
       Resolución de al menos 720X1280
     </li>  
     <li 
-      style="color:rgba(22, 24, 35, 0.34)"
+      style="color:rgba(22, 24, 35, 0.54)"
     >
       Hasta 60 segundos
     </li>  
   </ul>
 </div>
-<div *ngIf="media && !videoHere" class="text-center">
-  <video
-    controlslist="nodownload"
-    controls="controls"
-    preload="metadata"
-    id="video"
-    webkit-playsinline="webkit-playsinline"
-    class="videoPlayer bg-black"
-  >
-    <source [src]="media | safeUrl" type="video/mp4" />
-    <source [src]="media | safeUrl" type="video/ogg" />
-    <br />
-  </video>
-  <video
-    controlslist="nodownload"
-    hidden
-    controls="controls"
-    preload="metadata"
-    id="video2"
-    webkit-playsinline="webkit-playsinline"
-    class="videoPlayer bg-black"
-  >
-    <source [src]="media | safeUrl" type="video/mp4" />
-    <source [src]="media | safeUrl" type="video/ogg" />
-    <br />
-  </video>
 
-  <ion-button color="primary" (click)="again()">
-    {{ "uploadAgain" | translate }}
-  </ion-button>
-</div>
 <div
   *ngIf="intentos.length > 0 && media"
   class="text-center"
-  style="margin-bottom: 100px"
 >
-  <ion-list>
-    <ion-item>
-      <ion-label>{{ "intentos" | translate }}</ion-label>
-      <ion-toggle color="primary" [(ngModel)]="subirIntentos"></ion-toggle>
-    </ion-item>
-  </ion-list>
+<ion-item-divider>
+    <ion-label>
+{{'challenge.trys' | translate}}
+            </ion-label>
+</ion-item-divider>
+
   <hr />
   <ion-row>
     <ion-col *ngFor="let intento of intentos">
@@ -101,9 +81,13 @@
         controls="controls"
         preload="metadata"
         id="video"
-        style="width: 80px; height: 80px"
+        style="
+          width: 180px;
+          height: 150px;
+
+        "
         webkit-playsinline="webkit-playsinline"
-        class="videoPlayer bg-black"
+        class=" bg-black"
       >
         <source [src]="intento | safeUrl" type="video/mp4" />
         <source [src]="intento | safeUrl" type="video/ogg" />
@@ -112,10 +96,72 @@
     </ion-col>
   </ion-row>
 </div>
-<ion-button
-  *ngIf="videoValid"
-  expand="full"
-  class="bottom-button"
-  (click)="nextFunc()"
-  >{{ "next" | translate }}</ion-button
+<div 
+  *ngIf="media && !videoHere" 
+  class="text-center"
+  style="
+   height:100%;
+  "
 >
+
+<ion-item-divider>
+    <ion-label>
+{{'challenge.original' | translate}}
+            </ion-label>
+</ion-item-divider>
+  <video
+    controlslist="nodownload"
+    hidden
+    controls="controls"
+    preload="metadata"
+    id="video2"
+    webkit-playsinline="webkit-playsinline"
+    class="bg-black"
+  >
+    <source [src]="media | safeUrl" type="video/mp4" />
+    <source [src]="media | safeUrl" type="video/ogg" />
+    <br />
+  </video>
+
+  <video
+    controlslist="nodownload"
+    controls="controls"
+    preload="metadata"
+    id="video"
+    style="max-height:100%;"
+    webkit-playsinline="webkit-playsinline"
+    class="bg-black"
+  >
+    <source [src]="media | safeUrl" type="video/mp4" />
+    <source [src]="media | safeUrl" type="video/ogg" />
+    <br />
+  </video>
+
+
+  <ion-button 
+    color="primary" 
+    (click)="again()"
+  >
+    <ion-icon name="sad-outline" style="margin-right:5px;"></ion-icon>
+    {{ "uploadAgain" | translate }}
+  </ion-button>
+
+    <!--class="bottom-button"-->
+
+  <ion-list>
+    <ion-item>
+      <ion-label>{{ "intentos" | translate }}</ion-label>
+      <ion-toggle color="primary" [(ngModel)]="subirIntentos"></ion-toggle>
+    </ion-item>
+  </ion-list>
+
+  <ion-button
+    *ngIf="videoValid"
+    fill="outline"
+    (click)="nextFunc()"
+  >
+    <ion-icon name="medal-outline" style="margin-right:5px"></ion-icon>
+    {{ "challenge.create" | translate }}
+  </ion-button
+  >
+  </div>

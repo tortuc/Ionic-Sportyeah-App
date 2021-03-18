@@ -6,16 +6,18 @@
           <img [src]="userService.User?.photo" />
         </ion-avatar>
       </ion-thumbnail>
-      <ion-label style="margin-top: -10px"
+      <ion-label 
         >{{ userService.User?.name }} {{ userService.User?.last_name }} <br />
-        <ion-input
-          readonly
-          (ionFocus)="newPost()"
-          placeholder="{{ 'challenge.new_challenge' | translate }}"
-        ></ion-input>
       </ion-label>
     </ion-item>
-    {{ "followed" | translate }}
+
+    <ion-input
+      readonly
+      (ionFocus)="newPost()"
+      placeholder="{{ 'challenge.new_challenge' | translate }}"
+    ></ion-input>
+
+    <!--{{ "followed" | translate }}
     <div class="friends-mobile" *ngIf="users !== null">
       <ion-avatar
         *ngFor="let friend of users"
@@ -26,6 +28,6 @@
         <img [src]="friend.photo" />
         <div class="connectedDIVlittle" *ngIf="friend.connected"></div>
       </ion-avatar>
-    </div>
+    </div>-->
   </ion-card-header>
 </ion-card>

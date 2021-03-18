@@ -33,29 +33,54 @@
       >
     </ion-select>
   </ion-item>
+  
+  <p class="errormsj" *ngIf="!form.condition">
+    {{ 'createAward.conditions.condition' | translate}}
+  </p>
+
   <ion-item>
-    <ion-label position="floating">{{
+    <ion-label position="stacked">{{
       "challenge.date" | translate
     }}</ion-label>
     <ion-input type="date" [(ngModel)]="form.date"></ion-input>
   </ion-item>
+
+  <p class="errormsj" *ngIf="!form.date">
+    {{'createAward.conditions.date' | translate}}
+  </p>
+
   <ion-item>
     <ion-label position="floating">{{
       "challenge.place" | translate
     }}</ion-label>
-    <ion-input type="number" [(ngModel)]="form.place"></ion-input>
+    <ion-input type="number" min="1" [(ngModel)]="form.place"></ion-input>
   </ion-item>
+
+  <p class="errormsj" *ngIf="!form.place">
+    {{'createAward.conditions.place' | translate}}
+  </p>
+
   <ion-item>
-    <ion-label position="floating">{{
-      "challenge.titleAward" | translate
-    }}</ion-label>
-    <ion-input type="text" #FormElementRef [(ngModel)]="form.title"></ion-input>
+    <ion-label position="start">
+      <div #emojiButton>
+        <ion-button (click)="openEmojis($event)" style="float: right">
+          <ion-icon name="happy"></ion-icon>
+        </ion-button>
+      </div>
+    </ion-label>
+    <ion-input 
+      type="text" 
+      #FormElementRef 
+      [(ngModel)]="form.title" 
+      placeholder=" {{ 'challenge.titleAward' | translate }}" 
+    >
+    </ion-input>
   </ion-item>
-  <div #emojiButton>
-    <ion-button (click)="openEmojis($event)" style="float: right">
-      <ion-icon name="happy"></ion-icon>
-    </ion-button>
-  </div>
+
+  <p class="errormsj" *ngIf="!form.title">
+    {{'createAward.conditions.title' | translate}}
+  </p>
+
   <div class="text-center" #emojiContainer2>
     <emoji-mart
       [hidden]="!emojis"
@@ -66,20 +91,25 @@
     ></emoji-mart>
   </div>
   <ion-item>
-    <ion-label position="floating">{{
-      "challenge.description" | translate
-    }}</ion-label>
+    <ion-label position="start">
+      <div #emojiButton>
+        <ion-button (click)="openEmojis2($event)" style="float: right">
+          <ion-icon name="happy"></ion-icon>
+        </ion-button>
+      </div>
+    </ion-label>
     <ion-textarea
       type="text"
       #FormElementRef2
       [(ngModel)]="form.description"
+      placeholder=" {{ 'challenge.description' | translate }}"
     ></ion-textarea>
   </ion-item>
-  <div #emojiButton>
-    <ion-button (click)="openEmojis2($event)" style="float: right">
-      <ion-icon name="happy"></ion-icon>
-    </ion-button>
-  </div>
+
+  <p class="errormsj" *ngIf="!form.description">
+    {{'createAward.conditions.description' | translate}}
+  </p>
+
   <div class="text-center" #emojiContainer>
     <emoji-mart
       [hidden]="!emojis2"
@@ -98,8 +128,7 @@
         form.place === '' ||
         form.title === '' ||
         form.description === '' ||
-        form.condition === '' ||
-        form.media === ''
+        form.condition === '' 
       "
     >
       {{ "save" | translate }}

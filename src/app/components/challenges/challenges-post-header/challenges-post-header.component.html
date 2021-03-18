@@ -21,11 +21,10 @@
       >{{ Challenge.challenged.userId.data.name }}
       {{ Challenge.challenged.userId.data.last_name }}</span
     ><br />
-    <span class="profile-name dateC">{{ date | customDisplayDate }}</span>
   
     <p style="white-space: pre-wrap; margin:1px;" >
       <span
-        style="color:white"
+        style="color:#d9d3d3"
         class="message "
         [innerHTML]="Challenge.title | links"
       ></span>
@@ -40,7 +39,7 @@
   >
     <ion-icon 
       name="settings-outline" 
-      style="color:white;font-size:20px;cursor:pointer;"
+      style="color:#d9d3d3;font-size:20px;cursor:pointer;"
       (click)="openOptions($event)"
     >
     </ion-icon> 

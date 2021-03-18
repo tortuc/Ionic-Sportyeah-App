@@ -32,6 +32,10 @@
   <ion-grid style="padding: 0">
     <ion-row class="bg-gradient-person">
       <ion-col size-xs="12" size-lg="8" ngClass.xs="p-0" class="center">
+        <app-friends-mobile-c
+          (new_challenge)="create()"
+          class="absoluteFriendsC"
+        ></app-friends-mobile-c>
         <ion-row class="actualizar bg-gradient-person" >
           <ion-button
             style="z-index: 10"
@@ -40,14 +44,10 @@
             >Actualizar</ion-button
           >
         </ion-row>
-        <app-friends-mobile-c
-          (new_challenge)="create()"
-          class="absoluteFriendsC"
-        ></app-friends-mobile-c>
         <div
           *ngIf="!challenges || challenges.length === 0 "
           class="text-center"
-          style="margin: auto"
+          style="margin-right: auto; margin-left: auto; margin-top:90px;"
         >
           <h1 style="color: white">{{'challenge.first' | translate}}</h1>
           <img src="https://img.icons8.com/dusk/64/000000/planning-skill.png" />
