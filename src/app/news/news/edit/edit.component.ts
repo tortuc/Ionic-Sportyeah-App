@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ViewChild } from '@angular/core';
 import { NewsService } from '../../../service/news.service';
 import { ToastController } from '@ionic/angular';
 import { UserService } from "../../../service/user.service";
@@ -8,6 +8,7 @@ import { ActionSheetController, LoadingController, ModalController   } from '@io
 import { TranslateService } from "@ngx-translate/core";
 import { JdvimageService } from 'src/app/service/jdvimage.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import {  ElementRef } from "@angular/core";
 
 const { Camera ,Filesystem} = Plugins;
 
@@ -17,7 +18,8 @@ const { Camera ,Filesystem} = Plugins;
   styleUrls: ['./edit.component.scss'],
 })
 export class EditComponent implements OnInit {
-
+  @ViewChild("openVideo") openVideo: any;
+  @ViewChild("openVideoParrafo") openVideoParrafo: any;
   constructor(
     public newsService:NewsService,
     public toastController: ToastController,
@@ -166,12 +168,12 @@ parrafos=[];
     this.text1 = `Escribe el párrafo # ${this.parrafos.length+1} `
     this.agregandoParrafo = false
   }
-  eliminarParrafo(){
-    this.parrafos.splice(this.positionEditactual,1)
-    for(let i= this.positionEditactual; i <= this.parrafos.length-1; i++){
+  eliminarParrafo(id){
+    this.parrafos.splice(id,1)
+    for(let i= id; i <= this.parrafos.length-1; i++){
       this.parrafos[i].position -= 1; 
     }
-    this.positionEditactual = null
+    id = null
     this.editando = false
     if(this.number != 0 && this.number == this.parrafos.length){
       this.number -= 1
@@ -225,7 +227,24 @@ async takePhotoFrom(imagenType,i){
         }
       }
     },
-    
+    /* {//NUEVO
+      text: this.translate.instant("img-options.grabar"),
+      icon: "videocam",
+      handler: () => {
+        
+      },
+    }, */
+    {//NUEVO
+      text: this.translate.instant("img-options.galery"),
+      icon: "videocam",
+      handler: () => {
+        if(imagenType=='principal'){
+          this.video(this.openVideo)
+        }else if('notPrincipal'){
+          this.video(this.openVideoParrafo)
+        }
+      },
+    },
     {
       text:this.translate.instant("cancel"),
       icon:'close',
@@ -235,7 +254,9 @@ async takePhotoFrom(imagenType,i){
   })
   action.present()
 }
-
+video(fileChooser: ElementRef) {
+  fileChooser.nativeElement.click();
+}
 
 
 /* subirImage(){
@@ -678,6 +699,10 @@ originPrincipaMediaListo(change){
   }else if(change == 1){
       this.agregandoOrigenPrincipaMedia = true;
   }
+}
+redactarArticulo:boolean = false;
+redactar(){
+this.redactarArticulo = true;
 }
 
 }

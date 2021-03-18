@@ -62,6 +62,7 @@ export class RakingYearComponent implements OnInit {
          }
        })
      }
+    
      this.likes = todolosPost.filter((post:any)=>{
       console.log(post.likes.length)
        return (post.likes.length > 0)

@@ -44,7 +44,7 @@
     </ion-col>
   </ion-row>
 </ion-grid>
-<ion-fab-button style="z-index:1000;" *ngIf="userService.User?.profile_user == 'press' " color="secondary" [routerLink]="'/news/create'" class="new"><ion-icon name="add"></ion-icon></ion-fab-button>
+<ion-fab-button style="z-index:1000;" *ngIf="userService.User?.profile_user == 'press' "  [routerLink]="'/news/create'" class="new addNews"><ion-icon name="add"></ion-icon></ion-fab-button>
 
 <!-- Noticias del deporte del Usuario -->
 <ion-card>
@@ -256,5 +256,5 @@
       </ion-col>
     </ion-row>
   </ion-grid>
-  <ion-fab-button style="z-index:1000;" class="b" *ngIf="userService.User?.profile_user == 'press' " color="#0d2140" [routerLink]="'/news/create'" class="new"><ion-icon name="add"></ion-icon></ion-fab-button>
+  <ion-fab-button style="z-index:1000;" *ngIf="userService.User?.profile_user == 'press' "  [routerLink]="'/news/create'" class="new addNews"><ion-icon name="add"></ion-icon></ion-fab-button>
 </ion-content>
