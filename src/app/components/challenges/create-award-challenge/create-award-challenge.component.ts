@@ -157,6 +157,9 @@ export class CreateAwardChallengeComponent implements OnInit {
     this.emojiContainer.nativeElement.onclick = (e) => {
       e.stopPropagation();
     };
+    this.emojiContainer2.nativeElement.onclick = (e) => {
+      e.stopPropagation();
+    };
   }
   openEmojis2(e) {
     this.emojis2 = !this.emojis2;

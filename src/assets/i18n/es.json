@@ -748,6 +748,7 @@
   "sponsorText": "Revisa estos perfiles",
   "challenges": "Desafíos",
   "challenge": {
+    "awardtitle":"Premios",
     "date":"Fecha de Entrega",
     "retado": "te esta retando",
     "shared":"Retar",
@@ -758,7 +759,7 @@
     "recomended": "Cuentas Recomendadas",
     "norecomended": "Aun no hemos podido descifrar tus gustos :(",
     "nocontent": "Sin contenido disponible",
-    "upload": "Sube tu Desafío",
+    "upload": "¡Sube tu reto en SportYeah!",
     "title": "Titulo del Desafío",
     "description": "Descripción",
     "createAward": "Crear Premio",
@@ -767,7 +768,7 @@
     "noAwards": "Sin premios",
     "place": "Posición",
     "titleAward": "Titulo del Premio",
-    "mediaAward": "Imagen del Premio",
+    "mediaAward": "Seleccione una imagen para su premio (Opcional)",
     "retar": "¿Aceptas el Reto",
     "first": "¡Se el primero en crear un reto!",
     "videoErr": "El video no es valido, tiene mas de un minuto de duracion.",
@@ -775,7 +776,18 @@
     "new_challenge": "¡Comienza a retar!",
     "create": "¡Sube tu reto!",
     "public": "¡Deseo que todo SportYeah vea mi desafio!",
-    "Compartir":"¡Comparte el Reto!"
+    "Compartir":"¡Comparte el Reto!",
+    "original" :"Toma Buena",
+    "trys":"Intentos"
+  },
+  "createAward":{
+    "conditions":{
+      "condition":"Ingrese por favor una condición",
+      "date":"Ingrese por favor una fecha para dar el premio",
+      "place":"Ingrese por favor una posición para este premio",
+      "title":"Ingrese por favor un titulo que describa su premio",
+      "description":"Ingrese por favor una descripción para su premio"
+    }
   },
   "save": "Guardar Cambios",
 
@@ -815,7 +827,7 @@
   },
   "sponsorDescription": "Aqui puedes colocar tus patrocinadores",
   "back": "Volver",
-  "uploadAgain": "Intentar de nuevo",
+  "uploadAgain": "¿Salio mal el reto? Intentalo de nuevo",
   "levels-challenge": {
     "nivel1": "NIVEL DIOS",
     "nivel2": "Héroe",

@@ -54,7 +54,6 @@ export class NewPostPage implements OnInit {
     };
     if (this.img) {
       this.form.controls.image.setValue(this.img);
-      this.videoFile = this.img;
     }
   }
 
@@ -207,8 +206,6 @@ export class NewPostPage implements OnInit {
   }
 
   dismiss() {
-    // using the injected ModalController this page
-    // can "dismiss" itself and optionally pass back data
     this.modalController.dismiss({
       dismissed: true,
     });

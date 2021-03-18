@@ -1,4 +1,4 @@
-<ion-header>
+<!--<ion-header>
   <ion-toolbar class="bg-gradient-person">
     <ion-title style="--color: white" *ngIf="!retoExistente"
       ><ion-icon name="medal-outline" style="margin-right: 10px"></ion-icon
@@ -9,7 +9,7 @@
       >{{ "challenge.acceptChallenge" | translate }}</ion-title
     >
   </ion-toolbar>
-</ion-header>
+</ion-header>-->
 <ion-content>
   <div *ngIf="step0" class="text-center" style="padding-bottom: 100px">
     <video
@@ -25,9 +25,10 @@
       <br />
     </video>
 
-    <h3>{{ Challenge.title }}</h3>
-    <br />
-    <p>{{ Challenge.description }}</p>
+      <div style="text-align:left; margin-left:'20px;'">
+      <h3><b>Titulo:</b> {{ Challenge.title }}</h3>
+    <p><b>Descripción:</b> {{ Challenge.description }}</p>
+      </div>
     <br />
     <div class="text-center" *ngIf="Challenge.awards.length > 0">
       <ion-button (click)="showAwards()"
@@ -35,26 +36,26 @@
         >{{ "challenge.awards" | translate }}</ion-button
       >
     </div>
-    <ion-button expand="full" (click)="ready()" class="bottom-button">{{
-      "ready" | translate
-    }}</ion-button>
+    <ion-button  (click)="ready()" fill="outline">
+      <ion-icon name="flame-outline" style="margin-right:5px"></ion-icon>
+      {{ "ready" | translate }}
+    </ion-button>
   </div>
-  <app-videos-c *ngIf="step1" (next)="guardarMedia($event)"></app-videos-c>
-  <app-create-challenge-form
+  <app-videos-c  
     *ngIf="step2"
+    (next)="guardarMedia($event)">
+  </app-videos-c>
+  <app-create-challenge-form
+    *ngIf="step1"
     (next)="guardaForm($event)"
   ></app-create-challenge-form>
-  <app-awards-list
-    *ngIf="step3"
-    [awards]="awards"
-    [creator]="true"
-    (next)="nextAward($event)"
-  ></app-awards-list>
-  <app-create-award-challenge
-    *ngIf="createAward"
-    (save)="saveAward($event)"
-  ></app-create-award-challenge>
-  <div class="text-center" *ngIf="step4">
+
+
+  <div 
+    class="text-center" 
+    *ngIf="step1"
+    style="margin-top: 10px"
+    >
     <ion-list>
       <ion-item>
         <ion-label>{{ "challenge.public" | translate }}</ion-label>
@@ -75,12 +76,16 @@
           style="width: 100px; cursor: pointer"
           (click)="solidarySrc()"
         />
+        <h6>
+          Suba una imagen que represente a su causa 
+          <span class="error">(opcional)</span>
+        </h6>
       </div>
       <div *ngIf="cause.src">
         <img
           [src]="cause.src"
           alt=""
-          style="width: 100px; cursor: pointer"
+          style="width: 200px; cursor: pointer"
           (click)="solidarySrc()"
         />
       </div>
@@ -92,24 +97,57 @@
           [(ngModel)]="cause.cause"
         ></ion-input>
       </ion-item>
+      <p 
+        class="errormsj"
+        *ngIf="cause.cause === ''"
+      >
+        Este campo es obligatorio
+      </p>
+
     </div>
-    <ion-button
-      shape="round"
-      expand="full"
-      class="bottom-button"
-      (click)="saveChallenge()"
-      [disabled]="
-        solidary
-          ? cause.src !== null && cause.cause !== ''
-            ? false
-            : true
-          : false
-      "
-      ><ion-icon name="medal"></ion-icon
-      >{{ "challenge.create" | translate }}</ion-button
-    >
+
+
   </div>
-</ion-content>
-<ion-button color="light" (click)="mc.dismiss()">
-  {{ "back" | translate }}
-</ion-button>
+
+  <app-awards-list
+    *ngIf="step1"
+    [awards]="awards"
+    [creator]="true"
+    (next)="nextAward($event)"
+  ></app-awards-list>
+
+  <div class="text-center">
+    <ion-button
+      style="margin-top:20px;"
+      *ngIf="step1"
+      fill="outline"
+      [disabled]="
+        !formbool 
+      "
+      (click)="finishform()"
+    >
+      {{ "next" | translate }}
+    </ion-button>
+  </div>
+
+  <app-create-award-challenge
+    *ngIf="createAward"
+    (save)="saveAward($event)"
+  ></app-create-award-challenge>
+  </ion-content>
+<ion-icon
+  name="close-outline"
+  (click)="mc.dismiss()"
+  style="
+    color: gray;
+    right: 5px;
+    top: 5px;
+    position: absolute;
+    font-size: 40px;
+    z-index: 9999999;
+    cursor: pointer;
+  "
+></ion-icon>
+<div>
+  
+</div>
