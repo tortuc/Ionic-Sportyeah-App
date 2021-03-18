@@ -22,6 +22,9 @@ const { Camera ,Filesystem} = Plugins;
 export class CreateComponent implements OnInit {
   @ViewChild("openVideo") openVideo: any;
   @ViewChild("openVideoParrafo") openVideoParrafo: any;
+  @ViewChild("sportyeah") sportyeah: any;
+
+  
 constructor(
     private fb:FormBuilder,
     public userService: UserService,
@@ -714,6 +717,29 @@ redactarArticulo:boolean = false;
 redactar(){
 this.redactarArticulo = true;
 }
+
+
+
+/*animateSportyeah(){
+  const image = this.sportyeah
+  image.animate([
+    {
+      height: '400px'
+    },
+    {
+      height: '165px'
+    },
+    
+  ],{
+    duration:2000
+  })
+
+
+ console.log( 'me ejecut0')
+   setTimeout(()=>{ 
+  
+ },2300) 
+}*/
    ngOnInit(): void {
   
   }
