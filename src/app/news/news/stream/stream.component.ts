@@ -8,6 +8,7 @@ import { NewsService } from '../../../service/news.service';
 import { SocketService } from 'src/app/service/socket.service';
 import { Hash } from 'crypto';
 import { keyframes } from '@angular/animations';
+import { Console } from 'console';
 const client: IAgoraRTCClient = AgoraRTC.createClient({ mode: "live", codec: "vp8" });
 
 @Component({
@@ -38,7 +39,11 @@ export class StreamComponent implements OnInit {
   
     this.channel = route.snapshot.paramMap.get('id')
       this.rtc.client = AgoraRTC.createClient({ mode: "live", codec: "vp8" ,role:"audience"});
-     this.subscribe()
+      try {
+             this.subscribe()
+      } catch (error) {
+        console.log('no logre hacerlo')
+      }
     //this.join()
     this.newsService.findById(this.newsService.idNews).toPromise()
     .then((response:any)=>{
@@ -117,7 +122,7 @@ formateSelected */
       await this.rtc.client.subscribe(user, mediaType);
       console.log("subscribe success");
       // If the subscribed track is video.
-      if (mediaType === "video") {
+      if (mediaType === "video" ) {
         // Get `RemoteVideoTrack` in the `user` object.
         const remoteVideoTrack = user.videoTrack;
         // Dynamically create a container in the form of a DIV element for playing the remote video track.
@@ -163,12 +168,7 @@ formateSelected */
     message: this.translate.instant("loading"),
   });
   loading.present();
-  this.rtc.client.on("user-unpublished", user => {
-    // Get the dynamically created DIV container.
-    const playerContainer = document.getElementById(user.uid);
-    // Destroy the container.
-    playerContainer.remove();
-  });
+ 
     // Leave the channel.
     await this.rtc.client.leave();
    
@@ -323,6 +323,12 @@ createReaction(idReaction,link){
     this.socketService.socket.on('new-comment',(comment)=>{
       this.commnets = comment.comment
     })
+    this.rtc.client.on("user-unpublished", user => {
+      // Get the dynamically created DIV container.
+      const playerContainer = document.getElementById(user.uid);
+      // Destroy the container.
+      playerContainer.remove();
+    });
   }
   comments($event){
     this.news.comments = $event

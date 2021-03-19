@@ -102,22 +102,26 @@ createChanel(){
     this.rtc.localVideoTrack = await AgoraRTC.createCameraVideoTrack();//{ encoderConfig: this.formateSelected }
  
     const playerContainer = document.createElement("div");
+    playerContainer.id = 'idVideo'
     playerContainer.style.width = "100%";
     playerContainer.style.height = "100%";
     playerContainer.style.marginLeft = "auto"
     playerContainer.style.marginRight = "auto"
 
     document.getElementById("localPlayer").appendChild(playerContainer);/*  */
-
     this.rtc.localVideoTrack.play(playerContainer);
 
    // Publish the local audio and video tracks to the channel.
    await this.rtc.client.publish([this.rtc.localAudioTrack, this.rtc.localVideoTrack]);
    console.log("publish success!");
 
-
    this.publicar()
    loading.dismiss();
+   setTimeout(() => {
+    const video = document.getElementById('video_'+this.rtc.localVideoTrack._ID)
+    video.style.position = null;
+    console.log('video_'+this.rtc.localVideoTrack._ID)
+   }, 1000);
   }
   async startScreenTransmision() {
     this.createChanel()
@@ -137,6 +141,7 @@ createChanel(){
     
     
     const playerContainer = document.createElement("div");
+    playerContainer.id = 'idVideo';
     playerContainer.style.width = "100%";
     playerContainer.style.height = "100%";
     playerContainer.style.marginLeft = "auto"
@@ -154,8 +159,69 @@ createChanel(){
 
 
   }
+  async startScreen(){
+    this.rtc.localVideoTrack = await AgoraRTC.createScreenVideoTrack(
+      {},
+     "disable"
+       );
+    // Publish the local audio and video tracks to the channel.
+    await this.rtc.client.publish([this.rtc.localVideoTrack]); 
+    const playerContainer = document.createElement("div");
+    playerContainer.id = 'idVideo';
+    playerContainer.style.width = "100%";
+    playerContainer.style.height = "100%";
+    playerContainer.style.marginLeft = "auto"
+    playerContainer.style.marginRight = "auto"
 
-  async  subscribe(){console.log('Precionaste el Subcribe')
+    document.getElementById("localPlayer").appendChild(playerContainer);/*  */
+
+    this.rtc.localVideoTrack.play(playerContainer);
+  }
+  async stopScreen(){
+    await this.rtc.client.unpublish(this.rtc.localVideoTrack);
+    this.rtc.localVideoTrack.close();
+   // Traverse all remote users.
+ 
+    // Destroy the dynamically created DIV container.
+    const playerContainer = document.getElementById('idVideo');
+    playerContainer && playerContainer.remove();
+ 
+  }
+  async startCamera(){
+    this.rtc.localVideoTrack = await AgoraRTC.createCameraVideoTrack();//{ encoderConfig: this.formateSelected }
+    await this.rtc.client.publish(this.rtc.localVideoTrack);
+    const playerContainer = document.createElement("div");
+    playerContainer.id = 'idVideo'
+    playerContainer.style.width = "100%";
+    playerContainer.style.height = "100%";
+    playerContainer.style.marginLeft = "auto"
+    playerContainer.style.marginRight = "auto"
+
+    document.getElementById("localPlayer").appendChild(playerContainer);/*  */
+
+    this.rtc.localVideoTrack.play(playerContainer);
+  }
+  async startMicro(){
+    this.rtc.localAudioTrack = await AgoraRTC.createMicrophoneAudioTrack();
+    await this.rtc.client.publish(this.rtc.localAudioTrack);
+  }
+  async stopCamera(){
+    await this.rtc.client.unpublish(this.rtc.localVideoTrack);
+    this.rtc.localVideoTrack.close();
+   // Traverse all remote users.
+ 
+    // Destroy the dynamically created DIV container.
+    const playerContainer = document.getElementById('idVideo');
+    playerContainer && playerContainer.remove();
+ 
+  }
+  async stopMicro(){
+    await this.rtc.client.unpublish(this.rtc.localAudioTrack);
+    //this.rtc.localAudioTrack.close();
+  }
+
+
+ /*  async  subscribe(){console.log('Precionaste el Subcribe')
   await this.join()
     this.rtc.client.on("user-published", async (user, mediaType) => {
       // Subscribe to a remote user.
@@ -193,10 +259,10 @@ createChanel(){
         console.log('me creo AUDIO AUDIO AUDIO AUDIO AUDIO  ')
 
       }
-    });
-  } 
+    }); 
+  } */
 
- async unSubscribe(){
+ /* async unSubscribe(){
     this.rtc.client.on("user-unpublished", user => {
       // Get the dynamically created DIV container.
       const playerContainer = document.getElementById(user.uid);
@@ -205,7 +271,7 @@ createChanel(){
     });
       // Leave the channel.
       await this.rtc.client.leave();
-  }
+  } */
   async  leaveCall() {
     this.socketService.socket.emit('out-news',{id:this.news.news._id})
     let loading = await this.loadingCtrl.create({
@@ -239,15 +305,15 @@ createChanel(){
    //Elimina la noticia
    console.log('estoy deleteando NEWS')
 await   this.newsService.deleteNews(this.newsId).subscribe((response)=>{
-  console.log(response)
+  console.log('ok')
 })
 
     //Elimina la publicacion
     console.log('estoy deleteando POST')
 
     this.postService.deleteOne(this.postId).subscribe((response)=>{
-     console.log(response)
-   }) 
+      console.log('ok')
+    }) 
    
   }
   
@@ -314,7 +380,6 @@ async  publicar(){
    this.newsService.create(this.form.value).subscribe((response:any)=>{
     this.newsService.findById(response._id).subscribe((response)=>{
       this.news = response;
-      console.log(response)
     }) 
     this.newsId = response._id
     let post = this.formNews.value; 

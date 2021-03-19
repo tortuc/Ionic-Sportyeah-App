@@ -715,31 +715,18 @@ createStream(){
 }
 redactarArticulo:boolean = false;
 redactar(){
+this.animateSportyeah()
 this.redactarArticulo = true;
 }
 
 
 
-/*animateSportyeah(){
-  const image = this.sportyeah
-  image.animate([
-    {
-      height: '400px'
-    },
-    {
-      height: '165px'
-    },
-    
-  ],{
-    duration:2000
-  })
-
-
- console.log( 'me ejecut0')
-   setTimeout(()=>{ 
-  
- },2300) 
-}*/
+animateSportyeah(){
+  if (this.sportyeah.nativeElement.classList.contains("logoSport")) {
+    this.sportyeah.nativeElement.classList.remove("logoSport");
+    this.sportyeah.nativeElement.classList.add("logoSportBig");
+  }
+}
    ngOnInit(): void {
   
   }
