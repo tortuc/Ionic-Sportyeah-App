@@ -63,39 +63,6 @@
   </ul>
 </div>
 
-<div
-  *ngIf="intentos.length > 0 && media"
-  class="text-center"
->
-<ion-item-divider>
-    <ion-label>
-{{'challenge.trys' | translate}}
-            </ion-label>
-</ion-item-divider>
-
-  <hr />
-  <ion-row>
-    <ion-col *ngFor="let intento of intentos">
-      <video
-        controlslist="nodownload"
-        controls="controls"
-        preload="metadata"
-        id="video"
-        style="
-          width: 180px;
-          height: 150px;
-
-        "
-        webkit-playsinline="webkit-playsinline"
-        class=" bg-black"
-      >
-        <source [src]="intento | safeUrl" type="video/mp4" />
-        <source [src]="intento | safeUrl" type="video/ogg" />
-        <br />
-      </video>
-    </ion-col>
-  </ion-row>
-</div>
 <div 
   *ngIf="media && !videoHere" 
   class="text-center"
@@ -138,23 +105,6 @@
   </video>
 
 
-  <ion-button 
-    color="primary" 
-    (click)="again()"
-  >
-    <ion-icon name="sad-outline" style="margin-right:5px;"></ion-icon>
-    {{ "uploadAgain" | translate }}
-  </ion-button>
-
-    <!--class="bottom-button"-->
-
-  <ion-list>
-    <ion-item>
-      <ion-label>{{ "intentos" | translate }}</ion-label>
-      <ion-toggle color="primary" [(ngModel)]="subirIntentos"></ion-toggle>
-    </ion-item>
-  </ion-list>
-
   <ion-button
     *ngIf="videoValid"
     fill="outline"
@@ -164,4 +114,67 @@
     {{ "challenge.create" | translate }}
   </ion-button
   >
-  </div>
+
+
+  <br>
+
+  <ion-button 
+    fill="outline"  
+    (click)="close()"
+  >
+    {{'back'|translate}}
+  </ion-button>
+    
+  <br>
+  
+  <ion-button 
+    color="primary" 
+    (click)="again()"
+  >
+    <ion-icon name="sad-outline" style="margin-right:5px;"></ion-icon>
+    {{ "uploadAgain" | translate }}
+  </ion-button>
+
+
+<div
+  *ngIf="intentos.length > 0 && media"
+  class="text-center"
+>
+<ion-item-divider>
+    <ion-label>
+{{'challenge.trys' | translate}}
+            </ion-label>
+</ion-item-divider>
+
+  <ion-list>
+    <ion-item>
+      <ion-label>{{ "intentos" | translate }}</ion-label>
+      <ion-toggle color="primary" [(ngModel)]="subirIntentos"></ion-toggle>
+    </ion-item>
+  </ion-list>
+
+  <hr />
+  <ion-row>
+    <ion-col *ngFor="let intento of intentos">
+      <video
+        controlslist="nodownload"
+        controls="controls"
+        preload="metadata"
+        id="video"
+        style="
+          width: 100%;
+          height: 150px;
+        "
+        webkit-playsinline="webkit-playsinline"
+        class=" bg-black"
+      >
+        <source [src]="intento | safeUrl" type="video/mp4" />
+        <source [src]="intento | safeUrl" type="video/ogg" />
+        <br />
+      </video>
+    </ion-col>
+  </ion-row>
+</div>
+
+
+</div>

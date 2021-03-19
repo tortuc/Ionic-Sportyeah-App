@@ -748,6 +748,11 @@
   "sponsorText": "Revisa estos perfiles",
   "challenges": "Desafíos",
   "challenge": {
+    "deleteModal":{
+      "sure":"¿Desea crear su reto?",
+      "yes": "¡Crear!",
+      "no": "Cancelar"
+    },
     "awardtitle":"Premios",
     "date":"Fecha de Entrega",
     "retado": "te esta retando",
@@ -763,7 +768,7 @@
     "title": "Titulo del Desafío",
     "description": "Descripción",
     "createAward": "Crear Premio",
-    "createChallenge": "Crea tu Desafío",
+    "createChallenge": "¿Esta es la toma buena? ¡Sube tu reto!",
     "acceptChallenge": "Acepta este Desafío",
     "noAwards": "Sin premios",
     "place": "Posición",

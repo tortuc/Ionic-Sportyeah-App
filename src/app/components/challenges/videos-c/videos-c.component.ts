@@ -8,6 +8,7 @@ import {
   EventEmitter,
   OnInit,
   Output,
+  Input,
   ViewChild,
 } from "@angular/core";
 
@@ -18,6 +19,17 @@ import {
 })
 export class VideosCComponent implements OnInit {
   @ViewChild("fileChooser") fileChooser: any;
+  @Input() mediaa: any;
+  @Input() intentoss:any;
+
+  ngOnInit() {
+    this.media = this.mediaa
+    this.intentos = this.intentoss
+    const int = setInterval(() => {
+      if (this.verifyVideoMinutes() === 1) clearInterval(int);
+    }, 1000);
+  }
+
   @Output() next = new EventEmitter<any>();
   public media: string = null;
   public videoValid: boolean = null;
@@ -26,6 +38,8 @@ export class VideosCComponent implements OnInit {
   public intentos: string[] = [];
   public subirIntentos: boolean = true;
   constructor(
+    public alertController: AlertController,
+    public translate: TranslateService,
     public img: ImgVideoUpload,
     public alert: AlertController,
     public trans: TranslateService,
@@ -92,19 +106,41 @@ export class VideosCComponent implements OnInit {
   }
   async loadingI() {
     const loading = await this.loadingController.create({
-      message: `Loading...`,
+      message: `Cargando...`,
     });
     await loading.present();
     return loading;
   }
 
   nextFunc() {
-    this.subirIntentos
-      ? this.next.emit({ media: this.media, intentos: this.intentos })
-      : this.next.emit({ media: this.media, intentos: [] });
+    this.presentAlert()
   }
 
-  ngOnInit() {}
+   async presentAlert() {
+     const alert = await this.alertController.create({
+             cssClass: 'my-custom-class',
+             header: this.translate.instant('challenge.deleteModal.sure'),
+             buttons: [
+               {
+                 text:  this.translate.instant('challenge.deleteModal.no'),
+                 role:"cancel",
+               },
+               {
+                 text:  this.translate.instant('challenge.deleteModal.yes'),
+                 role:"yes",
+                 handler:()=>{
+                  this.subirIntentos
+                    ? 
+                    this.next.emit({ media: this.media, intentos: this.intentos })
+                    : this.next.emit({ media: this.media, intentos: [] });
+                 }
+               }
+             ]
+           });
+
+     await alert.present();
+   }
+
 
   camaraBrowserAns(ans: any) {
     this.media = ans.r;
@@ -115,5 +151,9 @@ export class VideosCComponent implements OnInit {
         ans.loading.dismiss();
       }
     }, 1000);
+  }
+
+  close(){
+    this.next.emit({ media: this.media, intentos: this.intentos, no:true })
   }
 }

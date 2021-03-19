@@ -97,14 +97,18 @@
     ></a>
   </div>
   <ion-list>
-    <ion-input
-      type="text"
-      position="stacked"
-      placeholder="{{ 'search' | translate }}"
-      [(ngModel)]="name"
-      (ngModelChange)="onChange($event)"
-      *ngIf="users.length > 0"
-    ></ion-input>
+    <ion-item>
+      <ion-input
+        type="text"
+        position="stacked"
+        placeholder="{{ 'search' | translate }}"
+        [(ngModel)]="name"
+        (ngModelChange)="onChange($event)"
+      ></ion-input>
+    </ion-item>
+    <h3 *ngIf="users.length < 1">
+      No se han encontrado seguidos
+    </h3>
     <ion-item *ngFor="let user of users">
       <ion-thumbnail slot="start">
         <ion-avatar class="mini">
@@ -116,3 +120,17 @@
     </ion-item>
   </ion-list>
 </ion-content>
+<ion-icon
+  name="close-outline"
+  (click)="mc.dismiss()"
+  style="
+    color: gray;
+    right: 5px;
+    top: 5px;
+    position: absolute;
+    font-size: 40px;
+    z-index: 9999999;
+    cursor: pointer;
+  "
+></ion-icon>
+

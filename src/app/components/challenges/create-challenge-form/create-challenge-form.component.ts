@@ -7,6 +7,7 @@ import {
   EventEmitter,
   OnInit,
   Output,
+  Input,
   ViewChild,
 } from "@angular/core";
 
@@ -17,6 +18,7 @@ import {
 })
 export class CreateChallengeFormComponent implements OnInit {
   @Output() next = new EventEmitter<void>();
+  @Input() formV : any;
   @ViewChild("FormElementRef") inputNode: any;
   @ViewChild("FormElementRef2") inputNode2: any;
   @ViewChild("emojiButton") emojiButton: ElementRef;
@@ -35,6 +37,10 @@ export class CreateChallengeFormComponent implements OnInit {
   constructor(public fb: FormBuilder) {}
 
   ngOnInit() {
+    if(this.formV){
+      this.form.controls.title.setValue(this.formV.title)
+      this.form.controls.description.setValue(this.formV.description)
+    }
     window.onclick = () => {
       this.emojis = false;
       this.emojis2 = false;

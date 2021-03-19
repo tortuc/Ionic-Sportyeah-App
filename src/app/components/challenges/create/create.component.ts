@@ -82,9 +82,16 @@ export class CreateChallengeComponent implements OnInit {
   }
   intentos: any[] = [];
   guardarMedia(res: any) {
-    this.media = res.media;
-    this.intentos = res.intentos;
-    this.saveChallenge();
+    if(!res.no){
+      this.media = res.media;
+      this.intentos = res.intentos;
+      this.saveChallenge();
+    }else{
+      this.media = res.media;
+      this.intentos = res.intentos;
+      this.step2 = false;
+      this.step1 = true;
+    }
   }
 
   guardaForm(form: any) {

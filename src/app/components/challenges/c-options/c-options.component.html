@@ -3,22 +3,18 @@
     <ion-item (click)="deleteChallengeButton()"
       style="cursor:pointer;"   
     >
-      <ion-img 
-        style="width: 24px;height: 24px;margin-right: 5px;" 
-        src="https://img.icons8.com/nolan/64/delete-sign.png"
-      >
-      </ion-img> 
+      <ion-icon name="trash-outline"
+        style="margin-right:5px; color:red;"
+      ></ion-icon>
       Eliminar
     </ion-item>
 
     <ion-item (click)="close()"
       style="cursor:pointer;"   
     >
-      <ion-img 
-        style="width: 24px;height: 24px;margin-right: 5px;" 
-        src="https://img.icons8.com/nolan/64/circled-left--v1.png"
-      >
-      </ion-img> 
+      <ion-icon name="close-outline"
+        style="margin-right:5px; color:red;"
+      ></ion-icon>
       Cerrar
     </ion-item>
   </ion-list>
