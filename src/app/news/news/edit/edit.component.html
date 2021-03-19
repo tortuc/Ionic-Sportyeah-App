@@ -518,8 +518,8 @@
            <ion-button (click)="consol() " *ngIf="!editando"  >{{'news.add' | translate}}</ion-button>
            <ion-button *ngIf="!editando"   (click)="cancelar()" >{{'news.cancel' | translate}}</ion-button>
            <ion-button *ngIf="parrafos.length > 0 && positionEditactual != null"  (click)="EditParrafo()" >{{'news.edit' | translate}}</ion-button>
-           <ion-button *ngIf="parrafos.length > 0 && positionEditactual != null" style="--background:rgba(255, 100, 100, 0.685);" (click)="eliminarParrafo()" >{{'news.delete' | translate}}</ion-button>
-           <ion-button *ngIf="parrafos.length > 0 && positionEditactual != null"  (click)="cancelar()" >{{'news.cancel' | translate}}</ion-button><br>
+<!--            <ion-button *ngIf="parrafos.length > 0 && positionEditactual != null" style="--background:rgba(255, 100, 100, 0.685);" (click)="eliminarParrafo(parrafo.position)" >{{'news.delete' | translate}}</ion-button>
+ -->           <ion-button *ngIf="parrafos.length > 0 && positionEditactual != null"  (click)="cancelar()" >{{'news.cancel' | translate}}</ion-button><br>
            <span *ngIf="parrafos.length > 0 && positionEditactual != null">{{'news.editParagraph' | translate}}: {{positionEditactual+1}}...: </span>
          </div>
           </ion-col>
