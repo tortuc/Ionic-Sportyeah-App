@@ -1,6 +1,9 @@
 <ion-item>
   <p style="margin-left: 30px; margin-right: 10px">
-    <span style="font-weight: bold; font-size: 25px"> {{ a.place }}º </span>
+    <span style="font-weight: bold; font-size: 25px"> 
+      {{ a.place }}º 
+      <ion-icon name="trophy-outline" style="margin-left:5px;"></ion-icon>
+    </span>
   </p>
   <p>{{ a.title }}</p>
   <ion-button *ngIf="!open" color="light" class="last" (click)="open = true"

@@ -1,8 +1,8 @@
 <ion-content>
   <form [formGroup]="form">
-    <span *ngIf="form.controls.message.value == ''" class="fake-placeholder">{{
-      "new_comment_placeholder" | translate
-    }}</span>
+    <span *ngIf="form.controls.message.value == ''" class="fake-placeholder">
+      {{ "new_comment_placeholder" | translate }}
+    </span>
     <div
       style="
         max-height: 200px;
@@ -29,7 +29,8 @@
           <ion-img [src]="user.user.photo"></ion-img>
         </ion-avatar>
         <span style="align-self: center; margin-left: 3px; user-select: none">
-          {{ user.user.name }} {{ user.user.last_name }}</span
+          {{ user.user.name }} {{ user.user.last_name }}
+        </span
         >
       </div>
     </div>
