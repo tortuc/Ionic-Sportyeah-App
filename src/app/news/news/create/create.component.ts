@@ -1,4 +1,4 @@
-import { Component, OnInit   } from '@angular/core';
+import { Component, OnInit, ViewChild  } from '@angular/core';
 //import { FormBuilder, FormControl,FormGroup} from '@angular/forms';
 import { TranslateService } from "@ngx-translate/core";
 import { UserService } from "../../../service/user.service";
@@ -10,6 +10,7 @@ import { JdvimageService } from 'src/app/service/jdvimage.service';
 import { NewsService } from '../../../service/news.service';
 import { ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import {  ElementRef } from "@angular/core";
 
 const { Camera ,Filesystem} = Plugins;
 
@@ -19,7 +20,11 @@ const { Camera ,Filesystem} = Plugins;
   styleUrls: ['./create.component.scss'],
 })
 export class CreateComponent implements OnInit {
+  @ViewChild("openVideo") openVideo: any;
+  @ViewChild("openVideoParrafo") openVideoParrafo: any;
+  @ViewChild("sportyeah") sportyeah: any;
 
+  
 constructor(
     private fb:FormBuilder,
     public userService: UserService,
@@ -164,12 +169,12 @@ EditParrafo(){
   this.deporte= `Escribe el Subtítulo # ${this.parrafos.length+1} `; */
   this.agregandoParrafo = false;
 }
-eliminarParrafo(){
-  this.parrafos.splice(this.positionEditactual,1)
-  for(let i= this.positionEditactual; i <= this.parrafos.length-1; i++){
+eliminarParrafo(id){
+  this.parrafos.splice(id,1)
+  for(let i= id; i <= this.parrafos.length-1; i++){
     this.parrafos[i].position -= 1; 
   }
-  this.positionEditactual = null
+  id = null
   this.editando = false
   if(this.number != 0 && this.number == this.parrafos.length){
     this.number -= 1
@@ -225,10 +230,26 @@ async takePhotoFrom(imagenType,i){
         }else if('notPrincipal'){
           this.takePictures(CameraSource.Photos,i)
         }
-      
       }
     },
-    
+    /* {//NUEVO
+      text: this.translate.instant("img-options.grabar"),
+      icon: "videocam",
+      handler: () => {
+        
+      },
+    }, */
+    {//NUEVO
+      text: this.translate.instant("img-options.galery"),
+      icon: "videocam",
+      handler: () => {
+        if(imagenType=='principal'){
+          this.video(this.openVideo)
+        }else if('notPrincipal'){
+          this.video(this.openVideoParrafo)
+        }
+      },
+    },
     {
       text:this.translate.instant("cancel"),
       icon:'close',
@@ -238,7 +259,9 @@ async takePhotoFrom(imagenType,i){
   })
   action.present()
 }
-
+video(fileChooser: ElementRef) {
+  fileChooser.nativeElement.click();
+}
 
 async takePictures(source,i) {
   let formData = new FormData()
@@ -288,13 +311,11 @@ async takePictures(source,i) {
 
 async takePrincipal(source) {
   let formData = new FormData()
-
  Camera.getPhoto({
     source,
     quality: 90,
     allowEditing: false,
-    resultType: CameraResultType.DataUrl,
-    
+    resultType: CameraResultType.DataUrl, 
   })
   .then(async (image)=>{
     let loading = await this.loading.create({message:this.translate.instant('loading')})
@@ -404,6 +425,9 @@ closeVideoNotPrincipal(i){
 async uploadVideo($event,type:string,i){
   let form = new FormData();
   if($event.target.files[0] && type == 'principal'){
+    if(this.imagenSelected){
+      this.imagenSelected = undefined
+    }
     this.urlVideo = URL.createObjectURL($event.target.files[0])
     this.videoFile = $event.target.files[0]
     form.append("video", this.videoFile);
@@ -507,10 +531,12 @@ origenSelect = [
 miNoticia = undefined;
 origenListoMio(){
   if(this.miNoticia == 0){
+    console.log('mi noticia es 0')
     this.origen = 'De mi propiedad'
     this.miNoticia = undefined;
     this.agregandoOrigen = true;
   }else if(this.miNoticia == 1){
+    console.log('mi noticia es 0')
     this.origen = undefined;
     this.agregandoOrigen = false;
   }
@@ -686,6 +712,20 @@ id;
 }
 createStream(){
   this.router.navigate([`/news/createStream/${this.makeid(22)}`])
+}
+redactarArticulo:boolean = false;
+redactar(){
+this.animateSportyeah()
+this.redactarArticulo = true;
+}
+
+
+
+animateSportyeah(){
+  if (this.sportyeah.nativeElement.classList.contains("logoSport")) {
+    this.sportyeah.nativeElement.classList.remove("logoSport");
+    this.sportyeah.nativeElement.classList.add("logoSportBig");
+  }
 }
    ngOnInit(): void {
   

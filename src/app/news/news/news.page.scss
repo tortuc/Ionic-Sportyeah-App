@@ -56,7 +56,6 @@
   }
 
   @media screen and (max-width:440px){
-
     .title:before {
         content: "";
         display: block;
@@ -78,9 +77,6 @@
         top: 50%;
         position: absolute;
       }
-      
-     
-   
   }
 
   .threeNews{
@@ -95,4 +91,9 @@
     font-size: 18px !important;
     color:black ;
     cursor: pointer;
+  }
+   
+  .addNews{
+    --background: black;
+
   }

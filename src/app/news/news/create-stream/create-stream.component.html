@@ -4,9 +4,12 @@
     <ion-buttons slot="start">
       <ion-back-button style="color: white"></ion-back-button>
     </ion-buttons>
-    <ion-buttons *ngIf="begingStream"  slot="end">
-      <ion-button style="background:#ceceff ;" (click)="leaveCall()">leave Call</ion-button>
-      <h3 style="font-size:10px;color: red;">live</h3>
+    <!-- <div *ngIf="begingStream"  style="position: absolute;left: 76%;top: 10%;z-index: 10000;">
+      <ion-button (click)="leaveCall()">Abandonar directo</ion-button>
+     <h3  style="font-size:10px;color: red;">live</h3> 
+    </div> -->
+    <ion-buttons *ngIf="begingStream"   (click)="leaveCall()" slot="end">
+      <ion-icon style="font-size: 36px;cursor: pointer;color:rgb(212, 99, 99) ;" name="power-outline"></ion-icon>
     </ion-buttons>
     <ion-title style="--color: white">{{ 'news.streaming'| translate}}</ion-title>
     
@@ -19,12 +22,12 @@
         <ion-grid>
           <ion-row >
             <ion-col style="text-align: center;" >
-              <ion-button [disabled]="(titulo1 != '' && titulo1 != null) && (deporte != '' && deporte != null) && (titlebool) ?false:true" (click)="startBasicCall()">Start Directo</ion-button>
-              <h3 style="font-size:10px">Transmitir desde la cámara</h3>
+              <ion-button [disabled]="(titulo1 != '' && titulo1 != null) && (deporte != '' && deporte != null)  ?false:true" (click)="startBasicCall()">Transmitir desde la cámara</ion-button>
+              <!-- <h3 style="font-size:10px">Transmitir desde la cámara</h3> -->
             </ion-col>
             <ion-col style="text-align: center;" >
-              <ion-button [disabled]="(titulo1 != '' && titulo1 != null) && (deporte != '' && deporte != null) && (titlebool) ?false:true" (click)="startScreenTransmision()">Start Screen</ion-button>       
-              <h3 style="font-size:10px">Transmision de pantalla</h3>
+              <ion-button [disabled]="(titulo1 != '' && titulo1 != null) && (deporte != '' && deporte != null)  ?false:true" (click)="startScreenTransmision()">Transmision de pantalla</ion-button>       
+              <!-- <h3 style="font-size:10px">Transmision de pantalla</h3> -->
             </ion-col>
             <!-- <ion-col *ngIf="begingStream" style="text-align: center;" >
               <ion-button (click)="leaveCall()">leave Call</ion-button>
@@ -43,20 +46,29 @@
 <!--     <ion-button (click)="subscribe()">subcribir Call</ion-button>
         <ion-button (click)="unSubscribe()">unSubscribe Call</ion-button> -->
       </ion-col>
-      <ion-col size="12">
-        <ion-item *ngIf="!titlebool">
+      <ion-col >
+        <ion-item *ngIf="!begingStream ">
           <ion-label>{{'news.title' | translate}}</ion-label>
           <ion-input  style="background: white; color: black;" placeholder="Título del stream" [(ngModel)]="titulo1"></ion-input>
-          <ion-button (click)="tituloListo()" [disabled]="(titulo1 != null && titulo1 != '')?false:true"  float-right ion-button ><ion-icon name="add"></ion-icon></ion-button>
-        </ion-item>
-        <ion-item *ngIf="!deporte">
+<!--           <ion-button (click)="tituloListo()" [disabled]="(titulo1 != null && titulo1 != '')?false:true"  float-right ion-button ><ion-icon name="add"></ion-icon></ion-button>
+ -->        </ion-item>
+        <ion-item  *ngIf="!begingStream ">
           <ion-label position="floating">{{'sport.sport' | translate}}</ion-label>
-            <ion-select  [(ngModel)]="deporte">
+            <ion-select interface="popover" [(ngModel)]="deporte">
               <ion-select-option (click)="deporteListo()" *ngFor="let sport of sports" [value]="sport" >{{ 'sport.'+sport| translate}}</ion-select-option>              
             </ion-select>
           </ion-item>
-        <h4 *ngIf="deporte" style="text-align: center;color: #737373;font-size: 14px;">{{ 'sport.'+deporte| translate}}<ion-icon *ngIf="!begingStream"  (click)="deporteListo()" class="editIcon" name="pencil-outline" ></ion-icon></h4>
-        <h1 *ngIf="titlebool" style="text-align: center;font-size: 30px;">{{titulo1}}<ion-icon *ngIf="!begingStream" (click)="tituloListo()"  class="editIcon" name="pencil-outline" ></ion-icon></h1>
+        <h4 *ngIf="begingStream" style="text-align: center;color: #737373;font-size: 14px;">{{ 'sport.'+deporte| translate}}</h4>
+        <h1 *ngIf="begingStream" style="text-align: center;font-size: 30px;">{{titulo1}}</h1>
+      </ion-col>
+      <ion-col *ngIf="begingStream " >
+        <ion-button (click)="stopMicro()" [disabled]="(titulo1 != null && titulo1 != '')?false:true"  float-right ion-button ><ion-icon name="mic-off-outline"></ion-icon></ion-button>
+        <ion-button (click)="startMicro()" [disabled]="(titulo1 != null && titulo1 != '')?false:true"  float-right ion-button ><ion-icon name="mic-outline"></ion-icon></ion-button>
+        <ion-button (click)="stopCamera()" [disabled]="(titulo1 != null && titulo1 != '')?false:true"  float-right ion-button ><ion-icon name="videocam-off-outline"></ion-icon></ion-button>
+        <ion-button (click)="startCamera()" [disabled]="(titulo1 != null && titulo1 != '')?false:true"  float-right ion-button ><ion-icon name="videocam-outline"></ion-icon></ion-button>
+        <ion-button (click)="startScreen()" [disabled]="(titulo1 != null && titulo1 != '')?false:true"  float-right ion-button ><ion-icon name="desktop-outline"></ion-icon></ion-button>
+        <ion-button (click)="stopScreen()" [disabled]="(titulo1 != null && titulo1 != '')?false:true"  float-right ion-button >stopScreen</ion-button>
+
       </ion-col>
       <ion-col style="text-align: center;" 	size-xl="8"	size-xs="12">
         

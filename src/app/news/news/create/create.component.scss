@@ -36,3 +36,24 @@
     height: 114px !important;
   }
 
+.logoSport {
+    height: 440px;
+}
+.logoSportBig {
+    height: 165px;
+    animation-name: example;
+    animation-duration: 1s;
+} 
+.logoSportOpposite {
+    height: 440px;
+    animation-name: exampleOpposite;
+    animation-duration: 1s;
+}
+@keyframes example {
+        from {height: 440px;}
+        to {height: 165px;}
+      }
+@keyframes exampleOpposite {
+    from {height:165px;}
+    to {height:440px;}
+}

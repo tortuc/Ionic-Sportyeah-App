@@ -203,16 +203,16 @@
 
  
          <!--  Este muestra el contenido para crear la noticia -->
-          <ion-content *ngIf="!listoPublicar" class="bg-gradient-person">
+          <ion-content *ngIf="!listoPublicar" style="background: white;">
             <ion-grid>
               <ion-row>
                 <ion-col style="text-align: center;color:white" size="12">
-                  <ion-text  color="dark">
-                    <h3 style="color:white" >{{ 'news.newNews' | translate }}</h3>
-                  </ion-text>
-                  <ion-button  (click)="todoConOrigen()" [disabled]="(titulo1 != null && titulo1 != '') && (deporte != null && deporte != '') && ((urlVideo != null && urlVideo != '') || (parrafos.length > 0)) && ((origen != null && origen != '')) ?false:true"  >Listo para publicar</ion-button>
-                  <ion-button  (click)="createStream()"  >Transmitir</ion-button>
-
+                  <div style="text-align: center;">
+                    <img class="logoSport" #sportyeah src="https://i.ibb.co/g6TFj6G/Logo-TRANSPARENTE.png" alt="logoSportyeah!" >
+                    <h1 style="color: black;">{{ 'news.newNews' | translate }}</h1>
+                  </div>
+                  <ion-button *ngIf="!redactarArticulo" (click)="redactar()">Redactar Artículo</ion-button>
+                  <ion-button *ngIf="!redactarArticulo" (click)="createStream()">Transmitir</ion-button>
                 </ion-col>
                <!--  <ion-col size="12">
                   <ion-select [(ngModel)]="formateSelected">
@@ -233,41 +233,40 @@
                   </div>
                 
                 </ion-col> -->
-        <ion-col size="12">
-          <div style="background:white; text-align: center;width: 85%;margin: auto;">
-           
+        <ion-col *ngIf="redactarArticulo" size="12">
+
            <ion-grid>
             <ion-row>
               <ion-col size="12">
-                   <!--  Header de la noticia -->
+              <!--  Header de la noticia -->
             <div>
-              <ion-item *ngIf="!titlebool">
+              <ion-item ><!-- *ngIf="!titlebool" -->
                 <ion-label>{{'news.title' | translate}}</ion-label>
-                <ion-input  style="background: white; color: black;" placeholder="Título" [(ngModel)]="titulo1"></ion-input>
-                <ion-button (click)="tituloListo()" [disabled]="(titulo1 != null && titulo1 != '')?false:true"  float-right ion-button ><ion-icon name="add"></ion-icon></ion-button>
-              </ion-item>
-              <ion-item *ngIf="!subTitlebool">
+                <ion-input  style="background: white; color: black;"  [(ngModel)]="titulo1"></ion-input>
+<!--                 <ion-button (click)="tituloListo()" [disabled]="(titulo1 != null && titulo1 != '')?false:true"  float-right ion-button ><ion-icon name="add"></ion-icon></ion-button>
+ -->              </ion-item>
+              <ion-item ><!-- *ngIf="!subTitlebool" -->
                 <ion-label>{{'news.subTitle' | translate}}</ion-label>
-                <ion-input  style="background: white; color: black;" placeholder="Subtítulo" [(ngModel)]="subTitle"></ion-input>
-                <ion-button (click)="subTituloListo(1)" [disabled]="(subTitle != null && subTitle != '')?false:true"  float-right ion-button ><ion-icon name="add"></ion-icon></ion-button>
-              </ion-item>
-              <ion-item *ngIf="!deporte">
+                <ion-input  style="background: white; color: black;"  [(ngModel)]="subTitle"></ion-input>
+<!--                 <ion-button (click)="subTituloListo(1)" [disabled]="(subTitle != null && subTitle != '')?false:true"  float-right ion-button ><ion-icon name="add"></ion-icon></ion-button>
+ -->              </ion-item>
+              <ion-item ><!-- *ngIf="!deporte" (click)="deporteListo()"-->
               <ion-label position="floating">{{'sport.sport' | translate}}</ion-label>
                 <ion-select  [(ngModel)]="deporte">
-                  <ion-select-option (click)="deporteListo()" *ngFor="let sport of sports" [value]="sport" >{{ 'sport.'+sport| translate}}</ion-select-option>              
+                  <ion-select-option  *ngFor="let sport of sports" [value]="sport" >{{ 'sport.'+sport| translate}}</ion-select-option>              
                 </ion-select>
               </ion-item> 
-              <h4 *ngIf="deporte" style="text-align: center;color: #737373;font-size: 14px;">{{ 'sport.'+deporte| translate}}<ion-icon  (click)="deporteListo()" class="editIcon" name="pencil-outline" ></ion-icon></h4>
+             <!--  <h4 *ngIf="deporte" style="text-align: center;color: #737373;font-size: 14px;">{{ 'sport.'+deporte| translate}}<ion-icon  (click)="deporteListo()" class="editIcon" name="pencil-outline" ></ion-icon></h4>
               <h1 *ngIf="titlebool" style="text-align: center;font-size: 30px;">{{titulo1}}<ion-icon (click)="tituloListo()"  class="editIcon" name="pencil-outline" ></ion-icon></h1>
               <h2 *ngIf="subTitlebool" style="text-align: center;color: #5a5a5a;">{{subTitle}}<ion-icon (click)="subTituloListo(1)"  class="editIcon" name="pencil-outline" ></ion-icon></h2>
-              <ion-item>
+              --> <ion-item>
                 <ion-label>
                   <ion-text color="black">
                     <h1 style="font-size:14px">{{userService.User?.name}} {{userService.User?.last_name}} </h1>
                   </ion-text>
                 </ion-label>
                 <ion-text color="black">
-                  <h2 style="font-size:14px" >{{fecha}}</h2>
+                  <h2 style="font-size:14px">{{fecha}}</h2>
                 </ion-text>   
               </ion-item>
             </div>
@@ -275,49 +274,60 @@
            
 
 
-            <ion-col size="6">
+            <ion-col style="text-align: center;" size="12">
               <!-- Boton para imagen Principal -->
-             <p *ngIf="!imagenSelected && !urlVideo">Imagen principal</p> 
+             <p *ngIf="!imagenSelected && !urlVideo">Imagen/Video principal</p> 
              <ion-button *ngIf="!imagenSelected && !urlVideo" style="text-align: center;" (click)="takePhotoFrom('principal',1)"  >
               <ion-icon  name="images" style="--color: black;font-size:30px" ></ion-icon>
             </ion-button> 
-          </ion-col>
-          <ion-col size="6">
-            <!-- Boton para Video Principal -->
+
             <div *ngIf="!urlVideo">
-                    <input
-                      #openVideo
-                      type="file"
-                      accept="video/*"
-                      (change)="uploadVideo($event,'principal',1)"
-                      hidden
-                    />
-                    <p *ngIf="!imagenSelected && !urlVideo">Video principal</p> 
-                    <ion-button *ngIf="!imagenSelected" (click)="openVideo.click()">
-                      <ion-icon name="videocam"></ion-icon>
-                    </ion-button>
-            </div>
+              <input
+                #openVideo
+                type="file"
+                accept="video/*"
+                (change)="uploadVideo($event,'principal',1)"
+                hidden
+              />
+              <!-- <p *ngIf="!imagenSelected && !urlVideo">Video principal</p> 
+              <ion-button *ngIf="!imagenSelected" (click)="openVideo.click()">
+                <ion-icon name="videocam"></ion-icon>
+              </ion-button> -->
+      </div>
           </ion-col>
-          <ion-col size="12">
-            <!-- Cuadro para cambiar imagen pricipal -->
-            <ion-card style="background-color: rgb(255, 219, 219);" *ngIf="open">
+          <!--<ion-col size="6">
+             Boton para Video Principal
+            
+          </ion-col> -->
+         <!-- <ion-col size="12">
+             Cuadro para cambiar imagen pricipal
+             <ion-card style="background-color: rgb(255, 219, 219);" *ngIf="open">
                 <ion-card-header>
                   <ion-card-title style="text-align: center;">{{ 'news.changePrincipalImage' | translate}}<span><ion-icon style="color: red;" (click)="closeImage()" name="close-outline"></ion-icon></span></ion-card-title>
                 </ion-card-header>
                   <ion-card-content>
-                    <!-- Boton para cambiar imagen Principal -->
-                    <ion-button  style="text-align: center;" (click)="takePhotoFrom('principal', 1 )"  >
-                      <ion-icon  name="images" style="--color: black;font-size:30px" ></ion-icon>
+                    Boton para cambiar imagen Principal
+                    <ion-button  style="text-align: center;height: 25px;" (click)="takePhotoFrom('principal', 1 )">
+                      <ion-icon  name="pencil-outline" style="--color: black;font-size:20px" ></ion-icon>
                     </ion-button>
-                    <ion-button  style="text-align: center;" (click)="deleteImagePrincipal()"  >
-                      <ion-icon  name="trash-outline" style="--color: black;font-size:30px" ></ion-icon>
+                    <ion-button  style="text-align: center;height: 25px;" (click)="deleteImagePrincipal()">
+                      <ion-icon  name="trash-outline" style="--color: black;font-size:20px" ></ion-icon>
                     </ion-button>
                   </ion-card-content>
               </ion-card>
-            </ion-col>
+            </ion-col> -->
             <ion-col size="12">
              <!-- Imagen Principal -->
-            <ion-img *ngIf="imagenSelected" (click)="clickImage()"   class="imageSelected" [src]="imagenSelected"></ion-img>
+            <ion-img *ngIf="imagenSelected"    class="imageSelected" [src]="imagenSelected"></ion-img>
+             <!-- Boton para cambiar imagen Principal -->
+             <div *ngIf="imagenSelected" style="width: 85%;text-align: end;">
+              <ion-button  style="text-align: center;height: 25px;" (click)="takePhotoFrom('principal', 1 )"  >
+                <ion-icon  name="pencil-outline" style="--color: black;font-size:20px" ></ion-icon>
+              </ion-button>
+              <ion-button  style="text-align: center;height: 25px;" (click)="deleteImagePrincipal()"  >
+                <ion-icon  name="trash-outline" style="--color: black;font-size:20px" ></ion-icon>
+              </ion-button>
+             </div>
             <!-- Video Principal -->
             <div *ngIf="urlVideo" style="position: relative">
               <ion-icon
@@ -337,12 +347,23 @@
             </div>
 
             <!-- Origen de la imagen o video principal -->
-            <ion-item *ngIf="MiprincipalMedia == undefined && (urlVideo != null || imagenSelected != null ) && !originPrincipaMedia">
+            <!-- <ion-item *ngIf="MiprincipalMedia == undefined && (urlVideo != null || imagenSelected != null ) && !originPrincipaMedia">
               <ion-label position="floating">{{'sport.sport' | translate}}</ion-label>
                 <ion-select [(ngModel)]="MiprincipalMedia" (ionChange)="originPrincipaMediaListoMio()">
                   <ion-select-option  *ngFor="let propiedad of origenSelect"  [value]="propiedad.value" >{{ 'sport.'+propiedad.origenSelect| translate}}</ion-select-option>              
                 </ion-select>
-              </ion-item> 
+              </ion-item> --> 
+              <ion-radio-group  [(ngModel)]="MiprincipalMedia"  *ngIf="MiprincipalMedia == undefined && (urlVideo != null || imagenSelected != null ) && !originPrincipaMedia">
+                <ion-item  (ionBlur)="originPrincipaMediaListoMio()" >
+                  <ion-label>De mi propiedad</ion-label>
+                  <ion-radio   slot="start" value="0"></ion-radio>
+                </ion-item>
+            
+                <ion-item  (ionBlur)="originPrincipaMediaListoMio()" >
+                  <ion-label>Propiedad de otro</ion-label>
+                  <ion-radio   slot="start" value="1"></ion-radio>
+                </ion-item>
+              </ion-radio-group>
               <ion-item *ngIf="!agregandoOrigenPrincipaMedia && MiprincipalMedia == 1 ">
                 <ion-textarea [(ngModel)]="originPrincipaMedia" placeholder="Porfavor introduce el origen de la noticia"></ion-textarea>
                 <ion-button (click)="originPrincipaMediaListo(1)" [disabled]="(originPrincipaMedia != null && originPrincipaMedia != '')?false:true"  float-right ion-button ><ion-icon name="add"></ion-icon></ion-button>
@@ -350,66 +371,72 @@
               <p *ngIf="(originPrincipaMedia == null || originPrincipaMedia == '') && (urlVideo != null || imagenSelected != null )" style="color: rgb(255, 0, 0);">Porfavor introduce la propiedad de la noticia</p>
               <p *ngIf="originPrincipaMedia && agregandoOrigenPrincipaMedia == true" style="text-align: center;color: #737373;font-size: 14px;"><i>{{originPrincipaMedia}}</i><ion-icon  (click)="originPrincipaMediaListo(0)" class="editIcon" name="pencil-outline" ></ion-icon></p>
            
-        <!--     <ion-item *ngIf="MiprincipalMedia == undefined && (urlVideo != null || imagenSelected != null )">
-              <ion-label position="floating">{{'sport.sport' | translate}}</ion-label>
-                <ion-select  [(ngModel)]="MiprincipalMedia">
-                  <ion-select-option  *ngFor="let propiedad of principalMedia" [value]="propiedad.value" >{{ 'sport.'+propiedad.origenSelect| translate}}</ion-select-option>              
-                </ion-select>
-              </ion-item> 
-            <ion-item *ngIf="!agregandoOrigenPrincipaMedia && (urlVideo != null || imagenSelected != null ) && !MiprincipalMedia && MiprincipalMedia != undefined  ">
-              <ion-textarea [(ngModel)]="originPrincipaMedia" placeholder="Porfavor introduce el origen del archio multimedia"></ion-textarea>
-              <ion-button (click)="originPrincipaMediaListo(1)" [disabled]="(originPrincipaMedia != null && originPrincipaMedia != '')?false:true"  float-right ion-button ><ion-icon name="add"></ion-icon></ion-button>
-            </ion-item>
-            <p *ngIf=" agregandoOrigenPrincipaMedia == true && (urlVideo != null || imagenSelected != null ) && !MiprincipalMedia" style="text-align: center;color: #737373;font-size: 14px;"><i>{{originPrincipaMedia}}</i><ion-icon  (click)="originPrincipaMediaListo(0)" class="editIcon" name="pencil-outline" ></ion-icon></p>
-            <p *ngIf="(originPrincipaMedia == null || originPrincipaMedia == '') && (urlVideo != null || imagenSelected != null )  " style="color: rgb(255, 0, 0);">Porfavor introduce el origen de este archivo</p>
-            <p *ngIf="MiprincipalMedia" style="text-align: center;color: #737373;font-size: 14px;"><i>De mi propiedad</i><ion-icon  (click)="originPrincipaMediaListo(0)" class="editIcon" name="pencil-outline" ></ion-icon></p>
-          --> </ion-col> 
+       </ion-col> 
 
             <!--  Cuerpo de la noticia -->
           <ion-col size="12">
             <div *ngFor="let parrafo of parrafos;let i = index">
               <ion-grid>
                 <ion-row>
-                  <ion-col size="12">
+                  <ion-col  size="12">
                   <!-- Este es el Subtitulo -->
-                  <h2 *ngIf="parrafo.subtitle" [ngClass]="(positionEditactualSubtitle == parrafo.position)?'selected':''" 
-                  (click)="(positionEditactualSubtitle != parrafo.position)?selectsubTitulo(parrafo.position):cancelarSubtitle()"
-                  style="text-align: center;color: #5a5a5a;font-size: 23px;">{{parrafo.subtitle}}
-                  </h2>
+                  <!-- <div style="text-align: center;"> 
+                    <h2 *ngIf="parrafo.subtitle" [ngClass]="(positionEditactualSubtitle == parrafo.position)?'selected':''" 
+                    (click)="(positionEditactualSubtitle != parrafo.position)?selectsubTitulo(parrafo.position):cancelarSubtitle()"
+                    style="text-align: center;color: #5a5a5a;font-size: 23px;">{{parrafo.subtitle}}
+                    </h2>
+                  </div> -->
+                  
                   <!-- Esto edita el texto del subtitulo -->
                   <ion-button  (click)="editandoSubtitulo()" *ngIf="editandoSubTitle  && parrafo.position == numberSubtitle"  >Editar Subtítulo</ion-button>
                   <ion-button *ngIf="editandoSubTitle  && parrafo.position == numberSubtitle" style="--background:rgba(255, 100, 100, 0.685);" (click)="eliminarSubtitulo()" >{{'news.delete' | translate}}</ion-button>
                   <ion-button *ngIf="editandoSubTitle  && parrafo.position == numberSubtitle"  (click)="cancelarSubtitle()" >{{'news.cancel' | translate}}</ion-button>
                   <ion-input *ngIf="editandoSubTitle  && parrafo.position == numberSubtitle" style="background: white; color: black;" placeholder="Agrege el subtítulo aquí" [(ngModel)]="subTitleParrafo"></ion-input> 
                   <!-- Este agrega subtitulos si el parrafo no los tiene -->
-                  <p *ngIf="(parrafo.subtitle == '' || parrafo.subtitle == undefined) && parrafo.position != 0" >Agregar Subtitulo</p>
-                  <ion-button *ngIf="(parrafo.subtitle == '' || parrafo.subtitle == undefined) && parrafo.position != 0" (click)="agregandoSubtitulo?agregarSubtitulo(parrafo.position):agregandoSubtitulo = true && poisionAgregarSubtitulo = i"  float-right ion-button ><ion-icon name="add"></ion-icon></ion-button>
-                  <ion-input *ngIf="agregandoSubtitulo && poisionAgregarSubtitulo == parrafo.position" style="background: white; color: black;" placeholder="Agrege el subtítulo aquí" [(ngModel)]="subTitleParrafo"></ion-input> 
-
+                  <div style="text-align: center;">
+<!--                     <ion-button *ngIf="(parrafo.subtitle == '' || parrafo.subtitle == undefined) && parrafo.position != 0" (click)="agregandoSubtitulo?agregarSubtitulo(parrafo.position):agregandoSubtitulo = true && poisionAgregarSubtitulo = i"  float-right ion-button >Agregar Subtitulo</ion-button>
+ -->                    <ion-input *ngIf="parrafo.position != 0" style="background: white; color: black;" placeholder="Agrege el subtítulo aquí" [(ngModel)]="parrafo.subtitle"></ion-input>   
+             
+                    <!-- <ion-item >
+                    <ion-label>{{'news.subTitle' | translate}}</ion-label>    
+                  </ion-item> -->
+                  </div>
+                  
                     <!-- Este es el parrafo -->
                     <div [ngClass]="(positionEditactual == parrafo.position)?'selected':''" 
-                    (click)="(positionEditactual != parrafo.position)?selectParrafoCards(parrafo.position):cancelar()"
+                    
                      style="color: black;text-align: justify;"  [innerHTML]="parrafo.parrafo">
                     </div>
-                  <!-- Esto edita el texto del parrafo -->
-                  <div *ngIf="editando && parrafo.position == number">
-                    <ion-button *ngIf="parrafos.length > 0 && positionEditactual != null " [disabled]="(text1 == '' && text1 == null)?true:false"  (click)="EditParrafo()" >{{'news.edit' | translate}}</ion-button>
-                    <ion-button *ngIf="parrafos.length > 0 && positionEditactual != null" style="--background:rgba(255, 100, 100, 0.685);" (click)="eliminarParrafo()" >{{'news.delete' | translate}}</ion-button>
-                    <ion-button *ngIf="parrafos.length > 0 && positionEditactual != null"  (click)="cancelar()" >{{'news.cancel' | translate}}</ion-button><br>
-                    <span *ngIf="parrafos.length > 0 && positionEditactual != null">{{'news.editParagraph' | translate}}: {{positionEditactual+1}}...: </span>
-                    <ngx-wig style="color: black;" [(ngModel)]="text1" [buttons]="'list1,list2,bold,italic,link,underline'"></ngx-wig>
-                  </div>
+                    <!-- Esto edita el texto del parrafo -->
+                    <div *ngIf="editando && parrafo.position == number">
+                      <ngx-wig style="color: black;" [(ngModel)]="text1" [buttons]="'list1,list2,bold,italic,link,underline'"></ngx-wig>
+                      <ion-button *ngIf="parrafos.length > 0 " style="font-size: 10px;" (click)="cancelar()" >{{'news.cancel' | translate}}</ion-button><br>
+  <!--                <span *ngIf="parrafos.length > 0 && positionEditactual != null">{{'news.editParagraph' | translate}}: {{positionEditactual+1}}...: </span>
+   -->              </div>
+                    <div>
+                    <ion-button *ngIf="parrafos.length > 0  " [disabled]="(text1 == '' && text1 == null)?true:false" style="font-size: 10px;"  (click)="(positionEditactual != parrafo.position)?selectParrafoCards(parrafo.position):EditParrafo()" >{{'news.edit' | translate}}</ion-button>
+                    <ion-button *ngIf="parrafos.length > 0 " style="--background:rgba(255, 100, 100, 0.685);font-size: 10px;" (click)="eliminarParrafo(parrafo.position)" >{{'news.delete' | translate}}</ion-button>
+                    </div>
+                  
+                  
                   </ion-col>
 
-                  <ion-col *ngIf="!parrafo.image  && !parrafo.video" size="6">
+                  <ion-col style="text-align: center;" *ngIf="!parrafo.image  && !parrafo.video" size="12">
                     <!-- Boton para agregar imagenes a este parrafo -->
                     <p >Agregar imagen</p> 
                     <ion-button  style="text-align: center;" (click)="takePhotoFrom('notPrincipal',i)"  >
                       <ion-icon  name="images" style="--color: black;font-size:30px" ></ion-icon>
                     </ion-button>
+                    <input
+                              #openVideoParrafo
+                              type="file"
+                              accept="video/*"
+                              (change)="uploadVideo($event,'notPrincipal',parrafo.position)"
+                              hidden
+                            />
                    </ion-col>
-                   <ion-col size="12" *ngIf="openArray && parrafo.position == imagenACambiar">
-                    <!-- Boton para cambiar imagen De este parrafo -->
+                   <!--  <ion-col size="12" *ngIf="openArray && parrafo.position == imagenACambiar">
+                   Boton para cambiar imagen De este parrafo
                               <ion-card style="background-color: rgb(255, 219, 219);" >
                                 <ion-card-header>
                                   <ion-card-title style="text-align: center;">{{ 'news.changeImage'| translate}}<span><ion-icon style="color: red;cursor: pointer;" (click)="closeImageArray()" name="close-outline"></ion-icon></span></ion-card-title>
@@ -423,11 +450,19 @@
                                       </ion-button>
                                   </ion-card-content>
                               </ion-card>
-                    </ion-col>    
+                    </ion-col>     -->
                     
                     <ion-col *ngIf="parrafo.image || parrafo.video" size="12">
                               <!--  Imagen del parrafo -->
                     <ion-img  *ngIf="parrafo.image " (click)="clickImageArray(i)"  class="imageArray" [src]="parrafo.image"></ion-img>
+                    <div *ngIf="parrafo.image " style="    width: 80%;text-align: end;">
+                      <ion-button  style="text-align: center;height: 25px;" (click)="takePhotoFrom('other',i)"  >
+                        <ion-icon  name="pencil-outline" style="--color: black;font-size:20px" ></ion-icon>
+                      </ion-button>
+                      <ion-button  style="text-align: center;height: 25px;" (click)="deleteImage(i)">
+                        <ion-icon  name="trash-outline" style="--color: black;font-size:20px" ></ion-icon>
+                      </ion-button>
+                     </div>
                     <!-- Videos notPrincipal (del parrafo) -->
                   <div *ngIf=" parrafo.video" style="position: relative">
                     <ion-icon
@@ -447,12 +482,23 @@
                   </div>
                   
                   <!-- Origen de la imagen o video Parrafo -->
-              <ion-item *ngIf="!parrafo.originMedia && MiParrafoMedia == undefined ">
+              <!-- <ion-item *ngIf="!parrafo.originMedia && MiParrafoMedia == undefined ">
                 <ion-label position="floating">{{'sport.sport' | translate}}</ion-label>
                   <ion-select  [(ngModel)]="MiParrafoMedia" (ionChange)="origenParrafoListoMio(i)">
                     <ion-select-option  *ngFor="let propiedad of origenParrafoMedia" [value]="propiedad.value" >{{ 'sport.'+propiedad.origenSelect| translate}}</ion-select-option>              
                   </ion-select>
-              </ion-item> 
+              </ion-item>  -->
+              <ion-radio-group  [(ngModel)]="MiParrafoMedia"  *ngIf="!parrafo.originMedia && MiParrafoMedia == undefined ">
+                <ion-item  (ionBlur)="origenParrafoListoMio(i)" >
+                  <ion-label>De mi propiedad</ion-label>
+                  <ion-radio   slot="start" value="0"></ion-radio>
+                </ion-item>
+            
+                <ion-item  (ionBlur)="origenParrafoListoMio(i)" >
+                  <ion-label>Propiedad de otro</ion-label>
+                  <ion-radio   slot="start" value="1"></ion-radio>
+                </ion-item>
+              </ion-radio-group>
             <ion-item *ngIf="MiParrafoMedia == 1 && !parrafo.originMedia">
               <ion-textarea [(ngModel)]="originParrafoMedia" placeholder="Porfavor introduce el origen del archio multimedia"></ion-textarea>
               <ion-button (click)="origenParrafoListo(i,0)" [disabled]="(originParrafoMedia != null && originParrafoMedia != '')?false:true"  float-right ion-button ><ion-icon name="add"></ion-icon></ion-button>
@@ -460,7 +506,7 @@
             <p *ngIf="parrafo.originMedia" style="text-align: center;color: #737373;font-size: 14px;"><i>{{parrafo.originMedia}}</i><ion-icon  (click)="origenParrafoEditar(i)" class="editIcon" name="pencil-outline" ></ion-icon></p>
             <p *ngIf="!parrafo.originMedia && (parrafo.video != null || parrafo.image != null )  " style="color: rgb(255, 0, 0);">Porfavor introduce el origen de este archivo</p>
                 </ion-col>
-                  <ion-col *ngIf="!parrafo.video && !parrafo.image" size="6">
+                  <!-- <ion-col *ngIf="!parrafo.video && !parrafo.image" size="6">
                     <div >
                             <input
                               #openVideo
@@ -474,7 +520,7 @@
                               <ion-icon name="videocam"></ion-icon>
                             </ion-button>
                     </div>
-                     </ion-col>
+                     </ion-col> -->
                 
                 </ion-row>
               </ion-grid>
@@ -489,32 +535,46 @@
  
 
           <!-- Para agregar parrafo -->
+              <ngx-wig style="color: black;" [(ngModel)]="text1" [buttons]="'list1,list2,bold,italic,link,underline'"></ngx-wig>
               <ion-button (click)="consol() " *ngIf="!editando"  >{{'news.add' | translate}}</ion-button>
               <ion-button *ngIf="!editando"   (click)="cancelar()" >{{'news.cancel' | translate}}</ion-button>
               <ion-button *ngIf="parrafos.length > 0 && positionEditactual != null"  (click)="EditParrafo()" >{{'news.edit' | translate}}</ion-button>
-              <ion-button *ngIf="parrafos.length > 0 && positionEditactual != null" style="--background:rgba(255, 100, 100, 0.685);" (click)="eliminarParrafo()" >{{'news.delete' | translate}}</ion-button>
-              <ion-button *ngIf="parrafos.length > 0 && positionEditactual != null"  (click)="cancelar()" >{{'news.cancel' | translate}}</ion-button><br>
+<!--               <ion-button *ngIf="parrafos.length > 0 && positionEditactual != null" style="--background:rgba(255, 100, 100, 0.685);" (click)="eliminarParrafo(parrafo.position)" >{{'news.delete' | translate}}</ion-button>
+ -->              <ion-button *ngIf="parrafos.length > 0 && positionEditactual != null"  (click)="cancelar()" >{{'news.cancel' | translate}}</ion-button><br>
               <span *ngIf="parrafos.length > 0 && positionEditactual != null">{{'news.editParagraph' | translate}}: {{positionEditactual+1}}...: </span>
-              <ngx-wig style="color: black;" [(ngModel)]="text1" [buttons]="'list1,list2,bold,italic,link,underline'"></ngx-wig>
             </div>
              </ion-col>
-             <ion-col  size="12">
-             <p *ngIf="!agregandoParrafo">Agregar párrafo</p>
-            <ion-button *ngIf="!agregandoParrafo" (click)="agregandoParrafo = true"  float-right ion-button ><ion-icon name="add"></ion-icon></ion-button>
+             <ion-col style="text-align: center;"  size="12">
+             
+            <ion-button *ngIf="!agregandoParrafo" (click)="agregandoParrafo = true"  float-right ion-button >Agregar párrafo</ion-button>
             </ion-col>
             <ion-col  size="12">
-              <ion-item *ngIf="miNoticia == undefined && !origen">
+              <!-- <ion-item *ngIf="miNoticia == undefined && !origen">
               <ion-label position="floating">{{'sport.sport' | translate}}</ion-label>
                 <ion-select [(ngModel)]="miNoticia" (ionChange)="origenListoMio()">
                   <ion-select-option  *ngFor="let propiedad of origenSelect"  [value]="propiedad.value" >{{ 'sport.'+propiedad.origenSelect| translate}}</ion-select-option>              
                 </ion-select>
-              </ion-item> 
+              </ion-item> --> 
+                        <ion-radio-group  [(ngModel)]="miNoticia"  *ngIf="miNoticia == undefined && !origen">
+                          <ion-item  (ionBlur)="origenListoMio()" >
+                            <ion-label>De mi propiedad</ion-label>
+                            <ion-radio   slot="start" value="0"></ion-radio>
+                          </ion-item>
+                      
+                          <ion-item  (ionBlur)="origenListoMio()" >
+                            <ion-label>Propiedad de otro</ion-label>
+                            <ion-radio   slot="start" value="1"></ion-radio>
+                          </ion-item>
+                        </ion-radio-group>
               <ion-item *ngIf="!agregandoOrigen && miNoticia == 1 ">
                 <ion-textarea [(ngModel)]="origen" placeholder="Porfavor introduce el origen de la noticia"></ion-textarea>
                 <ion-button (click)="origenListo(1)" [disabled]="(origen != null && origen != '')?false:true"  float-right ion-button ><ion-icon name="add"></ion-icon></ion-button>
               </ion-item>
               <p *ngIf="origen == null || origen == ''" style="color: rgb(255, 0, 0);">Porfavor introduce la propiedad de la noticia</p>
               <p *ngIf="origen && agregandoOrigen == true" style="text-align: center;color: #737373;font-size: 14px;"><i>{{origen}}</i><ion-icon  (click)="origenListo(0)" class="editIcon" name="pencil-outline" ></ion-icon></p>
+            </ion-col>
+            <ion-col style="text-align: center;" size="12">
+              <ion-button *ngIf="redactarArticulo" (click)="todoConOrigen()" [disabled]="(titulo1 != null && titulo1 != '') && (deporte != null && deporte != '') && ((urlVideo != null && urlVideo != '') || (parrafos.length > 0)) && ((origen != null && origen != '')) ?false:true"  >Listo para publicar</ion-button>
             </ion-col>
             <!-- <ion-col  size="12">
               <ion-item *ngIf="miNoticia == undefined ">
@@ -533,7 +593,7 @@
             </ion-col> -->
              </ion-row>
            </ion-grid>
-           </div>
+         
         </ion-col>
         </ion-row>
         </ion-grid>
