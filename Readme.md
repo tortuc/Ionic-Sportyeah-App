@@ -17,7 +17,7 @@ Iniciar sportyeah
 ## EN CMD PARA GIT PULL PUSH ETC
 
 1. eval "$(ssh-agent -s)"
-2. rsh-add ~/.ssh/id_rsa_sportyeah.pub
+2. ssh-add ~/.ssh/id_rsa_sportyeah.pub
 3. ssh-add ~/.ssh/id_rsa_kecuki.pub
 
 35.180.14.40

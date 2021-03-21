@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from "@angular/core";
+import { ModalController } from '@ionic/angular'
 
 @Component({
   selector: "app-see-trys",
@@ -8,7 +9,9 @@ import { Component, Input, OnInit } from "@angular/core";
 export class SeeTrysComponent implements OnInit {
   @Input() intentos: any[];
 
-  constructor() {}
+  constructor(
+    public mc: ModalController
+  ) {}
 
   ngOnInit() {}
   slideOpts = {

@@ -45,7 +45,19 @@
 </ion-card-header>
 <div style="padding-left: 20px; padding-right: 20px">
   <p class="title">{{ Challenge.title }}</p>
-  <p class="description">{{ Challenge.description }}</p>
+  <p class="description all">
+    {{ Challenge.description }}
+    <span 
+     class="viewsNumber" 
+      style="
+        z-index: 99999999999999999999;
+        color:black;
+       "
+    >
+      {{ Challenge.views.length }} 
+    </span >
+    <img src="https://img.icons8.com/color/48/000000/visible--v1.png" style="width:20px;"/>
+  </p>
 </div>
 <ion-item-divider> </ion-item-divider>
 <div class="buttonNext" (click)="goNext()">

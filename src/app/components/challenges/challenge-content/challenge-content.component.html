@@ -50,8 +50,8 @@
       width="100%"
       height="100%"
       style="
-      margin-top: auto; 
-      margin-bottom: auto; 
+        margin-top: auto; 
+        margin-bottom: auto; 
       "
       loop
       [id]="Challenge.challenged.media + Challenge._id"
@@ -68,23 +68,26 @@
       />
       <br />
     </video>
-    <span class="movement iconChain" 
+    <span 
+      *ngIf="chain"
+      class="movement iconChain" 
       style="bottom: 50px; left:20px"
     >
       <img
         src="https://img.icons8.com/windows/32/000000/decentralized-network.png"
+        *ngIf="chain"
         (click)="goChallenge()"
         style="
-               cursor: pointer; 
-               height: 40px; 
-               background:rgba(255,255,255,0.5);
-               border-radius:30px
-              "
+         cursor: pointer; 
+         height: 40px; 
+         background:rgba(255,255,255,0.5);
+         border-radius:30px
+        "
       />
     </span>
     <app-challenges-post-options
       [Challenge]="Challenge"
-      [pause]="pause"
+      [pause]="pauseS"
     ></app-challenges-post-options>
   </div>
 </div>

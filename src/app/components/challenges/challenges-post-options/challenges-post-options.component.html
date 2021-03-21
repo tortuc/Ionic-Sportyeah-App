@@ -18,20 +18,27 @@
   </ion-button>
 </div>
 <div
+  style="position:absolute;bottom:95px; right:5px;"
   class="text-center"
   *ngIf="Challenge.awards.length > 0 || Challenge.intentos?.length > 0"
 >
-  <ion-button *ngIf="Challenge.awards.length > 0" (click)="showAwards()"
-    ><ion-icon name="trophy-outline"></ion-icon>
-    {{ "challenge.awards" | translate }}</ion-button
+  <ion-button 
+    *ngIf="Challenge.awards.length > 0" 
+    (click)="showAwards()"
+    fill="outline"
+  style="background:rgb(0 0 0 / 70%)"
   >
+    <ion-icon name="trophy-outline"></ion-icon>
+  </ion-button>
   <ion-button
     shape="round"
-    fill="solid"
+    style="background:rgb(0 0 0 / 70%); border-radius:50px;"
+    fill="outline"
     *ngIf="Challenge.intentos?.length > 0"
     (click)="openTrys()"
-    >{{ "verIntentos" | translate }}</ion-button
   >
+    {{ "verIntentos" | translate }}
+  </ion-button>
 </div>
 <ion-row
   style="position:absolute;bottom:45px; right:5px;"
