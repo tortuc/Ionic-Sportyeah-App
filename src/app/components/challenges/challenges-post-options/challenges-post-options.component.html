@@ -25,15 +25,17 @@
   <ion-button 
     *ngIf="Challenge.awards.length > 0" 
     (click)="showAwards()"
-    fill="outline"
-  style="background:rgb(0 0 0 / 70%)"
+    color="light"
+    fill="clear"
+    style="background:rgb(0 0 0 / 70%); border:0"
   >
     <ion-icon name="trophy-outline"></ion-icon>
   </ion-button>
   <ion-button
     shape="round"
     style="background:rgb(0 0 0 / 70%); border-radius:50px;"
-    fill="outline"
+    fill="clear"
+  color="light"
     *ngIf="Challenge.intentos?.length > 0"
     (click)="openTrys()"
   >
