@@ -17,7 +17,7 @@ Iniciar sportyeah
 ## EN CMD PARA GIT PULL PUSH ETC
 
 1. eval "$(ssh-agent -s)"
-2. ssh-add ~/.ssh/id_rsa_sportyeah.pub
+2. rsh-add ~/.ssh/id_rsa_sportyeah.pub
 3. ssh-add ~/.ssh/id_rsa_kecuki.pub
 
 35.180.14.40
@@ -32,6 +32,10 @@ git remote set-url origin git+ssh://ubuntu@35.180.14.40/var/git/frontend
 2. Consejo: cuando comiences no te distraigas con nada, convencete de seguir
    siempre y nunca detenerte, no quit, no pares cuando duela, para cuando
    termines.
+
+## Bugs por solucionar en intentos
+
+1. ver intentos lo jode y los premios lo jode hay que ubicar dichos botones.
 
 ## MIERCOLES 17-03-2021
 

@@ -2,6 +2,7 @@ import { ChallengeCommentsComponent } from './../challenge-comments/challenge-co
 import { ModalController } from '@ionic/angular';
 import { IChallenge } from "./../../../service/challenge.service";
 import { Component, Input, OnInit } from "@angular/core";
+import { Router } from '@angular/router'
 
 @Component({
   selector: "app-button-comments",
@@ -11,12 +12,16 @@ import { Component, Input, OnInit } from "@angular/core";
 export class ButtonCommentsComponent implements OnInit {
   @Input() Challenge: IChallenge;
 
-  constructor(public mc: ModalController) {}
+  constructor(
+    public mc: ModalController,
+    public router: Router
+  ) {}
 
   ngOnInit() {}
 
   async challengeComments(comments: any[]) {
-    const modal = await this.createModalComments(comments);
+    this.router.navigate([`/challenge/${this.Challenge._id}`])
+    //const modal = await this.createModalComments(comments);
   }
   async createModalComments(comments: any[]) {
     const modal = await this.mc.create({

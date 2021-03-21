@@ -1,6 +1,10 @@
-<ion-button fill="clean" [ngClass]="Challenge" (click)="openShared()">
+<ion-button 
+  fill="outline" 
+  [ngClass]="Challenge" 
+  (click)="openShared()"
+  style="background:rgb(0 0 0 / 70%)"
+>
   <ion-icon name="arrow-redo-outline" style="margin-right: 2px"></ion-icon>
-  <span fxShow.gt-xs="true" fxShow="false">{{ "challenge.shared" | translate }}</span>
 </ion-button>
 <p
   style="margin: 0"

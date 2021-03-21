@@ -1,29 +1,39 @@
-<div>
+<div style="background-color:white 0.5;">
   <ion-button
-    fill="clean"
+    fill="outline"
     (mouseover)="reactionsON()"
     (mouseout)="Changefalse()"
     (touchstart)="reactionsON()"
+  style="background:rgb(0 0 0 / 70%)"
     (click)="like(null)"
   >
-    <ion-icon *ngIf="!myVote" name="heart" style="margin-right: 2px"></ion-icon>
-    <span *ngIf="!myVote" fxShow.gt-xs="true" fxShow="false">{{
-      "levels-challenge.reaction" | translate
-    }}</span>
-    <img #img *ngIf="myVote" [src]="myVote.src" style="width: 30px" />
-    <span *ngIf="myVote" fxShow.gt-xs="true" fxShow="false">
-      {{ "levels-challenge." + myVote.level | translate }}
-    </span>
+    <ion-icon 
+      *ngIf="!myVote" 
+      name="heart" 
+      style="margin-right: 2px"
+    ></ion-icon>
+    <img 
+      #img 
+      *ngIf="myVote" 
+      [src]="myVote.src" 
+      style="width: 30px" 
+    />
+    <span
+      *ngIf="challenge.challenged.reactions"
+      style="margin-left:4px;"
+      class="profile-name"
+    >
+  {{ reactionsNum }}
+</span>
   </ion-button>
 </div>
-<p
-  *ngIf="challenge.challenged.reactions"
-  class="profile-name marginleftforletters"
->
-  {{ reactionsNum }} {{ "post.likes" | translate }}
-</p>
 
-<div class="reacts" #reacts (mouseover)="time = true" (mouseout)="time = false">
+<div class="reacts" 
+  style="left: -79px;"
+  #reacts 
+  (mouseover)="time = true" 
+  (mouseout)="time = false"
+>
   <div class="overlay" fxShow="false" fxShow.xs="true"></div>
   <div
     class="circle"

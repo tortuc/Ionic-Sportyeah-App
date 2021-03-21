@@ -1,11 +1,11 @@
-<ion-content>
+<ion-content style="background: white; height: 45vh;">
   <form [formGroup]="form">
     <span *ngIf="form.controls.message.value == ''" class="fake-placeholder">
       {{ "new_comment_placeholder" | translate }}
     </span>
     <div
       style="
-        max-height: 200px;
+        max-height: 45vh;
         color: #222121;
         border-radius: 50px;
         border: whitesmoke solid;
@@ -91,9 +91,6 @@
     >
       {{ "new_comment.btn" | translate }}
     </ion-button>
-    <ion-button (click)="mc.dismiss()">
-      {{ "back" | translate }}
-    </ion-button>
   </div>
   <ion-infinite-scroll
     threshold="1px"
@@ -111,21 +108,20 @@
             <ion-avatar class="mention">
               <ion-img [src]="comment.userData.photo"></ion-img>
             </ion-avatar>
-            <span class="name-mention" style="font-weight: bold">
+            <div class="user-name">
+            <span class="message profile-name" style="font-weight: bold">
               {{ comment.userData.name }}
               {{ comment.userData.last_name }}</span
             >
+            <br>
             <span
               style="
-                text-align: right;
-                position: absolute;
-                right: 25px;
-                font-size: 12px;
-                margin-top: 10px;
+                font-size: 10px;
                 color: gray;
               "
               >{{ comment.createdAt | customDisplayDate }}</span
             >
+            </div>
           </div>
         </div>
         <div
