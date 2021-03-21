@@ -134,10 +134,18 @@ formateSelected */
         playerContainer.style.marginLeft = "auto"
         playerContainer.style.marginRight = "auto"
         document.getElementById("localPlayer").appendChild(playerContainer);
-
+        this.idVideo = 'video_'+user.videoTrack._ID
         // Play the remote video track.
         // Pass the DIV container and the SDK dynamically creates a player in the container for playing the remote video track.
         remoteVideoTrack.play(playerContainer);
+        setTimeout(() => {
+          const video = document.getElementById('video_'+user.videoTrack._ID)
+          video.style.position = null;
+          video.style.transform = null
+          video.setAttribute("controls","controls")
+          video.setAttribute("preload","metadata")
+          video.setAttribute("webkit-playsinline","webkit-playsinline")
+         }, 1000);
         var textnode = document.createTextNode(user.uid.toString());
         //document.getElementById("remotePlayerlist").appendChild(textnode);
        
@@ -156,6 +164,7 @@ formateSelected */
     loading.dismiss();
 
   } 
+  idVideo;
   /* remove(){
     const playerContainer = document.getElementById("video");
     playerContainer.remove();
@@ -195,6 +204,8 @@ formateSelected */
   }
   
 createReaction(idReaction,link){
+  //ESTAS REACCIONES TIENEN QUE QUEDAR EN EL DIV DEL VIDEO PORQUE NO ESTAN FIJANDOSE AL VIDEO SI NO AL DIV
+  //COLOCA LAS REACCIONES DENTRO DEL DIV
   const reaction = document.createElement("div");
   const image = document.createElement("img")
   image.src = link
@@ -205,9 +216,10 @@ createReaction(idReaction,link){
   reaction.style.left = "50%" 
   reaction.style.marginLeft = "auto" 
   reaction.style.marginRight = "auto"
+  reaction.style.zIndex = "1000"
   reaction.animate([
      {
-      top:'465px',
+      bottom:'0px',
       left:(Math.floor(Math.random() * 30) + 37).toString()+'%',
       opacity:'0.8'
     },
@@ -215,7 +227,7 @@ createReaction(idReaction,link){
       opacity:'0.4'
     },
     {
-      top:'-125px',
+      bottom:'300px',
       left:(Math.floor(Math.random() * 30) + 37).toString()+'%',
       opacity:'0'
     }
@@ -223,9 +235,8 @@ createReaction(idReaction,link){
     duration:3000
   })
 
-  document.getElementById("reactsDiv").appendChild(reaction);
+  document.getElementById("localPlayer").appendChild(reaction);
   document.getElementById(idReaction).appendChild(image);
- 
   setTimeout(()=>{ 
   reaction.remove()
  },2300)
@@ -263,62 +274,13 @@ createReaction(idReaction,link){
     
   }
 
-  esta2(type){
-    switch (type){
-      case 1 : {
-        if (this.liveReactionsLike.nativeElement.classList.contains("showLive")) {
-          this.liveReactionsLike.nativeElement.style.display = "none";
-          this.liveReactionsLike.nativeElement.classList.remove("showLive");
-        }
-        break
-      }
-      case 2 : {
-        if (this.liveReactionsLove.nativeElement.classList.contains("showLive")) {
-          this.liveReactionsLove.nativeElement.style.display = "none";
-          this.liveReactionsLove.nativeElement.classList.remove("showLive");
-        }
-        break
-      }
-      case 3 : {
-        if (this.liveReactionsHaha.nativeElement.classList.contains("showLive")) {
-          this.liveReactionsHaha.nativeElement.style.display = "none";
-          this.liveReactionsHaha.nativeElement.classList.remove("showLive");
-        }
-        break
-      }
-      case 4 : {
-        if (this.liveReactionsWow.nativeElement.classList.contains("showLive")) {
-          this.liveReactionsWow.nativeElement.style.display = "none";
-          this.liveReactionsWow.nativeElement.classList.remove("showLive");
-        }
-        break
-      }
-      case 5 : {
-        if (this.liveReactionsSad.nativeElement.classList.contains("showLive")) {
-          this.liveReactionsSad.nativeElement.style.display = "none";
-          this.liveReactionsSad.nativeElement.classList.remove("showLive");
-        }
-        break
-      }
-      case 6 : {
-        if (this.liveReactionsAngry.nativeElement.classList.contains("showLive")) {
-          this.liveReactionsAngry.nativeElement.style.display = "none";
-          this.liveReactionsAngry.nativeElement.classList.remove("showLive");
-        }
-        break
-      }
-      default:
-        console.log("Tipo de reaccion no definido");
-        break;
-    }
-  } 
+  
 
   commnets= [];
 
   ngOnInit() {
     this.socketService.socket.on('new-reaction',(like)=>{
       this.esta(like.like.type,like.like._id)
-      console.log(like)
     })
     this.socketService.socket.on('new-comment',(comment)=>{
       this.commnets = comment.comment

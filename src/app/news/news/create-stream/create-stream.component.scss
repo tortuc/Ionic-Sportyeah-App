@@ -21,3 +21,30 @@
    width: 100%;
 
  }
+
+ .line1 {
+  width: 25px;
+  height: 51px;
+  border-bottom: 1px solid rgb(255, 255, 255);
+  transform:
+      translateY(-20px)
+      translateX(5px)
+      rotate(40deg); 
+  position: absolute;
+  left: 40%;
+  /* top: -20px; */
+}
+
+.comments{
+  height: 78%;
+  width: 100%; 
+}
+
+@media screen and (max-width: 991px) {
+  .comments{
+      height: 300px;
+      width: 100%; 
+  }
+}
+
+

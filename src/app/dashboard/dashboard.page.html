@@ -1,91 +1,127 @@
 <ion-header>
-  <ion-toolbar  class="bg-gradient-person">
+  <ion-toolbar class="bg-gradient-person">
     <ion-buttons slot="start">
-      <ion-menu-button style="color: white;"></ion-menu-button>
+      <ion-menu-button style="color: white"></ion-menu-button>
     </ion-buttons>
-    <ion-title style="--color:white" >{{'dashboard.title' | translate}}</ion-title>
+    <ion-title style="--color: white"
+      >{{'dashboard.title' | translate}}</ion-title
+    >
     <ion-buttons slot="end">
       <button-search-friend></button-search-friend>
       <button-notification></button-notification>
-      <ion-button  (click)="langs($event)" style="--background: inherit; color: white;"><ion-img style="width: 24px;height: 24px;margin-right: 5px;" src="./assets/flags/{{translate.currentLang}}.png"></ion-img> {{translate.currentLang}}</ion-button>
+      <ion-button
+        (click)="langs($event)"
+        style="--background: inherit; color: white"
+        ><ion-img
+          style="width: 24px; height: 24px; margin-right: 5px"
+          src="./assets/flags/{{translate.currentLang}}.png"
+        ></ion-img>
+        {{translate.currentLang}}</ion-button
+      >
     </ion-buttons>
- 
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="bg-gradient-person " [scrollEvents]="true" (ionScrollEnd)="logScrolling($event)" >
-  <ion-refresher slot="fixed" (ionRefresh)="getPost($event,true)" pullFactor="0.5" pullMin="100" pullMax="200">
+<ion-content
+  class="bg-gradient-person"
+  [scrollEvents]="true"
+  (ionScrollEnd)="logScrolling($event)"
+>
+  <ion-refresher
+    slot="fixed"
+    (ionRefresh)="getPost($event,true)"
+    pullFactor="0.5"
+    pullMin="100"
+    pullMax="200"
+  >
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
 
-  <ion-grid  style="padding: 0;" >
-    <ion-row  >
-      <ion-col size-xs="12"  size-lg="8" ngClass.xs="p-0">
+  <ion-grid style="padding: 0">
+    <ion-row>
+      <ion-col size-xs="12" size-lg="8" ngClass.xs="p-0">
         <ion-grid>
-         
-          <ion-row fxShow.gt-sm="false" fxShow.lt-md="true"   class="post-card">
-            <friends-mobile style="max-width: 100%;" (post)="presentModal()" (search)="searchFriend()"></friends-mobile>
+          <ion-row fxShow.gt-sm="false" fxShow.lt-md="true" class="post-card">
+            <ion-col size="12">
+              <friends-mobile
+                style="max-width: 100%"
+                (post)="presentModal()"
+                (search)="searchFriend()"
+              ></friends-mobile
+            ></ion-col>
           </ion-row>
-          <ion-row fxShow.gt-sm="true" fxShow.lt-md="false"   class="post-card">
-            <ion-card style="width: 100%;">
+          <ion-row fxShow.gt-sm="true" fxShow.lt-md="false" class="post-card">
+            <ion-card style="width: 100%">
               <ion-card-header>
                 <ion-item lines="none">
                   <ion-thumbnail (click)="goToMyProfile()" slot="start">
                     <ion-avatar class="mini">
-                      <img [src]="userService.User?.photo">
+                      <img [src]="userService.User?.photo" />
                     </ion-avatar>
                   </ion-thumbnail>
-                  <ion-label >
-                    {{userService.User?.name}} {{userService.User?.last_name}} 
+                  <ion-label>
+                    {{userService.User?.name}} {{userService.User?.last_name}}
                   </ion-label>
-                  
-                  
-
-                  
                 </ion-item>
-                <ion-input readonly style="z-index: 100;" (click)="presentModal()"  placeholder="{{'dashboard.new_post_placeholder' | translate}}"></ion-input>
+                <ion-input
+                  readonly
+                  style="z-index: 100"
+                  (click)="presentModal()"
+                  placeholder="{{'dashboard.new_post_placeholder' | translate}}"
+                ></ion-input>
               </ion-card-header>
             </ion-card>
           </ion-row>
-          <ion-row style="justify-content: center;margin-bottom: -20px;">
-            <ion-button *ngIf="posts.length > 0" style="z-index: 10;" shape="round" (click)="getPost(null,true)">Actualizar</ion-button>
+          <ion-row style="justify-content: center; margin-bottom: -20px">
+            <ion-button
+              *ngIf="posts.length > 0"
+              style="z-index: 10"
+              shape="round"
+              (click)="getPost(null,true)"
+              >Actualizar</ion-button
+            >
           </ion-row>
           <ion-row *ngFor="let item of posts;let i = index" class="post-card">
-          
-            <ion-card ngClass.xs="m-p-0"  style="width: 100%;">
+            <ion-card ngClass.xs="m-p-0" style="width: 100%">
               <ion-card-header>
-                  <header-post class="user-header" [post]="item.post" (getPost)="getPost()"></header-post>       
+                <header-post
+                  class="user-header"
+                  [post]="item.post"
+                  (getPost)="getPost()"
+                ></header-post>
               </ion-card-header>
-            
-              <ion-card-content >
+
+              <ion-card-content>
                 <post-content [post]="item.post"></post-content>
 
-                <post-shared *ngIf="item.post.post" [post]="item.post.post"></post-shared>
-                <post-shared *ngIf="item.post.news" [news]="item.post.news" ></post-shared>
-               
+                <post-shared
+                  *ngIf="item.post.post"
+                  [post]="item.post.post"
+                ></post-shared>
+                <post-shared
+                  *ngIf="item.post.news"
+                  [news]="item.post.news"
+                ></post-shared>
               </ion-card-content>
-              <post-options [item]="item" (sharedEvent)="getPost()" ></post-options>
-            
+              <post-options
+                [item]="item"
+                (sharedEvent)="getPost()"
+              ></post-options>
             </ion-card>
-            
-        </ion-row>
-       
+          </ion-row>
         </ion-grid>
-       
-     
-        
-      
-     
       </ion-col>
-      <ion-col size-lg="4" fxShow.lt-md="false" class="ion-justify-content-center ion-align-items-center" >
+      <ion-col
+        size-lg="4"
+        fxShow.lt-md="false"
+        class="ion-justify-content-center ion-align-items-center"
+      >
         <friends-panel-desktop></friends-panel-desktop>
       </ion-col>
-  
-   
-  </ion-row>
-  
+    </ion-row>
   </ion-grid>
 
-
-  <ion-fab-button  color="secondary" (click)="presentModal()" class="new"><ion-icon name="add"></ion-icon></ion-fab-button>
+  <ion-fab-button color="secondary" (click)="presentModal()" class="new"
+    ><ion-icon name="add"></ion-icon
+  ></ion-fab-button>
 </ion-content>

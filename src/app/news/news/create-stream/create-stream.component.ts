@@ -114,15 +114,22 @@ createChanel(){
    // Publish the local audio and video tracks to the channel.
    await this.rtc.client.publish([this.rtc.localAudioTrack, this.rtc.localVideoTrack]);
    console.log("publish success!");
-
+   this.camera = true
+   this.micro = true
    this.publicar()
    loading.dismiss();
    setTimeout(() => {
     const video = document.getElementById('video_'+this.rtc.localVideoTrack._ID)
     video.style.position = null;
-    console.log('video_'+this.rtc.localVideoTrack._ID)
+    video.style.transform = null
+    video.setAttribute("controls","controls")
+    video.setAttribute("preload","metadata")
+    video.setAttribute("webkit-playsinline","webkit-playsinline")
    }, 1000);
   }
+  camera:boolean = false;
+  screen:boolean = false;
+  micro:boolean = false;
   async startScreenTransmision() {
     this.createChanel()
     let loading = await this.loadingCtrl.create({
@@ -154,12 +161,24 @@ createChanel(){
     // Publish the local audio and video tracks to the channel.
     await this.rtc.client.publish([this.rtc.localVideoTrack]);
     console.log("publish success!");
+   this.screen = true;
    this.publicar()
    loading.dismiss();
-
+   setTimeout(() => {
+    const video = document.getElementById('video_'+this.rtc.localVideoTrack._ID)
+    video.style.position = null;
+    video.style.transform = null
+    video.setAttribute("controls","controls")
+    video.setAttribute("preload","metadata")
+    video.setAttribute("webkit-playsinline","webkit-playsinline")
+   }, 1000);
 
   }
   async startScreen(){
+    let loading = await this.loadingCtrl.create({
+      message: this.translate.instant("loading"),
+    });
+    loading.present();
     this.rtc.localVideoTrack = await AgoraRTC.createScreenVideoTrack(
       {},
      "disable"
@@ -176,8 +195,22 @@ createChanel(){
     document.getElementById("localPlayer").appendChild(playerContainer);/*  */
 
     this.rtc.localVideoTrack.play(playerContainer);
+    this.screen = true;
+    setTimeout(() => {
+      const video = document.getElementById('video_'+this.rtc.localVideoTrack._ID)
+      video.style.position = null;
+      video.style.transform = null
+      video.setAttribute("controls","controls")
+      video.setAttribute("preload","metadata")
+      video.setAttribute("webkit-playsinline","webkit-playsinline")
+     }, 1000);
+     loading.dismiss();
   }
   async stopScreen(){
+    let loading = await this.loadingCtrl.create({
+      message: this.translate.instant("loading"),
+    });
+    loading.present();
     await this.rtc.client.unpublish(this.rtc.localVideoTrack);
     this.rtc.localVideoTrack.close();
    // Traverse all remote users.
@@ -185,9 +218,14 @@ createChanel(){
     // Destroy the dynamically created DIV container.
     const playerContainer = document.getElementById('idVideo');
     playerContainer && playerContainer.remove();
- 
+    this.screen = false;
+    loading.dismiss();
   }
   async startCamera(){
+    let loading = await this.loadingCtrl.create({
+      message: this.translate.instant("loading"),
+    });
+    loading.present();
     this.rtc.localVideoTrack = await AgoraRTC.createCameraVideoTrack();//{ encoderConfig: this.formateSelected }
     await this.rtc.client.publish(this.rtc.localVideoTrack);
     const playerContainer = document.createElement("div");
@@ -200,12 +238,32 @@ createChanel(){
     document.getElementById("localPlayer").appendChild(playerContainer);/*  */
 
     this.rtc.localVideoTrack.play(playerContainer);
+    this.camera = true
+    setTimeout(() => {
+      const video = document.getElementById('video_'+this.rtc.localVideoTrack._ID)
+      video.style.position = null;
+      video.style.transform = null
+      video.setAttribute("controls","controls")
+      video.setAttribute("preload","metadata")
+      video.setAttribute("webkit-playsinline","webkit-playsinline")
+     }, 1000);
+     loading.dismiss();
   }
   async startMicro(){
+    let loading = await this.loadingCtrl.create({
+      message: this.translate.instant("loading"),
+    });
+    loading.present();
     this.rtc.localAudioTrack = await AgoraRTC.createMicrophoneAudioTrack();
     await this.rtc.client.publish(this.rtc.localAudioTrack);
+    this.micro = true
+    loading.dismiss();
   }
   async stopCamera(){
+    let loading = await this.loadingCtrl.create({
+      message: this.translate.instant("loading"),
+    });
+    loading.present();
     await this.rtc.client.unpublish(this.rtc.localVideoTrack);
     this.rtc.localVideoTrack.close();
    // Traverse all remote users.
@@ -213,11 +271,18 @@ createChanel(){
     // Destroy the dynamically created DIV container.
     const playerContainer = document.getElementById('idVideo');
     playerContainer && playerContainer.remove();
- 
+    this.camera = false;
+    loading.dismiss();
   }
   async stopMicro(){
+    let loading = await this.loadingCtrl.create({
+      message: this.translate.instant("loading"),
+    });
+    loading.present();
     await this.rtc.client.unpublish(this.rtc.localAudioTrack);
     //this.rtc.localAudioTrack.close();
+    this.micro = false;
+    loading.dismiss();
   }
 
 
@@ -295,7 +360,9 @@ createChanel(){
   
     // Leave the channel.
     await this.rtc.client.leave();
-
+    this.camera = false;
+    this.screen = false;
+    this.micro = false;
     this.begingStream = false;
     this.commnets = [];
     loading.dismiss();
