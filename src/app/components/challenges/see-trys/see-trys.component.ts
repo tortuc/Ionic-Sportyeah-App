@@ -8,12 +8,17 @@ import { ModalController } from '@ionic/angular'
 })
 export class SeeTrysComponent implements OnInit {
   @Input() intentos: any[];
+  showSlider:boolean=false;
 
   constructor(
     public mc: ModalController
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    setTimeout(() => {
+      this.showSlides = true;
+    }, 300);
+  }
   slideOpts = {
     on: {
       beforeInit() {

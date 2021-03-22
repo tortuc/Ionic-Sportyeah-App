@@ -38,8 +38,11 @@
     </ion-button>
   </div>
 
-<!--  <ion-slides
-    *ngIf="!imgs"
+<div
+  style="background-color: black; height: 100%"
+>
+ <ion-slides
+    *ngIf="!imgs && showSlides"
     pager="true"
     [options]="slideOpts"
     style="background-color: black; height: 100%"
@@ -48,18 +51,5 @@
       <img [src]="img" class="img" alt="" style="width: 100%" />
     </ion-slide>
   </ion-slides>
-  <ion-slides
-    *ngIf="imgs && !delete"
-    pager="true"
-    [options]="slideOpts"
-    style="background-color: black; height: 100%"
-  >
-    <ion-slide class="slide" style="width: 100%"
-      *ngFor="let i of imgs"
-    >
-      <img [src]="i" class="img" alt="" style="width: 100%" />
-    </ion-slide>
-  </ion-slides>
--->
-
+</div>
 </ion-content>
