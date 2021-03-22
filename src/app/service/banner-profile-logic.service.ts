@@ -103,14 +103,17 @@ export class BannerLogic {
       .getImages()
       .pipe(take(1))
       .subscribe(async (r: any) => {
-        console.log(r);
         await this.loading.dismiss(null, null, "loading");
         const modal = await this.presentModal(r.hits);
         await modal.present();
         const { data } = await modal.onWillDismiss();
         if (data){ 
           this.userService.User.photoBanner = data;
-          this.userService.update({photoBanner : data})
+          this.userService.update(this.userService.User.photoBanner)
+            .pipe(take(1))
+            .subscribe((r)=>{
+              console.log(r)
+            })
         }
       });
   }
