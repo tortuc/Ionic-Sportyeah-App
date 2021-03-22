@@ -22,9 +22,7 @@
           <div
             *ngIf="ranking[1] != undefined"
             class="tilt-in-fwd-tl"
-            (click)="
-              goToProfile(ranking[1]._id.user._id, ranking[1]._id.user.username)
-            "
+            (click)="userService.goToProfile(ranking[1]._id.user.username)"
           >
             <ion-avatar
               style="margin-left: auto; margin-right: auto; cursor: pointer"
@@ -78,9 +76,7 @@
           <div
             *ngIf="ranking[0] != undefined"
             class="slide-in-bottom"
-            (click)="
-              goToProfile(ranking[0]._id.user._id, ranking[0]._id.user.username)
-            "
+            (click)="userService.goToProfile(ranking[0]._id.user.username)"
           >
             <ion-avatar style="margin-left: auto; margin-right: auto">
               <img [src]="ranking[0]?._id.user.photo" />
@@ -124,16 +120,14 @@
         <!--  TERCER LUGAR -->
         <ion-col size="4" style="margin-top: 27px">
           <ion-avatar
-          *ngIf="ranking[2] == undefined && load"
-          style="margin-left: auto; margin-right: auto"
-        >
-          <img src="https://img.icons8.com/dusk/344/multiply.png" />
-        </ion-avatar>
+            *ngIf="ranking[2] == undefined && load"
+            style="margin-left: auto; margin-right: auto"
+          >
+            <img src="https://img.icons8.com/dusk/344/multiply.png" />
+          </ion-avatar>
           <div
             *ngIf="ranking[2] != undefined"
-            (click)="
-              goToProfile(ranking[0]._id.user._id, ranking[0]._id.user.username)
-            "
+            (click)="userService.goToProfile(ranking[2]._id.user.username)"
             class="tilt-in-fwd-tr"
           >
             <ion-avatar style="margin-left: auto; margin-right: auto">
@@ -174,12 +168,9 @@
             </div>
           </div>
         </ion-col>
-
-       
       </ion-row>
     </ion-grid>
   </div>
-
 </div>
 
 <!-- REACCIONES -->
@@ -218,7 +209,11 @@
   *ngIf="segment == 0 && !(myPosition < total)"
 >
   <div style="padding: 10px; text-align: center">
-    <img src="https://i.pinimg.com/originals/b0/53/fb/b053fbc7aac21ef8877679d6e0a934d0.gif" style="height: 100px" alt="" />
+    <img
+      src="https://i.pinimg.com/originals/b0/53/fb/b053fbc7aac21ef8877679d6e0a934d0.gif"
+      style="height: 100px"
+      alt=""
+    />
   </div>
   <h1 style="text-align: center">
     Aun no han reaccionado a tus publicaciones, Sigue compartiendo y buscando
@@ -273,15 +268,22 @@
 </div> -->
 <div
   style="border-radius: 5px; width: 96%; margin-left: auto; margin-right: auto"
-  *ngIf="segment == 1  && !(myPosition < total)"
+  *ngIf="segment == 1 && !(myPosition < total)"
 >
-<div style="padding: 10px; text-align: center">
-  <img src="https://i.pinimg.com/originals/b0/53/fb/b053fbc7aac21ef8877679d6e0a934d0.gif" style="height: 100px" alt="" />
-</div>
-  <h1 style="text-align: center">Aun no no comentan tus publicaciones , comparte mas contenido para que comenten </h1>
-  <h1  style="text-align: center">
-    <strong>{{ myPosition }}°</strong> Lugar, Sigue compartiendo para subir
-    en el ranking!
+  <div style="padding: 10px; text-align: center">
+    <img
+      src="https://i.pinimg.com/originals/b0/53/fb/b053fbc7aac21ef8877679d6e0a934d0.gif"
+      style="height: 100px"
+      alt=""
+    />
+  </div>
+  <h1 style="text-align: center">
+    Aun no no comentan tus publicaciones , comparte mas contenido para que
+    comenten
+  </h1>
+  <h1 style="text-align: center">
+    <strong>{{ myPosition }}°</strong> Lugar, Sigue compartiendo para subir en
+    el ranking!
   </h1>
 </div>
 
@@ -322,13 +324,17 @@
   style="border-radius: 5px; width: 96%; margin-left: auto; margin-right: auto"
   *ngIf="segment == 2 && !(myPosition < total)"
 >
-<div style="padding: 10px; text-align: center">
-  <img src="https://i.pinimg.com/originals/b0/53/fb/b053fbc7aac21ef8877679d6e0a934d0.gif" style="height: 100px" alt="" />
-</div>
-<h1 style="text-align: center">
-  Aun no han compartido tus publicaciones, Sigue creando publicaciones y buscando
-  amigos para escalar en el Ranking !
-</h1>
+  <div style="padding: 10px; text-align: center">
+    <img
+      src="https://i.pinimg.com/originals/b0/53/fb/b053fbc7aac21ef8877679d6e0a934d0.gif"
+      style="height: 100px"
+      alt=""
+    />
+  </div>
+  <h1 style="text-align: center">
+    Aun no han compartido tus publicaciones, Sigue creando publicaciones y
+    buscando amigos para escalar en el Ranking !
+  </h1>
   <h1 style="text-align: center">
     <strong style="font-size: larger">{{ myPosition }}°</strong> Lugar, Sigue
     compartiendo publicaciones para subir en el ranking!
