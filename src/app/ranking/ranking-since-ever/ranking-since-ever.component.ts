@@ -4,7 +4,7 @@ import { UserService } from 'src/app/service/user.service';
 import { NewsService } from 'src/app/service/news.service';
 import { ViewsProfileService } from "src/app/service/views-profile.service";
 import * as moment from 'moment';
-import { IRanking, RankingService } from 'src/app/service/ranking.service';
+import { IRanking, IRankingRank, RankingService } from 'src/app/service/ranking.service';
 import { take } from 'rxjs/operators';
 import { IPost } from 'src/app/models/iPost';
 
@@ -39,7 +39,7 @@ export class RankingSinceEverComponent implements OnInit,OnChanges {
   }
 
 
-  ranking:IPost[] = [];
+  ranking:IRankingRank[] = [];
   myPosition = 0;
   total = 0;
 

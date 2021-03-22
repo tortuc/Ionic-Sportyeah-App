@@ -3,8 +3,12 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { IPost } from '../models/iPost';
 
+export interface IRankingRank{
+count:number;
+  _id:IPost;
+}
 export interface IRanking {
-  ranking:IPost[]
+  ranking:IRankingRank[]
   total:number;
   myPosition:number;
 }
