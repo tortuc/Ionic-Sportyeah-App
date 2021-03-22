@@ -125,7 +125,7 @@ export class ChallengeContentComponent implements OnInit {
           this.viewVerified ? null : this.verifyViews();
         }
       } else {
-        if (!this.paused) {
+        if (!this.paused && this.video !== null) {
           this.video.load();
           this.video.pause();
           this.paused = true;
@@ -157,12 +157,14 @@ export class ChallengeContentComponent implements OnInit {
       ) !== null 
     ) {
 
-      if (!this.pauseVideo) {
+      if (!this.pauseVideo && this.video) {
         this.pauseVideo = true;
         this.video.pause();
       } else {
-        this.pauseVideo = false;
-        this.video.play();
+        if(this.video){
+          this.pauseVideo = false;
+          this.video.play();
+        }
       }
 
     }
