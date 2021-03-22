@@ -106,11 +106,12 @@ export class BannerLogic {
         console.log(r);
         await this.loading.dismiss(null, null, "loading");
         const modal = await this.presentModal(r.hits);
-        console.log(modal);
-        console.log("aquitoy");
         await modal.present();
         const { data } = await modal.onWillDismiss();
-        if (data) this.userService.User.photoBanner = data;
+        if (data){ 
+          this.userService.User.photoBanner = data;
+          this.userService.update({photoBanner = data})
+        }
       });
   }
 
