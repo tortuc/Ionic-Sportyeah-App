@@ -110,7 +110,7 @@ export class BannerLogic {
         const { data } = await modal.onWillDismiss();
         if (data){ 
           this.userService.User.photoBanner = data;
-          this.userService.update({photoBanner = data})
+          this.userService.update({photoBanner : data})
         }
       });
   }
