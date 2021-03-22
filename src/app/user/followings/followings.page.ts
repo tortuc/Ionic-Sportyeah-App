@@ -18,18 +18,11 @@ export class FollowingsPage implements OnInit {
     public followService:FollowService,
     private router:Router
   ) { 
-    userService.getUserByUsername(route.snapshot.paramMap.get('username')).toPromise()
-    .then((user:User)=>{
-     this.user = user
-      this.getFollows(user._id)
-      
-    })
-    .catch((err)=>{
-      this.user = 404
-    })
-
-    
   }
+
+  
+
+
   goToProfile(){
     this.router.navigate([`/user/${this.user.username}`])
   }
@@ -47,6 +40,16 @@ export class FollowingsPage implements OnInit {
   }
 
   ngOnInit() {
+    this.userService.getUserByUsername(this.route.snapshot.paramMap.get('username')).toPromise()
+    .then((user:User)=>{
+     this.user = user
+      this.getFollows(user._id)
+      
+    })
+    .catch((err)=>{
+      this.user = 404
+    })
+
   }
 
 }

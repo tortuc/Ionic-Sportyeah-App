@@ -748,6 +748,9 @@
   "sponsorText": "Revisa estos perfiles",
   "challenges": "Desafíos",
   "challenge": {
+    "shared":{
+      "text":"¡Los reto a realizar este increible desafío!"
+    },
     "deleteModal":{
       "sure":"¿Desea crear su reto?",
       "yes": "¡Crear!",

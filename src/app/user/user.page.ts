@@ -173,6 +173,8 @@ export class UserPage implements OnInit {
         }
         this.skip += 10;
         this.loadingPost = false;
+      },err=>{
+        // QUIERE DECIR QUE NO HAY POST
       });
   }
 
