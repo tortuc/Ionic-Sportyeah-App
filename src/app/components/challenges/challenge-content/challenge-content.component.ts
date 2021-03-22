@@ -43,24 +43,26 @@ export class ChallengeContentComponent implements OnInit {
     // SE SUBSCRIBE PARA DESTRUIR EL VIDEO EN CASO DE SER NECESARIO.
     this.subscribeDestroy();
     // VERIFICA SI LOS VIDEOS ESTAN INICIALIZADOS
-    if (
-      document.getElementById(
-        this.Challenge.challenged.media + this.Challenge._id
-      ) !== null 
-    ) {
-      // INICIALIZA EL VIDEOS
-      this.initOneVideo();
-      // PAUSA UN VIDEO
-      this.pauseS.subscribe(() => {
-        this.video.pause();
-        this.pauseVideo = true;
-      });
-      // VERIFICA SI HUBO UN SCROLL PARA VER QUE VIDEO QUEDO ACTIVO.
-      this.scrollEvent$ = this.scrollEvent.subscribe(() => {
-        this.isScrolledIntoView();
-      });
-      // SI NO ENCONTRO EL VIDEO INICIALIZADO VUELVE A INTENTAR
-    } else setTimeout(() => this.ngOnInit(), 1500);
+    setTimeout(()=>{
+      if (
+        document.getElementById(
+          this.Challenge.challenged.media + this.Challenge._id
+        ) !== null 
+      ) {
+        // INICIALIZA EL VIDEOS
+        this.initOneVideo();
+        // PAUSA UN VIDEO
+        this.pauseS.subscribe(() => {
+          this.video.pause();
+          this.pauseVideo = true;
+        });
+        // VERIFICA SI HUBO UN SCROLL PARA VER QUE VIDEO QUEDO ACTIVO.
+        this.scrollEvent$ = this.scrollEvent.subscribe(() => {
+          this.isScrolledIntoView();
+        });
+        // SI NO ENCONTRO EL VIDEO INICIALIZADO VUELVE A INTENTAR
+      } else setTimeout(() => this.ngOnInit(), 1500);
+    },2000)
   }
 
   initOneVideo() {
@@ -114,15 +116,15 @@ export class ChallengeContentComponent implements OnInit {
     if (this.video) {
       if (topShown && bottomShown) {
         if (!this.pauseVideo) {
-          if (
-            document.getElementById(
-              this.Challenge.challenged.media + this.Challenge._id
-            ) !== null 
-          ) {
-            this.video.play();
-          }
-          this.paused = false;
-          this.viewVerified ? null : this.verifyViews();
+            if (
+              document.getElementById(
+                this.Challenge.challenged.media + this.Challenge._id
+              ) !== null 
+            ) {
+              this.video.play();
+            }
+            this.paused = false;
+            this.viewVerified ? null : this.verifyViews();
         }
       } else {
         if (!this.paused && this.video !== null) {
