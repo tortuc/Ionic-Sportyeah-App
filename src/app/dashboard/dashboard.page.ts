@@ -49,9 +49,7 @@ export class DashboardPage implements OnInit,AfterViewInit {
     public el:ElementRef
 ) {
 
-  if(userService.User != undefined && userService.User.username != null){
-    // captar el username
-  }
+  console.log(this.userService.User)
   
 
  }

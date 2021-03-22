@@ -4,5 +4,5 @@ export const environment = {
   URL_API: "https://api.sportyeah.com/v1",
   URL_IMAGE: "https://files.sportyeah.com/v1",
   URL_SOCKET: "https://api.sportyeah.com",
-  URL_CHALLENGE: "https://challange.sportyeah.com",
+  URL_CHALLENGE: "https://challenge.sportyeah.com",
 };
