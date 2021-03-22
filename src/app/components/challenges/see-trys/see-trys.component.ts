@@ -8,7 +8,7 @@ import { ModalController } from '@ionic/angular'
 })
 export class SeeTrysComponent implements OnInit {
   @Input() intentos: any[];
-  showSlider:boolean=false;
+  showSlides:boolean=false;
 
   constructor(
     public mc: ModalController
