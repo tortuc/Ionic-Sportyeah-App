@@ -37,8 +37,12 @@
                 "input": "src/theme/variables.scss"
               },
               {
+                "input": "src/theme/animations.scss"
+              },
+              {
                 "input": "src/global.scss"
               }
+             
             ],
             "scripts": []
           },

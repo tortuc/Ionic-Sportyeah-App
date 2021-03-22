@@ -43,24 +43,26 @@ export class ChallengeContentComponent implements OnInit {
     // SE SUBSCRIBE PARA DESTRUIR EL VIDEO EN CASO DE SER NECESARIO.
     this.subscribeDestroy();
     // VERIFICA SI LOS VIDEOS ESTAN INICIALIZADOS
-    if (
-      document.getElementById(
-        this.Challenge.challenged.media + this.Challenge._id
-      ) !== null 
-    ) {
-      // INICIALIZA EL VIDEOS
-      this.initOneVideo();
-      // PAUSA UN VIDEO
-      this.pauseS.subscribe(() => {
-        this.video.pause();
-        this.pauseVideo = true;
-      });
-      // VERIFICA SI HUBO UN SCROLL PARA VER QUE VIDEO QUEDO ACTIVO.
-      this.scrollEvent$ = this.scrollEvent.subscribe(() => {
-        this.isScrolledIntoView();
-      });
-      // SI NO ENCONTRO EL VIDEO INICIALIZADO VUELVE A INTENTAR
-    } else setTimeout(() => this.ngOnInit(), 1500);
+    setTimeout(()=>{
+      if (
+        document.getElementById(
+          this.Challenge.challenged.media + this.Challenge._id
+        ) !== null 
+      ) {
+        // INICIALIZA EL VIDEOS
+        this.initOneVideo();
+        // PAUSA UN VIDEO
+        this.pauseS.subscribe(() => {
+          this.video.pause();
+          this.pauseVideo = true;
+        });
+        // VERIFICA SI HUBO UN SCROLL PARA VER QUE VIDEO QUEDO ACTIVO.
+        this.scrollEvent$ = this.scrollEvent.subscribe(() => {
+          this.isScrolledIntoView();
+        });
+        // SI NO ENCONTRO EL VIDEO INICIALIZADO VUELVE A INTENTAR
+      } else setTimeout(() => this.ngOnInit(), 1500);
+    },2000)
   }
 
   initOneVideo() {
@@ -82,17 +84,21 @@ export class ChallengeContentComponent implements OnInit {
   }
   subscribeDestroy() {
     this.destroy.pipe(take(1)).subscribe(() => {
-      this.scrollEvent$.unsubscribe();
+      if(this.scrollEvent$ !== undefined) {
+        this.scrollEvent$.unsubscribe();
+      }
       this.destroyOneVideo();
       this.Mostrar = false;
     });
   }
 
   destroyOneVideo() {
-    this.src.removeAttribute("src");
-    this.video.load();
-    this.video.pause();
-    this.video.remove();
+    if(this.src && this.video){
+      this.src.removeAttribute("src");
+      this.video.load();
+      this.video.pause();
+      this.video.remove();
+    }
   }
 
   destroyTwoVideos() {
@@ -110,12 +116,18 @@ export class ChallengeContentComponent implements OnInit {
     if (this.video) {
       if (topShown && bottomShown) {
         if (!this.pauseVideo) {
-          this.video.play();
-          this.paused = false;
-          this.viewVerified ? null : this.verifyViews();
+            if (
+              document.getElementById(
+                this.Challenge.challenged.media + this.Challenge._id
+              ) !== null 
+            ) {
+              this.video.play();
+            }
+            this.paused = false;
+            this.viewVerified ? null : this.verifyViews();
         }
       } else {
-        if (!this.paused) {
+        if (!this.paused && this.video !== null) {
           this.video.load();
           this.video.pause();
           this.paused = true;
@@ -141,12 +153,22 @@ export class ChallengeContentComponent implements OnInit {
       );
   }
   pause() {
-    if (!this.pauseVideo) {
-      this.pauseVideo = true;
-      this.video.pause();
-    } else {
-      this.pauseVideo = false;
-      this.video.play();
+    if (
+      document.getElementById(
+        this.Challenge.challenged.media + this.Challenge._id
+      ) !== null 
+    ) {
+
+      if (!this.pauseVideo && this.video) {
+        this.pauseVideo = true;
+        this.video.pause();
+      } else {
+        if(this.video){
+          this.pauseVideo = false;
+          this.video.play();
+        }
+      }
+
     }
   }
   goChallenge() {

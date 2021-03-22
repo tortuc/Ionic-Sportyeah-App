@@ -14,6 +14,7 @@ export class OpenImgComponent implements OnInit {
   @Input() idUser: string;
   @Input() delete: boolean;
   user: User = null;
+  showSlides: boolean = false;
 
   constructor(
     public mc: ModalController,
@@ -28,6 +29,9 @@ export class OpenImgComponent implements OnInit {
       .subscribe((r: any) => {
         this.user = r.user;
       });
+    setTimeout(() => {
+      this.showSlides = true;
+    }, 300);
   }
 
   async deleteImg() {

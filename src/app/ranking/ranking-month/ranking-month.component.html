@@ -1,437 +1,336 @@
-<h1 style="position: relative;"><span><p style="color: rgb(126, 126, 126);font-size: 9px;">{{'ranking.slide'| translate}}</p></span>{{'ranking.month'| translate}}</h1>
+<h1 style="position: relative">
+  <span
+    ><p style="color: rgb(126, 126, 126); font-size: 9px">
+      {{ "ranking.slide" | translate }}
+    </p></span
+  >Mes
+</h1>
 
-<div  style="width: 100%">
+<div style="width: 100%">
   <!-- REACCIONES -->
-    <div *ngIf="segment == 0"  class="podium">
-      <ion-grid >
-        <ion-row >
-           <!--  SEGUNDO LUGAR -->
-          <ion-col  (click)="goToProfile(likes[1]?.post.user._id,likes[1]?.post.user.username)" *ngIf="likes[1] != undefined" size="4" style="margin-top: 20px;" >
-            <ion-avatar style="margin-left: auto;margin-right: auto;cursor: pointer;" >
-              <img [src]="likes[1]?.post.user.photo">
-            <!--  <div class="connectedDIVlittle" *ngIf="(item.chat.sender?._id != userService.User?._id)?item.chat.sender?.connected:item.chat.receiver?.connected"></div> -->
+  <div class="podium">
+    <ion-grid>
+      <ion-row>
+        <!--  SEGUNDO LUGAR -->
+        <ion-col size="4" style="margin-top: 20px">
+          <ion-avatar
+            *ngIf="ranking[1] == undefined && load"
+            style="margin-left: auto; margin-right: auto"
+          >
+            <img src="https://img.icons8.com/dusk/344/multiply.png" />
           </ion-avatar>
-          
-          <div style="text-align: center;height: 30px;cursor: pointer;"
-          
-          >{{ likes[1]?.post.user.name }} {{ likes[1]?.post.user.last_name }}
-          </div> 
-              <div style="height: 130px; width:60px; background: silver;margin-top: 10px;  margin-left: auto;margin-right: auto;" >
-                <div style="border-bottom-right-radius : 17px;border-bottom-left-radius : 17px;height: 110px; width:50px; background: brown; margin: auto;">
-                  <ion-img class="medalla" src="https://img.icons8.com/emoji/344/2nd-place-medal-emoji.png" alt="Podium"></ion-img>  
-                </div>
-              </div>
-          </ion-col>
-  <!--         Si no hay segundo con mas likes --> 
-         <ion-col *ngIf="likes[1] == undefined" size="4" style="margin-top: 20px;">
-            <ion-avatar style="margin-left: auto;margin-right: auto;" >
-              <img src="https://img.icons8.com/dusk/344/multiply.png">
-         </ion-avatar>
-          <div style="text-align: center;height: 30px;"
-          >Segundo lugar
-          </div> 
-              <div style="height: 130px; width:60px; background: silver;margin-top: 10px;  margin-left: auto;margin-right: auto;" >
-                <div style="border-bottom-right-radius : 17px;border-bottom-left-radius : 17px;height: 110px; width:50px; background: brown; margin: auto;">
-                  <ion-img class="medalla" src="https://img.icons8.com/emoji/344/2nd-place-medal-emoji.png" alt="Podium"></ion-img>
-                </div>
-              </div>
-          </ion-col>
-  
-         <!--  PRIMER LUGAR -->
-          <ion-col *ngIf="likes[0] != undefined" size="4" >
-            <ion-avatar style="margin-left: auto;margin-right: auto;" >
-              <img [src]="likes[0]?.post.user.photo">
-            <!--  <div class="connectedDIVlittle" *ngIf="(item.chat.sender?._id != userService.User?._id)?item.chat.sender?.connected:item.chat.receiver?.connected"></div> -->
+          <div
+            *ngIf="ranking[1] != undefined"
+            class="tilt-in-fwd-tl"
+            (click)="
+              goToProfile(ranking[1]._id.user._id, ranking[1]._id.user.username)
+            "
+          >
+            <ion-avatar
+              style="margin-left: auto; margin-right: auto; cursor: pointer"
+            >
+              <img [src]="ranking[1]._id.user.photo" />
+              <!--  <div class="connectedDIVlittle" *ngIf="(item.chat.sender?._id != userService.User?._id)?item.chat.sender?.connected:item.chat.receiver?.connected"></div> -->
             </ion-avatar>
-            <div style="text-align: center;height: 30px;"
-           
-            >{{ likes[0]?.post.user.name }} {{ likes[0]?.post.user.last_name }}
-            </div> 
-            <div style="height: 150px; width:60px; background: gold;margin-top: 10px; margin-left: auto;margin-right: auto;" >
-              <div style="
-                border-bottom-right-radius : 17px;border-bottom-left-radius : 17px;height: 130px; width:50px; background: brown; margin: auto;">
-                <ion-img class="medalla" src="https://img.icons8.com/emoji/344/1st-place-medal-emoji.png" alt="Podium"></ion-img>  
-              </div>
-            </div>
-          </ion-col>
-         <!--  Si no hay Primer con mas likes --> 
-          <ion-col *ngIf="likes[0] == undefined" size="4" style="margin-top: 20px;" >
-             <ion-avatar style="margin-left: auto;margin-right: auto;" >
-               <img src="https://img.icons8.com/dusk/344/multiply.png">
-           </ion-avatar>
-           <div style="text-align: center;height: 30px;"
-           
-           >Primer lugar
-           </div> 
-               <div style="height: 130px; width:60px; background: gold;margin-top: 10px;  margin-left: auto;margin-right: auto;" >
-                 <div style="border-bottom-right-radius : 17px;border-bottom-left-radius : 17px;height: 110px; width:50px; background: brown; margin: auto;">
-                  <ion-img class="medalla" src="https://img.icons8.com/emoji/344/1st-place-medal-emoji.png" alt="Podium"></ion-img>  
-                 </div>
-               </div>
-            
-           </ion-col>
-  
-           <!--  TERCER LUGAR -->
-          <ion-col *ngIf="likes[2] != undefined" size="4" style="margin-top: 27px;" >
-            <ion-avatar style="margin-left: auto;margin-right: auto;" >
-              <img [src]="likes[2]?.post.user.photo">
-            <!--  <div class="connectedDIVlittle" *ngIf="(item.chat.sender?._id != userService.User?._id)?item.chat.sender?.connected:item.chat.receiver?.connected"></div> -->
-              </ion-avatar>
-              <div style="text-align: center;height: 30px;"
-              
-              >{{ likes[2]?.post.user.name }} {{ likes[2]?.post.user.last_name }}
-              </div> 
-              <div style="height: 122px; width:60px; background: #cd7f32;margin-top: 10px; margin-left: auto;margin-right: auto;" >
-                <div style="border-bottom-right-radius : 17px;border-bottom-left-radius : 17px;height: 103px; width:50px; background: brown; margin: auto;">
-                  <ion-img class="medalla" src="https://img.icons8.com/emoji/344/3rd-place-medal-emoji.png" alt="Podium"></ion-img>  
-                </div>
-              </div>
-            </ion-col>
-  
-            <!--  Si no hay Tercer con mas likes --> 
-          <ion-col *ngIf="likes[2] == undefined" size="4" style="margin-top: 20px;" >
-            <ion-avatar style="margin-left: auto;margin-right: auto;" >
-              <img src="https://img.icons8.com/dusk/344/multiply.png">
-          </ion-avatar>
-          <div style="text-align: center;height: 30px;"
-          
-          >Tercer lugar
-          </div> 
-              <div style="height: 130px; width:60px; background: #cd7f32;margin-top: 10px;  margin-left: auto;margin-right: auto;" >
-                <div style="border-bottom-right-radius : 17px;border-bottom-left-radius : 17px;height: 110px; width:50px; background: brown; margin: auto;">
-                  <ion-img class="medalla" src="https://img.icons8.com/emoji/344/3rd-place-medal-emoji.png" alt="Podium"></ion-img>  
-                </div>
-              </div>
-           
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </div>
-   <!-- FIN REACCIONES --> 
-  
-   <!-- COMENTARIOS -->
-    <div *ngIf="segment == 1"  class="podium">
-      <ion-grid >
-        <ion-row >
-           <!--  SEGUNDO LUGAR -->
-          <ion-col *ngIf="comments[1] != undefined" size="4" style="margin-top: 20px;" >
-            <ion-avatar style="margin-left: auto;margin-right: auto;" >
-              <img [src]="comments[1]?.post.user.photo">
-            <!--  <div class="connectedDIVlittle" *ngIf="(item.chat.sender?._id != userService.User?._id)?item.chat.sender?.connected:item.chat.receiver?.connected"></div> -->
-  
-          </ion-avatar>
-          
-  
-          
-          <div style="text-align: center;height: 30px;"
-         
-          >{{ comments[1]?.post.user.name }} {{ comments[1]?.post.user.last_name }}
-          </div> 
-              <div style="height: 130px; width:60px; background: silver;margin-top: 10px;  margin-left: auto;margin-right: auto;" >
-                <div style="border-bottom-right-radius : 17px;border-bottom-left-radius : 17px;height: 110px; width:50px; background: brown; margin: auto;">
-                  <ion-img class="medalla" src="https://img.icons8.com/emoji/344/2nd-place-medal-emoji.png" alt="Podium"></ion-img>  
-                </div>
-              </div>
-           
-          </ion-col>
-          <!--         Si no hay segundo con mas comments --> 
-         <ion-col *ngIf="comments[1] == undefined" size="4" style="margin-top: 20px;" >
-          <ion-avatar style="margin-left: auto;margin-right: auto;" >
-            <img src="https://img.icons8.com/dusk/344/multiply.png">
-        </ion-avatar>
-        <div style="text-align: center;height: 30px;"
-        
-        >Segundo lugar
-        </div> 
-            <div style="height: 130px; width:60px; background: silver;margin-top: 10px;  margin-left: auto;margin-right: auto;" >
-              <div style="border-bottom-right-radius : 17px;border-bottom-left-radius : 17px;height: 110px; width:50px; background: brown; margin: auto;">
-                <ion-img class="medalla" src="https://img.icons8.com/emoji/344/2nd-place-medal-emoji.png" alt="Podium"></ion-img> 
-              </div>
-            </div>
-         
-        </ion-col>
-  
-         <!--  PRIMER LUGAR -->
-          <ion-col *ngIf="comments[0] != undefined" size="4" >
-            <ion-avatar style="margin-left: auto;margin-right: auto;" >
-              <img [src]="comments[0]?.post.user.photo">
-            <!--  <div class="connectedDIVlittle" *ngIf="(item.chat.sender?._id != userService.User?._id)?item.chat.sender?.connected:item.chat.receiver?.connected"></div> -->
-            </ion-avatar>
-            <div style="text-align: center;height: 30px;"
-            
-            >{{ comments[0]?.post.user.name }} {{ comments[0]?.post.user.last_name }}
-            </div> 
-            <div style="height: 150px; width:60px; background: gold;margin-top: 10px; margin-left: auto;margin-right: auto;" >
-              <div style="
-                border-bottom-right-radius : 17px;border-bottom-left-radius : 17px;height: 130px; width:50px; background: brown; margin: auto;">
-                <ion-img class="medalla" src="https://img.icons8.com/emoji/344/1st-place-medal-emoji.png" alt="Podium"></ion-img>  
-              </div>
-            </div>
-          </ion-col>
-           <!--  Si no hay Primer con mas comments --> 
-           <ion-col *ngIf="comments[0] == undefined" size="4" style="margin-top: 20px;" >
-            <ion-avatar style="margin-left: auto;margin-right: auto;" >
-              <img src="https://img.icons8.com/dusk/344/multiply.png">
-          </ion-avatar>
-          <div style="text-align: center;height: 30px;"
-          
-          >Primer lugar
-          </div> 
-              <div style="height: 130px; width:60px; background: gold;margin-top: 10px;  margin-left: auto;margin-right: auto;" >
-                <div style="border-bottom-right-radius : 17px;border-bottom-left-radius : 17px;height: 110px; width:50px; background: brown; margin: auto;">
-                  <ion-img class="medalla" src="https://img.icons8.com/emoji/344/1st-place-medal-emoji.png" alt="Podium"></ion-img>  
-                </div>
-              </div>
-           
-          </ion-col>
-  
-           <!--  TERCER LUGAR -->
-          <ion-col *ngIf="comments[2] != undefined" size="4" style="margin-top: 27px;" >
-            <ion-avatar style="margin-left: auto;margin-right: auto;" >
-              <img [src]="comments[2]?.post.user.photo">
-            <!--  <div class="connectedDIVlittle" *ngIf="(item.chat.sender?._id != userService.User?._id)?item.chat.sender?.connected:item.chat.receiver?.connected"></div> -->
-              </ion-avatar>
-              <div style="text-align: center;height: 30px;"
-             
-              >{{ comments[2]?.post.user.name }} {{ comments[2]?.post.user.last_name }}
-              </div> 
-              <div style="height: 122px; width:60px; background: #cd7f32;margin-top: 10px; margin-left: auto;margin-right: auto;" >
-                <div style="border-bottom-right-radius : 17px;border-bottom-left-radius : 17px;height: 103px; width:50px; background: brown; margin: auto;">
-                  <ion-img class="medalla" src="https://img.icons8.com/emoji/344/3rd-place-medal-emoji.png" alt="Podium"></ion-img>  
-                </div>
-              </div>
-            </ion-col>
-               <!--  Si no hay Tercer con mas comments --> 
-          <ion-col *ngIf="comments[2] == undefined" size="4" style="margin-top: 20px;" >
-            <ion-avatar style="margin-left: auto;margin-right: auto;" >
-              <img src="https://img.icons8.com/dusk/344/multiply.png">
-          </ion-avatar>
-          <div style="text-align: center;height: 30px;"
-          
-          >Tercer lugar
-          </div> 
-              <div style="height: 130px; width:60px; background: #cd7f32;margin-top: 10px;  margin-left: auto;margin-right: auto;" >
-                <div style="border-bottom-right-radius : 17px;border-bottom-left-radius : 17px;height: 110px; width:50px; background: brown; margin: auto;">
-                  <ion-img class="medalla" src="https://img.icons8.com/emoji/344/3rd-place-medal-emoji.png" alt="Podium"></ion-img>  
-                </div>
-              </div>
-           
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </div>
-   <!-- FIN COMENTARIOS --> 
-  
-   <!-- COMPARTIDOS -->
-    <div *ngIf="segment == 2" class="podium">
-      <ion-grid >
-        <ion-row >
-           <!--  SEGUNDO LUGAR -->
-          <ion-col *ngIf="shareds[1] != undefined" size="4" style="margin-top: 20px;" >
-            <ion-avatar style="margin-left: auto;margin-right: auto;" >
-              <img [src]="shareds[1]?.post.user.photo">
-            <!--  <div class="connectedDIVlittle" *ngIf="(item.chat.sender?._id != userService.User?._id)?item.chat.sender?.connected:item.chat.receiver?.connected"></div> -->
-  
-          </ion-avatar>
-          
-  
-          
-          <div style="text-align: center;height: 30px;"
-          
-          >{{ shareds[1]?.post.user.name }} {{ shareds[1]?.post.user.last_name }}
-          </div> 
-              <div style="height: 130px; width:60px; background: silver;margin-top: 10px;  margin-left: auto;margin-right: auto;" >
-                <div style="border-bottom-right-radius : 17px;border-bottom-left-radius : 17px;height: 110px; width:50px; background: brown; margin: auto;">
-                  <ion-img class="medalla" src="https://img.icons8.com/emoji/344/2nd-place-medal-emoji.png" alt="Podium"></ion-img>  
-                </div>
-              </div>
-           
-          </ion-col>
-            <!--         Si no hay segundo con mas shareds --> 
-       <ion-col *ngIf="shareds[1] == undefined" size="4" style="margin-top: 20px;" >
-        <ion-avatar style="margin-left: auto;margin-right: auto;" >
-          <img src="https://img.icons8.com/dusk/344/multiply.png">
-      </ion-avatar>
-      <div style="text-align: center;height: 30px;"
-      
-      >Segundo lugar
-      </div> 
-          <div style="height: 130px; width:60px; background: silver;margin-top: 10px;  margin-left: auto;margin-right: auto;" >
-            <div style="border-bottom-right-radius : 17px;border-bottom-left-radius : 17px;height: 110px; width:50px; background: brown; margin: auto;">
-              <ion-img class="medalla" src="https://img.icons8.com/emoji/344/2nd-place-medal-emoji.png" alt="Podium"></ion-img>
+
+            <div style="text-align: center; height: 30px; cursor: pointer">
+              {{ ranking[1]._id.user.name }} {{ ranking[1]._id.user.last_name }}
             </div>
           </div>
+
+          <div
+            style="
+              height: 130px;
+              width: 60px;
+              background: silver;
+              margin-top: 10px;
+              margin-left: auto;
+              margin-right: auto;
+            "
+          >
+            <div
+              style="
+                border-bottom-right-radius: 17px;
+                border-bottom-left-radius: 17px;
+                height: 110px;
+                width: 50px;
+                background: brown;
+                margin: auto;
+              "
+            >
+              <ion-img
+                class="medalla"
+                src="https://img.icons8.com/emoji/344/2nd-place-medal-emoji.png"
+                alt="Podium"
+              ></ion-img>
+            </div>
+          </div>
+        </ion-col>
+
+        <!--  PRIMER LUGAR -->
+        <ion-col size="4">
+          <ion-avatar
+            *ngIf="ranking[0] == undefined && load"
+            style="margin-left: auto; margin-right: auto"
+          >
+            <img src="https://img.icons8.com/dusk/344/multiply.png" />
+          </ion-avatar>
+          <div
+            *ngIf="ranking[0] != undefined"
+            class="slide-in-bottom"
+            (click)="
+              userService.goToProfile(ranking[0]._id.user.username)
+            "
+          >
+            <ion-avatar style="margin-left: auto; margin-right: auto">
+              <img [src]="ranking[0]?._id.user.photo" />
+              <!--  <div class="connectedDIVlittle" *ngIf="(item.chat.sender?._id != userService.User?._id)?item.chat.sender?.connected:item.chat.receiver?.connected"></div> -->
+            </ion-avatar>
+            <div style="text-align: center; height: 30px">
+              {{ ranking[0]?._id.user.name }}
+              {{ ranking[0]?._id.user.last_name }}
+            </div>
+          </div>
+
+          <div
+            style="
+              height: 150px;
+              width: 60px;
+              background: gold;
+              margin-top: 10px;
+              margin-left: auto;
+              margin-right: auto;
+            "
+          >
+            <div
+              style="
+                border-bottom-right-radius: 17px;
+                border-bottom-left-radius: 17px;
+                height: 130px;
+                width: 50px;
+                background: brown;
+                margin: auto;
+              "
+            >
+              <ion-img
+                class="medalla"
+                src="https://img.icons8.com/emoji/344/1st-place-medal-emoji.png"
+                alt="Podium"
+              ></ion-img>
+            </div>
+          </div>
+        </ion-col>
+
+        <!--  TERCER LUGAR -->
+        <ion-col size="4" style="margin-top: 27px">
+          <ion-avatar
+          *ngIf="ranking[2] == undefined && load"
+          style="margin-left: auto; margin-right: auto"
+        >
+          <img src="https://img.icons8.com/dusk/344/multiply.png" />
+        </ion-avatar>
+          <div
+            *ngIf="ranking[2] != undefined"
+            (click)="
+            userService.goToProfile(ranking[2]._id.user.username)
+            "
+            class="tilt-in-fwd-tr"
+          >
+            <ion-avatar style="margin-left: auto; margin-right: auto">
+              <img [src]="ranking[2]?._id.user.photo" />
+              <!--  <div class="connectedDIVlittle" *ngIf="(item.chat.sender?._id != userService.User?._id)?item.chat.sender?.connected:item.chat.receiver?.connected"></div> -->
+            </ion-avatar>
+            <div style="text-align: center; height: 30px">
+              {{ ranking[2]?._id.user.name }}
+              {{ ranking[2]?._id.user.last_name }}
+            </div>
+          </div>
+
+          <div
+            style="
+              height: 122px;
+              width: 60px;
+              background: #cd7f32;
+              margin-top: 10px;
+              margin-left: auto;
+              margin-right: auto;
+            "
+          >
+            <div
+              style="
+                border-bottom-right-radius: 17px;
+                border-bottom-left-radius: 17px;
+                height: 103px;
+                width: 50px;
+                background: brown;
+                margin: auto;
+              "
+            >
+              <ion-img
+                class="medalla"
+                src="https://img.icons8.com/emoji/344/3rd-place-medal-emoji.png"
+                alt="Podium"
+              ></ion-img>
+            </div>
+          </div>
+        </ion-col>
+
        
-      </ion-col>
-  
-         <!--  PRIMER LUGAR -->
-          <ion-col *ngIf="shareds[0] != undefined" size="4" >
-            <ion-avatar style="margin-left: auto;margin-right: auto;" >
-              <img [src]="shareds[0]?.post.user.photo">
-            <!--  <div class="connectedDIVlittle" *ngIf="(item.chat.sender?._id != userService.User?._id)?item.chat.sender?.connected:item.chat.receiver?.connected"></div> -->
-            </ion-avatar>
-            <div style="text-align: center;height: 30px;"
-            
-            >{{ shareds[0]?.post.user.name }} {{ shareds[0]?.post.user.last_name }}
-            </div> 
-            <div style="height: 150px; width:60px; background: gold;margin-top: 10px; margin-left: auto;margin-right: auto;" >
-              <div style="
-                border-bottom-right-radius : 17px;border-bottom-left-radius : 17px;height: 130px; width:50px; background: brown; margin: auto;">
-                <ion-img class="medalla" src="https://img.icons8.com/emoji/344/1st-place-medal-emoji.png" alt="Podium"></ion-img>  
-              </div>
-            </div>
-          </ion-col>
-          <!--  Si no hay Primer con mas comments --> 
-         <ion-col *ngIf="shareds[0] == undefined" size="4" style="margin-top: 20px;" >
-          <ion-avatar style="margin-left: auto;margin-right: auto;" >
-            <img src="https://img.icons8.com/dusk/344/multiply.png">
-        </ion-avatar>
-        <div style="text-align: center;height: 30px;"
-        
-        >Primer lugar
-        </div> 
-            <div style="height: 130px; width:60px; background: gold;margin-top: 10px;  margin-left: auto;margin-right: auto;" >
-              <div style="border-bottom-right-radius : 17px;border-bottom-left-radius : 17px;height: 110px; width:50px; background: brown; margin: auto;">
-                <ion-img class="medalla" src="https://img.icons8.com/emoji/344/1st-place-medal-emoji.png" alt="Podium"></ion-img>  
-              </div>
-            </div>
-         
-        </ion-col>
-  
-           <!--  TERCER LUGAR -->
-          <ion-col *ngIf="shareds[2] != undefined" size="4" style="margin-top: 27px;" >
-            <ion-avatar style="margin-left: auto;margin-right: auto;" >
-              <img [src]="shareds[2]?.post.user.photo">
-            <!--  <div class="connectedDIVlittle" *ngIf="(item.chat.sender?._id != userService.User?._id)?item.chat.sender?.connected:item.chat.receiver?.connected"></div> -->
-              </ion-avatar>
-              <div style="text-align: center;height: 30px;"
-             
-              >{{ shareds[2]?.post.user.name }} {{ shareds[2]?.post.user.last_name }}
-              </div> 
-              <div style="height: 122px; width:60px; background: #cd7f32;margin-top: 10px; margin-left: auto;margin-right: auto;" >
-                <div style="border-bottom-right-radius : 17px;border-bottom-left-radius : 17px;height: 103px; width:50px; background: brown; margin: auto;">
-                  <ion-img class="medalla" src="https://img.icons8.com/emoji/344/3rd-place-medal-emoji.png" alt="Podium"></ion-img>  
-                </div>
-              </div>
-            </ion-col>
-              <!--  Si no hay Tercer con mas comments --> 
-        <ion-col *ngIf="shareds[2] == undefined" size="4" style="margin-top: 20px;" >
-          <ion-avatar style="margin-left: auto;margin-right: auto;" >
-            <img src="https://img.icons8.com/dusk/344/multiply.png">
-        </ion-avatar>
-        <div style="text-align: center;height: 30px;"
-        
-        >Tercer lugar
-        </div> 
-            <div style="height: 130px; width:60px; background: #cd7f32;margin-top: 10px;  margin-left: auto;margin-right: auto;" >
-              <div style="border-bottom-right-radius : 17px;border-bottom-left-radius : 17px;height: 110px; width:50px; background: brown; margin: auto;">
-                <ion-img class="medalla" src="https://img.icons8.com/emoji/344/3rd-place-medal-emoji.png" alt="Podium"></ion-img>  
-              </div>
-            </div>
-         
-        </ion-col>
-        </ion-row>
-      </ion-grid>
-    </div>
-    <!-- FIN COMPARTIDOS --> 
-  
+      </ion-row>
+    </ion-grid>
   </div>
-  <!-- REACCIONES -->
 
-<div style="width: 99%;margin-left: auto;margin-right: auto;" *ngIf="segment == 0 && userLike">
+</div>
+
+<!-- REACCIONES -->
+
+<!-- <div
+  style="width: 99%; margin-left: auto; margin-right: auto"
+  *ngIf="segment == 0 && myPosition < total"
+>
   <ion-card>
     <ion-card-content>
       <ion-grid>
         <ion-row>
           <ion-col size="6">
-            <ion-avatar style="margin-left: 15%;margin-top: 30px;" >
-              <img [src]="userLike.post.user.photo">
-            <!--  <div class="connectedDIVlittle" *ngIf="(item.chat.sender?._id != userService.User?._id)?item.chat.sender?.connected:item.chat.receiver?.connected"></div> -->
+            <ion-avatar style="margin-left: 15%; margin-top: 30px">
+              <img [src]="userLike.post.user.photo" />
+               <div class="connectedDIVlittle" *ngIf="(item.chat.sender?._id != userService.User?._id)?item.chat.sender?.connected:item.chat.receiver?.connected"></div> 
             </ion-avatar>
-            <div  style="margin-left: 13%;color: black;"
-            
-            >{{ userLike.post.user.name }} {{ userLike.post.user.last_name }}
+            <div style="margin-left: 13%; color: black">
+              {{ userLike.post.user.name }} {{ userLike.post.user.last_name }}
             </div>
           </ion-col>
           <ion-col size="6">
-            <div style="margin-top: 30px;">
-              <h3 style="font-size: 55px; color: black;"><span style="font-size: 30px;">Posición</span> {{positionLike}}</h3> 
+            <div style="margin-top: 30px">
+              <h3 style="font-size: 55px; color: black">
+                <span style="font-size: 30px">Posición</span> {{ positionLike }}
+              </h3>
             </div>
           </ion-col>
         </ion-row>
       </ion-grid>
     </ion-card-content>
   </ion-card>
- 
-  
-</div>
-<div style="border-radius: 5px;width: 96%;margin-left: auto;margin-right: auto;" *ngIf="segment == 0 && !userLike">
-  <h1 style="text-align: center;">No han reaccionado tus publicaciones </h1>
-  <h1 *ngIf="likes.length != 0" style="text-align: center;">Estas por debajo de la posicion: {{likes.length}} </h1>
+</div> -->
+<div
+  style="border-radius: 5px; width: 96%; margin-left: auto; margin-right: auto"
+  *ngIf="segment == 0 && !(myPosition < total)"
+>
+  <div style="padding: 10px; text-align: center">
+    <img src="https://i.pinimg.com/originals/b0/53/fb/b053fbc7aac21ef8877679d6e0a934d0.gif" style="height: 100px" alt="" />
+  </div>
+  <h1 style="text-align: center">
+    Aun no han reaccionado a tus publicaciones, Sigue compartiendo y buscando
+    amigos para escalar en el Ranking !
+  </h1>
+  <div style="text-align: center; padding: 5px">
+    <ion-button fill="outline" class="btn-outline-blue"
+      >Crear publicación</ion-button
+    >
+    <ion-button fill="outline" class="btn-outline-blue"
+      >Buscar amigos</ion-button
+    >
+  </div>
+  <h1 style="text-align: center">
+    <strong style="font-size: larger">{{ myPosition }}°</strong> Lugar, Sigue
+    compartiendo para subir en el ranking!
+  </h1>
 </div>
 
-<!-- COMENTARIOS --> 
+<!-- COMENTARIOS -->
 
- <div style="border-radius: 5px;width: 99%;margin-left: auto;margin-right: auto;" *ngIf="segment == 1 && userComment">
+<!-- <div
+  style="border-radius: 5px; width: 99%; margin-left: auto; margin-right: auto"
+  *ngIf="segment == 1 && myPosition < total"
+>
   <ion-card>
     <ion-card-content>
       <ion-grid>
         <ion-row>
           <ion-col size="6">
-            <ion-avatar style="margin-left: 15%;margin-top: 30px;" >
-              <img [src]="userComment.post.user.photo">
-            <!--  <div class="connectedDIVlittle" *ngIf="(item.chat.sender?._id != userService.User?._id)?item.chat.sender?.connected:item.chat.receiver?.connected"></div> -->
+            <ion-avatar style="margin-left: 15%; margin-top: 30px">
+              <img [src]="userComment.post.user.photo" />
+                <div class="connectedDIVlittle" *ngIf="(item.chat.sender?._id != userService.User?._id)?item.chat.sender?.connected:item.chat.receiver?.connected"></div> 
             </ion-avatar>
-            <div  style="margin-left: 13%;color: black;"
-           
-            >{{ userComment.post.user.name }} {{ userComment.post.user.last_name }}
+            <div style="margin-left: 13%; color: black">
+              {{ userComment.post.user.name }}
+              {{ userComment.post.user.last_name }}
             </div>
           </ion-col>
           <ion-col size="6">
-            <div style="margin-top: 30px;color:black;">
-              <h3 style="font-size: 55px;"><span style="font-size: 30px;">Posición</span> {{positionComment}}</h3> 
+            <div style="margin-top: 30px; color: black">
+              <h3 style="font-size: 55px">
+                <span style="font-size: 30px">Posición</span>
+                {{ positionComment }}
+              </h3>
             </div>
           </ion-col>
         </ion-row>
       </ion-grid>
     </ion-card-content>
   </ion-card>
-  
+</div> -->
+<div
+  style="border-radius: 5px; width: 96%; margin-left: auto; margin-right: auto"
+  *ngIf="segment == 1  && !(myPosition < total)"
+>
+<div style="padding: 10px; text-align: center">
+  <img src="https://i.pinimg.com/originals/b0/53/fb/b053fbc7aac21ef8877679d6e0a934d0.gif" style="height: 100px" alt="" />
 </div>
-<div style="border-radius: 5px;width: 96%;margin-left: auto;margin-right: auto;" *ngIf="segment == 1 && !userComment">
-<h1 style="text-align: center;">No hay comentarios en tus publicaciones </h1>
-<h1 *ngIf="comments.length != 0" style="text-align: center;">Estas por debajo de la posicion: {{comments.length}} </h1>
-
+  <h1 style="text-align: center">Aun no no comentan tus publicaciones , comparte mas contenido para que comenten </h1>
+  <h1  style="text-align: center">
+    <strong>{{ myPosition }}°</strong> Lugar, Sigue compartiendo para subir
+    en el ranking!
+  </h1>
 </div>
 
 <!-- COMPARTIDOS -->
-
-   <div style="border-radius: 5px;width: 99%;margin-left: auto;margin-right: auto;" *ngIf="segment == 2 && userShared">
-    <ion-card>
-      <ion-card-content>
-        <ion-grid>
-          <ion-row>
-            <ion-col size="6">
-              <ion-avatar style="margin-left: 15%;margin-top: 30px;" >
-                <img [src]="userShared.post.user.photo">
-              <!--  <div class="connectedDIVlittle" *ngIf="(item.chat.sender?._id != userService.User?._id)?item.chat.sender?.connected:item.chat.receiver?.connected"></div> -->
-              </ion-avatar>
-              <div  style="margin-left: 13%;color: black;"
-             
-              >{{ userShared.post.user.name }} {{ userShared.post.user.last_name }}
-              </div>
-            </ion-col>
-            <ion-col size="6">
-              <div style="margin-top: 30px;color:black;">
-                <h3 style="font-size: 55px;"><span style="font-size: 30px;">Posición</span> {{positionShared}}</h3> 
-              </div>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
-      </ion-card-content>
-    </ion-card>   
-  </div>
-  <div style="border-radius: 5px;width: 96%;margin-left: auto;margin-right: auto;" *ngIf="segment == 2 && !userShared">
-    <h1 style="text-align: center;">No han compartido tus publicaciones </h1>
-    <h1 *ngIf="shareds.length != 0" style="text-align: center;">Estas por debajo de la posicion: {{shareds.length}} </h1>
-  </div>
+<!-- 
+<div
+  style="border-radius: 5px; width: 99%; margin-left: auto; margin-right: auto"
+  *ngIf="segment == 2 && myPosition < total"
+>
+  <ion-card>
+    <ion-card-content>
+      <ion-grid>
+        <ion-row>
+          <ion-col size="6">
+            <ion-avatar style="margin-left: 15%; margin-top: 30px">
+              <img [src]="userShared.post.user.photo" />
+               <div class="connectedDIVlittle" *ngIf="(item.chat.sender?._id != userService.User?._id)?item.chat.sender?.connected:item.chat.receiver?.connected"></div> 
+            </ion-avatar>
+            <div style="margin-left: 13%; color: black">
+              {{ userShared.post.user.name }}
+              {{ userShared.post.user.last_name }}
+            </div>
+          </ion-col>
+          <ion-col size="6">
+            <div style="margin-top: 30px; color: black">
+              <h3 style="font-size: 55px">
+                <span style="font-size: 30px">Posición</span>
+                {{ positionShared }}
+              </h3>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+</div> -->
+<div
+  style="border-radius: 5px; width: 96%; margin-left: auto; margin-right: auto"
+  *ngIf="segment == 2 && !(myPosition < total)"
+>
+<div style="padding: 10px; text-align: center">
+  <img src="https://i.pinimg.com/originals/b0/53/fb/b053fbc7aac21ef8877679d6e0a934d0.gif" style="height: 100px" alt="" />
+</div>
+<h1 style="text-align: center">
+  Aun no han compartido tus publicaciones, Sigue creando publicaciones y buscando
+  amigos para escalar en el Ranking !
+</h1>
+  <h1 style="text-align: center">
+    <strong style="font-size: larger">{{ myPosition }}°</strong> Lugar, Sigue
+    compartiendo publicaciones para subir en el ranking!
+  </h1>
+</div>

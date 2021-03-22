@@ -1,26 +1,31 @@
-<ion-content>
-  <ion-slides pager="true" [options]="slideOpts">
-    <ion-slide
-      class="slide"
-      
-      *ngFor="let intento of intentos"
+<ion-content style="background-color: black">
+  <div
+    style="background-color: black; height: 100%"
+  >
+    <ion-slides pager="true" [options]="slideOpts"
+      style="background-color: black; height: 100%"
+      *ngIf="showSlides"
     >
-      <video
-        controlslist="nodownload"
-        controls="controls"
-        style="width:100%;height:100%;"
-        id="video"
-        preload="metadata"
-        webkit-playsinline="webkit-playsinline"
-        class="img"
+      <ion-slide
+        class="slide"
+        *ngFor="let intento of intentos"
       >
-        <source [src]="intento | safeUrl" type="video/mp4" />
-        <source [src]="intento | safeUrl" type="video/ogg" />
-      </video>
-    </ion-slide>
-  </ion-slides>
+        <video
+          controlslist="nodownload"
+          controls="controls"
+          style="width:100%;height:100%;"
+          id="video"
+          preload="metadata"
+          webkit-playsinline="webkit-playsinline"
+          class="img"
+        >
+          <source [src]="intento | safeUrl" type="video/mp4" />
+          <source [src]="intento | safeUrl" type="video/ogg" />
+        </video>
+      </ion-slide>
+    </ion-slides>
+  </div>
 </ion-content>
-
 <ion-icon
   name="close-outline"
   (click)="mc.dismiss()"

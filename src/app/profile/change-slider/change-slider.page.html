@@ -27,7 +27,7 @@
         <ion-col size-sm="12" size-xs="12" size-md="6" size-lg="6" size-xl="4">
           <div
             (click)="addContent()"
-            width="300px"
+            width="159px"
             height="225px"
             alt=""
             style="cursor: pointer; text-align: center"
@@ -67,7 +67,12 @@
                 style="max-height: 100%; margin: auto; display: block"
               />
             </div>
-            <div *ngIf="img.indexOf('video') !== -1">
+            <div *ngIf="img.indexOf('video') !== -1"
+              style="
+              background-color: black;
+              "
+            >
+
               <ion-icon
                 name="close-outline"
                 class="trashIconVideo"
@@ -77,18 +82,19 @@
 
               <video
                 controlslist="nodownload"
-                style="width: 100% !important; height: 100% !important"
+                style="width: 100% !important; max-height:230px !important"
                 controls="controls"
                 preload="metadata"
                 webkit-playsinline="webkit-playsinline"
-                class="videoPlayer"
               >
                 <source [src]="img | safeUrl" type="video/mp4" />
                 <source [src]="img | safeUrl" type="video/ogg" />
                 <br />
               </video>
             </div>
-            <div *ngIf="img.indexOf('youtube') !== -1 && img | youtube">
+            <div *ngIf="img.indexOf('youtube') !== -1 && img | youtube"
+              style="background: black"
+            >
               <ion-icon
                 name="close-outline"
                 class="trashIconVideo"
@@ -96,7 +102,7 @@
               ></ion-icon>
               <br />
               <iframe
-                style="width: 100% !important; height: 100% !important"
+                style="width: 100% !important; max-height:233px !important"
                 [src]="img | youtube"
               >
               </iframe>

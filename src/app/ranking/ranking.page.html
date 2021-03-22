@@ -4,206 +4,133 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content style="background: white;">
-  <div style="text-align: center;padding: 20px;">
-    <img src="https://i.ibb.co/g6TFj6G/Logo-TRANSPARENTE.png" alt="logoSportyeah!" style="height: 200px;">
+<ion-content style="background: white">
+  <div style="text-align: center; padding: 20px">
+    <!-- <img
+      src="https://i.ibb.co/g6TFj6G/Logo-TRANSPARENTE.png"
+      alt="logoSportyeah!"
+      style="height: 200px"
+    /> -->
     <h1>Ranking Sportyeah!</h1>
+    <h5>
+      En este ranking seguir a los usuarios que son tendencias en Sportyeah! Se
+      uno de ellos...
+    </h5>
   </div>
-  <div class="segmentSection">
-    <ion-segment style="place-content: center !important;" scrollable class="segment"  [(ngModel)]="segment"  >
-      <ion-segment-button  value=0 >     
-        <p class="textoSegment">Reacciones</p>
-        <img class="iconsPost"  src="https://img.icons8.com/bubbles/344/facebook-like.png" alt="Reaction icon">
-      </ion-segment-button>
-  
-      <ion-segment-button  value=1 >
-        <p class="textoSegment">Comentarios</p>
-        <img class="iconsPost"  src="https://img.icons8.com/bubbles/344/comments.png" alt="Reaction icon">
-      </ion-segment-button>
 
-      <ion-segment-button  value=2 >
-        <p class="textoSegment">Compartidos</p>
-        <img class="iconsPost"  src="https://img.icons8.com/bubbles/452/undo.png" alt="Reaction icon">
-      </ion-segment-button>
-    </ion-segment>
-  </div>
-  <div (click)="filterCountry()" style="cursor: pointer;text-align: center;">
-    <p style="font-size: 12px;" *ngIf="!country" >Ranking Global</p >
-    <p style="font-size: 12px;" *ngIf="country" >Ranking en mi país</p >
-    <img 
+  <div (click)="filterCountry()" style="cursor: pointer; text-align: center">
+    <p style="font-size: 12px" *ngIf="!country">Ranking Global</p>
+    <p style="font-size: 12px" *ngIf="country">Ranking en mi país</p>
+    <img
       *ngIf="(ipLoaded | async) && country"
       class="bandera"
       [src]="'https://www.countryflags.io/'+banderaIP[0]+banderaIP[1]+'/flat/64.png'"
       alt=""
-      style="width: 8%;"
-      />
-    <img *ngIf="!country" src="https://img.icons8.com/offices/344/geography.png" style="width: 7%;" alt="planeta tierra">   
-
+      style="height: 100px"
+      class="slide-in-bck-center"
+    />
+    <img
+      *ngIf="!country"
+      src="https://img.icons8.com/offices/344/geography.png"
+      style="height: 100px"
+      alt="planeta tierra"
+      class="slide-in-bck-center"
+    />
   </div>
 
-<div style="border-radius: 5px;width: 96%;margin-left: auto;margin-right: auto;margin-top: 10px;">
+  <div class="segmentSection">
+    <ion-segment
+      style="place-content: center !important"
+      scrollable
+      class="segment"
+      [(ngModel)]="segment"
+    >
+      <ion-segment-button value="0">
+        <p class="textoSegment">Reacciones</p>
+        <img
+          class="iconsPost"
+          src="https://img.icons8.com/bubbles/344/facebook-like.png"
+          alt="Reaction icon"
+        />
+      </ion-segment-button>
 
-    <ion-slides pager="true"  [options]="slideOpts" style="cursor: pointer;">
+      <ion-segment-button value="1">
+        <p class="textoSegment">Comentarios</p>
+        <img
+          class="iconsPost"
+          src="https://img.icons8.com/bubbles/344/comments.png"
+          alt="Reaction icon"
+        />
+      </ion-segment-button>
+
+      <ion-segment-button value="2">
+        <p class="textoSegment">Compartidos</p>
+        <img
+          class="iconsPost"
+          src="https://img.icons8.com/bubbles/452/undo.png"
+          alt="Reaction icon"
+        />
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+
+  <div
+    style="
+      border-radius: 5px;
+      width: 96%;
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: 10px;
+    "
+  >
+    <ion-slides pager="true" [options]="slideOpts" style="cursor: pointer">
       <ion-slide>
-        <ranking-since-ever *ngIf="todolosPost.length != 0" style="width: 100%;padding-bottom: 20px;" [segment]="segment" [AllPost]="todolosPost" [country]="country" ></ranking-since-ever>
+        <ranking-since-ever
+          *ngIf="todolosPost.length != 0"
+          style="width: 100%; padding-bottom: 20px"
+          [segment]="segment"
+          [AllPost]="todolosPost"
+          [country]="country"
+        ></ranking-since-ever>
       </ion-slide>
       <ion-slide>
-        <ranking-today *ngIf="todolosPost.length != 0" style="width: 100%;padding-bottom: 20px;" [segment]="segment" [AllPost]="todolosPost" [country]="country" ></ranking-today>
+        <ranking-today
+          *ngIf="todolosPost.length != 0"
+          style="width: 100%; padding-bottom: 20px"
+          [segment]="segment"
+          [AllPost]="todolosPost"
+          [country]="country"
+        ></ranking-today>
       </ion-slide>
       <ion-slide>
-        <ranking-week *ngIf="todolosPost.length != 0" style="width: 100%;padding-bottom: 20px;" [segment]="segment"  [AllPost]="todolosPost" [country]="country" ></ranking-week>
+        <ranking-week
+          *ngIf="todolosPost.length != 0"
+          style="width: 100%; padding-bottom: 20px"
+          [segment]="segment"
+          [AllPost]="todolosPost"
+          [country]="country"
+        ></ranking-week>
       </ion-slide>
       <ion-slide>
-        <ranking-month *ngIf="todolosPost.length != 0" style="width: 100%;padding-bottom: 20px;" [segment]="segment"  [AllPost]="todolosPost" [country]="country" ></ranking-month>
+        <ranking-month
+          *ngIf="todolosPost.length != 0"
+          style="width: 100%; padding-bottom: 20px"
+          [segment]="segment"
+          [AllPost]="todolosPost"
+          [country]="country"
+        ></ranking-month>
       </ion-slide>
       <ion-slide>
-        <raking-year *ngIf="todolosPost.length != 0" style="width: 100%;padding-bottom: 20px;" [segment]="segment"  [AllPost]="todolosPost" [country]="country" ></raking-year>
+        <raking-year
+          *ngIf="todolosPost.length != 0"
+          style="width: 100%; padding-bottom: 20px"
+          [segment]="segment"
+          [AllPost]="todolosPost"
+          [country]="country"
+        ></raking-year>
       </ion-slide>
     </ion-slides>
 
-  <!-- ion-grid>
-      <ion-row style="text-align: center;">
-          <ion-col> -->
-            
-            <!-- <ion-button  class="botons" (click)="today()" >
-              <span >{{'analytics-views.today'| translate}}</span>
-            </ion-button> 
-          </ion-col>
-        <ion-col>
-          
-           <ion-button  class="botons" (click)="week()" >
-            <span >{{'analytics-views.weeks'| translate}}</span>
-          </ion-button> 
-        </ion-col>
-        <ion-col>
-         
-         <ion-button  class="botons" (click)="month()" >
-            <span >{{'analytics-views.months'| translate}}</span>
-          </ion-button>
-        </ion-col>
-        <ion-col>
-          
-          <ion-button  class="botons" (click)="year()" >
-            <span >{{'analytics-views.years'| translate}}</span>
-          </ion-button>
-        </ion-col>
-        <ion-col>
-          
-          <ion-button  class="botons" (click)="year()" >
-            <span >{{'analytics-views.years'| translate}}</span>
-          </ion-button> -->
-        <!-- </ion-col>
-      </ion-row>
-    </ion-grid> -->
-</div>
-<!-- <ion-item>
-  <ion-label>Desde siempre</ion-label>
-  <ion-select [interfaceOptions]="customActionSheetOptions" [(ngModel)]="fecha" (ionChange)="originPrincipaMediaListoMio()" interface="action-sheet" >
-    <ion-select-option value="0">Hoy</ion-select-option>
-    <ion-select-option value="2">Semana</ion-select-option>
-    <ion-select-option value="3">Mes</ion-select-option>
-    <ion-select-option value="4">Año</ion-select-option>
-    <ion-select-option value="5">Siempre</ion-select-option>
-  </ion-select>
-</ion-item> -->
-
-
-
-<!-- REACCIONES -->
-
-<!-- <div style="width: 99%;margin-left: auto;margin-right: auto;" *ngIf="segment == 0 && userLike">
-  <ion-card>
-    <ion-card-content>
-      <ion-grid>
-        <ion-row>
-          <ion-col size="6">
-            <ion-avatar style="margin-left: 15%;margin-top: 30px;" >
-              <img [src]="userLike.post.user.photo">
-            </ion-avatar>
-            <div  style="margin-left: 13%;color: black;"
-            
-            >{{ userLike.post.user.name }} {{ userLike.post.user.last_name }}
-            </div>
-          </ion-col>
-          <ion-col size="6">
-            <div style="margin-top: 30px;">
-              <h3 style="font-size: 55px; color: black;"><span style="font-size: 30px;">Posición</span> {{positionLike}}</h3> 
-            </div>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-card-content>
-  </ion-card>
- 
-  
-</div>
-<div style="border-radius: 5px;width: 96%;margin-left: auto;margin-right: auto;" *ngIf="segment == 0 && !userLike">
-  <h1 style="text-align: center;">No han reaccionado tus publicación </h1>
-  <h1 *ngIf="likes.length != 0" style="text-align: center;">Estas por debajo de la posicion: {{likes.length}} </h1>
-</div> -->
-
-<!-- COMENTARIOS --> 
-<!-- 
- <div style="border-radius: 5px;width: 99%;margin-left: auto;margin-right: auto;" *ngIf="segment == 1 && userComment">
-  <ion-card>
-    <ion-card-content>
-      <ion-grid>
-        <ion-row>
-          <ion-col size="6">
-            <ion-avatar style="margin-left: 15%;margin-top: 30px;" >
-              <img [src]="userComment.post.user.photo">
-            </ion-avatar>
-            <div  style="margin-left: 13%;color: black;"
-           
-            >{{ userComment.post.user.name }} {{ userComment.post.user.last_name }}
-            </div>
-          </ion-col>
-          <ion-col size="6">
-            <div style="margin-top: 30px;color:black;">
-              <h3 style="font-size: 55px;"><span style="font-size: 30px;">Posición</span> {{positionComment}}</h3> 
-            </div>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-card-content>
-  </ion-card>
-  
-</div>
-<div style="border-radius: 5px;width: 96%;margin-left: auto;margin-right: auto;" *ngIf="segment == 1 && !userComment">
-<h1 style="text-align: center;">No hay comentarios en tus publicación </h1>
-<h1 *ngIf="comments.length != 0" style="text-align: center;">Estas por debajo de la posicion: {{comments.length}} </h1>
-
-</div> -->
-
-<!-- COMPARTIDOS -->
-
-<!--    <div style="border-radius: 5px;width: 99%;margin-left: auto;margin-right: auto;" *ngIf="segment == 2 && userShared">
-    <ion-card>
-      <ion-card-content>
-        <ion-grid>
-          <ion-row>
-            <ion-col size="6">
-              <ion-avatar style="margin-left: 15%;margin-top: 30px;" >
-                <img [src]="userShared.post.user.photo">
-              </ion-avatar>
-              <div  style="margin-left: 13%;color: black;"
-             
-              >{{ userShared.post.user.name }} {{ userShared.post.user.last_name }}
-              </div>
-            </ion-col>
-            <ion-col size="6">
-              <div style="margin-top: 30px;color:black;">
-                <h3 style="font-size: 55px;"><span style="font-size: 30px;">Posición</span> {{positionShared}}</h3> 
-              </div>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
-      </ion-card-content>
-    </ion-card>   
+   
   </div>
-  <div style="border-radius: 5px;width: 96%;margin-left: auto;margin-right: auto;" *ngIf="segment == 2 && !userShared">
-    <h1 style="text-align: center;">No han compartido tus publicación </h1>
-    <h1 *ngIf="shareds.length != 0" style="text-align: center;">Estas por debajo de la posicion: {{shareds.length}} </h1>
-  </div> -->
 </ion-content>
-
