@@ -30,7 +30,6 @@
               style="margin-left: auto; margin-right: auto; cursor: pointer"
             >
               <img [src]="ranking[1]._id.user.photo" />
-              <!--  <div class="connectedDIVlittle" *ngIf="(item.chat.sender?._id != userService.User?._id)?item.chat.sender?.connected:item.chat.receiver?.connected"></div> -->
             </ion-avatar>
 
             <div style="text-align: center; height: 30px; cursor: pointer">
@@ -84,7 +83,6 @@
           >
             <ion-avatar style="margin-left: auto; margin-right: auto">
               <img [src]="ranking[0]?._id.user.photo" />
-              <!--  <div class="connectedDIVlittle" *ngIf="(item.chat.sender?._id != userService.User?._id)?item.chat.sender?.connected:item.chat.receiver?.connected"></div> -->
             </ion-avatar>
             <div style="text-align: center; height: 30px">
               {{ ranking[0]?._id.user.name }}
@@ -121,7 +119,6 @@
           </div>
         </ion-col>
 
-        <!--  TERCER LUGAR -->
         <ion-col size="4" style="margin-top: 27px">
           <ion-avatar
           *ngIf="ranking[2] == undefined && load"
@@ -138,7 +135,6 @@
           >
             <ion-avatar style="margin-left: auto; margin-right: auto">
               <img [src]="ranking[2]?._id.user.photo" />
-              <!--  <div class="connectedDIVlittle" *ngIf="(item.chat.sender?._id != userService.User?._id)?item.chat.sender?.connected:item.chat.receiver?.connected"></div> -->
             </ion-avatar>
             <div style="text-align: center; height: 30px">
               {{ ranking[2]?._id.user.name }}
@@ -182,37 +178,7 @@
 
 </div>
 
-<!-- REACCIONES -->
 
-<!-- <div
-  style="width: 99%; margin-left: auto; margin-right: auto"
-  *ngIf="segment == 0 && myPosition < total"
->
-  <ion-card>
-    <ion-card-content>
-      <ion-grid>
-        <ion-row>
-          <ion-col size="6">
-            <ion-avatar style="margin-left: 15%; margin-top: 30px">
-              <img [src]="userLike.post.user.photo" />
-               <div class="connectedDIVlittle" *ngIf="(item.chat.sender?._id != userService.User?._id)?item.chat.sender?.connected:item.chat.receiver?.connected"></div> 
-            </ion-avatar>
-            <div style="margin-left: 13%; color: black">
-              {{ userLike.post.user.name }} {{ userLike.post.user.last_name }}
-            </div>
-          </ion-col>
-          <ion-col size="6">
-            <div style="margin-top: 30px">
-              <h3 style="font-size: 55px; color: black">
-                <span style="font-size: 30px">Posición</span> {{ positionLike }}
-              </h3>
-            </div>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-card-content>
-  </ion-card>
-</div> -->
 <div
   style="border-radius: 5px; width: 96%; margin-left: auto; margin-right: auto"
   *ngIf="segment == 0 && !(myPosition < total)"
@@ -238,39 +204,7 @@
   </h1>
 </div>
 
-<!-- COMENTARIOS -->
 
-<!-- <div
-  style="border-radius: 5px; width: 99%; margin-left: auto; margin-right: auto"
-  *ngIf="segment == 1 && myPosition < total"
->
-  <ion-card>
-    <ion-card-content>
-      <ion-grid>
-        <ion-row>
-          <ion-col size="6">
-            <ion-avatar style="margin-left: 15%; margin-top: 30px">
-              <img [src]="userComment.post.user.photo" />
-                <div class="connectedDIVlittle" *ngIf="(item.chat.sender?._id != userService.User?._id)?item.chat.sender?.connected:item.chat.receiver?.connected"></div> 
-            </ion-avatar>
-            <div style="margin-left: 13%; color: black">
-              {{ userComment.post.user.name }}
-              {{ userComment.post.user.last_name }}
-            </div>
-          </ion-col>
-          <ion-col size="6">
-            <div style="margin-top: 30px; color: black">
-              <h3 style="font-size: 55px">
-                <span style="font-size: 30px">Posición</span>
-                {{ positionComment }}
-              </h3>
-            </div>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-card-content>
-  </ion-card>
-</div> -->
 <div
   style="border-radius: 5px; width: 96%; margin-left: auto; margin-right: auto"
   *ngIf="segment == 1  && !(myPosition < total)"
@@ -285,39 +219,7 @@
   </h1>
 </div>
 
-<!-- COMPARTIDOS -->
-<!-- 
-<div
-  style="border-radius: 5px; width: 99%; margin-left: auto; margin-right: auto"
-  *ngIf="segment == 2 && myPosition < total"
->
-  <ion-card>
-    <ion-card-content>
-      <ion-grid>
-        <ion-row>
-          <ion-col size="6">
-            <ion-avatar style="margin-left: 15%; margin-top: 30px">
-              <img [src]="userShared.post.user.photo" />
-               <div class="connectedDIVlittle" *ngIf="(item.chat.sender?._id != userService.User?._id)?item.chat.sender?.connected:item.chat.receiver?.connected"></div> 
-            </ion-avatar>
-            <div style="margin-left: 13%; color: black">
-              {{ userShared.post.user.name }}
-              {{ userShared.post.user.last_name }}
-            </div>
-          </ion-col>
-          <ion-col size="6">
-            <div style="margin-top: 30px; color: black">
-              <h3 style="font-size: 55px">
-                <span style="font-size: 30px">Posición</span>
-                {{ positionShared }}
-              </h3>
-            </div>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-card-content>
-  </ion-card>
-</div> -->
+
 <div
   style="border-radius: 5px; width: 96%; margin-left: auto; margin-right: auto"
   *ngIf="segment == 2 && !(myPosition < total)"
