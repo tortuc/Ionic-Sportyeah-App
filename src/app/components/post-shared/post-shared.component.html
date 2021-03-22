@@ -50,7 +50,7 @@
     </div> 
   </ion-card>
 </div>
-<div *ngIf="news && news.stream == true" (click)="goToStream()" [ngClass]="{'disabled':disabled}">
+<div *ngIf="news && news.stream == true"   (click)="goToStream()" [ngClass]="{'disabled':disabled}">
   <ion-grid>
     <ion-row>
       <ion-col style="margin-top: -40px;text-align: center;" size="12">
@@ -61,6 +61,21 @@
         <ion-text  color="black">
           <h3 style="font-size:15px; color: black;">{{news.headline}}</h3>
         </ion-text>
+      </ion-col>
+      <ion-col size="12">
+        <div style="margin-right: auto; width: 100%">
+          <div id="localPlayer"  style="position: relative;" class="player">
+            <!-- REACCIONES -->
+           <!--  <div id="reactsDiv" #reacts style="position: relative">
+              <div class="overlay" fxShow="false" fxShow.xs="true"></div>
+            </div> -->
+            <!-- FIN REACCIONES -->
+            <!-- Corregir esto 
+             <h1  *ngIf="news?.deleted == true">Este directo esta fuera de línea </h1> -->
+          </div>
+          <div class="w-100"></div>
+          <!-- <div id="remotePlayerlist"></div> -->
+        </div>
       </ion-col>
       <ion-col style="text-align: center;" size="12">
         <ion-button (click)="goToStream()" >Ver Stream </ion-button>

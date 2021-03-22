@@ -81,6 +81,7 @@ import { IonicRatingModule } from "ionic4-rating";
 import { StructureComponent } from "src/app/profile/structure/structure.component";
 import { ChallengesPostOptionsComponent } from "./challenges/challenges-post-options/challenges-post-options.component";
 import { COptionsComponent } from "./challenges/c-options/c-options.component";
+import { NewsOptionsComponent } from "./news-options/news-options.component";
 import { ChallengesPotsOptionsIndivComponent } from './challenge/challenges-pots-options-indiv/challenges-pots-options-indiv.component' 
 @NgModule({
   imports: [
@@ -169,6 +170,7 @@ import { ChallengesPotsOptionsIndivComponent } from './challenge/challenges-pots
     ParteIzquierdaWebComponent,
     OpenImgComponent,
     COptionsComponent,
+    NewsOptionsComponent,
     ChallengesPotsOptionsIndivComponent
   ],
   exports: [
@@ -241,6 +243,7 @@ import { ChallengesPotsOptionsIndivComponent } from './challenge/challenges-pots
     OpenImgComponent,
     ParteIzquierdaWebComponent,
     COptionsComponent,
+    NewsOptionsComponent,
     ChallengesPotsOptionsIndivComponent
   ],
 })

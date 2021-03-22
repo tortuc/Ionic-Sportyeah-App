@@ -15,7 +15,7 @@
     
   </ion-toolbar>
 </ion-header>
-<ion-content  class="bg-gradient-person">
+<ion-content  style="color: white;">
   <ion-grid>
     <ion-row class="rowStyle">
       <ion-col *ngIf="!begingStream" size="12">
@@ -46,7 +46,8 @@
 <!--     <ion-button (click)="subscribe()">subcribir Call</ion-button>
         <ion-button (click)="unSubscribe()">unSubscribe Call</ion-button> -->
       </ion-col>
-      <ion-col >
+      <ion-col size="12" >
+
         <ion-item *ngIf="!begingStream ">
           <ion-label>{{'news.title' | translate}}</ion-label>
           <ion-input  style="background: white; color: black;" placeholder="Título del stream" [(ngModel)]="titulo1"></ion-input>
@@ -58,23 +59,24 @@
               <ion-select-option (click)="deporteListo()" *ngFor="let sport of sports" [value]="sport" >{{ 'sport.'+sport| translate}}</ion-select-option>              
             </ion-select>
           </ion-item>
-        <h4 *ngIf="begingStream" style="text-align: center;color: #737373;font-size: 14px;">{{ 'sport.'+deporte| translate}}</h4>
-        <h1 *ngIf="begingStream" style="text-align: center;font-size: 30px;">{{titulo1}}</h1>
+        <h4 *ngIf="begingStream" style="text-align: center;color: #737373;font-size: 14px;margin-top: 0;">{{ 'sport.'+deporte| translate}}</h4>
+        <h1 *ngIf="begingStream" style="text-align: center;font-size: 30px;margin: 0;">{{titulo1}}</h1>
       </ion-col>
-      <ion-col *ngIf="begingStream " >
-        <ion-button (click)="stopMicro()" [disabled]="(titulo1 != null && titulo1 != '')?false:true"  float-right ion-button ><ion-icon name="mic-off-outline"></ion-icon></ion-button>
-        <ion-button (click)="startMicro()" [disabled]="(titulo1 != null && titulo1 != '')?false:true"  float-right ion-button ><ion-icon name="mic-outline"></ion-icon></ion-button>
-        <ion-button (click)="stopCamera()" [disabled]="(titulo1 != null && titulo1 != '')?false:true"  float-right ion-button ><ion-icon name="videocam-off-outline"></ion-icon></ion-button>
-        <ion-button (click)="startCamera()" [disabled]="(titulo1 != null && titulo1 != '')?false:true"  float-right ion-button ><ion-icon name="videocam-outline"></ion-icon></ion-button>
-        <ion-button (click)="startScreen()" [disabled]="(titulo1 != null && titulo1 != '')?false:true"  float-right ion-button ><ion-icon name="desktop-outline"></ion-icon></ion-button>
-        <ion-button (click)="stopScreen()" [disabled]="(titulo1 != null && titulo1 != '')?false:true"  float-right ion-button >stopScreen</ion-button>
-
-      </ion-col>
-      <ion-col style="text-align: center;" 	size-xl="8"	size-xs="12">
+      <!-- <ion-col *ngIf="begingStream " >
         
+      </ion-col> -->
+      <ion-col style="text-align: center;" 	size-lg="8"	size-xs="12">
           <!-- <p id="local-player-name" class="player-name"></p> -->
           <div style="margin-left: auto;margin-right: auto; width: 100%;"> 
-            <div *ngIf="begingStream" id="localPlayer" class="player"></div>          
+            <div *ngIf="begingStream" id="localPlayer" class="player">
+        <ion-button (click)="stopMicro()" *ngIf="micro" [disabled]="(titulo1 != null && titulo1 != '')?false:true"  float-right ion-button ><ion-icon name="mic-off-outline"></ion-icon></ion-button>
+        <ion-button (click)="startMicro()" *ngIf="!micro" [disabled]="(titulo1 != null && titulo1 != '')?false:true"  float-right ion-button ><ion-icon name="mic-outline"></ion-icon></ion-button>
+        <ion-button (click)="stopCamera()" *ngIf="camera && !screen" [disabled]="(titulo1 != null && titulo1 != '')?false:true"  float-right ion-button ><ion-icon name="videocam-off-outline"></ion-icon></ion-button>
+        <ion-button (click)="startCamera()" *ngIf="!camera && !screen" [disabled]="(titulo1 != null && titulo1 != '')?false:true"  float-right ion-button ><ion-icon name="videocam-outline"></ion-icon></ion-button>
+        <ion-button (click)="startScreen()" *ngIf="!screen && !camera" [disabled]="(titulo1 != null && titulo1 != '')?false:true"  float-right ion-button ><ion-icon name="desktop-outline"></ion-icon></ion-button>
+        <ion-button (click)="stopScreen()" *ngIf="screen && !camera" [disabled]="(titulo1 != null && titulo1 != '')?false:true"  float-right ion-button ><ion-icon name="desktop-outline"></ion-icon><div class="line1"></div></ion-button>
+
+            </div>          
             <div class="w-100"></div>
           </div>
                    
@@ -86,17 +88,17 @@
 </div>
 <!-- FIN REACCIONES -->
 
-<div *ngIf="news && begingStream" style="--background: white;width: 100%;margin-top: 5%;margin-left: auto;margin-right: auto;">
-  <post-options style="background: white;"
+<div *ngIf="news && begingStream"  style="--background: white;width: 100%;margin-top: 5%;margin-left: auto;margin-right: auto;">
+  <news-options  style="background: white;"
    [news]="news"
    isPost="false"
- ></post-options>
+ ></news-options>
  </div>
       </ion-col>
 
        <!-- Comentarios -->
-       <ion-col *ngIf="begingStream" size-xl="4"	size-xs="12">
-        <ion-content style="height: 78%;width: 100%; ">
+       <ion-col *ngIf="begingStream" size-lg="4"	size-xs="12">
+        <ion-content class="comments">
           <ion-card *ngFor="let comment of commnets" class="comment"  >
             <ion-card-header>
               <ion-card-subtitle class="user-header">

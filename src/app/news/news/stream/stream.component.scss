@@ -12,7 +12,6 @@
 
 .player {
     width: 100%;
-    height: 525px;
   }
   /* Stream fin*/
 
@@ -24,6 +23,14 @@
     margin-right: auto;
  }
 
+.comments{
+    height: 78%;
+    width: 100%; 
+}
 
-
- 
+@media screen and (max-width: 991px) {
+    .comments{
+        height: 300px;
+        width: 100%; 
+    }
+  }

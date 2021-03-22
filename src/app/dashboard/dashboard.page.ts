@@ -12,6 +12,8 @@ import { AddFriendsPage } from './add-friends/add-friends.page';
 import { NewPostPage } from './new-post/new-post.page';
 import { Plugins } from '@capacitor/core';
 import { JdvimageService } from '../service/jdvimage.service';
+import { DefaultGridColumnDirective } from '@angular/flex-layout/grid/typings/column/column';
+
 const { Share } = Plugins;
 interface ConnectionResp {
   code:Number
@@ -61,7 +63,7 @@ export class DashboardPage implements OnInit,AfterViewInit {
  ngAfterViewInit(){
    
  }
-
+ 
 ngOnInit() {
 // const event = fromEvent(document, 'backbutton');
 // this.backbuttonSubscription = event.subscribe(async () => {
@@ -70,13 +72,24 @@ ngOnInit() {
 //     modal.dismiss();
 //   }
 // });
-}
+
+} 
 ngOnDestroy() {
 //  this.backbuttonSubscription.unsubscribe();
 }
-onScroll($event){
-  
-  
+newsStream;
+isScrolledIntoView() {
+  const rect = this.newsStream.getBoundingClientRect();
+  const topShown = rect.top >= 0;
+  const bottomShown = rect.bottom <= window.innerHeight;
+
+    if (topShown && bottomShown) {
+     /* this.subscribe() */
+     console.log('estoy en visible')
+    } else {
+     /* this.unSubscribe() */
+     console.log('estoy fuera')
+    }
 }
 
 
@@ -85,10 +98,11 @@ skipPost = 0
 
 
 ionViewWillEnter() {
-this.getPost()
+  this.getPost()
         
   this.getConnections()
 }
+
 
 posts:IPostC[] = []
 
