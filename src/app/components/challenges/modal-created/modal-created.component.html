@@ -11,8 +11,8 @@
   </div>
   <div class="share-group">
     <a
-      href="https://twitter.com/intent/tweet?text={{'challenge.shared.text'
-      | translate}}&url=https://app.sportyeah.com/challenge/{{Challenge._id}}"
+      href="https://wa.me/?text=¡Los reto a realizar este increíble desafío! https://app.sportyeah.com/challenge/{{userService.User.username}}/{{Challenge._id}}"
+
       target="_blank"
       rel="noopener noreferrer"
     >
@@ -39,7 +39,7 @@
         </svg>
       </div> </a
     ><a
-      href="https://www.facebook.com/sharer/sharer.php?app_id=113869198637480&amp;u=https%3A%2F%2Fwww.tiktok.com%2F%40lisaandlena%2Fvideo%2F6933255604295273734%3Fsender_device%3Dpc%26sender_web_id%3D6919431633112811013%26is_from_webapp%3Dv1%26is_copy_url%3D0&amp;display=popup&amp;sdk=joey"
+      href="https://www.facebook.com/sharer/sharer.php?u=https://app.sportyeah.com/challenge/{{userService.User.username}}/{{Challenge._id}}"
       target="_blank"
       style="margin-left: 24px"
       rel="noopener noreferrer"
@@ -61,7 +61,7 @@
           ></path>
         </svg></div></a
     ><a
-      href="https://twitter.com/intent/tweet?refer_source=https%3A%2F%2Fwww.tiktok.com%2F%40lisaandlena%2Fvideo%2F6933255604295273734%3Fsender_device%3Dpc%26sender_web_id%3D6919431633112811013%26is_from_webapp%3Dv1%26is_copy_url%3D0&amp;text=https%3A%2F%2Fwww.tiktok.com%2F%40lisaandlena%2Fvideo%2F6933255604295273734%3Fsender_device%3Dpc%26sender_web_id%3D6919431633112811013%26is_from_webapp%3Dv1%26is_copy_url%3D0"
+      href="https://twitter.com/intent/tweet?text=¡Los reto a realizar este increíble desafío!&url=https://app.sportyeah.com/challenge/{{userService.User.username}}/{{Challenge._id}}"
       target="_blank"
       style="margin-left: 24px"
       rel="noopener noreferrer"
@@ -109,7 +109,10 @@
         </ion-avatar>
       </ion-thumbnail>
       <ion-label>{{ user.user.name }} {{ user.user.last_name }}</ion-label>
-      <ion-button>{{ "challengePerson" | translate }}</ion-button>
+      <ion-button fill="outline" (click)="challengePerson(user.user)">
+        {{ "challengePerson" | translate }}
+        <ion-icon name="flame-outline" style="margin-left:5px"></ion-icon>
+      </ion-button>
     </ion-item>
   </ion-list>
 </ion-content>
