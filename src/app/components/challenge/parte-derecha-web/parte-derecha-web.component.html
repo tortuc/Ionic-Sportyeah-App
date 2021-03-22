@@ -32,23 +32,39 @@
     </span>
     <br />
   </div>
-  <ion-button [fill]="buttonFollowState ? 'outline' : 'clear'" style="right: 0; position: absolute"
-    (click)="buttonFollowState === true ? followUser(ownerChallengeId) : unFollowUser(ownerChallengeId)" 
-    *ngIf="buttonFollowState !== null"
-  >
-    {{buttonFollowText | translate}}
-    <ion-icon [name]="buttonFollowState ? 'flame-outline' : 'checkmark-circle-outline'" style="margin-left: 5px;"></ion-icon>
-  </ion-button>
+  <div style="margin-left:16px">
+    <ion-button [fill]="buttonFollowState ? 'outline' : 'clear'" 
+        style="margin-right: auto; "
+      (click)="buttonFollowState === true ? followUser(ownerChallengeId) : unFollowUser(ownerChallengeId)" 
+      *ngIf="buttonFollowState !== null"
+    >
+      {{buttonFollowText | translate}}
+      <ion-icon [name]="buttonFollowState ? 'flame-outline' : 'checkmark-circle-outline'" style="margin-left: 5px;"></ion-icon>
+    </ion-button>
+  </div>
 </ion-card-header>
 <div style="padding-left: 20px; padding-right: 20px">
   <p class="title">{{ Challenge.title }}</p>
-  <p class="description">{{ Challenge.description }}</p>
+  <p class="description all">
+    {{ Challenge.description }}
+    <span 
+     class="viewsNumber" 
+      style="
+        z-index: 99999999999999999999;
+        color:black;
+       "
+    >
+      {{ Challenge.views.length }} 
+    </span >
+    <img src="https://img.icons8.com/color/48/000000/visible--v1.png" style="width:20px;"/>
+  </p>
 </div>
 <ion-item-divider> </ion-item-divider>
-<app-challenges-post-options
-  [Challenge]="Challenge"
-  [pause]="pauseS"
-></app-challenges-post-options>
 <div class="buttonNext" (click)="goNext()">
   <img src="https://img.icons8.com/nolan/64/circled-chevron-right.png"/>
 </div>
+<app-challenge-comments 
+  [comments]="Challenge.challenged.comments"
+  [referenceId]="Challenge.challenged._id"
+  [challenge]="Challenge._id"
+></app-challenge-comments>

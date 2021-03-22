@@ -3,7 +3,12 @@
     ngClass.xs="m-p-0"
     style="margin: 0 !important; padding: 0 !important; width: 100%"
   >
-    <div class="bg-black" style="border-radius: 0">
+    <div class="bg-black" 
+      style="
+      border-radius: 0;
+      height:80vh;
+      "
+    >
       <app-challenges-post-header
         class="text-center centerAbsolute pb15"
         [Challenge]="Challenge"
@@ -13,11 +18,8 @@
         [destroy]="destroy"
         [pauseS]="pause"
         [scrollEvent]="scrollEvent"
+        [chain]="true"
       ></app-challenge-content>
     </div>
-    <app-challenges-post-options
-      [Challenge]="Challenge"
-      [pause]="pause"
-    ></app-challenges-post-options>
   </ion-card>
 </ion-row>

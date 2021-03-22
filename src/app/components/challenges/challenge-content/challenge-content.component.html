@@ -1,4 +1,8 @@
-<div (click)="pause()" *ngIf="Mostrar" class="" style="height: 100%">
+<div (click)="pause()" *ngIf="Mostrar" class="" 
+  style="
+  height: 100%;
+  "
+>
   <div
     style="
       position: fixed;
@@ -15,33 +19,40 @@
       <source [src]="Challenge.challenged.media | safeUrl" type="video/ogg" />
     </video>
   </div>
-  <img
-    src="https://img.icons8.com/nolan/64/play.png"
-    *ngIf="pauseVideo"
-    style="
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      margin: auto;
-    "
-  />
   <div
     style="
       top: 0;
-      height: 100%;
+      height: inherit;
       left: 0;
       right: 0;
       bottom: 0;
       margin-top: auto;
       margin-bottom: auto;
+      position:relative;
     "
   >
+    <img
+      src="https://img.icons8.com/ios-filled/100/000000/circled-play.png"
+      *ngIf="pauseVideo"
+      style="
+        position:absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto;
+        z-index:999999999999999 !important;
+        background:white;
+        border-radius:50px
+      "
+    />
     <video
       width="100%"
       height="100%"
-      style="margin-top: auto; margin-bottom: auto"
+      style="
+        margin-top: auto; 
+        margin-bottom: auto; 
+      "
       loop
       [id]="Challenge.challenged.media + Challenge._id"
     >
@@ -57,21 +68,26 @@
       />
       <br />
     </video>
-    <span class="movement iconChain" style="bottom: 180px">
+    <span 
+      *ngIf="chain"
+      class="movement iconChain" 
+      style="bottom: 50px; left:20px"
+    >
       <img
-        src="https://img.icons8.com/fluent/48/000000/chain.png"
+        src="https://img.icons8.com/windows/32/000000/decentralized-network.png"
+        *ngIf="chain"
         (click)="goChallenge()"
-        style="cursor: pointer; height: 30px;"
+        style="
+         cursor: pointer; 
+         height: 40px; 
+         background:rgba(255,255,255,0.5);
+         border-radius:30px
+        "
       />
     </span>
-    <span class="viewsNumber" 
-      style="
-        z-index: 99999999999999999999;
-        bottom:180px
-       " >
-      <ion-icon name="eye-outline" class="iconViews"></ion-icon>
-      {{ Challenge.views.length }}
-    </span
-    >
+    <app-challenges-post-options
+      [Challenge]="Challenge"
+      [pause]="pauseS"
+    ></app-challenges-post-options>
   </div>
 </div>

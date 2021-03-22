@@ -81,8 +81,9 @@
               >Actualizar</ion-button
             >
           </ion-row>
+          
           <ion-row *ngFor="let item of posts;let i = index" class="post-card">
-            <ion-card ngClass.xs="m-p-0" style="width: 100%">
+            <ion-card  ngClass.xs="m-p-0" style="width: 100%">
               <ion-card-header>
                 <header-post
                   class="user-header"
@@ -94,7 +95,7 @@
               <ion-card-content>
                 <post-content [post]="item.post"></post-content>
 
-                <post-shared
+                <post-shared 
                   *ngIf="item.post.post"
                   [post]="item.post.post"
                 ></post-shared>

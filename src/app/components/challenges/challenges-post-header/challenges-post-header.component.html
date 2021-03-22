@@ -16,18 +16,28 @@
     <span
       class="messageC profile-name"
       (click)="
-        userService.goToProfile(Challenge.challenging.userId.data.username)
+        userService.goToProfile(Challenge.challenged.userId.data.username)
       "
       >{{ Challenge.challenged.userId.data.name }}
       {{ Challenge.challenged.userId.data.last_name }}</span
     ><br />
   
-    <p style="white-space: pre-wrap; margin:1px;" >
+    <p style="white-space: pre-wrap; margin:1px;" class="all">
       <span
         style="color:#d9d3d3"
         class="message "
         [innerHTML]="Challenge.title | links"
       ></span>
+      <span class="viewsNumber" 
+        style="
+          z-index: 99999999999999999999;
+         "
+        >
+        {{ Challenge.views.length }} 
+      </span >
+        <img src="https://img.icons8.com/color/48/000000/visible--v1.png" 
+          style="width:20px;"
+        />
     </p>
   </div>
   <div 
@@ -36,9 +46,10 @@
       right:10px;
       z-index:999999999999999999999;
     "
+    *ngIf="Challenge.challenged.userId.data._id === userService.User._id"
   >
     <ion-icon 
-      name="settings-outline" 
+      name="chevron-down-outline" 
       style="color:#d9d3d3;font-size:20px;cursor:pointer;"
       (click)="openOptions($event)"
     >

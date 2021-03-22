@@ -33,6 +33,10 @@ git remote set-url origin git+ssh://ubuntu@35.180.14.40/var/git/frontend
    siempre y nunca detenerte, no quit, no pares cuando duela, para cuando
    termines.
 
+## Bugs por solucionar en intentos
+
+1. ver intentos lo jode y los premios lo jode hay que ubicar dichos botones.
+
 ## MIERCOLES 17-03-2021
 
 1. Slider bug al abrir la imagen.

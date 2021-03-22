@@ -1,8 +1,8 @@
 export const environment = {
   production: true,
   URL_FRONT: "https://app.sportyeah.com/",
-  URL_API: "https://www.sportyeah.com:3000/v1",
-  URL_IMAGE: "https://www.sportyeah.com:3112/v1",
-  URL_SOCKET: "https://www.sportyeah.com:3000",
-  URL_CHALLENGE: "https://www.sportyeah.com:1000",
+  URL_API: "https://api.sportyeah.com/v1",
+  URL_IMAGE: "https://files.sportyeah.com/v1",
+  URL_SOCKET: "https://api.sportyeah.com",
+  URL_CHALLENGE: "https://challange.sportyeah.com",
 };

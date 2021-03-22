@@ -42,10 +42,13 @@
     </ion-button>
   </div>
   <app-videos-c  
+    [mediaa]="media"
+    [intentoss]="intentos"
     *ngIf="step2"
     (next)="guardarMedia($event)">
   </app-videos-c>
   <app-create-challenge-form
+    [formV]="form"
     *ngIf="step1"
     (next)="guardaForm($event)"
   ></app-create-challenge-form>

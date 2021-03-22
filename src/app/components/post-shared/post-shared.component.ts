@@ -7,14 +7,13 @@ import { response } from 'express';
 import { LoadingController, ModalController, Platform } from "@ionic/angular";
 import { TranslateService } from "@ngx-translate/core";
 import AgoraRTC, { IAgoraRTCClient } from "agora-rtc-sdk-ng"
-
+import { element } from 'protractor';
 @Component({
   selector: 'post-shared',
   templateUrl: './post-shared.component.html',
   styleUrls: ['./post-shared.component.scss'],
 })
 export class PostSharedComponent implements OnInit {
-
   @Input() post:IPost
   @Input() news: INew
   @Input() newsShared: INew
@@ -29,9 +28,15 @@ export class PostSharedComponent implements OnInit {
   
    }
 
-
   @Input() disabled:boolean = false
+ 
+
+  // scrollEvent = (event: any): void => {
+  //   const n = event.srcElement.scrollingElement.scrollTop;
+  // }
+
   ngOnInit(){
+    // window.scroll()
     if(this.news){
       this.userService.getUserById(this.news.user).subscribe((response:any)=>{
         delete(response.password)
@@ -39,26 +44,51 @@ export class PostSharedComponent implements OnInit {
         this.news.user = response
       })
 
-    }
-    if(this.news && this.news.stream){
-      this.channel = this.news.postStream
-      this.rtc.client = AgoraRTC.createClient({ mode: "live", codec: "vp8" ,role:"audience"});
-      try {
-             this.subscribe()
-      } catch (error) {
-        console.log('no logre hacerlo')
-      }
-      this.rtc.client.on("user-unpublished", user => {
-        // Get the dynamically created DIV container.
-        const playerContainer = document.getElementById(user.uid);
-        // Destroy the container.
-        playerContainer.remove();
-      });
+    // window.addEventListener('scroll', this.scrollEvent, true);
     }
    
-    
-   
+
+  /*  if(this.news && this.news.stream){
+    this.channel = this.news.postStream
+    this.rtc.client = AgoraRTC.createClient({ mode: "live", codec: "vp8" ,role:"audience"});
+    try {
+      this.subscribe()
+    } catch (error) {
+      console.log('no logre hacerlo')
+    }
+    this.rtc.client.on("user-unpublished", user => {
+      // Get the dynamically created DIV container.
+      const playerContainer = document.getElementById(user.uid);
+      // Destroy the container.
+      playerContainer.remove();
+    });
+  }   */
   }
+
+  
+newsStream
+quit
+public pauseVideo: boolean = false;
+
+  initOneVideo() {
+    this.newsStream = 
+      document.getElementById(
+        'localPlayer'
+      )
+     this.quit = true;
+ /*    this.src = <HTMLSourceElement>(
+      document.getElementById(
+        this.Challenge.challenged.media + this.Challenge._id
+      )
+    ); */
+    /* this.video.load();
+    this.video.pause();
+  
+    this.oneVideo = true; */
+    // this.isScrolledIntoView();
+  }
+ 
+  
   rtc = {
     // For the local client.
     client: null,
@@ -161,6 +191,16 @@ goToStream(){
    
 
   } 
+  async unSubscribe(){
+   
+    this.isSubscribe = false
+ 
+   
+      // Leave the channel.
+      await this.rtc.client.leave();
+     
+
+    }
   idVideo;
 
 

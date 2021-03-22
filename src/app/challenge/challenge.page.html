@@ -13,9 +13,10 @@
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
-<ion-content *ngIf="challenge" style="background: white; z-index: 1">
+<ion-content *ngIf="challenge" style="background: white; z-index: 1;
+  overflow:hidden;">
   <ion-row style="height: 100%">
-    <ion-col size="6">
+    <ion-col size-xs="12" size-sm="12" size-lg="8" style="min-height:500px;">
       <app-parte-izquierda-web
         [Challenge]="challenge"
         [destroy]="destroy"
@@ -23,7 +24,7 @@
         [scrollEvent]="scroll"
       ></app-parte-izquierda-web>
     </ion-col>
-    <ion-col size="6" style="background: white">
+    <ion-col size-xs="12" size-sm="12" size-lg="4" style="background: white">
       <app-parte-derecha-web
         [Challenge]="challenge"
         [destroy]="destroy"

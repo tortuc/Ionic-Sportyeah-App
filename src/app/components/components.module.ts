@@ -82,6 +82,7 @@ import { StructureComponent } from "src/app/profile/structure/structure.componen
 import { ChallengesPostOptionsComponent } from "./challenges/challenges-post-options/challenges-post-options.component";
 import { COptionsComponent } from "./challenges/c-options/c-options.component";
 import { NewsOptionsComponent } from "./news-options/news-options.component";
+import { ChallengesPotsOptionsIndivComponent } from './challenge/challenges-pots-options-indiv/challenges-pots-options-indiv.component' 
 @NgModule({
   imports: [
     CommonModule,
@@ -169,7 +170,8 @@ import { NewsOptionsComponent } from "./news-options/news-options.component";
     ParteIzquierdaWebComponent,
     OpenImgComponent,
     COptionsComponent,
-    NewsOptionsComponent
+    NewsOptionsComponent,
+    ChallengesPotsOptionsIndivComponent
   ],
   exports: [
     ImageComponent,
@@ -241,7 +243,8 @@ import { NewsOptionsComponent } from "./news-options/news-options.component";
     OpenImgComponent,
     ParteIzquierdaWebComponent,
     COptionsComponent,
-    NewsOptionsComponent
+    NewsOptionsComponent,
+    ChallengesPotsOptionsIndivComponent
   ],
 })
 export class ComponentsModule {}

@@ -56,9 +56,6 @@ export class CreateAwardChallengeComponent implements OnInit {
     { value: "Comments" },
     { value: "Challenges" },
     { value: "Shared" },
-    { value: "f5" },
-    { value: "f10" },
-    { value: "f20" },
   ];
   emojis: boolean = false;
   emojis2: boolean = false;

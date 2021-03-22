@@ -3,6 +3,7 @@ import { environment } from "src/environments/environment";
 import { IChallenge } from "./../../../service/challenge.service";
 import { UserService } from "./../../../service/user.service";
 import { Component, Input, OnInit } from "@angular/core";
+import { ModalController } from "@ionic/angular";
 
 @Component({
   selector: "app-modal-created",
@@ -16,10 +17,13 @@ export class ModalCreatedComponent implements OnInit {
   users: any[] = null;
   name: string = "";
 
-  constructor(public userService: UserService, public toast: ToastController) {}
+  constructor(
+    public userService: UserService, 
+    public toast: ToastController,
+    public mc: ModalController
+  ) {}
 
   ngOnInit() {
-    console.log(this.Challenge);
     this.users = this.userService.followings;
     this.challengeLink = `${environment.URL_FRONT}challenge/${this.userService.User.username}/${this.Challenge._id}`;
   }
