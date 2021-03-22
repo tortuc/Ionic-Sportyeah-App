@@ -45,10 +45,11 @@
             >
               <div
                 class="button-photo-banner"
-                (click)="bannerLogic.takePhotoFrom()"
+                (click)="$event.stopPropagation()"
               >
                 <ion-icon
                   name="camera-outline"
+                  (click)="bannerLogic.takePhotoFrom()"
                   style="margin-top: 6px"
                 ></ion-icon>
               </div>
