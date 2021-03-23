@@ -128,7 +128,6 @@ export class ChallengeContentComponent implements OnInit {
         }
       } else {
         if (!this.paused && this.video !== null) {
-          this.video.load();
           this.video.pause();
           this.paused = true;
         }
