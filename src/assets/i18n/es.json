@@ -756,6 +756,12 @@
       "yes": "¡Crear!",
       "no": "Cancelar"
     },
+    "_awards":{
+      "title": "Título",
+      "description":"Descripción",
+      "condition":"Condición",
+      "date": "Fecha de entrega"
+    },
     "awardtitle":"Premios",
     "date":"Fecha de Entrega",
     "retado": "te esta retando",

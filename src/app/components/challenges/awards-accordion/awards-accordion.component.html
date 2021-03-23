@@ -9,9 +9,15 @@
   <ion-button *ngIf="!open" color="light" class="last" (click)="open = true"
     ><ion-icon slot="icon-only" name="chevron-down-outline"></ion-icon
   ></ion-button>
-  <ion-button *ngIf="open" color="light" (click)="open = false" class="last"
-    ><ion-icon slot="icon-only" name="chevron-up-outline"></ion-icon
-  ></ion-button>
+  <ion-button 
+    *ngIf="open" 
+    color="light" 
+    (click)="open = false" 
+    class="last"
+  >
+    <ion-icon slot="icon-only" name="chevron-up-outline">
+    </ion-icon>
+  </ion-button>
   <ion-icon
     *ngIf="creator"
     (click)="delete.emit(i)"
@@ -21,6 +27,25 @@
   ></ion-icon>
 </ion-item>
 <div class="award-description text-center" *ngIf="open">
-  <img [src]="a.media" />
-  {{a.description}}
+  <img [src]="a.media" style="width:300px"/>
+  <div 
+    style="text-align:left"
+  >
+    <p>
+      <b>{{'challenge._awards.title' | translate}}</b>: 
+      {{ a.title }}
+    </p>
+    <p>
+    <b>{{'challenge._awards.description' | translate}}</b>: 
+      {{ a.description }}
+    </p>
+    <p>
+    <b>{{'challenge._awards.condition' | translate}}</b>:
+      {{ 'selectDesafiosPremios.'+a.condition | translate }}
+    </p>
+    <p>
+    <b>{{'challenge._awards.date' | translate}}</b>:
+      {{ a.date | customDisplayDate }}
+    </p>
+  </div>
 </div>
