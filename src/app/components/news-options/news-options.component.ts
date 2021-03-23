@@ -464,4 +464,10 @@ rea
       this.newsService.commentAudio();
     }
   }
+
+  
+  goToPost(id) {
+    this.router.navigate([`/post/${id}`]);
+  }
+
 }
