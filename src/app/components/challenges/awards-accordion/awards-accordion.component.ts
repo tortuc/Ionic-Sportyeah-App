@@ -7,7 +7,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
   styleUrls: ['./awards-accordion.component.scss'],
 })
 export class AwardsAccordionComponent implements OnInit {
-  @Input() a: IAward;
+  @Input() a: any;
   @Input() i:number;
   @Input() creator: boolean = false;
   @Output() delete = new EventEmitter<any>();
@@ -15,6 +15,8 @@ export class AwardsAccordionComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    console.log(this.a)
+  }
 
 }
