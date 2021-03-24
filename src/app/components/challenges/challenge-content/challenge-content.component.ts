@@ -76,7 +76,6 @@ export class ChallengeContentComponent implements OnInit {
         this.Challenge.challenged.media + this.Challenge._id
       )
     );
-    this.video.load();
     this.video.pause();
     this.paused = true;
     this.oneVideo = true;
@@ -160,10 +159,12 @@ export class ChallengeContentComponent implements OnInit {
 
       if (!this.pauseVideo && this.video) {
         this.pauseVideo = true;
+        this.paused = true;
         this.video.pause();
       } else {
         if(this.video){
           this.pauseVideo = false;
+          this.paused = false
           this.video.play();
         }
       }
