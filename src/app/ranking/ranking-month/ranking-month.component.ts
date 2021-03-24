@@ -47,7 +47,6 @@ export class RankingMonthComponent implements OnInit , OnChanges {
     if(this.country){
       country = this.userService.User?.geo.country
     }
-    console.log(this.segment);
     
     switch (this.segment.toString()) {
       case '0':
@@ -68,9 +67,6 @@ export class RankingMonthComponent implements OnInit , OnChanges {
 dayStart
 dayEnd
   getLikesData(country){
-    console.log('buscando likes');
-    console.log(this.dayStart)
-    console.log(this.dayEnd)
     this.rankingService.getRankingReactionsDay(this.userService.User._id,country,this.dayStart,this.dayEnd).pipe(take(1))
     .subscribe((resp)=>{
       console.log(resp)
@@ -87,7 +83,6 @@ dayEnd
     
     this.rankingService.getRankingCommentsDay(this.userService.User._id,country,this.dayStart,this.dayEnd).pipe(take(1))
     .subscribe((resp)=>{
-      console.log(resp);
       
       this.ranking = resp.ranking
       this.myPosition = resp.myPosition
@@ -105,7 +100,6 @@ dayEnd
     
     this.rankingService.getRankingSharedsDay(this.userService.User._id,country,this.dayStart,this.dayEnd).pipe(take(1))
     .subscribe((resp)=>{
-      console.log(resp);
       
       this.ranking = resp.ranking
       this.myPosition = resp.myPosition

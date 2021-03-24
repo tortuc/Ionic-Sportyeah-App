@@ -49,7 +49,6 @@ export class RankingSinceEverComponent implements OnInit,OnChanges {
     if(this.country){
       country = this.userService.User?.geo.country
     }
-    console.log(this.segment);
     
     switch (this.segment.toString()) {
       case '0':
@@ -69,7 +68,6 @@ export class RankingSinceEverComponent implements OnInit,OnChanges {
   }
 
   getLikesData(country){
-    console.log('buscando likes');
     
     this.rankingService.getRankingReactionsAllTime(this.userService.User._id,country).pipe(take(1))
     .subscribe((resp)=>{
@@ -82,7 +80,6 @@ export class RankingSinceEverComponent implements OnInit,OnChanges {
   }
 
   getCommentData(country){
-    console.log('buscando comentarios');
     
     this.rankingService.getRankingCommentsAllTime(this.userService.User._id,country).pipe(take(1))
     .subscribe((resp)=>{
@@ -100,7 +97,6 @@ export class RankingSinceEverComponent implements OnInit,OnChanges {
   }
 
   getSharedsData(country){
-    console.log('buscando compartidos');
     
     this.rankingService.getRankingSharedsAllTime(this.userService.User._id,country).pipe(take(1))
     .subscribe((resp)=>{

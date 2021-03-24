@@ -3,9 +3,8 @@
     ><p style="color: rgb(126, 126, 126); font-size: 9px">
       {{ "ranking.slide" | translate }}
     </p></span
-  >Anio
+  >Año
 </h1>
-
 <div style="width: 100%">
   <!-- REACCIONES -->
   <div class="podium">
@@ -76,7 +75,9 @@
           <div
             *ngIf="ranking[0] != undefined"
             class="slide-in-bottom"
-            (click)="userService.goToProfile(ranking[0]._id.user.username)"
+            (click)="
+              userService.goToProfile(ranking[0]._id.user.username)
+            "
           >
             <ion-avatar style="margin-left: auto; margin-right: auto">
               <img [src]="ranking[0]?._id.user.photo" />
@@ -127,12 +128,13 @@
           </ion-avatar>
           <div
             *ngIf="ranking[2] != undefined"
-            (click)="userService.goToProfile(ranking[2]._id.user.username)"
+            (click)="
+              userService.goToProfile(ranking[2]._id.user.username)
+            "
             class="tilt-in-fwd-tr"
           >
-            <ion-avatar style="margin-left: auto; margin-right: auto">
+            <ion-avatar  style="margin-left: auto; margin-right: auto">
               <img [src]="ranking[2]?._id.user.photo" />
-              <!--  <div class="connectedDIVlittle" *ngIf="(item.chat.sender?._id != userService.User?._id)?item.chat.sender?.connected:item.chat.receiver?.connected"></div> -->
             </ion-avatar>
             <div style="text-align: center; height: 30px">
               {{ ranking[2]?._id.user.name }}
@@ -215,24 +217,48 @@
       alt=""
     />
   </div>
-  <h1 style="text-align: center">
+  <h1 *ngIf="myPosition == 1 && ranking.length == 0" style="text-align: center">
     Aun no han reaccionado a tus publicaciones, Sigue compartiendo y buscando
     amigos para escalar en el Ranking !
   </h1>
-  <div style="text-align: center; padding: 5px">
-    <ion-button fill="outline" class="btn-outline-blue"
+  <h1 *ngIf="myPosition > 3" style="text-align: center">
+    <strong style="font-size: larger">{{ myPosition }}°</strong> Lugar. Sigue
+    compartiendo para subir en el ranking!
+  </h1>
+ <!-- <div style="text-align: center; padding: 5px">
+     <ion-button (click)="presentModal()" fill="outline" class="btn-outline-blue"
       >Crear publicación</ion-button
     >
     <ion-button fill="outline" class="btn-outline-blue"
       >Buscar amigos</ion-button
     >
-  </div>
-  <h1 style="text-align: center">
-    <strong style="font-size: larger">{{ myPosition }}°</strong> Lugar, Sigue
+  </div> -->
+  <h1 *ngIf="myPosition > 3" style="text-align: center">
+    <strong style="font-size: larger">{{ myPosition }}°</strong> Lugar. Sigue
     compartiendo para subir en el ranking!
   </h1>
 </div>
-
+<div
+style="border-radius: 5px; width: 96%; margin-left: auto; margin-right: auto"
+*ngIf="segment == 0 && (myPosition < total)"> 
+<div style="padding: 10px; text-align: center">
+  <img
+     *ngIf="myPosition <= 3" 
+      src="https://i.pinimg.com/originals/d2/61/4e/d2614e2f62dd59b9dfe66e63da15e5e7.gif"
+      style="height: 100px"
+      alt=""
+    />
+</div>
+<h1 *ngIf="myPosition > 1" style="text-align: center">
+  <strong  style="font-size: larger">{{ myPosition }}°</strong> Lugar. Sigue
+  compartiendo publicaciones para subir en el ranking!
+</h1>
+<h1 *ngIf="myPosition == 1 && myPosition != 2 && myPosition != 3" 
+style="text-align: center">
+  <strong  style="font-size: larger">{{ myPosition }}°</strong> Lugar. ¡Felicitaciones eres
+  el número 1 en el ranking!
+</h1>
+</div>
 <!-- COMENTARIOS -->
 
 <!-- <div
@@ -277,16 +303,48 @@
       alt=""
     />
   </div>
-  <h1 style="text-align: center">
+  <h1 *ngIf="myPosition == 1 && ranking.length == 0" style="text-align: center">
     Aun no no comentan tus publicaciones , comparte mas contenido para que
     comenten
   </h1>
-  <h1 style="text-align: center">
-    <strong>{{ myPosition }}°</strong> Lugar, Sigue compartiendo para subir en
+  <h1 *ngIf="myPosition > 3" style="text-align: center">
+    <strong style="font-size: larger">{{ myPosition }}°</strong> Lugar. Sigue
+    compartiendo para subir en el ranking!
+  </h1>
+  <!--<div style="text-align: center; padding: 5px">
+     <ion-button (click)="presentModal()" fill="outline" class="btn-outline-blue"
+      >Crear publicación</ion-button
+    >
+    <ion-button fill="outline" class="btn-outline-blue"
+      >Buscar amigos</ion-button
+    > 
+  </div>-->
+  <h1 *ngIf="myPosition > 3" style="text-align: center">
+    <strong style="font-size: larger">{{ myPosition }}°</strong> Lugar. Sigue compartiendo para subir en
     el ranking!
   </h1>
 </div>
-
+<div
+style="border-radius: 5px; width: 96%; margin-left: auto; margin-right: auto"
+*ngIf="segment == 1 && (myPosition < total)"> 
+<div style="padding: 10px; text-align: center">
+  <img
+     *ngIf="myPosition <= 3" 
+      src="https://i.pinimg.com/originals/d2/61/4e/d2614e2f62dd59b9dfe66e63da15e5e7.gif"
+      style="height: 100px"
+      alt=""
+    />
+</div>
+<h1 *ngIf="myPosition > 1" style="text-align: center">
+  <strong  style="font-size: larger">{{ myPosition }}°</strong> Lugar. Sigue
+  compartiendo publicaciones para subir en el ranking!
+</h1>
+<h1 *ngIf="myPosition == 1 && myPosition != 2 && myPosition != 3" 
+style="text-align: center">
+  <strong  style="font-size: larger">{{ myPosition }}°</strong> Lugar. ¡Felicitaciones eres
+  el número 1 en el ranking!
+</h1>
+</div>
 <!-- COMPARTIDOS -->
 <!-- 
 <div
@@ -331,12 +389,45 @@
       alt=""
     />
   </div>
-  <h1 style="text-align: center">
+  <h1 *ngIf="myPosition == 1 && ranking.length == 0" style="text-align: center">
     Aun no han compartido tus publicaciones, Sigue creando publicaciones y
     buscando amigos para escalar en el Ranking !
   </h1>
-  <h1 style="text-align: center">
-    <strong style="font-size: larger">{{ myPosition }}°</strong> Lugar, Sigue
+  <h1 *ngIf="myPosition > 3" style="text-align: center">
+    <strong style="font-size: larger">{{ myPosition }}°</strong> Lugar. Sigue
+    compartiendo para subir en el ranking!
+  </h1>
+  <!--<div style="text-align: center; padding: 5px">
+     <ion-button (click)="presentModal()" fill="outline" class="btn-outline-blue"
+      >Crear publicación</ion-button
+    >
+    <ion-button fill="outline" class="btn-outline-blue"
+      >Buscar amigos</ion-button
+    >
+  </div> -->
+  <h1 *ngIf="myPosition > 3" style="text-align: center">
+    <strong style="font-size: larger">{{ myPosition }}°</strong> Lugar. Sigue
     compartiendo publicaciones para subir en el ranking!
   </h1>
+</div>
+<div
+style="border-radius: 5px; width: 96%; margin-left: auto; margin-right: auto"
+*ngIf="segment == 2 && (myPosition < total)"> 
+<div style="padding: 10px; text-align: center">
+  <img
+     *ngIf="myPosition <= 3" 
+      src="https://i.pinimg.com/originals/d2/61/4e/d2614e2f62dd59b9dfe66e63da15e5e7.gif"
+      style="height: 100px"
+      alt=""
+    />
+</div>
+<h1 *ngIf="myPosition > 1" style="text-align: center">
+  <strong  style="font-size: larger">{{ myPosition }}°</strong> Lugar. Sigue
+  compartiendo publicaciones para subir en el ranking!
+</h1>
+<h1 *ngIf="myPosition == 1 && myPosition != 2 && myPosition != 3" 
+style="text-align: center">
+  <strong  style="font-size: larger">{{ myPosition }}°</strong> Lugar. ¡Felicitaciones eres
+  el número 1 en el ranking!
+</h1>
 </div>
