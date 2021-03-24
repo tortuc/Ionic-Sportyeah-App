@@ -138,6 +138,7 @@ formateSelected */
         // Play the remote video track.
         // Pass the DIV container and the SDK dynamically creates a player in the container for playing the remote video track.
         remoteVideoTrack.play(playerContainer);
+        this.unpublished = true
         setTimeout(() => {
           const video = document.getElementById('video_'+user.videoTrack._ID)
           video.style.position = null;
@@ -183,7 +184,7 @@ formateSelected */
    
       loading.dismiss();
   }
-  async  leaveCall() {
+ /*  async  leaveCall() {
 
     // Destroy the local audio and video tracks.
     if(this.rtc.localAudioTrack){
@@ -197,12 +198,12 @@ formateSelected */
       // Destroy the dynamically created DIV container.
       const playerContainer = document.getElementById(user.uid);
       playerContainer && playerContainer.remove();
-    });
+    }); 
   
     // Leave the channel.
     await this.rtc.client.leave();
   }
-  
+  */
 createReaction(idReaction,link){
   //ESTAS REACCIONES TIENEN QUE QUEDAR EN EL DIV DEL VIDEO PORQUE NO ESTAN FIJANDOSE AL VIDEO SI NO AL DIV
   //COLOCA LAS REACCIONES DENTRO DEL DIV
@@ -277,7 +278,7 @@ createReaction(idReaction,link){
   
 
   commnets= [];
-
+  unpublished:boolean = false;
   ngOnInit() {
     this.socketService.socket.on('new-reaction',(like)=>{
       this.esta(like.like.type,like.like._id)
@@ -290,6 +291,7 @@ createReaction(idReaction,link){
       const playerContainer = document.getElementById(user.uid);
       // Destroy the container.
       playerContainer.remove();
+      this.unpublished = false;
     });
   }
   comments($event){

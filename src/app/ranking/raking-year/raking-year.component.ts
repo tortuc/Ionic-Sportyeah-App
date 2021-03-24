@@ -44,13 +44,10 @@ export class RakingYearComponent implements OnInit,OnChanges {
       let country = 'null'
       this.dayStart = moment(new Date).startOf('year').format('YYYY-MM-DD')
       this.dayEnd = moment(new Date).endOf('year').format('YYYY-MM-DD')
-      console.log(this.dayStart);
-      console.log(this.dayEnd);
-  
+
       if(this.country){
         country = this.userService.User?.geo.country
       }
-      console.log(this.segment);
       
       switch (this.segment.toString()) {
         case '0':
@@ -71,7 +68,6 @@ export class RakingYearComponent implements OnInit,OnChanges {
   dayStart
   dayEnd
     getLikesData(country){
-      console.log('buscando likes');
  
       this.rankingService.getRankingReactionsDay(this.userService.User._id,country,this.dayStart,this.dayEnd).pipe(take(1))
       .subscribe((resp)=>{
@@ -85,7 +81,6 @@ export class RakingYearComponent implements OnInit,OnChanges {
     }
   
     getCommentData(country){
-      console.log('buscando comentarios');
       
       this.rankingService.getRankingCommentsDay(this.userService.User._id,country,this.dayStart,this.dayEnd).pipe(take(1))
       .subscribe((resp)=>{
@@ -103,7 +98,6 @@ export class RakingYearComponent implements OnInit,OnChanges {
     }
   
     getSharedsData(country){
-      console.log('buscando compartidos');
       
       this.rankingService.getRankingSharedsDay(this.userService.User._id,country,this.dayStart,this.dayEnd).pipe(take(1))
       .subscribe((resp)=>{
