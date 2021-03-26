@@ -162,37 +162,6 @@
               {{ i.text }}
             </p>
           </div>
-          <!--
-            <ion-item>
-            <ion-avatar slot="start">
-              <img [src]="i.photo" />
-            </ion-avatar>
-            <ion-label>
-              <h3>{{ i.subtitle | translate }}</h3>
-              <p>
-                {{
-                  i.text.length > 15
-                    ? i.text.substring(0, 25) + "..."
-                    : (i.text | translate)
-                }}
-              </p>
-              <ion-button (click)="actualNode = i" fill="outline">
-                <ion-icon name="eye-outline" style="margin-right: 5px"></ion-icon>
-                {{ "structure.see" | translate }}
-              </ion-button>
-              <ion-button *ngIf="creator" (click)="editNodes(i)">
-                <ion-icon name="create-outline"></ion-icon>
-              </ion-button>
-              <ion-button
-                *ngIf="creator"
-                (click)="deleteNode(structure, i.id)"
-                color="danger"
-              >
-                <ion-icon name="trash"> </ion-icon>
-              </ion-button>
-            </ion-label>
-          </ion-item>
-          -->
         </ion-card>
       </ion-col>
     </ion-row>

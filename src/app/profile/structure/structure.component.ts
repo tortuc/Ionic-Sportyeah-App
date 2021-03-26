@@ -273,7 +273,13 @@ export class StructureComponent implements OnInit {
     }
   }
 
-  eliminar(i){}
+  async eliminar(node: INode){
+    const data = await this.reusableCI.desicionAlert(
+      `¿Esta seguro de eliminar este elemento?`, ``
+    )
+    if(data)
+      this.deleteNode(this.structure, node.id)
+  }
 
   getStructure() {
     // Obtenemos la estructura organizacional del usuario si y solo si, dicha estructura existe.
