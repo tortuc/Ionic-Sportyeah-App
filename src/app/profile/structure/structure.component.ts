@@ -51,6 +51,9 @@ export interface INode {
 })
 export class StructureComponent implements OnInit {
 
+  /*
+   * Slide Options para darle estilo al componente slide de html
+   */
   slideOpts = {
     on: {
       beforeInit() {
@@ -160,9 +163,10 @@ export class StructureComponent implements OnInit {
     },
   };
 
+  /*
+   * DAta default para club
+   */
 
-
-  @Input() public ID: string;
   public canteraMasculina = {
     id: 2,
     media: null,
@@ -218,6 +222,12 @@ export class StructureComponent implements OnInit {
     ],
   };
 
+  /*
+   * Variables
+   */
+
+  @Input() public ID: string;
+  showSlides: boolean = false
   public structure = JSON.parse(JSON.stringify(this.structureDefault));
 
   public actualNode = this.structure;
@@ -234,7 +244,7 @@ export class StructureComponent implements OnInit {
     public reusableCI: ReusableComponentsIonic
   ) {}
 
-  openImg(i:string){
+  openImg(i:INode){
     if(i.media){
       if(i.media.length > 0)
       this.reusableCI.openImg(i.media[0],null)
