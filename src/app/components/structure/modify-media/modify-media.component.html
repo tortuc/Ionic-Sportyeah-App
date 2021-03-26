@@ -1,0 +1,63 @@
+<ion-content style="background-color: black">
+  <ion-icon
+    name="close-outline"
+    (click)="mc.dismiss(media)"
+    style="
+      color: gray;
+      right: 5px;
+      top: 15px;
+      position: absolute;
+      font-size: 40px;
+      z-index: 9999999;
+      cursor: pointer;
+    "
+  ></ion-icon>
+
+  <div
+    style="background-color: black; height: 100%"
+  >
+   <ion-slides
+      *ngIf="showSlides"
+      pager="true"
+      [options]="slideOpts"
+      style="background-color: black; height: 100%"
+    >
+      <ion-slide 
+        class="slide" 
+        style="width: 100%"
+        *ngFor="let url of media"
+      >
+        <img 
+          [src]="url" 
+          class="img" 
+          alt="" 
+          style="width: 100%" 
+        />
+        <div class="button-share">
+          <ion-button 
+           (click)="add()"  
+           fill="outline"
+           class="button-opacity"
+          >
+            {{ "news.add" | translate }}
+            <ion-icon 
+             slot="end"
+              name="add-circle-outline"
+            ></ion-icon>
+          </ion-button>
+
+          <ion-button
+            (click)="delete(url)"
+            fill="outline"
+            color="danger"
+            class="button-opacity"
+          >
+            {{ "delete" | translate }}
+            <ion-icon slot="end" name="trash-outline"></ion-icon>
+          </ion-button>
+        </div>
+
+      </ion-slide>
+    </ion-slides>
+  </div>
+</ion-content>
