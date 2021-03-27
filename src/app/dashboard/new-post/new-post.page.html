@@ -140,6 +140,9 @@
         <ion-button (click)="openVideo.click()">
           <ion-icon name="videocam"></ion-icon>
         </ion-button>
+        <ion-button (click)="createQuestion()">
+          Create cquestion
+        </ion-button>
 
         <ion-button
           [disabled]="news?formNews.invalid && videoFile == null:form.invalid && videoFile == null"
@@ -147,6 +150,18 @@
         >
           {{'new_post.btn' | translate}}
         </ion-button>
+      </ion-col>
+      <ion-col size="12">
+        <div *ngFor="let quest of question.questionGroup;index as i " style="border: groove;margin-bottom: 10px;">
+          <div style="text-align: center;position: relative;">
+            <ion-icon (click)="editQuestion(i)" style="position: absolute;cursor: pointer;color: #989898;left: 50px;bottom: 10px;font-size: 25px;" name="pencil-sharp"></ion-icon>
+            <ion-icon (click)="deleteQuestion(i)" style="position: absolute;cursor: pointer;color: #989898;left: 510px;bottom: 10px;font-size: 25px;" name="close-circle"></ion-icon>
+            <h1>{{quest.questionHeadline}}</h1>  
+          </div>    
+          <div *ngFor="let answer of quest.answer" style="cursor: pointer;color: black;height: 53px;width: 520px;margin-left: auto;margin-right: auto;margin-bottom: 10px;box-shadow: 0px 1px 5px 0px;">
+            <p style="position: absolute;left: 50px;">{{answer.option}}</p>
+          </div>
+       </div>
       </ion-col>
     </ion-row>
   </ion-grid>

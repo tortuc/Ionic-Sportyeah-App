@@ -72,7 +72,7 @@ export class AnaliticsViewsComponent implements OnInit {
    //Solicita los post a la db para mostrar
   async getPost(id,i):Promise<any>{
       return await new Promise((resolve)=>{
-        this.postService.getPost(id).subscribe((post:any)=>{
+        this.postService.getPost(id,null).subscribe((post:any)=>{
           post.post.count = i    
           resolve(post.post)
       })

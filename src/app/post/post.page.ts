@@ -12,6 +12,7 @@ import { NewCommentComponent } from './new-comment/new-comment.component';
 import { Plugins } from '@capacitor/core';
 import { LikesPostComponent } from '../components/likes-post/likes-post.component';
 import { ViewsProfileService } from "src/app/service/views-profile.service";
+import { QuestionService } from 'src/app/service/question.service';
 
 const { Share } = Plugins;
 
@@ -33,7 +34,8 @@ export class PostPage implements OnInit {
     private translate:TranslateService,
     private modalCtrl:ModalController,
     private actionSheetCtrl:ActionSheetController,
-    private viewsProfileService: ViewsProfileService
+    private viewsProfileService: ViewsProfileService,
+    public questionService:QuestionService,
 
     ){
      this.getPost(route.snapshot.paramMap.get('id'))
@@ -43,9 +45,10 @@ export class PostPage implements OnInit {
     this.router.navigate(['/dashboard'])
   }
   getPost(id){
-    this.postService.getPost(id).toPromise()
+    this.postService.getPost(id,this.userService.User._id).toPromise()//agregamos el id del usuario actual
     .then((post)=>{
       this.item = post
+      console.log(this.item.post.question)
     })
     .catch((err)=>{
       // handle err
@@ -107,11 +110,20 @@ export class PostPage implements OnInit {
       return await modal.present();
     }
 
-
-
   comments($event){
     this.item.comments = $event
   }
 
+  selectAnswer(id,position){
+    this.item.post.question.questionGroup[id].users.push({id:this.userService.User._id})
+    this.item.post.question.questionGroup[id].answer[position].total += 1
+    this.item.post.question.questionGroup[id].total += 1
+    console.log(this.item.post.question.questionGroup[id])
+    console.log(this.item.post.question._id)
+     this.questionService.updateQuestion(this.item.post.question).subscribe((response)=>{
+    //  this.item.post.question = response
+     this.item.post.question.questionGroup[id].voted = true;//Eso hace que salga la barra, despues de votar
+     })
+  }
 
 }

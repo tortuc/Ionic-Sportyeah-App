@@ -21,7 +21,6 @@
                   (getPost)="getPost(item.post._id)"
                 ></header-post>
               </ion-card-header>
-
               <ion-card-content>
                 <post-content [post]="item.post"></post-content>
                 <post-shared
@@ -33,6 +32,20 @@
                   [news]="item.post?.news"
                 ></post-shared>
               </ion-card-content>
+
+
+              <div *ngFor="let quest of item.post.question?.questionGroup;index as i " style="border: groove;margin-bottom: 10px;width: 90%;margin-left: auto;margin-right: auto;">
+                <div style="text-align: center;position: relative;">
+                  <h1>{{quest.questionHeadline}}</h1>  
+                </div>    
+                <div (click)="selectAnswer(i,answer.position)" *ngFor="let answer of quest.answer" style="width:520px;margin-right: auto;cursor: pointer;color: black;height: 53px;margin-left: auto;margin-bottom: 10px;box-shadow: 0px 1px 5px 0px;">
+                  <p  style="position: absolute;left: 100px;z-index: 1000;">{{answer.option}}</p>
+                  <p style="position: absolute;left: 300px;z-index: 1000;">{{((100 * answer.total/quest.total)/100).toFixed(1)}}</p>
+                  <ion-progress-bar  style="height: 53px;" value="((100 * answer.total/quest.total)/100).toFixed(1)"  ></ion-progress-bar><!-- *ngIf="quest.voted != undefined" -->
+                </div>
+             </div>
+              
+
               <post-options [item]="item" isPost="true"></post-options>
               <ion-grid>
                 <ion-row>

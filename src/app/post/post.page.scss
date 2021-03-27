@@ -8,3 +8,8 @@
     max-width: 150px;
     max-height: 150px;
 }
+
+.progress .progress-indeterminate {
+   --background: #3e62a0 !important;
+    z-index: 2;
+}

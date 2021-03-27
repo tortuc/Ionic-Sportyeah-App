@@ -83,6 +83,7 @@ import { ChallengesPostOptionsComponent } from "./challenges/challenges-post-opt
 import { COptionsComponent } from "./challenges/c-options/c-options.component";
 import { NewsOptionsComponent } from "./news-options/news-options.component";
 import { ChallengesPotsOptionsIndivComponent } from './challenge/challenges-pots-options-indiv/challenges-pots-options-indiv.component' 
+import { NewQuestionComponent } from "./new-question/new-question.component";
 @NgModule({
   imports: [
     CommonModule,
@@ -171,7 +172,8 @@ import { ChallengesPotsOptionsIndivComponent } from './challenge/challenges-pots
     OpenImgComponent,
     COptionsComponent,
     NewsOptionsComponent,
-    ChallengesPotsOptionsIndivComponent
+    ChallengesPotsOptionsIndivComponent,
+    NewQuestionComponent 
   ],
   exports: [
     ImageComponent,

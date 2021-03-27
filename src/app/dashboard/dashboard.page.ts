@@ -169,7 +169,7 @@ modalClose(data){
 }
 
 newPost(post){
-  this.postService.getPost(post._id).toPromise()
+  this.postService.getPost(post._id,null).toPromise()
   .then((post:IPostC)=>{
     this.posts.unshift(post)
   })
