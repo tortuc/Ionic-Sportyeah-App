@@ -736,8 +736,11 @@
     "see": "Ver más",
     "modal": {
       "title": "Nombre",
-      "subtitle": "Tipo",
-      "text": "Descripción"
+      "placeTitle":"",
+      "subtitle": "¿Que contiene?",
+      "placeSubtitle":"",
+      "text": "Describelo",
+      "placeText":""
     },
     "start": "Comenzar"
   },

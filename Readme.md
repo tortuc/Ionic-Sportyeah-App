@@ -32,10 +32,10 @@ Iniciar sportyeah
 1. Boton que permita volver en la estructura de club.
 2. Agregar modal y crear que la imagen al principio sea un slider, recuerda que
    el slider tiene que crearse en el ionViewDidEnter
-3. Boton de crear patrocinadores y poder crear varios de estos en cada nodo de
+3. Mejorar modal de crear nodo.
+4. Boton de crear patrocinadores y poder crear varios de estos en cada nodo de
    la estructura.
-4. Opcion para vincular un perfil de sportyeah a un nodo.
-5. Al vincular un nodo traer su trayectoria (premios y reconocimientos,
+5. Opcion para vincular un perfil de sportyeah a un nodo.
+6. Al vincular un nodo traer su trayectoria (premios y reconocimientos,
    experiencias y aptitudes)
-6. Optimizar codigo de estructura.
-7. Mejorar modal de crear nodo.
+7. Optimizar codigo de estructura.

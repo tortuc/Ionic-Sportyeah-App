@@ -12,7 +12,7 @@
       *ngIf="showSlides"
       pager="true"
       [options]="slideOpts"
-      style="background-color: black; height: 100%"
+      style="background-color: black; height: 300px"
     >
       <ion-slide 
         class="slide" 
@@ -25,6 +25,16 @@
           alt="" 
           style="width: 100%" 
         />
+      <div class="overlay2">
+          <div class="icon-div2">
+            <ion-icon 
+              class="icon2"
+              name="create-outline"
+              color="warning"
+              (click)="editMedia(actualNode)"
+            ></ion-icon>
+          </div>
+        </div>
       </ion-slide>
     </ion-slides>
   </div>
@@ -114,46 +124,51 @@
         *ngFor="let i of actualNode.childs"
       >
         <ion-card class="node">
-          <div 
-            class="node-img" 
-            [ngStyle]="{
-              'background'
-              : 
-              i.media ? i.media.length > 0 ? i.media[0] !== undefined ? 'url('+i.media[0]+') no-repeat center center'
-                  : 'url('+defaultImg+') no-repeat center center'
-                : 'url('+defaultImg+') no-repeat center center'
-              : 'url('+defaultImg+') no-repeat center center'
-            }"
+          <ion-slides
+            *ngIf="showSlides"
+            pager="true"
+            [options]="slideOpts"
+            style="background-color: black; height: 150px"
           >
-            <div class="overlay">
-              <div class="buttons">
-                <div class="icon-div">
-                  <ion-icon 
-                    name="eye-outline"
-                    class="icon"
-                    color="primary"
-                    (click)="openImg(i)"
-                  ></ion-icon>
-                </div>
-                <div class="icon-div">
-                  <ion-icon 
-                    class="icon"
-                    name="create-outline"
-                    color="warning"
-                    (click)="editMedia(i)"
-                  ></ion-icon>
-                </div>
-                <div class="icon-div">
-                  <ion-icon 
-                    class="icon"
-                    name="trash-outline"
-                    color="danger"
-                    (click)="eliminar(i)"
-                  ></ion-icon>
-                </div>
+            <ion-slide 
+              class="slide" 
+              style="width: 100%"
+              *ngFor="let url of i.media"
+            >
+              <img 
+                [src]="url" 
+                class="img" 
+                alt="" 
+                style="width: 100%" 
+              />
+              <div class="overlay2">
+                  <div class="icon-div2">
+                    <ion-icon 
+                      name="eye-outline"
+                      class="icon2"
+                      color="primary"
+                      (click)="openImg(i)"
+                    ></ion-icon>
+                  </div>
+                  <div class="icon-div2">
+                    <ion-icon 
+                      class="icon2"
+                      name="create-outline"
+                      color="warning"
+                      (click)="editNodes(i)"
+                    ></ion-icon>
+                  </div>
+                  <div class="icon-div2">
+                    <ion-icon 
+                      class="icon2"
+                      name="trash-outline"
+                      color="danger"
+                      (click)="eliminar(i)"
+                    ></ion-icon>
+                  </div>
               </div>
-            </div>
-          </div>
+            </ion-slide>
+          </ion-slides>
           <div class="text-center">
             <h1 class="node-title" (click)="actualNode = i">
               {{ i.title }}

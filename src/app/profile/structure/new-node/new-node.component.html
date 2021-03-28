@@ -1,34 +1,56 @@
+<ion-icon
+  name="close-outline"
+  (click)="mc.dismiss()"
+  style="
+    color: gray;
+    right: 5px;
+    top: 15px;
+    position: absolute;
+    font-size: 40px;
+    z-index: 9999999;
+    cursor: pointer;
+  "
+></ion-icon>
 <ion-content class="text-center">
-  <h3 *ngIf="creating">
-    {{ structureDefault.subtitle | translate }}
-  </h3>
-  <h3 *ngIf="!creating"></h3>
+  <ion-slides
+     *ngIf="showSlides"
+     pager="true"
+     [options]="slideOpts"
+     style="background-color: black; height: 50%"
+   >
+    <ion-slide 
+      class="slide" 
+      style="width: 100%"
+      *ngFor="let url of form.value.media"
+    >
+      <img 
+        [src]="url" 
+        class="img" 
+        alt="" 
+        style="width: 100%" 
+      />
+      <div class="overlay">
+          <div class="icon-div">
+            <ion-icon 
+              class="icon"
+              name="create-outline"
+              color="warning"
+              (click)="editMedia(form.value)"
+            ></ion-icon>
+          </div>
+        </div>
+    </ion-slide>
+  </ion-slides>
   <form [formGroup]="form">
-    <ion-img [src]="photo" (click)="editPhoto()" style="cursor: pointer">
-    </ion-img>
-
     <ion-item>
       <ion-label position="stacked">
         {{ "structure.modal.title" | translate }}
-        {{ structureDefault.subtitle | translate }}
       </ion-label>
       <ion-input
         type="text"
         [placeholder]="'enterText' | translate"
         style="background: transparent"
         formControlName="title"
-      ></ion-input>
-    </ion-item>
-
-    <ion-item>
-      <ion-label position="stacked">{{
-        "structure.modal.subtitle" | translate
-      }}</ion-label>
-      <ion-input
-        type="text"
-        [placeholder]="'enterText' | translate"
-        style="background: transparent"
-        formControlName="subtitle"
       ></ion-input>
     </ion-item>
 
@@ -43,20 +65,26 @@
         formControlName="text"
       ></ion-textarea>
     </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{
+        "structure.modal.subtitle" | translate
+      }}</ion-label>
+      <ion-input
+        type="text"
+        [placeholder]="'enterText' | translate"
+        style="background: transparent"
+        formControlName="subtitle"
+      ></ion-input>
+    </ion-item>
+
     <ion-button
       style="margin-top: 20px"
-      (click)="save(form.value)"
+      fill="outline"
       [disabled]="form.status !== 'VALID'"
+      (click)="save(form.value)"
     >
       {{ "profile_edit.btn" | translate }}
-    </ion-button>
-    <ion-button
-      color="light"
-      style="color: black"
-      style="margin-top: 20px"
-      (click)="mc.dismiss()"
-    >
-      Cerrar
     </ion-button>
   </form>
 </ion-content>

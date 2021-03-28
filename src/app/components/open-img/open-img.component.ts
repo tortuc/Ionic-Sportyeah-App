@@ -23,6 +23,7 @@ export class OpenImgComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    if(this.idUser)
     this.userService
       .getUserByUsername(this.idUser)
       .pipe(take(1))

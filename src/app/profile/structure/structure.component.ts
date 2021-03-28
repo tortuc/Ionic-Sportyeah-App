@@ -41,7 +41,7 @@ export interface INode {
   /*
    * Estructuras de menor gerarquia
    */
-  childs:this;
+  childs:INode[];
 }
 
 @Component({
@@ -164,12 +164,22 @@ export class StructureComponent implements OnInit {
   };
 
   /*
-   * DAta default para club
+   * Variables
+   */
+
+  @Input() public ID: string;
+  showSlides: boolean = false
+  creator: boolean = false;
+  structureStatus: boolean = true;
+  defaultImg: string = `./assets/images/logox.png`;
+
+  /*
+   * Data default para club
    */
 
   public canteraMasculina = {
     id: 2,
-    media: null,
+    media: [this.defaultImg],
     subtitle: `Equipo / Cantera Masculina`,
     title: `Cantera Masculina`,
     text: `Categorias`,
@@ -177,7 +187,7 @@ export class StructureComponent implements OnInit {
   };
   public canteraFemenina = {
     id: 3,
-    media: null,
+    media: [this.defaultImg],
     subtitle: `Equipo / Cantera Femenina`,
     title: `Cantera Femenina`,
     text: `Categorias`,
@@ -185,7 +195,7 @@ export class StructureComponent implements OnInit {
   };
   public primerEquipo = {
     id: 4,
-    media: null,
+    media: [this.defaultImg],
     subtitle: `Equipo / Primer Equipo`,
     title: `Primer Equipo`,
     text: `Plantilla`,
@@ -193,7 +203,7 @@ export class StructureComponent implements OnInit {
   };
   public equipoFemenino = {
     id: 5,
-    media: null,
+    media: [this.defaultImg],
     subtitle: `Equipo / Equipo Femenino`,
     title: `Equipo Femenino`,
     text: `Plantilla`,
@@ -201,7 +211,7 @@ export class StructureComponent implements OnInit {
   };
   public otrosEquipos = {
     id: 6,
-    media: null,
+    media: [this.defaultImg],
     subtitle: `Equipo / Otros Equipos`,
     title: `Otros Equipos`,
     text: `Equipos`,
@@ -222,19 +232,9 @@ export class StructureComponent implements OnInit {
     ],
   };
 
-  /*
-   * Variables
-   */
-
-  @Input() public ID: string;
-  showSlides: boolean = false
-  public structure = JSON.parse(JSON.stringify(this.structureDefault));
-
-  public actualNode = this.structure;
-  public creator: boolean = false;
-  public structureStatus: boolean = true;
-  public defaultImg: string = `./assets/images/logox.png`;
-  public seleccion: any = this.structure.childs[0];
+  structure: INode = JSON.parse(JSON.stringify(this.structureDefault));
+  actualNode: INode = this.structure;
+  seleccion: INode = this.structure.childs[0];
 
   constructor(
     public uS: UserService,
@@ -247,9 +247,9 @@ export class StructureComponent implements OnInit {
   openImg(i:INode){
     if(i.media){
       if(i.media.length > 0)
-      this.reusableCI.openImg(i.media[0],null)
-      else this.reusableCI.openImg(this.defaultImg,null)
+        this.reusableCI.openImg(i.media[0],null)
     }
+    else this.reusableCI.openImg(this.defaultImg,null)
   }
 
   async editMedia(node: INode){
@@ -266,7 +266,6 @@ export class StructureComponent implements OnInit {
     await modal.present()
     const { data } = await modal.onDidDismiss()
     if(data){
-      console.log(data)
       const newMedia = data
       node.media = newMedia
       this.searchEdit(node, node)
@@ -363,8 +362,6 @@ export class StructureComponent implements OnInit {
       node.title = newNode.title;
       node.subtitle = newNode.subtitle;
       node.text = newNode.text;
-      console.log(node)
-      console.log("Nodo actualizado")
       this.as();
     } else if (node.childs.length != 0) {
       for (let i = 0; i < node.childs.length; i++) {
@@ -388,16 +385,11 @@ export class StructureComponent implements OnInit {
   }
 
   goBack(actualNode: INode, node: any) {
-    console.log("#####################");
-    console.log("Entrando en GoBack",actualNode,node)
     /*
      * Se almacena el subtitle anterior
      */
     const subtitleToGo: string = actualNode .subtitle.split(" / ") .reverse()[1]
     const subtitleOfActualNode = node.subtitle.split(" / ").reverse()[0]
-    console.log("Actual Node Subtitle",actualNode.subtitle)
-    console.log("Split",actualNode.subtitle.split(" / ").reverse())
-    console.log("Subtitle to go",subtitleToGo)
     /*
      * Si coiciden los subtitles se devuelve a dicho nodo
      */
