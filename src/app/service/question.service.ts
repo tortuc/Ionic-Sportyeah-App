@@ -69,4 +69,8 @@ export class QuestionService {
     await alert.present();
   }
 
+  voteAnswer(id,user){
+    return this.http.get(`${environment.URL_API}/question/answer/${id}/${user}`)
+  }
+
 }

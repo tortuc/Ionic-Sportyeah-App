@@ -142,8 +142,10 @@ export class NewPostPage implements OnInit {
         if (this.post) {
           post.post = this.post._id;
         }
-        this.questionService.create(this.question).subscribe((response:any)=>{//Crea el cuestionario y agrega el id al post
-          post.question = response._id  
+
+        if(this.question.questionGroup.length > 0){
+          this.createPostAndQuestion(post,loading)
+        }else{
           this.postService
               .create(post)
               .toPromise()
@@ -158,7 +160,8 @@ export class NewPostPage implements OnInit {
               .catch((err) => {
                 loading.dismiss();
               });
-        })
+        }
+        
       } else {
         let form = new FormData();
         form.append("video", this.videoFile);
@@ -212,6 +215,25 @@ export class NewPostPage implements OnInit {
         });
       }
     }
+  }
+  createPostAndQuestion(post: any,loading) {
+    this.questionService.create(this.question).subscribe((response:any)=>{//Crea el cuestionario y agrega el id al post
+      post.question = response._id  
+      this.postService
+      .create(post)
+      .toPromise()
+      .then((post) => {
+        loading.dismiss();
+        this.modalController.dismiss({
+          dismissed: true,
+          create: true,
+          post,
+        });
+      })
+      .catch((err) => {
+        loading.dismiss();
+      });
+    })
   }
 
   dismiss() {
@@ -314,6 +336,11 @@ export class NewPostPage implements OnInit {
       component: NewQuestionComponent,
       cssClass: 'my-custom-class',
       backdropDismiss:false
+      ,
+      componentProps: {
+      
+        edit:true
+      }
     });
     modal.onDidDismiss().then((data)=>{
     

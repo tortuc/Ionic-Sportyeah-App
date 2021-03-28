@@ -12,6 +12,7 @@ import { CustomDisplayDatePipe } from "./custom-display-date.pipe";
 import { CommentedPipe } from "./commented.pipe";
 import { SharedPipe } from "./shared.pipe";
 import { CustomCurrencyPipe } from "./custom-currency.pipe";
+import { CanVotePipe } from './can-vote.pipe';
 
 @NgModule({
   imports: [CommonModule],
@@ -29,6 +30,7 @@ import { CustomCurrencyPipe } from "./custom-currency.pipe";
     CommentedPipe,
     SharedPipe,
     CustomCurrencyPipe,
+    CanVotePipe,
   ],
   exports: [
     LinksPipe,
@@ -43,6 +45,7 @@ import { CustomCurrencyPipe } from "./custom-currency.pipe";
     CommentedPipe,
     SharedPipe,
     CustomCurrencyPipe,
+    CanVotePipe
   ],
 })
 export class PipesModule {}

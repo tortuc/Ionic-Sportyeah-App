@@ -85,7 +85,7 @@ const routes: Routes = [
     path: "post/:id",
     loadChildren: () =>
       import("./post/post.module").then((m) => m.PostPageModule),
-    canActivate: [AuthGuardService],
+    canActivate: [LandingGuard],
   },
   {
     path: "user/:username",

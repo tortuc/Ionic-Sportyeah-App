@@ -34,8 +34,6 @@ export class NewQuestionComponent implements OnInit {
 addAnswer(){
   this.answers.push({
     option   : '',
-    total    : 0,
-    position : this.answers.length,
   })
   // this.ejemplo.push( this.answers.length )
 }
@@ -52,8 +50,6 @@ headLine;
   form = this.fb.group({
     questionHeadline:['',[Validators.required]],
     answer:['',[Validators.required]],
-    users:[[]],
-    total:[0]
   })
 
  async create(){

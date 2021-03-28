@@ -45,13 +45,14 @@ export class PostPage implements OnInit {
     this.router.navigate(['/dashboard'])
   }
   getPost(id){
-    this.postService.getPost(id,this.userService.User._id).toPromise()//agregamos el id del usuario actual
+    this.postService.getPost(id,this.userService.User?._id).toPromise()//agregamos el id del usuario actual
     .then((post)=>{
       this.item = post
-      console.log(this.item.post.question)
+      console.log(this.item.question)
     })
     .catch((err)=>{
       // handle err
+      console.log(err);
       
       this.item = 404
     })
@@ -79,7 +80,7 @@ export class PostPage implements OnInit {
     }
 
     goToProfile(id,username){
-      if(id == this.userService.User._id){
+      if(id == this.userService.User?._id){
         this.router.navigate(["/profile"])
       }else{
         //this.router.navigate([`/user/${username}`])
@@ -87,7 +88,7 @@ export class PostPage implements OnInit {
         .subscribe(
           (resp:any)=>{
             this.viewsProfileService
-              .updateProfileView(this.userService.User._id, resp.user._id,'comment',`/post/${this.item.post._id}`)
+              .updateProfileView(this.userService.User?._id, resp.user?._id,'comment',`/post/${this.item.post._id}`)
               .subscribe((response) => {
                 this.router.navigate([`/user/${username}`])
               });
@@ -114,16 +115,15 @@ export class PostPage implements OnInit {
     this.item.comments = $event
   }
 
-  selectAnswer(id,position){
-    this.item.post.question.questionGroup[id].users.push({id:this.userService.User._id})
-    this.item.post.question.questionGroup[id].answer[position].total += 1
-    this.item.post.question.questionGroup[id].total += 1
-    console.log(this.item.post.question.questionGroup[id])
-    console.log(this.item.post.question._id)
-     this.questionService.updateQuestion(this.item.post.question).subscribe((response)=>{
-    //  this.item.post.question = response
-     this.item.post.question.questionGroup[id].voted = true;//Eso hace que salga la barra, despues de votar
-     })
+  selectAnswer(id){
+    if(this.userService.User != undefined){
+
+      this.questionService.voteAnswer(id,this.userService.User._id).subscribe(()=>{
+        this.getPost(this.item.post._id)
+      })
+    }
+    
+   
   }
 
 }

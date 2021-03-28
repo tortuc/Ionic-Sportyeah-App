@@ -39,7 +39,7 @@ export class LinksPipe implements PipeTransform {
 
   transform(value: unknown, ...args: unknown[]): unknown {  
       
-    return this.linkify(value || '',this.userService.User.username);
+    return this.linkify(value || '',this.userService.User?.username);
   }
 
 }
