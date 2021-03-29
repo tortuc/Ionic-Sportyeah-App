@@ -206,6 +206,7 @@ export class StructureComponent implements OnInit {
     subtitle: `Club / Junta Directiva`,
     title: `Staff`,
     text: `Junta directiva del club encargada de...`,
+    sponsors:[],
     childs: [
       {
         id:10,
@@ -213,6 +214,7 @@ export class StructureComponent implements OnInit {
         subtitle: `Club / Junta Directiva / Director Ejecutivo`,
         title: `Pepe Escamilla`,
         text: `Director Ejecutivo de nuestro club, encargado de...`,
+            sponsors:[],
         childs:[]
       }
     ],
@@ -223,6 +225,7 @@ export class StructureComponent implements OnInit {
     subtitle: `Club / Cantera Masculina`,
     title: `Cantera Masculina`,
     text: `Nuestra selección de jovenes mejor preparados`,
+    sponsors:[],
     childs: [
       {
         id:30,
@@ -230,12 +233,14 @@ export class StructureComponent implements OnInit {
         title:`Benjamines`,
         subtitle:`Club / Cantera Masculina / Benjamines`,
         text:`Selección de 8 y 9 años`,
+            sponsors:[],
         childs:[
           {
             id:50,
             media:[`${this.assetsRoute}antonio.jpg`],
             title: `Antonio`,
             subtitle:`Club / Cantera Masculina / Benjamines / Portero`,
+            sponsors:[],
             text:`Futura leyenda del futbol...`,
             childs:[]
           }
@@ -249,6 +254,7 @@ export class StructureComponent implements OnInit {
     subtitle: `Club / Primer Equipo`,
     title: `Primer Equipo`,
     text: `Nuestra famosa selección, lo mejor de lo mejor`,
+    sponsors:[],
     childs: [
       {
         id:50,
@@ -256,6 +262,7 @@ export class StructureComponent implements OnInit {
         subtitle: `Club / Primer Equipo / Delantero Titular`,
         title:`Andres`,
         text: `Nuestro mejor delantero, una leyenda`,
+            sponsors:[],
         childs:[]
       }
     ],
@@ -266,6 +273,7 @@ export class StructureComponent implements OnInit {
     subtitle: `Club`,
     title: `Nuestro Gran Club`,
     text: `Aquí encontraras toda la información de nuestro club.`,
+            sponsors:[],
     childs: [
       this.juntaDirectiva,
       this.canteraMasculina,

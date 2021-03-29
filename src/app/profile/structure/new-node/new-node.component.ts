@@ -170,6 +170,7 @@ export class NewNodeComponent implements OnInit {
         title:null,
         subtitle:null,
         text:null,
+        sponsors:[],
         childs:[]
       }
     this.generateForm()
