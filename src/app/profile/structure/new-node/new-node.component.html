@@ -48,11 +48,22 @@
       </ion-label>
       <ion-input
         type="text"
-        [placeholder]="'enterText' | translate"
+        [placeholder]="'structure.title.input' | translate"
         style="background: transparent"
         formControlName="title"
       ></ion-input>
     </ion-item>
+
+    <p 
+      class="errormsj "
+      *ngIf="
+        (form.controls.title.dirty || form.controls.title.touched) &&
+        form.controls.title.status !== 'VALID'
+      "
+    >
+      Este campo es invalido
+    </p>
+
 
     <ion-item>
       <ion-label position="stacked">{{
@@ -60,11 +71,21 @@
       }}</ion-label>
       <ion-textarea
         type="text"
-        [placeholder]="'enterText' | translate"
+        [placeholder]="'structure.text.input' | translate"
         style="background: transparent"
         formControlName="text"
       ></ion-textarea>
     </ion-item>
+
+    <p 
+      class="errormsj "
+      *ngIf="
+        (form.controls.text.dirty || form.controls.text.touched) &&
+        form.controls.text.status !== 'VALID'
+      "
+    >
+      Este campo es invalido
+    </p>
 
     <ion-item>
       <ion-label position="stacked">{{
@@ -72,11 +93,21 @@
       }}</ion-label>
       <ion-input
         type="text"
-        [placeholder]="'enterText' | translate"
+        [placeholder]="'structure.subtitle.input' | translate"
         style="background: transparent"
         formControlName="subtitle"
       ></ion-input>
     </ion-item>
+
+    <p 
+      class="errormsj "
+      *ngIf="
+        (form.controls.subtitle.dirty || form.controls.subtitle.touched) &&
+        form.controls.subtitle.status !== 'VALID'
+      "
+    >
+      Este campo es invalido
+    </p>
 
     <ion-button
       style="margin-top: 20px"

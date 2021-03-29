@@ -724,23 +724,23 @@
   "MoreIcons": "Ver mas iconos",
   "structure": {
     "title": {
-      "club": "Club"
+      "club": "Club",
+      "input":"Ingrese el nombre de su equipo, selección, etc"
     },
     "subtitle": {
-      "club": "Club"
+      "club": "Club",
+      "input":"Ingrese el puesto, cargo, staff, posición, etc"
     },
     "text": {
-      "club": "Ingresa la información de tu club."
+      "club": "Ingresa la información de tu club.",
+      "input":"Información acerca de este elemento"
     },
     "edit": "Editar estructura",
     "see": "Ver más",
     "modal": {
-      "title": "Nombre",
-      "placeTitle":"",
-      "subtitle": "¿Que contiene?",
-      "placeSubtitle":"",
-      "text": "Describelo",
-      "placeText":""
+      "title": "Nombre / Titulo",
+      "subtitle": "Cargo / Función",
+      "text": "Descripción / Resumen"
     },
     "start": "Comenzar"
   },

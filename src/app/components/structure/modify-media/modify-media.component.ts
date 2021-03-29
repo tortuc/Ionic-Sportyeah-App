@@ -165,6 +165,6 @@ export class ModifyMediaComponent implements OnInit {
         this.media.splice(this.media.indexOf(element),1)
         this.reusableCI.toast(`Imagen Eliminada`)
       }
-      else this.reusableCI.toast(`El elemento debe tener al menos una imagen`)
+      else this.reusableCI.toast(`Lo sentimos, pero debe haber al menos una imagen`)
   }
 }

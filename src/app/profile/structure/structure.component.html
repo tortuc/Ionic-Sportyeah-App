@@ -49,14 +49,27 @@
         Volver
       </ion-button>
       <ion-button 
+        *ngIf="creator && actualNode === structure"
         (click)="restart()" 
         fill="outline"
       >
-        Reiniciar
+        Reiniciar Ejemplo
         <ion-icon name="reload-outline" style="margin-left:5px"></ion-icon>
       </ion-button>
+      <ion-button 
+        *ngIf="creator && actualNode === structure"
+        (click)="empty()"
+        fill="outline"
+      >
+        Vaciar
+        <ion-icon 
+          name="trash-outline" 
+          style="margin-left:5px"
+        ></ion-icon>
+      </ion-button>
+
       <ion-button
-        *ngIf="creator"
+        *ngIf="creator && actualNode === structure"
         fill="outline"
         (click)="editNodes(actualNode)"
       >
@@ -68,9 +81,19 @@
 
     <ion-card-title class="title">
       {{ actualNode.title | translate }}
+      <ion-button 
+        *ngIf="creator" 
+        fill="clear"
+        (click)="editNodes(actualNode)"
+      >
+        <ion-icon name="create-outline"></ion-icon>
+      </ion-button>
     </ion-card-title>
 
     <ion-card-subtitle class="subtitle">
+      <h6 >
+        {{ actualNode.subtitle.split(' / ').reverse()[0] }}
+      </h6>
       {{ actualNode.text }}
     </ion-card-subtitle>
   </ion-card-header>
@@ -82,6 +105,7 @@
         size-sm="6"
         size-md="4" 
         size-lg="4"
+        *ngIf="creator"
       >
         <ion-card class="node">
           <div 
@@ -111,7 +135,7 @@
             Crear
           </h1>
           <p style="text-align:center">
-            ¡Crear un nuevo {{actualNode.subtitle.split("/").reverse()[0] | translate}}!
+            ¡Crear nuevo!
           </p>
         </ion-card>
       </ion-col>
@@ -173,8 +197,11 @@
             <h1 class="node-title" (click)="actualNode = i">
               {{ i.title }}
             </h1>
+            <h6  (click)="actualNode = i">
+              {{ i.subtitle.split(' / ').reverse()[0] }}
+            </h6>
             <p *ngIf="i.text">
-              {{ i.text }}
+            {{ i.text.length > 24 ? i.text.substring(0,21) + '...' : i.text }}
             </p>
           </div>
         </ion-card>

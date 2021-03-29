@@ -19,6 +19,14 @@ Iniciar sportyeah
 1. eval "$(ssh-agent -s)"
 2. ssh-add ~/.ssh/id_rsa_sportyeah.pub
 3. ssh-add ~/.ssh/id_rsa_kecuki.pub
+4. Conexión mongo 
+`
+mongo --host mongo-db.clidhjqvcjng.eu-west-3.docdb.amazonaws.com:27017 --username adminmongo --password <Insertesucontraseña>
+`
+5. Conexión server 
+`
+ssh ubuntu@35.180.14.40
+`
 
 ## Importante
 
@@ -27,15 +35,18 @@ Iniciar sportyeah
    siempre y nunca detenerte, no quit, no pares cuando duela, para cuando
    termines.
 
-## NOTAS ELIMINAR
+## NOTAS DAVID ELIMINAR
 
 1. Boton que permita volver en la estructura de club.
 2. Agregar modal y crear que la imagen al principio sea un slider, recuerda que
    el slider tiene que crearse en el ionViewDidEnter
 3. Mejorar modal de crear nodo.
-4. Boton de crear patrocinadores y poder crear varios de estos en cada nodo de
+4. Cambiar textos en placeholders en modal crear nodo.
+5. Colocar validacion mensajes en modal crear y editar nodo.
+6. Colocar 3 puntos suspensivos en substring de text.
+7. Boton de crear patrocinadores y poder crear varios de estos en cada nodo de
    la estructura.
-5. Opcion para vincular un perfil de sportyeah a un nodo.
-6. Al vincular un nodo traer su trayectoria (premios y reconocimientos,
+8. Opcion para vincular un perfil de sportyeah a un nodo.
+9. Al vincular un nodo traer su trayectoria (premios y reconocimientos,
    experiencias y aptitudes)
-7. Optimizar codigo de estructura.
+10. Optimizar codigo de estructura.

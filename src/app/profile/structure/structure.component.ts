@@ -17,31 +17,53 @@ interface UserData {
   connected: boolean;
 }
 
+/*
+ * El sponsor (patrocinador) es una marca
+ */
+export interface ISponsor{
+  /*
+   * Url de la pagina del patrocinador
+   */
+  url: string
+  /*
+   * Imagen
+   */
+  image: string
+}
+
+/*
+ * Un nodo puede ser un jugador, una directiva, un staff, toma la forma de lo
+ * que se desee
+ */
 export interface INode {
   /*
    * Id del nodo numerico unicamente representativo
    */
-  id?:number;
+  id?: number
   /*
    * Contenido multimedia maximo 3 imagenes o videos
    */
-  media:string[];
+  media: string[]
   /*
    * Que contiene el nodo
    */
-  subtitle: string;
+  subtitle: string
   /*
    * Titulo del nodo
    */
-  title: string;
+  title: string
   /*
    * Texto descriptivo del nodo
    */
-  text:string;
+  text: string
+  /*
+   *
+   */
+  sponsors: ISponsor[]
   /*
    * Estructuras de menor gerarquia
    */
-  childs:INode[];
+  childs: INode[]
 }
 
 @Component({
@@ -167,68 +189,87 @@ export class StructureComponent implements OnInit {
    * Variables
    */
 
-  @Input() public ID: string;
-  showSlides: boolean = false
-  creator: boolean = false;
-  structureStatus: boolean = true;
-  defaultImg: string = `./assets/images/logox.png`;
+  @Input() public ID: string // ID del usuario
+  showSlides: boolean = false // El ion slides
+  creator: boolean = false // Saber si es el creador
+  structureStatus: boolean = true // La estructura
+  defaultImg: string = `./assets/images/logox.png` // Imagen de sportyeah
+  assetsRoute: string = `./assets/images/structure/` // ruta para imagenes prueba
 
   /*
    * Data default para club
    */
 
-  public canteraMasculina = {
+  public juntaDirectiva = {
     id: 2,
-    media: [this.defaultImg],
-    subtitle: `Equipo / Cantera Masculina`,
-    title: `Cantera Masculina`,
-    text: `Categorias`,
-    childs: [],
+    media: [`${this.assetsRoute}juntadirectiva.jpg`],
+    subtitle: `Club / Junta Directiva`,
+    title: `Staff`,
+    text: `Junta directiva del club encargada de...`,
+    childs: [
+      {
+        id:10,
+        media:[`${this.assetsRoute}directorejecutivo.jpg`],
+        subtitle: `Club / Junta Directiva / Director Ejecutivo`,
+        title: `Pepe Escamilla`,
+        text: `Director Ejecutivo de nuestro club, encargado de...`,
+        childs:[]
+      }
+    ],
   };
-  public canteraFemenina = {
-    id: 3,
-    media: [this.defaultImg],
-    subtitle: `Equipo / Cantera Femenina`,
-    title: `Cantera Femenina`,
-    text: `Categorias`,
-    childs: [],
+  public canteraMasculina = {
+    id: 4,
+    media: [`${this.assetsRoute}canteramasculina.jpg`],
+    subtitle: `Club / Cantera Masculina`,
+    title: `Cantera Masculina`,
+    text: `Nuestra selección de jovenes mejor preparados`,
+    childs: [
+      {
+        id:30,
+        media:[`${this.assetsRoute}kids.jpg`],
+        title:`Benjamines`,
+        subtitle:`Club / Cantera Masculina / Benjamines`,
+        text:`Selección de 8 y 9 años`,
+        childs:[
+          {
+            id:50,
+            media:[`${this.assetsRoute}antonio.jpg`],
+            title: `Antonio`,
+            subtitle:`Club / Cantera Masculina / Benjamines / Portero`,
+            text:`Futura leyenda del futbol...`,
+            childs:[]
+          }
+        ]
+      }
+    ],
   };
   public primerEquipo = {
-    id: 4,
-    media: [this.defaultImg],
-    subtitle: `Equipo / Primer Equipo`,
-    title: `Primer Equipo`,
-    text: `Plantilla`,
-    childs: [],
-  };
-  public equipoFemenino = {
     id: 5,
-    media: [this.defaultImg],
-    subtitle: `Equipo / Equipo Femenino`,
-    title: `Equipo Femenino`,
-    text: `Plantilla`,
-    childs: [],
-  };
-  public otrosEquipos = {
-    id: 6,
-    media: [this.defaultImg],
-    subtitle: `Equipo / Otros Equipos`,
-    title: `Otros Equipos`,
-    text: `Equipos`,
-    childs: [],
-  };
+    media: [`${this.assetsRoute}equipo1.jpg`],
+    subtitle: `Club / Primer Equipo`,
+    title: `Primer Equipo`,
+    text: `Nuestra famosa selección, lo mejor de lo mejor`,
+    childs: [
+      {
+        id:50,
+        media: [`${this.assetsRoute}andres.jpg`],
+        subtitle: `Club / Primer Equipo / Delantero Titular`,
+        title:`Andres`,
+        text: `Nuestro mejor delantero, una leyenda`,
+        childs:[]
+      }
+    ],
+  }
   public structureDefault = {
     id: 1,
     media: null,
-    subtitle: `Equipo`,
-    title: `structure.title.club`,
+    subtitle: `Club`,
+    title: `Nuestro Gran Club`,
     text: `Aquí encontraras toda la información de nuestro club.`,
     childs: [
+      this.juntaDirectiva,
       this.canteraMasculina,
-      this.canteraFemenina,
-      this.primerEquipo,
-      this.equipoFemenino,
-      this.otrosEquipos,
+      this.primerEquipo
     ],
   };
 
@@ -425,6 +466,25 @@ export class StructureComponent implements OnInit {
     )
     if(data){
       this.structure = JSON.parse(JSON.stringify(this.structureDefault))
+      this.actualNode = this.structure
+      this.as()
+    }
+  }
+
+  /*
+   * Vacia y elmina los ejemplos de structure default para
+   * permitir al usuario una plantilla limpia
+   */
+  async empty(){
+    const data = await this.reusableCI.desicionAlert(
+      `¿Esta seguro de eliminar su estructura?`,
+      `Todas las configuraciones realizadas hasta el momento se perderan`
+    )
+    if(data){
+      const structure = JSON.parse(JSON.stringify(this.structureDefault))
+      structure.childs = []
+      console.log(structure)
+      this.structure = structure      
       this.actualNode = this.structure
       this.as()
     }
