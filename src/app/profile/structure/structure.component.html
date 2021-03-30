@@ -31,6 +31,7 @@
               class="icon2"
               name="create-outline"
               color="warning"
+              *ngIf="creator"
               (click)="editMedia(actualNode)"
             ></ion-icon>
           </div>
@@ -188,6 +189,7 @@
                       class="icon2"
                       name="create-outline"
                       color="warning"
+                      *ngIf="creator"
                       (click)="editNodes(i)"
                     ></ion-icon>
                   </div>
@@ -196,6 +198,7 @@
                       class="icon2"
                       name="trash-outline"
                       color="danger"
+                      *ngIf="creator"
                       (click)="eliminar(i)"
                     ></ion-icon>
                   </div>
