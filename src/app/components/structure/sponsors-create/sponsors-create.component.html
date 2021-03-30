@@ -1,2 +1,40 @@
+<ion-icon
+  name="close-outline"
+  (click)="mc.dismiss()"
+  style="
+    color: gray;
+    right: 5px;
+    top: 15px;
+    position: absolute;
+    font-size: 40px;
+    z-index: 9999999;
+    cursor: pointer;
+  "
+></ion-icon>
 <div>
+  <form [formGroup]="form">
+    <ion-list>
+      <ion-item>
+        <label>
+          Pagina de la marca
+        </label>
+        <input
+          placeholder="https://app.sportyeah.com/"
+          type="text"
+          formControlName="url"
+        />
+      </ion-item>
+      <p 
+        class="errormsj"
+        *ngIf="
+          (form.get('url').dirty ||
+          form.get('url').touched) &&
+          form.get('url').status !== 
+          'VALID'
+        "
+      >
+        No corresponde con una URL
+      </p>
+    </ion-list>
+  </form>
 </div>
