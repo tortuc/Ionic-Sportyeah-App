@@ -84,6 +84,8 @@ import { COptionsComponent } from "./challenges/c-options/c-options.component";
 import { NewsOptionsComponent } from "./news-options/news-options.component";
 import { ChallengesPotsOptionsIndivComponent } from './challenge/challenges-pots-options-indiv/challenges-pots-options-indiv.component' 
 import { ModifyMediaComponent } from 'src/app/components/structure/modify-media/modify-media.component'
+import { SponsorsNodeComponent } from 'src/app/components/structure/sponsors/sponsors.component'
+import { SponsorsCreateComponent } from 'src/app/components/structure/sponsors-create/sponsors-create.component'
 @NgModule({
   imports: [
     CommonModule,
@@ -174,6 +176,8 @@ import { ModifyMediaComponent } from 'src/app/components/structure/modify-media/
     NewsOptionsComponent,
     ChallengesPotsOptionsIndivComponent,
     ModifyMediaComponent,
+    SponsorsNodeComponent,
+    SponsorsCreateComponent
   ],
   exports: [
     ImageComponent,
@@ -248,6 +252,8 @@ import { ModifyMediaComponent } from 'src/app/components/structure/modify-media/
     NewsOptionsComponent,
     ChallengesPotsOptionsIndivComponent,
     ModifyMediaComponent,
+    SponsorsNodeComponent,
+    SponsorsCreateComponent
   ],
 })
 export class ComponentsModule {}
