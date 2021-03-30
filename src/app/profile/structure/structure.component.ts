@@ -501,7 +501,8 @@ export class StructureComponent implements OnInit {
   /*
    * Recibe la data del mini componente sponsors
    */
-  sponsorsAction(e){
-    console.log("Evento de sponsor",e)
+  sponsorsAction(e: ISponsor[]){
+    this.actualNode.sponsors = e
+    this.as()
   }
 }

@@ -1,4 +1,3 @@
-<div class="sponsors">
   <!-- Botón para crear patrocinadores -->
   <div class="sponsor" *ngIf="creator">
     <ion-button 
@@ -10,11 +9,28 @@
       ¡Crea un patrocinador!
     </ion-button>
   </div>
+<div class="sponsors">
   <!-- Muestreo de patrocinadores -->
   <div 
     *ngFor="let sponsor of sponsors"
     class="sponsor bg-black"
   >
-    <img class="img" [src]="sponsor.image"/>
+    <img (click)="go(sponsor.url)" class="img" [src]="sponsor.image"/>
+    <div class="btns">
+      <ion-icon
+        *ngIf="creator"
+        name="create-outline"
+        class="btn"
+        color="warning"
+        (click)="edit(sponsor)"
+      ></ion-icon>
+      <ion-icon 
+        *ngIf="creator"
+        name="trash-outline"
+        class="btn"
+        color="danger"
+        (click)="delete(sponsor)"
+      ></ion-icon>
+    </div>
   </div>
 </div>

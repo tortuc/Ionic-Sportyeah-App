@@ -37,27 +37,49 @@ export class SponsorsNodeComponent implements OnInit {
     public mc: ModalController
   ) { }
 
-  ngOnInit() {}
-
-  async create(){
-    const data = await this.modalCreate()
-    if(data)
-      this.sponsors.push(data)
+  ngOnInit() {
+    if(!this.sponsors)
+      this.sponsors=[]
   }
 
-  delete(sponsor: ISponsor){}
+  async create(){
+    const data: ISponsor = await this.modalCreate()
+    if(data){
+      this.sponsors.push(data)
+      this.action.emit(this.sponsors)
+    }
+  }
 
-  edit(sponsor: ISponsor){}
+  async delete(sponsor: ISponsor){
+    const data: boolean = await this.reusableCI.desicionAlert(`¿Seguro desea eliminar esta marca?`,``)
+    if(data){
+      const deleteIndex = this.sponsors.indexOf(sponsor)  
+      this.sponsors.splice(deleteIndex,1)
+      this.action.emit(this.sponsors)
+    }
+  }
 
-  async modalCreate(){
+  async edit(sponsor: ISponsor){
+    const data: ISponsor = await this.modalCreate(sponsor)
+    if(data){
+      const index = this.sponsors.indexOf(sponsor)
+      this.sponsors[index] = data
+      this.action.emit(this.sponsors)
+    }
+  }
+
+  async modalCreate(edit:ISponsor=null){
     const modal = await this.mc.create({
       component: SponsorsCreateComponent,
       cssClass: '',
-      componentProps: {}
+      componentProps: {edit}
     })
     await modal.present()
     const { data } = await modal.onDidDismiss()
     return data
   }
 
+  go(url:string){
+    window.open('//'+url,"_blank")
+  }
 }

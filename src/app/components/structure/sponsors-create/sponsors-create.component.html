@@ -11,18 +11,28 @@
     cursor: pointer;
   "
 ></ion-icon>
-<div>
+<ion-content class="content">
   <form [formGroup]="form">
+    <div class="text">
+      Selecciona la imagen de la marca
+    </div>
+    <div class="image-container">
+      <img 
+        class="img"
+        [src]="form.value.image" 
+        (click)="add()"
+      />
+    </div>
     <ion-list>
       <ion-item>
-        <label>
+        <ion-label position="stacked">
           Pagina de la marca
-        </label>
-        <input
+        </ion-label>
+        <ion-input
           placeholder="https://app.sportyeah.com/"
           type="text"
           formControlName="url"
-        />
+        ></ion-input>
       </ion-item>
       <p 
         class="errormsj"
@@ -37,4 +47,11 @@
       </p>
     </ion-list>
   </form>
-</div>
+  <ion-button
+    fill="outline"
+    (click)="send()"
+    [disabled]="form.status !== 'VALID'"
+  >
+    Guardar Marca
+  </ion-button>
+</ion-content>

@@ -143,16 +143,6 @@ export class ModifyMediaComponent implements OnInit {
     },
   };
 
-  //async share(img:string) {
-  //  const modal = await this.mc.create({
-  //    component: NewPostPage,
-  //    componentProps: {
-  //      img,
-  //    },
-  //  });
-  //  await modal.present();
-  //}
-
   async add(){
     this.reusableIMG.takeOnlyPhoto()
     this.reusableIMG.content.pipe(take(1))
