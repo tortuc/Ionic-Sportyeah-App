@@ -1,8 +1,8 @@
 <ion-header>
   <ion-toolbar class="bg-gradient-person">
-    <ion-title *ngIf="edit"  style="--color: white"
-      >Crear una pregunta</ion-title>
     <ion-title *ngIf="!edit"  style="--color: white"
+      >Crear una pregunta</ion-title>
+    <ion-title *ngIf="edit"  style="--color: white"
       >Editar pregunta</ion-title>
     <ion-buttons slot="end">
       <ion-button (click)="dismiss()" style="--color: white"
@@ -32,7 +32,7 @@
         <ion-col size="12">
           <div 
           *ngFor="let answer of answers;index as i"
-          style="position:relative;color: white;border-radius: 57px;height: 53px;width: 550px;margin-left: auto;margin-right: auto;background: yellowgreen;margin-bottom: 15px;">
+          style="position:relative;color: white;border-radius: 57px;height: 53px;width: 550px;margin-left: auto;margin-right: auto;background: #ffffff61;margin-bottom: 15px;">
             <ion-input [(ngModel)]="answer.option"  style="margin-left: 15px;;width: 500px;font-size:20px;color: white;" placeholder="Ingresa respuesta"></ion-input><ion-icon (click)="deleteAnswer(answer.position)" style="cursor: pointer;position:absolute;color: #989898;left: 510px;top: 13px;font-size: 25px;" name="close-circle"></ion-icon>
           </div>
         </ion-col>
@@ -42,8 +42,8 @@
           </div>
         </ion-col>
         <ion-col style="text-align: center;" size="12">
-          <ion-button *ngIf="!edit" (click)="create()">Agregar Pregunta</ion-button>
-          <ion-button *ngIf="edit" (click)="editQuestion()">Editar Pregunta</ion-button>
+          <ion-button class="buttons" *ngIf="!edit" [disabled]="(headLine != '' && headLine != null) && answers.length > 1?false:true" (click)="create()">Agregar Pregunta</ion-button>
+          <ion-button class="buttons" *ngIf="edit" (click)="editQuestion()">Editar Pregunta</ion-button>
         </ion-col>
       </ion-row>
     </ion-grid>

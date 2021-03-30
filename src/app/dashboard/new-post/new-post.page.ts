@@ -339,14 +339,13 @@ export class NewPostPage implements OnInit {
       ,
       componentProps: {
       
-        edit:true
+        edit:false
       }
     });
     modal.onDidDismiss().then((data)=>{
-    
-      this.question.questionGroup.push(data.data.question) //Las preguntas creadas se introducen en el grupo de preguntas
-      console.log(this.question.questionGroup)
-      
+      if(data.data.question != undefined){
+        this.question.questionGroup.push(data.data.question) //Las preguntas creadas se introducen en el grupo de preguntas
+      }
     })
     .catch((err) => {
       console.log(err)
@@ -365,8 +364,9 @@ export class NewPostPage implements OnInit {
       }
     });
     modalEdit.onDidDismiss().then((data)=>{
-
-      this.question.questionGroup.splice(i,1,data.data.question);
+      if(data.data.question != undefined){
+        this.question.questionGroup.splice(i,1,data.data.question);
+      }
       
     })
     .catch((err) => {

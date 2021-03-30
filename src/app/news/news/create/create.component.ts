@@ -11,6 +11,8 @@ import { NewsService } from '../../../service/news.service';
 import { ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import {  ElementRef } from "@angular/core";
+import { QuestionService } from 'src/app/service/question.service';
+import { NewQuestionComponent } from "src/app/components/new-question/new-question.component"
 
 const { Camera ,Filesystem} = Plugins;
 
@@ -36,12 +38,16 @@ constructor(
     public newsService:NewsService,
     public toastController: ToastController,
     private router:Router,
+    public questionService:QuestionService,
+    public modalController: ModalController,
+    public loadingCtrl: LoadingController,
 
   ) {  }
  
 
   form = this.fb.group({
     user:['',[Validators.required]],
+    question:['',[Validators.required]],
     headline:['',[Validators.required]],
     content:['',[Validators.required]],
     principalSubtitle:['',[Validators.required]],
@@ -64,7 +70,11 @@ constructor(
     toast.present();
   }
 
-publicar(){
+async publicar(){
+  let loading = await this.loadingCtrl.create({
+    message: this.translate.instant("loading"),
+  });
+  loading.present();
      this.form.value.principalVideo = this.videoSelected;
     this.form.value.principalImage = this.imagenSelected;
     this.form.value.user = this.userService.User._id 
@@ -87,10 +97,16 @@ publicar(){
     this.form.value.postStream = null
 
     this.form.value.sport = this.deporte
-   this.newsService.create(this.form.value).subscribe((response)=>{
-      this.presentToastWithOptions()
-      this.router.navigate(["news"])
-    }) 
+    if(this.question.questionGroup.length > 0){
+      this.createNewsAndQuestion(this.form.value,loading)
+    }else{
+      this.newsService.create(this.form.value).subscribe((response)=>{
+        this.presentToastWithOptions()
+        this.router.navigate(["news"])
+      }) 
+      loading.dismiss();
+    }
+   
   
 
 }
@@ -730,6 +746,71 @@ animateSportyeah(){
    ngOnInit(): void {
   
   }
+
+  question = {
+    user: this.userService.User._id,
+    questionGroup: [],
+  }
+  createNewsAndQuestion(news: any,loading) {
+    this.questionService.create(this.question).subscribe((response:any)=>{//Crea el cuestionario y agrega el id al news
+      news.question = response._id  
+     
+      this.newsService.create(this.form.value).subscribe((response)=>{
+        this.presentToastWithOptions()
+        this.router.navigate(["news"])
+      }) 
+    })
+    loading.dismiss();
+  }
+
+  
+ //Crea una modal donde se pueden crear preguntas 
+ async createQuestion(){
+  const modal = await this.modalController.create({
+    component: NewQuestionComponent,
+    cssClass: 'my-custom-class',
+    backdropDismiss:false
+    ,
+    componentProps: {
+    
+      edit:false
+    }
+  });
+  modal.onDidDismiss().then((data)=>{
+    if(data.data.question != undefined){
+      this.question.questionGroup.push(data.data.question) //Las preguntas creadas se introducen en el grupo de preguntas
+    }
+  })
+  .catch((err) => {
+    console.log(err)
+  });
+
+  return await modal.present();
+}
+async editQuestion(i){
+  const modalEdit = await this.modalController.create({
+    component: NewQuestionComponent,
+    cssClass: 'my-custom-class',
+    backdropDismiss:false,
+    componentProps: {
+      question:this.question.questionGroup[i],
+      edit:true
+    }
+  });
+  modalEdit.onDidDismiss().then((data)=>{
+    if(data.data.question != undefined){
+      this.question.questionGroup.splice(i,1,data.data.question);
+    }
+    
+  })
+  .catch((err) => {
+    console.log(err)
+  });
+  return await modalEdit.present();
+}
+deleteQuestion(i){
+  this.question.questionGroup.splice(i,1);
+}
  
 
 }

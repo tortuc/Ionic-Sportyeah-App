@@ -73,4 +73,8 @@ export class QuestionService {
     return this.http.get(`${environment.URL_API}/question/answer/${id}/${user}`)
   }
 
+  userVotedAnswer(id,user){
+    return this.http.get(`${environment.URL_API}/question/answer/voted/${id}/${user}`)
+  }
+
 }

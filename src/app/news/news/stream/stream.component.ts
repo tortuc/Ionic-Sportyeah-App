@@ -48,6 +48,8 @@ export class StreamComponent implements OnInit {
     this.newsService.findById(this.newsService.idNews).toPromise()
     .then((response:any)=>{
       this.news = response 
+      console.log(this.news)
+
       this.socketService.socket.emit('in-news',{id:response.news._id})
     })
     .catch((err)=>{

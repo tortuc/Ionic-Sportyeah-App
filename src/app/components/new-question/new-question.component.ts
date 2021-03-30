@@ -34,8 +34,8 @@ export class NewQuestionComponent implements OnInit {
 addAnswer(){
   this.answers.push({
     option   : '',
+    position : this.answers.length
   })
-  // this.ejemplo.push( this.answers.length )
 }
 deleteAnswer(id){
   this.answers.splice(id,1)

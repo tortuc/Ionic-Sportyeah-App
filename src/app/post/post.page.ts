@@ -117,13 +117,10 @@ export class PostPage implements OnInit {
 
   selectAnswer(id){
     if(this.userService.User != undefined){
-
       this.questionService.voteAnswer(id,this.userService.User._id).subscribe(()=>{
         this.getPost(this.item.post._id)
       })
     }
-    
-   
   }
 
 }

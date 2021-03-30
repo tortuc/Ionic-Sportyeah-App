@@ -31,17 +31,18 @@
                   *ngIf="item.post?.news"
                   [news]="item.post?.news"
                 ></post-shared>
-              </ion-card-content>
+              </ion-card-content> 
 
 
-              <div *ngFor="let group of item.question;index as i " style="border: groove;margin-bottom: 10px;width: 90%;margin-left: auto;margin-right: auto;">
+              <div *ngFor="let group of item.question;index as i " style="background: #7cbced29;border: groove;margin-bottom: 10px;width: 80%;margin-left: auto;margin-right: auto;">
                 <div style="text-align: center;position: relative;">
                   <h1>{{group.group.questionHeadline}}</h1>  
                 </div>    
-                <div (click)="selectAnswer(answer._id)" *ngFor="let answer of group.newAnswers" class="progress-item">
-                  <p  style="position: absolute;left: 100px;z-index: 1000;">{{answer.option}}</p>
-                  <p style="position: absolute;z-index: 1000;right: 40px;">{{((100 * answer.users/group.total)).toFixed(1)}}</p>
-                  <ion-progress-bar  style="height: 53px;" [value]="((100 * answer.users/group.total)/100).toFixed(2)"  ></ion-progress-bar><!-- *ngIf="quest.voted != undefined" -->
+                <div (click)="selectAnswer(answer._id)" *ngFor="let answer of group.newAnswers" class="progress-item" [ngClass]="answer._id | canVote:group.group._id | async">
+                  <ion-icon name="checkmark-circle-outline" class="voted"></ion-icon>
+                  <p  style="position: absolute;left: 50px;z-index: 1000;">{{answer.option}}</p>
+                  <p class="percentage">{{((100 * answer.users/group.total)).toFixed(1)}}%</p>
+                  <ion-progress-bar class="barProgres" [value]="((100 * answer.users/group.total)/100).toFixed(2)"  ></ion-progress-bar><!-- *ngIf="quest.voted != undefined" -->
                 </div>
              </div>
             
