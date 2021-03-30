@@ -157,6 +157,7 @@ export class NewNodeComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    console.log(this.actualNode)
     /*
      * Evita el bug de slides
      */
@@ -170,6 +171,7 @@ export class NewNodeComponent implements OnInit {
         title:null,
         subtitle:null,
         text:null,
+        idUser:null,
         sponsors:[],
         childs:[]
       }
@@ -202,6 +204,7 @@ export class NewNodeComponent implements OnInit {
         this.actualNode.text, 
         [Validators.required]
       ],
+      idUser:[this.actualNode.idUser]
     });
   }
 

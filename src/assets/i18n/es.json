@@ -740,7 +740,8 @@
     "modal": {
       "title": "Nombre / Titulo",
       "subtitle": "Cargo / Función",
-      "text": "Descripción / Resumen"
+      "text": "Descripción / Resumen",
+      "username":"Nombre de usuario en SportYeah (Opcional)"
     },
     "start": "Comenzar"
   },

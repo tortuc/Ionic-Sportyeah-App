@@ -64,6 +64,10 @@ export interface INode {
    * Estructuras de menor gerarquia
    */
   childs: INode[]
+  /*
+   * Link del usuario si tiene un usuario linkeado
+   */
+  idUser?: string
 }
 
 @Component({
@@ -404,14 +408,15 @@ export class StructureComponent implements OnInit {
     }
   }
 
-  searchEdit(node: any, newNode: any) {
+  searchEdit(node: INode, newNode: INode) {
     // Se buscara dentro de la estructura el nodo otorgado para su remplazo
     if (node.id === newNode.id) {
-      node.media = newNode.media;
-      node.title = newNode.title;
-      node.subtitle = newNode.subtitle;
-      node.text = newNode.text;
-      this.as();
+      node.title = newNode.title
+      node.subtitle = newNode.subtitle
+      node.text = newNode.text
+      node.idUser = newNode.idUser
+      node.media = newNode.media
+      this.as()
     } else if (node.childs.length != 0) {
       for (let i = 0; i < node.childs.length; i++) {
         this.searchEdit(node.childs[i], newNode);

@@ -88,9 +88,9 @@
     </p>
 
     <ion-item>
-      <ion-label position="stacked">{{
-        "structure.modal.subtitle" | translate
-      }}</ion-label>
+      <ion-label position="stacked">
+        {{"structure.modal.subtitle" | translate}}
+      </ion-label>
       <ion-input
         type="text"
         [placeholder]="'structure.subtitle.input' | translate"
@@ -108,6 +108,17 @@
     >
       Este campo es invalido
     </p>
+
+    <ion-item>
+      <ion-label position="stacked">
+        {{"structure.modal.username" | translate}}
+      </ion-label>
+      <ion-input
+        type="text"
+        style="background: transparent"
+        formControlName="idUser"
+      ></ion-input>
+    </ion-item>
 
     <ion-button
       style="margin-top: 20px"

@@ -21,7 +21,7 @@ Iniciar sportyeah
 3. ssh-add ~/.ssh/id_rsa_kecuki.pub
 4. Conexión mongo 
 `
-mongo --host mongo-db.clidhjqvcjng.eu-west-3.docdb.amazonaws.com:27017 --username adminmongo --password <Insertesucontraseña>
+mongo --host mongo-db.clidhjqvcjng.eu-west-3.docdb.amazonaws.com:27017 --username adminmongo --password t1DLd.tjg89R
 `
 5. Conexión server 
 `
