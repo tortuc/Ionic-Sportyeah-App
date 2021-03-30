@@ -214,7 +214,7 @@ export class StructureComponent implements OnInit {
         subtitle: `Club / Junta Directiva / Director Ejecutivo`,
         title: `Pepe Escamilla`,
         text: `Director Ejecutivo de nuestro club, encargado de...`,
-            sponsors:[],
+        sponsors:[],
         childs:[]
       }
     ],
@@ -233,7 +233,7 @@ export class StructureComponent implements OnInit {
         title:`Benjamines`,
         subtitle:`Club / Cantera Masculina / Benjamines`,
         text:`Selección de 8 y 9 años`,
-            sponsors:[],
+        sponsors:[],
         childs:[
           {
             id:50,
@@ -262,7 +262,7 @@ export class StructureComponent implements OnInit {
         subtitle: `Club / Primer Equipo / Delantero Titular`,
         title:`Andres`,
         text: `Nuestro mejor delantero, una leyenda`,
-            sponsors:[],
+        sponsors:[],
         childs:[]
       }
     ],
@@ -273,7 +273,7 @@ export class StructureComponent implements OnInit {
     subtitle: `Club`,
     title: `Nuestro Gran Club`,
     text: `Aquí encontraras toda la información de nuestro club.`,
-            sponsors:[],
+    sponsors:[],
     childs: [
       this.juntaDirectiva,
       this.canteraMasculina,
@@ -496,5 +496,12 @@ export class StructureComponent implements OnInit {
       this.actualNode = this.structure
       this.as()
     }
+  }
+
+  /*
+   * Recibe la data del mini componente sponsors
+   */
+  sponsorsAction(e){
+    console.log("Evento de sponsor",e)
   }
 }

@@ -96,6 +96,12 @@
       </h6>
       {{ actualNode.text }}
     </ion-card-subtitle>
+
+    <app-sponsor
+      [creator]="creator"
+      [sponsors]="actualNode.sponsors"
+      (action)="sponsorsAction($event)"
+    ></app-sponsor>
   </ion-card-header>
 
   <ion-grid>
