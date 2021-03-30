@@ -206,7 +206,8 @@
                   user?.profile_user === 'association' ||
                   user?.profile_user === 'foundation' ||
                   user?.profile_user === 'representative' ||
-                  user?.profile_user === 'federation'
+                  user?.profile_user === 'federation' ||
+                  user?.profile_user === 'club'
             "
           ></app-structure>
 
@@ -218,7 +219,8 @@
                   user?.profile_user !== 'association' &&
                   user?.profile_user !== 'foundation' &&
                   user?.profile_user !== 'amateur' &&
-                  user?.profile_user !== 'federation'
+                  user?.profile_user !== 'federation' &&
+                  user?.profile_user !== 'club'
           "
           >
             <ion-grid style="padding: 0" class="ion-justify-content-center">
@@ -254,7 +256,8 @@
               user?.profile_user !== 'association' &&
               user?.profile_user !== 'foundation' &&
               user?.profile_user !== 'representative' &&
-              user?.profile_user !== 'federation' 
+              user?.profile_user !== 'federation' &&
+              user?.profile_user !== 'club' 
           "
           >
             <ion-grid style="padding: 0" class="ion-justify-content-center">

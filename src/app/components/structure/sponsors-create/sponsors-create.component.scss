@@ -1,0 +1,22 @@
+.image-container{
+  width:400px;
+  height: 200px;
+  background: black;
+  text-align: center;
+  justify-content:center;
+  margin-left:auto;
+  margin-right:auto;
+  border-radius: 10px;
+}
+.content{
+  text-align: center;
+  justify-content: center;
+}
+.img{
+  cursor:pointer;
+  height:100%;
+}
+.text{
+  font-weight:bold;
+  padding:5px;
+}

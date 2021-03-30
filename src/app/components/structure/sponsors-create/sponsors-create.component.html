@@ -1,0 +1,57 @@
+<ion-icon
+  name="close-outline"
+  (click)="mc.dismiss()"
+  style="
+    color: gray;
+    right: 5px;
+    top: 15px;
+    position: absolute;
+    font-size: 40px;
+    z-index: 9999999;
+    cursor: pointer;
+  "
+></ion-icon>
+<ion-content class="content">
+  <form [formGroup]="form">
+    <div class="text">
+      Selecciona la imagen de la marca
+    </div>
+    <div class="image-container">
+      <img 
+        class="img"
+        [src]="form.value.image" 
+        (click)="add()"
+      />
+    </div>
+    <ion-list>
+      <ion-item>
+        <ion-label position="stacked">
+          Pagina de la marca
+        </ion-label>
+        <ion-input
+          placeholder="https://app.sportyeah.com/"
+          type="text"
+          formControlName="url"
+        ></ion-input>
+      </ion-item>
+      <p 
+        class="errormsj"
+        *ngIf="
+          (form.get('url').dirty ||
+          form.get('url').touched) &&
+          form.get('url').status !== 
+          'VALID'
+        "
+      >
+        No corresponde con una URL
+      </p>
+    </ion-list>
+  </form>
+  <ion-button
+    fill="outline"
+    (click)="send()"
+    [disabled]="form.status !== 'VALID'"
+  >
+    Guardar Marca
+  </ion-button>
+</ion-content>

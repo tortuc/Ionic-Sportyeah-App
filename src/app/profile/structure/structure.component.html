@@ -4,86 +4,220 @@
   style="margin-top: 10px"
   *ngIf="structureStatus"
 >
-  <ion-img [src]="actualNode.photo"></ion-img>
+<div
+    *ngIf="actualNode.media" 
+    style="background-color: black; height: 100%"
+  >
+   <ion-slides
+      *ngIf="showSlides"
+      pager="true"
+      [options]="slideOpts"
+      style="background-color: black; height: 300px"
+    >
+      <ion-slide 
+        class="slide" 
+        style="width: 100%"
+        *ngFor="let url of actualNode.media"
+      >
+        <img 
+          [src]="url" 
+          class="img" 
+          alt="" 
+          style="width: 100%" 
+        />
+      <div class="overlay2">
+          <div class="icon-div2">
+            <ion-icon 
+              class="icon2"
+              name="create-outline"
+              color="warning"
+              *ngIf="creator"
+              (click)="editMedia(actualNode)"
+            ></ion-icon>
+          </div>
+        </div>
+      </ion-slide>
+    </ion-slides>
+  </div>
   <ion-card-header>
     <div style="text-align: right">
+      <ion-button 
+        *ngIf="actualNode.subtitle.split(' / ').length > 1"
+        (click)="goBack(actualNode, structure)" 
+        fill="outline"
+      >
+        <ion-icon name="arrow-back-outline" style="margin-right:5px"></ion-icon>
+        Volver
+      </ion-button>
+      <ion-button 
+        *ngIf="creator && actualNode === structure"
+        (click)="restart()" 
+        fill="outline"
+      >
+        Reiniciar Ejemplo
+        <ion-icon name="reload-outline" style="margin-left:5px"></ion-icon>
+      </ion-button>
+      <ion-button 
+        *ngIf="creator && actualNode === structure"
+        (click)="empty()"
+        fill="outline"
+      >
+        Vaciar
+        <ion-icon 
+          name="trash-outline" 
+          style="margin-left:5px"
+        ></ion-icon>
+      </ion-button>
+
       <ion-button
-        *ngIf="creator"
+        *ngIf="creator && actualNode === structure"
         fill="outline"
         (click)="editNodes(actualNode)"
       >
         {{ "structure.start" | translate }}
-        <ion-icon name="create-outline" style="margin-left: 5px"></ion-icon>
+        <ion-icon name="create-outline" style="margin-left: 5px">
+        </ion-icon>
       </ion-button>
     </div>
-    <div class="navbarD">
-      <a class="navbarItem">Cantera Masculina</a>
-      <a class="navbarItem">Cantera Femenina</a>
-      <a class="navbarItem">Primer Equipo</a>
-      <a class="navbarItem">Equipo Femenino</a>
-    </div>
-    <ion-card-subtitle style="width: 70%">
-      <span
-        *ngFor="let l of actualNode.subtitle.split(' / '); let i = index"
-        class="breadcrumb"
+
+    <ion-card-title class="title">
+      {{ actualNode.title | translate }}
+      <ion-button 
+        *ngIf="creator" 
+        fill="clear"
+        (click)="editNodes(actualNode)"
       >
-        <a
-          class="breadcrumb"
-          (click)="go(l, i, structure)"
-          style="cursor: pointer"
-        >
-          {{ l | translate }}
-        </a>
-        <span *ngIf="i !== actualNode.subtitle.split(' / ').length - 1">
-          /
-        </span>
-      </span>
+        <ion-icon name="create-outline"></ion-icon>
+      </ion-button>
+    </ion-card-title>
+
+    <ion-card-subtitle 
+      class="subtitle"
+      style="margin-bottom:20px"
+    >
+      <h6 >
+        {{ actualNode.subtitle.split(' / ').reverse()[0] }}
+      </h6>
+      {{ actualNode.text }}
     </ion-card-subtitle>
 
-    <ion-card-title>
-      {{ actualNode.title | translate }}
-    </ion-card-title>
+    <app-sponsor
+      [creator]="creator"
+      [sponsors]="actualNode.sponsors"
+      (action)="sponsorsAction($event)"
+    ></app-sponsor>
   </ion-card-header>
 
-  <ion-card-content>
-    {{ actualNode.text | translate }}
-  </ion-card-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col 
+        size-xs="6"
+        size-sm="6"
+        size-md="4" 
+        size-lg="4"
+        *ngIf="creator"
+      >
+        <ion-card class="node">
+          <div 
+            class="node-img" 
+            [ngStyle]="{
+              'background'
+              : 'url('+defaultImg+') no-repeat center center'
+            }"
+          >
+            <div class="overlay">
+              <div class="buttons">
+                <div class="icon-div">
+                  <ion-icon 
+                    class="icon"
+                    name="add-circle-outline"
+                    color="primary"
+                    (click)="createNode()"
+                  ></ion-icon>
+                </div>
+              </div>
+            </div>
+          </div>
+          <h1 
+            class="node-title"
+            (click)="createNode()"
+          >
+            Crear
+          </h1>
+          <p style="text-align:center">
+            ¡Crear nuevo!
+          </p>
+        </ion-card>
+      </ion-col>
 
-  <ion-list *ngFor="let i of actualNode.childs">
-    <ion-item>
-      <ion-avatar slot="start">
-        <img [src]="i.photo" />
-      </ion-avatar>
-      <ion-label>
-        <!-- <h2>{{ i.title | translate }}</h2> -->
-        <h3>{{ i.subtitle | translate }}</h3>
-        <p>
-          {{
-            i.text.length > 15
-              ? i.text.substring(0, 25) + "..."
-              : (i.text | translate)
-          }}
-        </p>
-        <ion-button (click)="actualNode = i" fill="outline">
-          <ion-icon name="eye-outline" style="margin-right: 5px"></ion-icon>
-          {{ "structure.see" | translate }}
-        </ion-button>
-        <ion-button *ngIf="creator" (click)="editNodes(i)">
-          <ion-icon name="create-outline"></ion-icon>
-        </ion-button>
-        <ion-button
-          *ngIf="creator"
-          (click)="deleteNode(structure, i.id)"
-          color="danger"
-        >
-          <ion-icon name="trash"> </ion-icon>
-        </ion-button>
-      </ion-label>
-    </ion-item>
-  </ion-list>
-  <div class="text-center" *ngIf="actualNode !== this.structure">
-    <ion-button (click)="createNode()" *ngIf="creator">
-      <ion-icon name="add-outline"></ion-icon>
-    </ion-button>
-  </div>
+      <ion-col 
+        size-xs="6"
+        size-sm="6"
+        size-md="4" 
+        size-lg="4"
+        *ngFor="let i of actualNode.childs"
+      >
+        <ion-card class="node">
+          <ion-slides
+            *ngIf="showSlides"
+            pager="true"
+            [options]="slideOpts"
+            style="background-color: black; height: 150px"
+          >
+            <ion-slide 
+              class="slide" 
+              style="width: 100%"
+              *ngFor="let url of i.media"
+            >
+              <img 
+                [src]="url" 
+                class="img" 
+                alt="" 
+                style="width: 100%" 
+              />
+              <div class="overlay2">
+                  <div class="icon-div2">
+                    <ion-icon 
+                      name="eye-outline"
+                      class="icon2"
+                      color="primary"
+                      (click)="openImg(i)"
+                    ></ion-icon>
+                  </div>
+                  <div class="icon-div2">
+                    <ion-icon 
+                      class="icon2"
+                      name="create-outline"
+                      color="warning"
+                      *ngIf="creator"
+                      (click)="editNodes(i)"
+                    ></ion-icon>
+                  </div>
+                  <div class="icon-div2">
+                    <ion-icon 
+                      class="icon2"
+                      name="trash-outline"
+                      color="danger"
+                      *ngIf="creator"
+                      (click)="eliminar(i)"
+                    ></ion-icon>
+                  </div>
+              </div>
+            </ion-slide>
+          </ion-slides>
+          <div class="text-center">
+            <h1 class="node-title" (click)="actualNode = i">
+              {{ i.title }}
+            </h1>
+            <h6  (click)="actualNode = i">
+              {{ i.subtitle.split(' / ').reverse()[0] }}
+            </h6>
+            <p *ngIf="i.text">
+            {{ i.text.length > 24 ? i.text.substring(0,21) + '...' : i.text }}
+            </p>
+          </div>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-card>
