@@ -1,4 +1,4 @@
-import { Injectable } from "@angular/core";
+import { Injectable } from "@angular/core"
 import { INode } from "src/app/models/INode"
 
 @Injectable({
@@ -9,8 +9,8 @@ export class Structures {
   assetsRoute: string = `./assets/images/structure/` // ruta para imagenes prueba
   Organigrama: INode = {
     id: 2,
-    media: [`${this.assetsRoute}6.jpg`],
-    subtitle: `Club / Organigrama`,
+    media: [`${this.assetsRoute}6.png`],
+    subtitle: `Organigrama`,
     title: `Organigrama`,
     text: `Junta directiva del club encargada de...`,
     sponsors:[],
@@ -19,7 +19,7 @@ export class Structures {
       {
         id:10,
         media:[`${this.assetsRoute}7.jpg`],
-        subtitle: `Club / Organigrama / Director Ejecutivo`,
+        subtitle: `Director Ejecutivo`,
         title: `Pepe Escamilla`,
         text: `Director Ejecutivo de nuestro club, encargado de...`,
         canEdit: true,
@@ -31,7 +31,7 @@ export class Structures {
   Masculina: INode = {
     id: 4,
     media: [`${this.assetsRoute}4.jpg`],
-    subtitle: `Club / Masculino`,
+    subtitle: `Masculino`,
     title: `División Masculina`,
     text: `Nuestra selección de jovenes mejor preparados`,
     sponsors:[],
@@ -41,7 +41,7 @@ export class Structures {
         id:30,
         media:[`${this.assetsRoute}3.jpg`],
         title:`Benjamines`,
-        subtitle:`Club / Masculino / Benjamines`,
+        subtitle:`Benjamines`,
         text:`Selección de 8 y 9 años`,
         sponsors:[],
         canEdit: true,
@@ -50,7 +50,7 @@ export class Structures {
             id:50,
             media:[`${this.assetsRoute}2.jpg`],
             title: `Antonio`,
-            subtitle:`Club / Masculino / Benjamines / Portero`,
+            subtitle:`Portero`,
             sponsors:[],
             canEdit: true,
             text:`Futura leyenda del futbol...`,
@@ -63,7 +63,7 @@ export class Structures {
   Femenino: INode = {
     id: 5,
     media: [`${this.assetsRoute}1.jpg`],
-    subtitle: `Club / Femenino`,
+    subtitle: `Femenino`,
     title: `División Femenina`,
     text: `Nuestra famosa selección, lo mejor de lo mejor`,
     canEdit: true,
@@ -71,8 +71,8 @@ export class Structures {
     childs: [
       {
         id:50,
-        media: [`${this.assetsRoute}5.jpg`],
-        subtitle: `Club / Femenino / Benjamines`,
+        media: [`${this.assetsRoute}4.jpg`],
+        subtitle: `Benjamines`,
         title:`Benjamines`,
         text: `Nuestra mejor selección`,
         sponsors:[],

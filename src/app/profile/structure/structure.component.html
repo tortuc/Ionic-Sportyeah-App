@@ -42,8 +42,8 @@
   <ion-card-header>
     <div style="text-align: right">
       <ion-button 
-        *ngIf="actualNode.subtitle.split(' / ').length > 1"
-        (click)="goBack(actualNode, structure)" 
+        *ngIf="actualNode !== structure"
+        (click)="goBack(actualNode.id)"
         fill="outline"
       >
         <ion-icon name="arrow-back-outline" style="margin-right:5px"></ion-icon>
@@ -96,7 +96,7 @@
       style="margin-bottom:20px"
     >
       <h6 >
-        {{ actualNode.subtitle.split(' / ').reverse()[0] }}
+        {{ actualNode.subtitle }}
       </h6>
       {{ actualNode.text }}
     </ion-card-subtitle>
@@ -131,8 +131,9 @@
         size-sm="6"
         size-md="4" 
         size-lg="4"
-        *ngIf="creator && userNode === null 
-              && structure !== actualNode"
+        (click)="createNode()"
+        style="cursor:pointer"
+        *ngIf="creator && userNode === null"
       >
         <ion-card class="node">
           <div 
@@ -149,7 +150,6 @@
                     class="icon"
                     name="add-circle-outline"
                     color="primary"
-                    (click)="createNode()"
                   ></ion-icon>
                 </div>
               </div>
@@ -157,7 +157,6 @@
           </div>
           <h1 
             class="node-title"
-            (click)="createNode()"
           >
             Crear
           </h1>

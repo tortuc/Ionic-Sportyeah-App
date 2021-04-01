@@ -45,7 +45,7 @@ export class NewNodeComponent implements OnInit {
     private fb: FormBuilder,
     public userService: UserService,
     private viUp: ImgVideoUpload,
-    public mc: ModalController
+    public mc: ModalController,
   ) {}
 
   ngOnInit() {
@@ -57,7 +57,7 @@ export class NewNodeComponent implements OnInit {
     }, 300);
     if(!this.actualNode)
       this.actualNode={
-        id:null,
+        id:this.randomNumber(),
         media:null,
         title:null,
         subtitle:null,
@@ -87,9 +87,7 @@ export class NewNodeComponent implements OnInit {
       ],
       title: [this.actualNode.title, [Validators.required]],
       subtitle: [
-      this.actualNode.subtitle 
-      ? this.actualNode.subtitle.split(" / ").reverse()[0]
-      : null ,
+        this.actualNode.subtitle,
         [Validators.required],
       ],
       text: [
@@ -106,7 +104,7 @@ export class NewNodeComponent implements OnInit {
    * Genera un numero random
    */
   randomNumber() {
-    return Math.floor(Math.random() * 1000000);
+    return Math.floor(Math.random() * 10000000000000000000000000000000000000000000000);
   }
 
 
@@ -116,51 +114,9 @@ export class NewNodeComponent implements OnInit {
      * el subtitulo
      * adecuado...
      */
-    const resp = this.recopilarSubtitles(
-      this.structure.subtitle,
-      this.structure,
-      this.parentNode
-    );
-    const array = resp.split(" / ");
-    array.length === 1 && array[0] === ""
-      ? array.splice(array.length - 1, 1)
-      : null;
-    array.push(form.subtitle);
-    form.subtitle = array.join(" / ");
     this.mc.dismiss(form);
   }
-
-  recopilarSubtitles(subtitle: string, node: any, parentNode: any) {
-    if (node.id === 1 && this.actualNode?.id === node.id) {
-      return "";
-    } else if (this.actualNode?.id === node.id) {
-      return subtitle;
-    } else if (node.id === parentNode?.id && node.id !== 1) {
-      subtitle = `${subtitle} / ${node.subtitle.split(" / ").reverse()[0]}`;
-      return subtitle;
-    } else if (node.id === 1 && node.id === parentNode?.id) {
-      return subtitle;
-    } else if (node.id === 1) {
-    } else {
-      subtitle = `${subtitle} / ${node.subtitle.split(" / ").reverse()[0]}`;
-    }
-    for (let i in node.childs) {
-      const resp = this.recopilarSubtitles(
-        subtitle,
-        node.childs[i],
-        this.parentNode
-      );
-      if (resp !== `Error`) {
-        return resp;
-      }
-    }
-    return `Error`;
-  }
-
-  //editPhoto() {
-  //  this.viUp.takeOnlyPhoto();
-  //  this.viUp.content.pipe(take(1)).subscribe((r: string) => (this.photo = r));
-  //}
+  
   async editMedia(node: INode){
     const modal = await this.mc.create({
       component: ModifyMediaComponent,

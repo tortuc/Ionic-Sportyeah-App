@@ -52,7 +52,7 @@ export class StructureComponent implements OnInit {
     public userService: UserService,
     public route: ActivatedRoute,
     public reusableCI: ReusableComponentsIonic,
-    public structures: Structures
+    public structures: Structures,
   ) {}
 
   openImg(i:INode){
@@ -120,7 +120,7 @@ export class StructureComponent implements OnInit {
     }, 300);
     this.getStructure();
   }
-  async editNodes(node: any) {
+  async editNodes(node: INode) {
     const modal = await this.mc.create({
       component: NewNodeComponent,
       cssClass: "my-custom-class",
@@ -132,7 +132,7 @@ export class StructureComponent implements OnInit {
     await modal.present();
     const { data } = await modal.onWillDismiss();
     if (data) {
-      node ? this.searchEdit(this.actualNode, data) : this.createNode();
+      node ? this.searchEdit(this.structure, data) : this.createNode();
     }
   }
 
@@ -198,21 +198,17 @@ export class StructureComponent implements OnInit {
     }
   }
 
-  goBack(actualNode: INode, node: any) {
-    /*
-     * Se almacena el subtitle anterior
-     */
-    const subtitleToGo: string = actualNode .subtitle.split(" / ") .reverse()[1]
-    const subtitleOfActualNode = node.subtitle.split(" / ").reverse()[0]
-    /*
-     * Si coiciden los subtitles se devuelve a dicho nodo
-     */
-    if (subtitleToGo === subtitleOfActualNode) {
-      this.setActualNode(node)
-    } else if (node.childs.length != 0) {
-      for (let i in node.childs) {
-        this.goBack(actualNode, node.childs[i]);
-      }
+  goBack(
+    idNode: number, 
+    node: INode = this.structure,
+    parentNode: INode = this.structure
+  ) {
+    if(idNode === node.id){
+      this.setActualNode(parentNode)
+    }else{
+      node.childs.forEach((child:INode) => {
+        this.goBack(idNode, child, node)
+      })
     }
   }
 
