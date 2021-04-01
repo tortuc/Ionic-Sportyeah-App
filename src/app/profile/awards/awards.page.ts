@@ -9,6 +9,7 @@ import { UserService } from 'src/app/service/user.service';
   styleUrls: ['./awards.page.scss'],
 })
 export class AwardsPage implements OnInit {
+  @Input() id: string;
   constructor(
     private translate: TranslateService,
     public awardService: AwardService,
@@ -16,7 +17,6 @@ export class AwardsPage implements OnInit {
   ) {
     // this.awardService.getByUser(this.userService.User._id);
   }
-  @Input() id: string;
 
   slideOpts = {
     on: {
