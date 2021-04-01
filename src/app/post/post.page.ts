@@ -12,7 +12,7 @@ import { NewCommentComponent } from './new-comment/new-comment.component';
 import { Plugins } from '@capacitor/core';
 import { LikesPostComponent } from '../components/likes-post/likes-post.component';
 import { ViewsProfileService } from "src/app/service/views-profile.service";
-
+import { QuestionService } from 'src/app/service/question.service';
 const { Share } = Plugins;
 
 
@@ -33,22 +33,28 @@ export class PostPage implements OnInit {
     private translate:TranslateService,
     private modalCtrl:ModalController,
     private actionSheetCtrl:ActionSheetController,
-    private viewsProfileService: ViewsProfileService
+    private viewsProfileService: ViewsProfileService,
+    public questionService:QuestionService,
 
     ){
-     this.getPost(route.snapshot.paramMap.get('id'))
+
+      this.getPost(route.snapshot.paramMap.get('id'))
+     
   }
 
   goBack(){
     this.router.navigate(['/dashboard'])
   }
   getPost(id){
-    this.postService.getPost(id).toPromise()
+    this.postService.getPost(id).toPromise()//agregamos el id del usuario actual
     .then((post)=>{
       this.item = post
+      console.log(this.item.post);
+      
     })
     .catch((err)=>{
       // handle err
+      console.log(err);
       
       this.item = 404
     })
@@ -76,7 +82,7 @@ export class PostPage implements OnInit {
     }
 
     goToProfile(id,username){
-      if(id == this.userService.User._id){
+      if(id == this.userService.User?._id){
         this.router.navigate(["/profile"])
       }else{
         //this.router.navigate([`/user/${username}`])
@@ -84,7 +90,7 @@ export class PostPage implements OnInit {
         .subscribe(
           (resp:any)=>{
             this.viewsProfileService
-              .updateProfileView(this.userService.User._id, resp.user._id,'comment',`/post/${this.item.post._id}`)
+              .updateProfileView(this.userService.User?._id, resp.user?._id,'comment',`/post/${this.item.post._id}`)
               .subscribe((response) => {
                 this.router.navigate([`/user/${username}`])
               });
@@ -107,11 +113,22 @@ export class PostPage implements OnInit {
       return await modal.present();
     }
 
-
-
   comments($event){
     this.item.comments = $event
   }
 
+ /*  selectAnswer(id){
+    if(this.userService.User != undefined){
+      this.questionService.voteAnswer(id,this.userService.User._id).subscribe(()=>{
+        this.getPost(this.item.post._id)
+      })
+    }
+  } */
+
+  voted(voted:boolean){
+    if(voted){
+      this.getPost(this.item.post._id)
+    }
+  }
 
 }

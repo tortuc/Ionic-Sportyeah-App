@@ -97,7 +97,6 @@ sinInteraccionActual(){
   this.interaccionActual = '';
 }
 
-
 //Encuentra los post repetidos y el que tenga mas repeticiones sera el primero
     find_duplicate_in_array(array){
     const count = {}
@@ -139,8 +138,7 @@ this.sortable.sort(function(b, a) {
 });
     this.count=count
     this.postId=result
-    return result;
-    
+    return result;  
     }
 
   noData:boolean=false;// es false si no hay datos en la estadistica
@@ -198,7 +196,6 @@ this.sortable.sort(function(b, a) {
     });
 
      })
-
 
 
     this.viewsProfileService.getProfileView(this.userService.User._id)

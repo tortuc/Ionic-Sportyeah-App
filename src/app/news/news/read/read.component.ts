@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NewsService } from '../../../service/news.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { QuestionService } from 'src/app/service/question.service';
+import { UserService } from 'src/app/service/user.service';
 
 @Component({
   selector: 'app-read',
@@ -12,21 +14,28 @@ export class ReadComponent implements OnInit {
   constructor(
     public newsService:NewsService,
     private route:ActivatedRoute,
+    public questionService:QuestionService,
+    public userService:UserService,
 
   ) {
-    this.newsService.findById(route.snapshot.paramMap.get('id')).toPromise()
-    .then((response:any)=>{
-      this.news = response 
-    })
-    .catch((err)=>{
-      this.news = 404
-    })
+    this.idNews =route.snapshot.paramMap.get('id')
+    this.getNews(this.idNews )
+   
     /* .subscribe((response:any)=>{
       console.log(response)
       this.new = response
       this.news = response.news */
     }
-   
+    idNews
+   getNews(id){
+    this.newsService.findById(id).toPromise()
+    .then((response:any)=>{
+      this.news = response
+    })
+    .catch((err)=>{
+      this.news = 404
+    })
+   }
 news = undefined;
 item = undefined;
   ngOnInit() {
@@ -34,6 +43,19 @@ item = undefined;
 
   comments($event){
     this.news.comments = $event
+  }
+ /*  selectAnswer(id){
+    if(this.userService.User != undefined){
+      this.questionService.voteAnswer(id,this.userService.User._id).subscribe(()=>{
+        this.getNews(this.idNews )
+      })
+    }
+  } */
+
+  voted(voted:boolean){
+    if(voted){
+      this.getNews(this.idNews )
+    }
   }
 
 }

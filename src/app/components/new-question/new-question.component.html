@@ -1,0 +1,51 @@
+<ion-header>
+  <ion-toolbar class="bg-gradient-person">
+    <ion-title *ngIf="!edit"  style="--color: white"
+      >Crear una pregunta</ion-title>
+    <ion-title *ngIf="edit"  style="--color: white"
+      >Editar pregunta</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismiss()" style="--color: white"
+        ><ion-icon style="font-size: 26px;" name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="bg-gradient-person">
+  <!-- <form [formGroup]="news?formNews:form"> -->
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12">
+          <ion-input [(ngModel)]="headLine" style="width: 580px;font-size:26px;text-align: center;color: white;" placeholder="Hacer una pregunta"></ion-input>
+        </ion-col>
+
+        <!-- Esto es para poner limite a las respuestas ,1,2,3,etc -->
+        <!-- <ion-col size="12">
+          <p style="text-align: center;margin-top: 0px;color: white;">Los usuarios pueden seleccionar hasta <span>
+          <select style="background: transparent;" name="cars">
+            <option style="background: transparent;" *ngFor="let ejempli of ejemplo" value="volvo">{{ejempli}}</option>
+          </select>
+          </span> respuestas</p>
+        </ion-col> -->
+
+        <ion-col size="12">
+          <div 
+          *ngFor="let answer of answers;index as i"
+          class="answers">
+            <ion-input [(ngModel)]="answer.option"  class="inputAnswer" placeholder="Ingresa respuesta"></ion-input><ion-icon (click)="deleteAnswer(answer.position)" class="deleteIcon" name="close-circle"></ion-icon>
+          </div>
+        </ion-col>
+        <ion-col size="12">
+          <div class="addAnswerDiv" (click)="addAnswer()">
+            <p style="position: absolute;left: 36px;">+ Agregar respuesta</p>
+          </div>
+        </ion-col>
+        <ion-col style="text-align: center;" size="12">
+          <ion-button class="buttons" *ngIf="!edit" [disabled]="(headLine != '' && headLine != null) && answers.length > 1?false:true" (click)="create()">Agregar Pregunta</ion-button>
+          <ion-button class="buttons" *ngIf="edit" (click)="editQuestion()">Editar Pregunta</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  <!-- </form> -->
+  </ion-content>

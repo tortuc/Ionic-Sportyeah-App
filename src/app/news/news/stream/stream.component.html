@@ -51,8 +51,31 @@
             alt="logoSportyeah!"
             style="height: 200px"
           />
-            <!-- Corregir esto 
-             <h1  *ngIf="news?.deleted == true">Este directo esta fuera de línea </h1> -->
+            <!-- SPONSORS -->
+    <h2 style="text-align: center;color: #5a5a5a;">Patrocinado por:</h2> 
+    <div *ngIf="news">
+      <ion-grid>
+        <ion-row style=" margin-top: 10px">
+          <ion-col
+           
+            *ngFor="let sponsor of news.news.user.sponsors; let i = index"
+          >
+            <a [href]="'//' + sponsor.url" target="_blank">
+              <img
+                [src]="sponsor.photo"
+                style="
+                  height: 30px;
+                  width: 60px;
+                  border-radius: 10px;
+                  object-fit: cover;
+                  object-position: cover;
+                "
+            /></a>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+    <!-- TERMINO SPONSORS -->
           </div>
           <div class="w-100"></div>
           <!-- <div id="remotePlayerlist"></div> -->

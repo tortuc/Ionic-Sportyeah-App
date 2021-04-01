@@ -4,11 +4,13 @@ import { ToastController } from '@ionic/angular';
 import { UserService } from "../../../service/user.service";
 import { FormBuilder, FormGroup, FormControl, Validators} from '@angular/forms';
 import { Plugins, CameraResultType, CameraSource } from '@capacitor/core';
-import { ActionSheetController, LoadingController, ModalController   } from '@ionic/angular';
+import { ActionSheetController ,LoadingController, ModalController   } from '@ionic/angular';
 import { TranslateService } from "@ngx-translate/core";
 import { JdvimageService } from 'src/app/service/jdvimage.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import {  ElementRef } from "@angular/core";
+import { NewQuestionComponent } from "src/app/components/new-question/new-question.component"
+import { QuestionService } from 'src/app/service/question.service';
 
 const { Camera ,Filesystem} = Plugins;
 
@@ -31,6 +33,8 @@ export class EditComponent implements OnInit {
     private jdvImage:JdvimageService,
     private loading:LoadingController,
     private route:ActivatedRoute,
+    public questionService:QuestionService,
+    public modalController: ModalController,
   ) {
 this.idNews = route.snapshot.paramMap.get('id')
 this.form.value.id = this.idNews
@@ -40,6 +44,7 @@ idNews
   form = this.fb.group({
     id:[''],
     user:['',[Validators.required]],
+    question:[null,[Validators.required]],
     headline:['',[Validators.required]],
     content:['',[Validators.required]],
     //image:['',[Validators.required]],
@@ -63,7 +68,10 @@ idNews
   }
 
   ngOnInit() {
+    
     this.newsService.findById(this.idNews).subscribe((response:any)=>{
+     
+      
       this.news = response.news
      
       this.videoSelected = response.news.principalVideo;
@@ -74,7 +82,7 @@ idNews
       this.deporte = response.news.sport;
       this.origen = response.news.origin;
       this.originPrincipaMedia = response.news.originPrincipaMedia;
-
+      this.question.questionGroup = response.question
       if(response.news.principalSubtitle){
         this.subTitlebool = true;
       }
@@ -86,7 +94,11 @@ idNews
     })
   }
 
-editar(){
+async editar(){
+  let loading = await this.loading.create({
+    message: this.translate.instant("loading"),
+  });
+  loading.present();
     this.form.value.principalVideo = this.videoSelected;
     this.form.value.principalImage = this.imagenSelected;
     this.form.value.user = this.userService.User._id 
@@ -96,10 +108,18 @@ editar(){
     this.form.value.origin = this.origen
     this.form.value.originPrincipaMedia = this.originPrincipaMedia
     this.form.value.sport = this.deporte
-    this.newsService.updateNews(this.form.value).subscribe((response)=>{
-      this.presentToastWithOptions()
-      this.router.navigate([`news/read/${this.news._id}`])
-    })
+
+    if(this.question.questionGroup.length > 0){
+      this.editNewsAndQuestion(this.form.value,loading)
+    }else{
+      this.newsService.updateNews(this.form.value).subscribe((response)=>{
+        this.presentToastWithOptions()
+        this.router.navigate([`news/read/${this.news._id}`])
+      })
+      loading.dismiss();
+    }
+
+    
 }
 
 fecha = new Date().getDate() + '/'+ (new Date().getMonth()+1) + '/' + new Date().getFullYear()
@@ -703,6 +723,73 @@ originPrincipaMediaListo(change){
 redactarArticulo:boolean = false;
 redactar(){
 this.redactarArticulo = true;
+}
+
+
+question = {
+  user: this.userService.User._id,
+  questionGroup: [],
+}
+editNewsAndQuestion(news: any,loading) {
+  this.questionService.create(this.question).subscribe((response:any)=>{//Crea el cuestionario y agrega el id al news
+    news.question = response._id  
+   
+    this.newsService.updateNews(this.form.value).subscribe((response)=>{
+      this.presentToastWithOptions()
+      this.router.navigate([`news/read/${this.news._id}`])
+    })
+  })
+  loading.dismiss();
+}
+
+
+//Crea una modal donde se pueden crear preguntas 
+async createQuestion(){
+const modal = await this.modalController.create({
+  component: NewQuestionComponent,
+  cssClass: 'my-custom-class',
+  backdropDismiss:false
+  ,
+  componentProps: {
+  
+    edit:false
+  }
+});
+modal.onDidDismiss().then((data)=>{
+  if(data.data.question != undefined){
+    this.question.questionGroup.push(data.data.question) //Las preguntas creadas se introducen en el grupo de preguntas
+  }
+  console.log(this.question.questionGroup)
+})
+.catch((err) => {
+  console.log(err)
+});
+
+return await modal.present();
+}
+async editQuestion(i){
+const modalEdit = await this.modalController.create({
+  component: NewQuestionComponent,
+  cssClass: 'my-custom-class',
+  backdropDismiss:false,
+  componentProps: {
+    question:this.question.questionGroup[i],
+    edit:true
+  }
+});
+modalEdit.onDidDismiss().then((data)=>{
+  if(data.data.question != undefined){
+    this.question.questionGroup.splice(i,1,data.data.question);
+  }
+  
+})
+.catch((err) => {
+  console.log(err)
+});
+return await modalEdit.present();
+}
+deleteQuestion(i){
+this.question.questionGroup.splice(i,1);
 }
 
 }

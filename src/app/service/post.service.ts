@@ -104,10 +104,7 @@ dislikePost(id){
 
 getPost(id){
   return this.http.get(
-    `${environment.URL_API}/post/get/${id}`,
-    {
-      headers: new HttpHeaders({"access-token":getToken()})
-    }
+    `${environment.URL_API}/post/get/${id}`
   )
 }
 

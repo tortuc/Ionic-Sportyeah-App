@@ -81,17 +81,21 @@
               >Actualizar</ion-button
             >
           </ion-row>
-          
+          <!-- <div *ngIf="item.post.views" class="views">
+            <ion-icon name="eye-outline" style="float:left; "></ion-icon>
+            <p style=" margin: 1px;">{{item.post.views.length}}</p>
+          </div> -->
           <ion-row *ngFor="let item of posts;let i = index" class="post-card">
-            <ion-card  ngClass.xs="m-p-0" style="width: 100%">
+            <ion-card  ngClass.xs="m-p-0" style="width: 100%;">
               <ion-card-header>
                 <header-post
                   class="user-header"
                   [post]="item.post"
                   (getPost)="getPost()"
+                  [views]="item.post.views.length"
                 ></header-post>
               </ion-card-header>
-
+              
               <ion-card-content>
                 <post-content [post]="item.post"></post-content>
 
@@ -104,6 +108,10 @@
                   [news]="item.post.news"
                 ></post-shared>
               </ion-card-content>
+              <div *ngIf="item.post.question" style="text-align: center;">
+                <img src="https://img.icons8.com/bubbles/344/question-mark.png" style="width:170px" alt="pregunta">
+              </div>
+              
               <post-options
                 [item]="item"
                 (sharedEvent)="getPost()"

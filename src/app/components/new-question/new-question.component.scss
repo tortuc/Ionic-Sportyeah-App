@@ -1,0 +1,42 @@
+.buttons{
+    --background: white;
+    color: black;
+}
+.answers{
+    position:relative;
+    color: white;
+    border-radius: 57px;
+    height: 53px;
+    width: 550px;
+    margin-left: auto;
+    margin-right: auto;
+    background: #ffffff61;
+    margin-bottom: 15px;
+    border:solid white 1px
+}
+.inputAnswer{
+    margin-left: 15px;
+    width: 500px;
+    font-size:20px;
+    color: white;
+}
+.deleteIcon{
+    cursor: pointer;
+    position:absolute;
+    color: black;
+    left: 510px;
+    top: 13px;
+    font-size: 25px;
+}
+
+.addAnswerDiv{
+    position: relative;
+    border: dotted;
+    cursor: pointer;
+    color: white;
+    border-radius: 57px;
+    height: 53px;
+    width: 550px;
+    margin-left: auto;
+    margin-right: auto;
+}

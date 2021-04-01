@@ -1,0 +1,63 @@
+
+
+.progress-item {
+    position: relative;
+    padding: 0px 20px;
+    width: 100%;
+    margin-right: auto;
+    cursor: pointer;
+    color: black;
+    height: 53px;
+    margin-left: auto;
+    margin-bottom: 10px;
+    pointer-events: none;
+  }
+  
+  .progress-item-unlok{
+      pointer-events: unset !important;
+  }
+  
+  .voted{
+    position: absolute;
+    visibility: hidden;
+    z-index: 10;
+    right: 30px;
+    bottom: 0;
+    font-size: 21px;
+    top: 13px;
+  }
+  
+  .userVoted{
+    .voted{
+      visibility: visible !important;
+    }
+  }
+  
+  .block{
+    .percentage{
+      visibility: visible !important;
+    }
+    .barProgres{
+        --progress-background:#80c1f3;;
+    }
+  }
+  
+  .percentage{
+    position: absolute;
+    z-index: 1000;
+    right: 60px;
+    visibility: hidden !important;
+  }
+
+  ion-progress-bar {
+    height: 53px;
+    --progress-background: #80c1f3;
+    border-radius: 5px;
+    box-shadow: 0 0 5px 0px #222;
+  }
+
+
+  .barProgres{
+    height: 53px;
+    --progress-background:transparent;
+  }

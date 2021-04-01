@@ -7,6 +7,9 @@ import { IPost, INew } from "src/app/models/iPost";
 import { JdvimageService } from "src/app/service/jdvimage.service";
 import { PostService } from "src/app/service/post.service";
 import { UserService } from "src/app/service/user.service";
+import { NewQuestionComponent } from "src/app/components/new-question/new-question.component"
+import { convertTypeAcquisitionFromJson } from "typescript";
+import { QuestionService } from '../../service/question.service';
 
 @Component({
   selector: "app-new-post",
@@ -31,7 +34,9 @@ export class NewPostPage implements OnInit {
     public JDVImage: JdvimageService,
     public loadingCtrl: LoadingController,
     private postService: PostService,
-    private platform: Platform
+    private platform: Platform,    
+    public questionService:QuestionService,
+
   ) {
     this.platform.backButton.subscribeWithPriority(10, () => {
       this.modalController.dismiss();
@@ -66,6 +71,7 @@ export class NewPostPage implements OnInit {
     image: [""],
     video: [null],
     post: [null],
+    question:[null]
   });
   formNews = this.fb.group({
     user: [this.userService.User?._id],
@@ -125,7 +131,7 @@ export class NewPostPage implements OnInit {
   }
 
   async save() {
-    ///AQUI UN IF
+    
     if (!this.news) {
       if (this.videoFile == null) {
         let loading = await this.loadingCtrl.create({
@@ -136,20 +142,26 @@ export class NewPostPage implements OnInit {
         if (this.post) {
           post.post = this.post._id;
         }
-        this.postService
-          .create(post)
-          .toPromise()
-          .then((post) => {
-            loading.dismiss();
-            this.modalController.dismiss({
-              dismissed: true,
-              create: true,
-              post,
-            });
-          })
-          .catch((err) => {
-            loading.dismiss();
-          });
+
+        if(this.question.questionGroup.length > 0){
+          this.createPostAndQuestion(post,loading)
+        }else{
+          this.postService
+              .create(post)
+              .toPromise()
+              .then((post) => {
+                loading.dismiss();
+                this.modalController.dismiss({
+                  dismissed: true,
+                  create: true,
+                  post,
+                });
+              })
+              .catch((err) => {
+                loading.dismiss();
+              });
+        }
+        
       } else {
         let form = new FormData();
         form.append("video", this.videoFile);
@@ -203,6 +215,25 @@ export class NewPostPage implements OnInit {
         });
       }
     }
+  }
+  createPostAndQuestion(post: any,loading) {
+    this.questionService.create(this.question).subscribe((response:any)=>{//Crea el cuestionario y agrega el id al post
+      post.question = response._id  
+      this.postService
+      .create(post)
+      .toPromise()
+      .then((post) => {
+        loading.dismiss();
+        this.modalController.dismiss({
+          dismissed: true,
+          create: true,
+          post,
+        });
+      })
+      .catch((err) => {
+        loading.dismiss();
+      });
+    })
   }
 
   dismiss() {
@@ -292,5 +323,58 @@ export class NewPostPage implements OnInit {
     this.emojisContainer.nativeElement.onclick = function (e) {
       e.stopPropagation();
     };
+  }
+
+  question = {
+    user: this.userService.User._id,
+    questionGroup: [],
+  }
+
+ //Crea una modal donde se pueden crear preguntas 
+  async createQuestion(){
+    const modal = await this.modalController.create({
+      component: NewQuestionComponent,
+      cssClass: 'my-custom-class',
+      backdropDismiss:false
+      ,
+      componentProps: {
+      
+        edit:false
+      }
+    });
+    modal.onDidDismiss().then((data)=>{
+      if(data.data.question != undefined){
+        this.question.questionGroup.push(data.data.question) //Las preguntas creadas se introducen en el grupo de preguntas
+      }
+    })
+    .catch((err) => {
+      console.log(err)
+    });
+  
+    return await modal.present();
+  }
+ async editQuestion(i){
+    const modalEdit = await this.modalController.create({
+      component: NewQuestionComponent,
+      cssClass: 'my-custom-class',
+      backdropDismiss:false,
+      componentProps: {
+        question:this.question.questionGroup[i],
+        edit:true
+      }
+    });
+    modalEdit.onDidDismiss().then((data)=>{
+      if(data.data.question != undefined){
+        this.question.questionGroup.splice(i,1,data.data.question);
+      }
+      
+    })
+    .catch((err) => {
+      console.log(err)
+    });
+    return await modalEdit.present();
+  }
+  deleteQuestion(i){
+    this.question.questionGroup.splice(i,1);
   }
 }

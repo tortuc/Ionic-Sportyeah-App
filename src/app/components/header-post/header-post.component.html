@@ -17,6 +17,12 @@
     class="profile-name date"
     >{{ post.date | customDisplayDate }}</span
   >
+  <span>
+    <div>
+      <ion-icon name="eye-outline" style="float:left;" ></ion-icon>
+      <p style=" margin: 1px;">{{views}}</p>
+    </div>
+  </span>
   <span
     *ngIf="post.edited != null"
     (click)="goToPost(post._id)"
