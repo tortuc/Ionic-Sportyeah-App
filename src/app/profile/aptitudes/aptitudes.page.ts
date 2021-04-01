@@ -9,6 +9,7 @@ import { UserService } from 'src/app/service/user.service';
   styleUrls: ['./aptitudes.page.scss'],
 })
 export class AptitudesPage implements OnInit {
+  @Input() id:string;
   constructor(
     private translate: TranslateService,
     public aptitudeService: AptitudesService,
@@ -16,7 +17,6 @@ export class AptitudesPage implements OnInit {
   ) {
    // this.aptitudeService.getByUser(this.userService.User._id);
   }
-  @Input() id:string;
   async ngOnInit() {
 
     await this.aptitudeService.getByUser(this.id);

@@ -8,7 +8,7 @@ import { ReusableComponentsIonic } from "src/app/service/reusable-components-ion
 import { take } from 'rxjs/operators'
 import { ImgVideoUpload } from "src/app/service/reusable-img-video-logic.service"
 import { ModalController } from '@ionic/angular'
-import { ISponsor } from 'src/app/profile/structure/structure.component'
+import { ISponsor } from "src/app/models/ISponsor"
 
 @Component({
   selector: 'app-sponsors-create',

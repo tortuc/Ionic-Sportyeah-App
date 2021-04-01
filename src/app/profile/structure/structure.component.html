@@ -102,7 +102,7 @@
     </ion-card-subtitle>
 
     <app-sponsor
-      [creator]="creator && userNode === null"
+      [creator]="creator"
       [sponsors]="actualNode.sponsors"
       (action)="sponsorsAction($event)"
     ></app-sponsor>
@@ -131,7 +131,8 @@
         size-sm="6"
         size-md="4" 
         size-lg="4"
-        *ngIf="creator && userNode === null"
+        *ngIf="creator && userNode === null 
+              && structure !== actualNode"
       >
         <ion-card class="node">
           <div 
