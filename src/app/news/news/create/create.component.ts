@@ -47,7 +47,7 @@ constructor(
 
   form = this.fb.group({
     user:['',[Validators.required]],
-    question:['',[Validators.required]],
+    question:[null,[Validators.required]],
     headline:['',[Validators.required]],
     content:['',[Validators.required]],
     principalSubtitle:['',[Validators.required]],
@@ -753,7 +753,7 @@ animateSportyeah(){
   }
   createNewsAndQuestion(news: any,loading) {
     this.questionService.create(this.question).subscribe((response:any)=>{//Crea el cuestionario y agrega el id al news
-      news.question = response._id  
+      this.form.value.question = response._id  
      
       this.newsService.create(this.form.value).subscribe((response)=>{
         this.presentToastWithOptions()

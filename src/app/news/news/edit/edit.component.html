@@ -553,7 +553,24 @@
            <p *ngIf="origen && agregandoOrigen == true" style="text-align: center;color: #737373;font-size: 14px;"><i>{{origen}}</i><ion-icon  (click)="origenListo(0)" class="editIcon" name="pencil-outline" ></ion-icon></p>
          </ion-col>
          <ion-col style="text-align: center;" size="12">
-          <ion-button  (click)="todoConOrigen()" [disabled]="(titulo1 != null && titulo1 != '') && (deporte != null && deporte != '') && ((urlVideo != null && urlVideo != '') || (parrafos.length > 0)) && ((origen != null && origen != '')) ?false:true"  >Listo para publicar</ion-button>
+          <ion-button  (click)="todoConOrigen()" [disabled]="(titulo1 != null && titulo1 != '') && (deporte != null && deporte != '') && ((urlVideo != null && urlVideo != '') || (parrafos.length > 0)) && ((origen != null && origen != '')) ?false:true"  >Listo para editar</ion-button>
+        </ion-col>
+        <ion-col style="text-align: center;" size="12">
+          <ion-button (click)="createQuestion()">
+            <ion-icon name="help-outline"></ion-icon>
+          </ion-button>
+        </ion-col>
+        <ion-col size="12">
+          <div *ngFor="let quest of question.questionGroup;index as i " style="border: groove;margin-bottom: 10px;width: 90%;margin-left: auto;margin-right: auto;">
+            <div style="text-align: center;position: relative;">
+              <ion-icon (click)="editQuestion(i)" style="position: absolute;cursor: pointer;color: #989898;left: 50px;bottom: 10px;font-size: 25px;" name="pencil-sharp"></ion-icon>
+              <ion-icon (click)="deleteQuestion(i)" style="position: absolute;cursor: pointer;color: #989898;right: 40px;bottom: 10px;font-size: 25px;" name="close-circle"></ion-icon>
+              <h1>{{quest.questionHeadline}}</h1>  
+            </div>    
+            <div *ngFor="let answer of quest.answer" class="answer">
+              <p style="position: absolute;left: 50px;">{{answer.option}}</p>
+            </div>
+         </div>
         </ion-col>
          <!-- <ion-col  size="12">
            <ion-item *ngIf="miNoticia == undefined ">

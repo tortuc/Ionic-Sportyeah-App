@@ -31,7 +31,6 @@ export class ReadComponent implements OnInit {
     this.newsService.findById(id).toPromise()
     .then((response:any)=>{
       this.news = response
-      console.log(response) 
     })
     .catch((err)=>{
       this.news = 404
@@ -45,11 +44,17 @@ item = undefined;
   comments($event){
     this.news.comments = $event
   }
-  selectAnswer(id){
+ /*  selectAnswer(id){
     if(this.userService.User != undefined){
       this.questionService.voteAnswer(id,this.userService.User._id).subscribe(()=>{
         this.getNews(this.idNews )
       })
+    }
+  } */
+
+  voted(voted:boolean){
+    if(voted){
+      this.getNews(this.idNews )
     }
   }
 

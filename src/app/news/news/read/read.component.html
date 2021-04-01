@@ -96,6 +96,9 @@
  <ion-grid>
   <ion-row>
     <ion-col size="12">
+      <div *ngIf="news.news.views" class="views">
+        <p style=" margin: 1px;">Vistas:{{news.news.views.length}}</p>
+      </div>
          <!--  Header de la noticia -->
   <div>
 
@@ -212,9 +215,11 @@
       </ion-grid>
     </div>
     <!-- TERMINO SPONSORS -->
-    </ion-col>
-    <ion-col size="12">
-      <div *ngFor="let group of news.question;index as i " style="border-radius: 15px;border: groove;margin-bottom: 10px;width: 80%;margin-left: auto;margin-right: auto;">
+  </ion-col>
+    
+    <ion-col *ngIf="news.news.question" size="12">
+      <question [data]="news" (newItemEvent)="voted($event)"></question>
+      <!-- <div *ngFor="let group of news.question;index as i " style="border-radius: 15px;border: groove;margin-bottom: 10px;width: 80%;margin-left: auto;margin-right: auto;">
         <div style="text-align: center;position: relative;">
           <h1>{{group.group.questionHeadline}}</h1>  
         </div>    
@@ -222,9 +227,9 @@
           <ion-icon name="checkmark-circle-outline" class="voted"></ion-icon>
           <p  style="position: absolute;left: 50px;z-index: 1000;">{{answer.option}}</p>
           <p class="percentage">{{((100 * answer.users/group.total)).toFixed(1)}}%</p>
-          <ion-progress-bar class="barProgres"  [value]="((100 * answer.users/group.total)/100).toFixed(2)"  ></ion-progress-bar><!-- *ngIf="quest.voted != undefined" -->
+          <ion-progress-bar class="barProgres"  [value]="((100 * answer.users/group.total)/100).toFixed(2)"  ></ion-progress-bar>
         </div>
-     </div>
+     </div> -->
     </ion-col>
    </ion-row>
  </ion-grid>

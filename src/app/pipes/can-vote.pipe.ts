@@ -15,7 +15,6 @@ export class CanVotePipe implements PipeTransform {
     try {
       let answer:any = await this.questionService.userVotedAnswer(group,this.userService.User?._id).toPromise()
       let voted = (answer?._id == id)?'block userVoted':'block'
-      console.log(answer)
       return answer?voted:'progress-item-unlok'
     } catch (error) {
       console.log(error)

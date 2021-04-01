@@ -13,7 +13,6 @@ import { Plugins } from '@capacitor/core';
 import { LikesPostComponent } from '../components/likes-post/likes-post.component';
 import { ViewsProfileService } from "src/app/service/views-profile.service";
 import { QuestionService } from 'src/app/service/question.service';
-
 const { Share } = Plugins;
 
 
@@ -38,17 +37,20 @@ export class PostPage implements OnInit {
     public questionService:QuestionService,
 
     ){
-     this.getPost(route.snapshot.paramMap.get('id'))
+
+      this.getPost(route.snapshot.paramMap.get('id'))
+     
   }
 
   goBack(){
     this.router.navigate(['/dashboard'])
   }
   getPost(id){
-    this.postService.getPost(id,this.userService.User?._id).toPromise()//agregamos el id del usuario actual
+    this.postService.getPost(id).toPromise()//agregamos el id del usuario actual
     .then((post)=>{
       this.item = post
-      console.log(this.item.question)
+      console.log(this.item.post);
+      
     })
     .catch((err)=>{
       // handle err
@@ -115,11 +117,17 @@ export class PostPage implements OnInit {
     this.item.comments = $event
   }
 
-  selectAnswer(id){
+ /*  selectAnswer(id){
     if(this.userService.User != undefined){
       this.questionService.voteAnswer(id,this.userService.User._id).subscribe(()=>{
         this.getPost(this.item.post._id)
       })
+    }
+  } */
+
+  voted(voted:boolean){
+    if(voted){
+      this.getPost(this.item.post._id)
     }
   }
 

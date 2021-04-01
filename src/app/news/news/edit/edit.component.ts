@@ -35,8 +35,6 @@ export class EditComponent implements OnInit {
     private route:ActivatedRoute,
     public questionService:QuestionService,
     public modalController: ModalController,
-    
-
   ) {
 this.idNews = route.snapshot.paramMap.get('id')
 this.form.value.id = this.idNews
@@ -46,6 +44,7 @@ idNews
   form = this.fb.group({
     id:[''],
     user:['',[Validators.required]],
+    question:[null,[Validators.required]],
     headline:['',[Validators.required]],
     content:['',[Validators.required]],
     //image:['',[Validators.required]],
@@ -71,6 +70,8 @@ idNews
   ngOnInit() {
     
     this.newsService.findById(this.idNews).subscribe((response:any)=>{
+     
+      
       this.news = response.news
      
       this.videoSelected = response.news.principalVideo;
@@ -81,7 +82,7 @@ idNews
       this.deporte = response.news.sport;
       this.origen = response.news.origin;
       this.originPrincipaMedia = response.news.originPrincipaMedia;
-
+      this.question.questionGroup = response.question
       if(response.news.principalSubtitle){
         this.subTitlebool = true;
       }

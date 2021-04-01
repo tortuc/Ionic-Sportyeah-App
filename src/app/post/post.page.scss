@@ -69,6 +69,14 @@ ion-progress-bar {
   visibility: hidden !important;
 }
 
-// .endVotes{
 
-// }
+.views{
+  text-align: center;
+  width: 80px;
+  border-radius: 45px;
+  position: absolute;
+  background: #669dcd;
+  right: 48px;
+  top: 15px;
+  color: black;
+}

@@ -102,10 +102,9 @@ dislikePost(id){
   )
 }
 
-getPost(id,idUser){
+getPost(id){
   return this.http.get(
-    `${environment.URL_API}/post/get/${id}/${idUser}`
-   
+    `${environment.URL_API}/post/get/${id}`
   )
 }
 
