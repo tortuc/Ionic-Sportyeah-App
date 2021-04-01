@@ -24,6 +24,8 @@ export class HeaderPostComponent implements OnInit {
 
   @Output() deleted = new EventEmitter()
 
+  @Input() views:string
+
   constructor(
     public userService:UserService,
     private router:Router,

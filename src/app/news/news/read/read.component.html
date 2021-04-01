@@ -96,8 +96,9 @@
  <ion-grid>
   <ion-row>
     <ion-col size="12">
-      <div *ngIf="news.news.views" class="views">
-        <p style=" margin: 1px;">Vistas:{{news.news.views.length}}</p>
+      <div>
+        <ion-icon name="eye-outline" style="float:left;" ></ion-icon>
+        <p style=" margin: 1px;">{{news.news.views.length}}</p>
       </div>
          <!--  Header de la noticia -->
   <div>

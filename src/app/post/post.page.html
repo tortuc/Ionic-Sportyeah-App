@@ -19,11 +19,10 @@
                   [post]="item.post"
                   (deleted)="goBack()"
                   (getPost)="getPost(item.post._id)"
+                  [views]="item.post.views.length"
                 ></header-post>
               </ion-card-header>
-              <div *ngIf="item.post.views" class="views">
-                <p style=" margin: 1px;">Vistas:{{item.post.views.length}}</p>
-              </div>
+              
               <ion-card-content>
                 <post-content [post]="item.post"></post-content>
                 <post-shared

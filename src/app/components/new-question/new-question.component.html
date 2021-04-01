@@ -6,7 +6,7 @@
       >Editar pregunta</ion-title>
     <ion-buttons slot="end">
       <ion-button (click)="dismiss()" style="--color: white"
-        ><ion-icon name="close"></ion-icon>
+        ><ion-icon style="font-size: 26px;" name="close"></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
@@ -32,12 +32,12 @@
         <ion-col size="12">
           <div 
           *ngFor="let answer of answers;index as i"
-          style="position:relative;color: white;border-radius: 57px;height: 53px;width: 550px;margin-left: auto;margin-right: auto;background: #ffffff61;margin-bottom: 15px;">
-            <ion-input [(ngModel)]="answer.option"  style="margin-left: 15px;;width: 500px;font-size:20px;color: white;" placeholder="Ingresa respuesta"></ion-input><ion-icon (click)="deleteAnswer(answer.position)" style="cursor: pointer;position:absolute;color: #989898;left: 510px;top: 13px;font-size: 25px;" name="close-circle"></ion-icon>
+          class="answers">
+            <ion-input [(ngModel)]="answer.option"  class="inputAnswer" placeholder="Ingresa respuesta"></ion-input><ion-icon (click)="deleteAnswer(answer.position)" class="deleteIcon" name="close-circle"></ion-icon>
           </div>
         </ion-col>
         <ion-col size="12">
-          <div style="position: relative;;border: dotted;cursor: pointer;color: white;border-radius: 57px;height: 53px;width: 550px;margin-left: auto;margin-right: auto;" (click)="addAnswer()">
+          <div class="addAnswerDiv" (click)="addAnswer()">
             <p style="position: absolute;left: 36px;">+ Agregar respuesta</p>
           </div>
         </ion-col>
