@@ -199,6 +199,7 @@ export class StructureComponent implements OnInit {
   structureStatus: boolean = true // La estructura
   defaultImg: string = `./assets/images/logox.png` // Imagen de sportyeah
   assetsRoute: string = `./assets/images/structure/` // ruta para imagenes prueba
+  userNode: User = null
 
   /*
    * Data default para club
@@ -339,7 +340,7 @@ export class StructureComponent implements OnInit {
       this.uS.User.structure !== undefined
         ? (this.structure = this.uS.User.structure)
         : null;
-      this.actualNode = this.structure;
+      this.setActualNode(this.structure)
       this.creator = true;
     } else {
       this.uS
@@ -348,7 +349,7 @@ export class StructureComponent implements OnInit {
         .subscribe((r: UserData) => {
           if (r.user.structure) {
             this.structure = r.user.structure;
-            this.actualNode = this.structure.childs[0]
+            this.setActualNode(this.structure.childs[0])
           } else {
             this.structureStatus = false;
           }
@@ -417,6 +418,8 @@ export class StructureComponent implements OnInit {
       node.idUser = newNode.idUser
       node.media = newNode.media
       this.as()
+      if(this.actualNode.id === node.id)
+        this.setActualNode(node)
     } else if (node.childs.length != 0) {
       for (let i = 0; i < node.childs.length; i++) {
         this.searchEdit(node.childs[i], newNode);
@@ -448,7 +451,7 @@ export class StructureComponent implements OnInit {
      * Si coiciden los subtitles se devuelve a dicho nodo
      */
     if (subtitleToGo === subtitleOfActualNode) {
-      this.actualNode = node;
+      this.setActualNode(node)
     } else if (node.childs.length != 0) {
       for (let i in node.childs) {
         this.goBack(actualNode, node.childs[i]);
@@ -479,7 +482,7 @@ export class StructureComponent implements OnInit {
     )
     if(data){
       this.structure = JSON.parse(JSON.stringify(this.structureDefault))
-      this.actualNode = this.structure
+      this.setActualNode(this.structure)
       this.as()
     }
   }
@@ -496,9 +499,8 @@ export class StructureComponent implements OnInit {
     if(data){
       const structure = JSON.parse(JSON.stringify(this.structureDefault))
       structure.childs = []
-      console.log(structure)
       this.structure = structure      
-      this.actualNode = this.structure
+      this.setActualNode(this.structure)
       this.as()
     }
   }
@@ -509,5 +511,20 @@ export class StructureComponent implements OnInit {
   sponsorsAction(e: ISponsor[]){
     this.actualNode.sponsors = e
     this.as()
+  }
+
+  /*
+   * Cambia el nodo actual, basicamente es la navegacion
+   */
+  setActualNode(node: INode){
+    this.actualNode = node
+    if(node.idUser)
+      this.userService.getUserByUsername(node.idUser)
+        .pipe(take(1))
+        .subscribe((user:UserData)=> {
+          this.userNode = user.user
+          console.log(this.userNode)
+        })
+    else this.userNode = null
   }
 }

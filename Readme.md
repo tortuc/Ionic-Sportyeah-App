@@ -37,16 +37,22 @@ ssh ubuntu@35.180.14.40
 
 ## NOTAS DAVID ELIMINAR
 
-1. Boton que permita volver en la estructura de club.
-2. Agregar modal y crear que la imagen al principio sea un slider, recuerda que
-   el slider tiene que crearse en el ionViewDidEnter
-3. Mejorar modal de crear nodo.
-4. Cambiar textos en placeholders en modal crear nodo.
-5. Colocar validacion mensajes en modal crear y editar nodo.
-6. Colocar 3 puntos suspensivos en substring de text.
-7. Boton de crear patrocinadores y poder crear varios de estos en cada nodo de
-   la estructura.
-8. Opcion para vincular un perfil de sportyeah a un nodo.
-9. Al vincular un nodo traer su trayectoria (premios y reconocimientos,
+0. Al vincular un nodo traer su trayectoria (premios y reconocimientos,
    experiencias y aptitudes)
-10. Optimizar codigo de estructura.
+1. Un node organigrama, Division Masculina, Division Femenina obligatorio.
+2. Organigrama dentro si podra editar (no se va a poder eliminar)
+3. Dentro de organigrama.
+4. Organigrama y staff son obligatorios.
+5. Division Masculino y Division Femenina tarjetas al principio.
+6. Dentro de cada division vamos a dar el nodo que diga benjamin, alevin, infantil, cadete, juvenil, regional, primer equipo / categoria profesional.
+7. Baloncesto, Tennis y Futbol esta.
+8. Dentro de cada uno de esos nodos colocar entrenador y un jugador.
+9. cuando un nodo este asociado a un perfil no permitir crear mas nodos.
+10. Campo especifico de fecha de fundacion, pagina web, redes sociales.
+11. Que no se vea tan basico un poco mas de informacion.
+12. Numero de entradas en el pie del nodo.
+13. Boton en vista indivial Reta a alguien.
+14. Boton de compartir y boton de retar.
+15. No dejar subir de su galeria, directamente abrir la camara.
+16. Quitar boton pausar.
+17. Quitar boton de cadena y mostrar cascada de videos de todos los videos de reto, el primero sera el copyright el creador de la cadena.

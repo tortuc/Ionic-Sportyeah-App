@@ -68,7 +68,7 @@ export class SponsorsNodeComponent implements OnInit {
     }
   }
 
-  async modalCreate(edit:ISponsor=null){
+  async modalCreate(edit:ISponsor= {url:'',image:'./assets/images/logox.png'}){
     const modal = await this.mc.create({
       component: SponsorsCreateComponent,
       cssClass: '',

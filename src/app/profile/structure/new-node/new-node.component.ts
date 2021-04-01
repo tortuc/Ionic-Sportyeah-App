@@ -157,7 +157,6 @@ export class NewNodeComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    console.log(this.actualNode)
     /*
      * Evita el bug de slides
      */
