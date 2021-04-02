@@ -106,6 +106,22 @@
       [sponsors]="actualNode.sponsors"
       (action)="sponsorsAction($event)"
     ></app-sponsor>
+
+    <app-experience 
+      *ngIf="userNode"
+      [id]="userNode._id"
+    >
+    </app-experience>
+    <app-awards
+      *ngIf="userNode"
+      [id]="userNode._id"
+    >
+    </app-awards>
+    <app-aptitudes
+      *ngIf="userNode"
+      [id]="userNode._id"
+    >
+    </app-aptitudes>
   </ion-card-header>
 
   <ion-grid>
@@ -115,7 +131,8 @@
         size-sm="6"
         size-md="4" 
         size-lg="4"
-        *ngIf="creator"
+        *ngIf="creator && userNode === null 
+              && structure !== actualNode"
       >
         <ion-card class="node">
           <div 
@@ -206,15 +223,12 @@
             </ion-slide>
           </ion-slides>
           <div class="text-center">
-            <h1 class="node-title" (click)="actualNode = i">
+            <h1 class="node-title" (click)="setActualNode(i)">
               {{ i.title }}
             </h1>
-            <h6  (click)="actualNode = i">
+            <h6  (click)="setActualNode(i)">
               {{ i.subtitle.split(' / ').reverse()[0] }}
             </h6>
-            <p *ngIf="i.text">
-            {{ i.text.length > 24 ? i.text.substring(0,21) + '...' : i.text }}
-            </p>
           </div>
         </ion-card>
       </ion-col>

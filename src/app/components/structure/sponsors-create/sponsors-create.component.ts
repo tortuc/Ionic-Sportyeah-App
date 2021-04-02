@@ -8,7 +8,7 @@ import { ReusableComponentsIonic } from "src/app/service/reusable-components-ion
 import { take } from 'rxjs/operators'
 import { ImgVideoUpload } from "src/app/service/reusable-img-video-logic.service"
 import { ModalController } from '@ionic/angular'
-import { ISponsor } from 'src/app/profile/structure/structure.component'
+import { ISponsor } from "src/app/models/ISponsor"
 
 @Component({
   selector: 'app-sponsors-create',
@@ -16,7 +16,7 @@ import { ISponsor } from 'src/app/profile/structure/structure.component'
   styleUrls: ['./sponsors-create.component.scss'],
 })
 export class SponsorsCreateComponent implements OnInit {
-  @Input() edit: ISponsor = {url:'',image:'./assets/images/logox.png'}
+  @Input() edit: ISponsor 
 
   constructor(
     public fb:          FormBuilder,
@@ -34,13 +34,13 @@ export class SponsorsCreateComponent implements OnInit {
 
   form: FormGroup = this.fb.group({
     url: [
-      this.edit.url,
+      '',
       [
         Validators.required, 
         Validators.pattern(this.reg)
       ]
     ],
-    image: [this.edit.image, [Validators.required]]
+    image: ['', [Validators.required]]
   })
 
   ngOnInit() {

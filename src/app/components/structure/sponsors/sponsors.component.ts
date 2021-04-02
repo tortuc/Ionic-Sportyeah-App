@@ -6,7 +6,7 @@ import {
   Output
 } from '@angular/core';
 import { ModalController } from '@ionic/angular'
-import { ISponsor } from 'src/app/profile/structure/structure.component'
+import { ISponsor } from "src/app/models/ISponsor"
 import { ReusableComponentsIonic } from "src/app/service/reusable-components-ionic.service"
 import { SponsorsCreateComponent } from "src/app/components/structure/sponsors-create/sponsors-create.component"
 
@@ -68,7 +68,7 @@ export class SponsorsNodeComponent implements OnInit {
     }
   }
 
-  async modalCreate(edit:ISponsor=null){
+  async modalCreate(edit:ISponsor= {url:'',image:'./assets/images/logox.png'}){
     const modal = await this.mc.create({
       component: SponsorsCreateComponent,
       cssClass: '',
