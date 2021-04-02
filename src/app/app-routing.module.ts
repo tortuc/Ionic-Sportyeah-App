@@ -66,18 +66,18 @@ const routes: Routes = [
     canActivate: [AuthGuardService],
   },
   {
-    path: "landing/:id",
-    loadChildren: () =>
-      import("./patrocinadores/landing/landing.module").then(
-        (m) => m.LandingPageModule
-      ),
-    canActivate: [LandingGuard],
-  },
-  {
     path: "structure/:username",
     loadChildren: () =>
       import("./structure/structure.module").then(
         (m) => m.StructurePageModule
+      ),
+    canActivate: [LandingGuard],
+  },
+  {
+    path: "landing/:id",
+    loadChildren: () =>
+      import("./patrocinadores/landing/landing.module").then(
+        (m) => m.LandingPageModule
       ),
     canActivate: [LandingGuard],
   },

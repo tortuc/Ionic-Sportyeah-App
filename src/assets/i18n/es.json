@@ -743,7 +743,8 @@
       "text": "Descripción / Resumen",
       "username":"Nombre de usuario en SportYeah (Opcional)"
     },
-    "start": "Comenzar"
+    "start": "Comenzar",
+    "title":"Estructura"
   },
   "creating": "Creando nuevo elemento",
   "changing": "Editando elemento",

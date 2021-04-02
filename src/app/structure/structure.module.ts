@@ -15,8 +15,8 @@ import { ComponentsModule } from 'src/app/components/components.module'
     IonicModule,
     FormsModule,
     StructurePageRoutingModule,
-    TranslateModule,
     ComponentsModule,
+    TranslateModule,
     PipesModule
   ],
   declarations: [StructurePage]
