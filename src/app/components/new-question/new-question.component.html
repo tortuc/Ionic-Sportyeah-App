@@ -42,7 +42,7 @@
           </div>
         </ion-col>
         <ion-col style="text-align: center;" size="12">
-          <ion-button class="buttons" *ngIf="!edit" [disabled]="(headLine != '' && headLine != null) && answers.length > 1?false:true" (click)="create()">Agregar Pregunta</ion-button>
+          <ion-button class="buttons" *ngIf="!edit" [disabled]="(headLine != '' && headLine != null) && answers.length >= 2?false:true"  (click)="create()">Agregar Pregunta</ion-button>
           <ion-button class="buttons" *ngIf="edit" (click)="editQuestion()">Editar Pregunta</ion-button>
         </ion-col>
       </ion-row>

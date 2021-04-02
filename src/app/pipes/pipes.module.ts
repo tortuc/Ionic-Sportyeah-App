@@ -31,6 +31,7 @@ import { CanVotePipe } from './can-vote.pipe';
     SharedPipe,
     CustomCurrencyPipe,
     CanVotePipe,
+    
   ],
   exports: [
     LinksPipe,
@@ -45,7 +46,7 @@ import { CanVotePipe } from './can-vote.pipe';
     CommentedPipe,
     SharedPipe,
     CustomCurrencyPipe,
-    CanVotePipe
+    CanVotePipe,
   ],
 })
 export class PipesModule {}

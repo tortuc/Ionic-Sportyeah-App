@@ -36,6 +36,7 @@ addAnswer(){
     option   : '',
     position : this.answers.length
   })
+  console.log(this.answers)
 }
 deleteAnswer(id){
   this.answers.splice(id,1)
@@ -51,20 +52,26 @@ headLine;
     questionHeadline:['',[Validators.required]],
     answer:['',[Validators.required]],
   })
+ready:boolean=false;
 
  async create(){
-   let question = this.form.value
-   question.questionHeadline = this.headLine;
-   question.answer = this.answers;
-    let loading = await this.loadingCtrl.create({
-      message: this.translate.instant("loading"),
-    });
-      loading.present();
-      this.modalController.dismiss({
-        question,
-      })
-      loading.dismiss();
-  }
+  let exist
+  exist = this.answers.find(x => x.option == '' || x.option == undefined)
+ 
+   if(!exist){
+    let question = this.form.value
+    question.questionHeadline = this.headLine;
+    question.answer = this.answers;
+     let loading = await this.loadingCtrl.create({
+       message: this.translate.instant("loading"),
+     });
+       loading.present();
+       this.modalController.dismiss({
+         question,
+       })
+       loading.dismiss();
+   }
+}
 
  async editQuestion(){
     let question = this.form.value
@@ -85,6 +92,8 @@ headLine;
       dismissed: true,
     });
   }
+
+
 
 }
 
