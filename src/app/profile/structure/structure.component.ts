@@ -119,7 +119,7 @@ export class StructureComponent implements OnInit {
           .subscribe((r: IUserDataResponse) => {
             if (r.user.structure) {
               this.structure = r.user.structure;
-              this.setActualNode(this.structure.childs[0])
+              this.setActualNode(this.structure)
             } else {
               this.structureStatus = false;
             }
