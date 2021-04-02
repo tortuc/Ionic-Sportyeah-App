@@ -225,8 +225,17 @@
               {{ i.title }}
             </h1>
             <h6  (click)="setActualNode(i)">
-              {{ i.subtitle.split(' / ').reverse()[0] }}
+              {{ i.subtitle }}
             </h6>
+            <p 
+              class="entradas" 
+              (click)="setActualNode(i)"
+              *ngIf="i.childs.length > 0"
+            >
+              <ion-icon name="albums-outline"></ion-icon>
+              {{ i.childs.length }}
+              Entradas
+            </p>
           </div>
         </ion-card>
       </ion-col>

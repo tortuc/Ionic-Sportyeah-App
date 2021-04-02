@@ -40,4 +40,28 @@ export interface INode {
    * Permite saber si el nodo es inmodificable
    */
   canEdit: boolean
+  /*
+   * Link para facebook
+   */
+  facebook: string
+  /*
+   * Link para twitter
+   */
+  twitter: string
+  /*
+   * Link para instagram
+   */
+  instagram: string
+  /*
+   * Link para LinkedIn
+   */
+  linkedin: string
+  /*
+   * Pagina web
+   */
+  webPage: string
+  /*
+   * Fecha de fundación o inicio
+   */
+  initDate: Date
 }

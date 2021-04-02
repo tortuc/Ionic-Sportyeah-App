@@ -56,7 +56,7 @@ export class NewNodeComponent implements OnInit {
       this.showSlides = true;
     }, 300);
     if(!this.actualNode)
-      this.actualNode={
+      this.actualNode = {
         id:this.randomNumber(),
         media:null,
         title:null,
@@ -64,6 +64,12 @@ export class NewNodeComponent implements OnInit {
         text:null,
         idUser:null,
         canEdit: true,
+        facebook: null,
+        twitter: null,
+        instagram: null,
+        linkedin: null,
+        webPage: null,
+        initDate:null,
         sponsors:[],
         childs:[]
       }
