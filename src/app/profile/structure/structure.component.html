@@ -1,7 +1,6 @@
-<ion-card
+<div
   ngClass.xs="m-p-0"
-  class="post-card"
-  style="margin-top: 10px"
+  style="margin: 0 !important; border:0"
   *ngIf="structureStatus"
 >
 <div
@@ -83,7 +82,7 @@
     <ion-card-title class="title">
       {{ actualNode.title | translate }}
       <ion-button 
-        *ngIf="creator" 
+        *ngIf="creator && actualNode.title !== 'Organigrama'" 
         fill="clear"
         (click)="editNodes(actualNode)"
       >
@@ -130,7 +129,7 @@
         size-xs="6"
         size-sm="6"
         size-md="4" 
-        size-lg="4"
+        size-lg="3"
         (click)="createNode()"
         style="cursor:pointer"
         *ngIf="creator && userNode === null"
@@ -170,7 +169,7 @@
         size-xs="6"
         size-sm="6"
         size-md="4" 
-        size-lg="4"
+        size-lg="3"
         *ngFor="let i of actualNode.childs"
       >
         <ion-card class="node">
@@ -205,7 +204,7 @@
                       class="icon2"
                       name="create-outline"
                       color="warning"
-                      *ngIf="creator"
+                      *ngIf="creator && i.title !== 'Organigrama'"
                       (click)="editNodes(i)"
                     ></ion-icon>
                   </div>
@@ -214,7 +213,7 @@
                       class="icon2"
                       name="trash-outline"
                       color="danger"
-                      *ngIf="creator"
+                      *ngIf="creator && i.title !== 'Organigrama'"
                       (click)="eliminar(i)"
                     ></ion-icon>
                   </div>
@@ -233,4 +232,4 @@
       </ion-col>
     </ion-row>
   </ion-grid>
-</ion-card>
+</div>

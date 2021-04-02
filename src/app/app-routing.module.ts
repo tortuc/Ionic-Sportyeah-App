@@ -1,5 +1,9 @@
 import { NgModule } from "@angular/core";
-import { PreloadAllModules, RouterModule, Routes } from "@angular/router";
+import { 
+  PreloadAllModules, 
+  RouterModule, 
+  Routes 
+} from "@angular/router";
 import { AuthGuardService } from "./guards/auth-guard.service";
 import { LandingGuard } from "./guards/landing-guard.service";
 import { SessionGuardService } from "./guards/session-guard.service";
@@ -66,6 +70,14 @@ const routes: Routes = [
     loadChildren: () =>
       import("./patrocinadores/landing/landing.module").then(
         (m) => m.LandingPageModule
+      ),
+    canActivate: [LandingGuard],
+  },
+  {
+    path: "structure/:username",
+    loadChildren: () =>
+      import("./structure/structure.module").then(
+        (m) => m.StructurePageModule
       ),
     canActivate: [LandingGuard],
   },
@@ -144,13 +156,11 @@ const routes: Routes = [
   {
     path: 'challenge',
     loadChildren: () => import('./challenge/challenge.module').then( m => m.ChallengePageModule)
+  },  {
+    path: 'structure',
+    loadChildren: () => import('./structure/structure.module').then( m => m.StructurePageModule)
   },
-
-  
-
- 
 ];
-
 @NgModule({
   imports: [
     RouterModule.forRoot(routes, {

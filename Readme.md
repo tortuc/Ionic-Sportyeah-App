@@ -32,8 +32,9 @@ ssh ubuntu@35.180.14.40
 
 1. Siempre al finalizar la jornada hacer ionic build y ver los errores solucionarlos y merge master.
 2. Consejo: cuando comiences no te distraigas con nada, convencete de seguir
-   siempre y nunca detenerte, no quit, no pares cuando duela, para cuando
-   termines.
+   siempre y nunca detenerte, manten tu mente ocupada y no le pares a tu voz de
+   pussy diciendote que te detengas o que no lo hagas.
+3. Avisar por slack cada tarea finalizada en el momento y hacer push.
 
 ## NOTAS DAVID ELIMINAR
 

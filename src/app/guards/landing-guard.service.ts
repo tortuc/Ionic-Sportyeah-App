@@ -14,19 +14,12 @@ constructor(
 ) { }
 
   async canActivate(){
-
- 
   return this.UserService.verifyToken().then((resp)=>{
-    
     return true
   })
   .catch(()=>{
-
     return true
   })
-  
- 
- 
 }
 
 }

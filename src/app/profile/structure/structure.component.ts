@@ -31,7 +31,7 @@ export class StructureComponent implements OnInit {
   @Input() public ID: string // ID del usuario
   showSlides: boolean = false // El ion slides
   creator: boolean = false // Saber si es el creador
-  structureStatus: boolean = true // La estructura
+  structureStatus: boolean = true // Existe la estructura
   defaultImg: string = `./assets/images/logox.png` // Imagen de sportyeah
   userNode: User = null
 
@@ -47,7 +47,6 @@ export class StructureComponent implements OnInit {
   seleccion: INode = this.structure.childs[0];
 
   constructor(
-    public uS: UserService,
     public mc: ModalController,
     public userService: UserService,
     public route: ActivatedRoute,
@@ -93,24 +92,38 @@ export class StructureComponent implements OnInit {
 
   getStructure() {
     // Obtenemos la estructura organizacional del usuario si y solo si, dicha estructura existe.
-    if (this.ID === this.uS.User._id) {
-      this.uS.User.structure !== undefined
-        ? (this.structure = this.uS.User.structure)
-        : null;
-      this.setActualNode(this.structure)
-      this.creator = true;
-    } else {
-      this.uS
-        .getUserByUsername(this.route.snapshot.paramMap.get("username"))
-        .pipe(take(1))
-        .subscribe((r: IUserDataResponse) => {
-          if (r.user.structure) {
-            this.structure = r.user.structure;
-            this.setActualNode(this.structure.childs[0])
-          } else {
-            this.structureStatus = false;
-          }
-        });
+    if(this.userService.User){
+      if (this.ID === this.userService.User._id) {
+        this.userService.User.structure !== undefined
+          ? (this.structure = this.userService.User.structure)
+          : null;
+        this.setActualNode(this.structure)
+        this.creator = true;
+      } else {
+        this.userService
+          .getUserByUsername(this.route.snapshot.paramMap.get("username"))
+          .pipe(take(1))
+          .subscribe((r: IUserDataResponse) => {
+            if (r.user.structure) {
+              this.structure = r.user.structure
+              this.setActualNode(this.structure)
+            } else {
+              this.structureStatus = false;
+            }
+          });
+      }
+    }else{
+      this.userService
+          .getUserByUsername(this.route.snapshot.paramMap.get("username"))
+          .pipe(take(1))
+          .subscribe((r: IUserDataResponse) => {
+            if (r.user.structure) {
+              this.structure = r.user.structure;
+              this.setActualNode(this.structure.childs[0])
+            } else {
+              this.structureStatus = false;
+            }
+          });
     }
   }
 
@@ -276,7 +289,6 @@ export class StructureComponent implements OnInit {
         .pipe(take(1))
         .subscribe((user:IUserDataResponse)=> {
           this.userNode = user.user
-          console.log(this.userNode)
         })
     else this.userNode = null
   }
