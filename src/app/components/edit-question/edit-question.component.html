@@ -1,3 +1,16 @@
-<p>
-  edit-question works!
-</p>
+<div *ngFor="let quest of question;index as i "  class="questionDiv">
+  <div style="text-align: center;position: relative;">
+    <h1 style="color: white;">{{quest.questionHeadline}}</h1>  
+  </div>    
+  <div *ngFor="let answer of quest.answer" class="answer">
+    <p style="position: absolute;left: 50px;">{{answer.option}}</p>
+  </div>
+  <div style="text-align: right;width: 95%;">
+    <ion-button style="cursor: pointer;color: black;--background: white;font-size: 11px;" (click)="deleteQuestion(i)">
+      <ion-icon name="trash-outline"></ion-icon>
+    </ion-button>
+    <ion-button style="cursor: pointer;color: black;--background: white;font-size: 11px;" (click)="editQuestion(i)">
+      <ion-icon name="pencil-sharp"></ion-icon>
+    </ion-button>
+  </div>
+</div>

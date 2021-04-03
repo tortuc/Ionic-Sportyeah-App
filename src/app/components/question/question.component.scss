@@ -52,12 +52,26 @@
   ion-progress-bar {
     height: 53px;
     --progress-background: #80c1f3;
-    border-radius: 5px;
-    box-shadow: 0 0 5px 0px #222;
+    border-radius: 30px;
+    border: solid white 1px;
   }
 
 
   .barProgres{
     height: 53px;
     --progress-background:transparent;
+    border: solid #ffffff61 1px;
+
   }
+
+  .questionDiv{
+    border-radius: 15px;
+    margin-bottom: 10px;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    background: linear-gradient(
+        90deg
+        ,rgb(16 42 82),rgb(131 197 247))!important;
+    padding: 1px;
+}

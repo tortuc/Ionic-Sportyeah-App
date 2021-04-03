@@ -49,8 +49,6 @@ export class PostPage implements OnInit {
     this.postService.getPost(id).toPromise()//agregamos el id del usuario actual
     .then((post)=>{
       this.item = post
-      console.log(this.item.post);
-      
     })
     .catch((err)=>{
       // handle err

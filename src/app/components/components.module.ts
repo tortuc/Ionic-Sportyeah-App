@@ -89,6 +89,7 @@ import { SponsorsNodeComponent } from 'src/app/components/structure/sponsors/spo
 import { SponsorsCreateComponent } from 'src/app/components/structure/sponsors-create/sponsors-create.component';
 import { QuestionComponent } from "./question/question.component";
 import { GetMediaComponent } from "./get-media/get-media.component";
+import { EditQuestionComponent } from "./edit-question/edit-question.component";
 @NgModule({
   imports: [
     CommonModule,
@@ -183,7 +184,8 @@ import { GetMediaComponent } from "./get-media/get-media.component";
     SponsorsNodeComponent,
     SponsorsCreateComponent,
     QuestionComponent,
-    GetMediaComponent
+    GetMediaComponent,
+    EditQuestionComponent
   ],
   exports: [
     ImageComponent,
@@ -261,7 +263,8 @@ import { GetMediaComponent } from "./get-media/get-media.component";
     SponsorsNodeComponent,
     SponsorsCreateComponent,
     QuestionComponent,
-    GetMediaComponent
+    GetMediaComponent,
+    EditQuestionComponent
   ],
 })
 export class ComponentsModule {}

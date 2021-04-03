@@ -149,7 +149,7 @@ export class GetMediaComponent implements OnInit {
       .getImages()
       .pipe(take(1))
       .subscribe(async (pixelBayResponse: IPixelBayResponse) => {
-        await this.loading.dismiss(null, null, "loading")
+        
         await this.freeImgModal(pixelBayResponse.hits)
       });
   }
@@ -166,6 +166,7 @@ export class GetMediaComponent implements OnInit {
       backdropDismiss: false,
     });
     await modal.present()
+    await this.loading.dismiss(null, null, "loading") 
     const { data } = await modal.onDidDismiss();
     if (data) this.content$.next(data);
   }
