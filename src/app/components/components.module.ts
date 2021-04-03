@@ -84,10 +84,11 @@ import { COptionsComponent } from "./challenges/c-options/c-options.component";
 import { NewsOptionsComponent } from "./news-options/news-options.component";
 import { ChallengesPotsOptionsIndivComponent } from './challenge/challenges-pots-options-indiv/challenges-pots-options-indiv.component' 
 import { NewQuestionComponent } from "./new-question/new-question.component";
-import { ModifyMediaComponent } from 'src/app/components/structure/modify-media/modify-media.component'
-import { SponsorsNodeComponent } from 'src/app/components/structure/sponsors/sponsors.component'
-import { SponsorsCreateComponent } from 'src/app/components/structure/sponsors-create/sponsors-create.component'
+import { ModifyMediaComponent } from 'src/app/components/structure/modify-media/modify-media.component';
+import { SponsorsNodeComponent } from 'src/app/components/structure/sponsors/sponsors.component';
+import { SponsorsCreateComponent } from 'src/app/components/structure/sponsors-create/sponsors-create.component';
 import { QuestionComponent } from "./question/question.component";
+import { GetMediaComponent } from "./get-media/get-media.component";
 @NgModule({
   imports: [
     CommonModule,
@@ -181,7 +182,8 @@ import { QuestionComponent } from "./question/question.component";
     ModifyMediaComponent,
     SponsorsNodeComponent,
     SponsorsCreateComponent,
-    QuestionComponent
+    QuestionComponent,
+    GetMediaComponent
   ],
   exports: [
     ImageComponent,
@@ -258,7 +260,8 @@ import { QuestionComponent } from "./question/question.component";
     ModifyMediaComponent,
     SponsorsNodeComponent,
     SponsorsCreateComponent,
-    QuestionComponent
+    QuestionComponent,
+    GetMediaComponent
   ],
 })
 export class ComponentsModule {}

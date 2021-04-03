@@ -1,0 +1,14 @@
+1- futbol
+2- baloncesto
+3- tenis
+4- beisbol
+5- golf
+6- correr
+7- voleibol
+8- natacion
+9- boxeo
+10- tenis de mesa
+11- rugby
+12- futbol americano
+13- esport
+14- varios

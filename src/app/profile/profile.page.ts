@@ -2,8 +2,7 @@ import { SponsorsComponent } from "./sponsors/sponsors.component";
 import { OpenImgComponent } from "src/app/components/open-img/open-img.component";
 import { LoginService } from "./../service/login.service";
 import { take } from "rxjs/operators";
-import { BannerLogic } from "./../service/banner-profile-logic.service";
-import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
+import { Component, OnInit, ViewChild } from "@angular/core";
 import { Router, ActivatedRoute } from "@angular/router";
 import { PopoverController } from "@ionic/angular";
 import { TranslateService } from "@ngx-translate/core";
@@ -14,6 +13,7 @@ import { ProfileService } from "../service/profile.service";
 import { ViewsProfileService } from "../service/views-profile.service";
 import { NewsService } from "../service/news.service";
 import { ModalController } from "@ionic/angular";
+import { GetMediaComponent } from "../components/get-media/get-media.component";
 
 @Component({
   selector: "app-profile",
@@ -21,28 +21,27 @@ import { ModalController } from "@ionic/angular";
   styleUrls: ["./profile.page.scss"],
 })
 export class ProfilePage implements OnInit {
-  @ViewChild("fileChooser") fileChooser: ElementRef;
-  public banderaIP: string = null;
-  public ipLoaded: Promise<boolean>;
-  public profile: boolean = true;
-  public postsB: boolean = false;
-  public newsB: boolean = false;
-  public landingButton: boolean = false;
-  loadingPost: boolean;
-  countPost = 0;
+  @ViewChild(GetMediaComponent) getMedia: GetMediaComponent
+  banderaIP:      string = null
+  ipLoaded:       Promise<boolean>
+  profile:        boolean = true
+  postsB:         boolean = false
+  newsB:          boolean = false
+  landingButton:  boolean = false
+  loadingPost:    boolean
+  countPost               = 0
   constructor(
-    public router: Router,
-    public route: ActivatedRoute,
-    public userService: UserService,
-    public mc: ModalController,
-    public translate: TranslateService,
-    public popoverController: PopoverController,
-    private postService: PostService,
-    public profileService: ProfileService,
-    public bannerLogic: BannerLogic,
-    public loginService: LoginService,
-    private viewsProfileService: ViewsProfileService,
-    public newsService: NewsService
+    public  router                  : Router,
+    public  route                   : ActivatedRoute,
+    public  userService             : UserService,
+    public  mc                      : ModalController,
+    public  translate               : TranslateService,
+    public  popoverController       : PopoverController,
+    private postService             : PostService,
+    public  profileService          : ProfileService,
+    public  loginService            : LoginService,
+    private viewsProfileService     : ViewsProfileService,
+    public  newsService             : NewsService
   ) {
     this.viewsProfileService
       .getProfileView(this.userService.User._id)
@@ -94,9 +93,6 @@ export class ProfilePage implements OnInit {
   editNews(idNews) {
     this.router.navigate([`news/edit/${idNews}`]);
   }
-  /* updateNew(){
-    this.newsService.updateNews()
-  } */
 
   getCountPost() {
     this.viewsProfileService
@@ -274,5 +270,29 @@ export class ProfilePage implements OnInit {
       },
     });
     modal.present();
+  }
+
+  /*
+   * CAMBIAR EL BANNER
+   */
+  changeBanner(){
+    this.getMedia.content$
+      .pipe(take(1))
+      .subscribe(
+        (media: string) => {
+          if(media !== null){
+            this.userService.User.photoBanner = media
+            this.userService.update(this.userService.User)  
+          }
+        }
+      )
+    this.getMedia.getMedia(
+      true,
+      false,
+      false,
+      false,
+      true,
+      true
+    )
   }
 }

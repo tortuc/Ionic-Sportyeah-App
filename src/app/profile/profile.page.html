@@ -3,18 +3,16 @@
     <ion-buttons slot="start">
       <ion-menu-button style="color: white"></ion-menu-button>
     </ion-buttons>
-    <ion-title style="--color: white"
-      >{{'profile.title' | translate}}</ion-title
-    >
+    <ion-title style="--color: white">
+      {{'profile.title' | translate}}
+    </ion-title>
     <ion-buttons slot="end">
       <button-search-friend></button-search-friend>
       <button-notification></button-notification>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
-
-<input hidden="true" type="file" #fileChooser accept="video/*, image/*" />
-
+<app-get-media></app-get-media>
 <ion-content
   class="bg-gradient-person"
   [scrollEvents]="true"
@@ -49,7 +47,7 @@
               >
                 <ion-icon
                   name="camera-outline"
-                  (click)="bannerLogic.takePhotoFrom()"
+                  (click)="changeBanner()"
                   style="margin-top: 6px"
                 ></ion-icon>
               </div>

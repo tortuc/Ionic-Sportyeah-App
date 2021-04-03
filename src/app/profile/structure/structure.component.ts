@@ -5,8 +5,8 @@ import { ModalController } from "@ionic/angular";
 import { NewNodeComponent } from "./new-node/new-node.component";
 import { take } from "rxjs/operators";
 import { ActivatedRoute } from "@angular/router";
-import { ReusableComponentsIonic } from "src/app/service/reusable-components-ionic.service"
-import { Structures } from "src/app/models/DefaultStructures"
+import { ReusableComponentsIonic } from "src/app/service/ionicHelpers.service"
+import { Structures } from "src/app/models/defaultStructures"
 import { INode } from "src/app/models/INode"
 import { ISponsor } from "src/app/models/ISponsor"
 import { IUserDataResponse } from "src/app/models/IUserDataResponse"

@@ -1,0 +1,30 @@
+  <input 
+    #img
+    type="file" 
+    accept="image/png, image/jpeg"
+    (change)="uploadFile($event)"
+    hidden
+  />
+  <input 
+    multiple
+    #imgs
+    type="file" 
+    accept="image/png, image/jpeg"
+    (change)="uploadFile($event)"
+    hidden
+  />
+  <input 
+    #video
+    type="file" 
+    accept="video/*"
+    (change)="uploadFile($event)"
+    hidden
+  />
+  <input 
+    multiple
+    #videos
+    type="file" 
+    accept="video/*"
+    (change)="uploadFile($event)"
+    hidden
+  />

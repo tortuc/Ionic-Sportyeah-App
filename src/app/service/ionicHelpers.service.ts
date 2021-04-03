@@ -1,10 +1,10 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { OpenImgComponent } from "src/app/components/open-img/open-img.component";
 import { Injectable } from '@angular/core';
 import { 
   ToastController, 
   AlertController, 
-  ModalController 
+  ModalController,
+  LoadingController
 } from '@ionic/angular';
 
 /*
@@ -17,10 +17,25 @@ import {
 })
 export class ReusableComponentsIonic {
   constructor(
-    public toastCtrl: ToastController,
-    public alertCtrl: AlertController,
-    public mc: ModalController
+    public       toastCtrl          : ToastController,
+    public       alertCtrl          : AlertController,
+    public       mc                 : ModalController,
+    public       loadingCtrl            : LoadingController,
   ){}
+
+  /*
+   * Presenta una modal de carga
+   * Para cerralo solo se debe colocar el id de esta forma
+   * this.loading.dismiss(null,null,id)
+   */
+  async loading(id: string): Promise<void> {
+    const loadingC = await this.loadingCtrl.create({
+      cssClass: "my-custom-class",
+      message: "Cargando...",
+      id,
+    });
+    await loadingC.present();
+  }
 
   /*
    * Funcion para generar un toast

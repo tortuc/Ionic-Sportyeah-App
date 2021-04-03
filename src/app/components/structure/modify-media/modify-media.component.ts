@@ -1,9 +1,16 @@
+import { GetMediaComponent } from './../../get-media/get-media.component';
 import { take } from "rxjs/operators";
 import { User, UserService } from "src/app/service/user.service";
 import { AlertController, ModalController } from "@ionic/angular";
-import { Component, Input, OnInit } from "@angular/core";
+import { 
+  Component,
+  Input, 
+  OnInit, 
+  ElementRef, 
+  ViewChild 
+} from "@angular/core";
 import { ImgVideoUpload } from "src/app/service/reusable-img-video-logic.service"
-import { ReusableComponentsIonic } from "src/app/service/reusable-components-ionic.service"
+import { ReusableComponentsIonic } from "src/app/service/ionicHelpers.service"
 
 /*
  * Componente para modificar los archivos multimedia.
@@ -16,6 +23,7 @@ import { ReusableComponentsIonic } from "src/app/service/reusable-components-ion
 export class ModifyMediaComponent implements OnInit {
   @Input() media: string[];
   @Input() idUser: string;
+  @ViewChild(GetMediaComponent) getMedia: GetMediaComponent
   user: User = null;
   showSlides: boolean = false;
 
@@ -144,9 +152,18 @@ export class ModifyMediaComponent implements OnInit {
   };
 
   async add(){
-    this.reusableIMG.takeOnlyPhoto()
-    this.reusableIMG.content.pipe(take(1))
-      .subscribe((r:string)=>this.media.push(r))
+    this.getMedia.getMedia(
+      false,
+      true,
+      false,
+      true,
+      false,
+      false
+    )
+    this.getMedia.content$.pipe(take(1))
+      .subscribe((media: string)=>
+        this.media.unshift(media)
+      )
   }
   async delete(element:string){
     const res = await this.reusableCI.desicionAlert(`¿Esta seguro de eliminar este elemento?`,``)
