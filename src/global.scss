@@ -657,4 +657,12 @@ ion-segment-button {
   --color: #1586e4;
 }
 
-
+.btn-dismiss {
+  color: gray;
+  right: 5px;
+  top: 15px;
+  position: absolute;
+  font-size: 40px;
+  z-index: 9999999;
+  cursor: pointer;
+}

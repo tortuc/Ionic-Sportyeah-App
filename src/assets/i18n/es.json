@@ -916,5 +916,8 @@
     "img-upload":"Imagen subida con éxito",
     "video-upload":"Vídeo subido con éxito",
     "youtube-link":"Vídeo subido con éxito"
+  },
+  "info":{
+    "img-upload":"Subiendo imagen, por favor espere..."
   }
 }

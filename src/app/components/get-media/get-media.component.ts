@@ -149,7 +149,6 @@ export class GetMediaComponent implements OnInit {
       .getImages()
       .pipe(take(1))
       .subscribe(async (pixelBayResponse: IPixelBayResponse) => {
-        
         await this.freeImgModal(pixelBayResponse.hits)
       });
   }
@@ -257,21 +256,21 @@ export class GetMediaComponent implements OnInit {
    * Sube una imagen al servidor y la guarda en `files`
    * @param formData
    */
-  uploadImage(formData: FormData) {
-    this.reusableCI.loading("img")
+  async uploadImage(formData: FormData) {
+    this.reusableCI.toast(
+      this.translate.instant('info.img-upload')
+    )
     this.imageAPI
       .uploadImage(formData)
       .toPromise()
-      .then((url) => {
+      .then(async(url) => {
         this.content$.next(url)
-        this.modalCtrl.dismiss(null,null,"img")
         this.reusableCI.toast(
           this.translate.instant('success.img-upload')
         )
       })
-      .catch((err) => {
+      .catch(async(err) => {
         this.content$.next(null)
-        this.modalCtrl.dismiss(null,null,"img")
         this.reusableCI.toast(
           this.translate.instant('error.img-upload')
         )
@@ -287,10 +286,10 @@ export class GetMediaComponent implements OnInit {
       let file = event.target.files[i];
       if (file.type.split("/")[0] == "video") {
         formData.append("video", file);
-        await this.uploadVideo(formData);
+        this.uploadVideo(formData);
       } else if (file.type.split("/")[0] == "image") {
         formData.append("image", file);
-        await this.uploadImage(formData);
+        this.uploadImage(formData);
       } else {
         this.reusableCI.toast(
           this.translate.instant('error.invalidFormat')

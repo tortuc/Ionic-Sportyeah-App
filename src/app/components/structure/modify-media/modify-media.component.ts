@@ -160,7 +160,7 @@ export class ModifyMediaComponent implements OnInit {
       false,
       false
     )
-    this.getMedia.content$.pipe(take(1))
+    this.getMedia.content$
       .subscribe((media: string)=>
         this.media.unshift(media)
       )
