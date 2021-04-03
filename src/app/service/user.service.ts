@@ -232,9 +232,7 @@ export class UserService {
   }
 
   getUserByUsername(username) {
-    return this.http.get(`${environment.URL_API}/user/username/${username}`, {
-      headers: new HttpHeaders({ "access-token": getToken() }),
-    });
+    return this.http.get(`${environment.URL_API}/user/username/${username}`);
   }
 
   getUserById(id) {

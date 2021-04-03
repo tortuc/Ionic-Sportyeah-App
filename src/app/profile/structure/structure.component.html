@@ -1,7 +1,6 @@
-<ion-card
+<div
   ngClass.xs="m-p-0"
-  class="post-card"
-  style="margin-top: 10px"
+  style="margin: 0 !important; border:0"
   *ngIf="structureStatus"
 >
 <div
@@ -42,8 +41,8 @@
   <ion-card-header>
     <div style="text-align: right">
       <ion-button 
-        *ngIf="actualNode.subtitle.split(' / ').length > 1"
-        (click)="goBack(actualNode, structure)" 
+        *ngIf="actualNode !== structure"
+        (click)="goBack(actualNode.id)"
         fill="outline"
       >
         <ion-icon name="arrow-back-outline" style="margin-right:5px"></ion-icon>
@@ -83,7 +82,7 @@
     <ion-card-title class="title">
       {{ actualNode.title | translate }}
       <ion-button 
-        *ngIf="creator" 
+        *ngIf="creator && actualNode.title !== 'Organigrama'" 
         fill="clear"
         (click)="editNodes(actualNode)"
       >
@@ -96,7 +95,7 @@
       style="margin-bottom:20px"
     >
       <h6 >
-        {{ actualNode.subtitle.split(' / ').reverse()[0] }}
+        {{ actualNode.subtitle }}
       </h6>
       {{ actualNode.text }}
     </ion-card-subtitle>
@@ -130,9 +129,10 @@
         size-xs="6"
         size-sm="6"
         size-md="4" 
-        size-lg="4"
-        *ngIf="creator && userNode === null 
-              && structure !== actualNode"
+        size-lg="3"
+        (click)="createNode()"
+        style="cursor:pointer"
+        *ngIf="creator && userNode === null"
       >
         <ion-card class="node">
           <div 
@@ -149,7 +149,6 @@
                     class="icon"
                     name="add-circle-outline"
                     color="primary"
-                    (click)="createNode()"
                   ></ion-icon>
                 </div>
               </div>
@@ -157,7 +156,6 @@
           </div>
           <h1 
             class="node-title"
-            (click)="createNode()"
           >
             Crear
           </h1>
@@ -171,7 +169,7 @@
         size-xs="6"
         size-sm="6"
         size-md="4" 
-        size-lg="4"
+        size-lg="3"
         *ngFor="let i of actualNode.childs"
       >
         <ion-card class="node">
@@ -206,7 +204,7 @@
                       class="icon2"
                       name="create-outline"
                       color="warning"
-                      *ngIf="creator"
+                      *ngIf="creator && i.title !== 'Organigrama'"
                       (click)="editNodes(i)"
                     ></ion-icon>
                   </div>
@@ -215,7 +213,7 @@
                       class="icon2"
                       name="trash-outline"
                       color="danger"
-                      *ngIf="creator"
+                      *ngIf="creator && i.title !== 'Organigrama'"
                       (click)="eliminar(i)"
                     ></ion-icon>
                   </div>
@@ -227,11 +225,20 @@
               {{ i.title }}
             </h1>
             <h6  (click)="setActualNode(i)">
-              {{ i.subtitle.split(' / ').reverse()[0] }}
+              {{ i.subtitle }}
             </h6>
+            <p 
+              class="entradas" 
+              (click)="setActualNode(i)"
+              *ngIf="i.childs.length > 0"
+            >
+              <ion-icon name="albums-outline"></ion-icon>
+              {{ i.childs.length }}
+              Entradas
+            </p>
           </div>
         </ion-card>
       </ion-col>
     </ion-row>
   </ion-grid>
-</ion-card>
+</div>

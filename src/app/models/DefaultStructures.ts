@@ -1,5 +1,43 @@
-import { Injectable } from "@angular/core";
+import { Injectable } from "@angular/core"
 import { INode } from "src/app/models/INode"
+import { ISponsor } from "src/app/models/ISponsor"
+
+/*
+ * Clase de nodos para generar nodos con menos codigo
+ */
+class NodeStructure {
+  id:number
+  media:string[]
+  title:string
+  subtitle:string
+  sponsors:ISponsor[]
+  facebook:string=`https://www.sportyeah.com/`
+  twitter:string=`https://www.sportyeah.com/`
+  instagram:string=`https://www.sportyeah.com/`
+  linkedin:string=`https://www.sportyeah.com/`
+  webPage:string=`https://www.sportyeah.com/`
+  initDate:Date=new Date()
+  canEdit:boolean
+  text:string
+  childs:INode[]
+
+  constructor(
+    media: string[], 
+    childs: INode[],
+    title: string,
+    subtitle: string,
+    text: string,
+    canEdit: boolean,
+  ){
+    this.id = Math.floor(Math.random() * 10000000000000000000000000000000000000000000000)
+    this.media = media
+    this.title = title
+    this.subtitle = subtitle
+    this.canEdit = canEdit
+    this.text = text
+    this.childs = childs
+  }
+}
 
 @Injectable({
   providedIn: "root",
@@ -7,95 +45,356 @@ import { INode } from "src/app/models/INode"
 export class Structures {
   constructor(){}
   assetsRoute: string = `./assets/images/structure/` // ruta para imagenes prueba
-  Organigrama: INode = {
-    id: 2,
-    media: [`${this.assetsRoute}6.jpg`],
-    subtitle: `Club / Organigrama`,
-    title: `Organigrama`,
-    text: `Junta directiva del club encargada de...`,
-    sponsors:[],
-    canEdit: false,
-    childs: [
-      {
-        id:10,
-        media:[`${this.assetsRoute}7.jpg`],
-        subtitle: `Club / Organigrama / Director Ejecutivo`,
-        title: `Pepe Escamilla`,
-        text: `Director Ejecutivo de nuestro club, encargado de...`,
-        canEdit: true,
-        sponsors:[],
-        childs:[]
-      }
+  defaultImg: string = `./assets/images/logox.png` // Imagen de sportyeah
+  
+
+  /*
+   * Entrenadores
+   */
+
+  juan: NodeStructure = new NodeStructure(
+    [`${this.assetsRoute}8.png`],
+    [],
+    `Juan`,
+    `Entrenador`,
+    `Futura leyenda del futbol...`,
+     true,
+  )
+
+  juanita: NodeStructure = new NodeStructure (
+    [`${this.assetsRoute}9.jpg`],
+    [],
+    `Juanita`,
+    `Entrenador`,
+    `Futura leyenda del futbol...`,
+    true
+  )
+
+  /*
+   * Jugadores de Futbol
+   */
+
+  antonia: NodeStructure = new NodeStructure (
+    [`${this.assetsRoute}2.jpg`],
+    [],
+    `Antonia`,
+    `Portera`,
+    `Futura leyenda del futbol...`,
+    true,
+  )
+
+  antonio: NodeStructure = new NodeStructure (
+    [`${this.assetsRoute}2.jpg`],
+    [],
+    `Antonio`,
+    `Portero`,
+    `Futura leyenda del futbol...`,
+    true,
+  )
+
+  /*
+   * Plantillas
+   * PL
+   */
+  
+  PLmasculino: NodeStructure = new NodeStructure (
+    [`${this.assetsRoute}4.jpg`],
+    [this.antonio],
+    `Equipo`,
+    `Plantilla`,
+    `Nuestra mejor selección`,
+    true
+  )
+
+  PLfemenino: NodeStructure = new NodeStructure (
+    [`${this.assetsRoute}4.jpg`],
+    [this.antonia],
+    `Equipo`,
+    `Plantilla`,
+    `Nuestra mejor selección`,
+    true
+  )
+
+  /*
+   * Staff
+   * S
+   */
+
+  Smasculino: NodeStructure = new NodeStructure (
+    [`${this.assetsRoute}10.jpg`],
+    [this.juan],
+    `Staff`,
+    `Staff`,
+    `Nuestra mejor selección`,
+    true
+  )
+
+  Sfemenino: NodeStructure = new NodeStructure (
+    [`${this.assetsRoute}10.jpg`],
+    [this.juanita],
+    `Staff`,
+    `Staff`,
+    `Nuestra mejor selección`,
+    true
+  )
+
+  /*
+   * Categorias
+   * C
+   */
+
+  CcategoriaProfesionalM: NodeStructure = new NodeStructure(
+    [`${this.assetsRoute}4.jpg`],
+    [ this.Smasculino, this.PLmasculino ],
+    `Categoria Profesional`,
+    `Primer Equipo`,
+    `Nuestra mejor selección`,
+     true
+  )
+
+  CcategoriaProfesionalF: NodeStructure = new NodeStructure (
+    [`${this.assetsRoute}4.jpg`],
+    [this.Sfemenino, this.PLfemenino],
+    `Categoria Profesional`,
+    `Primer Equipo`,
+    `Nuestra mejor selección`,
+     true
+  )
+
+  CbenjaminesM: NodeStructure = new NodeStructure (
+    [`${this.assetsRoute}4.jpg`],
+    [ this.Smasculino, this.PLmasculino ],
+    `Benjamines`,
+    `Benjamines`,
+    `Nuestra mejor selección`,
+    true,
+  )
+
+  CbenjaminesF: NodeStructure = new NodeStructure (
+    [`${this.assetsRoute}4.jpg`],
+    [this.Sfemenino, this.PLfemenino],
+    `Benjamines`,
+    `Benjamines`,
+    `Nuestra mejor selección`,
+    true,
+  )
+
+  CalevinesM: NodeStructure = new NodeStructure (
+    [`${this.assetsRoute}4.jpg`],
+    [ this.Smasculino, this.PLmasculino ],
+    `Alevines`,
+    `Alevines`,
+    `Nuestra mejor selección`,
+    true,
+  )
+
+  CalevinesF: NodeStructure = new NodeStructure (
+    [`${this.assetsRoute}4.jpg`],
+    [this.Sfemenino, this.PLfemenino],
+    `Alevines`,
+    `Alevines`,
+    `Nuestra mejor selección`,
+    true,
+  )
+
+  CinfantilM: NodeStructure = new NodeStructure (
+    [`${this.assetsRoute}4.jpg`],
+    [ this.Smasculino, this.PLmasculino ],
+    `Infantil`,
+    `Infantil`,
+    `Nuestra mejor selección`,
+    true,
+  )
+
+  CinfantilF: NodeStructure = new NodeStructure (
+    [`${this.assetsRoute}4.jpg`],
+    [this.Sfemenino, this.PLfemenino],
+    `Infantil`,
+    `Infantil`,
+    `Nuestra mejor selección`,
+    true,
+  )
+
+  CcadeteM: NodeStructure = new NodeStructure(
+    [`${this.assetsRoute}4.jpg`],
+    [ this.Smasculino, this.PLmasculino ],
+    `Cadete`,
+    `Cadete`,
+    `Nuestra mejor selección`,
+    true
+  )
+
+
+  CcadeteF: NodeStructure = new NodeStructure(
+    [`${this.assetsRoute}4.jpg`],
+    [this.Sfemenino, this.PLfemenino],
+    `Cadete`,
+    `Cadete`,
+    `Nuestra mejor selección`,
+    true
+  )
+
+  CjuvenilM: NodeStructure = new NodeStructure(
+    [`${this.assetsRoute}4.jpg`],
+    [ this.Smasculino, this.PLmasculino ],
+    `Juvenil`,
+    `Juvenil`,
+    `Nuestra mejor selección`,
+    true,
+  )
+
+  CjuvenilF: NodeStructure = new NodeStructure(
+    [`${this.assetsRoute}4.jpg`],
+    [this.Sfemenino, this.PLfemenino],
+    `Juvenil`,
+    `Juvenil`,
+    `Nuestra mejor selección`,
+    true,
+  )
+  
+  /*
+   * Divisiones
+   * D
+   */
+
+  DMasculina: NodeStructure = new NodeStructure(
+    [`${this.assetsRoute}4.jpg`],
+    [
+      this.CcategoriaProfesionalM,
+      this.CbenjaminesM,
+      this.CalevinesM,
+      this.CinfantilM,
+      this.CcadeteM,
+      this.CjuvenilM,
     ],
-  };
-  Masculina: INode = {
-    id: 4,
-    media: [`${this.assetsRoute}4.jpg`],
-    subtitle: `Club / Masculino`,
-    title: `División Masculina`,
-    text: `Nuestra selección de jovenes mejor preparados`,
-    sponsors:[],
-    canEdit: false,
-    childs: [
-      {
-        id:30,
-        media:[`${this.assetsRoute}3.jpg`],
-        title:`Benjamines`,
-        subtitle:`Club / Masculino / Benjamines`,
-        text:`Selección de 8 y 9 años`,
-        sponsors:[],
-        canEdit: true,
-        childs:[
-          {
-            id:50,
-            media:[`${this.assetsRoute}2.jpg`],
-            title: `Antonio`,
-            subtitle:`Club / Masculino / Benjamines / Portero`,
-            sponsors:[],
-            canEdit: true,
-            text:`Futura leyenda del futbol...`,
-            childs:[]
-          }
-        ]
-      }
+    `Masculino`,
+    `División Masculina`,
+    `Nuestra selección de jovenes mejor preparados`,
+    true,
+  )
+
+  DFemenino: NodeStructure = new NodeStructure(
+    [`${this.assetsRoute}4.jpg`],
+    [
+      this.CcategoriaProfesionalF,
+      this.CbenjaminesF,
+      this.CalevinesF,
+      this.CinfantilF,
+      this.CcadeteF,
+      this.CjuvenilF
     ],
-  };
-  Femenino: INode = {
-    id: 5,
-    media: [`${this.assetsRoute}1.jpg`],
-    subtitle: `Club / Femenino`,
-    title: `División Femenina`,
-    text: `Nuestra famosa selección, lo mejor de lo mejor`,
-    canEdit: true,
-    sponsors:[],
-    childs: [
-      {
-        id:50,
-        media: [`${this.assetsRoute}5.jpg`],
-        subtitle: `Club / Femenino / Benjamines`,
-        title:`Benjamines`,
-        text: `Nuestra mejor selección`,
-        sponsors:[],
-        canEdit: true,
-        childs:[]
-      }
+    `Femenino`,
+    `División Femenina`,
+    `Nuestra famosa selección, lo mejor de lo mejor`,
+    true,
+  )
+
+
+
+  /*
+   * Puestos gerenciales
+   * PG
+   */
+
+  PGpresidente: NodeStructure = new NodeStructure (
+    [`${this.assetsRoute}7.jpg`],
+    [],
+    `Presidente`,
+    `Pepe Escamilla`,
+    `Director Ejecutivo de nuestro club, encargado de...`,
+    true
+  )
+
+  PGdirectorGeneral: NodeStructure = new NodeStructure(
+    [`${this.assetsRoute}7.jpg`],
+    [],
+    `Director General`,
+    `Pepe Escamilla`,
+    `Director Ejecutivo de nuestro club, encargado de...`,
+    true,
+  )
+
+  PGdirectorDeportivo: NodeStructure = new NodeStructure(
+    [`${this.assetsRoute}7.jpg`],
+    [],
+    `Director Deportivo`,
+    `Pepe Escamilla`,
+    `Director Ejecutivo de nuestro club, encargado de...`,
+    true,
+  )
+
+  PGdirectorRRHH: NodeStructure = new NodeStructure(
+    [`${this.assetsRoute}7.jpg`],
+    [],
+    `Director RRHH`,
+    `Pepe Escamilla`,
+    `Director Ejecutivo de nuestro club, encargado de...`,
+    true,
+  )
+
+  PGdirectorFinanciero: NodeStructure = new NodeStructure(
+    [`${this.assetsRoute}7.jpg`],
+    [],
+    `Director Financiero`,
+    `Pepe Escamilla`,
+    `Director Ejecutivo de nuestro club, encargado de...`,
+    true,
+  )
+
+  PGdirectorProyectos: NodeStructure = new NodeStructure(
+    [`${this.assetsRoute}7.jpg`],
+    [],
+    `Director de Proyectos`,
+    `Pepe Escamilla`,
+    `Director Ejecutivo de nuestro club, encargado de...`,
+    true,
+  )
+
+  PGdirectorComunicacion: NodeStructure = new NodeStructure(
+    [`${this.assetsRoute}7.jpg`],
+    [],
+    `Director Comunicación`,
+    `Pepe Escamilla`,
+    `Director Ejecutivo de nuestro club, encargado de...`,
+    true
+  )
+
+  /*
+   * Organigrama
+   */
+
+  organigrama: NodeStructure = new NodeStructure(
+    [`${this.assetsRoute}6.png`],
+    [
+      this.PGpresidente,
+      this.PGdirectorGeneral,
+      this.PGdirectorDeportivo,
+      this.PGdirectorRRHH,
+      this.PGdirectorFinanciero,
+      this.PGdirectorProyectos,
+      this.PGdirectorComunicacion
     ],
-  }
+    `Organigrama`,
+    `Organigrama`,
+    `Junta directiva del club encargada de...`,
+    false,
+  )
+
   /*
    * Estructura para soccer
    */
-  Soccer: INode = {
-    id: 1,
-    media: null,
-    subtitle: `Club`,
-    title: `Nuestro Gran Club`,
-    text: `Aquí encontraras toda la información de nuestro club.`,
-    sponsors:[],
-    canEdit: true,
-    childs: [
-      this.Organigrama,
-      this.Masculina,
-      this.Femenino
-    ]
-  }
+
+  Soccer: NodeStructure = new NodeStructure(
+    [this.defaultImg],
+    [
+      this.organigrama,
+      this.DMasculina,
+      this.DFemenino
+    ],
+    `Club`,
+    `Nuestro Gran Club`,
+    `Aquí encontraras toda la información de nuestro club.`,
+    true
+  )
+
 }

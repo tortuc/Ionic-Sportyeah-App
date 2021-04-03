@@ -31,7 +31,7 @@ export class StructureComponent implements OnInit {
   @Input() public ID: string // ID del usuario
   showSlides: boolean = false // El ion slides
   creator: boolean = false // Saber si es el creador
-  structureStatus: boolean = true // La estructura
+  structureStatus: boolean = true // Existe la estructura
   defaultImg: string = `./assets/images/logox.png` // Imagen de sportyeah
   userNode: User = null
 
@@ -47,12 +47,11 @@ export class StructureComponent implements OnInit {
   seleccion: INode = this.structure.childs[0];
 
   constructor(
-    public uS: UserService,
     public mc: ModalController,
     public userService: UserService,
     public route: ActivatedRoute,
     public reusableCI: ReusableComponentsIonic,
-    public structures: Structures
+    public structures: Structures,
   ) {}
 
   openImg(i:INode){
@@ -93,24 +92,38 @@ export class StructureComponent implements OnInit {
 
   getStructure() {
     // Obtenemos la estructura organizacional del usuario si y solo si, dicha estructura existe.
-    if (this.ID === this.uS.User._id) {
-      this.uS.User.structure !== undefined
-        ? (this.structure = this.uS.User.structure)
-        : null;
-      this.setActualNode(this.structure)
-      this.creator = true;
-    } else {
-      this.uS
-        .getUserByUsername(this.route.snapshot.paramMap.get("username"))
-        .pipe(take(1))
-        .subscribe((r: IUserDataResponse) => {
-          if (r.user.structure) {
-            this.structure = r.user.structure;
-            this.setActualNode(this.structure.childs[0])
-          } else {
-            this.structureStatus = false;
-          }
-        });
+    if(this.userService.User){
+      if (this.ID === this.userService.User._id) {
+        this.userService.User.structure !== undefined
+          ? (this.structure = this.userService.User.structure)
+          : null;
+        this.setActualNode(this.structure)
+        this.creator = true;
+      } else {
+        this.userService
+          .getUserByUsername(this.route.snapshot.paramMap.get("username"))
+          .pipe(take(1))
+          .subscribe((r: IUserDataResponse) => {
+            if (r.user.structure) {
+              this.structure = r.user.structure
+              this.setActualNode(this.structure)
+            } else {
+              this.structureStatus = false;
+            }
+          });
+      }
+    }else{
+      this.userService
+          .getUserByUsername(this.route.snapshot.paramMap.get("username"))
+          .pipe(take(1))
+          .subscribe((r: IUserDataResponse) => {
+            if (r.user.structure) {
+              this.structure = r.user.structure;
+              this.setActualNode(this.structure)
+            } else {
+              this.structureStatus = false;
+            }
+          });
     }
   }
 
@@ -120,7 +133,7 @@ export class StructureComponent implements OnInit {
     }, 300);
     this.getStructure();
   }
-  async editNodes(node: any) {
+  async editNodes(node: INode) {
     const modal = await this.mc.create({
       component: NewNodeComponent,
       cssClass: "my-custom-class",
@@ -132,7 +145,7 @@ export class StructureComponent implements OnInit {
     await modal.present();
     const { data } = await modal.onWillDismiss();
     if (data) {
-      node ? this.searchEdit(this.actualNode, data) : this.createNode();
+      node ? this.searchEdit(this.structure, data) : this.createNode();
     }
   }
 
@@ -198,21 +211,17 @@ export class StructureComponent implements OnInit {
     }
   }
 
-  goBack(actualNode: INode, node: any) {
-    /*
-     * Se almacena el subtitle anterior
-     */
-    const subtitleToGo: string = actualNode .subtitle.split(" / ") .reverse()[1]
-    const subtitleOfActualNode = node.subtitle.split(" / ").reverse()[0]
-    /*
-     * Si coiciden los subtitles se devuelve a dicho nodo
-     */
-    if (subtitleToGo === subtitleOfActualNode) {
-      this.setActualNode(node)
-    } else if (node.childs.length != 0) {
-      for (let i in node.childs) {
-        this.goBack(actualNode, node.childs[i]);
-      }
+  goBack(
+    idNode: number, 
+    node: INode = this.structure,
+    parentNode: INode = this.structure
+  ) {
+    if(idNode === node.id){
+      this.setActualNode(parentNode)
+    }else{
+      node.childs.forEach((child:INode) => {
+        this.goBack(idNode, child, node)
+      })
     }
   }
 
@@ -280,7 +289,6 @@ export class StructureComponent implements OnInit {
         .pipe(take(1))
         .subscribe((user:IUserDataResponse)=> {
           this.userNode = user.user
-          console.log(this.userNode)
         })
     else this.userNode = null
   }

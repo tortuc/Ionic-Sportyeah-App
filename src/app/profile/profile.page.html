@@ -144,6 +144,16 @@
               </ion-icon>
               {{'golanding' | translate}}
             </ion-button>
+            <ion-button
+              color="primary"
+              *ngIf="landingButton"
+              [routerLink]="'../structure/'+userService.User.username"
+            >
+              <ion-icon name="megaphone-outline" style="margin-right: 5px">
+              </ion-icon>
+              {{'gostructure' | translate}}
+            </ion-button>
+
           </ion-card-header>
 
           <ion-card-content> </ion-card-content>
@@ -225,7 +235,7 @@
         <div *ngIf="profile">
           <app-carrousel [id]="userService.User?._id"></app-carrousel>
 
-          <app-structure
+          <!--<app-structure
             [ID]="userService.User?._id"
             *ngIf="
                userService.User.profile_user === 'sponsor' ||
@@ -235,7 +245,7 @@
                userService.User.profile_user === 'foundation' || 
                userService.User.profile_user === 'club'
              "
-          ></app-structure>
+          ></app-structure>-->
 
           <ion-card
             ngClass.xs="m-p-0"
