@@ -31,7 +31,7 @@
   <ion-grid style="padding: 0" class="height-100vh">
     <ion-row class="height-100vh ion-justify-content-center">
       <ion-col ngClass.xs="m-p-0" size-md="8" size-sm="12">
-        <ion-card ngClass.xs="m-p-0" class="post-card">
+        <ion-card ngClass.xs="m-p-0" >
           <ion-card-header
             class="text-center"
             style="padding-top: 0; padding-left: 0; padding-right: 0"
@@ -231,6 +231,7 @@
 
         <!-- INIT SEGMENT PROFILE  -->
         <div *ngIf="profile">
+         
           <app-carrousel [id]="userService.User?._id"></app-carrousel>
 
           <!--<app-structure
@@ -247,7 +248,7 @@
 
           <ion-card
             ngClass.xs="m-p-0"
-            class="post-card mt5"
+            class=" mt5"
             *ngIf="
               userService.User.profile_user !== 'sponsor' &&
               userService.User.profile_user !== 'foundation' &&
@@ -268,7 +269,7 @@
 
           <ion-card
             ngClass.xs="m-p-0"
-            class="post-card mt5"
+            class=" mt5"
             *ngIf="
               userService.User.profile_user !== 'representative'
             "
@@ -284,7 +285,7 @@
 
           <ion-card
             ngClass.xs="m-p-0"
-            class="post-card mt5"
+            class=" mt5"
             *ngIf="
               userService.User.profile_user !== 'sponsor' &&
               userService.User.profile_user !== 'federation' &&
@@ -307,7 +308,7 @@
         <!-- SEGMENT POSTST -->
         <div *ngIf="postsB">
           <ion-grid ngClass.xs="m-p-0">
-            <ion-row *ngFor="let item of posts" class="post-card">
+            <ion-row *ngFor="let item of posts" class="">
               <ion-card ngClass.xs="m-p-0" style="width: 100%">
                 <ion-card-header>
                   <header-post
@@ -336,7 +337,7 @@
         <!-- SEGMENT NEWS -->
         <div *ngIf="newsB">
           <ion-grid ngClass.xs="m-p-0">
-            <ion-row *ngFor="let item of news" class="post-card">
+            <ion-row *ngFor="let item of news" class="">
               <ion-card
                 style="
                   width: 100%;
@@ -431,6 +432,13 @@
           </ion-grid>
         </div>
         <!-- FINISH SEGMENT NEWS -->
+      </ion-col>
+      <ion-col
+        size-lg="4"
+        fxShow.lt-md="false"
+        class="ion-justify-content-center ion-align-items-center"
+      >
+        <friends-panel-desktop></friends-panel-desktop>
       </ion-col>
     </ion-row>
   </ion-grid>

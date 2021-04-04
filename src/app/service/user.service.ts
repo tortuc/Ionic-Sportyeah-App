@@ -207,11 +207,16 @@ export class UserService {
             })
             .subscribe(
                (resp: any) => {
-                this.getFollowings();
-                this.getFollowers();
-                this.setUser(<User>resp.user);
-                this.socketService.socket.emit("login", { user: resp.user._id });
-                resolve(true);
+                if(resp.user){
+                  this.getFollowings();
+                  this.getFollowers();
+                  this.setUser(<User>resp.user);
+                  this.socketService.socket.emit("login", { user: resp.user._id });
+                  resolve(true);
+                }else{
+                  localStorage.clear();
+                  reject(false);
+                }
               },
               () => {
                 localStorage.clear();
