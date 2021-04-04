@@ -156,51 +156,12 @@
 
           <ion-card-content> </ion-card-content>
 
-          <div>
-            <h6 class="text-center">
-              {{'sponsorDescription' | translate}}
-              <span>
-                <ion-button style="margin-top: -13px" (click)="createSponsor()">
-                  <ion-icon name="add-circle-outline"> </ion-icon>
-                </ion-button>
-              </span>
-            </h6>
-            <ion-grid class="text-center">
-              <ion-row style="justify-content: center">
-                <ion-col
-                  size="2"
-                  *ngFor="let sponsor of userService.User?.sponsors; let i = index"
-                >
-                  <a [href]="'//'+sponsor.url" target="_blank" *ngIf="sponsor.url">
-                    <img
-                      [src]="sponsor.photo"
-                      style="
-                        height: 50px;
-                        width: 100px;
-                        border-radius: 10px;
-                        object-fit: cover;
-                        object-position: cover;
-                      "
-                  /></a>
-
-                  <div>
-                    <ion-icon
-                      name="create-outline"
-                      style="cursor: pointer"
-                      class="botonEditar"
-                      (click)="editSponsor(i)"
-                    ></ion-icon>
-
-                    <ion-icon
-                      name="trash-outline"
-                      style="cursor: pointer"
-                      class="botonEliminar"
-                      (click)="deleteSponsor(i)"
-                    ></ion-icon>
-                  </div>
-                </ion-col>
-              </ion-row>
-            </ion-grid>
+          <div style="margin-bottom: 5px;">
+            <app-sponsor
+              [creator]="creator"
+              [sponsors]="user.sponsors"
+              (action)="changeSponsors($event)"
+            ></app-sponsor>
           </div>
 
           <ion-segment

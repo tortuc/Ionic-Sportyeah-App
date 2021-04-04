@@ -14,6 +14,10 @@ import { ViewsProfileService } from "../service/views-profile.service";
 import { NewsService } from "../service/news.service";
 import { ModalController } from "@ionic/angular";
 import { GetMediaComponent } from "../components/get-media/get-media.component";
+import { ReusableComponentsIonic } from "../service/ionicHelpers.service";
+import { IUser } from "../models/IUser";
+import { typeSourceSpan } from "@angular/compiler";
+import { ISponsor } from "../models/ISponsor";
 
 @Component({
   selector: "app-profile",
@@ -30,6 +34,8 @@ export class ProfilePage implements OnInit {
   landingButton:  boolean = false
   loadingPost:    boolean
   countPost               = 0
+  user:           IUser   = this.userService.User
+  creator:        boolean = true
   constructor(
     public  router                  : Router,
     public  route                   : ActivatedRoute,
@@ -41,7 +47,8 @@ export class ProfilePage implements OnInit {
     public  profileService          : ProfileService,
     public  loginService            : LoginService,
     private viewsProfileService     : ViewsProfileService,
-    public  newsService             : NewsService
+    public  newsService             : NewsService,
+    public  reusableCI              : ReusableComponentsIonic
   ) {
     this.viewsProfileService
       .getProfileView(this.userService.User._id)
@@ -191,8 +198,6 @@ export class ProfilePage implements OnInit {
     await modal.present();
     const { data } = await modal.onWillDismiss();
     if (data) {
-      console.log("SPONSORS DATA FOR CREATE");
-      console.log(data);
       const user = this.userService.User;
       user.sponsors.push(data);
       this.userService
@@ -282,7 +287,9 @@ export class ProfilePage implements OnInit {
         (media: string) => {
           if(media !== null){
             this.userService.User.photoBanner = media
-            this.userService.update(this.userService.User)  
+            this.userService.update(this.userService.User).pipe(take(1)).subscribe((r:any)=>{
+              this.reusableCI.toast('Banner actualizado con éxito')
+            }) 
           }
         }
       )
@@ -294,5 +301,15 @@ export class ProfilePage implements OnInit {
       true,
       true
     )
+  }
+
+  /**
+   * LOGICA PARA MODIFICAR SPONSORS
+   */
+  changeSponsors(sponsors:ISponsor[]){
+    this.userService.User.sponsors = sponsors
+    this.userService.update(this.userService.User).pipe(take(1)).subscribe((r:any)=>{
+      this.reusableCI.toast(this.translate.instant('success.sponsors-updated'))
+    })
   }
 }

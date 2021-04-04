@@ -37,7 +37,7 @@ export class SponsorsComponent implements OnInit {
   }
 
   save() {
-    this.form.value.photo = this.photo;
+    this.form.value.image = this.photo;
     this.mc.dismiss(this.form.value);
   }
 
