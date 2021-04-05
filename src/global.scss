@@ -33,6 +33,7 @@
 
 :root {
   --color-primary: #006400;
+  --color-secondary: #00ff33bf;
 }
 ::-webkit-scrollbar-track {
   --webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3) !important;
@@ -422,7 +423,7 @@ a {
 }
 
 .friends-button:hover {
-  --background: lavender;
+  --background: var(--ion-color-primary);
 }
 
 //------------------------ Styles for chat---------------------------
