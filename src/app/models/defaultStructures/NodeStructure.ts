@@ -1,4 +1,4 @@
-import { Injectable } from "@angular/core"
+import { Inject, Injectable } from "@angular/core"
 import { ISponsor } from "src/app/models/ISponsor"
 import { INode } from "src/app/models/INode"
 
@@ -25,12 +25,12 @@ export class NodeStructure {
   childs:INode[]
 
   constructor(
-    media: string[], 
-    childs: INode[],
-    title: string,
-    subtitle: string,
-    text: string,
-    canEdit: boolean,
+    @Inject('media') media: string[], 
+    @Inject('childs') childs: INode[],
+    @Inject('title') title: string,
+    @Inject('subtitle') subtitle: string,
+    @Inject('text') text: string,
+    @Inject('canEdit') canEdit: boolean,
   ){
     this.id = Math.floor(Math.random() * 10000000000000000000000000000000000000000000000)
     this.media = media
