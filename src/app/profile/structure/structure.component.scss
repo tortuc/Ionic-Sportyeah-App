@@ -17,11 +17,15 @@
 }
 .title{
   font-size: 2.4em;
-  margin-left: 19px;
+  // margin-left: 19px;
   color:black;
-  margin-right: 19px;
+  // margin-right: 19px;
   font-weight: bold;
   display:flex;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  justify-content: center;
 }
 .subtitle{
   margin-left: 19px;

@@ -24,6 +24,8 @@
 
 <ion-content
   class="bg-gradient-person"
+  [scrollbar]="reusableCI.scrollbarStyle"
+  allowAllScreens="true"
   [scrollEvents]="true"
   (ionScrollEnd)="logScrolling($event)"
 >

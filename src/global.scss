@@ -56,6 +56,10 @@
   font-family: 'Poppins', sans-serif !important;
 }
 
+.custom-scroll::-webkit-scrollbar-thumb:hover {
+  background: rgb(173, 58, 58);
+}
+
 .friends-mobile {
   max-width: 100% !important;
   display: -webkit-box !important;

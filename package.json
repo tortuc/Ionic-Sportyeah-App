@@ -53,6 +53,7 @@
     "express": "^4.15.2",
     "get-blob-duration": "^1.1.2",
     "howler": "^2.2.1",
+    "ion-custom-scrollbar": "^1.1.1",
     "ionic4-rating": "^1.0.9",
     "localstorage-polyfill": "^1.0.1",
     "moment": "^2.29.1",

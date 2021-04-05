@@ -9,6 +9,7 @@ import { UserService } from "./service/user.service";
 import { Router } from "@angular/router";
 import { ChatService } from "./service/chat.service";
 import { NotificationService } from "./service/notification.service";
+import { ReusableComponentsIonic } from "./service/ionicHelpers.service";
 
 @Component({
   selector: "app-root",
@@ -35,7 +36,8 @@ export class AppComponent implements OnInit {
     public modalController: ModalController,
     public translate: TranslateService,
     public chatService: ChatService,
-    public notificationService: NotificationService
+    public notificationService: NotificationService,
+    public reusableCI: ReusableComponentsIonic
   ) {
     this.initializeApp();
     translate.addLangs(["es", "en"]);

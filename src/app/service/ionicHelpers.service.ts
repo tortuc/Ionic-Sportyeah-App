@@ -208,5 +208,29 @@ export class ReusableComponentsIonic {
       },
     },
   };
-
+  
+  /**
+   * Scroll bar style
+   */
+   scrollbarStyle = `@media(pointer: fine) {
+    ::-webkit-scrollbar {
+      width: 12px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #fff;
+    }
+    ::-webkit-scrollbar-track:hover {
+      background: #f7f7f7;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #ccc;
+      border-radius: 8px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #ccc
+    }
+    .inner-scroll {
+      scrollbar-width: thin
+    }
+  }`
 }

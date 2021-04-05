@@ -22,6 +22,7 @@ import { ComponentsModule } from '../components/components.module';
 import { MentionsDirective } from '../directives/mentions.directive';
 import { ContenteditableValueAccessorModule } from '@tinkoff/angular-contenteditable-accessor'
 import { DirectivesModule } from '../directives/directive.module';
+import { IonCustomScrollbarModule } from 'ion-custom-scrollbar';
 
 @NgModule({
   imports: [
@@ -37,7 +38,8 @@ import { DirectivesModule } from '../directives/directive.module';
     PipesModule,
     ComponentsModule,
     ContenteditableValueAccessorModule,
-    DirectivesModule
+    DirectivesModule,
+    IonCustomScrollbarModule,
   ],
   declarations: [
     DashboardPage,
