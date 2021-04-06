@@ -9,6 +9,7 @@ import { QuestionService } from 'src/app/service/question.service';
 })
 export class QuestionComponent implements OnInit {
   @Input() data: any
+  @Input() notified: boolean
   @Output() newItemEvent = new EventEmitter<boolean>();
 constructor(
   public userService:UserService,

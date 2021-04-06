@@ -151,9 +151,9 @@
           {{'new_post.btn' | translate}}
         </ion-button>
       </ion-col>
+      
       <ion-col size="12" >
-        <edit-question [question]="question.questionGroup" (delete)="deleteQuestion($event)" (edit)="editQuestion($event)"></edit-question>
-
+        <edit-question #editQuestionHash [question]="question.questionGroup" [badDate]="badDate" (delete)="deleteQuestion($event)" (edit)="editQuestion($event)"></edit-question>
       </ion-col>
     </ion-row>
   </ion-grid>

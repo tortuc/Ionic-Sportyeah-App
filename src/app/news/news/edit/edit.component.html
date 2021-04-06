@@ -561,16 +561,7 @@
           </ion-button>
         </ion-col>
         <ion-col size="12">
-          <div *ngFor="let quest of question.questionGroup;index as i " style="border: groove;margin-bottom: 10px;width: 90%;margin-left: auto;margin-right: auto;">
-            <div style="text-align: center;position: relative;">
-              <ion-icon (click)="editQuestion(i)" style="position: absolute;cursor: pointer;color: #989898;left: 50px;bottom: 10px;font-size: 25px;" name="pencil-sharp"></ion-icon>
-              <ion-icon (click)="deleteQuestion(i)" style="position: absolute;cursor: pointer;color: #989898;right: 40px;bottom: 10px;font-size: 25px;" name="close-circle"></ion-icon>
-              <h1>{{quest.questionHeadline}}</h1>  
-            </div>    
-            <div *ngFor="let answer of quest.answer" class="answer">
-              <p style="position: absolute;left: 50px;">{{answer.option}}</p>
-            </div>
-         </div>
+          <edit-question #editQuestionHash [badDate]="badDate" [question]="question.questionGroup" (delete)="deleteQuestion($event)" (edit)="editQuestion($event)"></edit-question>
         </ion-col>
          <!-- <ion-col  size="12">
            <ion-item *ngIf="miNoticia == undefined ">

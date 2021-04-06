@@ -10,7 +10,8 @@ import { UserService } from "src/app/service/user.service";
 import { NewQuestionComponent } from "src/app/components/new-question/new-question.component"
 import { convertTypeAcquisitionFromJson } from "typescript";
 import { QuestionService } from '../../service/question.service';
-
+import { EditQuestionComponent } from 'src/app/components/edit-question/edit-question.component'
+import { log } from "console";
 @Component({
   selector: "app-new-post",
   templateUrl: "./new-post.page.html",
@@ -24,7 +25,7 @@ export class NewPostPage implements OnInit {
   @ViewChild("FormElementRef") inputNode: ElementRef;
   @ViewChild("emojisContainer") emojisContainer: ElementRef;
   @ViewChild("emojiButton") emojiButton: ElementRef;
-
+  @ViewChild("editQuestionHash") editQuestionComponent:EditQuestionComponent;
   constructor(
     public modalController: ModalController,
     public translate: TranslateService,
@@ -216,8 +217,11 @@ export class NewPostPage implements OnInit {
       }
     }
   }
-  createPostAndQuestion(post: any,loading) {
+  //Esto crea un post con cuestionario  
+  badDate:boolean=false;
+  createdPost(post,loading){
     this.questionService.create(this.question).subscribe((response:any)=>{//Crea el cuestionario y agrega el id al post
+      console.log(response)
       post.question = response._id  
       this.postService
       .create(post)
@@ -234,6 +238,22 @@ export class NewPostPage implements OnInit {
         loading.dismiss();
       });
     })
+  }
+  createPostAndQuestion(post: any,loading) {
+    if(this.editQuestionComponent.whitTime  &&
+       new Date(this.editQuestionComponent.endDate) >= new Date()){
+     this.question.finishVotes = new Date(this.editQuestionComponent.endDate)
+     this.badDate = false;
+      this.createdPost(post,loading)
+    }else{
+      this.badDate = true;
+      loading.dismiss();
+    }
+    if(!this.editQuestionComponent.whitTime){
+      this.badDate = false;
+      this.createdPost(post,loading)
+    }
+
   }
 
   dismiss() {
@@ -328,6 +348,7 @@ export class NewPostPage implements OnInit {
   question = {
     user: this.userService.User._id,
     questionGroup: [],
+    finishVotes:undefined
   }
 
  //Crea una modal donde se pueden crear preguntas 

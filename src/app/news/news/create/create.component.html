@@ -581,7 +581,7 @@
               </ion-button>
             </ion-col>
             <ion-col size="12">
-              <edit-question [question]="question.questionGroup" (delete)="deleteQuestion($event)" (edit)="editQuestion($event)"></edit-question>
+              <edit-question #editQuestionHash [badDate]="badDate" [question]="question.questionGroup" (delete)="deleteQuestion($event)" (edit)="editQuestion($event)"></edit-question>
             </ion-col>
             <!-- <ion-col  size="12">
               <ion-item *ngIf="miNoticia == undefined ">

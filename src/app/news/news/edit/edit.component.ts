@@ -11,6 +11,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import {  ElementRef } from "@angular/core";
 import { NewQuestionComponent } from "src/app/components/new-question/new-question.component"
 import { QuestionService } from 'src/app/service/question.service';
+import { EditQuestionComponent } from 'src/app/components/edit-question/edit-question.component'
 
 const { Camera ,Filesystem} = Plugins;
 
@@ -22,6 +23,8 @@ const { Camera ,Filesystem} = Plugins;
 export class EditComponent implements OnInit {
   @ViewChild("openVideo") openVideo: any;
   @ViewChild("openVideoParrafo") openVideoParrafo: any;
+  @ViewChild("editQuestionHash") editQuestionComponent:EditQuestionComponent;
+
   constructor(
     public newsService:NewsService,
     public toastController: ToastController,
@@ -609,6 +612,8 @@ origenParrafoEditar(i){
  this.parrafos[i].originMedia = null
 }
 todoConOrigen(){
+this.whitTime = this.editQuestionComponent.whitTime;
+this.endDate = this.editQuestionComponent.endDate;
   this.todosParrafosConOrigen = false
   for(let parrafo of this.parrafos){
     if((parrafo.video || parrafo.image ) && (parrafo.originMedia == null) ){
@@ -729,8 +734,9 @@ this.redactarArticulo = true;
 question = {
   user: this.userService.User._id,
   questionGroup: [],
+  finishVotes:undefined
 }
-editNewsAndQuestion(news: any,loading) {
+editNewsQuestion(news,loading){
   this.questionService.create(this.question).subscribe((response:any)=>{//Crea el cuestionario y agrega el id al news
     news.question = response._id  
    
@@ -741,7 +747,24 @@ editNewsAndQuestion(news: any,loading) {
   })
   loading.dismiss();
 }
-
+editNewsAndQuestion(news: any,loading) {
+  if(this.whitTime  &&
+    new Date(this.endDate) >= new Date()){
+    this.question.finishVotes = new Date(this.endDate)
+    this.badDate = false;
+     this.editNewsQuestion(news,loading)
+   }else{
+     this.badDate = true;
+     loading.dismiss();
+   }
+   if(!this.whitTime){
+     this.badDate = false;
+     this.editNewsQuestion(news,loading)
+   }
+}
+whitTime:boolean;
+endDate;
+badDate:boolean=false;
 
 //Crea una modal donde se pueden crear preguntas 
 async createQuestion(){

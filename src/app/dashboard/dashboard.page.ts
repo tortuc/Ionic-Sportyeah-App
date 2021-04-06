@@ -49,12 +49,7 @@ export class DashboardPage implements OnInit,AfterViewInit {
     private alertCtrl :   AlertController,
     private imageService :   JdvimageService,
     public el:ElementRef
-) {
-
-  console.log(this.userService.User)
-  
-
- }
+) {}
 
 
 
@@ -115,7 +110,6 @@ posts:IPostC[] = []
     this.postService.friendsPosts({friends_id:this.userService.followings_id,skip:this.skipPost})
       .toPromise()
       .then((posts:IPostC[])=>{   
-        
         this.posts = this.posts.concat(posts)     
         this.skipPost += 10
         if(event){
@@ -124,9 +118,7 @@ posts:IPostC[] = []
         this.loadingPost = false
       })
       .catch((err)=>{
-        
         this.loadingPost = false
-
         // handle error        
       })
   }
@@ -135,10 +127,7 @@ posts:IPostC[] = []
 connections: Connection[] = []
 getConnections(){
   this.loginService.connections().subscribe((connections)=>{
-      
-          this.connections = <Connection[]>connections
-       
-      
+    this.connections = <Connection[]>connections
   })
 }
 
@@ -267,10 +256,14 @@ async logScrolling(ev){
   if((el.scrollHeight - el.scrollTop < el.clientHeight + 400) && !this.loadingPost){
     this.getPost()
   }
-  
-  
 }
 
+ async voted(voted:boolean,i){
+   console.log(this.posts[i])
+  await this.postService.getPost(this.posts[i].post._id).subscribe((post:any)=>{
+    this.posts.splice(i,1,post)
+  })
+}
 
 
 }

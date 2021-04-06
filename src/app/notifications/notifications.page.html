@@ -29,7 +29,7 @@
               <comment-notification     *ngIf="notification.action === 'comment'"   [notification]="notification"></comment-notification>
               <shared-notification      *ngIf="notification.action === 'shared'"    [notification]="notification"></shared-notification>
               <mention-notification      *ngIf="notification.action === 'mention' || notification.action === 'mention_comment'"    [notification]="notification"></mention-notification>
-             
+              <question-notification     *ngIf="notification.action === 'questionEnd'"    [notification]="notification"></question-notification>
             </ion-col>
             
           </ion-row>

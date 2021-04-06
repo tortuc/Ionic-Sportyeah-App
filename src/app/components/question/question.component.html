@@ -1,8 +1,11 @@
+<div *ngIf="notified" style="text-align: center;color: rgb(105, 105, 105);">
+  Votaciones finalizadas 
+</div>
 <div *ngFor="let group of data.question;index as i " class="questionDiv">
   <div style="text-align: center;position: relative;color: white;">
     <h1>{{group.questionHeadline}}</h1>  
   </div>    
-  <div (click)="selectAnswer(answer._id)" *ngFor="let answer of group.answer" class="progress-item" [ngClass]="answer._id | canVote:group.questionGroup._id | async">
+  <div (click)="selectAnswer(answer._id)" *ngFor="let answer of group.answer" class="progress-item" [ngClass]="answer._id | canVote:group.questionGroup._id:notified | async">
     <ion-icon name="checkmark-circle-outline" class="voted"></ion-icon>
     <p  style="position: absolute;left: 50px;z-index: 1000;">{{answer.option}}</p>
     <p class="percentage">{{((100 * answer.users/group.total)).toFixed(1)}}%</p>

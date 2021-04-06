@@ -13,4 +13,6 @@ export interface INotification {
     routerlink:string
     _id:string
     post:IPost
+    news:any
+    question:string
 }

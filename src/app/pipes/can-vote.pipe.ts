@@ -10,12 +10,23 @@ export class CanVotePipe implements PipeTransform {
     private questionService:QuestionService,
     private userService:UserService
   ){}
-  async transform(id,group){
-    console.log(group)
+  async transform(id,group,notified){
     try {
       let answer:any = await this.questionService.userVotedAnswer(group,this.userService.User?._id).toPromise()
-      let voted = (answer?._id == id)?'block userVoted':'block'
-      return answer?voted:'progress-item-unlok'
+      let voted = answer?._id == id?'block userVoted':'block'
+      // classReturn += voted
+      // console.log(classReturn+voted)
+      if(!notified && answer){
+        return voted
+      }else if(notified && !answer){
+        return 'block'
+      }else if(notified && answer){
+        return voted
+      }
+      else{
+        return 'progress-item-unlok';
+      }
+      // return answer?voted:'progress-item-unlok'
     } catch (error) {
       console.log(error)
       return 'progress-item-unlok';

@@ -47,8 +47,10 @@ export class PostPage implements OnInit {
   }
   getPost(id){
     this.postService.getPost(id).toPromise()//agregamos el id del usuario actual
-    .then((post)=>{
+    .then((post:any)=>{
       this.item = post
+      this.notified = post.post.question.notified
+      console.log(post)
     })
     .catch((err)=>{
       // handle err
@@ -58,7 +60,7 @@ export class PostPage implements OnInit {
     })
   }
   ngOnInit() {}
-
+  notified = null
   item = null
 
 

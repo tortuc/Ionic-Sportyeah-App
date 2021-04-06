@@ -1,3 +1,20 @@
+<div *ngIf="question.length != 0">
+  <p style="display: inline;">Fecha limite de votación</p>
+  <ion-checkbox  style="margin-left: 20px;" [(ngModel)]="whitTime"></ion-checkbox>
+<!-- <select>
+  <option *ngFor="let day of days" [(ngModel)]="dia">{{day}}</option>
+</select> 
+<select>
+  <option *ngFor="let month of months" [(ngModel)]="mes" >{{'months.'+month | translate}}</option>
+</select>
+<select>
+  <option *ngFor="let year of years" [(ngModel)]="anio" >{{year}}</option>
+</select> -->
+<input style="margin-left: 15px;" *ngIf="whitTime && question.length != 0" type="date" id="start" [(ngModel)]="endDate" 
+       [min]="today" [max]="limitYear">
+<p style="color: red;" *ngIf="badDate">Inroducir una fecha mayor al día actual</p>
+</div>
+
 <div *ngFor="let quest of question;index as i "  class="questionDiv">
   <div style="text-align: center;position: relative;">
     <h1 style="color: white;">{{quest.questionHeadline}}</h1>  

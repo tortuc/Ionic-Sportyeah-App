@@ -13,6 +13,7 @@ import { Router } from '@angular/router';
 import {  ElementRef } from "@angular/core";
 import { QuestionService } from 'src/app/service/question.service';
 import { NewQuestionComponent } from "src/app/components/new-question/new-question.component"
+import { EditQuestionComponent } from 'src/app/components/edit-question/edit-question.component'
 
 const { Camera ,Filesystem} = Plugins;
 
@@ -25,6 +26,7 @@ export class CreateComponent implements OnInit {
   @ViewChild("openVideo") openVideo: any;
   @ViewChild("openVideoParrafo") openVideoParrafo: any;
   @ViewChild("sportyeah") sportyeah: any;
+  @ViewChild("editQuestionHash") editQuestionComponent:EditQuestionComponent;
 
   
 constructor(
@@ -91,14 +93,13 @@ async publicar(){
    } }else{ */
       this.form.value.originPrincipaMedia = this.originPrincipaMedia
     
-    
     //this.form.value.originPrincipaMedia = this.originPrincipaMedia
     this.form.value.stream = false;
     this.form.value.postStream = null
 
     this.form.value.sport = this.deporte
     if(this.question.questionGroup.length > 0){
-      this.createNewsAndQuestion(this.form.value,loading)
+      this.createNewsAndQuestion(loading)
     }else{
       this.newsService.create(this.form.value).subscribe((response)=>{
         this.presentToastWithOptions()
@@ -106,9 +107,6 @@ async publicar(){
       }) 
       loading.dismiss();
     }
-   
-  
-
 }
 fecha = new Date().getDate() + '/'+ (new Date().getMonth()+1) + '/' + new Date().getFullYear()
 editando:boolean=false//si esta editando el agregar es disabled
@@ -602,6 +600,8 @@ origenParrafoEditar(i){
  this.parrafos[i].originMedia = null
 }
 todoConOrigen(){
+this.whitTime = this.editQuestionComponent.whitTime;
+this.endDate = this.editQuestionComponent.endDate;
   this.todosParrafosConOrigen = false
   for(let parrafo of this.parrafos){
     if((parrafo.video || parrafo.image ) && (parrafo.originMedia == null) ){
@@ -750,8 +750,12 @@ animateSportyeah(){
   question = {
     user: this.userService.User._id,
     questionGroup: [],
+    finishVotes:undefined
   }
-  createNewsAndQuestion(news: any,loading) {
+
+
+  badDate:boolean=false;
+  createdNews(loading){
     this.questionService.create(this.question).subscribe((response:any)=>{//Crea el cuestionario y agrega el id al news
       this.form.value.question = response._id  
      
@@ -762,6 +766,24 @@ animateSportyeah(){
     })
     loading.dismiss();
   }
+  createNewsAndQuestion(loading) {
+    if(this.whitTime  &&
+     new Date(this.endDate) >= new Date()){
+     this.question.finishVotes = new Date(this.endDate)
+     this.badDate = false;
+      this.createdNews(loading)
+    }else{
+      this.badDate = true;
+      loading.dismiss();
+    }
+    if(!this.whitTime){
+      this.badDate = false;
+      this.createdNews(loading)
+    }
+
+  }
+  whitTime:boolean;
+  endDate;
 
   
  //Crea una modal donde se pueden crear preguntas 
@@ -772,7 +794,6 @@ animateSportyeah(){
     backdropDismiss:false
     ,
     componentProps: {
-    
       edit:false
     }
   });
@@ -784,7 +805,6 @@ animateSportyeah(){
   .catch((err) => {
     console.log(err)
   });
-
   return await modal.present();
 }
 async editQuestion(i){

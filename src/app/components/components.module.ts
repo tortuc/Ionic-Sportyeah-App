@@ -89,6 +89,7 @@ import { SponsorsNodeComponent } from 'src/app/components/structure/sponsors/spo
 import { SponsorsCreateComponent } from 'src/app/components/structure/sponsors-create/sponsors-create.component'
 import { QuestionComponent } from "./question/question.component";
 import { EditQuestionComponent } from "./edit-question/edit-question.component";
+import { QuestionNotificationComponent } from "./question-notification/question-notification.component"
 @NgModule({
   imports: [
     CommonModule,
@@ -183,7 +184,8 @@ import { EditQuestionComponent } from "./edit-question/edit-question.component";
     SponsorsNodeComponent,
     SponsorsCreateComponent,
     QuestionComponent,
-    EditQuestionComponent
+    EditQuestionComponent,
+    QuestionNotificationComponent
   ],
   exports: [
     ImageComponent,
@@ -261,7 +263,8 @@ import { EditQuestionComponent } from "./edit-question/edit-question.component";
     SponsorsNodeComponent,
     SponsorsCreateComponent,
     QuestionComponent,
-    EditQuestionComponent
+    EditQuestionComponent,
+    QuestionNotificationComponent
   ],
 })
 export class ComponentsModule {}

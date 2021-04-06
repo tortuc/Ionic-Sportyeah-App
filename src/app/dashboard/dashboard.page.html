@@ -98,7 +98,6 @@
               
               <ion-card-content>
                 <post-content [post]="item.post"></post-content>
-
                 <post-shared 
                   *ngIf="item.post.post"
                   [post]="item.post.post"
@@ -108,8 +107,13 @@
                   [news]="item.post.news"
                 ></post-shared>
               </ion-card-content>
-              <div *ngIf="item.post.question" style="text-align: center;">
-                <img src="https://img.icons8.com/bubbles/344/question-mark.png" style="width:170px" alt="pregunta">
+                 <div *ngIf="item.post.question">
+                  <!-- style="margin-left: auto;margin-right: auto;text-align: center;width: 90%;border-radius: 15px;background: linear-gradient(
+                    90deg
+                    ,rgb(16 42 82),rgb(131 197 247))!important;
+                padding: 1px;"  
+                <p style="color: white;">Responde las preguntas</p>-->
+             <question [data]="item" (newItemEvent)="voted($event,i)"></question>
               </div>
               
               <post-options
