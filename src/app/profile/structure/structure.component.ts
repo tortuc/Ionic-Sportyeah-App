@@ -136,10 +136,8 @@ export class StructureComponent implements OnInit {
     this.userService.getUserById(this.ID)
       .pipe(take(1))
       .subscribe((user:User)=> {
-        console.log(user)
         this.user = user
         this.structureDefault = this.structures[this.user.sport]
-        console.log(this.structureDefault)
         this.structure = JSON.parse(JSON.stringify(this.structureDefault))
         this.actualNode = this.structure
         this.seleccion = this.structure.childs[0]
