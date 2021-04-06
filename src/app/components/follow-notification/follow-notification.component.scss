@@ -1,17 +1,17 @@
 .notification{
     display: flex;
     cursor: pointer;
-    border-bottom: 1px solid #cf4be4 ;
+    border-bottom: 1px solid #ccc ;
     padding: 10px;
     position: relative;
 }
 
 .unread{
-    background: lavender;
+    background: var(--ion-color-secondary);
   
 }
 .notification:hover{
-    background: lavender;
+    background: var(--ion-color-secondary);
 }
 
 .date{

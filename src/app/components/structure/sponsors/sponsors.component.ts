@@ -7,7 +7,7 @@ import {
 } from '@angular/core';
 import { ModalController } from '@ionic/angular'
 import { ISponsor } from "src/app/models/ISponsor"
-import { ReusableComponentsIonic } from "src/app/service/reusable-components-ionic.service"
+import { ReusableComponentsIonic } from "src/app/service/ionicHelpers.service"
 import { SponsorsCreateComponent } from "src/app/components/structure/sponsors-create/sponsors-create.component"
 
 @Component({

@@ -11,10 +11,10 @@
 
 /* Core CSS required for Ionic components to work properly */
 @import "~@ionic/angular/css/core.css";
-@font-face {
-  font-family: fast;
-  src: url(./assets/fonts/carter.ttf);
-}
+// @font-face {
+//   font-family: fast;
+//   src: url(./assets/fonts/carter.ttf);
+// }
 
 /* Basic CSS for apps built with Ionic */
 @import "~@ionic/angular/css/normalize.css";
@@ -33,6 +33,7 @@
 
 :root {
   --color-primary: #006400;
+  --color-secondary: #00ff33bf;
 }
 ::-webkit-scrollbar-track {
   --webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3) !important;
@@ -51,6 +52,14 @@
   --webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3) !important;
   background-color: var(--color-primary) !important;
 }
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap');
+* {
+  font-family: 'Poppins', sans-serif !important;
+}
+
+.custom-scroll::-webkit-scrollbar-thumb:hover {
+  background: rgb(173, 58, 58);
+}
 
 .friends-mobile {
   max-width: 100% !important;
@@ -68,7 +77,6 @@
 
 .title-project {
   font-size: 40px;
-  font-family: "fast";
   color: #006400;
 }
 
@@ -282,7 +290,6 @@ a {
 }
 .message {
   color: #000;
-  font-family: sans-serif;
 }
 .m-p-0 {
   padding: 0 !important;
@@ -416,7 +423,7 @@ a {
 }
 
 .friends-button:hover {
-  --background: lavender;
+  --background: var(--ion-color-primary);
 }
 
 //------------------------ Styles for chat---------------------------
@@ -582,7 +589,6 @@ ion-segment-button {
 }
 .messageC {
   color: white;
-  font-family: sans-serif;
 }
 
 // Mobile
@@ -657,4 +663,12 @@ ion-segment-button {
   --color: #1586e4;
 }
 
-
+.btn-dismiss {
+  color: gray;
+  right: 5px;
+  top: 15px;
+  position: absolute;
+  font-size: 40px;
+  z-index: 9999999;
+  cursor: pointer;
+}

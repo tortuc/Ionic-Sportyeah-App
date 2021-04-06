@@ -3,19 +3,18 @@
     <ion-buttons slot="start">
       <ion-menu-button style="color: white"></ion-menu-button>
     </ion-buttons>
-    <ion-title style="--color: white"
-      >{{'profile.title' | translate}}</ion-title
-    >
+    <ion-title style="--color: white">
+      {{'profile.title' | translate}}
+    </ion-title>
     <ion-buttons slot="end">
       <button-search-friend></button-search-friend>
       <button-notification></button-notification>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
-
-<input hidden="true" type="file" #fileChooser accept="video/*, image/*" />
-
+<app-get-media></app-get-media>
 <ion-content
+  [scrollbar]="reusableCI.scrollbarStyle"
   class="bg-gradient-person"
   [scrollEvents]="true"
   (ionScrollEnd)="logScrolling($event)"
@@ -33,7 +32,7 @@
   <ion-grid style="padding: 0" class="height-100vh">
     <ion-row class="height-100vh ion-justify-content-center">
       <ion-col ngClass.xs="m-p-0" size-md="8" size-sm="12">
-        <ion-card ngClass.xs="m-p-0" class="post-card">
+        <ion-card ngClass.xs="m-p-0" >
           <ion-card-header
             class="text-center"
             style="padding-top: 0; padding-left: 0; padding-right: 0"
@@ -49,7 +48,7 @@
               >
                 <ion-icon
                   name="camera-outline"
-                  (click)="bannerLogic.takePhotoFrom()"
+                  (click)="changeBanner()"
                   style="margin-top: 6px"
                 ></ion-icon>
               </div>
@@ -158,51 +157,12 @@
 
           <ion-card-content> </ion-card-content>
 
-          <div>
-            <h6 class="text-center">
-              {{'sponsorDescription' | translate}}
-              <span>
-                <ion-button style="margin-top: -13px" (click)="createSponsor()">
-                  <ion-icon name="add-circle-outline"> </ion-icon>
-                </ion-button>
-              </span>
-            </h6>
-            <ion-grid class="text-center">
-              <ion-row style="justify-content: center">
-                <ion-col
-                  size="2"
-                  *ngFor="let sponsor of userService.User?.sponsors; let i = index"
-                >
-                  <a [href]="'//'+sponsor.url" target="_blank" *ngIf="sponsor.url">
-                    <img
-                      [src]="sponsor.photo"
-                      style="
-                        height: 50px;
-                        width: 100px;
-                        border-radius: 10px;
-                        object-fit: cover;
-                        object-position: cover;
-                      "
-                  /></a>
-
-                  <div>
-                    <ion-icon
-                      name="create-outline"
-                      style="cursor: pointer"
-                      class="botonEditar"
-                      (click)="editSponsor(i)"
-                    ></ion-icon>
-
-                    <ion-icon
-                      name="trash-outline"
-                      style="cursor: pointer"
-                      class="botonEliminar"
-                      (click)="deleteSponsor(i)"
-                    ></ion-icon>
-                  </div>
-                </ion-col>
-              </ion-row>
-            </ion-grid>
+          <div style="margin-bottom: 5px;">
+            <app-sponsor
+              [creator]="creator"
+              [sponsors]="user.sponsors"
+              (action)="changeSponsors($event)"
+            ></app-sponsor>
           </div>
 
           <ion-segment
@@ -233,6 +193,7 @@
 
         <!-- INIT SEGMENT PROFILE  -->
         <div *ngIf="profile">
+         
           <app-carrousel [id]="userService.User?._id"></app-carrousel>
 
           <!--<app-structure
@@ -249,7 +210,7 @@
 
           <ion-card
             ngClass.xs="m-p-0"
-            class="post-card mt5"
+            class=" mt5"
             *ngIf="
               userService.User.profile_user !== 'sponsor' &&
               userService.User.profile_user !== 'foundation' &&
@@ -270,7 +231,7 @@
 
           <ion-card
             ngClass.xs="m-p-0"
-            class="post-card mt5"
+            class=" mt5"
             *ngIf="
               userService.User.profile_user !== 'representative'
             "
@@ -286,7 +247,7 @@
 
           <ion-card
             ngClass.xs="m-p-0"
-            class="post-card mt5"
+            class=" mt5"
             *ngIf="
               userService.User.profile_user !== 'sponsor' &&
               userService.User.profile_user !== 'federation' &&
@@ -309,7 +270,7 @@
         <!-- SEGMENT POSTST -->
         <div *ngIf="postsB">
           <ion-grid ngClass.xs="m-p-0">
-            <ion-row *ngFor="let item of posts" class="post-card">
+            <ion-row *ngFor="let item of posts" class="">
               <ion-card ngClass.xs="m-p-0" style="width: 100%">
                 <ion-card-header>
                   <header-post
@@ -338,7 +299,7 @@
         <!-- SEGMENT NEWS -->
         <div *ngIf="newsB">
           <ion-grid ngClass.xs="m-p-0">
-            <ion-row *ngFor="let item of news" class="post-card">
+            <ion-row *ngFor="let item of news" class="">
               <ion-card
                 style="
                   width: 100%;
@@ -433,6 +394,13 @@
           </ion-grid>
         </div>
         <!-- FINISH SEGMENT NEWS -->
+      </ion-col>
+      <ion-col
+        size-lg="4"
+        fxShow.lt-md="false"
+        class="ion-justify-content-center ion-align-items-center"
+      >
+        <friends-panel-desktop></friends-panel-desktop>
       </ion-col>
     </ion-row>
   </ion-grid>

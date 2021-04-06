@@ -1,3 +1,4 @@
+import { IPixelBayResponse } from './../../models/IPixelBayResponse';
 import { take } from "rxjs/operators";
 import { JdvimageService } from "src/app/service/jdvimage.service";
 import { FreeImgService } from "./../../service/freeImg.service";
@@ -6,7 +7,6 @@ import {
   LoadingController,
 } from "@ionic/angular";
 import { Component, Input, OnInit } from "@angular/core";
-import { IResponsePixabay } from "src/app/service/freeImg.service"
 import { TranslateService } from "@ngx-translate/core";
 
 export interface EventTargetResponse extends EventTarget{
@@ -39,19 +39,16 @@ export class ImageSeeComponent implements OnInit {
   ngOnInit() {}
 
   onsearch() {
-    console.log(this.search);
     this.freeImg
       .getSearch(this.search)
       .pipe(take(1))
-      .subscribe((r:IResponsePixabay) => {
+      .subscribe((r:IPixelBayResponse) => {
         this.data = r.hits
       });
   }
 
   async send(url: any) {
     // TRANSFORM IMG
-    //this.modalCtrl.dismiss(url.webformatURL)
-
     let loading = await this.loading.create({
       message: this.translate.instant("loading"),
     })
@@ -76,7 +73,6 @@ export class ImageSeeComponent implements OnInit {
       .uploadImage(formData)
       .toPromise()
       .then((url) => {
-        console.log(url);
         if (loading) loading.dismiss();
         this.modalCtrl.dismiss(url);
       })

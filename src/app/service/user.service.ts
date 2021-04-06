@@ -8,13 +8,10 @@ import { WishService } from "./wish.service";
 import { Howl } from "howler";
 import { ViewsProfileService } from "./views-profile.service"
 import { SocketService } from "./socket.service";
+import { ISponsor } from "../models/ISponsor";
 interface FollowingsResponse {
   ids: string[];
   followings: Followings[];
-}
-interface Sponsor {
-  img: string;
-  url: string;
 }
 export interface User {
   name: string;
@@ -43,7 +40,7 @@ export interface User {
   verified: boolean;
   lastConection: Date;
   connected: boolean;
-  sponsors: Sponsor[];
+  sponsors: ISponsor[];
   structure: any;
   geo:any;
 }
@@ -207,11 +204,16 @@ export class UserService {
             })
             .subscribe(
                (resp: any) => {
-                this.getFollowings();
-                this.getFollowers();
-                this.setUser(<User>resp.user);
-                this.socketService.socket.emit("login", { user: resp.user._id });
-                resolve(true);
+                if(resp.user){
+                  this.getFollowings();
+                  this.getFollowers();
+                  this.setUser(<User>resp.user);
+                  this.socketService.socket.emit("login", { user: resp.user._id });
+                  resolve(true);
+                }else{
+                  localStorage.clear();
+                  reject(false);
+                }
               },
               () => {
                 localStorage.clear();
@@ -268,7 +270,7 @@ export class UserService {
     this.audio.play();
   }
 
-  public changeSponsors(sponsors:Sponsor[]){
+  public changeSponsors(sponsors:ISponsor[]){
     this.http.post(
       `${environment.URL_API}/user/sponsors`,
       {id:this.User._id,sponsors},

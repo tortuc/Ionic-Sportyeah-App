@@ -13,6 +13,7 @@ import { NewPostPage } from './new-post/new-post.page';
 import { Plugins } from '@capacitor/core';
 import { JdvimageService } from '../service/jdvimage.service';
 import { DefaultGridColumnDirective } from '@angular/flex-layout/grid/typings/column/column';
+import { ReusableComponentsIonic } from '../service/ionicHelpers.service';
 
 const { Share } = Plugins;
 interface ConnectionResp {
@@ -34,7 +35,6 @@ interface Connection {
   styleUrls: ['./dashboard.page.scss'],
 })
 export class DashboardPage implements OnInit,AfterViewInit {
-
   public loadingPost: boolean;
   constructor(
     public  toastController :   ToastController,
@@ -48,8 +48,13 @@ export class DashboardPage implements OnInit,AfterViewInit {
     private actionSheetCtrl :   ActionSheetController,
     private alertCtrl :   AlertController,
     private imageService :   JdvimageService,
-    public el:ElementRef
-) {}
+    public el:ElementRef,
+    public reusableCI: ReusableComponentsIonic
+) {
+
+  
+
+ }
 
 
 

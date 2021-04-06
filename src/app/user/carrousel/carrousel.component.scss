@@ -61,9 +61,8 @@ p b {
 }
 
 .slides-content{
-  max-width: 700px; // esto para que no pase lo demas
+  max-width: none !important; // esto para que no pase lo demas
   margin: auto; // para que siempre este en el medio
   padding: 10px 0px; // este padding para que tenga una separacion de arriba y abajo pero a los costados se vea del mismo tamanio de los demas
   position: relative; // para que los objetos dentro que sean position absolute se guien a partir de aqui
-
 }

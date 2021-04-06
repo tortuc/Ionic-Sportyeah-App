@@ -1,5 +1,5 @@
 import { UserService } from './../../../service/user.service';
-import { ReusableComponentsIonic } from "src/app/service/reusable-components-ionic.service"
+import { ReusableComponentsIonic } from "src/app/service/ionicHelpers.service"
 import { Component, OnInit, Input } from "@angular/core";
 import { ModalController } from "@ionic/angular";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";

@@ -1,7 +1,4 @@
-interface Sponsor {
-  img: string;
-  url: string;
-}
+import { ISponsor } from "./ISponsor";
 export interface IUser {
   name: string;
   last_name: string;
@@ -29,7 +26,7 @@ export interface IUser {
   verified: boolean;
   lastConection: Date;
   connected: boolean;
-  sponsors: Sponsor[];
+  sponsors: ISponsor[];
   structure: any;
   geo:any;
 }

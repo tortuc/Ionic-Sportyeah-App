@@ -6,7 +6,10 @@
       contentId="main-content"
       type="overlay"
     >
-      <ion-content>
+      <ion-content
+        [scrollbar]="reusableCI.scrollbarStyle"
+        allowAllScreens="true"
+      >
         <ion-list style="padding-bottom: 0" id="inbox-list">
       
           <ion-img

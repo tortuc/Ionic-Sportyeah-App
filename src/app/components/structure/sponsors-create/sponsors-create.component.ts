@@ -4,7 +4,7 @@ import {
   Input
 } from '@angular/core'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
-import { ReusableComponentsIonic } from "src/app/service/reusable-components-ionic.service"
+import { ReusableComponentsIonic } from "src/app/service/ionicHelpers.service"
 import { take } from 'rxjs/operators'
 import { ImgVideoUpload } from "src/app/service/reusable-img-video-logic.service"
 import { ModalController } from '@ionic/angular'

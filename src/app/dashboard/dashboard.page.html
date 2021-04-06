@@ -24,6 +24,8 @@
 
 <ion-content
   class="bg-gradient-person"
+  [scrollbar]="reusableCI.scrollbarStyle"
+  allowAllScreens="true"
   [scrollEvents]="true"
   (ionScrollEnd)="logScrolling($event)"
 >
@@ -81,10 +83,6 @@
               >Actualizar</ion-button
             >
           </ion-row>
-          <!-- <div *ngIf="item.post.views" class="views">
-            <ion-icon name="eye-outline" style="float:left; "></ion-icon>
-            <p style=" margin: 1px;">{{item.post.views.length}}</p>
-          </div> -->
           <ion-row *ngFor="let item of posts;let i = index" class="post-card">
             <ion-card  ngClass.xs="m-p-0" style="width: 100%;">
               <ion-card-header>

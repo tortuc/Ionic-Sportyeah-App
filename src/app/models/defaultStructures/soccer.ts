@@ -1,48 +1,10 @@
 import { Injectable } from "@angular/core"
-import { INode } from "src/app/models/INode"
-import { ISponsor } from "src/app/models/ISponsor"
-
-/*
- * Clase de nodos para generar nodos con menos codigo
- */
-class NodeStructure {
-  id:number
-  media:string[]
-  title:string
-  subtitle:string
-  sponsors:ISponsor[]
-  facebook:string=`https://www.sportyeah.com/`
-  twitter:string=`https://www.sportyeah.com/`
-  instagram:string=`https://www.sportyeah.com/`
-  linkedin:string=`https://www.sportyeah.com/`
-  webPage:string=`https://www.sportyeah.com/`
-  initDate:Date=new Date()
-  canEdit:boolean
-  text:string
-  childs:INode[]
-
-  constructor(
-    media: string[], 
-    childs: INode[],
-    title: string,
-    subtitle: string,
-    text: string,
-    canEdit: boolean,
-  ){
-    this.id = Math.floor(Math.random() * 10000000000000000000000000000000000000000000000)
-    this.media = media
-    this.title = title
-    this.subtitle = subtitle
-    this.canEdit = canEdit
-    this.text = text
-    this.childs = childs
-  }
-}
+import { NodeStructure } from "src/app/models/defaultStructures/NodeStructure"
 
 @Injectable({
   providedIn: "root",
 })
-export class Structures {
+export class Soccer {
   constructor(){}
   assetsRoute: string = `./assets/images/structure/` // ruta para imagenes prueba
   defaultImg: string = `./assets/images/logox.png` // Imagen de sportyeah
@@ -384,7 +346,7 @@ export class Structures {
    * Estructura para soccer
    */
 
-  Soccer: NodeStructure = new NodeStructure(
+  structure: NodeStructure = new NodeStructure(
     [this.defaultImg],
     [
       this.organigrama,

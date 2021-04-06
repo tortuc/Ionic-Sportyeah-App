@@ -40,7 +40,7 @@
           >
             <a [href]="'//' + sponsor.url" target="_blank">
               <img
-                [src]="sponsor.photo"
+                [src]="sponsor.image"
                 style="
                   height: 30px;
                   width: 60px;
@@ -52,6 +52,10 @@
           </ion-col>
         </ion-row>
       </ion-grid>
+      <!-- <app-sponsor
+        [creator]="false"
+        [sponsors]="post.user.sponsors"
+      ></app-sponsor> -->
     </div>
     <!-- TERMINO SPONSORS -->
   </span>

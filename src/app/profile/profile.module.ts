@@ -18,6 +18,7 @@ import { PickerModule } from '@ctrl/ngx-emoji-mart';
 import { DirectivesModule } from '../directives/directive.module';
 import { ComponentsModule } from '../components/components.module';
 import { NewNodeComponent } from './structure/new-node/new-node.component';
+import { IonCustomScrollbarModule } from 'ion-custom-scrollbar';
 
 @NgModule({
   imports: [
@@ -33,7 +34,8 @@ import { NewNodeComponent } from './structure/new-node/new-node.component';
     ContenteditableValueAccessorModule,
     EmojiModule,
     PickerModule,
-    DirectivesModule
+    DirectivesModule,
+    IonCustomScrollbarModule
   ],
   declarations: [
     ProfilePage,
