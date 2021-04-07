@@ -294,7 +294,7 @@ export class StructureComponent implements OnInit {
    */
   setActualNode(node: INode){
     this.actualNode = node
-    if(node.idUser)
+    if(node?.idUser)
       this.userService.getUserByUsername(node.idUser)
         .pipe(take(1))
         .subscribe((user:IUserDataResponse)=> {

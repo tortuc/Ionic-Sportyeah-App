@@ -52,12 +52,7 @@
               </ion-avatar>
             </ion-card>
             <ion-card-title>
-              <img
-                *ngIf="ipLoaded | async"
-                class="bandera"
-                [src]="'https://www.countryflags.io/'+banderaIP[0]+banderaIP[1]+'/flat/64.png'"
-                alt=""
-              />
+              <app-miniflag [user]="user"></app-miniflag>
               {{user?.name}} {{user?.last_name}}
               <ion-icon
                 style="vertical-align: middle; cursor: pointer"

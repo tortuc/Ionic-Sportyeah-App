@@ -26,17 +26,7 @@
           >
             <span style="margin: auto">
               <!-- ENCUENTRA LA BANDERA DEPENDIENDO DE LA IP DEL USUARIO API https://www.countryflags.io/ -->
-              <img
-                *ngIf="ipLoaded | async"
-                class="bandera"
-                [src]="
-                  'https://www.countryflags.io/' +
-                  banderaIP[0] +
-                  banderaIP[1] +
-                  '/flat/64.png'
-                "
-                alt=""
-              />
+              <app-miniflag [user]="userService.User"></app-miniflag>
               {{ userService.User?.name || "" }}
               {{ userService.User?.last_name || "" }}
             </span>

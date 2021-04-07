@@ -60,12 +60,7 @@
             </ion-card>
 
             <ion-card-title (click)="goTo('/profile/edit')">
-              <img
-                *ngIf="ipLoaded | async"
-                class="bandera"
-                [src]="'https://www.countryflags.io/'+banderaIP[0]+banderaIP[1]+'/flat/64.png'"
-                alt=""
-              />
+              <app-miniflag [user]="userService.User"></app-miniflag>
               {{userService.User?.name}} {{userService.User?.last_name}}
               <ion-icon class="edit" name="settings-outline"></ion-icon>
             </ion-card-title>
@@ -190,24 +185,8 @@
             </ion-segment-button>
           </ion-segment>
         </ion-card>
-
-        <!-- INIT SEGMENT PROFILE  -->
         <div *ngIf="profile">
-         
           <app-carrousel [id]="userService.User?._id"></app-carrousel>
-
-          <!--<app-structure
-            [ID]="userService.User?._id"
-            *ngIf="
-               userService.User.profile_user === 'sponsor' ||
-               userService.User.profile_user === 'association' ||
-               userService.User.profile_user === 'federation' ||
-               userService.User.profile_user === 'representative' ||
-               userService.User.profile_user === 'foundation' || 
-               userService.User.profile_user === 'club'
-             "
-          ></app-structure>-->
-
           <ion-card
             ngClass.xs="m-p-0"
             class=" mt5"

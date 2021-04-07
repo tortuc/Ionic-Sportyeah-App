@@ -1,3 +1,4 @@
+import { MiniflagComponent, ModalMiniFlagComponent } from './miniflag/miniflag.component';
 import { OpenImgComponent } from "./open-img/open-img.component";
 import { ParteIzquierdaWebComponent } from "./challenge/parte-izquierda-web/parte-izquierda-web.component";
 import { ParteDerechaWebComponent } from "./challenge/parte-derecha-web/parte-derecha-web.component";
@@ -188,7 +189,9 @@ import { QuestionNotificationComponent } from "./question-notification/question-
     EditQuestionComponent,
     QuestionNotificationComponent,
     GetMediaComponent,
-    EditQuestionComponent
+    EditQuestionComponent,
+    MiniflagComponent,
+    ModalMiniFlagComponent
   ],
   exports: [
     ImageComponent,
@@ -269,7 +272,9 @@ import { QuestionNotificationComponent } from "./question-notification/question-
     EditQuestionComponent,
     QuestionNotificationComponent,
     GetMediaComponent,
-    EditQuestionComponent
+    EditQuestionComponent,
+    MiniflagComponent,
+    ModalMiniFlagComponent
   ],
 })
 export class ComponentsModule {}
