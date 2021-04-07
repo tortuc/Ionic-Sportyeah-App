@@ -59,6 +59,10 @@ export class RankingMonthComponent implements OnInit , OnChanges {
         this.getSharedsData(country)
         break;
     
+      case '3':
+        this.getViewsData(country)
+        break;
+
       default:
         break;
     }
@@ -105,6 +109,22 @@ dayEnd
     },(e)=>{
       
     })
+  }
+
+  getViewsData(country){
+      
+    this.rankingService.getRankingViewsDay(this.userService.User._id,country,this.dayStart,this.dayEnd).pipe(take(1))
+    .subscribe((resp)=>{
+      console.log(resp);
+      this.ranking = resp.ranking
+      this.myPosition = resp.myPosition
+      this.total = resp.total
+      this.load = true
+    },(e)=>{
+      console.error(e);
+      
+    })
+
   }
 
   goToProfile(id,username){

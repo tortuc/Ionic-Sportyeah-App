@@ -58,6 +58,10 @@ export class RankingWeekComponent implements OnInit,OnChanges{
       case '2':
         this.getSharedsData(country)
         break;
+
+      case '3':
+        this.getViewsData(country)
+        break;
     
       default:
         break;
@@ -106,6 +110,23 @@ dayEnd
       
     })
   }
+
+  getViewsData(country){
+      
+    this.rankingService.getRankingViewsDay(this.userService.User._id,country,this.dayStart,this.dayEnd).pipe(take(1))
+    .subscribe((resp)=>{
+      console.log(resp);
+      this.ranking = resp.ranking
+      this.myPosition = resp.myPosition
+      this.total = resp.total
+      this.load = true
+    },(e)=>{
+      console.error(e);
+      
+    })
+
+  }
+
   goToProfile(id,username){
     if(id == this.userService.User._id){
       this.router.navigate(["/profile"])
