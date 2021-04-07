@@ -101,6 +101,15 @@
       {{ actualNode.text }}
     </ion-card-subtitle>
 
+    <div class="row align-items-center">
+      <a [href]="actualNode.facebook" target="_blank"><ion-icon class="icons" name="logo-facebook"></ion-icon></a>
+      <a [href]="actualNode.twitter" target="_blank"><ion-icon class="icons" name="logo-twitter"></ion-icon></a>
+      <a [href]="actualNode.instagram" target="_blank"><ion-icon class="icons" name="logo-instagram"></ion-icon></a>
+      <a [href]="actualNode.linkedin" target="_blank"><ion-icon class="icons" name="logo-linkedin"></ion-icon></a>
+      <a [href]="actualNode.webPage" target="_blank"><ion-icon class="icons" name="cloud-outline"></ion-icon></a>
+    </div>
+
+
     <app-sponsor
       [creator]="creator"
       [sponsors]="actualNode.sponsors"
