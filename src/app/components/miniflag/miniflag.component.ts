@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
-import { IUser } from 'src/app/models/IUser';
 import { ReusableComponentsIonic } from 'src/app/service/ionicHelpers.service';
 import { UserService } from 'src/app/service/user.service';
 
@@ -29,7 +28,7 @@ export class MiniflagComponent implements OnInit {
       const {data} = await modal.onDidDismiss()
       if(data){
         this.user.geo.flag = data
-        this.userService.update(this.user)
+        this.userService.update(this.user).subscribe((r)=>{})
       }
     // }
   }

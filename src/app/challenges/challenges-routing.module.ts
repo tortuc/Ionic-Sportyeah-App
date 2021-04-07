@@ -7,7 +7,11 @@ const routes: Routes = [
   {
     path: "",
     component: ChallengesPage,
+  },  {
+    path: 'profile-challenge',
+    loadChildren: () => import('./profile-challenge/profile-challenge.module').then( m => m.ProfileChallengePageModule)
   },
+
 ];
 
 @NgModule({
