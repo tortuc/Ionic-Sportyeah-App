@@ -36,6 +36,9 @@ export class RankingService {
     return this.http.get<IRanking>(`${this.route}/shareds/ever/${user}/${country}`)
   }
 
+  getRankingViewsAllTime(user,country){
+    return this.http.get<IRanking>(`${this.route}/views/ever/${user}/${country}`)
+  }
 
   getRankingReactionsDay(user,country,dateStart,dateEnd){
     return this.http.get<IRanking>(`${this.route}/reactions/day/${user}/${country}/${dateStart}/${dateEnd}`)
@@ -47,5 +50,9 @@ export class RankingService {
 
   getRankingSharedsDay(user,country,dateStart,dateEnd){
     return this.http.get<IRanking>(`${this.route}/shareds/day/${user}/${country}/${dateStart}/${dateEnd}`)
+  }
+
+  getRankingViewsDay(user,country,dateStart,dateEnd){
+    return this.http.get<IRanking>(`${this.route}/views/day/${user}/${country}/${dateStart}/${dateEnd}`)
   }
 }

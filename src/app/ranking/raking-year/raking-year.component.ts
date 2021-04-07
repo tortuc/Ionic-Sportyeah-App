@@ -26,14 +26,10 @@ export class RakingYearComponent implements OnInit,OnChanges {
   @Input() country:boolean
   @Input() segment:any 
 
-  ngOnInit() {
-    
-    }
+  ngOnInit() {}
     ngOnChanges(){
-    
       this.getData()
     }
-  
   
     ranking:IRankingRank[] = [];
     myPosition = 0;
@@ -60,6 +56,10 @@ export class RakingYearComponent implements OnInit,OnChanges {
           this.getSharedsData(country)
           break;
       
+        case '3':
+          this.getViewsData(country)
+          break;
+
         default:
           break;
       }
@@ -85,7 +85,6 @@ export class RakingYearComponent implements OnInit,OnChanges {
       this.rankingService.getRankingCommentsDay(this.userService.User._id,country,this.dayStart,this.dayEnd).pipe(take(1))
       .subscribe((resp)=>{
         console.log(resp);
-        
         this.ranking = resp.ranking
         this.myPosition = resp.myPosition
         this.total = resp.total
@@ -102,7 +101,6 @@ export class RakingYearComponent implements OnInit,OnChanges {
       this.rankingService.getRankingSharedsDay(this.userService.User._id,country,this.dayStart,this.dayEnd).pipe(take(1))
       .subscribe((resp)=>{
         console.log(resp);
-        
         this.ranking = resp.ranking
         this.myPosition = resp.myPosition
         this.total = resp.total
@@ -112,5 +110,21 @@ export class RakingYearComponent implements OnInit,OnChanges {
         console.error(e);
         
       })
+    }
+
+    getViewsData(country){
+      
+      this.rankingService.getRankingViewsDay(this.userService.User._id,country,this.dayStart,this.dayEnd).pipe(take(1))
+      .subscribe((resp)=>{
+        console.log(resp);
+        this.ranking = resp.ranking
+        this.myPosition = resp.myPosition
+        this.total = resp.total
+        this.load = true
+      },(e)=>{
+        console.error(e);
+        
+      })
+
     }
 }

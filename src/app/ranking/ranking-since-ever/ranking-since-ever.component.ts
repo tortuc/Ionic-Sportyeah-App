@@ -61,6 +61,10 @@ export class RankingSinceEverComponent implements OnInit,OnChanges {
         this.getSharedsData(country)
         break;
     
+      case '3':
+        this.getViewsData(country)
+        break;
+
       default:
         break;
     }
@@ -112,6 +116,24 @@ export class RankingSinceEverComponent implements OnInit,OnChanges {
       
     })
   }
+
+  getViewsData(country){
+    
+    this.rankingService.getRankingViewsAllTime(this.userService.User._id,country).pipe(take(1))
+    .subscribe((resp)=>{
+      console.log(resp);
+      
+      this.ranking = resp.ranking
+      this.myPosition = resp.myPosition
+      this.total = resp.total
+      this.load = true
+      
+    },(e)=>{
+      console.error(e);
+      
+    })
+  }
+
   goToProfile(id,username){
     if(id == this.userService.User._id){
       this.router.navigate(["/profile"])
