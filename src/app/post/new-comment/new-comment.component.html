@@ -109,12 +109,18 @@
         <ion-button (click)="openImage.click()">
           <ion-icon name="image"></ion-icon>
         </ion-button>
+        <ion-button (click)="createQuestion()">
+          <ion-icon name="help-outline"></ion-icon>
+        </ion-button>
         <ion-button
           [disabled]="form.value.message === '' && form.value.image === ''"
           (click)="send()"
         >
           {{ "new_comment.btn" | translate }}
         </ion-button>
+      </ion-col>
+      <ion-col size="12" >
+        <edit-question #editQuestionHash [question]="question.questionGroup" [badDate]="badDate" (delete)="deleteQuestion($event)" (edit)="editQuestion($event)"></edit-question>
       </ion-col>
     </ion-row>
   </ion-grid>

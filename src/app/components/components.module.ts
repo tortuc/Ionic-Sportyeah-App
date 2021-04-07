@@ -92,6 +92,7 @@ import { QuestionComponent } from "./question/question.component";
 import { GetMediaComponent } from "./get-media/get-media.component";
 import { EditQuestionComponent } from "./edit-question/edit-question.component";
 import { QuestionNotificationComponent } from "./question-notification/question-notification.component"
+import { QuestionCommentComponent } from "./question-comment/question-comment.component";
 @NgModule({
   imports: [
     CommonModule,
@@ -190,6 +191,7 @@ import { QuestionNotificationComponent } from "./question-notification/question-
     QuestionNotificationComponent,
     GetMediaComponent,
     EditQuestionComponent,
+    QuestionCommentComponent,
     MiniflagComponent,
     ModalMiniFlagComponent
   ],
@@ -273,6 +275,7 @@ import { QuestionNotificationComponent } from "./question-notification/question-
     QuestionNotificationComponent,
     GetMediaComponent,
     EditQuestionComponent,
+    QuestionCommentComponent,
     MiniflagComponent,
     ModalMiniFlagComponent
   ],
