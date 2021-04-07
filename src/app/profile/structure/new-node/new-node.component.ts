@@ -79,6 +79,8 @@ export class NewNodeComponent implements OnInit {
   /*
    * Genera el formulario
    */
+  // Formato pagina web
+  reg: string = '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?'
   generateForm() {
     this.form = this.fb.group({
       id: [
@@ -98,6 +100,30 @@ export class NewNodeComponent implements OnInit {
       ],
       text: [
         this.actualNode.text, 
+        [Validators.required]
+      ],
+      facebook: [
+        this.actualNode.facebook, 
+        [Validators.required]
+      ],
+      twitter: [
+        this.actualNode.twitter, 
+        [Validators.required]
+      ],
+      instagram: [
+        this.actualNode.instagram, 
+        [Validators.required]
+      ],
+      linkedin: [
+        this.actualNode.linkedin, 
+        [Validators.required]
+      ],
+      webPage: [
+        this.actualNode.webPage, 
+        [Validators.required, Validators.pattern(this.reg)]
+      ],
+      initDate: [
+        this.actualNode.initDate, 
         [Validators.required]
       ],
       idUser:[this.actualNode.idUser],

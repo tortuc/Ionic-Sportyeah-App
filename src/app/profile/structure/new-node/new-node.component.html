@@ -64,6 +64,27 @@
       Este campo es invalido
     </p>
 
+    <ion-item>
+      <ion-label position="stacked">
+        {{"structure.modal.subtitle" | translate}}
+      </ion-label>
+      <ion-input
+        type="text"
+        [placeholder]="'structure.subtitle.input' | translate"
+        style="background: transparent"
+        formControlName="subtitle"
+      ></ion-input>
+    </ion-item>
+
+    <p 
+      class="errormsj "
+      *ngIf="
+        (form.controls.subtitle.dirty || form.controls.subtitle.touched) &&
+        form.controls.subtitle.status !== 'VALID'
+      "
+    >
+      Este campo es invalido
+    </p>
 
     <ion-item>
       <ion-label position="stacked">{{
@@ -88,22 +109,110 @@
     </p>
 
     <ion-item>
-      <ion-label position="stacked">
-        {{"structure.modal.subtitle" | translate}}
-      </ion-label>
+      <ion-label position="stacked">{{
+        "structure.modal.facebook" | translate
+      }}</ion-label>
       <ion-input
         type="text"
-        [placeholder]="'structure.subtitle.input' | translate"
+        [placeholder]="'structure.facebook.input' | translate"
         style="background: transparent"
-        formControlName="subtitle"
+        formControlName="facebook"
       ></ion-input>
     </ion-item>
 
     <p 
       class="errormsj "
       *ngIf="
-        (form.controls.subtitle.dirty || form.controls.subtitle.touched) &&
-        form.controls.subtitle.status !== 'VALID'
+        (form.controls.facebook.dirty || form.controls.facebook.touched) &&
+        form.controls.facebook.status !== 'VALID'
+      "
+    >
+      Este campo es invalido
+    </p>
+
+    <ion-item>
+      <ion-label position="stacked">{{
+        "structure.modal.twitter" | translate
+      }}</ion-label>
+      <ion-input
+        type="text"
+        [placeholder]="'structure.twitter.input' | translate"
+        style="background: transparent"
+        formControlName="twitter"
+      ></ion-input>
+    </ion-item>
+
+    <p 
+      class="errormsj "
+      *ngIf="
+        (form.controls.twitter.dirty || form.controls.twitter.touched) &&
+        form.controls.twitter.status !== 'VALID'
+      "
+    >
+      Este campo es invalido
+    </p>
+
+    <ion-item>
+      <ion-label position="stacked">{{
+        "structure.modal.instagram" | translate
+      }}</ion-label>
+      <ion-input
+        type="text"
+        [placeholder]="'structure.instagram.input' | translate"
+        style="background: transparent"
+        formControlName="instagram"
+      ></ion-input>
+    </ion-item>
+
+    <p 
+      class="errormsj "
+      *ngIf="
+        (form.controls.instagram.dirty || form.controls.instagram.touched) &&
+        form.controls.instagram.status !== 'VALID'
+      "
+    >
+      Este campo es invalido
+    </p>
+
+    <ion-item>
+      <ion-label position="stacked">{{
+        "structure.modal.linkedin" | translate
+      }}</ion-label>
+      <ion-input
+        type="text"
+        [placeholder]="'structure.linkedin.input' | translate"
+        style="background: transparent"
+        formControlName="linkedin"
+      ></ion-input>
+    </ion-item>
+
+    <p 
+      class="errormsj "
+      *ngIf="
+        (form.controls.linkedin.dirty || form.controls.linkedin.touched) &&
+        form.controls.linkedin.status !== 'VALID'
+      "
+    >
+      Este campo es invalido
+    </p>
+    
+    <ion-item>
+      <ion-label position="stacked">{{
+        "structure.modal.webPage" | translate
+      }}</ion-label>
+      <ion-input
+        type="text"
+        [placeholder]="'structure.webPage.input' | translate"
+        style="background: transparent"
+        formControlName="webPage"
+      ></ion-input>
+    </ion-item>
+
+    <p 
+      class="errormsj "
+      *ngIf="
+        (form.controls.webPage.dirty || form.controls.webPage.touched) &&
+        form.controls.webPage.status !== 'VALID'
       "
     >
       Este campo es invalido

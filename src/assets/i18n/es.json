@@ -745,7 +745,12 @@
       "title": "Nombre / Titulo",
       "subtitle": "Cargo / Función",
       "text": "Descripción / Resumen",
-      "username":"Nombre de usuario en SportYeah (Opcional)"
+      "username":"Nombre de usuario en SportYeah (Opcional)",
+      "facebook":"URL Perfil de Facebook",
+      "instagram":"URL Perfil de Instagram",
+      "linkedin":"URL Perfil de Linkedin",
+      "webPage":"Pagina Web",
+      "initDate":"Fecha de Fundación / Inicio"
     },
     "start": "Comenzar",
     "title":"Estructura"
