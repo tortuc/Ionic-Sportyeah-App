@@ -26,7 +26,7 @@
           >
             <span style="margin: auto">
               <!-- ENCUENTRA LA BANDERA DEPENDIENDO DE LA IP DEL USUARIO API https://www.countryflags.io/ -->
-              <app-miniflag [user]="userService.User"></app-miniflag>
+              <app-miniflag [user]="userService.User" *ngIf="userService.User"></app-miniflag>
               {{ userService.User?.name || "" }}
               {{ userService.User?.last_name || "" }}
             </span>

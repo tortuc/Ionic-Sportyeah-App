@@ -21,6 +21,6 @@
       *ngIf="challenges"
       [challenges]="challenges"
     ></profile-body-c>
-    <no-results *ngIf="!challenges" name="No hay desafiós disponibles de" [result]="route.snapshot.params.username"></no-results>
+    <no-results *ngIf="!challenges || challenges.length < 1" name="No hay desafiós disponibles de" [result]="route.snapshot.params.username"></no-results>
   </div>
 </ion-content>
