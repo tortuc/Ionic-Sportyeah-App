@@ -1,3 +1,4 @@
+import { MiniflagComponent, ModalMiniFlagComponent } from './miniflag/miniflag.component';
 import { OpenImgComponent } from "./open-img/open-img.component";
 import { ParteIzquierdaWebComponent } from "./challenge/parte-izquierda-web/parte-izquierda-web.component";
 import { ParteDerechaWebComponent } from "./challenge/parte-derecha-web/parte-derecha-web.component";
@@ -190,7 +191,9 @@ import { QuestionCommentComponent } from "./question-comment/question-comment.co
     QuestionNotificationComponent,
     GetMediaComponent,
     EditQuestionComponent,
-    QuestionCommentComponent
+    QuestionCommentComponent,
+    MiniflagComponent,
+    ModalMiniFlagComponent
   ],
   exports: [
     ImageComponent,
@@ -272,7 +275,9 @@ import { QuestionCommentComponent } from "./question-comment/question-comment.co
     QuestionNotificationComponent,
     GetMediaComponent,
     EditQuestionComponent,
-    QuestionCommentComponent
+    QuestionCommentComponent,
+    MiniflagComponent,
+    ModalMiniFlagComponent
   ],
 })
 export class ComponentsModule {}

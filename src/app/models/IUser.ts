@@ -1,3 +1,5 @@
+import { IGeo } from "./IGeo";
+import { INode } from "./INode";
 import { ISponsor } from "./ISponsor";
 export interface IUser {
   name: string;
@@ -27,6 +29,6 @@ export interface IUser {
   lastConection: Date;
   connected: boolean;
   sponsors: ISponsor[];
-  structure: any;
-  geo:any;
+  structure: INode;
+  geo:IGeo;
 }

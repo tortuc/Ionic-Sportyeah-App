@@ -34,17 +34,18 @@ export class StructureComponent implements OnInit {
   structureStatus: boolean = true // Existe la estructura
   defaultImg: string = `./assets/images/logox.png` // Imagen de sportyeah
   userNode: User = null
+  user: User = null
 
   /*
    * Data default para club
    */
   
-  structureDefault = this.structures.Soccer
+  structureDefault = null
   
 
-  structure: INode = JSON.parse(JSON.stringify(this.structureDefault));
-  actualNode: INode = this.structure;
-  seleccion: INode = this.structure.childs[0];
+  structure: INode = null;
+  actualNode: INode = null;
+  seleccion: INode = null;
 
   constructor(
     public mc: ModalController,
@@ -132,6 +133,15 @@ export class StructureComponent implements OnInit {
       this.showSlides = true;
     }, 300);
     this.getStructure();
+    this.userService.getUserById(this.ID)
+      .pipe(take(1))
+      .subscribe((user:User)=> {
+        this.user = user
+        this.structureDefault = this.structures[this.user.sport]
+        this.structure = JSON.parse(JSON.stringify(this.structureDefault))
+        this.actualNode = this.structure
+        this.seleccion = this.structure.childs[0]
+      })
   }
   async editNodes(node: INode) {
     const modal = await this.mc.create({
@@ -284,7 +294,7 @@ export class StructureComponent implements OnInit {
    */
   setActualNode(node: INode){
     this.actualNode = node
-    if(node.idUser)
+    if(node?.idUser)
       this.userService.getUserByUsername(node.idUser)
         .pipe(take(1))
         .subscribe((user:IUserDataResponse)=> {
