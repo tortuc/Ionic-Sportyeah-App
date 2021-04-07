@@ -8,6 +8,9 @@ import { JdvimageService } from "src/app/service/jdvimage.service";
 import { PostService } from "src/app/service/post.service";
 import { UserService } from "src/app/service/user.service";
 import { NewsService } from "src/app/service/news.service";
+import { NewQuestionComponent } from "src/app/components/new-question/new-question.component"
+import { QuestionService } from '../../service/question.service';
+import { EditQuestionComponent } from 'src/app/components/edit-question/edit-question.component'
 
 @Component({
   selector: "app-new-comment",
@@ -21,6 +24,7 @@ export class NewCommentComponent implements OnInit {
   @ViewChild("FormElementRef") inputNode: any;
   @ViewChild("emojisContainer") emojisContainer: any;
   @ViewChild("emojiButton") emojiButton: any;
+  @ViewChild("editQuestionHash") editQuestionComponent:EditQuestionComponent;
 
   constructor(
     private modalCtrl: ModalController,
@@ -30,16 +34,19 @@ export class NewCommentComponent implements OnInit {
     private translate: TranslateService,
     private imageService: JdvimageService,
     private postService: PostService,
-    public newsService: NewsService
+    public newsService: NewsService,
+    public modalController: ModalController,
+    public questionService:QuestionService,
+
   ) {}
 
   form = this.fb.group({
     message: ["", []],
     image: ["", []],
+    question:[null]
   });
 
   ngOnInit() {
-    console.log(this.news);
     window.onclick = () => {
       this.emoji = false;
     };
@@ -97,9 +104,18 @@ export class NewCommentComponent implements OnInit {
     };
   }
 
-  send() {
+ async send() {
+    let loading = await this.loadingCtrl.create({
+      message: this.translate.instant("loading"),
+    });
     if (this.form.value.message != null || this.form.value.image != null) {
       let comment = this.form.value;
+      //Este if comprueba que exista cuestionario en el comentario 
+      if(this.question.questionGroup.length > 0 && this.post){
+        this.createCommnetAndQuestionPost(comment,loading)
+      }else if(this.question.questionGroup.length > 0 && this.news){
+        this.createCommnetAndQuestionNews(comment,loading)
+      }else{
       if (this.post) {
         comment.post = this.post._id;
         this.postService
@@ -116,7 +132,6 @@ export class NewCommentComponent implements OnInit {
             // handle err
           });
       } else if (this.news) {
-        console.log("es el new-comment");
         comment.news = this.news._id;
         this.newsService
           .newComment(comment)
@@ -132,6 +147,7 @@ export class NewCommentComponent implements OnInit {
             // handle err
           });
       }
+    }
     }
   }
 
@@ -177,4 +193,147 @@ export class NewCommentComponent implements OnInit {
   newValue($event) {
     this.form.controls.message.setValue($event);
   }
+
+  
+  //Para hacer cuestionarios en lo comentarios
+  question = {
+    user: this.userService.User._id,
+    questionGroup: [],
+    finishVotes:undefined
+  }
+
+ //Crea una modal donde se pueden crear preguntas 
+  async createQuestion(){
+    const modal = await this.modalController.create({
+      component: NewQuestionComponent,
+      cssClass: 'my-custom-class',
+      backdropDismiss:false
+      ,
+      componentProps: {
+      
+        edit:false
+      }
+    });
+    modal.onDidDismiss().then((data)=>{
+      if(data.data.question != undefined){
+        this.question.questionGroup.push(data.data.question) //Las preguntas creadas se introducen en el grupo de preguntas
+      }
+    })
+    .catch((err) => {
+      console.log(err)
+    });
+  
+    return await modal.present();
+  }
+ async editQuestion(i){
+    const modalEdit = await this.modalController.create({
+      component: NewQuestionComponent,
+      cssClass: 'my-custom-class',
+      backdropDismiss:false,
+      componentProps: {
+        question:this.question.questionGroup[i],
+        edit:true
+      }
+    });
+    modalEdit.onDidDismiss().then((data)=>{
+      if(data.data.question != undefined){
+        this.question.questionGroup.splice(i,1,data.data.question);
+      }
+      
+    })
+    .catch((err) => {
+      console.log(err)
+    });
+    return await modalEdit.present();
+  }
+  deleteQuestion(i){
+    this.question.questionGroup.splice(i,1);
+  }
+
+
+
+   //Esto crea un post con cuestionario  
+   badDate:boolean=false;
+   createdCommnetPost(comment,loading){
+     this.questionService.create(this.question).subscribe((response:any)=>{//Crea el cuestionario y agrega el id al post
+       comment.question = response._id
+       comment.post = this.post._id;
+       console.log(comment)
+       this.postService
+       .newComment(comment)
+       .toPromise()
+       .then((comments) => {
+        console.log(comments)
+        loading.dismiss();
+         this.modalCtrl.dismiss({
+           action: "comment",
+           comments,
+           post: this.post,
+         });
+       })
+       .catch((err) => {
+         // handle err
+       });
+   })
+  }
+
+  
+   createCommnetAndQuestionPost(post: any,loading) {
+     if(this.editQuestionComponent.whitTime  &&
+        new Date(this.editQuestionComponent.endDate) >= new Date()){
+      this.question.finishVotes = new Date(this.editQuestionComponent.endDate)
+      this.badDate = false;
+       this.createdCommnetPost(post,loading)
+     }else{
+       this.badDate = true;
+       loading.dismiss();
+     }
+     if(!this.editQuestionComponent.whitTime){
+       this.badDate = false;
+       this.createdCommnetPost(post,loading)
+     }
+ 
+}
+
+
+//Esto crea un post con cuestionario  
+createdCommnetNews(comment,loading){
+  this.questionService.create(this.question).subscribe((response:any)=>{//Crea el cuestionario y agrega el id al post
+    
+    comment.question = response._id  
+    comment.news = this.news._id;
+    this.newsService
+      .newComment(comment)
+      .toPromise()
+      .then((comments) => {
+        loading.dismiss();
+        this.modalCtrl.dismiss({
+          action: "comment",
+          comments,
+          news: this.news,
+        });
+      })
+      .catch((err) => {
+        // handle err
+      });
+  })
+}
+createCommnetAndQuestionNews(news: any,loading) {
+  if(this.editQuestionComponent.whitTime  &&
+     new Date(this.editQuestionComponent.endDate) >= new Date()){
+   this.question.finishVotes = new Date(this.editQuestionComponent.endDate)
+   this.badDate = false;
+    this.createdCommnetNews(news,loading)
+  }else{
+    this.badDate = true;
+    loading.dismiss();
+  }
+  if(!this.editQuestionComponent.whitTime){
+    this.badDate = false;
+    this.createdCommnetNews(news,loading)
+  }
+
+}
+
+
 }

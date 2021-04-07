@@ -96,6 +96,7 @@
                           [src]="comment.image"
                         >
                         </ion-img>
+                        <question-comment [data]="comment.question" [notified]="notified" (newItemEvent)="voted($event)" ></question-comment>
                       </ion-card-content>
                     </ion-card>
                   </ion-col>

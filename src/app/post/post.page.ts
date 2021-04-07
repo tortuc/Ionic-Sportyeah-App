@@ -49,13 +49,11 @@ export class PostPage implements OnInit {
     this.postService.getPost(id).toPromise()//agregamos el id del usuario actual
     .then((post:any)=>{
       this.item = post
-      this.notified = post.post.question.notified
-      console.log(post)
+      this.notified = post.post.question?post.post.question.notified:undefined
     })
     .catch((err)=>{
       // handle err
       console.log(err);
-      
       this.item = 404
     })
   }

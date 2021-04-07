@@ -16,7 +16,7 @@
 </div>
 
 <div *ngFor="let quest of question;index as i "  class="questionDiv">
-  <div style="text-align: center;position: relative;">
+  <div style="text-align: center;position: relative;padding-top: 1px;">
     <h1 style="color: white;">{{quest.questionHeadline}}</h1>  
   </div>    
   <div *ngFor="let answer of quest.answer" class="answer">
