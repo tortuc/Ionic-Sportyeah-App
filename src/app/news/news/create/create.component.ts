@@ -300,25 +300,9 @@ async takePictures(source,i) {
     })
     .catch((err)=>{
       loading.dismiss()
-      console.error(err);
     })
 
     loading.dismiss()
-  /* 
-      this.jdvImage.uploadImage(formData).toPromise()
-        .then((url:string)=>{
-          loading.dismiss()
-        this.userService.update({photo:url})
-          .toPromise()
-          .then((resp)=>{
-            this.userService.User.photo = url
-          }) 
-        })
-        .catch((err)=>{
-          loading.dismiss()
-          console.error(err);
-          
-        })*/
   })
   .catch((err)=>{})
 }
@@ -344,7 +328,6 @@ async takePrincipal(source) {
     })
     .catch((err)=>{
       loading.dismiss()
-      console.error(err);
     }) 
     loading.dismiss()
   })
@@ -433,7 +416,6 @@ closeVideoPrincipal(){
   this.agregandoOrigenPrincipaMedia = false;
 }
 closeVideoNotPrincipal(i){
-  console.log(i)
   this.parrafos[i].video = null;
 }
 async uploadVideo($event,type:string,i){
@@ -451,10 +433,8 @@ async uploadVideo($event,type:string,i){
     this.urlVideoNotPrincipal = URL.createObjectURL($event.target.files[0])
     this.videoFileNotPrincipal = $event.target.files[0]
     form.append("video", this.videoFileNotPrincipal);
-    console.log($event.target.files[0])
    await this.uploadVideoNotPrincipal(form,i)
   }else{
-    console.log('No has seleccionado ningun video')
   }
 }
 
@@ -465,7 +445,6 @@ uploadVideoPrincipal(video){
     this.videoSelected = url
   })
   .catch((err)=>{
-    console.log('No se subio el mmg video')
   })
 }
 uploadVideoNotPrincipal(video,i){
@@ -475,7 +454,6 @@ uploadVideoNotPrincipal(video,i){
     this.parrafos[i].video = url
   })
   .catch((err)=>{
-    console.log('No se subio el mmg video NOTPREINCIPAL')
   })
 }
 
@@ -545,12 +523,10 @@ origenSelect = [
 miNoticia = undefined;
 origenListoMio(){
   if(this.miNoticia == 0){
-    console.log('mi noticia es 0')
     this.origen = 'De mi propiedad'
     this.miNoticia = undefined;
     this.agregandoOrigen = true;
   }else if(this.miNoticia == 1){
-    console.log('mi noticia es 0')
     this.origen = undefined;
     this.agregandoOrigen = false;
   }
@@ -621,9 +597,7 @@ this.endDate = this.editQuestionComponent.endDate;
  checkNoVacio() {
    let ok:boolean = true
   this.titulo1 = this.titulo1.trim();
-  console.log(this.titulo1.length)
   if ( this.titulo1.length != 0) {
-    console.log('Sin espacios')
   } else { 
     this.ToastError('El título no puede estar vacio')
     this.titlebool = false;
@@ -631,9 +605,7 @@ this.endDate = this.editQuestionComponent.endDate;
 }
 
   this.subTitle = this.subTitle.trim();
-  console.log(this.subTitle.length)
   if ( this.subTitle.length != 0) {
-    console.log('Sin espacios')
   } else { 
     this.ToastError('El subtítulo no puede estar vacio')
     this.subTitlebool = false;
@@ -641,9 +613,7 @@ this.endDate = this.editQuestionComponent.endDate;
   }
 
   this.origen = this.origen.trim();
-  console.log(this.origen.length)
   if ( this.origen.length != 0) {
-    console.log('Sin espacios')
   } else {
   this.ToastError('El origen no puede estar vacio')
   this.agregandoOrigen = false;  
@@ -652,9 +622,7 @@ this.endDate = this.editQuestionComponent.endDate;
 
   if(this.urlVideo || this.imagenSelected){
     this.originPrincipaMedia = this.originPrincipaMedia.trim();
-    console.log(this.originPrincipaMedia.length)
     if ( this.originPrincipaMedia.length != 0) {
-      console.log('Sin espacios')
     } else { 
       this.ToastError('El origen de foto o video no puede estar vacio')
       this.agregandoOrigenPrincipaMedia = false;
@@ -803,7 +771,6 @@ animateSportyeah(){
     }
   })
   .catch((err) => {
-    console.log(err)
   });
   return await modal.present();
 }
@@ -824,7 +791,6 @@ async editQuestion(i){
     
   })
   .catch((err) => {
-    console.log(err)
   });
   return await modalEdit.present();
 }

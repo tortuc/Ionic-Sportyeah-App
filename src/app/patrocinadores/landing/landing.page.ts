@@ -58,7 +58,6 @@ export class LandingPage implements OnInit {
   }
 
   async changeText(name: string, index:number = null, property:string = null){
-    console.log("LO Que llega a change TExt", name, index, property);
     this.landingService.editing = name;
     if( index!== null && property !== null ){ 
       this.ls.productArray.index = index;

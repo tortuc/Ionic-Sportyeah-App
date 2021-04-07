@@ -34,7 +34,6 @@ export class QuestionService {
   }
  */
   updateQuestion(data){
-    console.log(data)
     return this.http.put(`${environment.URL_API}/question/update/${data._id}`,data)
   }
 
@@ -49,7 +48,6 @@ export class QuestionService {
           role: "cancel",
           cssClass: "secondary",
           handler: (blah) => {
-            console.log("Confirm Cancel: blah");
           },
         },
         {

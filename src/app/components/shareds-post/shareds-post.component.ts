@@ -24,7 +24,6 @@ export class SharedsPostComponent implements OnInit {
   }
 
   goToPost(id){
-    console.log('presiono el de Shareds-post')
     this.router.navigate([`/post/${id}`])
     this.dismiss()
   }

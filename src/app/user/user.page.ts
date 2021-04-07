@@ -134,11 +134,7 @@ export class UserPage implements OnInit {
             this.landingButton = true;
           else this.landingButton = false;
 
-          /* this.viewsProfileService
-            .updateProfileView(this.userService.User._id, resp.user._id,'direct',null)
-            .subscribe((response) => {
-              console.log(response);
-            }); */
+        
         },
         (err) => {
           // si hubo un error, lo mas probable es que sea porque el usuario no existe
@@ -181,7 +177,6 @@ export class UserPage implements OnInit {
 news = [];
   getArticle(id){
     this.newsService.findUserNews(id).subscribe((response:any)=>{
-      console.log(response)
       this.news = response.filter((news)=>{
         return news.stream == false;
       })

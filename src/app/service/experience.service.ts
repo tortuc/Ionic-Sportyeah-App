@@ -55,7 +55,6 @@ export class ExperienceService {
           role: "cancel",
           cssClass: "secondary",
           handler: (blah) => {
-            console.log("Confirm Cancel: blah");
           },
         },
         {

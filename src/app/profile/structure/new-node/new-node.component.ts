@@ -82,9 +82,7 @@ export class NewNodeComponent implements OnInit {
   // Formato pagina web
   reg: string = '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?'
   generateForm() {
-    console.log(this.actualNode.initDate)
     const date:string = new Date(this.actualNode.initDate).toISOString().substr(0, 10)
-    console.log(date)
     this.form = this.fb.group({
       id: [
         this.actualNode.id

@@ -21,10 +21,6 @@ export class ReadComponent implements OnInit {
     this.idNews =route.snapshot.paramMap.get('id')
     this.getNews(this.idNews )
    
-    /* .subscribe((response:any)=>{
-      console.log(response)
-      this.new = response
-      this.news = response.news */
     }
     idNews
    getNews(id){

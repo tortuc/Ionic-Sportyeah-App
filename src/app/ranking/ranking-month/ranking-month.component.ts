@@ -69,7 +69,6 @@ dayEnd
   getLikesData(country){
     this.rankingService.getRankingReactionsDay(this.userService.User._id,country,this.dayStart,this.dayEnd).pipe(take(1))
     .subscribe((resp)=>{
-      console.log(resp)
       this.ranking = resp.ranking
       this.myPosition = resp.myPosition
       this.total = resp.total
@@ -79,7 +78,6 @@ dayEnd
   }
 
   getCommentData(country){
-    console.log('buscando comentarios');
     
     this.rankingService.getRankingCommentsDay(this.userService.User._id,country,this.dayStart,this.dayEnd).pipe(take(1))
     .subscribe((resp)=>{
@@ -90,13 +88,11 @@ dayEnd
       this.load = true
       
     },(e)=>{
-      console.error(e);
       
     })
   }
 
   getSharedsData(country){
-    console.log('buscando compartidos');
     
     this.rankingService.getRankingSharedsDay(this.userService.User._id,country,this.dayStart,this.dayEnd).pipe(take(1))
     .subscribe((resp)=>{
@@ -107,7 +103,6 @@ dayEnd
       this.load = true
       
     },(e)=>{
-      console.error(e);
       
     })
   }

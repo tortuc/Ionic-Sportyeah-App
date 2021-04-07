@@ -116,7 +116,6 @@ export class NewProfilePhotoComponent implements OnInit {
           })
           .catch((err)=>{
             loading.dismiss()
-            console.error(err);
             
           })
     })

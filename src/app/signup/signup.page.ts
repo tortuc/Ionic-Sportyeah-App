@@ -34,7 +34,6 @@ export class SignupPage implements OnInit {
   ngOnInit() {
     this.loginService.getIP().subscribe((geo) => {
       this.geo = geo;
-      console.log(geo)
     });
   }
   geo;//para el país

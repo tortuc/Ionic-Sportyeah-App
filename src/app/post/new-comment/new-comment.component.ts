@@ -220,7 +220,6 @@ export class NewCommentComponent implements OnInit {
       }
     })
     .catch((err) => {
-      console.log(err)
     });
   
     return await modal.present();
@@ -242,7 +241,6 @@ export class NewCommentComponent implements OnInit {
       
     })
     .catch((err) => {
-      console.log(err)
     });
     return await modalEdit.present();
   }
@@ -258,12 +256,10 @@ export class NewCommentComponent implements OnInit {
      this.questionService.create(this.question).subscribe((response:any)=>{//Crea el cuestionario y agrega el id al post
        comment.question = response._id
        comment.post = this.post._id;
-       console.log(comment)
        this.postService
        .newComment(comment)
        .toPromise()
        .then((comments) => {
-        console.log(comments)
         loading.dismiss();
          this.modalCtrl.dismiss({
            action: "comment",

@@ -42,14 +42,11 @@ export class StreamComponent implements OnInit {
       try {
              this.subscribe()
       } catch (error) {
-        console.log('no logre hacerlo')
       }
     //this.join()
     this.newsService.findById(this.newsService.idNews).toPromise()
     .then((response:any)=>{
       this.news = response 
-      console.log(this.news)
-
       this.socketService.socket.emit('in-news',{id:response.news._id})
     })
     .catch((err)=>{
@@ -122,7 +119,6 @@ formateSelected */
     this.rtc.client.on("user-published", async (user, mediaType) => {
       // Subscribe to a remote user.
       await this.rtc.client.subscribe(user, mediaType);
-      console.log("subscribe success");
       // If the subscribed track is video.
       if (mediaType === "video" ) {
         // Get `RemoteVideoTrack` in the `user` object.
@@ -271,7 +267,6 @@ createReaction(idReaction,link){
         break
       }
       default:
-        console.log("Tipo de reaccion no definido");
         break;
     }
     

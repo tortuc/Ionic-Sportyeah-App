@@ -16,7 +16,6 @@ export class AwardsAccordionComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log(this.a)
   }
 
 }

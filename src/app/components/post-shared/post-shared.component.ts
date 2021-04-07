@@ -48,21 +48,6 @@ export class PostSharedComponent implements OnInit {
     }
    
 
-  /*  if(this.news && this.news.stream){
-    this.channel = this.news.postStream
-    this.rtc.client = AgoraRTC.createClient({ mode: "live", codec: "vp8" ,role:"audience"});
-    try {
-      this.subscribe()
-    } catch (error) {
-      console.log('no logre hacerlo')
-    }
-    this.rtc.client.on("user-unpublished", user => {
-      // Get the dynamically created DIV container.
-      const playerContainer = document.getElementById(user.uid);
-      // Destroy the container.
-      playerContainer.remove();
-    });
-  }   */
   }
 
   
@@ -147,7 +132,6 @@ goToStream(){
     this.rtc.client.on("user-published", async (user, mediaType) => {
       // Subscribe to a remote user.
       await this.rtc.client.subscribe(user, mediaType);
-      console.log("subscribe success");
       // If the subscribed track is video.
       if (mediaType === "video" ) {
         // Get `RemoteVideoTrack` in the `user` object.

@@ -15,7 +15,6 @@ export class CanVotePipe implements PipeTransform {
       let answer:any = await this.questionService.userVotedAnswer(group,this.userService.User?._id).toPromise()
       let voted = answer?._id == id?'block userVoted':'block'
       // classReturn += voted
-      // console.log(classReturn+voted)
       if(!notified && answer){
         return voted
       }else if(notified && !answer){
@@ -28,7 +27,6 @@ export class CanVotePipe implements PipeTransform {
       }
       // return answer?voted:'progress-item-unlok'
     } catch (error) {
-      console.log(error)
       return 'progress-item-unlok';
     }
    
