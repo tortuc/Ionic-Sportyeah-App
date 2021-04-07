@@ -93,6 +93,8 @@ import { GetMediaComponent } from "./get-media/get-media.component";
 import { EditQuestionComponent } from "./edit-question/edit-question.component";
 import { QuestionNotificationComponent } from "./question-notification/question-notification.component"
 import { QuestionCommentComponent } from "./question-comment/question-comment.component";
+import { NoResults } from './no-results/no-results.component';
+import { ProfilHeaderC } from './profile-challenges/profile-header-c.components';
 @NgModule({
   imports: [
     CommonModule,
@@ -193,7 +195,8 @@ import { QuestionCommentComponent } from "./question-comment/question-comment.co
     EditQuestionComponent,
     QuestionCommentComponent,
     MiniflagComponent,
-    ModalMiniFlagComponent
+    ModalMiniFlagComponent,
+    NoResults,ProfilHeaderC
   ],
   exports: [
     ImageComponent,
@@ -277,7 +280,9 @@ import { QuestionCommentComponent } from "./question-comment/question-comment.co
     EditQuestionComponent,
     QuestionCommentComponent,
     MiniflagComponent,
-    ModalMiniFlagComponent
+    ModalMiniFlagComponent,
+    NoResults,
+    ProfilHeaderC
   ],
 })
 export class ComponentsModule {}

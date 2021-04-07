@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-toolbar class="bg-gradient-person">
+    <ion-title style="--color: white">
+      <ion-icon name="medal-outline"></ion-icon>
+      Perfil Desafiós
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="text-center"  [scrollbar]="reusableCI.scrollbarStyle">
+  <ion-spinner class="spinner" *ngIf="!user && !noUser"></ion-spinner>
+  <no-results *ngIf="noUser" element="usuario" [result]="route.snapshot.params.username"></no-results>
+  <div class="content" *ngIf="user">
+    <profile-header-c
+      [photo]="user.photo"
+      [banner]="user.photoBanner"
+      [state]="user.estado"
+      [username]="user.username"
+    ></profile-header-c>
+  </div>
+</ion-content>

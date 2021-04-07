@@ -25,7 +25,6 @@ export class ChangeComponent implements OnInit {
     public router: Router,
     public mc: ModalController
   ) {
-    console.log("Lo que hay dentro de product array", this.ls.productArray);
     this.generateForm();
     this.ls.editing.indexOf("iconName") !== -1
       ? (this.galeriaIconos = true)
@@ -37,7 +36,6 @@ export class ChangeComponent implements OnInit {
         .getIcons()
         .pipe(take(1))
         .subscribe((r: string[]) => {
-          console.log(r);
           this.icons = r;
         });
   }

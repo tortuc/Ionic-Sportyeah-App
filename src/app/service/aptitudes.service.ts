@@ -65,7 +65,6 @@ export class AptitudesService {
           role: "cancel",
           cssClass: "secondary",
           handler: (blah) => {
-            console.log("Confirm Cancel: blah");
           },
         },
         {
@@ -87,8 +86,6 @@ export class AptitudesService {
 
   edit(aptitude: Aptitudes) {
     const id = aptitude._id
-    console.log(id)
-    console.log(aptitude)
     delete aptitude._id
     return this.http.put(
       `${environment.URL_API}/${this.route}/edit/${id}`,
@@ -96,7 +93,7 @@ export class AptitudesService {
       {
         headers: new HttpHeaders({ "access-token": getToken() }),
       }
-    ).subscribe(()=>this.getByUser(this.userService.User._id),err=>console.log(err));
+    ).subscribe(()=>this.getByUser(this.userService.User._id),err=>{});
   }
 
   changeSelected(aptitude: Aptitudes){

@@ -124,7 +124,6 @@ export class ProfileEditPage implements OnInit {
   }
 
   // getCaretPosition(nativeElement: any){
-  //   console.log(nativeElement.querySelector('textarea'));
   //   return nativeElement.selectionStart;
   // }
   public caretPosition = null;

@@ -682,14 +682,7 @@ this.allViews.forEach((visits) => {
     }
   });
 
- /*  console.log(this.years)
-  console.log(this.dataChat)
-  console.log(this.dataComment)
-  console.log(this.dataPost)
-  console.log(this.dataProfile)
-  console.log(this.dataReaction)
-  console.log(this.dataSearch)
- */
+ 
   /* this.dataPost = [
   this.returnMes('01','post'),this.returnMes('02','post'),this.returnMes('03','post'),this.returnMes('04','post'),
   this.returnMes('05','post'),this.returnMes('06','post'),this.returnMes('07','post'),this.returnMes('08','post'),

@@ -74,6 +74,14 @@ const routes: Routes = [
     canActivate: [LandingGuard],
   },
   {
+    path: "challenges/:username",
+    loadChildren: () =>
+      import("./challenges/profile-challenge/profile-challenge.module").then(
+        (m) => m.ProfileChallengePageModule
+      ),
+    canActivate: [LandingGuard],
+  },
+  {
     path: "landing/:id",
     loadChildren: () =>
       import("./patrocinadores/landing/landing.module").then(
@@ -156,7 +164,8 @@ const routes: Routes = [
   {
     path: 'challenge',
     loadChildren: () => import('./challenge/challenge.module').then( m => m.ChallengePageModule)
-  },  {
+  },
+  {
     path: 'structure',
     loadChildren: () => import('./structure/structure.module').then( m => m.StructurePageModule)
   },

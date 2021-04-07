@@ -119,10 +119,9 @@ export class NewAwardsPage implements OnInit {
     this.awardService.awardSelected === null
       ? this.awardService.create(this.form.value).subscribe(
           (res) => this.awardService.getByUser(this.userService.User._id),
-          (err) => console.log(err)
+          (err) => {}
         )
       : this.awardService.edit(this.form.value);
-    console.log(this.awardService.awards);
     this.router.navigate(['profile']);
   }
 }

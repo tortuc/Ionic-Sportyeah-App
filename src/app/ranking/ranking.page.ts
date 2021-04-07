@@ -78,22 +78,16 @@ filterCountry(){
     switch (index) {
       case 0:
         this.filterAllPost() 
-        console.log('filterAllPost')
         break;
       case 1:
-        console.log('today')
         break;  
       case 2:    
-        console.log('week')
         break;
       case 3:  
-        console.log('month')
         break;
       case 4:  
-        console.log('year')
         break;
       default:
-        console.log('Error, slide desconocido')
         break;
     }  
  });

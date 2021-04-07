@@ -53,7 +53,6 @@ export class PostPage implements OnInit {
     })
     .catch((err)=>{
       // handle err
-      console.log(err);
       this.item = 404
     })
   }

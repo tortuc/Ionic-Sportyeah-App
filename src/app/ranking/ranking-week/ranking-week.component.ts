@@ -92,7 +92,6 @@ dayEnd
       this.load = true
       
     },(e)=>{
-      console.error(e);
       
     })
   }
@@ -108,7 +107,6 @@ dayEnd
       this.load = true
       
     },(e)=>{
-      console.error(e);
       
     })
   }

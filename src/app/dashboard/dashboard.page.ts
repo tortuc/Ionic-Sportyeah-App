@@ -85,10 +85,8 @@ isScrolledIntoView() {
 
     if (topShown && bottomShown) {
      /* this.subscribe() */
-     console.log('estoy en visible')
     } else {
      /* this.unSubscribe() */
-     console.log('estoy fuera')
     }
 }
 
@@ -264,7 +262,6 @@ async logScrolling(ev){
 }
 
  async voted(voted:boolean,i){
-   console.log(this.posts[i])
   await this.postService.getPost(this.posts[i].post._id).subscribe((post:any)=>{
     this.posts.splice(i,1,post)
   })

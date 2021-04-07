@@ -33,7 +33,6 @@ this.filtro()
   filtro(){
     let visitas = []
     for(let elements of this.sortable){
-      console.log(elements[1])
       visitas = this.visitas.filter((visita)=>{
         if(visita.user._id == elements[0]){
           visita.cantidad=elements[1]
@@ -41,7 +40,6 @@ this.filtro()
         return visita.user._id == elements[0]
       })
       this.vistasFor.push(visitas[0])
-      console.log( this.vistasFor)
     }
     
   }
@@ -79,9 +77,6 @@ for (var idPost in count) {
 this.sortable.sort(function(b, a) {
   return a[1] - b[1];
 });
-
-
-console.log(this.sortable)
   this.count=count
   this.postId=result
   return result;

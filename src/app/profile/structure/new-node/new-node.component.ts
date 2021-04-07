@@ -69,7 +69,7 @@ export class NewNodeComponent implements OnInit {
         instagram: null,
         linkedin: null,
         webPage: null,
-        initDate:null,
+        initDate:new Date(),
         sponsors:[],
         childs:[]
       }
@@ -82,6 +82,7 @@ export class NewNodeComponent implements OnInit {
   // Formato pagina web
   reg: string = '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?'
   generateForm() {
+    const date:string = new Date(this.actualNode.initDate).toISOString().substr(0, 10)
     this.form = this.fb.group({
       id: [
         this.actualNode.id
@@ -89,7 +90,7 @@ export class NewNodeComponent implements OnInit {
         : null
       ],
       media: [
-        this.actualNode.media 
+        this.actualNode.media
            ? this.actualNode.media
            : [`./assets/images/logox.png`]
       ],
@@ -103,28 +104,22 @@ export class NewNodeComponent implements OnInit {
         [Validators.required]
       ],
       facebook: [
-        this.actualNode.facebook, 
-        [Validators.required]
+        this.actualNode.facebook,
       ],
       twitter: [
-        this.actualNode.twitter, 
-        [Validators.required]
+        this.actualNode.twitter,
       ],
       instagram: [
-        this.actualNode.instagram, 
-        [Validators.required]
+        this.actualNode.instagram,
       ],
       linkedin: [
-        this.actualNode.linkedin, 
-        [Validators.required]
+        this.actualNode.linkedin,
       ],
       webPage: [
-        this.actualNode.webPage, 
-        [Validators.required, Validators.pattern(this.reg)]
+        this.actualNode.webPage,
       ],
       initDate: [
-        this.actualNode.initDate, 
-        [Validators.required]
+        date,
       ],
       idUser:[this.actualNode.idUser],
       canEdit:[this.actualNode.canEdit]
@@ -140,7 +135,7 @@ export class NewNodeComponent implements OnInit {
   }
 
 
-  save(form: any) {
+  save(form: INode) {
     /*
      * Buscar todos los nodos padre de dicho nodo para poder darle 
      * el subtitulo

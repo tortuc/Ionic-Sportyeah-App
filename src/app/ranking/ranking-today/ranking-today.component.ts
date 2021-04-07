@@ -91,13 +91,11 @@ dayEnd
       this.load = true
       
     },(e)=>{
-      console.error(e);
       
     })
   }
 
   getSharedsData(country){
-    console.log('buscando compartidos');
     
     this.rankingService.getRankingSharedsDay(this.userService.User._id,country,this.dayStart,this.dayEnd).pipe(take(1))
     .subscribe((resp)=>{
@@ -108,7 +106,6 @@ dayEnd
       this.load = true
       
     },(e)=>{
-      console.error(e);
       
     })
   }

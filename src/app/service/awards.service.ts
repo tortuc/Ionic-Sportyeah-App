@@ -70,7 +70,6 @@ export class AwardService {
           role: "cancel",
           cssClass: "secondary",
           handler: (blah) => {
-            console.log("Confirm Cancel: blah");
           },
         },
         {
@@ -91,8 +90,6 @@ export class AwardService {
 
   edit(award: Awards) {
     const id = award._id;
-    console.log(id);
-    console.log(award);
     delete award._id;
     return this.http
       .put(`${environment.URL_API}/${this.route}/edit/${id}`, award, {
@@ -100,7 +97,7 @@ export class AwardService {
       })
       .subscribe(
         () => this.getByUser(this.userService.User._id),
-        (err) => console.log(err)
+        (err) => {}
       );
   }
 

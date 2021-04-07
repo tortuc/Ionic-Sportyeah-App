@@ -32,7 +32,6 @@ export class COptionsComponent implements OnInit {
     this.cs.deleteChallenge(this.id)
       .pipe(take(1))
       .subscribe((r:any)=>{
-        console.log(r);
       })
     this.popover.dismiss()
   }

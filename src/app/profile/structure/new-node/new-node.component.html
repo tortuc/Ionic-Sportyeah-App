@@ -114,7 +114,7 @@
       }}</ion-label>
       <ion-input
         type="text"
-        [placeholder]="'structure.facebook.input' | translate"
+        [placeholder]="'https://' | translate"
         style="background: transparent"
         formControlName="facebook"
       ></ion-input>
@@ -136,7 +136,7 @@
       }}</ion-label>
       <ion-input
         type="text"
-        [placeholder]="'structure.twitter.input' | translate"
+        [placeholder]="'https://' | translate"
         style="background: transparent"
         formControlName="twitter"
       ></ion-input>
@@ -158,7 +158,7 @@
       }}</ion-label>
       <ion-input
         type="text"
-        [placeholder]="'structure.instagram.input' | translate"
+        [placeholder]="'https://' | translate"
         style="background: transparent"
         formControlName="instagram"
       ></ion-input>
@@ -173,6 +173,8 @@
     >
       Este campo es invalido
     </p>
+    
+   
 
     <ion-item>
       <ion-label position="stacked">{{
@@ -180,7 +182,7 @@
       }}</ion-label>
       <ion-input
         type="text"
-        [placeholder]="'structure.linkedin.input' | translate"
+        [placeholder]="'https://' | translate"
         style="background: transparent"
         formControlName="linkedin"
       ></ion-input>
@@ -202,7 +204,7 @@
       }}</ion-label>
       <ion-input
         type="text"
-        [placeholder]="'structure.webPage.input' | translate"
+        [placeholder]="'https://' | translate"
         style="background: transparent"
         formControlName="webPage"
       ></ion-input>
@@ -213,6 +215,28 @@
       *ngIf="
         (form.controls.webPage.dirty || form.controls.webPage.touched) &&
         form.controls.webPage.status !== 'VALID'
+      "
+    >
+      Este campo es invalido
+    </p>
+
+    <ion-item>
+      <ion-label position="stacked">{{
+        "structure.modal.initDate" | translate
+      }}</ion-label>
+      <ion-input
+        type="date"
+        [placeholder]="'structure.initDate.input' | translate"
+        style="background: transparent"
+        formControlName="initDate"
+      ></ion-input>
+    </ion-item>
+
+    <p 
+      class="errormsj "
+      *ngIf="
+        (form.controls.initDate.dirty || form.controls.initDate.touched) &&
+        form.controls.initDate.status !== 'VALID'
       "
     >
       Este campo es invalido

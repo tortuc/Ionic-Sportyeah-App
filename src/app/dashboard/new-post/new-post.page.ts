@@ -221,7 +221,6 @@ export class NewPostPage implements OnInit {
   badDate:boolean=false;
   createdPost(post,loading){
     this.questionService.create(this.question).subscribe((response:any)=>{//Crea el cuestionario y agrega el id al post
-      console.log(response)
       post.question = response._id  
       this.postService
       .create(post)
@@ -369,7 +368,6 @@ export class NewPostPage implements OnInit {
       }
     })
     .catch((err) => {
-      console.log(err)
     });
   
     return await modal.present();
@@ -391,7 +389,6 @@ export class NewPostPage implements OnInit {
       
     })
     .catch((err) => {
-      console.log(err)
     });
     return await modalEdit.present();
   }

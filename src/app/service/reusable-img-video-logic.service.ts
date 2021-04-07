@@ -42,8 +42,8 @@ export class ImgVideoUpload {
   mediaCaptureFunc() {
     let options: CaptureImageOptions = { limit: 3 };
     this.mediaCapture.captureImage(options).then(
-      (data: MediaFile[]) => {console.log(data)},
-      (err: CaptureError) => console.error(err)
+      (data: MediaFile[]) => {},
+      (err: CaptureError) => {}
     );
   }
 
@@ -214,7 +214,6 @@ export class ImgVideoUpload {
       .catch((err) => {
         // handle
         if (loading) loading.dismiss();
-        console.log(err);
       });
   }
 
@@ -273,7 +272,6 @@ export class ImgVideoUpload {
           })
           .catch((err) => {
             loading.dismiss();
-            console.error(err);
           });
       })
       .catch((err) => {});

@@ -80,10 +80,9 @@ export class NewAptitudesPage implements OnInit {
     this.aptitudesService.aptitudeSelected === null
       ? this.aptitudesService.create(this.form.value).subscribe(
           (res) => this.aptitudesService.getByUser(this.userService.User._id),
-          (err) => console.log(err)
+          (err) =>{ }
         )
       : this.aptitudesService.edit(this.form.value);
-    console.log(this.aptitudesService.aptitudes);
     this.router.navigate(["profile"]);
   }
 }

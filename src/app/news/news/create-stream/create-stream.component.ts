@@ -113,7 +113,6 @@ createChanel(){
 
    // Publish the local audio and video tracks to the channel.
    await this.rtc.client.publish([this.rtc.localAudioTrack, this.rtc.localVideoTrack]);
-   console.log("publish success!");
    this.camera = true
    this.micro = true
    this.publicar()
@@ -160,7 +159,6 @@ createChanel(){
 
     // Publish the local audio and video tracks to the channel.
     await this.rtc.client.publish([this.rtc.localVideoTrack]);
-    console.log("publish success!");
    this.screen = true;
    this.publicar()
    loading.dismiss();
@@ -286,57 +284,7 @@ createChanel(){
   }
 
 
- /*  async  subscribe(){console.log('Precionaste el Subcribe')
-  await this.join()
-    this.rtc.client.on("user-published", async (user, mediaType) => {
-      // Subscribe to a remote user.
-      await this.rtc.client.subscribe(user, mediaType);
-      console.log("subscribe success");
-      // If the subscribed track is video.
-      if (mediaType === "video") {
-        // Get `RemoteVideoTrack` in the `user` object.
-        const remoteVideoTrack = user.videoTrack;
-        // Dynamically create a container in the form of a DIV element for playing the remote video track.
-        const playerContainer = document.createElement("div");
-        console.log('me creo VIDEO VIDEO VIDEO VIDEO VIDEO  ')
-        // Specify the ID of the DIV container. You can use the `uid` of the remote user.
-        playerContainer.id = user.uid.toString();
-        playerContainer.style.width = "640px";
-        playerContainer.style.height = "480px";
-        document.getElementById("localPlayer").appendChild(playerContainer);
-
-        // Play the remote video track.
-        // Pass the DIV container and the SDK dynamically creates a player in the container for playing the remote video track.
-        remoteVideoTrack.play(playerContainer);
-        var textnode = document.createTextNode(user.uid.toString());
-        document.getElementById("remotePlayerlist").appendChild(textnode);
-       
-        // Or just pass the ID of the DIV container.
-        // remoteVideoTrack.play(playerContainer.id);
-      }
-    
-      // If the subscribed track is audio.
-      if (mediaType === "audio") {
-        // Get `RemoteAudioTrack` in the `user` object.
-        const remoteAudioTrack = user.audioTrack;
-        // Play the audio track. No need to pass any DOM element.
-        remoteAudioTrack.play();
-        console.log('me creo AUDIO AUDIO AUDIO AUDIO AUDIO  ')
-
-      }
-    }); 
-  } */
-
- /* async unSubscribe(){
-    this.rtc.client.on("user-unpublished", user => {
-      // Get the dynamically created DIV container.
-      const playerContainer = document.getElementById(user.uid);
-      // Destroy the container.
-      playerContainer.remove();
-    });
-      // Leave the channel.
-      await this.rtc.client.leave();
-  } */
+ 
   async  leaveCall() {
     this.socketService.socket.emit('out-news',{id:this.news.news._id})
     let loading = await this.loadingCtrl.create({
@@ -370,16 +318,12 @@ createChanel(){
 
  async deletePublicar(){
    //Elimina la noticia
-   console.log('estoy deleteando NEWS')
 await   this.newsService.deleteNews(this.newsId).subscribe((response)=>{
-  console.log('ok')
 })
 
     //Elimina la publicacion
-    console.log('estoy deleteando POST')
 
     this.postService.deleteOne(this.postId).subscribe((response)=>{
-      console.log('ok')
     }) 
    
   }
@@ -488,7 +432,6 @@ commnets = []
   ngOnInit() {
     this.socketService.socket.on('new-comment',(comment)=>{
       this.commnets = comment.comment
-      console.log(comment.comment)
     })
   }
   comments($event){

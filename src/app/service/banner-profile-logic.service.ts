@@ -112,7 +112,6 @@ export class BannerLogic {
           this.userService.update(this.userService.User.photoBanner)
             .pipe(take(1))
             .subscribe((r)=>{
-              console.log(r)
             })
         }
       });
@@ -170,7 +169,6 @@ export class BannerLogic {
           })
           .catch((err) => {
             loading.dismiss();
-            console.error(err);
           });
       })
       .catch((err) => {});

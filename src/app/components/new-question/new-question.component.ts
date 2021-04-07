@@ -36,7 +36,6 @@ addAnswer(){
     option   : '',
     position : this.answers.length
   })
-  console.log(this.answers)
 }
 deleteAnswer(id){
   this.answers.splice(id,1)
