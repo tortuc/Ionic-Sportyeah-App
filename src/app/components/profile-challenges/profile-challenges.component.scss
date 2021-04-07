@@ -1,0 +1,31 @@
+.banner {
+  background-size: cover;
+  padding: 0;
+  margin: 0;
+  height: 300px;
+  z-index: -1;
+  border-radius: 20px;
+}
+.photo{
+  padding-top: 20px;
+  width: 200px;
+  height: 200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.photo-img{
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.estado{
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+  width: 50%;
+  margin: auto;
+  margin-top: 20px;
+  border-radius: 20px;
+  background-color: rgba($color: #000000, $alpha: 0.6);
+  padding: 10px;
+}
