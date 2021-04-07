@@ -9,7 +9,7 @@
 
 <ion-content class="text-center"  [scrollbar]="reusableCI.scrollbarStyle">
   <ion-spinner class="spinner" *ngIf="!user && !noUser"></ion-spinner>
-  <no-results *ngIf="noUser" element="usuario" [result]="route.snapshot.params.username"></no-results>
+  <no-results *ngIf="noUser" name="No hay resultado disponible para el usuario " [result]="route.snapshot.params.username"></no-results>
   <div class="content" *ngIf="user">
     <profile-header-c
       [photo]="user.photo"
@@ -17,5 +17,10 @@
       [state]="user.estado"
       [username]="user.username"
     ></profile-header-c>
+    <profile-body-c
+      *ngIf="challenges"
+      [challenges]="challenges"
+    ></profile-body-c>
+    <no-results *ngIf="!challenges" name="No hay desafiós disponibles de" [result]="route.snapshot.params.username"></no-results>
   </div>
 </ion-content>

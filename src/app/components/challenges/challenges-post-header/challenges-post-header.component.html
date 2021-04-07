@@ -1,6 +1,6 @@
 <div class="flex">
   <ion-avatar
-    (click)="userService.goToProfile(Challenge.challenging.userId.data.username)"
+    (click)="goToProfile(Challenge.challenging.userId.data.username)"
   >
     <ion-img
       class="img-user-mini"
@@ -16,7 +16,7 @@
     <span
       class="messageC profile-name"
       (click)="
-        userService.goToProfile(Challenge.challenged.userId.data.username)
+        goToProfile(Challenge.challenged.userId.data.username)
       "
       >{{ Challenge.challenged.userId.data.name }}
       {{ Challenge.challenged.userId.data.last_name }}</span

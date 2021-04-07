@@ -4,10 +4,10 @@ import { Component, Input, OnInit } from "@angular/core";
   selector: 'no-results',
   template: `
     <div>
-      <img src="https://img.icons8.com/fluent-systems-filled/96/000000/no-user.png" style="margin-top:10%;"/>
+      <img src="https://img.icons8.com/wired/128/000000/cancel--v1.png" style="margin-top:10%;"/>
       <br>
       <br>
-      No hay resultados disponibles para este {{name}} <b>"{{result}}"</b>
+      {{name}} <b>"{{result}}"</b>
     </div>
   `
 })
