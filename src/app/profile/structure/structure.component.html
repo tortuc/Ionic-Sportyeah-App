@@ -101,12 +101,20 @@
       {{ actualNode.text }}
     </ion-card-subtitle>
 
+     <ion-card-subtitle 
+      class="subtitle"
+      style="margin-bottom:20px"
+      *ngIf="actualNode.initDate"
+    >
+      Inicio - {{actualNode.initDate | customDisplayDate}}
+    </ion-card-subtitle>
+
     <div class="row align-items-center">
-      <a [href]="actualNode.facebook" target="_blank"><ion-icon class="icons" name="logo-facebook"></ion-icon></a>
-      <a [href]="actualNode.twitter" target="_blank"><ion-icon class="icons" name="logo-twitter"></ion-icon></a>
-      <a [href]="actualNode.instagram" target="_blank"><ion-icon class="icons" name="logo-instagram"></ion-icon></a>
-      <a [href]="actualNode.linkedin" target="_blank"><ion-icon class="icons" name="logo-linkedin"></ion-icon></a>
-      <a [href]="actualNode.webPage" target="_blank"><ion-icon class="icons" name="cloud-outline"></ion-icon></a>
+      <a *ngIf="actualNode.facebook" [href]="actualNode.facebook" target="_blank"><ion-icon class="icons" name="logo-facebook"></ion-icon></a>
+      <a *ngIf="actualNode.twitter" [href]="actualNode.twitter" target="_blank"><ion-icon class="icons" name="logo-twitter"></ion-icon></a>
+      <a *ngIf="actualNode.webPage" [href]="actualNode.webPage" target="_blank"><ion-icon class="icons" name="cloud-outline"></ion-icon></a>
+      <a *ngIf="actualNode.instagram" [href]="actualNode.instagram" target="_blank"><ion-icon class="icons" name="logo-instagram"></ion-icon></a>
+      <a *ngIf="actualNode.linkedin" [href]="actualNode.linkedin" target="_blank"><ion-icon class="icons" name="logo-linkedin"></ion-icon></a>
     </div>
 
 
