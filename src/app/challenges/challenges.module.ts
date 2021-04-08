@@ -20,7 +20,6 @@ import { ScrollbarDirective } from "ion-custom-scrollbar";
     PipesModule,
   ],
   declarations: [
-    ScrollbarDirective,
     ChallengesPage
   ],
 })
