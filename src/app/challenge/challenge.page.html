@@ -13,9 +13,21 @@
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
-<ion-content *ngIf="challenge" style="background: white; z-index: 1;
-  overflow:hidden;">
-  <ion-row style="height: 100%">
+<ion-content style="background: white; z-index: 1;
+  overflow:hidden; text-align: center;">
+  <ion-spinner 
+    *ngIf="!challenge && !nochallenge"
+    style="width:5%; height:100%; margin:auto;"
+  ></ion-spinner>
+  <no-results 
+    *ngIf="nochallenge"
+    name="No se encontro este desafió"
+    [result]="activeRouter.snapshot.params.id"
+  ></no-results>
+  <ion-row 
+    style="height: 100%; text-align: left;"
+    *ngIf="challenge"
+  >
     <ion-col size-xs="12" size-sm="12" size-lg="8" style="min-height:500px;">
       <app-parte-izquierda-web
         [Challenge]="challenge"

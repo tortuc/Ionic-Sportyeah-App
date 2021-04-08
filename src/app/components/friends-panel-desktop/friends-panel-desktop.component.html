@@ -20,14 +20,14 @@
     <ion-item *ngFor="let friend of userService.followings" class="profile-name" (click)="userService.goToProfile(friend.user.username,'search',null)">
       <ion-thumbnail slot="start">
         <ion-avatar class="mini" >
-          <img [src]="friend.user.photo">
-          <div class="connectedDIVlittle" *ngIf="friend.user.connected"></div>
+          <img [src]="friend.user?.photo">
+          <div class="connectedDIVlittle" *ngIf="friend.user?.connected"></div>
         </ion-avatar>
       </ion-thumbnail>
       <ion-label  style="line-height: normal !important">
-        <span >{{friend.user.name}} {{friend.user.last_name}}</span>
+        <span >{{friend.user?.name}} {{friend.user?.last_name}}</span>
         <br>
-        <span style="font-size: 12px;">@{{friend.user.username}}</span>
+        <span style="font-size: 12px;">@{{friend.user?.username}}</span>
       </ion-label>
     </ion-item>
    

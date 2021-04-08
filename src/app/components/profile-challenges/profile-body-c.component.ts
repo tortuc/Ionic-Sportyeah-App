@@ -11,12 +11,12 @@ import { Router } from '@angular/router';
       <ion-row style="justify-content:center">
         <ion-col 
           size-md="3"
+          size-sm="6"
+          size-xs="6"
           *ngFor="let challenge of show" 
           style="cursor:pointer; height:150px; padding:5px;"
           (click)="goChallenge(challenge)"
         >
-          <!--<app-challenges-post-header [Challenge]="challenge">
-          </app-challenges-post-header>-->
           <app-challenge-content 
             [Challenge]="challenge"
             [chain]="true"

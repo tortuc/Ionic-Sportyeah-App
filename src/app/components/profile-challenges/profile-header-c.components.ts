@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from "@angular/core";
+import { IUser } from "src/app/models/IUser";
 
 @Component({
   selector: 'profile-header-c',
@@ -12,6 +13,7 @@ import { Component, Input, OnInit } from "@angular/core";
       </ion-avatar>
       <div class="estado">
         @{{username}}
+        <follow-btn [user]="user" style="margin-top:10px;"></follow-btn>
       </div>
     </div>
     
@@ -23,6 +25,7 @@ export class ProfilHeaderC implements OnInit {
   @Input() banner: string
   @Input() state: string
   @Input() username: string
+  @Input() user: IUser
   constructor(){}
   ngOnInit(){
     console.log(this.photo,this.banner,this.state)

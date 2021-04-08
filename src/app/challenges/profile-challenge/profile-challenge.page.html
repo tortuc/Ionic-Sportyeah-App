@@ -7,7 +7,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="text-center bg-gradient-person"  [scrollbar]="reusableCI.scrollbarStyle">
+<ion-content class="text-center"  [scrollbar]="reusableCI.scrollbarStyle">
   <ion-spinner class="spinner" *ngIf="!user && !noUser"></ion-spinner>
   <no-results *ngIf="noUser" name="No hay resultado disponible para el usuario " [result]="route.snapshot.params.username"></no-results>
   
@@ -20,6 +20,7 @@
             [banner]="user.photoBanner"
             [state]="user.estado"
             [username]="user.username"
+            [user]="user"
           ></profile-header-c>
           <profile-body-c
             style="background-color: white;"

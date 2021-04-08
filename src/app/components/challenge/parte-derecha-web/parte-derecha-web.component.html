@@ -3,7 +3,6 @@
     class="mini"
     (click)="
       goToProfile(
-        Challenge.challenged.userId.data._id,
         Challenge.challenged.userId.data.username
       )
     "
@@ -22,7 +21,6 @@
       class="message profile-name"
       (click)="
         goToProfile(
-          Challenge.challenged.userId.data._id,
           Challenge.challenged.userId.data.username
         )
       "
@@ -32,16 +30,7 @@
     </span>
     <br />
   </div>
-  <div style="margin-left:16px">
-    <ion-button [fill]="buttonFollowState ? 'outline' : 'clear'" 
-        style="margin-right: auto; "
-      (click)="buttonFollowState === true ? followUser(ownerChallengeId) : unFollowUser(ownerChallengeId)" 
-      *ngIf="buttonFollowState !== null"
-    >
-      {{buttonFollowText | translate}}
-      <ion-icon [name]="buttonFollowState ? 'flame-outline' : 'checkmark-circle-outline'" style="margin-left: 5px;"></ion-icon>
-    </ion-button>
-  </div>
+  <follow-btn-c [Challenge]="Challenge"></follow-btn-c>
 </ion-card-header>
 <div style="padding-left: 20px; padding-right: 20px">
   <p class="title">{{ Challenge.title }}</p>
@@ -60,9 +49,26 @@
   </p>
 </div>
 <ion-item-divider> </ion-item-divider>
-<div class="buttonNext" (click)="goNext()">
-  <img src="https://img.icons8.com/nolan/64/circled-chevron-right.png"/>
-</div>
+<h6 style="text-align:center;">
+  Retos Similares
+</h6>
+<ion-grid >
+  <ion-row style="justify-content: center;">
+    <ion-col *ngFor="let challenge of challenges" 
+      size-md="4"
+      size-sm="6"
+      size-xs="6"
+      style="cursor: pointer; height:100px"
+      (click)="goChallenge(challenge)"
+    >
+      <app-challenge-content 
+        [Challenge]="challenge"
+        [chain]="true"
+        [destroy]="destroy"
+      ></app-challenge-content>
+    </ion-col>
+  </ion-row>
+</ion-grid>
 <app-challenge-comments 
   [comments]="Challenge.challenged.comments"
   [referenceId]="Challenge.challenged._id"
