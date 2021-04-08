@@ -1,4 +1,7 @@
-<ion-content style="background: white; height: 30vh;">
+<ion-content 
+  style="background: white; height: 30vh;" 
+  [scrollbar]="reusableCI.scrollbarStyle"
+>
   <form [formGroup]="form">
     <span *ngIf="form.controls.message.value == ''" class="fake-placeholder">
       {{ "new_comment_placeholder" | translate }}

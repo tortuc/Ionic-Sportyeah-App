@@ -7,6 +7,7 @@ import { IonicModule } from "@ionic/angular";
 import { ChallengePageRoutingModule } from "./challenge-routing.module";
 import { ChallengePage } from "./challenge.page";
 import { ComponentsModule } from "../components/components.module";
+import { IonCustomScrollbarModule } from 'ion-custom-scrollbar';
 
 @NgModule({
   imports: [
@@ -17,7 +18,10 @@ import { ComponentsModule } from "../components/components.module";
     TranslateModule,
     ComponentsModule,
     PipesModule,
+    IonCustomScrollbarModule
   ],
-  declarations: [ChallengePage],
+  declarations: [
+    ChallengePage
+  ],
 })
 export class ChallengePageModule {}

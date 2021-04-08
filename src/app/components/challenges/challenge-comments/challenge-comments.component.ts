@@ -12,6 +12,7 @@ import {
   IonInfiniteScroll,
 } from "@ionic/angular";
 import { Component, OnInit, Input, ViewChild } from "@angular/core";
+import { ReusableComponentsIonic } from "src/app/service/ionicHelpers.service";
 
 @Component({
   selector: "app-challenge-comments",
@@ -46,7 +47,8 @@ export class ChallengeCommentsComponent implements OnInit {
     public imageService: JdvimageService,
     public translate: TranslateService,
     public challengeService: ChallengeService,
-    public router: Router
+    public router: Router,
+    public reusableCI: ReusableComponentsIonic,
   ) {}
 
   ngOnInit() {
