@@ -1,3 +1,4 @@
+import { Subject } from 'rxjs';
 import { take } from 'rxjs/operators';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
@@ -13,6 +14,7 @@ import { ReusableComponentsIonic } from 'src/app/service/ionicHelpers.service';
   styleUrls: ['./profile-challenge.page.scss'],
 })
 export class ProfileChallengePage implements OnInit {
+  destroy: Subject<void> = new Subject()
   user: IUser = null
   noUser: boolean = false
   challenges: IChallenge[] = null
@@ -34,6 +36,10 @@ export class ProfileChallengePage implements OnInit {
         this.getChallenges()
       },err=> this.noUser = true
       )
+  }
+
+  ionViewWillLeave(){
+    this.destroy.next()
   }
 
   getChallenges(){

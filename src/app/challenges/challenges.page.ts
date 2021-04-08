@@ -54,6 +54,9 @@ export class ChallengesPage implements OnInit {
   ) {}
 
   ngOnInit() {}
+  ionViewWillLeave(){
+    this.destroy.next()
+  }
   init() {
     this.destroy.next();
     this.index = 0;
@@ -240,10 +243,6 @@ export class ChallengesPage implements OnInit {
     if (this.challenges[this.index])
       this.showc.push(this.challenges[this.index]);
     this.infiniteScroll.complete();
-  }
-
-  ionViewWillLeave() {
-    this.destroyVid();
   }
 
   destroyVid() {

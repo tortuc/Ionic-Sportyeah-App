@@ -1,3 +1,4 @@
+import { Subject } from 'rxjs';
 import { UserService } from './../../service/user.service';
 import { Component, Input, OnInit } from "@angular/core"
 import { IChallenge } from "src/app/service/challenge.service"
@@ -19,6 +20,7 @@ import { Router } from '@angular/router';
           <app-challenge-content 
             [Challenge]="challenge"
             [chain]="true"
+            [destroy]="destroy"
           ></app-challenge-content>
         </ion-col>
       </ion-row>
@@ -29,6 +31,7 @@ export class ProfileBodyC implements OnInit {
   @Input() challenges: IChallenge[]
   show: IChallenge[] = []
   pag: number = 0
+  @Input() destroy: Subject<void>
   constructor(
     public userService: UserService,
     public router: Router
@@ -55,5 +58,9 @@ export class ProfileBodyC implements OnInit {
     );
     this.challenges = challengesNew.reverse();
     for (let i = this.pag; i < this.pag + 6; i++) if (this.challenges[i]) this.show.push(this.challenges[i]);
+  }
+  ngOnDestroy(): void {
+    console.log("destroy")
+    
   }
 }

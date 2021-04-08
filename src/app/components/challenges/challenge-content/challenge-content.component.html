@@ -47,16 +47,16 @@ style="
         border-radius: 20px;
       "
       loop
-      [id]="Challenge.challenged.media + Challenge._id"
+      [id]="Challenge.challenged.media + Challenge._id + random"
     >
       <source
         [src]="Challenge.challenged.media | safeUrl"
-        [id]="Challenge.challenged.media + Challenge._id"
+        [id]="Challenge.challenged.media + Challenge._id + random"
         type="video/mp4"
       />
       <source
         [src]="Challenge.challenged.media | safeUrl"
-        [id]="Challenge.challenged.media + Challenge._id"
+        [id]="Challenge.challenged.media + Challenge._id + random"
         type="video/ogg"
       />
       <br />

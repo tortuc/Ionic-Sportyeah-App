@@ -21,19 +21,11 @@
             [state]="user.estado"
             [username]="user.username"
           ></profile-header-c>
-          <!-- <ion-segment (ionChange)="segmentChanged($event)"> -->
-          <!-- <ion-segment style="background-color: white;">
-            <ion-segment-button value="friends">
-              <ion-label>Desafios</ion-label>
-            </ion-segment-button>
-            <ion-segment-button value="friens">
-              <ion-label>Ranking</ion-label>
-            </ion-segment-button>
-          </ion-segment> -->
           <profile-body-c
             style="background-color: white;"
             *ngIf="challenges"
             [challenges]="challenges"
+            [destroy]="destroy"
           ></profile-body-c>
           <no-results *ngIf="!challenges || challenges.length < 1" name="No hay desafiós disponibles de" [result]="route.snapshot.params.username"></no-results>
          
