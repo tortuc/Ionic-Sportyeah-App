@@ -7,6 +7,7 @@ import { FormsModule } from "@angular/forms";
 import { IonicModule } from "@ionic/angular";
 import { ChallengesPageRoutingModule } from "./challenges-routing.module";
 import { ChallengesPage } from "./challenges.page";
+import { ScrollbarDirective } from "ion-custom-scrollbar";
 
 @NgModule({
   imports: [
@@ -18,6 +19,9 @@ import { ChallengesPage } from "./challenges.page";
     ComponentsModule,
     PipesModule,
   ],
-  declarations: [ChallengesPage],
+  declarations: [
+    ScrollbarDirective,
+    ChallengesPage
+  ],
 })
 export class ChallengesPageModule {}

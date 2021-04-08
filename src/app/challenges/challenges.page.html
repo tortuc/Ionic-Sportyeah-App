@@ -25,6 +25,7 @@
   style="margin: 0px"
   [scrollEvents]="true"
   (ionScroll)="sendScrollEvent()"
+  [scrollbar]="reusableCI.scrollbarStyle"  
 >
   <ion-fab-button color="secondary" (click)="create()" class="new"
     style="z-index:9999999999999999999999999"

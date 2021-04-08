@@ -25,6 +25,8 @@ import { IonCustomScrollbarModule } from 'ion-custom-scrollbar';
     DirectivesModule,
     IonCustomScrollbarModule
   ],
-  declarations: [ProfileChallengePage]
+  declarations: [
+    ProfileChallengePage
+  ]
 })
 export class ProfileChallengePageModule {}
