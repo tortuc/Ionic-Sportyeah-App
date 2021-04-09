@@ -83,7 +83,6 @@ export class RakingYearComponent implements OnInit,OnChanges {
       
       this.rankingService.getRankingCommentsDay(this.userService.User._id,country,this.dayStart,this.dayEnd).pipe(take(1))
       .subscribe((resp)=>{
-        console.log(resp);
         this.ranking = resp.ranking
         this.myPosition = resp.myPosition
         this.total = resp.total
@@ -98,7 +97,6 @@ export class RakingYearComponent implements OnInit,OnChanges {
       
       this.rankingService.getRankingSharedsDay(this.userService.User._id,country,this.dayStart,this.dayEnd).pipe(take(1))
       .subscribe((resp)=>{
-        console.log(resp);
         this.ranking = resp.ranking
         this.myPosition = resp.myPosition
         this.total = resp.total
@@ -113,7 +111,6 @@ export class RakingYearComponent implements OnInit,OnChanges {
       
       this.rankingService.getRankingViewsDay(this.userService.User._id,country,this.dayStart,this.dayEnd).pipe(take(1))
       .subscribe((resp)=>{
-        console.log(resp);
         this.ranking = resp.ranking
         this.myPosition = resp.myPosition
         this.total = resp.total

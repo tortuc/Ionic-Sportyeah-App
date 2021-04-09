@@ -28,13 +28,13 @@ export class RankingSinceEverComponent implements OnInit,OnChanges {
   @Input() country:boolean 
   @Input() segment:any 
   ngOnInit() {
-
- 
+    console.log(this.segment);
+    
   }
 
  
   ngOnChanges(){
-    
+
     this.getData()
   }
 
@@ -65,6 +65,10 @@ export class RankingSinceEverComponent implements OnInit,OnChanges {
         this.getViewsData(country)
         break;
 
+      case '4':
+        this.getFollowerData(country)
+        break;
+
       default:
         break;
     }
@@ -87,7 +91,6 @@ export class RankingSinceEverComponent implements OnInit,OnChanges {
     
     this.rankingService.getRankingCommentsAllTime(this.userService.User._id,country).pipe(take(1))
     .subscribe((resp)=>{
-      
       this.ranking = resp.ranking
       this.myPosition = resp.myPosition
       this.total = resp.total
@@ -102,7 +105,6 @@ export class RankingSinceEverComponent implements OnInit,OnChanges {
     
     this.rankingService.getRankingSharedsAllTime(this.userService.User._id,country).pipe(take(1))
     .subscribe((resp)=>{
-      
       this.ranking = resp.ranking
       this.myPosition = resp.myPosition
       this.total = resp.total
@@ -127,6 +129,18 @@ export class RankingSinceEverComponent implements OnInit,OnChanges {
     },(e)=>{
       console.error(e);
       
+    })
+  }
+
+  getFollowerData(country){
+    this.rankingService.getRankingFollowersAllTime(this.userService.User._id,country).pipe(take(1))
+    .subscribe((resp)=>{
+      console.log(resp);
+      
+      this.ranking = resp.ranking
+      this.myPosition = resp.myPosition
+      this.total = resp.total
+      this.load = true
     })
   }
 

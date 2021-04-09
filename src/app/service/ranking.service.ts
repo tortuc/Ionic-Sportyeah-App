@@ -40,6 +40,10 @@ export class RankingService {
     return this.http.get<IRanking>(`${this.route}/views/ever/${user}/${country}`)
   }
 
+  getRankingFollowersAllTime(user,country){
+    return this.http.get<IRanking>(`${this.route}/followers/ever/${user}/${country}`)
+  }
+
   getRankingReactionsDay(user,country,dateStart,dateEnd){
     return this.http.get<IRanking>(`${this.route}/reactions/day/${user}/${country}/${dateStart}/${dateEnd}`)
   }

@@ -27,13 +27,15 @@ export class ReadComponent implements OnInit {
     this.newsService.findById(id).toPromise()
     .then((response:any)=>{
       this.news = response
-    })
+      this.notified = response.news.question?response.post.question.notified:undefined    })
     .catch((err)=>{
       this.news = 404
     })
    }
 news = undefined;
 item = undefined;
+notified = null
+
   ngOnInit() {
   }
 

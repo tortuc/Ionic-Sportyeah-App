@@ -27,6 +27,7 @@ export class RankingTodayComponent implements OnInit,OnChanges {
   @Input() segment:any 
 
   ngOnInit() {
+
   }
   ngOnChanges(){
     this.getData()
@@ -114,7 +115,6 @@ dayEnd
       
     this.rankingService.getRankingViewsDay(this.userService.User._id,country,this.dayStart,this.dayEnd).pipe(take(1))
     .subscribe((resp)=>{
-      console.log(resp);
       this.ranking = resp.ranking
       this.myPosition = resp.myPosition
       this.total = resp.total
