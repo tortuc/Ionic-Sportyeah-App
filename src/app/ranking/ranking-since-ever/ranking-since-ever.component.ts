@@ -119,8 +119,6 @@ export class RankingSinceEverComponent implements OnInit,OnChanges {
     
     this.rankingService.getRankingViewsAllTime(this.userService.User._id,country).pipe(take(1))
     .subscribe((resp)=>{
-      console.log(resp);
-      
       this.ranking = resp.ranking
       this.myPosition = resp.myPosition
       this.total = resp.total
@@ -135,12 +133,13 @@ export class RankingSinceEverComponent implements OnInit,OnChanges {
   getFollowerData(country){
     this.rankingService.getRankingFollowersAllTime(this.userService.User._id,country).pipe(take(1))
     .subscribe((resp)=>{
-      console.log(resp);
-      
       this.ranking = resp.ranking
       this.myPosition = resp.myPosition
       this.total = resp.total
       this.load = true
+    },(e)=>{
+      console.error(e);
+      
     })
   }
 

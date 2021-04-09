@@ -59,4 +59,8 @@ export class RankingService {
   getRankingViewsDay(user,country,dateStart,dateEnd){
     return this.http.get<IRanking>(`${this.route}/views/day/${user}/${country}/${dateStart}/${dateEnd}`)
   }
+
+  getRankingFollowersDay(user,country,dateStart,dateEnd){
+    return this.http.get<IRanking>(`${this.route}/followers/day/${user}/${country}/${dateStart}/${dateEnd}`)
+  }
 }

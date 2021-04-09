@@ -63,6 +63,10 @@ export class RankingMonthComponent implements OnInit , OnChanges {
         this.getViewsData(country)
         break;
 
+      case '4':
+        this.getFollowersData(country)
+        break;
+
       default:
         break;
     }
@@ -114,6 +118,22 @@ dayEnd
   getViewsData(country){
       
     this.rankingService.getRankingViewsDay(this.userService.User._id,country,this.dayStart,this.dayEnd).pipe(take(1))
+    .subscribe((resp)=>{
+      this.ranking = resp.ranking
+      this.myPosition = resp.myPosition
+      this.total = resp.total
+      this.load = true
+    },(e)=>{
+      console.error(e);
+      
+    })
+
+  }
+
+
+  getFollowersData(country){
+      
+    this.rankingService.getRankingFollowersDay(this.userService.User._id,country,this.dayStart,this.dayEnd).pipe(take(1))
     .subscribe((resp)=>{
       this.ranking = resp.ranking
       this.myPosition = resp.myPosition

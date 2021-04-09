@@ -488,3 +488,57 @@ style="text-align: center">
 </h1>
 </div>
 
+
+<div
+  style="border-radius: 5px; width: 96%; margin-left: auto; margin-right: auto"
+  *ngIf="segment == 4  && (myPosition >= 3 || (myPosition == 1 && ranking.length == 0) )"
+>
+  <div style="padding: 10px; text-align: center">
+    <img
+      src="https://i.pinimg.com/originals/b0/53/fb/b053fbc7aac21ef8877679d6e0a934d0.gif"
+      style="height: 100px"
+      alt=""
+    />
+  </div>
+  <h1 *ngIf="myPosition == 1 && ranking.length == 0" style="text-align: center">
+    Aun no han empezado a seguirte, enceuntra a tus amigos para escalar en el Ranking !
+  </h1>
+  <h1 *ngIf="myPosition >= 3 " style="text-align: center">
+    <strong style="font-size: larger">{{ myPosition + 1 }}°</strong> Lugar. Sigue
+    conociento personas para subir en el ranking!
+  </h1>
+  <!--<div style="text-align: center; padding: 5px">
+     <ion-button (click)="presentModal()" fill="outline" class="btn-outline-blue"
+      >Crear publicación</ion-button
+    >
+    <ion-button fill="outline" class="btn-outline-blue"
+      >Buscar amigos</ion-button
+    >
+  </div> -->
+  <!-- <h1 *ngIf="myPosition >= 3|| (myPosition == 1 && ranking.length == 0) " style="text-align: center">
+    <strong style="font-size: larger">{{ myPosition }}°</strong> Lugar. Sigue
+    compartiendo buenas publicaciones para subir en el ranking!
+  </h1> -->
+</div>
+<div
+style="border-radius: 5px; width: 96%; margin-left: auto; margin-right: auto"
+*ngIf="segment == 4 &&  (myPosition <= 2 && total != 0)"> 
+<div style="padding: 10px; text-align: center">
+  <img
+     *ngIf="myPosition <= 3" 
+      src="https://i.pinimg.com/originals/d2/61/4e/d2614e2f62dd59b9dfe66e63da15e5e7.gif"
+      style="height: 100px"
+      alt=""
+    />
+</div>
+<h1 *ngIf="myPosition > 1" style="text-align: center">
+  <strong  style="font-size: larger">{{ myPosition }}°</strong> Lugar. realacionandote con personas
+   para subir en el ranking!
+</h1>
+<h1 *ngIf="myPosition == 1" 
+style="text-align: center">
+  <strong  style="font-size: larger">{{ myPosition }}°</strong> Lugar. ¡Felicitaciones eres
+  el número 1 en el ranking!
+</h1>
+</div>
+
