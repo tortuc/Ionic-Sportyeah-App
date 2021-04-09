@@ -15,6 +15,7 @@ import {
 } from "@angular/core";
 import { ChallengeService, IChallenge } from "../service/challenge.service";
 import { ChallengeCommentsComponent } from "../components/challenges/challenge-comments/challenge-comments.component";
+import { ReusableComponentsIonic } from "../service/ionicHelpers.service";
 
 @Component({
   selector: "app-challenges",
@@ -50,10 +51,14 @@ export class ChallengesPage implements OnInit {
     public translate: TranslateService,
     public mc: ModalController,
     public challengeService: ChallengeService,
-    public userService: UserService
+    public userService: UserService,
+    public reusableCI: ReusableComponentsIonic
   ) {}
 
   ngOnInit() {}
+  ionViewWillLeave(){
+    this.destroy.next()
+  }
   init() {
     this.destroy.next();
     this.index = 0;
@@ -240,10 +245,6 @@ export class ChallengesPage implements OnInit {
     if (this.challenges[this.index])
       this.showc.push(this.challenges[this.index]);
     this.infiniteScroll.complete();
-  }
-
-  ionViewWillLeave() {
-    this.destroyVid();
   }
 
   destroyVid() {

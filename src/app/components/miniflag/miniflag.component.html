@@ -1,5 +1,5 @@
 <img
-  *ngIf="!user.geo?.flag && !edit"
+  *ngIf="!user?.geo?.flag && !edit"
   class="bandera"
   [src]="
     'https://www.countryflags.io/' +
@@ -11,7 +11,7 @@
 />
 
 <img
-  *ngIf="user.geo?.flag && !edit"
+  *ngIf="user?.geo?.flag && !edit"
   class="bandera"
   [src]="
     user.geo?.flag
@@ -20,7 +20,7 @@
 />
 
 <img
-  *ngIf="!user.geo?.flag && edit"
+  *ngIf="!user?.geo?.flag && edit"
   style="width: 100px;"
   (click)="editM()"
   [src]="
@@ -33,7 +33,7 @@
 />
 
 <img
-  *ngIf="user.geo?.flag && edit"
+  *ngIf="user?.geo?.flag && edit"
   style="width: 100px;"
   (click)="editM()"
   [src]="

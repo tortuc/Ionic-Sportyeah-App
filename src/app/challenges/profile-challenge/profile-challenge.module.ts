@@ -11,6 +11,7 @@ import { ProfileChallengePage } from './profile-challenge.page';
 import { ComponentsModule } from 'src/app/components/components.module';
 import { PipesModule } from 'src/app/pipes/pipes.module';
 import { DirectivesModule } from 'src/app/directives/directive.module';
+import { IonCustomScrollbarModule } from 'ion-custom-scrollbar';
 
 @NgModule({
   imports: [
@@ -21,8 +22,11 @@ import { DirectivesModule } from 'src/app/directives/directive.module';
     ComponentsModule,
     TranslateModule,
     PipesModule,
-    DirectivesModule
+    DirectivesModule,
+    IonCustomScrollbarModule
   ],
-  declarations: [ProfileChallengePage]
+  declarations: [
+    ProfileChallengePage
+  ]
 })
 export class ProfileChallengePageModule {}

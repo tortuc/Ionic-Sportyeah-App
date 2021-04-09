@@ -95,6 +95,9 @@ import { QuestionNotificationComponent } from "./question-notification/question-
 import { QuestionCommentComponent } from "./question-comment/question-comment.component";
 import { NoResults } from './no-results/no-results.component';
 import { ProfilHeaderC } from './profile-challenges/profile-header-c.components';
+import { ProfileBodyC } from './profile-challenges/profile-body-c.component';
+import { FollowBtnC } from './profile-challenges/follow-c.component';
+import { FollowBtn } from './profile-challenges/follow-btn.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -196,7 +199,7 @@ import { ProfilHeaderC } from './profile-challenges/profile-header-c.components'
     QuestionCommentComponent,
     MiniflagComponent,
     ModalMiniFlagComponent,
-    NoResults,ProfilHeaderC
+    NoResults,ProfilHeaderC,ProfileBodyC,FollowBtnC,FollowBtn
   ],
   exports: [
     ImageComponent,
@@ -282,7 +285,7 @@ import { ProfilHeaderC } from './profile-challenges/profile-header-c.components'
     MiniflagComponent,
     ModalMiniFlagComponent,
     NoResults,
-    ProfilHeaderC
+    ProfilHeaderC,ProfileBodyC,FollowBtnC,FollowBtn
   ],
 })
 export class ComponentsModule {}

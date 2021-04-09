@@ -32,4 +32,8 @@ export class ChallengesPostHeaderComponent implements OnInit {
     });
     await pop.present()
   }
+
+  goToProfile(username: string){
+    this.router.navigateByUrl('challenges/'+username)
+  }
 }

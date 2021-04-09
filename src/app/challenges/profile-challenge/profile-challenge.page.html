@@ -9,13 +9,37 @@
 
 <ion-content class="text-center"  [scrollbar]="reusableCI.scrollbarStyle">
   <ion-spinner class="spinner" *ngIf="!user && !noUser"></ion-spinner>
-  <no-results *ngIf="noUser" element="usuario" [result]="route.snapshot.params.username"></no-results>
-  <div class="content" *ngIf="user">
-    <profile-header-c
-      [photo]="user.photo"
-      [banner]="user.photoBanner"
-      [state]="user.estado"
-      [username]="user.username"
-    ></profile-header-c>
-  </div>
+  <no-results *ngIf="noUser" name="No hay resultado disponible para el usuario " [result]="route.snapshot.params.username"></no-results>
+  
+  <ion-grid>
+    <ion-row>
+      <ion-col size-md="12" size-sm="12" size-xs="12">
+        <div class="content" *ngIf="user">
+          <profile-header-c
+            [photo]="user.photo"
+            [banner]="user.photoBanner"
+            [state]="user.estado"
+            [username]="user.username"
+            [user]="user"
+          ></profile-header-c>
+          <profile-body-c
+            style="background-color: white;"
+            *ngIf="challenges"
+            [challenges]="challenges"
+            [destroy]="destroy"
+          ></profile-body-c>
+          <no-results *ngIf="!challenges || challenges.length < 1" name="No hay desafiós disponibles de" [result]="route.snapshot.params.username"></no-results>
+         
+        </div>
+      </ion-col>
+      <!-- <ion-col
+        size-lg="4"
+        fxShow.lt-md="false"
+        class="ion-justify-content-center ion-align-items-center"
+      >
+        <friends-panel-desktop></friends-panel-desktop>
+      </ion-col> -->
+    </ion-row>
+  </ion-grid>
+  
 </ion-content>

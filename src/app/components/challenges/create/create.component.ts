@@ -16,6 +16,7 @@ import { ImgVideoUpload } from "src/app/service/reusable-img-video-logic.service
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Component, OnInit, ViewChild, ElementRef, Input } from "@angular/core";
 import { ToastController, ModalController } from "@ionic/angular";
+import { ReusableComponentsIonic } from "src/app/service/ionicHelpers.service";
 
 @Component({
   selector: "app-create",
@@ -56,7 +57,8 @@ export class CreateChallengeComponent implements OnInit {
     public alert: AlertController,
     public loadingController: LoadingController,
     public userService: UserService,
-    public challengeService: ChallengeService
+    public challengeService: ChallengeService,
+    public reusableCI: ReusableComponentsIonic
   ) {}
 
   ngOnInit() {

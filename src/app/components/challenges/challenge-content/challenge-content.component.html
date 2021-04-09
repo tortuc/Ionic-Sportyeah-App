@@ -1,24 +1,15 @@
-<div (click)="pause()" *ngIf="Mostrar" class="" 
-  style="
+
+<div 
+(click)="pause()" 
+style="
   height: 100%;
+  position:relative;
+  border-radius: 20px;
+  text-align: center;
+  background-color: black;
   "
 >
-  <div
-    style="
-      position: fixed;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-      overflow: hidden;
-    "
-    *ngIf="individual"
-  >
-    <video muted class="videoBack">
-      <source [src]="Challenge.challenged.media | safeUrl" type="video/mp4" />
-      <source [src]="Challenge.challenged.media | safeUrl" type="video/ogg" />
-    </video>
-  </div>
+  <ion-spinner *ngIf="!Mostrar" style="height: 100%; width: 10%; color:white; z-index: 999999999999999;"></ion-spinner>
   <div
     style="
       top: 0;
@@ -30,6 +21,7 @@
       margin-bottom: auto;
       position:relative;
     "
+    [hidden]="!Mostrar"
   >
     <img
       src="https://img.icons8.com/ios-filled/100/000000/circled-play.png"
@@ -52,24 +44,25 @@
       style="
         margin-top: auto; 
         margin-bottom: auto; 
+        border-radius: 20px;
       "
       loop
-      [id]="Challenge.challenged.media + Challenge._id"
+      [id]="Challenge.challenged.media + Challenge._id + random"
     >
       <source
         [src]="Challenge.challenged.media | safeUrl"
-        [id]="Challenge.challenged.media + Challenge._id"
+        [id]="Challenge.challenged.media + Challenge._id + random"
         type="video/mp4"
       />
       <source
         [src]="Challenge.challenged.media | safeUrl"
-        [id]="Challenge.challenged.media + Challenge._id"
+        [id]="Challenge.challenged.media + Challenge._id + random"
         type="video/ogg"
       />
       <br />
     </video>
     <span 
-      *ngIf="chain"
+      *ngIf="chain && scrollEvent"
       class="movement iconChain" 
       style="bottom: 50px; left:20px"
     >
@@ -86,6 +79,7 @@
       />
     </span>
     <app-challenges-post-options
+      *ngIf="scrollEvent"
       [Challenge]="Challenge"
       [pause]="pauseS"
     ></app-challenges-post-options>

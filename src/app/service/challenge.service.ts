@@ -90,4 +90,8 @@ export class ChallengeService {
   deleteChallenge(_id: string){
     return this.http.get(`${this.route}/delete/${_id}`);
   }
+
+  getUserChallenge(_id:string){
+    return this.http.get(`${this.route}/getUserChallenge/${_id}`)
+  }
 }

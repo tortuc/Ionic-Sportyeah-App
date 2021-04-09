@@ -29,9 +29,11 @@ export class ChallengeContentComponent implements OnInit {
   public video2 = null;
   public src2 = null;
   public oneVideo: boolean = null;
-  public Mostrar: boolean = true;
+  public Mostrar: boolean = false;
   public intervalID: any = null;
   public paused: boolean = false;
+  destroyBool: boolean = false;
+  random: number = Math.random() * (100 - 1) + 1;
 
   constructor(
     public userService: UserService,
@@ -46,49 +48,63 @@ export class ChallengeContentComponent implements OnInit {
     setTimeout(()=>{
       if (
         document.getElementById(
-          this.Challenge.challenged.media + this.Challenge._id
+          this.Challenge.challenged.media + this.Challenge._id + this.random
         ) !== null 
       ) {
         // INICIALIZA EL VIDEOS
         this.initOneVideo();
         // PAUSA UN VIDEO
-        this.pauseS.subscribe(() => {
-          this.video.pause();
+        if(this.pauseS)
+        this.pauseS.subscribe(async () => {
+          await this.video.pause();
           this.pauseVideo = true;
         });
         // VERIFICA SI HUBO UN SCROLL PARA VER QUE VIDEO QUEDO ACTIVO.
+        if(this.scrollEvent)
         this.scrollEvent$ = this.scrollEvent.subscribe(() => {
           this.isScrolledIntoView();
         });
         // SI NO ENCONTRO EL VIDEO INICIALIZADO VUELVE A INTENTAR
-      } else setTimeout(() => this.ngOnInit(), 1500);
+      }
+      else if (this.destroyBool === false) {
+
+      } 
+      else setTimeout(() => this.ngOnInit(), 1500);
     },2000)
   }
 
   initOneVideo() {
+    this.Mostrar = true
     this.video = <HTMLVideoElement>(
       document.getElementById(
-        this.Challenge.challenged.media + this.Challenge._id
+        this.Challenge.challenged.media + this.Challenge._id + this.random
       )
     );
     this.src = <HTMLSourceElement>(
       document.getElementById(
-        this.Challenge.challenged.media + this.Challenge._id
+        this.Challenge.challenged.media + this.Challenge._id + this.random
       )
     );
     this.video.pause();
     this.paused = true;
     this.oneVideo = true;
+    if(this.scrollEvent === undefined){
+      this.video.play().then(()=>{
+        this.video.muted = true
+      })
+    }
     this.isScrolledIntoView();
   }
   subscribeDestroy() {
-    this.destroy.pipe(take(1)).subscribe(() => {
-      if(this.scrollEvent$ !== undefined) {
-        this.scrollEvent$.unsubscribe();
-      }
-      this.destroyOneVideo();
-      this.Mostrar = false;
-    });
+    if(this.destroy)
+      this.destroy.pipe(take(1)).subscribe(() => {
+        if(this.scrollEvent$ !== undefined) {
+          this.scrollEvent$.unsubscribe();
+        }
+        this.destroyOneVideo();
+        this.Mostrar = false;
+        this.destroyBool = true;
+      });
   }
 
   destroyOneVideo() {
@@ -97,7 +113,7 @@ export class ChallengeContentComponent implements OnInit {
       this.video.load();
       this.video.pause();
       this.video.remove();
-    }
+    }else{setTimeout(()=>this.destroyOneVideo(),500)}
   }
 
   destroyTwoVideos() {
@@ -108,7 +124,7 @@ export class ChallengeContentComponent implements OnInit {
   }
 
   // FUNCION QUE VERIFICA SI ESTA EL VIDEO EN PANTALLA PARA ACTIVARLO.
-  isScrolledIntoView() {
+  async isScrolledIntoView() {
     const rect = this.video.getBoundingClientRect();
     const topShown = rect.top >= 0;
     const bottomShown = rect.bottom <= window.innerHeight;
@@ -117,17 +133,20 @@ export class ChallengeContentComponent implements OnInit {
         if (!this.pauseVideo) {
             if (
               document.getElementById(
-                this.Challenge.challenged.media + this.Challenge._id
+                this.Challenge.challenged.media + this.Challenge._id + this.random
               ) !== null 
             ) {
-              this.video.play();
+              this.video.play().then(()=>{
+                this.paused = false;
+                this.viewVerified ? null : this.verifyViews();
+              });
             }
-            this.paused = false;
-            this.viewVerified ? null : this.verifyViews();
+           
         }
       } else {
+        console.log("pause")
         if (!this.paused && this.video !== null) {
-          this.video.pause();
+          await this.video.pause();
           this.paused = true;
         }
       }
@@ -150,22 +169,25 @@ export class ChallengeContentComponent implements OnInit {
         (e) => {}
       );
   }
-  pause() {
+  async pause() {
     if (
       document.getElementById(
-        this.Challenge.challenged.media + this.Challenge._id
+        this.Challenge.challenged.media + this.Challenge._id + this.random
       ) !== null 
     ) {
 
       if (!this.pauseVideo && this.video) {
+        await this.video.pause()
+        console.log("paused")
         this.pauseVideo = true;
         this.paused = true;
-        this.video.pause();
       } else {
         if(this.video){
-          this.pauseVideo = false;
-          this.paused = false
-          this.video.play();
+          this.video.play().then(()=>{
+            console.log("played")
+            this.pauseVideo = false;
+            this.paused = false
+          });
         }
       }
 
