@@ -67,6 +67,9 @@ export class RankingWeekComponent implements OnInit,OnChanges{
         this.getFollowerData(country)
         break;
     
+      case '5':
+          this.getViewsProfileSearchByTime(country)
+          break;
       default:
         break;
     }
@@ -140,8 +143,23 @@ dayEnd
     },(e)=>{
       console.error(e);
     })
-
   }
+
+  getViewsProfileSearchByTime(country){
+    
+    this.rankingService.getViewsProfileSearchByTime(this.userService.User._id,country,this.dayStart,this.dayEnd).pipe(take(1))
+    .subscribe((resp)=>{
+      console.log(resp);
+
+      this.ranking = resp.ranking
+      this.myPosition = resp.myPosition
+      this.total = resp.total
+      this.load = true
+    },(e)=>{
+      console.error(e);
+    })
+  }
+
 
   
 
@@ -154,7 +172,13 @@ dayEnd
       .subscribe(
         (resp:any)=>{
           this.viewsProfileService
-            .updateProfileView(this.userService.User._id, resp.user._id,'ranking',null)
+          .createProfileView(
+            { user:resp.user._id,
+             visitor:this.userService.User._id,
+             from:"ranking",
+             link: null
+           }
+           )
             .subscribe((response) => {
               this.router.navigate([`/user/${username}`])
             });

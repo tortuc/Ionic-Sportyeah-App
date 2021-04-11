@@ -16,9 +16,13 @@ constructor(
   public questionService:QuestionService,
 ) { }
 
-  ngOnInit() {
+  ngOnInit() {    
+    console.log(this.data);
     this.questionService.findById(this.data._id).subscribe((response:any)=>{
+      console.log(response);
+
       this.question = response.questionGroup[0];
+
     })
   }
 

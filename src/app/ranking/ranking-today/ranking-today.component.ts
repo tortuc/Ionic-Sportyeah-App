@@ -149,7 +149,13 @@ dayEnd
       .subscribe(
         (resp:any)=>{
           this.viewsProfileService
-            .updateProfileView(this.userService.User._id, resp.user._id,'ranking',null)
+          .createProfileView(
+            { user:resp.user._id,
+             visitor:this.userService.User._id,
+             from:"ranking",
+             link: null
+           }
+           )
             .subscribe((response) => {
               this.router.navigate([`/user/${username}`])
             });

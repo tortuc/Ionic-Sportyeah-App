@@ -292,12 +292,14 @@ export class NewCommentComponent implements OnInit {
 }
 
 
-//Esto crea un post con cuestionario  
+//Esto crea una noticia con cuestionario  
 createdCommnetNews(comment,loading){
   this.questionService.create(this.question).subscribe((response:any)=>{//Crea el cuestionario y agrega el id al post
     
     comment.question = response._id  
     comment.news = this.news._id;
+    // console.log(comment);
+    //  loading.dismiss();
     this.newsService
       .newComment(comment)
       .toPromise()
@@ -328,8 +330,6 @@ createCommnetAndQuestionNews(news: any,loading) {
     this.badDate = false;
     this.createdCommnetNews(news,loading)
   }
-
 }
-
 
 }

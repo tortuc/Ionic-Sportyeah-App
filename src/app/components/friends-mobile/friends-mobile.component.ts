@@ -38,12 +38,13 @@ export class FriendsMobileComponent implements OnInit {
     } else {
       this.userService.getUserByUsername(username).subscribe((resp: any) => {
         this.viewsProfileService
-          .updateProfileView(
-            this.userService.User._id,
-            resp.user._id,
-            "search",
-            null
-          )
+        .createProfileView(
+          { user:resp.user._id,
+           visitor:this.userService.User._id,
+           from:"search",
+           link: null
+         }
+         )
           .subscribe((response) => {
             this.router.navigate([`/user/${username}`]);
           });

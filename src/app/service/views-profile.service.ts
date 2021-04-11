@@ -11,6 +11,19 @@ export class ViewsProfileService {
     public http:HttpClient
   ) { }
 
+
+/**
+   * Crea las vista realizadas a un perfil
+   * @param id `_id` del view profile
+   * @param user `_id` del usuario
+   */
+ createProfileView(view){
+   console.log(view);
+   
+  return this.http.post(`${environment.URL_API}/viewsProfile/create`,view)
+}
+
+
  /**
    * Actualiza las vista realizadas a un perfil
    * @param id `_id` del view profile

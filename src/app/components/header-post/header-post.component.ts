@@ -49,7 +49,14 @@ export class HeaderPostComponent implements OnInit {
       .subscribe(
         (resp:any)=>{
           this.viewsProfileService
-            .updateProfileView(this.userService.User._id, resp.user._id,'post',`/post/${post_id}`)
+          .createProfileView(
+            {
+             user:resp.user._id,
+             visitor:this.userService.User._id,
+             from:"post",
+             link:`/post/${post_id}`
+           }
+           )
             .subscribe((response) => {
               this.router.navigate([`/user/${username}`])
             });

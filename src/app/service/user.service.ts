@@ -250,7 +250,14 @@ export class UserService {
       this.getUserByUsername(username)
       .subscribe(
         (resp:any)=>{
-          this.viewsProfileService.updateProfileView(this.User._id, resp.user._id,from,link!=null?`${link}`:link)
+          this.viewsProfileService
+          .createProfileView(
+            { user:resp.user._id,
+             visitor:this.User._id,
+             from:from,
+             link: link!=null?`${link}`:link
+           }
+           )
             .subscribe((response) => {
               this.router.navigate([`/user/${username}`])
             });

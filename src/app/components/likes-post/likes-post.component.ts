@@ -41,7 +41,13 @@ export class LikesPostComponent implements OnInit {
       .subscribe(
         (resp:any)=>{
           this.viewsProfileService
-            .updateProfileView(this.userService.User._id, resp.user._id,'reaction',`/post/${this.idPost}`)
+          .createProfileView(
+            { user:resp.user._id,
+             visitor:this.userService.User._id,
+             from:"reaction",
+             link: `/post/${this.idPost}`
+           }
+           )
             .subscribe((response) => {
               this.router.navigate([`/user/${username}`])
             });

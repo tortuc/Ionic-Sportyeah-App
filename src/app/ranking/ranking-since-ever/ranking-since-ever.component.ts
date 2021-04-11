@@ -28,7 +28,6 @@ export class RankingSinceEverComponent implements OnInit,OnChanges {
   @Input() country:boolean 
   @Input() segment:any 
   ngOnInit() {
-    console.log(this.segment);
     
   }
 
@@ -69,6 +68,10 @@ export class RankingSinceEverComponent implements OnInit,OnChanges {
         this.getFollowerData(country)
         break;
 
+      case '5':
+        this.getSearchData(country)
+        break;
+
       default:
         break;
     }
@@ -76,9 +79,10 @@ export class RankingSinceEverComponent implements OnInit,OnChanges {
   }
 
   getLikesData(country){
-    
+
     this.rankingService.getRankingReactionsAllTime(this.userService.User._id,country).pipe(take(1))
     .subscribe((resp)=>{
+      
       this.ranking = resp.ranking
       this.myPosition = resp.myPosition
       this.total = resp.total
@@ -91,6 +95,8 @@ export class RankingSinceEverComponent implements OnInit,OnChanges {
     
     this.rankingService.getRankingCommentsAllTime(this.userService.User._id,country).pipe(take(1))
     .subscribe((resp)=>{
+      console.log(resp);
+
       this.ranking = resp.ranking
       this.myPosition = resp.myPosition
       this.total = resp.total
@@ -143,6 +149,21 @@ export class RankingSinceEverComponent implements OnInit,OnChanges {
     })
   }
 
+  getSearchData(country){
+        
+    this.rankingService.getViewsProfileAllTime(this.userService.User._id,country).subscribe((resp)=>{
+      console.log(resp);
+      
+      this.ranking = resp.ranking
+      this.myPosition = resp.myPosition
+      this.total = resp.total
+      this.load = true
+    },(e)=>{
+      console.error(e);
+      
+    })
+  }
+
   goToProfile(id,username){
     if(id == this.userService.User._id){
       this.router.navigate(["/profile"])
@@ -152,7 +173,13 @@ export class RankingSinceEverComponent implements OnInit,OnChanges {
       .subscribe(
         (resp:any)=>{
           this.viewsProfileService
-            .updateProfileView(this.userService.User._id, resp.user._id,'ranking',null)
+          .createProfileView(
+            { user:resp.user._id,
+             visitor:this.userService.User._id,
+             from:"ranking",
+             link: null
+           }
+           )
             .subscribe((response) => {
               this.router.navigate([`/user/${username}`])
             });

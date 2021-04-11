@@ -50,6 +50,7 @@ export class PostPage implements OnInit {
     .then((post:any)=>{
       this.item = post
       this.notified = post.post.question?post.post.question.notified:undefined
+      console.log(this.item)
     })
     .catch((err)=>{
       // handle err
@@ -87,7 +88,13 @@ export class PostPage implements OnInit {
         .subscribe(
           (resp:any)=>{
             this.viewsProfileService
-              .updateProfileView(this.userService.User?._id, resp.user?._id,'comment',`/post/${this.item.post._id}`)
+            .createProfileView(
+              { user:resp.user._id,
+               visitor:this.userService.User._id,
+               from:"comment",
+               link: `/post/${this.item.post._id}`
+             }
+             )
               .subscribe((response) => {
                 this.router.navigate([`/user/${username}`])
               });

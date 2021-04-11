@@ -18,20 +18,22 @@ export class ReadComponent implements OnInit {
     public userService:UserService,
 
   ) {
-    this.idNews =route.snapshot.paramMap.get('id')
+    this.idNews = route.snapshot.paramMap.get('id')
     this.getNews(this.idNews )
-   
     }
     idNews
-   getNews(id){
-    this.newsService.findById(id).toPromise()
+   async getNews(id){
+    await this.newsService.findById(id).toPromise()
     .then((response:any)=>{
       this.news = response
-      this.notified = response.news.question?response.post.question.notified:undefined    })
+   })
     .catch((err)=>{
       this.news = 404
     })
-   }
+    this.notified = this.news.news.question? this.news.news.question.notified:undefined 
+    console.log(this.news);
+    
+  }
 news = undefined;
 item = undefined;
 notified = null
