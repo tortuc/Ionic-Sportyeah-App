@@ -27,3 +27,8 @@ mongo --host mongo-db.clidhjqvcjng.eu-west-3.docdb.amazonaws.com:27017 --usernam
 `
 ssh ubuntu@35.180.14.40
 `
+
+
+#BORRAR
+
+tareas 

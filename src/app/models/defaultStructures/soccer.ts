@@ -346,12 +346,20 @@ export class Soccer {
    * Estructura para soccer
    */
 
+  estructuraClub: NodeStructure = new NodeStructure(
+    [`${this.assetsRoute}7.jpg`],
+    [this.DMasculina,this.DMasculina],
+    `Estructura Club`,
+    `Estructura Club`,
+    `Esta es la estructura de nuestro club`,
+    false
+  )
+
   structure: NodeStructure = new NodeStructure(
     [this.defaultImg],
     [
       this.organigrama,
-      this.DMasculina,
-      this.DFemenino
+      this.estructuraClub
     ],
     `Club`,
     `Nuestro Gran Club`,
