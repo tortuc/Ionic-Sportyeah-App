@@ -30,7 +30,7 @@
               <!--  <div class="connectedDIVlittle" *ngIf="(item.chat.sender?._id != userService.User?._id)?item.chat.sender?.connected:item.chat.receiver?.connected"></div> -->
             </ion-avatar>
 
-            <div style="text-align: center; height: 30px; cursor: pointer">
+            <div style="text-align: center; height: 30px; cursor: pointer" class="ajusteFuente">
               {{ ranking[1]._id.user.name }} {{ ranking[1]._id.user.last_name }}
             </div>
           </div>
@@ -83,7 +83,7 @@
               <img [src]="ranking[0]?._id.user.photo" />
               <!--  <div class="connectedDIVlittle" *ngIf="(item.chat.sender?._id != userService.User?._id)?item.chat.sender?.connected:item.chat.receiver?.connected"></div> -->
             </ion-avatar>
-            <div style="text-align: center; height: 30px">
+            <div style="text-align: center; height: 30px" class="ajusteFuente">
               {{ ranking[0]?._id.user.name }}
               {{ ranking[0]?._id.user.last_name }}
             </div>
@@ -137,7 +137,7 @@
               <img [src]="ranking[2]?._id.user.photo" />
               <!--  <div class="connectedDIVlittle" *ngIf="(item.chat.sender?._id != userService.User?._id)?item.chat.sender?.connected:item.chat.receiver?.connected"></div> -->
             </ion-avatar>
-            <div style="text-align: center; height: 30px">
+            <div style="text-align: center; height: 30px" class="ajusteFuente">
               {{ ranking[2]?._id.user.name }}
               {{ ranking[2]?._id.user.last_name }}
             </div>
