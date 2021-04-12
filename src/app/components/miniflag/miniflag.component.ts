@@ -61,9 +61,9 @@ export class MiniflagComponent implements OnInit {
 })
 export class ModalMiniFlagComponent implements OnInit {
   banderas: any[] = [
-    {country:`País Vasco`,img:`https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Flag_of_the_Basque_Country.svg/200px-Flag_of_the_Basque_Country.svg.png`},
+    {country:`País Vasco y Navarra`,img:`https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Flag_of_the_Basque_Country.svg/200px-Flag_of_the_Basque_Country.svg.png`},
     {country:`Cataluña`,img:`https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Estelada_blava.svg/270px-Estelada_blava.svg.png`},
-    {country:`Navarra`,img:`https://astelus.com/wp-content/viajes/El-color-rojo-en-la-bandera-de-Navarra.png`}
+    {country:`España`,img:`https://upload.wikimedia.org/wikipedia/commons/c/c3/Bandera_de_Espa%C3%B1a_%28nuevo_dise%C3%B1o%29.svg`}
   ]
 
   slideOpts = this.ih.slideOpts
