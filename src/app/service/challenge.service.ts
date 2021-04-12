@@ -94,4 +94,8 @@ export class ChallengeService {
   getUserChallenge(_id:string){
     return this.http.get(`${this.route}/getUserChallenge/${_id}`)
   }
+
+  getParent(idChallenge:string){
+    return this.http.get(`${this.route}/parent/${idChallenge}`)
+  }
 }
