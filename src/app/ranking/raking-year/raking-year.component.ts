@@ -61,8 +61,13 @@ export class RakingYearComponent implements OnInit,OnChanges {
           break;
 
         case '4':
-            this.getFollowersData(country)
-            break;
+          this.getFollowersData(country)
+          break;
+
+
+        case '5':
+          this.getViewsProfileSearchByTime(country)
+          break;
 
         default:
           break;
@@ -126,6 +131,8 @@ export class RakingYearComponent implements OnInit,OnChanges {
 
     }
 
+
+
     getFollowersData(country){
       this.rankingService.getRankingFollowersDay(this.userService.User._id,country,this.dayStart,this.dayEnd).pipe(take(1))
       .subscribe((resp)=>{
@@ -138,4 +145,19 @@ export class RakingYearComponent implements OnInit,OnChanges {
       })
 
     }
-}
+
+    getViewsProfileSearchByTime(country){
+
+
+      this.rankingService.getViewsProfileSearchByTime(this.userService.User._id,country,this.dayStart,this.dayEnd).pipe(take(1))
+      .subscribe((resp)=>{
+        console.log(resp);
+        this.ranking = resp.ranking
+        this.myPosition = resp.myPosition
+        this.total = resp.total
+        this.load = true
+      },(e)=>{
+        console.error(e);
+      })
+    }
+  }

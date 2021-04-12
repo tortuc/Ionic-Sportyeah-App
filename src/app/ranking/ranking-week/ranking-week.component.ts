@@ -44,7 +44,6 @@ export class RankingWeekComponent implements OnInit,OnChanges{
     this.dayStart = moment(new Date).startOf('week').format('YYYY-MM-DD')
     this.dayEnd = moment(new Date).endOf('week').format('YYYY-MM-DD')
 
-
     if(this.country){
       country = this.userService.User?.geo.country
     }
@@ -146,8 +145,7 @@ dayEnd
   }
 
   getViewsProfileSearchByTime(country){
-    console.log(this.dayStart);
-    console.log(this.dayEnd);
+
 
     this.rankingService.getViewsProfileSearchByTime(this.userService.User._id,country,this.dayStart,this.dayEnd).pipe(take(1))
     .subscribe((resp)=>{
