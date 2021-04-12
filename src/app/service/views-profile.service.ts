@@ -18,8 +18,6 @@ export class ViewsProfileService {
    * @param user `_id` del usuario
    */
  createProfileView(view){
-   console.log(view);
-   
   return this.http.post(`${environment.URL_API}/viewsProfile/create`,view)
 }
 

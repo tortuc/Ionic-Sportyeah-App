@@ -146,11 +146,12 @@ dayEnd
   }
 
   getViewsProfileSearchByTime(country){
-    
+    console.log(this.dayStart);
+    console.log(this.dayEnd);
+
     this.rankingService.getViewsProfileSearchByTime(this.userService.User._id,country,this.dayStart,this.dayEnd).pipe(take(1))
     .subscribe((resp)=>{
       console.log(resp);
-
       this.ranking = resp.ranking
       this.myPosition = resp.myPosition
       this.total = resp.total

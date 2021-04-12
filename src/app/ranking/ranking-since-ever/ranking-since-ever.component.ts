@@ -151,7 +151,7 @@ export class RankingSinceEverComponent implements OnInit,OnChanges {
 
   getSearchData(country){
         
-    this.rankingService.getViewsProfileAllTime(this.userService.User._id,country).subscribe((resp)=>{
+    this.rankingService.getViewsProfileSearchAllTime(this.userService.User._id,country).subscribe((resp)=>{
       console.log(resp);
       
       this.ranking = resp.ranking

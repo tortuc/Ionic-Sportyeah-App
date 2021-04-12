@@ -44,7 +44,7 @@ export class RankingService {
     return this.http.get<IRanking>(`${this.route}/followers/ever/${user}/${country}`)
   }
 
-  getViewsProfileAllTime(user,country){
+  getViewsProfileSearchAllTime(user,country){
     return this.http.get<IRanking>(`${this.route}/viewsSearch/ever/${user}/${country}`)
   }
   /////// Fechas //////
@@ -70,6 +70,6 @@ export class RankingService {
   }
 
   getViewsProfileSearchByTime(user,country,dateStart,dateEnd){
-    return this.http.get<IRanking>(`${this.route}/followers/day/${user}/${country}/${dateStart}/${dateEnd}`)
+    return this.http.get<IRanking>(`${this.route}/viewsSearch/day/${user}/${country}/${dateStart}/${dateEnd}`)
   }
 }
