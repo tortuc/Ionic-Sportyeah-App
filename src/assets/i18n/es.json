@@ -926,5 +926,6 @@
   },
   "info":{
     "img-upload":"Subiendo imagen, por favor espere..."
-  }
+  },
+  "timeLimit":"Límite de Tiempo"
 }

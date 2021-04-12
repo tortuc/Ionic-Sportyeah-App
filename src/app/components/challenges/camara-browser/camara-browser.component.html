@@ -1,28 +1,12 @@
-<!-- <p> -->
-<div class="video-wrap text-center">
-  <video id="video2" autoplay 
-    style="
-      max-height: 100%;
-      max-width: 100%;
-    "
+<div class="timeDiv">
+  <p class="time">{{'timeLimit' | translate}} </p>
+  <p class="timeLimit"> {{timeLimit}}</p>
+</div>
+<div class="video-wrap text-center videoHerediv">
+  <video id="video2" autoplay class="videoHere"
   ></video>
 </div>
-
-<!-- Trigger canvas web API -->
 <div class="controller text-center buttons" >
-  <ion-button (click)="startRecording.next()" *ngIf="!recording && video !== null"
-    class="buttonfloat"
-    fill="outline"
-    ><ion-icon name="play-outline"></ion-icon
-    >{{ "recording.start" | translate }}</ion-button
-  >
-  <ion-button (click)="pause()" *ngIf="recording && !paused"
-    fill="outline"
-    class="buttonfloat"
-    >
-    <ion-icon name="stop-circle-outline"></ion-icon>
-    {{ "recording.pause" | translate }}</ion-button
-  >
   <ion-button (click)="reanude()" *ngIf="recording && paused"
     fill="outline"
     class="buttonfloat"
@@ -31,14 +15,11 @@
   >
   <ion-button 
     (click)="stopRecording.next()" 
-     *ngIf="recording"
+     *ngIf="recording && timeLimit === 60"
     fill="outline"
     class="buttonfloat"
     ><ion-icon name="stop-outline"></ion-icon
     >{{ "recording.stop" | translate }}</ion-button
   >
 </div>
-
-<!-- Webcam video snapshot -->
 <span id="errorMsg"></span>
-<!-- </p> -->

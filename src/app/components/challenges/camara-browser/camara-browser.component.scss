@@ -9,3 +9,30 @@
   background-color: rgba(0,0,0,0.7); 
   border-radius: 10px;
 }
+.videoHere{
+  max-height: 100%;
+  max-width: 100%;
+  margin:auto;
+  
+}
+.videoHerediv{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height:100%; background:black;
+}
+
+.timeDiv{
+  display: relative;
+  position:absolute;
+  justify-content: center;
+  text-align: center;
+  width:100%;
+}
+.time{
+  color:white;
+}
+.timeLimit{
+  color:white;
+  font-size: 30px;
+}

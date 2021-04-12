@@ -6,7 +6,7 @@
   accept="video/*"
   type="file"
 />
-<app-camara-browser *ngIf="videoHere" (media)="camaraBrowserAns($event)">
+<app-camara-browser *ngIf="videoHere" (media)="camaraBrowserAns($event)" [timeLimit]="timeLimit">
 </app-camara-browser>
 <div
   *ngIf="!media && !videoHere" 

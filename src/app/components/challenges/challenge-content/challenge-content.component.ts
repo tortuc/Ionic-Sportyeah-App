@@ -144,7 +144,7 @@ export class ChallengeContentComponent implements OnInit {
            
         }
       } else {
-        console.log("pause")
+        // console.log("pause")
         if (!this.paused && this.video !== null) {
           await this.video.pause();
           this.paused = true;
@@ -178,13 +178,13 @@ export class ChallengeContentComponent implements OnInit {
 
       if (!this.pauseVideo && this.video) {
         await this.video.pause()
-        console.log("paused")
+        // console.log("paused")
         this.pauseVideo = true;
         this.paused = true;
       } else {
         if(this.video){
           this.video.play().then(()=>{
-            console.log("played")
+            // console.log("played")
             this.pauseVideo = false;
             this.paused = false
           });

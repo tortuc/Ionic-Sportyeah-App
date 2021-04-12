@@ -6,6 +6,7 @@
       style="background-color: black"
       controls="controls"
       preload="metadata"
+      id="anteriorVideo"
       webkit-playsinline="webkit-playsinline"
       class="videoPlayer"
     >
@@ -25,7 +26,7 @@
         >{{ "challenge.awards" | translate }}</ion-button
       >
     </div>
-    <ion-button  (click)="ready()" fill="outline">
+    <ion-button  (click)="ready()" fill="outline" [disabled]="!timeLimit">
       <ion-icon name="flame-outline" style="margin-right:5px"></ion-icon>
       {{ "ready" | translate }}
     </ion-button>
@@ -33,6 +34,7 @@
   <app-videos-c  
     [mediaa]="media"
     [intentoss]="intentos"
+    [timeLimit]="timeLimit"
     *ngIf="step2"
     (next)="guardarMedia($event)">
   </app-videos-c>

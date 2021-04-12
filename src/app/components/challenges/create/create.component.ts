@@ -31,6 +31,7 @@ export class CreateChallengeComponent implements OnInit {
   public awards: IAward[] = [];
   public retoExistente: boolean = false;
   public instructions: string = null;
+  timeLimit: number = null
 
   // FORM
   form: any = null;
@@ -71,7 +72,27 @@ export class CreateChallengeComponent implements OnInit {
       this.awards = this.Challenge.awards;
       this.step0 = true;
       this.step1 = false;
+      this.verifyTimeLimit()
+    }else{
+      this.timeLimit = 60
     }
+  }
+  
+  verifyTimeLimit(){
+    setTimeout(()=>{
+      const video: HTMLVideoElement = <HTMLVideoElement>(
+        document.getElementById("anteriorVideo")
+      );
+      if (video && !isNaN(video.duration) && video.duration !== Infinity ) {
+        this.timeLimit = Math.floor(video.duration)
+        video.currentTime = 0;
+        video.load()
+      }
+      else{
+        video.currentTime = 1e101;
+        this.verifyTimeLimit()
+      }
+    },500)
   }
 
   ready() {
