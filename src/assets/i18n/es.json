@@ -927,5 +927,10 @@
   "info":{
     "img-upload":"Subiendo imagen, por favor espere..."
   },
-  "timeLimit":"Límite de Tiempo"
+  "timeLimit":"Límite de Tiempo",
+  "create_challenge":{
+    "header":"¡Crea tu reto para SportYeah!",
+    "invalid_field":"Este campo es invalido"
+
+  }
 }

@@ -1,48 +1,39 @@
-<div
-  class="text-center"
-  style="
-    margin-top:20px;
-  "
->
-  <img src="https://i.ibb.co/g6TFj6G/Logo-TRANSPARENTE.png" 
-    style="width:100px"
+<div class="text-center" style="margin-top: 20px">
+  <img
+    src="https://i.ibb.co/g6TFj6G/Logo-TRANSPARENTE.png"
+    style="width: 100px"
   />
-  <h1> ¡Crea tu reto para SportYeah! </h1>
+  <h1>{{ "create_challenge.header" | translate }}</h1>
 </div>
 
-
 <form [formGroup]="form" class="text-center">
-
   <ion-item>
-    <ion-label position="end">
-
-      <div #emojiButton>
-        <ion-button (click)="openEmojis($event)" style="float: right">
-          <ion-icon name="happy"></ion-icon>
-        </ion-button>
-      </div>
-    </ion-label>
-
-    <ion-input 
-      type="text" 
-      #FormElementRef 
+    <ion-icon
+      class="open-emoji-icon"
+      style="float: right"
+      (click)="openEmojis($event)"
+      name="happy"
+    ></ion-icon>
+    <ion-input
+      type="text"
+      (focusout)="focusout($event)"
+      (click)="stopPropagation($event)"
       formControlName="title"
       placeholder=" {{ 'challenge.title' | translate }} "
     ></ion-input>
-
   </ion-item>
 
-  <p 
-    class="errormsj "
+  <p
+    class="errormsj"
     *ngIf="
       (form.controls.title.dirty || form.controls.title.touched) &&
       form.controls.title.status !== 'VALID'
     "
   >
-    Este campo es invalido
+    {{ "create_challenge.invalid_field" | translate }}
   </p>
 
-  <div class="text-center" #emojiContainer2>
+  <div class="text-center" (click)="stopPropagation($event)">
     <emoji-mart
       [hidden]="!emojis"
       (emojiClick)="addEmoji($event)"
@@ -53,34 +44,32 @@
   </div>
 
   <ion-item>
-    <ion-label position="start">
-      <div #emojiButton>
-        <ion-button (click)="openEmojis2($event)" style="float: right">
-          <ion-icon name="happy"></ion-icon>
-        </ion-button>
-      </div>
-    </ion-label>
-    
+    <ion-icon
+      class="open-emoji-icon"
+      style="float: right; margin-top: 15px"
+      (click)="openEmojis2($event)"
+      name="happy"
+    ></ion-icon>
     <ion-textarea
       type="text"
-      #FormElementRef2
+      (focusout)="focusout($event)"
+      (click)="stopPropagation($event)"
       formControlName="description"
       placeholder=" {{ 'challenge.description' | translate }} "
     ></ion-textarea>
-
   </ion-item>
 
-  <p 
-    class="errormsj "
+  <p
+    class="errormsj"
     *ngIf="
       (form.controls.description.dirty || form.controls.description.touched) &&
       form.controls.description.status !== 'VALID'
     "
   >
-    Este campo es invalido
+    {{ "create_challenge.invalid_field" | translate }}
   </p>
 
-  <div class="text-center" #emojiContainer>
+  <div class="text-center" (click)="stopPropagation($event)">
     <emoji-mart
       [hidden]="!emojis2"
       (emojiClick)="addEmoji2($event)"
@@ -89,6 +78,4 @@
       [showPreview]="true"
     ></emoji-mart>
   </div>
-
 </form>
-
