@@ -11,12 +11,10 @@ import { DirectivesModule } from "src/app/directives/directive.module";
 import { RouterModule } from "@angular/router";
 import { NewPostPage } from "../dashboard/new-post/new-post.page";
 import { ComponentsSharedModule } from "../shared-components/components-shared.module";
-import { ViewPostComponent } from "./view-post/view-post.component";
 
 const componets = [
  
-  NewPostPage,
-  ViewPostComponent
+  NewPostPage
 ];
 
 @NgModule({
