@@ -22,11 +22,11 @@ constructor(
   return this.UserService.verifyToken().then((resp)=>{
 
     if(route.queryParams?.ref != undefined){
-      this.router.navigate([`/dashboard`],{queryParams:route.queryParams})
+      this.router.navigate([`/profile`],{queryParams:route.queryParams})
 
     }else{
 
-      this.router.navigate(["/dashboard"])
+      this.router.navigate(["/profile"])
     }
 
     return false
