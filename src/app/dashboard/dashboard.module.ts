@@ -23,6 +23,8 @@ import { MentionsDirective } from '../directives/mentions.directive';
 import { ContenteditableValueAccessorModule } from '@tinkoff/angular-contenteditable-accessor'
 import { DirectivesModule } from '../directives/directive.module';
 import { IonCustomScrollbarModule } from 'ion-custom-scrollbar';
+import { ComponentsSharedModule } from '../shared-components/components-shared.module';
+import { PostComponetsModule } from '../post-components/post-componets.module';
 
 @NgModule({
   imports: [
@@ -40,10 +42,11 @@ import { IonCustomScrollbarModule } from 'ion-custom-scrollbar';
     ContenteditableValueAccessorModule,
     DirectivesModule,
     IonCustomScrollbarModule,
+    ComponentsSharedModule,
+    PostComponetsModule
   ],
   declarations: [
     DashboardPage,
-    NewPostPage,
     NewCommentComponent
     
   ],

@@ -9,6 +9,7 @@ import { VerificationPageRoutingModule } from './verification-routing.module';
 import { VerificationPage } from './verification.page';
 import { TranslateModule } from '@ngx-translate/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { ComponentsSharedModule } from '../shared-components/components-shared.module';
 
 @NgModule({
   imports: [
@@ -18,7 +19,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     VerificationPageRoutingModule,
     FlexLayoutModule,
     TranslateModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ComponentsSharedModule
   ],
   declarations: [VerificationPage]
 })

@@ -31,6 +31,8 @@ import { Camera } from "@ionic-native/camera/ngx";
 import { SocialSharing } from "@ionic-native/social-sharing/ngx";
 import { LoadingInterceptor } from "./interceptors/loading.interceptor";
 import { IonCustomScrollbarModule } from 'ion-custom-scrollbar'
+import { CookieService } from "ngx-cookie-service";
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -64,6 +66,7 @@ import { IonCustomScrollbarModule } from 'ion-custom-scrollbar'
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     Camera,
     SocialSharing,
+    CookieService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: LoadingInterceptor,

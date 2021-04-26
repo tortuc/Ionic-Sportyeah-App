@@ -1,21 +1,11 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
-import {
-  AlertController,
-  LoadingController,
-  PopoverController,
-} from "@ionic/angular";
+import { AlertController, LoadingController } from "@ionic/angular";
 import { TranslateService } from "@ngx-translate/core";
-import { LangsPage } from "../langs/langs.page";
 import { LoginService } from "../service/login.service";
 import { UserService } from "../service/user.service";
 
-interface LoginResp {
-  code: Number;
-  user: Object;
-  token: string;
-}
 @Component({
   selector: "app-login",
   templateUrl: "./login.page.html",
@@ -30,7 +20,6 @@ export class LoginPage implements OnInit {
     public translate: TranslateService,
     public userService: UserService,
     private router: Router,
-    private popover: PopoverController,
     private loadingCtrl: LoadingController
   ) {}
 
@@ -114,14 +103,5 @@ export class LoginPage implements OnInit {
     });
 
     await alert.present();
-  }
-
-  async langs() {
-    let langs = await this.popover.create({
-      component: LangsPage,
-      translucent: true,
-    });
-
-    langs.present();
   }
 }

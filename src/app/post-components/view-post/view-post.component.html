@@ -1,0 +1,18 @@
+<ion-card
+  *ngIf="!post.deleted"
+  class="m-p-0 "
+  [ngClass]="postPage ? 'noshadow' : 'main-border'"
+  style="width: 100%"
+>
+  <header-post
+    [post]="post"
+    (edited)="edited()"
+  ></header-post>
+
+  <div style="padding: 0">
+    <post-content [post]="post"></post-content>
+
+    <post-shared *ngIf="post.post" [post]="post.post"></post-shared>
+  </div>
+  <post-options [isPost]="postPage" (comments)="newComment($event)" [post]="post" ></post-options>
+</ion-card>

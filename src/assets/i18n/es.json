@@ -932,5 +932,6 @@
     "header":"¡Crea tu reto para SportYeah!",
     "invalid_field":"Este campo es invalido"
 
-  }
+  },
+  "rememberme":"Mantener sesion abierta"
 }

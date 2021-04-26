@@ -9,6 +9,7 @@ import { NotFoundPageRoutingModule } from './not-found-routing.module';
 import { NotFoundPage } from './not-found.page';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { TranslateModule } from '@ngx-translate/core';
+import { ComponentsSharedModule } from '../shared-components/components-shared.module';
 
 @NgModule({
   imports: [
@@ -17,7 +18,8 @@ import { TranslateModule } from '@ngx-translate/core';
     IonicModule,
     NotFoundPageRoutingModule,
     FlexLayoutModule,
-    TranslateModule
+    TranslateModule,
+    ComponentsSharedModule
   ],
   declarations: [NotFoundPage]
 })

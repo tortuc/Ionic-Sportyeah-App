@@ -1,39 +1,42 @@
-<ion-content ngClass.gt-xs="bg-gradient-person">
+<ion-content>
+  <lang-button></lang-button>
 
-  <ion-grid style="padding: 0;" class="height-100vh">
-    <ion-row   class="height-100vh ion-align-items-center ion-justify-content-center">
-      <ion-col class="max-widht-520" size-lg="5" size-md="8" size-sm="12">
-        <ion-card ngClass.xs="login-xs" >
-          <ion-card-header *ngIf="valid" class="text-center" >
-            <ion-img class="img-login" src="https://i.ibb.co/g6TFj6G/Logo-TRANSPARENTE.png"></ion-img>
-            <ion-card-title>{{'verification.valid.title' | translate}} <ion-icon name="shield-checkmark-outline"></ion-icon></ion-card-title>
-            <ion-card-subtitle>{{'verification.valid.subtitle' | translate}}</ion-card-subtitle>
+  <ion-grid class="main-grid">
+    <ion-row class="main-row">
+      <ion-col class="main-col" size-lg="5" size-md="8" size-sm="12">
+        <ion-card ngClass.xs="login-xs" class="main-card">
+          <ion-card-header *ngIf="valid" class="text-center">
+            <img src="assets/logos/logo.png" alt="SportYeah" width="150px" />
+            <ion-card-title
+              >{{'verification.valid.title' | translate}}
+              <ion-icon name="shield-checkmark-outline"></ion-icon
+            ></ion-card-title>
+            <ion-card-subtitle
+              >{{'verification.valid.subtitle' | translate}}</ion-card-subtitle
+            >
             <div class="max-widht-300 center margin-top-10 text-center">
-              <a routerLink="/dashboard">{{'verification.valid.back'| translate}}</a>
+              <a routerLink="/dashboard"
+                >{{'verification.valid.back'| translate}}</a
+              >
             </div>
           </ion-card-header>
-          <ion-card-header *ngIf="valid == false" class="text-center" >
-            <ion-img class="img-login" src="https://i.ibb.co/g6TFj6G/Logo-TRANSPARENTE.png"></ion-img>
-            <ion-card-title>{{'verification.invalid.title' | translate}}</ion-card-title>
-            <ion-card-subtitle>{{'verification.invalid.subtitle' | translate}}</ion-card-subtitle>
+          <ion-card-header *ngIf="valid == false" class="text-center">
+            <img src="assets/logos/logo.png" alt="SportYeah" width="150px" />
+            <ion-card-title
+              >{{'verification.invalid.title' | translate}}</ion-card-title
+            >
+            <ion-card-subtitle
+              >{{'verification.invalid.subtitle' |
+              translate}}</ion-card-subtitle
+            >
             <div class="max-widht-300 center margin-top-10 text-center">
-              <a routerLink="/login">{{'verification.invalid.back'| translate}}</a>
+              <a routerLink="/login"
+                >{{'verification.invalid.back'| translate}}</a
+              >
             </div>
           </ion-card-header>
-        
-      
-          <ion-card-content>
-            <ion-grid>
-              <ion-row>
-                <ion-col >
-                </ion-col>
-              </ion-row>
-            </ion-grid>
-         
-          </ion-card-content>
         </ion-card>
       </ion-col>
     </ion-row>
   </ion-grid>
-
 </ion-content>
