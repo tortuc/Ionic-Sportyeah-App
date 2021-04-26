@@ -47,7 +47,8 @@ import { PostComponetsModule } from '../post-components/post-componets.module';
   ],
   declarations: [
     DashboardPage,
-    NewCommentComponent
+    NewCommentComponent,
+    NewPostPage
     
   ],
   schemas:[CUSTOM_ELEMENTS_SCHEMA]

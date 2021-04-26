@@ -14,7 +14,7 @@ import { ComponentsSharedModule } from "../shared-components/components-shared.m
 
 const componets = [
  
-  NewPostPage
+  // NewPostPage
 ];
 
 @NgModule({
