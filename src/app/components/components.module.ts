@@ -98,6 +98,11 @@ import { ProfilHeaderC } from './profile-challenges/profile-header-c.components'
 import { ProfileBodyC } from './profile-challenges/profile-body-c.component';
 import { FollowBtnC } from './profile-challenges/follow-c.component';
 import { FollowBtn } from './profile-challenges/follow-btn.component';
+import { DayComponent } from './analitics-views/day/day.component';
+import { WeekComponent } from './analitics-views/week/week.component';
+import { MonthComponent } from './analitics-views/month/month.component';
+import { YearComponent } from './analitics-views/year/year.component';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -199,7 +204,11 @@ import { FollowBtn } from './profile-challenges/follow-btn.component';
     QuestionCommentComponent,
     MiniflagComponent,
     ModalMiniFlagComponent,
-    NoResults,ProfilHeaderC,ProfileBodyC,FollowBtnC,FollowBtn
+    NoResults,ProfilHeaderC,ProfileBodyC,FollowBtnC,FollowBtn,
+    DayComponent,
+    MonthComponent,
+    WeekComponent,
+    YearComponent
   ],
   exports: [
     ImageComponent,
@@ -285,7 +294,11 @@ import { FollowBtn } from './profile-challenges/follow-btn.component';
     MiniflagComponent,
     ModalMiniFlagComponent,
     NoResults,
-    ProfilHeaderC,ProfileBodyC,FollowBtnC,FollowBtn
+    ProfilHeaderC,ProfileBodyC,FollowBtnC,FollowBtn,
+    DayComponent,
+    MonthComponent,
+    WeekComponent,
+    YearComponent
   ],
 })
 export class ComponentsModule {}

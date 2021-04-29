@@ -13,6 +13,8 @@ import { Plugins } from '@capacitor/core';
 import { LikesPostComponent } from '../components/likes-post/likes-post.component';
 import { ViewsProfileService } from "src/app/service/views-profile.service";
 import { QuestionService } from 'src/app/service/question.service';
+import { ViewsSponsorService } from "src/app/service/views-sponsor.service";
+
 const { Share } = Plugins;
 
 
@@ -35,7 +37,7 @@ export class PostPage implements OnInit {
     private actionSheetCtrl:ActionSheetController,
     private viewsProfileService: ViewsProfileService,
     public questionService:QuestionService,
-
+    private viewsSponsorService:ViewsSponsorService
     ){
 
       this.getPost(route.snapshot.paramMap.get('id'))
@@ -45,19 +47,19 @@ export class PostPage implements OnInit {
   goBack(){
     this.router.navigate(['/dashboard'])
   }
-  getPost(id){
-    this.postService.getPost(id).toPromise()//agregamos el id del usuario actual
+  async getPost(id){
+    await this.postService.getPost(id).toPromise()//agregamos el id del usuario actual
     .then((post:any)=>{
       this.item = post
-      this.notified = post.post.question?post.post.question.notified:undefined
-      console.log(this.item)
     })
     .catch((err)=>{
       // handle err
       this.item = 404
     })
+    this.notified = this.item.post.question?this.item.post.question.notified:undefined
   }
-  ngOnInit() {}
+  ngOnInit() {;
+  }
   notified = null
   item = null
 
@@ -105,6 +107,26 @@ export class PostPage implements OnInit {
     
     goToMyProfile(){
       this.router.navigate(["/profile"])
+    }
+
+    goToSponsorComment(sponsor,id,post_id){
+      if(id != this.userService.User._id){
+       
+            this.viewsSponsorService
+            .createSponsorView(
+              {
+               user:id,
+               visitor:this.userService.User._id,
+               from:"comment",
+               link:`/post/${post_id}`,
+               urlSponsor:sponsor
+             }
+             )
+              .subscribe((response) => {
+                window.location.replace(sponsor);
+              });
+ 
+        }
     }
 
     async searchFriend(){

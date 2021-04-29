@@ -41,9 +41,9 @@ export class RankingTodayComponent implements OnInit,OnChanges {
   load = false
   getData(){
     let country = 'null'
-    this.dayStart = moment(new Date).add(1,'day').format('YYYY-MM-DD')
-    this.dayEnd = moment(new Date).add(-1,'day').format('YYYY-MM-DD')
- 
+    this.dayStart = moment(new Date).format('YYYY-MM-DD')
+    this.dayEnd = moment(new Date).add(1,'day').format('YYYY-MM-DD')
+
     if(this.country){
       country = this.userService.User?.geo.country
     }
@@ -65,6 +65,14 @@ export class RankingTodayComponent implements OnInit,OnChanges {
 
       case '4':
         this.getFollowersData(country)
+        break;
+
+      case '5':
+        this.getViewsProfileSearchByTime(country)
+        break;
+
+      case '6':
+        this.getViewsProfileReboundByTime(country)
         break;
     
       default:
@@ -130,6 +138,31 @@ dayEnd
 
   getFollowersData(country){
     this.rankingService.getRankingFollowersDay(this.userService.User._id,country,this.dayStart,this.dayEnd).pipe(take(1))
+    .subscribe((resp)=>{
+      this.ranking = resp.ranking
+      this.myPosition = resp.myPosition
+      this.total = resp.total
+      this.load = true
+    },(e)=>{
+      console.error(e);
+    })
+  }
+
+
+  getViewsProfileSearchByTime(country){
+    this.rankingService.getViewsProfileSearchByTime(this.userService.User._id,country,this.dayStart,this.dayEnd).pipe(take(1))
+    .subscribe((resp)=>{
+      this.ranking = resp.ranking
+      this.myPosition = resp.myPosition
+      this.total = resp.total
+      this.load = true
+    },(e)=>{
+      console.error(e);
+    })
+  }
+
+  getViewsProfileReboundByTime(country){
+    this.rankingService.getViewsProfileReboundByTime(this.userService.User._id,country,this.dayStart,this.dayEnd).pipe(take(1))
     .subscribe((resp)=>{
       this.ranking = resp.ranking
       this.myPosition = resp.myPosition

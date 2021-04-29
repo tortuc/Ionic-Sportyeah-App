@@ -37,13 +37,34 @@
       <p 
         class="errormsj"
         *ngIf="
-          (form.get('url').dirty ||
+          (form.get('url').dirty || 
           form.get('url').touched) &&
           form.get('url').status !== 
           'VALID'
         "
       >
         No corresponde con una URL
+      </p>
+      <ion-item>
+        <ion-label position="stacked">
+          Nombre de la marca
+        </ion-label>
+        <ion-input
+          placeholder="SportYeah!"
+          type="text"
+          formControlName="name"
+        ></ion-input>
+      </ion-item>
+      <p 
+        class="errormsj"
+        *ngIf="
+          (form.get('name').dirty || 
+          form.get('name').touched) &&
+          form.get('name').status !== 
+          'VALID'
+        "
+      >
+        Introduce el nombre de la marca
       </p>
     </ion-list>
   </form>

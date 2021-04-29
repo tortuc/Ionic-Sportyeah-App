@@ -47,6 +47,10 @@ export class RankingService {
   getViewsProfileSearchAllTime(user,country){
     return this.http.get<IRanking>(`${this.route}/viewsSearch/ever/${user}/${country}`)
   }
+
+  getViewsProfileReboundAllTime(user,country){
+    return this.http.get<IRanking>(`${this.route}/rebound/ever/${user}/${country}`)
+  }
   /////// Fechas //////
 
   getRankingReactionsDay(user,country,dateStart,dateEnd){
@@ -71,5 +75,9 @@ export class RankingService {
 
   getViewsProfileSearchByTime(user,country,dateStart,dateEnd){
     return this.http.get<IRanking>(`${this.route}/viewsSearch/day/${user}/${country}/${dateStart}/${dateEnd}`)
+  }
+
+  getViewsProfileReboundByTime(user,country,dateStart,dateEnd){
+    return this.http.get<IRanking>(`${this.route}/rebound/day/${user}/${country}/${dateStart}/${dateEnd}`)
   }
 }

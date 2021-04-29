@@ -29,7 +29,7 @@
     class="profile-name date"
     >editado el {{ post.edited | customDisplayDate }}</span
   >
-  <span (click)="goToPost(post._id)" class="profile-name date">
+  <span  class="profile-name date">
     <!-- SPONSORS -->
     <div>
       <ion-grid>
@@ -38,7 +38,7 @@
             size="4"
             *ngFor="let sponsor of post.user.sponsors; let i = index"
           >
-            <a [href]="'//' + sponsor.url" target="_blank">
+            <div style="z-index: 10000;" (click)="goToSponsor(sponsor.url,post.user._id, post.user.username, post._id)"  target="_blank">
               <img
                 [src]="sponsor.image"
                 style="
@@ -48,14 +48,10 @@
                   object-fit: cover;
                   object-position: cover;
                 "
-            /></a>
-          </ion-col>
+            /></div>
+          </ion-col> 
         </ion-row>
       </ion-grid>
-      <!-- <app-sponsor
-        [creator]="false"
-        [sponsors]="post.user.sponsors"
-      ></app-sponsor> -->
     </div>
     <!-- TERMINO SPONSORS -->
   </span>
