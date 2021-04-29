@@ -1,0 +1,9 @@
+<div class="header-content">
+  <div class="image">
+    <img class="user-img-shadow" [src]="userService.User?.photo" />
+  </div>
+  <div class="name">
+    <p>{{ userService.User?.name }} {{ userService.User?.last_name }}</p>
+    <p class="username">@{{ userService.User?.username }}</p>
+  </div>
+</div>

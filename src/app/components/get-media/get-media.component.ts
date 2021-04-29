@@ -236,7 +236,6 @@ export class GetMediaComponent implements OnInit {
     this.reusableCI.loading("video")
     this.imageAPI
       .uploadVideo(formData)
-      .toPromise()
       .then((url) => {
         this.modalCtrl.dismiss(null,null,"video")
         this.reusableCI.toast(

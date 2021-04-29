@@ -146,19 +146,6 @@ getConnections(){
   alert.present()
 }
 
-modalClose(data){
-  if(data.data?.create){
-    let post = data.data.post
-    this.newPost(post)
-   
-    
-  }else if(data.data?.video != null){
-    this.uploadVideoPost(data.data.post,data.data.video)
-   }
-    
-
-  
-}
 
 newPost(post){
   this.postService.getPost(post._id).toPromise()
@@ -170,31 +157,6 @@ newPost(post){
   })
 }
 
-uploadVideoPost(post,video){
-  this.showAlert(
-    this.translate.instant('upload_video.uploading.header'),
-    this.translate.instant('upload_video.uploading.message')
-    )
-  this.imageService.uploadVideo(video)
-  .toPromise()
-  .then((url)=>{
-    post.video = url
-    this.postService.create(post).toPromise()
-      .then((post)=>{
-        this.newPost(post)
-        this.showAlert(
-          this.translate.instant('upload_video.create.header'),
-          this.translate.instant('upload_video.create.message')
-          )         
-         })
-  })
-  .catch((err)=>{
-    this.showAlert(
-      this.translate.instant('upload_video.error.header'),
-      this.translate.instant('upload_video.error.message')
-      )
-  })
-}
 
  
 goToProfile(id,username){
@@ -219,9 +181,7 @@ async presentModal() {
     cssClass: 'my-custom-class',
     backdropDismiss:false
   });
-  modal.onDidDismiss().then((data)=>{
-    this.modalClose(data)
-  })
+ 
   return await modal.present();
 }
 

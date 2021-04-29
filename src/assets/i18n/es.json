@@ -933,5 +933,14 @@
     "invalid_field":"Este campo es invalido"
 
   },
-  "rememberme":"Mantener sesion abierta"
+  "rememberme":"Mantener sesion abierta",
+  "attach_link": {
+    "header": "Adjuntar un enlace",
+    "name": "Nombre del enlace (opcional)",
+    "url": "Pegue un vinculo aqui..."
+  },
+  "remove_file": {
+    "header": "Remover archivo",
+    "message": "Seguro deseas remover este archivo?"
+  }
 }

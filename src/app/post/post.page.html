@@ -37,18 +37,6 @@
 
               <question [data]="item" [notified]="notified" (newItemEvent)="voted($event)"></question>
 
-              <!-- <div *ngFor="let group of item.question;index as i " style="background: #7cbced29;border: groove;margin-bottom: 10px;width: 80%;margin-left: auto;margin-right: auto;">
-                <div style="text-align: center;position: relative;">
-                  <h1>{{group.group.questionHeadline}}</h1>  
-                </div>    
-                <div (click)="selectAnswer(answer._id)" *ngFor="let answer of group.newAnswers" class="progress-item" [ngClass]="answer._id | canVote:group.group._id | async">
-                  <ion-icon name="checkmark-circle-outline" class="voted"></ion-icon>
-                  <p  style="position: absolute;left: 50px;z-index: 1000;">{{answer.option}}</p>
-                  <p class="percentage">{{((100 * answer.users/group.total)).toFixed(1)}}%</p>
-                  <ion-progress-bar class="barProgres" [value]="((100 * answer.users/group.total)/100).toFixed(2)"  ></ion-progress-bar>
-                </div>
-             </div> -->
-            
 
               <post-options [item]="item" isPost="true"></post-options>
               <ion-grid>
@@ -60,6 +48,7 @@
                     ></comment-post>
                   </ion-col>
                   <ion-col *ngFor="let comment of item.comments" size="12">
+                    <view-comment [comment]="comment"></view-comment>
                     <ion-card class="comment">
                       <ion-card-header>
                         <ion-card-subtitle class="user-header">
@@ -96,7 +85,7 @@
                           [src]="comment.image"
                         >
                         </ion-img>
-                        <question-comment [data]="comment.question" [notified]="comment.question.notified" (newItemEvent)="voted($event)" ></question-comment>
+                        <question-comment [data]="comment.question" [notified]="comment.question?.notified" (newItemEvent)="voted($event)" ></question-comment>
                       </ion-card-content>
                     </ion-card>
                   </ion-col>

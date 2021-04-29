@@ -2,9 +2,11 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { getToken } from '../helpers/token';
-import { IPost } from '../models/iPost';
+import { IPost, IPostFile } from '../models/iPost';
 import { UserService } from './user.service';
 import {Howl, Howler} from 'howler';
+import { JdvimageService } from './jdvimage.service';
+import { Subject } from 'rxjs';
 
 export interface idFriends {
   friends_id: string[]
@@ -19,6 +21,7 @@ export class PostService {
 constructor(
   private http:HttpClient,
   private userService:UserService,
+  private imageService:JdvimageService
 ) { }
 audio = new Howl({
   src:['../../assets/sounds/comment.mp3']
@@ -142,6 +145,54 @@ getAllPost(){
   {
     headers: new HttpHeaders({"access-token":getToken()})
   })
+}
+
+
+
+uploadsVideos(videos: any[], files: IPostFile[], i = 0) {
+  return new Promise(async (resolve) => {
+
+    let newFiles = await Promise.all(
+      // utilziamos un .map que recorre el array y lo modifica
+      files.map(
+        async (file): Promise<IPostFile> => {
+          // buscamos si hay un video, en el array de video donde la url coincida con la url de este archivo
+          let video = await videos.find((x) => x.url == file.url);
+          // si existe entonces cargamos el video al servidor
+          if (video) {
+            let form = new FormData();
+            form.append("video", video.file);
+            // esperamos la url
+            file.url = (await this.imageService.uploadVideo(
+              form,
+              true
+            )) as string;
+            // modificamos el archivo
+            return file;
+          } else {
+            // no existe video, no modificamos el archivo
+            return file;
+          }
+        }
+      )
+    );
+    // devolvemos la data correctamente
+
+    resolve(newFiles);
+  
+  });
+}
+
+
+
+private removeFile$ = new Subject<string>();
+
+fileRemoved(url: string) {
+  this.removeFile$.next(url);
+}
+
+fileRemovedSuscriber() {
+  return this.removeFile$.asObservable();
 }
 
 }

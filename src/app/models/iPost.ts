@@ -41,7 +41,7 @@ export interface IComment {
   post: string;
   news: string; //revisar si se debe eliminars
   message: string;
-  image: string;
+  files: any;
   date: Date;
   _id: string;
   deleted: boolean;

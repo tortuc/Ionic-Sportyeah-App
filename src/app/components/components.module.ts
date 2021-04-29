@@ -40,7 +40,6 @@ import { PostOptionsComponent } from "./post-options/post-options.component";
 import { PostContentComponent } from "./post-content/post-content.component";
 import { FriendsMobileComponent } from "./friends-mobile/friends-mobile.component";
 import { HeaderPostComponent } from "./header-post/header-post.component";
-import { CommentPostComponent } from "./comment-post/comment-post.component";
 import { ContenteditableValueAccessorModule } from "@tinkoff/angular-contenteditable-accessor";
 import { DirectivesModule } from "../directives/directive.module";
 import { PickerModule } from "@ctrl/ngx-emoji-mart";
@@ -60,12 +59,8 @@ import { SharedNotificationComponent } from "./shared-notification/shared-notifi
 import { MentionNotificationComponent } from "./mention-notification/mention-notification.component";
 import { ButtonNotificationComponent } from "./button-notification/button-notification.component";
 import { ButtonSearchFriendComponent } from "./button-search-friend/button-search-friend.component";
-import { WishItemComponent } from "./wish-item/wish-item.component";
-import { CreateWishComponent } from "./create-wish/create-wish.component";
 import { PreviewFilesComponent } from "./preview-files/preview-files.component";
 import { OptionsWishComponent } from "./options-wish/options-wish.component";
-import { EditWishComponent } from "./edit-wish/edit-wish.component";
-import { ViewWishComponent } from "./view-wish/view-wish.component";
 import { ViewFilesComponent } from "./view-files/view-files.component";
 import { ViewImageComponent } from "./view-image/view-image.component";
 import { ChatBoxComponent } from "./chat-box/chat-box.component";
@@ -92,7 +87,6 @@ import { QuestionComponent } from "./question/question.component";
 import { GetMediaComponent } from "./get-media/get-media.component";
 import { EditQuestionComponent } from "./edit-question/edit-question.component";
 import { QuestionNotificationComponent } from "./question-notification/question-notification.component"
-import { QuestionCommentComponent } from "./question-comment/question-comment.component";
 import { NoResults } from './no-results/no-results.component';
 import { ProfilHeaderC } from './profile-challenges/profile-header-c.components';
 import { ProfileBodyC } from './profile-challenges/profile-body-c.component';
@@ -124,7 +118,6 @@ import { FollowBtn } from './profile-challenges/follow-btn.component';
     ImageSeeComponent,
     FriendsMobileComponent,
     HeaderPostComponent,
-    CommentPostComponent,
     LikesPostComponent,
     SharedsPostComponent,
     NewProfilePhotoComponent,
@@ -147,15 +140,11 @@ import { FollowBtn } from './profile-challenges/follow-btn.component';
     ButtonNotificationComponent,
     ButtonSearchFriendComponent,
     ViewFilesComponent,
-    WishItemComponent,
     CreateAwardChallengeComponent,
-    CreateWishComponent,
     ChallengesPostHeaderComponent,
     ChallengeContentComponent,
     PreviewFilesComponent,
     OptionsWishComponent,
-    EditWishComponent,
-    ViewWishComponent,
     ViewImageComponent,
     ChatBoxComponent,
     MessageBasicComponent,
@@ -196,7 +185,6 @@ import { FollowBtn } from './profile-challenges/follow-btn.component';
     QuestionNotificationComponent,
     GetMediaComponent,
     EditQuestionComponent,
-    QuestionCommentComponent,
     MiniflagComponent,
     ModalMiniFlagComponent,
     NoResults,ProfilHeaderC,ProfileBodyC,FollowBtnC,FollowBtn
@@ -216,7 +204,6 @@ import { FollowBtn } from './profile-challenges/follow-btn.component';
     CreateAwardChallengeComponent,
     FriendsMobileComponent,
     HeaderPostComponent,
-    CommentPostComponent,
     ChallengeContentComponent,
     StructureComponent,
     LikesPostComponent,
@@ -235,12 +222,8 @@ import { FollowBtn } from './profile-challenges/follow-btn.component';
     MentionNotificationComponent,
     ButtonNotificationComponent,
     ButtonSearchFriendComponent,
-    WishItemComponent,
-    CreateWishComponent,
     PreviewFilesComponent,
     OptionsWishComponent,
-    EditWishComponent,
-    ViewWishComponent,
     ViewFilesComponent,
     ViewImageComponent,
     ChatBoxComponent,
@@ -281,7 +264,6 @@ import { FollowBtn } from './profile-challenges/follow-btn.component';
     QuestionNotificationComponent,
     GetMediaComponent,
     EditQuestionComponent,
-    QuestionCommentComponent,
     MiniflagComponent,
     ModalMiniFlagComponent,
     NoResults,

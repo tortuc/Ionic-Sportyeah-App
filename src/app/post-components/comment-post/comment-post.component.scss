@@ -1,0 +1,44 @@
+.buttons {
+  text-align: end;
+  bottom: 10px;
+  padding: 0 20px;
+}
+
+.icon-remove {
+  position: absolute;
+  font-size: 30px;
+  top: 0px;
+  right: 0px;
+  color: #ef5350;
+}
+
+.box-input {
+  max-height: 200px;
+  color: #222121;
+  border: 1px solid #ccd0d5;
+  border-radius: 16px;
+  background-color: #f2f3f5 !important;
+  margin-bottom: 5px;
+}
+
+.username {
+  font-size: 14px;
+  margin: 5px 0px;
+}
+
+.overlay {
+  position: fixed;
+  background: transparent !important;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 10;
+}
+
+.emoji-content {
+  emoji-mart {
+    z-index: 12 !important;
+    position: sticky;
+  }
+}

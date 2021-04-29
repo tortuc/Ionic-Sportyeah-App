@@ -1,0 +1,21 @@
+.header-content {
+  display: flex;
+  align-items: center;
+  .image {
+    padding: 10px;
+    img {
+      height: 50px;
+      width: 50px;
+      border-radius: 50%;
+    }
+  }
+  .name {
+    flex: auto;
+    p {
+      margin: auto;
+    }
+    .username {
+      font-size: 12px;
+    }
+  }
+}

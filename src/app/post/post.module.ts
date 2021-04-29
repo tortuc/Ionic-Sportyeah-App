@@ -17,6 +17,7 @@ import { NewCommentComponent } from './new-comment/new-comment.component';
 import { ImageComponent } from '../chat/image/image.component';
 import { PipesModule } from '../pipes/pipes.module';
 import { ComponentsModule } from '../components/components.module';
+import { PostComponetsModule } from '../post-components/post-componets.module';
 
 @NgModule({
   imports: [
@@ -28,7 +29,8 @@ import { ComponentsModule } from '../components/components.module';
     FlexLayoutModule,
     ReactiveFormsModule,
     PipesModule,
-    ComponentsModule
+    ComponentsModule,
+    PostComponetsModule
   
   ],
   declarations: [

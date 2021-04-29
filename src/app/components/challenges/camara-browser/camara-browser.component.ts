@@ -97,13 +97,13 @@ export class CamaraBrowserComponent implements OnInit {
         form.append("video", blobnew);
         this.jdvService
           .uploadVideo(form)
-          .pipe(take(1))
-          .subscribe(
-            (r) => {
-              this.media.emit({r,loading});
-            },
-            (err) => loading.dismiss()
-          );
+          .then((r)=>{
+            this.media.emit({r,loading});
+          })
+          .catch(()=>{
+            loading.dismiss()
+          })
+         
       }
     };
     this.stream.requestData();

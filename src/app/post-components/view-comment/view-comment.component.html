@@ -1,0 +1,52 @@
+<ion-card class="comment">
+  <div class="user-header">
+    <ion-avatar
+      class="mini"
+      (click)="userService.goToProfile(comment.user.username)"
+    >
+      <ion-img class="img-user-mini" [src]="comment.user.photo"></ion-img>
+      <div class="connectedDIVlittle" *ngIf="comment.user.connected"></div>
+    </ion-avatar>
+    <div class="user-name">
+      <span
+        class="message profile-name"
+        (click)="userService.goToProfile(comment.user.username)"
+        >{{ comment.user.name }} {{ comment.user.last_name }}</span
+      ><br />
+      <span>{{ comment.date | customDisplayDate }}</span>
+    </div>
+  </div>
+
+  <ion-card-content>
+    <span *ngIf="comment.message" [innerHTML]="comment.message | links"></span>
+    <div class="img-comments-container">
+      <ng-container *ngFor="let file of comment.files">
+        <ng-container [ngSwitch]="file.fileType">
+          <ion-img
+            (click)="openImg()"
+            class="img-comment"
+            *ngSwitchCase="'image'"
+            [src]="file.url"
+          >
+          </ion-img>
+          <div
+            (click)="openImg()"
+            style="position: relative"
+            class="img-comment"
+            *ngSwitchCase="'video'"
+          >
+            <img src="assets/images/play.png" class="play-icon" />
+            <video class="img-comment">
+              <source [src]="file.url | safeUrl" type="video/mp4" />
+            </video>
+
+          </div>
+          <attach-link-preview-post    *ngSwitchCase="'link'" [file]="file"></attach-link-preview-post>
+
+        </ng-container>
+      </ng-container>
+    </div>
+    <question-comment *ngIf="comment.question" [data]="comment.question" [notified]="comment.question.notified" (newItemEvent)="voted($event)" ></question-comment>
+
+  </ion-card-content>
+</ion-card>
