@@ -146,9 +146,10 @@ export class UserService {
         headers: new HttpHeaders({ "access-token": getToken() }),
       })
       .toPromise()
-      .then((resp: any) => {
-        this.followers_id = resp.ids;
-        this.followers = resp.followers;
+      .then((resp: Followers[]) => {
+        this.followers = resp.sort((a, b) => {
+          return a.follower.name > b.follower.name ? 1 : -1;
+        });
       })
       .catch((err) => {
         // handle err

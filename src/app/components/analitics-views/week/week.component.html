@@ -1,0 +1,29 @@
+<ion-col size="12">
+  <ion-row>
+    <ion-col size="12">
+      <ion-card style="background: #e0eaff;">
+        <ion-grid>
+          <ion-row >
+            <ion-col size-xs="12" size-lg="12" >
+              <h1>{{'analytics-views.days' | translate}}:  </h1>
+            </ion-col>
+            <ion-col size-xs="12" size-lg="12" >
+              <h1 style="float:left; text-align: end;font-size: 18px;">{{weekFormat | customDisplayDate:true}} - {{weekEndFormat | customDisplayDate:true}}</h1>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+     </ion-card>  
+    </ion-col>
+
+    <ion-col class="columDates" size="6">
+      <ion-button class="week-button"  (click)="changeWeek(-1)">{{'analytics-views.last' | translate}}</ion-button>
+    </ion-col>
+    <ion-col class="columDates" size="6">
+      <ion-button class="week-button"  (click)="changeWeek(1)">{{'analytics-views.next' | translate}}</ion-button>
+    </ion-col>
+  </ion-row>
+</ion-col>
+
+<div style="margin-left: auto;margin-right: auto;" class="divChart" >
+  <canvas id="linesWeekSponsor" width="400" height="400"></canvas>
+</div>

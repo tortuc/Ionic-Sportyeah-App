@@ -102,7 +102,7 @@ import { DayComponent } from './analitics-views/day/day.component';
 import { WeekComponent } from './analitics-views/week/week.component';
 import { MonthComponent } from './analitics-views/month/month.component';
 import { YearComponent } from './analitics-views/year/year.component';
-
+import { UserItemComponent } from './user-item/user-item.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -208,7 +208,8 @@ import { YearComponent } from './analitics-views/year/year.component';
     DayComponent,
     MonthComponent,
     WeekComponent,
-    YearComponent
+    YearComponent,
+    UserItemComponent
   ],
   exports: [
     ImageComponent,
@@ -298,7 +299,8 @@ import { YearComponent } from './analitics-views/year/year.component';
     DayComponent,
     MonthComponent,
     WeekComponent,
-    YearComponent
+    YearComponent,
+    UserItemComponent
   ],
 })
 export class ComponentsModule {}
