@@ -64,8 +64,6 @@ export class EditPostPage implements OnInit {
 
   setValues() {
     this.form.controls.message.setValue(this.post.message);
-    this.form.controls.image.setValue(this.post.image);
-    this.form.controls.video.setValue(this.post.video);
   }
 
   async uploadImg($event) {

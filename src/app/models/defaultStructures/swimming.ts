@@ -486,12 +486,20 @@ export class Swimming {
    * Estructura para soccer
    */
 
+  estructuraClub: NodeStructure = new NodeStructure(
+    [`https://images.unsplash.com/photo-1487491506942-373c8f7a7ad5?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80`],
+    [this.DMasculina,this.DMasculina],
+    `Estructura Club`,
+    `Estructura Club`,
+    `Esta es la estructura de nuestro club`,
+    false
+  )
+
   structure: NodeStructure = new NodeStructure(
     [this.defaultImg],
     [
       this.organigrama,
-      this.DMasculina,
-      this.DFemenino
+      this.estructuraClub
     ],
     `Club`,
     `Nuestro Gran Club`,

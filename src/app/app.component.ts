@@ -10,6 +10,8 @@ import { Router } from "@angular/router";
 import { ChatService } from "./service/chat.service";
 import { NotificationService } from "./service/notification.service";
 import { ReusableComponentsIonic } from "./service/ionicHelpers.service";
+import { CookieService } from "ngx-cookie-service";
+import { Meta } from "@angular/platform-browser";
 
 @Component({
   selector: "app-root",
@@ -37,12 +39,15 @@ export class AppComponent implements OnInit {
     public translate: TranslateService,
     public chatService: ChatService,
     public notificationService: NotificationService,
-    public reusableCI: ReusableComponentsIonic
+    public reusableCI: ReusableComponentsIonic,
+    private cookieService: CookieService,
+    private meta: Meta
   ) {
     this.initializeApp();
-    translate.addLangs(["es", "en"]);
-    translate.setDefaultLang("es");
-    translate.use("es");
+
+    this.langSettings();
+
+    this.seo();
   }
 
   initializeApp() {
@@ -93,33 +98,67 @@ export class AppComponent implements OnInit {
     },
   ];
 
-  public giftPages = [
-    /* {
-      title:'sidebar.wishes',
-      url:'/wishes',
-      icon:'list'
-    },
-    {
-      title:'sidebar.event',
-      url:'/event',
-      icon:'create'
-    },
-    {
-      title:'sidebar.eventlist',
-      url:'/eventlist',
-      icon:'albums'
-    },
-    {
-      title:'sidebar.calendar',
-      url: '/calendar',
-      icon: 'calendar'
-    } */
-  ];
-
   ngOnInit() {
     this.loginService.getIP().subscribe((geo) => {
       this.banderaIP = geo.country;
       this.ipLoaded = Promise.resolve(true);
     });
+  }
+
+  langSettings() {
+    this.translate.addLangs([
+      "es", // espaniol
+      "en", // ingles
+      "ca", // catalan
+      "gl", // gallego
+      "eu", // euskera
+      "fr", // frances
+      "de", // aleman
+      "it", // italiano
+      "pt", // portugues
+      "ru", // ruso
+      "zh", // chino
+      "ja", // japones
+      "ar", // arabe
+      "hi", // hindu
+    ]);
+    this.translate.setDefaultLang("es");
+
+    if (!this.cookieService.check("lang")) {
+      this.translate.use("es");
+      this.cookieService.set("lang", "es", { expires: 3000 });
+    } else {
+      this.translate.use(this.cookieService.get("lang"));
+    }
+  }
+
+  seo() {
+    this.meta.addTag(
+      {
+        property: "og:title",
+        content: "Unete a Sportyeah ! La red social del deporte",
+      },
+      true
+    );
+    this.meta.addTag(
+      { property: "og:url", content: "https://app.sportyeah.com" },
+      true
+    );
+    this.meta.addTag({ property: "og:type", content: "article" }, true);
+    this.meta.addTag(
+      {
+        property: "og:description",
+        content:
+          "Unete a la red social de los deportes y crea tendencia ! app.sportyeah.com",
+      },
+      true
+    );
+    this.meta.addTag(
+      {
+        property: "og:image",
+        content: "https://i.ibb.co/g6TFj6G/Logo-TRANSPARENTE.png",
+      },
+      true
+    );
   }
 }

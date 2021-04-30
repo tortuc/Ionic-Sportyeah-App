@@ -9,7 +9,7 @@
     </ion-buttons>
     <ion-buttons slot="end">
       <ion-searchbar
-      style="text-align: left;"
+        style="text-align: left"
         [(ngModel)]="search"
         (ngModelChange)="makeSearch()"
         placeholder="{{'search' | translate}}"
@@ -26,8 +26,11 @@
   [scrollEvents]="true"
   (ionScroll)="sendScrollEvent()"
 >
-  <ion-fab-button color="secondary" (click)="create()" class="new"
-    style="z-index:9999999999999999999999999"
+  <ion-fab-button
+    color="secondary"
+    (click)="create()"
+    class="new"
+    style="z-index: 9999999999999999999999999"
     ><ion-icon name="add"></ion-icon
   ></ion-fab-button>
   <ion-grid style="padding: 0">
@@ -37,8 +40,9 @@
           (new_challenge)="create()"
           class="absoluteFriendsC"
         ></app-friends-mobile-c>
-        <ion-row class="actualizar bg-gradient-person" >
+        <ion-row class="actualizar bg-gradient-person">
           <ion-button
+            class="btn-primary"
             style="z-index: 10"
             shape="round"
             (click)="init()"
@@ -48,7 +52,7 @@
         <div
           *ngIf="!challenges || challenges.length === 0 "
           class="text-center"
-          style="margin-right: auto; margin-left: auto; margin-top:90px;"
+          style="margin-right: auto; margin-left: auto; margin-top: 90px"
         >
           <h1 style="color: white">{{'challenge.first' | translate}}</h1>
           <img src="https://img.icons8.com/dusk/64/000000/planning-skill.png" />

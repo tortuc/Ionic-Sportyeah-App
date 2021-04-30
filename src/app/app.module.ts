@@ -67,6 +67,7 @@ import { CookieService } from "ngx-cookie-service";
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     Camera,
     SocialSharing,
+    CookieService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: LoadingInterceptor,

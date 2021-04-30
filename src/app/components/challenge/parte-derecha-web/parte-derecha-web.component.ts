@@ -5,6 +5,7 @@ import { ChallengeService } from "./../../../service/challenge.service";
 import { Component, Input, OnInit } from "@angular/core";
 import { Subject } from "rxjs";
 import { IChallenge } from "src/app/service/challenge.service";
+import { ResponseChallenge } from "src/app/models/IChallengeResponse";
 
 @Component({
   selector: "app-parte-derecha-web",
@@ -16,19 +17,21 @@ export class ParteDerechaWebComponent implements OnInit {
   @Input() destroy: Subject<void>;
   @Input() pauseS: Subject<void>;
   @Input() scrollEvent: Subject<void>;
-  next: any = null;
+  next: any = null
+  original: boolean = false
   challenges: IChallenge[] = null
 
   constructor(
     public cs: ChallengeService,
     public router: Router,
-    public userService: UserService
+    public userService: UserService,
+    public challengeService: ChallengeService
   ) {}
 
   ngOnInit() {
     this.getNext();
   }
-
+  
   async getNext() {
     this.challenges =
       this.Challenge.challenges.length > 0

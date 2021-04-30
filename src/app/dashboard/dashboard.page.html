@@ -9,15 +9,7 @@
     <ion-buttons slot="end">
       <button-search-friend></button-search-friend>
       <button-notification></button-notification>
-      <ion-button
-        (click)="langs($event)"
-        style="--background: inherit; color: white"
-        ><ion-img
-          style="width: 24px; height: 24px; margin-right: 5px"
-          src="./assets/flags/{{translate.currentLang}}.png"
-        ></ion-img>
-        {{translate.currentLang}}</ion-button
-      >
+      <lang-btn-app></lang-btn-app>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>

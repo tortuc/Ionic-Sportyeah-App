@@ -588,7 +588,7 @@
     },
     "form": {
       "position": "Posición Ejercida",
-      "federationTeam": "Federación Encargada",
+      "federationTeam": "Medio que otorga premio o reconocimientos.",
       "nowIn": "Hasta la actualidad",
       "place": "Lugar",
       "initDate": "Fecha de inicio",
@@ -606,7 +606,7 @@
     "create": "Añadir Aptitud",
     "no-info": "No se encuentra información.",
     "form": {
-      "federationTeam": "Federación Encargada",
+      "federationTeam": "Medio que otorga premio o reconocimientos.",
       "score": "Nivel de Destreza",
       "title": "Nombre de la Aptitud",
       "date": "Día de creación",
@@ -621,7 +621,7 @@
     "btn": "Cargar",
     "form": {
       "position": "Nombre del Premio",
-      "federationTeam": "Federación Encargada",
+      "federationTeam": "Medio que otorga premio o reconocimientos.",
       "place": "Lugar",
       "title": "Titular",
       "eventDate": "Fecha del Evento",
@@ -941,5 +941,12 @@
     "groups": {
       "message": "Grupos mas populares de kecuki! unete a uno"
     }
-  }
+  },
+  "timeLimit":"Límite de Tiempo",
+  "create_challenge":{
+    "header":"¡Crea tu reto para SportYeah!",
+    "invalid_field":"Este campo es invalido"
+
+  },
+  "rememberme":"Mantener sesion abierta"
 }

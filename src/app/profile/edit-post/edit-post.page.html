@@ -62,23 +62,6 @@
             </div>
           </div>
 
-          <ion-avatar
-            style="width: 150px; height: 150px; position: relative"
-            *ngIf="form.controls.image.value != ''"
-          >
-            <ion-icon
-              (click)="form.controls.image.setValue('')"
-              class="icon-remove"
-              style="cursor: pointer"
-              name="close"
-            ></ion-icon>
-
-            <ion-img
-              style="border-radius: 5px !important"
-              [src]="form.controls.image.value"
-            >
-            </ion-img>
-          </ion-avatar>
           <iframe
             *ngIf="form.controls.message.value | youtube"
             [src]="form.controls.message.value | youtube"
@@ -86,22 +69,7 @@
           ></iframe>
         </form>
         <post-shared *ngIf="post.post" [post]="post.post"></post-shared>
-        <div
-          *ngIf="post.video != null && post.video != ''"
-          style="position: relative"
-        >
-          <!-- <ion-icon name="close" class="close-video" (click)="closeVideo()"></ion-icon> -->
-          <video
-            controls="controls"
-            preload="metadata"
-            autoplay="autoplay"
-            webkit-playsinline="webkit-playsinline"
-            class="videoPlayer"
-          >
-            <source [src]="post.video | safeUrl" type="video/mp4" />
-            <source [src]="post.video | safeUrl" type="video/ogg" />
-          </video>
-        </div>
+       
         <div #emojisContainer>
           <emoji-mart
             *ngIf="emoji"

@@ -9,6 +9,7 @@ import { LoginPageRoutingModule } from './login-routing.module';
 import { LoginPage } from './login.page';
 import { TranslateModule } from '@ngx-translate/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { ComponentsSharedModule } from '../shared-components/components-shared.module';
 
 @NgModule({
   imports: [
@@ -18,7 +19,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     LoginPageRoutingModule,
     TranslateModule,
     FlexLayoutModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ComponentsSharedModule
   ],
   declarations: [LoginPage]
 })

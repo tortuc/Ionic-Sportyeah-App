@@ -9,6 +9,7 @@ import { ForgotPageRoutingModule } from './forgot-routing.module';
 import { ForgotPage } from './forgot.page';
 import { TranslateModule } from '@ngx-translate/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { ComponentsSharedModule } from '../shared-components/components-shared.module';
 
 @NgModule({
   imports: [
@@ -18,7 +19,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     ForgotPageRoutingModule,
     ReactiveFormsModule,
     TranslateModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    ComponentsSharedModule
   ],
   declarations: [ForgotPage]
 })

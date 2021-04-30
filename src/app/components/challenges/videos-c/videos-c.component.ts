@@ -21,6 +21,7 @@ export class VideosCComponent implements OnInit {
   @ViewChild("fileChooser") fileChooser: any;
   @Input() mediaa: any;
   @Input() intentoss:any;
+  @Input() timeLimit:number = 60;
 
   ngOnInit() {
     this.media = this.mediaa
@@ -34,7 +35,7 @@ export class VideosCComponent implements OnInit {
   public media: string = null;
   public videoValid: boolean = null;
   public streamRecorder = null;
-  public videoHere: boolean = false;
+  public videoHere: boolean = true;
   public intentos: string[] = [];
   public subirIntentos: boolean = true;
   constructor(
@@ -55,18 +56,7 @@ export class VideosCComponent implements OnInit {
   }
 
   async challenge() {
-    this.videoValid = false;
-    this.img.takeOnlyVideo(this.fileChooser);
-    this.img.content.pipe(take(1)).subscribe((r: string | null) => {
-      if (r !== null) {
-        this.media = r;
-        const int = setInterval(() => {
-          if (this.verifyVideoMinutes() === 1) clearInterval(int);
-        }, 1000);
-      } else {
-        this.takeVideoHere();
-      }
-    });
+    this.takeVideoHere();
   }
 
   takeVideoHere() {

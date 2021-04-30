@@ -91,33 +91,6 @@
               >
             </ion-item>
           </ion-menu-toggle>
-        </ion-list>
-        <ion-list style="padding-top: 3px" id="inbox-list">
-          <ion-menu-toggle
-            auto-hide="false"
-            *ngFor="let p of giftPages; let i = index"
-          >
-            <ion-item
-              (click)="selectedIndex = i"
-              routerDirection="root"
-              [routerLink]="[p.url]"
-              lines="none"
-              detail="false"
-              routerLinkActive="selected"
-            >
-              <ion-icon
-                slot="start"
-                [ios]="p.icon + '-outline'"
-                [md]="p.icon + '-sharp'"
-              ></ion-icon>
-              <ion-label>{{ p.title | translate }}</ion-label>
-              <ion-badge
-                *ngIf="p.url == '/chat' && chatService.allUnread"
-                style="--background: var(--color-primary)"
-                >{{ chatService.allUnread }}</ion-badge
-              >
-            </ion-item>
-          </ion-menu-toggle>
           <ion-menu-toggle auto-hide="false">
             <ion-item
               (click)="logout()"
@@ -133,6 +106,9 @@
               <ion-label>{{ "sidebar.logout" | translate }}</ion-label>
             </ion-item>
           </ion-menu-toggle>
+        </ion-list>
+        <ion-list style="padding-top: 3px" id="inbox-list">
+         
         </ion-list>
       </ion-content>
     </ion-menu>

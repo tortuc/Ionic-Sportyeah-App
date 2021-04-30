@@ -9,6 +9,7 @@ import { NewpasswordPageRoutingModule } from './newpassword-routing.module';
 import { NewpasswordPage } from './newpassword.page';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { TranslateModule } from '@ngx-translate/core';
+import { ComponentsSharedModule } from '../shared-components/components-shared.module';
 
 @NgModule({
   imports: [
@@ -18,7 +19,8 @@ import { TranslateModule } from '@ngx-translate/core';
     NewpasswordPageRoutingModule,
     ReactiveFormsModule,
     FlexLayoutModule,
-    TranslateModule
+    TranslateModule,
+    ComponentsSharedModule
   ],
   declarations: [NewpasswordPage]
 })

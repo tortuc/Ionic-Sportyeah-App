@@ -1,18 +1,22 @@
-<ion-content ngClass.gt-xs="bg-gradient-person">
-  <ion-grid style="padding: 0" class="height-100vh">
-    <ion-row
-      class="height-100vh ion-align-items-center ion-justify-content-center"
-    >
-      <ion-col class="max-widht-700" size-lg="5" size-md="8" size-sm="12">
-        <ion-card ngClass.xs="login-xs">
+<ion-content>
+  <lang-button></lang-button>
+
+  <ion-grid class="main-grid">
+    <ion-row class="main-row">
+      <ion-col class="main-col" size-lg="5" size-md="8" size-sm="12">
+        <ion-card ngClass.xs="login-xs" class="no-shadow">
           <ion-card-header class="text-center">
             <div
               class="title-project"
               style="cursor: pointer"
               (click)="userService.goLanding()"
             >
-            <img src="https://i.ibb.co/g6TFj6G/Logo-TRANSPARENTE.png" alt="SportYeah" width="180px"
-            style="vertical-align: middle !important;">
+              <img
+                src="assets/logos/logo.png"
+                alt="SportYeah"
+                width="150px"
+                style="vertical-align: middle !important"
+              />
             </div>
             <ion-card-title>{{'sign_up.sign_up' | translate}}</ion-card-title>
           </ion-card-header>
@@ -20,215 +24,391 @@
           <ion-card-content>
             <ion-grid>
               <ion-row>
-                <ion-col >
+                <ion-col>
                   <form [formGroup]="form">
-                  <ion-grid class=" center">
-                    <ion-row>
-                   
+                    <ion-grid class="center">
+                      <ion-row>
+                        <ion-col size-sm="6" size-xs="12">
+                          <ion-item>
+                            <ion-label position="floating"
+                              >{{'sign_up.name.placeholder' |
+                              translate}}</ion-label
+                            >
+                            <ion-input
+                              formControlName="name"
+                              [value]="form.controls.name.value[0]?.toUpperCase() || ''"
+                              type="text"
+                            ></ion-input>
+                          </ion-item>
+                          <div *ngIf="form.controls.name.touched">
+                            <span
+                              class="error"
+                              *ngIf="form.controls.name.errors?.required"
+                            >
+                              {{'sign_up.name.required' | translate}}
+                            </span>
+                            <span
+                              class="error"
+                              *ngIf="form.controls.name.errors?.pattern"
+                            >
+                              {{'sign_up.name.regex' | translate}}
+                            </span>
+                          </div>
+                        </ion-col>
+                        <ion-col size-sm="6" size-xs="12">
+                          <ion-item>
+                            <ion-label position="floating"
+                              >{{'sign_up.last_name.placeholder' |
+                              translate}}</ion-label
+                            >
+                            <ion-input
+                              formControlName="last_name"
+                              [value]="form.controls.last_name.value[0]?.toUpperCase() || ''"
+                              type="text"
+                            ></ion-input>
+                          </ion-item>
+                          <div *ngIf="form.controls.last_name.touched">
+                            <span
+                              class="error"
+                              *ngIf="form.controls.last_name.errors?.required"
+                            >
+                              {{'sign_up.last_name.required' | translate}}
+                            </span>
+                            <span
+                              class="error"
+                              *ngIf="form.controls.last_name.errors?.pattern"
+                            >
+                              {{'sign_up.last_name.regex' | translate}}
+                            </span>
+                          </div>
+                        </ion-col>
+                        <ion-col size="5" size-xs="12">
+                          <ion-item>
+                            <ion-label position="floating"
+                              >{{'sign_up.username.placeholder' |
+                              translate}}</ion-label
+                            >
+                            <ion-input
+                              type="text"
+                              formControlName="username"
+                              (change)="usernameFormat()"
+                            ></ion-input>
+                          </ion-item>
+                          <div *ngIf="form.controls.username.touched">
+                            <span
+                              class="error"
+                              *ngIf="form.controls.username.errors?.required"
+                            >
+                              {{'sign_up.username.required' | translate}}
+                            </span>
+                          </div>
+                        </ion-col>
+                        <ion-col size="7" size-xs="12">
+                          <ion-item>
+                            <ion-label position="floating"
+                              >{{'sign_up.email.placeholder' |
+                              translate}}</ion-label
+                            >
+                            <ion-input
+                              type="email"
+                              formControlName="email"
+                            ></ion-input>
+                          </ion-item>
+                          <div *ngIf="form.controls.email.touched">
+                            <span
+                              class="error"
+                              *ngIf="form.controls.email.errors?.required"
+                            >
+                              {{'sign_up.email.required' | translate}}
+                            </span>
+                            <span
+                              class="error"
+                              *ngIf="form.controls.email.errors?.pattern"
+                            >
+                              {{'sign_up.email.regex' | translate}}
+                            </span>
+                          </div>
+                        </ion-col>
+                        <ion-col size-sm="6" size-xs="12">
+                          <ion-item>
+                            <ion-label position="floating"
+                              >{{'sport.sport' | translate}}</ion-label
+                            >
+                            <ion-select formControlName="sport">
+                              <ion-select-option
+                                *ngFor="let sport of sports"
+                                [value]="sport"
+                                >{{ 'sport.'+sport|
+                                translate}}</ion-select-option
+                              >
+                            </ion-select>
+                          </ion-item>
+                        </ion-col>
 
-                
-                      <ion-col size-sm="6" size-xs="12">
-                        <ion-item >
-                          <ion-label position="floating">{{'sign_up.name.placeholder' | translate}}</ion-label>
-                          <ion-input formControlName="name"  [value]="form.controls.name.value[0]?.toUpperCase() || ''" type="text"></ion-input>
-                  
-                        </ion-item>
-                        <div *ngIf="form.controls.name.touched">
-                          <span class="error" *ngIf="form.controls.name.errors?.required">
-                            {{'sign_up.name.required' | translate}}
-                          </span>
-                          <span class="error" *ngIf="form.controls.name.errors?.pattern">
-                            {{'sign_up.name.regex' | translate}}
-                          </span>
+                        <ion-col size-sm="6" size-xs="12">
+                          <!-- Arregla todo lo que esta en este col -->
+                          <ion-item>
+                            <ion-label position="floating"
+                              >{{'profile_user.profile_user' |
+                              translate}}</ion-label
+                            >
+                            <ion-select
+                              [disabled]="form.value.sport == ''?true:false"
+                              (ionChange)="have_sub_profile()"
+                              formControlName="profile_user"
+                            >
+                              <ion-select-option
+                                *ngFor="let profile of profiles"
+                                [value]="profile"
+                                >{{profile=='player'?('profile_user.'+
+                                profile+'.' + form.value.sport|
+                                translate):('profile_user.'+ profile|
+                                translate)}}</ion-select-option
+                              >
+                            </ion-select>
+                          </ion-item>
+                        </ion-col>
+
+                        <ion-col
+                          *ngIf="form.value.profile_user == 'administration' || form.value.profile_user == 'executive' || form.value.profile_user == 'staff'"
+                          size="12"
+                        >
+                          <ion-item>
+                            <ion-label position="floating"
+                              >{{'sub_profile.sub_profile' |
+                              translate}}</ion-label
+                            >
+                            <ion-select formControlName="sub_profile">
+                              <ion-select-option
+                                *ngFor="let sub_profile of (form.value.profile_user=='administration'? sub_profiles_administration:sub_profiles_staff)"
+                                [value]="sub_profile"
+                                >{{'sub_profile.'+ sub_profile|
+                                translate}}</ion-select-option
+                              >
+                            </ion-select>
+                          </ion-item>
+                        </ion-col>
+
+                        <ion-col size-sm="6" size-xs="12">
+                          <ion-item>
+                            <ion-input
+                              [type]="(show)?'text':'password'"
+                              placeholder="{{'sign_up.password.placeholder' | translate}}"
+                              formControlName="password"
+                            ></ion-input>
+                            <ion-icon
+                              class="eyeIcon"
+                              [name]="(show)?'eye-off':'eye'"
+                              slot="end"
+                              style="cursor: pointer"
+                              (click)="show = !show"
+                            ></ion-icon>
+                          </ion-item>
+                          <div *ngIf="form.controls.password.touched">
+                            <span
+                              class="error"
+                              *ngIf="form.controls.password.errors?.required"
+                            >
+                              {{'sign_up.password.required' | translate}}
+                            </span>
+                            <span
+                              class="error"
+                              *ngIf="form.controls.password.errors?.pattern"
+                            >
+                              {{'sign_up.password.regex' | translate}}
+                            </span>
+                          </div>
+                        </ion-col>
+                        <ion-col size-sm="6" size-xs="12">
+                          <ion-item>
+                            <ion-input
+                              [type]="(show1)?'text':'password'"
+                              placeholder="{{'sign_up.repeat_password.placeholder' | translate}}"
+                              formControlName="repeat_password"
+                            ></ion-input>
+                            <ion-icon
+                              class="eyeIcon"
+                              [name]="(show1)?'eye-off':'eye'"
+                              slot="end"
+                              style="cursor: pointer"
+                              (click)="show1 = !show1"
+                            ></ion-icon>
+                          </ion-item>
+                          <div *ngIf="form.controls.repeat_password.touched">
+                            <span
+                              class="error"
+                              *ngIf="form.controls.repeat_password.errors?.required"
+                            >
+                              {{'sign_up.repeat_password.required' | translate}}
+                            </span>
+                            <span
+                              class="error"
+                              *ngIf="form.controls.repeat_password.errors?.repeatInvalid"
+                            >
+                              {{'sign_up.repeat_password.repeatInvalid' |
+                              translate}}
+                            </span>
+                          </div>
+                        </ion-col>
+
+                        <ion-col size="12">
+                          <ion-item>
+                            <ion-label
+                              >{{'profile_edit.birthDate' |
+                              translate}}</ion-label
+                            >
+                            <!--fxShow.xs="false"  <ion-datetime displayFormat="MM/DD/YYYY" fxShow.xs="true" formControlName="birth_date"  fxShow="false" ></ion-datetime> -->
+                            <ion-input
+                              type="date"
+                              formControlName="birth_date"
+                              (ionChange)="isyoung()"
+                            ></ion-input>
+                          </ion-item>
+                        </ion-col>
+                        <div *ngIf="younger">
+                          <ion-row>
+                            <ion-col size-sm="6" size-xs="12">
+                              <ion-item>
+                                <ion-label position="floating"
+                                  >{{'sign_up.parents_name.placeholder' |
+                                  translate}}</ion-label
+                                >
+                                <ion-input
+                                  formControlName="parents_name"
+                                  [value]="form.controls.parents_name.value[0]?.toUpperCase() || ''"
+                                  type="text"
+                                ></ion-input>
+                              </ion-item>
+                              <div *ngIf="form.controls.parents_name.touched">
+                                <span
+                                  class="error"
+                                  *ngIf="form.controls.parents_name.errors?.required"
+                                >
+                                  {{'sign_up.parents_name.required' |
+                                  translate}}
+                                </span>
+                                <span
+                                  class="error"
+                                  *ngIf="form.controls.parents_name.errors?.pattern"
+                                >
+                                  {{'sign_up.parents_name.regex' | translate}}
+                                </span>
+                              </div>
+                            </ion-col>
+                            <ion-col size-sm="6" size-xs="12">
+                              <ion-item>
+                                <ion-label position="floating"
+                                  >{{'sign_up.parents_last_name.placeholder' |
+                                  translate}}</ion-label
+                                >
+                                <ion-input
+                                  formControlName="parents_last_name"
+                                  [value]="form.controls.parents_last_name.value[0]?.toUpperCase() || ''"
+                                  type="text"
+                                ></ion-input>
+                              </ion-item>
+                              <div
+                                *ngIf="form.controls.parents_last_name.touched"
+                              >
+                                <span
+                                  class="error"
+                                  *ngIf="form.controls.parents_last_name.errors?.required"
+                                >
+                                  {{'sign_up.parents_last_name.required' |
+                                  translate}}
+                                </span>
+                                <span
+                                  class="error"
+                                  *ngIf="form.controls.parents_last_name.errors?.pattern"
+                                >
+                                  {{'sign_up.parents_last_name.regex' |
+                                  translate}}
+                                </span>
+                              </div>
+                            </ion-col>
+                          </ion-row>
+                          <ion-col size="7">
+                            <ion-item>
+                              <ion-label position="floating"
+                                >{{'sign_up.parents_email.placeholder' |
+                                translate}}</ion-label
+                              >
+                              <ion-input
+                                type="email"
+                                formControlName="parents_email"
+                              ></ion-input>
+                            </ion-item>
+                            <div *ngIf="form.controls.parents_email.touched">
+                              <span
+                                class="error"
+                                *ngIf="form.controls.parents_email.errors?.required"
+                              >
+                                {{'sign_up.parents_email.required' | translate}}
+                              </span>
+                              <span
+                                class="error"
+                                *ngIf="form.controls.parents_email.errors?.pattern"
+                              >
+                                {{'sign_up.parents_email.regex' | translate}}
+                              </span>
+                            </div>
+                          </ion-col>
                         </div>
-                   
-                      </ion-col>
-                      <ion-col size-sm="6" size-xs="12">
-                        <ion-item >
-                          <ion-label position="floating">{{'sign_up.last_name.placeholder' | translate}}</ion-label>
-                          <ion-input formControlName="last_name"  [value]="form.controls.last_name.value[0]?.toUpperCase() || ''"  type="text"></ion-input>
-                        </ion-item>
-                        <div *ngIf="form.controls.last_name.touched">
-                          <span class="error" *ngIf="form.controls.last_name.errors?.required">
-                            {{'sign_up.last_name.required' | translate}}
-                          </span>
-                          <span class="error" *ngIf="form.controls.last_name.errors?.pattern">
-                            {{'sign_up.last_name.regex' | translate}}
-                          </span>
-                        </div>
-                      </ion-col>
-                      <ion-col  size="5" size-xs="12">
-                              
-                        <ion-item >
-                          <ion-label position="floating">{{'sign_up.username.placeholder' | translate}}</ion-label>
-                          <ion-input type="text" formControlName="username"  (change)="usernameFormat()"></ion-input>
-                        </ion-item>
-                        <div *ngIf="form.controls.username.touched">
-                          <span class="error" *ngIf="form.controls.username.errors?.required">
-                            {{'sign_up.username.required' | translate}}
-                          </span>
-                         
-                        </div>
-                      </ion-col>
-                      <ion-col  size="7" size-xs="12">
-                              
-                        <ion-item >
-                          <ion-label position="floating">{{'sign_up.email.placeholder' | translate}}</ion-label>
-                          <ion-input type="email" formControlName="email"></ion-input>
-                        </ion-item>
-                        <div *ngIf="form.controls.email.touched">
-                          <span class="error" *ngIf="form.controls.email.errors?.required">
-                            {{'sign_up.email.required' | translate}}
-                          </span>
-                          <span class="error" *ngIf="form.controls.email.errors?.pattern">
-                            {{'sign_up.email.regex' | translate}}
-                          </span>
-                        </div>
-                      </ion-col>
-                      <ion-col size-sm="6" size-xs="12">
-                        <ion-item>
-                          <ion-label position="floating">{{'sport.sport' | translate}}</ion-label>
-                          <ion-select formControlName="sport" >
-                            <ion-select-option  *ngFor="let sport of sports"  [value]="sport">{{ 'sport.'+sport| translate}}</ion-select-option>
-                            
-                          </ion-select>
-                        </ion-item>
-                      </ion-col>
 
-                      <ion-col size-sm="6" size-xs="12"> <!-- Arregla todo lo que esta en este col -->
-                        <ion-item>
-                          <ion-label position="floating">{{'profile_user.profile_user' | translate}}</ion-label>
-                          <ion-select [disabled]="form.value.sport == ''?true:false" (ionChange)="have_sub_profile()" formControlName="profile_user" >
-                            <ion-select-option   *ngFor="let profile of profiles"  [value]="profile">{{profile=='player'?('profile_user.'+ profile+'.' + form.value.sport| translate):('profile_user.'+ profile| translate)}}</ion-select-option>
-                            
-                          </ion-select>
-                        </ion-item>
-                      </ion-col>
+                        <ion-col size="12">
+                          <ion-checkbox
+                            formControlName="agree"
+                            style="vertical-align: middle"
+                          ></ion-checkbox>
+                          <span>
+                            {{'sign_up.legal.one' | translate}}
+                            <a
+                              href="https://www.sportyeah.com/#/about/conditions"
+                              target="_blank"
+                              >{{'footer.terms_of_use' | translate}}</a
+                            >
+                            {{'sign_up.legal.two' | translate}}
+                            <a
+                              href="https://www.sportyeah.com/#/about/cookies"
+                              target="_blank"
+                              >{{'footer.cookies' | translate}}</a
+                            >
+                            {{'sign_up.legal.three' | translate}}
+                            <a
+                              href="https://www.sportyeah.com/#/about/conditions"
+                              target="_blank"
+                              >{{'footer.terms_of_use' | translate}}</a
+                            >
+                            {{'sign_up.legal.two' | translate}}
+                            <a
+                              href="https://www.sportyeah.com/#/about/policyprivacy"
+                              target="_blank"
+                              >{{'footer.privacy_policy' | translate}}</a
+                            >
+                            {{'sign_up.legal.four' | translate}}
+                          </span>
+                        </ion-col>
 
-                      <ion-col *ngIf="form.value.profile_user == 'administration' || form.value.profile_user == 'executive' || form.value.profile_user == 'staff'" size="12"> 
-                        <ion-item>
-                          <ion-label position="floating">{{'sub_profile.sub_profile' | translate}}</ion-label>
-                          <ion-select  formControlName="sub_profile" >
-                            <ion-select-option   *ngFor="let sub_profile of (form.value.profile_user=='administration'? sub_profiles_administration:sub_profiles_staff)"  [value]="sub_profile">{{'sub_profile.'+ sub_profile| translate}}</ion-select-option>
-                            
-                          </ion-select>
-                        </ion-item>
-                      </ion-col>
+                        <ion-col size="12">
+                          <ion-checkbox
+                            formControlName="authorize"
+                            style="vertical-align: middle"
+                          ></ion-checkbox>
+                          <span> {{'footer.authorize' | translate}} </span>
+                        </ion-col>
+                      </ion-row>
+                    </ion-grid>
+                  </form>
 
-                      <ion-col size-sm="6" size-xs="12">
-                        <ion-item >
-                        
-                          <ion-input [type]="(show)?'text':'password'" placeholder="{{'sign_up.password.placeholder' | translate}}" formControlName="password"></ion-input>
-                          <ion-icon class="eyeIcon" [name]="(show)?'eye-off':'eye'" slot="end" style="cursor: pointer;" (click)="show = !show"></ion-icon>
+                  <div style="text-align: center; padding: 5px">
+                    <ion-button
+                      class="btn-primary"
+                      (click)="create()"
+                      [disabled]="form.invalid || !form.controls.agree.value "
+                      >{{'sign_up.create' | translate}}</ion-button
+                    >
+                  </div>
 
-                        </ion-item>
-                        <div *ngIf="form.controls.password.touched">
-                          <span class="error" *ngIf="form.controls.password.errors?.required">
-                            {{'sign_up.password.required' | translate}}
-                          </span>
-                          <span class="error" *ngIf="form.controls.password.errors?.pattern">
-                            {{'sign_up.password.regex' | translate}}
-                          </span>
-                        </div>
-                      </ion-col>
-                      <ion-col size-sm="6" size-xs="12">
-                        <ion-item >
-                          <ion-input [type]="(show1)?'text':'password'" placeholder="{{'sign_up.repeat_password.placeholder' | translate}}" formControlName="repeat_password"></ion-input>
-                          <ion-icon class="eyeIcon" [name]="(show1)?'eye-off':'eye'" slot="end" style="cursor: pointer;" (click)="show1 = !show1"></ion-icon>
-
-                        </ion-item>
-                        <div *ngIf="form.controls.repeat_password.touched">
-                          <span class="error" *ngIf="form.controls.repeat_password.errors?.required">
-                            {{'sign_up.repeat_password.required' | translate}}
-                          </span>
-                          <span class="error" *ngIf="form.controls.repeat_password.errors?.repeatInvalid">
-                            {{'sign_up.repeat_password.repeatInvalid' | translate}}
-                          </span>
-                        </div>
-                      </ion-col>
-
-                      
-
-                      <ion-col size="12"  >
-                        <ion-item>
-                          <ion-label >{{'profile_edit.birthDate' | translate}}</ion-label>
-                          <!--fxShow.xs="false"  <ion-datetime displayFormat="MM/DD/YYYY" fxShow.xs="true" formControlName="birth_date"  fxShow="false" ></ion-datetime> -->
-                          <ion-input   type="date" formControlName="birth_date" (ionChange)="isyoung()"></ion-input>
-                        </ion-item>
-                      </ion-col>
-                      <div  *ngIf="younger"> 
-                        <ion-row>
-                      <ion-col size-sm="6" size-xs="12">
-                        <ion-item >
-                          <ion-label position="floating">{{'sign_up.parents_name.placeholder' | translate}}</ion-label>
-                          <ion-input formControlName="parents_name"  [value]="form.controls.parents_name.value[0]?.toUpperCase() || ''" type="text"></ion-input>
-                  
-                        </ion-item>
-                        <div *ngIf="form.controls.parents_name.touched">
-                          
-                          <span class="error" *ngIf="form.controls.parents_name.errors?.required">
-                            {{'sign_up.parents_name.required' | translate}}
-                          </span>
-                          <span class="error" *ngIf="form.controls.parents_name.errors?.pattern">
-                            {{'sign_up.parents_name.regex' | translate}}
-                          </span>
-                        </div>
-                   
-                      </ion-col>
-                      <ion-col size-sm="6" size-xs="12">
-                        <ion-item >
-                          <ion-label position="floating">{{'sign_up.parents_last_name.placeholder' | translate}}</ion-label>
-                          <ion-input formControlName="parents_last_name"  [value]="form.controls.parents_last_name.value[0]?.toUpperCase() || ''"  type="text"></ion-input>
-                        </ion-item>
-                        <div *ngIf="form.controls.parents_last_name.touched">
-                          <span class="error" *ngIf="form.controls.parents_last_name.errors?.required">
-                            {{'sign_up.parents_last_name.required' | translate}}
-                          </span>
-                          <span class="error" *ngIf="form.controls.parents_last_name.errors?.pattern">
-                            {{'sign_up.parents_last_name.regex' | translate}}
-                          </span>
-                        </div>
-                      </ion-col>
-                    </ion-row>
-                    <ion-col  size="7">
-                              
-                      <ion-item >
-                        <ion-label position="floating">{{'sign_up.parents_email.placeholder' | translate}}</ion-label>
-                        <ion-input type="email" formControlName="parents_email"></ion-input>
-                      </ion-item>
-                      <div *ngIf="form.controls.parents_email.touched">
-                        <span class="error" *ngIf="form.controls.parents_email.errors?.required">
-                          {{'sign_up.parents_email.required' | translate}}
-                        </span>
-                        <span class="error" *ngIf="form.controls.parents_email.errors?.pattern">
-                          {{'sign_up.parents_email.regex' | translate}}
-                        </span>
-                      </div>
-                    </ion-col>
-                    </div>
-
-                      <ion-col size="12">
-                        <ion-checkbox formControlName="agree" style="vertical-align: middle;"></ion-checkbox>
-                        <span>
-                          {{'sign_up.legal.one' | translate}} <a href="https://www.sportyeah.com/#/about/conditions" target="_blank">{{'footer.terms_of_use' | translate}}</a> {{'sign_up.legal.two' | translate}} <a href="https://www.sportyeah.com/#/about/cookies" target="_blank">{{'footer.cookies' | translate}}</a> {{'sign_up.legal.three' | translate}} <a href="https://www.sportyeah.com/#/about/conditions" target="_blank">{{'footer.terms_of_use' | translate}}</a> {{'sign_up.legal.two' | translate}} <a href="https://www.sportyeah.com/#/about/policyprivacy" target="_blank">{{'footer.privacy_policy' | translate}}</a> {{'sign_up.legal.four' | translate}}
-                        </span>
-                      </ion-col>
-                      
-                      <ion-col size="12">
-                        <ion-checkbox formControlName="authorize" style="vertical-align: middle;"></ion-checkbox>
-                        <span>
-                         {{'footer.authorize' | translate}}  
-                        </span>
-                      </ion-col>
-                      
-                 
-                    </ion-row>
-                  </ion-grid>
-                </form>
-             
-                
-                
-                  <ion-button class="btn-primary" (click)="create()" [disabled]="form.invalid || !form.controls.agree.value " expand="block" fill="outline">{{'sign_up.create' | translate}}</ion-button>
                   <div class="max-widht-300 center margin-top-10 text-center">
                     <a routerLink="/login">{{'sign_up.back'| translate}}</a>
                   </div>

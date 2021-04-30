@@ -1,7 +1,7 @@
 import { LoadingController } from "@ionic/angular";
 import { take } from "rxjs/operators";
 import { Subject } from "rxjs";
-import { Component, EventEmitter, OnInit, Output } from "@angular/core";
+import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 import { ImgVideoUpload } from "src/app/service/reusable-img-video-logic.service";
 import { JdvimageService } from "./../../../service/jdvimage.service";
 declare var MediaRecorder: any;
@@ -12,6 +12,8 @@ declare var MediaRecorder: any;
 })
 export class CamaraBrowserComponent implements OnInit {
   @Output() media = new EventEmitter();
+  @Input() timeLimit: number = 60
+  time:number = 0
 
   // VARIABLES FOR THE RECORDING
   public stopRecording = new Subject<void>();
@@ -52,6 +54,7 @@ export class CamaraBrowserComponent implements OnInit {
       const handleSuccess = (stream: any) => {
         video.srcObject = stream;
         this.stream = new MediaRecorder(stream);
+        this.initRecord()
         this.startRecording.pipe(take(1)).subscribe(() => this.initRecord());
         this.stopRecording.pipe(take(1)).subscribe(() => this.finisheRecord());
       };
@@ -64,6 +67,18 @@ export class CamaraBrowserComponent implements OnInit {
   initRecord() {
     this.recording = true;
     this.stream.start();
+    this.plusOne()
+  }
+
+  plusOne(){
+    if(0 < this.timeLimit){
+      setTimeout(()=>{
+        this.timeLimit -= 1
+        this.plusOne()
+      },1000)
+    }else{
+      this.finisheRecord()
+    }
   }
 
   async finisheRecord() {
