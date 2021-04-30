@@ -12,3 +12,60 @@
     top: 15px;
     color: black;
   }
+
+
+/////////////////// //LLegado de kecuki/////////////////////// 
+  .main-content {
+    padding: 0;
+    margin: 0 !important;
+  }
+  
+  .section-post {
+    padding: 0 !important;
+  }
+  
+  .friends-mobile-content {
+    visibility: hidden;
+    position: absolute;
+    max-width: 700px;
+    margin: auto;
+  }
+  
+  .panel-desktop {
+    visibility: visible;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 0;
+  }
+  
+  .main-card-content {
+    visibility: visible;
+    max-width: 700px;
+    margin: auto;
+  }
+  
+  @media screen and (max-width: 600px) {
+    .friends-mobile-content {
+      visibility: visible !important;
+      position: unset !important;
+    }
+  
+    .panel-desktop {
+      visibility: hidden !important;
+      position: absolute;
+    }
+  
+    .main-card-content {
+      visibility: hidden !important;
+      position: absolute;
+      max-width: 700px;
+      margin: auto;
+    }
+  }
+  @media screen and (max-width: 990px) {
+    .panel-desktop {
+      visibility: hidden !important;
+      position: absolute;
+    }
+  }
+  

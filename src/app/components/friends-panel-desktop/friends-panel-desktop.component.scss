@@ -1,0 +1,14 @@
+.no-users {
+    padding: 10px;
+    text-align: center;
+    color: black;
+    font-family: 'Poppins',sans-serif;
+  
+  }
+  .friends-card {
+    ion-card-content {
+      max-height: 350px;
+      overflow: auto;
+      padding: 0px;
+    }
+  }

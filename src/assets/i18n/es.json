@@ -927,5 +927,19 @@
   },
   "info":{
     "img-upload":"Subiendo imagen, por favor espere..."
+  },
+  "panel": {
+    "seeAll": "Ver todos",
+    "search": {
+      "most_popular": "Usuarios mas populares de Sportyeah!"
+    },
+    "follow": {
+      "not_followings": "Aun no estas siguiendo a ningun usuario, empieza buscando a tus amigos",
+      "search_friends": "Buscar amigos",
+      "not_followers": "Aun no tienes seguidores"
+    },
+    "groups": {
+      "message": "Grupos mas populares de kecuki! unete a uno"
+    }
   }
 }

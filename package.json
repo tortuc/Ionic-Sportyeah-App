@@ -57,6 +57,7 @@
     "ionic4-rating": "^1.0.9",
     "localstorage-polyfill": "^1.0.1",
     "moment": "^2.29.1",
+    "ngx-cookie-service": "^11.0.2",
     "ngx-wig": "^11.0.0",
     "rxjs": "~6.5.5",
     "sessionstorage": "^0.1.0",
