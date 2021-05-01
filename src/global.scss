@@ -183,14 +183,14 @@ ion-item {
   text-align: center !important;
 }
 
-.bg-gradient-person {
+.main-bg {
   --background: linear-gradient(
     90deg,
     rgb(16 42 82) 0%,
     rgb(131 197 247) 100%
   ) !important;
 }
-.bg-gradient-person-fab {
+.main-bg-fab {
   --background: linear-gradient(150deg, #499091 1%, #c0ffd0 70%) !important;
 }
 .bg-gradient-purple {
@@ -235,8 +235,18 @@ a {
   text-decoration: none !important;
 }
 
-.btn-primary {
+.btn-secondary {
   --background: var(--color-secondary);
+  --color: white;
+  --border-radius: 25px;
+}
+.btn-primary {
+  --background: var(--color-primary);
+  --color: white;
+  --border-radius: 25px;
+}
+.btn-delete {
+  --background: #d73226;
   --color: white;
   --border-radius: 25px;
 }
@@ -712,4 +722,13 @@ ion-segment-button {
 
 .no-shadow{
   box-shadow: none !important;
+}
+
+
+.questionDiv {
+  border-radius: 15px;
+  margin-top: 10px;
+  border: solid 2px var(--color-primary);
+  width: 100%;
+  padding: 15px;
 }

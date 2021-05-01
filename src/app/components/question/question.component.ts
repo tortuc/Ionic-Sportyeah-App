@@ -16,7 +16,10 @@ constructor(
   public questionService:QuestionService,
 ) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    console.log(this.data);
+    
+  }
 
 
   selectAnswer(id){

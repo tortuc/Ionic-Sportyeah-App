@@ -281,13 +281,38 @@
     "love": "Me encanta",
     "haha": "Me divierte",
     "wow": "Me asombra",
-    "sad": "Me entistece",
+    "sad": "Me entristece",
     "angry": "Me enoja",
     "comments": "Comentarios",
     "comment": "Comentar",
     "shared": "Veces compartido",
-    "share": "Compartir"
+    "share": "Compartir",
+    "header": "Publicación",
+    "level1": "level DIOS",
+    "level2": "Mi héroe",
+    "level3": "Pana",
+    "level4": "Flojo",
+    "level5": "Cobarde",
+    "crush": "Crush",
+    "legion": "Legión",
+    "lol": "Lol",
+    "me_sirve": "Me Renta",
+    "bro": "Bro",
+    "fachero": "Fachero",
+    "ban": "Baneo Ya!",
+    "troll": "Troleo",
+    "chill": "Chill",
+    "cringe": "Cringe",
+    "admin": "Ser Admin",
+    "hype": "Hype",
+    "random": "Random",
+    "meh": "Meh",
+    "wtf": "WTF",
+    "idk": "IDK",
+    "omg": "OMG"
   },
+  "seelikes": "Reacciones a esta publicación",
+
   "new_post": {
     "title": "Nueva publicacion",
     "input": "¿Qué te gustaria compartir?",
@@ -327,12 +352,12 @@
     "button": "CREAR"
   },
   "img-options": {
-    "header":"Selecciona una opción",
-    "img":"Subir una imagen",
-    "video":"Subir un vídeo",
+    "header": "Selecciona una opción",
+    "img": "Subir una imagen",
+    "video": "Subir un vídeo",
     "imgs": "Subir una o varias imágenes",
     "videos": "Subir uno o varios vídeos",
-    "youtube":"Subir un vídeo de youtube",
+    "youtube": "Subir un vídeo de youtube",
     "camera": "Camara",
     "galery": "Galeria",
     "avatar": "Avatares",
@@ -729,15 +754,15 @@
   "structure": {
     "title": {
       "club": "Club",
-      "input":"Ingrese el nombre de su equipo, selección, etc"
+      "input": "Ingrese el nombre de su equipo, selección, etc"
     },
     "subtitle": {
       "club": "Club",
-      "input":"Ingrese el puesto, cargo, staff, posición, etc"
+      "input": "Ingrese el puesto, cargo, staff, posición, etc"
     },
     "text": {
       "club": "Ingresa la información de tu club.",
-      "input":"Información acerca de este elemento"
+      "input": "Información acerca de este elemento"
     },
     "edit": "Editar estructura",
     "see": "Ver más",
@@ -745,16 +770,16 @@
       "title": "Nombre / Titulo",
       "subtitle": "Cargo / Función",
       "text": "Descripción / Resumen",
-      "username":"Nombre de usuario en SportYeah (Opcional)",
-      "facebook":"URL Perfil de Facebook",
-      "twitter":"URL Perfil de Twitter",
-      "instagram":"URL Perfil de Instagram",
-      "linkedin":"URL Perfil de Linkedin",
-      "webPage":"Pagina Web",
-      "initDate":"Fecha de Fundación / Inicio"
+      "username": "Nombre de usuario en SportYeah (Opcional)",
+      "facebook": "URL Perfil de Facebook",
+      "twitter": "URL Perfil de Twitter",
+      "instagram": "URL Perfil de Instagram",
+      "linkedin": "URL Perfil de Linkedin",
+      "webPage": "Pagina Web",
+      "initDate": "Fecha de Fundación / Inicio"
     },
     "start": "Comenzar",
-    "title":"Estructura"
+    "title": "Estructura"
   },
   "creating": "Creando nuevo elemento",
   "changing": "Editando elemento",
@@ -763,25 +788,25 @@
   "sponsorText": "Revisa estos perfiles",
   "challenges": "Desafíos",
   "challenge": {
-    "shared":{
-      "text":"¡Los reto a realizar este increible desafío!"
+    "shared": {
+      "text": "¡Los reto a realizar este increible desafío!"
     },
-    "deleteModal":{
-      "sure":"¿Desea crear su reto?",
+    "deleteModal": {
+      "sure": "¿Desea crear su reto?",
       "yes": "¡Crear!",
       "no": "Cancelar"
     },
-    "_awards":{
+    "_awards": {
       "title": "Título",
-      "description":"Descripción",
-      "condition":"Condición",
+      "description": "Descripción",
+      "condition": "Condición",
       "date": "Fecha de entrega"
     },
-    "awardtitle":"Premios",
-    "date":"Fecha de Entrega",
+    "awardtitle": "Premios",
+    "date": "Fecha de Entrega",
     "retado": "te esta retando",
-    "shared":"Retar",
-    "shareds":"Retados",
+    "shared": "Retar",
+    "shareds": "Retados",
     "foryou": "Para ti",
     "awards": "¡Puedes ganar estos premios!",
     "following": "Siguiendo",
@@ -805,17 +830,17 @@
     "new_challenge": "¡Comienza a retar!",
     "create": "¡Sube tu reto!",
     "public": "¡Deseo que todo SportYeah vea mi desafio!",
-    "Compartir":"¡Comparte el Reto!",
-    "original" :"Toma Buena",
-    "trys":"Intentos"
+    "Compartir": "¡Comparte el Reto!",
+    "original": "Toma Buena",
+    "trys": "Intentos"
   },
-  "createAward":{
-    "conditions":{
-      "condition":"Ingrese por favor una condición",
-      "date":"Ingrese por favor una fecha para dar el premio",
-      "place":"Ingrese por favor una posición para este premio",
-      "title":"Ingrese por favor un titulo que describa su premio",
-      "description":"Ingrese por favor una descripción para su premio"
+  "createAward": {
+    "conditions": {
+      "condition": "Ingrese por favor una condición",
+      "date": "Ingrese por favor una fecha para dar el premio",
+      "place": "Ingrese por favor una posición para este premio",
+      "title": "Ingrese por favor un titulo que describa su premio",
+      "description": "Ingrese por favor una descripción para su premio"
     }
   },
   "save": "Guardar Cambios",
@@ -852,7 +877,7 @@
       "accept": "Aceptar",
       "alert": "Alerta"
     },
-    "streaming":"Transmisión"
+    "streaming": "Transmisión"
   },
   "sponsorDescription": "¡Agrega un patrocinador!",
   "back": "Volver",
@@ -877,63 +902,62 @@
     "reanude": "Reanudar",
     "stop": "Detener"
   },
-  "intentos":"¿Desea subir los intentos?",
-  "verIntentos":"Ver Intentos",
-  "search":"Buscar",
-  "challengePerson":"Retar",
+  "intentos": "¿Desea subir los intentos?",
+  "verIntentos": "Ver Intentos",
+  "search": "Buscar",
+  "challengePerson": "Retar",
   "solidary": "Mi desafio es solidario",
-  "reason":"Describa su causa",
-  "follow":"Seguir",
-  "unfollow":"Siguiendo",
-  "copyLink":"Copiar Enlace",
-  "selectDesafiosPremios":{
+  "reason": "Describa su causa",
+  "follow": "Seguir",
+  "unfollow": "Siguiendo",
+  "copyLink": "Copiar Enlace",
+  "selectDesafiosPremios": {
     "SelectOne": "Selecciona una",
-    "Title":"Condición para Ganar",
-    "Likes":"Más Likes",
-    "Likes1":"Más Likes (Diós)",
-    "Likes2":"Más Likes (Heroé)",
-    "Likes3":"Más Likes (Pana)",
-    "Likes4":"Más Likes (Flojo)",
-    "Likes5":"Más Likes (Cobarde)",
-    "Comments":"Más Comentarios",
-    "Challenges":"Más Retados",
-    "Shared":"Más Compartidos",
-    "f5":"Primeros 5 en hacerlo",
-    "f10":"Primeros 10 en hacerlo",
-    "f20":"Primeros 20 en hacerlo"
+    "Title": "Condición para Ganar",
+    "Likes": "Más Likes",
+    "Likes1": "Más Likes (Diós)",
+    "Likes2": "Más Likes (Heroé)",
+    "Likes3": "Más Likes (Pana)",
+    "Likes4": "Más Likes (Flojo)",
+    "Likes5": "Más Likes (Cobarde)",
+    "Comments": "Más Comentarios",
+    "Challenges": "Más Retados",
+    "Shared": "Más Compartidos",
+    "f5": "Primeros 5 en hacerlo",
+    "f10": "Primeros 10 en hacerlo",
+    "f20": "Primeros 20 en hacerlo"
   },
-  "seeImg":"Ver Imagen",
-  "ranking":{
-    "today":"Hoy",
-    "week":"Semana",
-    "month":"Mes",
-    "year":"Año",
-    "sinceEver":"Desde siempre",
-    "slide":"Desliza para filtrar" 
-   },
-  "gostructure":"Ver la estructura",
-  "error":{
-    "img-upload":"Error al subir la imagen",
-    "video-upload":"Error al subir el vídeo",
-    "camera":"Error al abrir la cámara",
-    "invalidFormat":"Formato invalido"
+  "seeImg": "Ver Imagen",
+  "ranking": {
+    "today": "Hoy",
+    "week": "Semana",
+    "month": "Mes",
+    "year": "Año",
+    "sinceEver": "Desde siempre",
+    "slide": "Desliza para filtrar"
   },
-  "success":{
-    "img-upload":"Imagen subida con éxito",
-    "video-upload":"Vídeo subido con éxito",
-    "youtube-link":"Vídeo subido con éxito",
-    "sponsors-updated":"Los patrocinadores fueron actualizados"
+  "gostructure": "Ver la estructura",
+  "error": {
+    "img-upload": "Error al subir la imagen",
+    "video-upload": "Error al subir el vídeo",
+    "camera": "Error al abrir la cámara",
+    "invalidFormat": "Formato invalido"
   },
-  "info":{
-    "img-upload":"Subiendo imagen, por favor espere..."
+  "success": {
+    "img-upload": "Imagen subida con éxito",
+    "video-upload": "Vídeo subido con éxito",
+    "youtube-link": "Vídeo subido con éxito",
+    "sponsors-updated": "Los patrocinadores fueron actualizados"
   },
-  "timeLimit":"Límite de Tiempo",
-  "create_challenge":{
-    "header":"¡Crea tu reto para SportYeah!",
-    "invalid_field":"Este campo es invalido"
-
+  "info": {
+    "img-upload": "Subiendo imagen, por favor espere..."
   },
-  "rememberme":"Mantener sesion abierta",
+  "timeLimit": "Límite de Tiempo",
+  "create_challenge": {
+    "header": "¡Crea tu reto para SportYeah!",
+    "invalid_field": "Este campo es invalido"
+  },
+  "rememberme": "Mantener sesion abierta",
   "attach_link": {
     "header": "Adjuntar un enlace",
     "name": "Nombre del enlace (opcional)",
@@ -942,5 +966,23 @@
   "remove_file": {
     "header": "Remover archivo",
     "message": "Seguro deseas remover este archivo?"
+  },
+  "question": {
+    "new": {
+      "title": "Crea una pregunta",
+      "question": "Haz una pregunta",
+      "answer": "Ingresa respuesta",
+      "add": "Agregar respuesta",
+      "btn": "Crear pregunta"
+    },
+    "edit": {
+      "title": "Editar pregunta",
+      "btn": "Guardar cambios"
+    },
+    "limit": {
+      "title": "Fecha limite de votación",
+      "max": "Introducir una fecha mayor al día actual"
+    },
+    "finish": "Votaciones finalizadas"
   }
 }

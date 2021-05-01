@@ -17,16 +17,41 @@ import { PostPreviewImagesSliderComponent } from "./post-preview-images-slider/p
 import { ViewCommentComponent } from "./view-comment/view-comment.component";
 import { SeeFilesPostSliderComponent } from "./see-files-post-slider/see-files-post-slider.component";
 import { QuestionCommentComponent } from "../components/question-comment/question-comment.component";
+import { EditQuestionComponent } from "../components/edit-question/edit-question.component";
+import { AttachLinkPreviewPostComponent } from "./attach-link-preview-post/attach-link-preview-post.component";
+import { ReactToPostsComponent } from "./react-to-posts/react-to-posts.component";
+import { LikesPostComponent } from "./likes-post/likes-post.component";
+import { AllReactionsComponent } from "./all-reactions/all-reactions.component";
+import { LikesReactionsComponent } from "./likes-reactions/likes-reactions.component";
+import { PostOptionsComponent } from "../components/post-options/post-options.component";
+import { SharedsPostComponent } from "../components/shareds-post/shareds-post.component";
+import { UserItemReactionsComponent } from "./user-item-reactions/user-item-reactions.component";
+import { CommentsInPotsComponent } from "./comments-in-pots/comments-in-pots.component";
+import { SharedsInPostComponent } from "./shareds-in-post/shareds-in-post.component";
+import { NewPostPage } from "../dashboard/new-post/new-post.page";
+import { PostSharedComponent } from "../components/post-shared/post-shared.component";
 
 const componets = [
- CommentPostComponent,
- NewPostHeaderComponent,
- PostPreviewImagesComponent,
- PostPreviewImagesSliderComponent,
- ViewCommentComponent,
- SeeFilesPostSliderComponent,
- QuestionCommentComponent
-  // NewPostPage
+  CommentPostComponent,
+  NewPostHeaderComponent,
+  PostPreviewImagesComponent,
+  PostPreviewImagesSliderComponent,
+  ViewCommentComponent,
+  SeeFilesPostSliderComponent,
+  QuestionCommentComponent,
+  EditQuestionComponent,
+  AttachLinkPreviewPostComponent,
+  ReactToPostsComponent,
+  LikesPostComponent,
+  AllReactionsComponent,
+  LikesReactionsComponent,
+  PostOptionsComponent,
+  SharedsPostComponent,
+  UserItemReactionsComponent,
+  CommentsInPotsComponent,
+  SharedsInPostComponent,
+  NewPostPage,
+  PostSharedComponent
 ];
 
 @NgModule({
@@ -43,7 +68,7 @@ const componets = [
     EmojiModule,
     PickerModule,
     DirectivesModule,
-    RouterModule
+    RouterModule,
   ],
   exports: componets,
 })

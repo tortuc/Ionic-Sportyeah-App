@@ -4,6 +4,8 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { getToken } from '../helpers/token';
 import { UserService } from './user.service';
+import { CookieService } from 'ngx-cookie-service';
+import { Router } from '@angular/router';
 
 interface Geo {
   ip:string
@@ -19,7 +21,8 @@ export class LoginService {
 
   constructor(
     private http:HttpClient,
-    private userService:UserService
+    private cookieService:CookieService,
+    private router:Router
 
   ) {
   
@@ -80,6 +83,16 @@ export class LoginService {
   verification(token){
     return this.http.post(`${environment.URL_API}/user/verification`,{token})
   }
+
+   /**
+   * Redirige desde una publicacion, al login para iniciar sesion y volver a la publicacion
+   * (solo usar si no hay usuario logueado)
+   * @param route ruta al cual se redirige una vez el usuario inicie sesion
+   */
+    goToLogin(route) {
+      this.cookieService.set("login_redirect", route);
+      this.router.navigate(["/login"]);
+    }
 
 
 }

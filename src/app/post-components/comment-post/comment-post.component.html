@@ -73,26 +73,46 @@
           <ion-icon name="happy"></ion-icon>
         </ion-button>
       </span>
-      <ion-button class="btn-rounded-options" (click)="imageActionSheet()">
+      <ion-button [disabled]="question.questionGroup" class="btn-rounded-options" (click)="imageActionSheet()">
         <ion-icon name="image"></ion-icon>
       </ion-button>
-      <ion-button class="btn-rounded-options" (click)="videoActionSheet()">
+      <ion-button [disabled]="question.questionGroup" class="btn-rounded-options" (click)="videoActionSheet()">
         <ion-icon name="videocam"></ion-icon>
       </ion-button>
-      <ion-button class="btn-rounded-options" (click)="link()">
+      <ion-button [disabled]="question.questionGroup"  class="btn-rounded-options" (click)="link()">
         <ion-icon name="link"></ion-icon>
       </ion-button>
+      <ion-button [disabled]="files.length > 0 || question.questionGroup" (click)="createQuestion()">
+        <ion-icon name="help-outline"></ion-icon>
+      </ion-button>
 
-      <ion-button class="btn-green" [disabled]="form.invalid && files.length == 0" (click)="send()">
+      <ion-button
+        class="btn-green"
+        [disabled]="
+          form.invalid &&
+          files.length == 0 &&
+          !question.questionGroup
+        "
+        (click)="send()"
+      >
         {{ "new_comment.btn" | translate }}
       </ion-button>
     </ion-col>
     <ion-col>
       <post-preview-images
         [loading]="loading"
-        (remove)="removeFile($event)"
-        [files]="files"
+        [(files)]="files"
       ></post-preview-images>
+    </ion-col>
+    <ion-col size="12">
+      <edit-question
+        *ngIf="question.questionGroup"
+        #editQuestionHash
+        [question]="question.questionGroup"
+        [badDate]="badDate"
+        (delete)="deleteQuestion($event)"
+        (edit)="editQuestion($event)"
+      ></edit-question>
     </ion-col>
   </ion-row>
 </ion-grid>

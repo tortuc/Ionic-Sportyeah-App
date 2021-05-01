@@ -17,12 +17,15 @@ import {
   ToastController,
 } from "@ionic/angular";
 import { TranslateService } from "@ngx-translate/core";
+import { take } from "rxjs/operators";
+import { NewQuestionComponent } from "src/app/components/new-question/new-question.component";
 import { MentionsDirective } from "src/app/directives/mentions.directive";
 import { INew, IPost, IPostFile } from "src/app/models/iPost";
 import { CommentService } from "src/app/service/comment.service";
 import { JdvimageService } from "src/app/service/jdvimage.service";
 import { NewsService } from "src/app/service/news.service";
 import { PostService } from "src/app/service/post.service";
+import { QuestionService } from "src/app/service/question.service";
 import { UserService } from "src/app/service/user.service";
 // import { ImagePickerComponent } from "../image-picker/image-picker.component";
 // import { VideoPickerComponent } from "../video-picker/video-picker.component";
@@ -45,9 +48,9 @@ export class CommentPostComponent implements OnInit {
     public loadingCtrl: LoadingController,
     private toastController: ToastController,
     private commentService: CommentService,
-    private alertCtrl: AlertController,  
-      public newsService:NewsService,
-
+    private alertCtrl: AlertController,
+    public newsService: NewsService,
+    public questionService: QuestionService
   ) {}
 
   form = this.fb.group({
@@ -116,27 +119,29 @@ export class CommentPostComponent implements OnInit {
   async send() {
     // obtenemos los datos del formulario
     let comment = this.form.value;
-    // le asignamos el post al que pertenece
-    comment.post = this.post._id;
+
     // le asignamos los archivos (si son videos se sobrescribiran)
     console.log(this.files);
-    
+
     comment.files = await this.postService.uploadsVideos(
       this.videosToUploads,
       this.files
     );
     console.log(comment.files);
-    
+
     // asignamos valor real del input, con los emojis y los usuarios mencionados
     comment.message = this.mainInput.nativeElement.innerHTML;
     // creamos el loading
     let loading = await this.loadingCtrl.create({
       message: this.translate.instant("loading"),
     });
+
+    comment.question = await this.saveQuestion();
+
     // presentamos el loading
     loading.present();
     if (this.post && !this.news) {
-      comment.post = this.post._id
+      comment.post = this.post._id;
       this.postService
         .newComment(comment)
         .toPromise()
@@ -148,7 +153,7 @@ export class CommentPostComponent implements OnInit {
           loading.dismiss();
         });
     } else {
-      comment.news = this.news._id
+      comment.news = this.news._id;
       this.newsService
         .newComment(comment)
         .toPromise()
@@ -174,7 +179,10 @@ export class CommentPostComponent implements OnInit {
     // cerramos el loading
     loading.dismiss();
     // cerramos la modal si existe
-    this.modalController.dismiss();
+    this.modalController.dismiss().catch((e)=>{
+      // handle
+      
+    });
     // creamos un mensaje tipo toast, que se creo el mensaje
     const toast = await this.toastController.create({
       message: this.translate.instant("new_comment_success"),
@@ -189,6 +197,7 @@ export class CommentPostComponent implements OnInit {
   reset() {
     this.form.controls.message.setValue("");
     this.files = [];
+    this.question.questionGroup = null
   }
 
   videosToUploads = [];
@@ -392,5 +401,78 @@ export class CommentPostComponent implements OnInit {
     });
 
     alert.present();
+  }
+
+  //Para hacer cuestionarios en lo comentarios
+  question = {
+    user: this.userService.User._id,
+    questionGroup: null,
+    finishVotes: undefined,
+  };
+
+  //Crea una modal donde se pueden crear preguntas
+  async createQuestion() {
+    const modal = await this.modalController.create({
+      component: NewQuestionComponent,
+      cssClass: "my-custom-class",
+      backdropDismiss: false,
+      componentProps: {
+        edit: false,
+      },
+    });
+    modal
+      .onDidDismiss()
+      .then((data) => {
+        if (data.data?.question != undefined) {
+          this.question.questionGroup = data.data.question; //Las preguntas creadas se introducen en el grupo de preguntas
+        }
+      })
+      .catch((err) => {});
+
+    return await modal.present();
+  }
+
+  async editQuestion() {
+    const modalEdit = await this.modalController.create({
+      component: NewQuestionComponent,
+      cssClass: "my-custom-class",
+      backdropDismiss: false,
+      componentProps: {
+        question: this.question.questionGroup,
+        edit: true,
+      },
+    });
+    modalEdit
+      .onDidDismiss()
+      .then((data) => {
+        if (data.data.question != undefined) {
+          this.question.questionGroup = data.data.question;
+        }
+      })
+      .catch((err) => {});
+    return await modalEdit.present();
+  }
+  deleteQuestion() {
+    this.question.questionGroup = null;
+  }
+
+  saveQuestion() {
+    return new Promise((resolve, reject) => {
+      if (!this.question.questionGroup) {
+        resolve(null);
+      } else {
+        this.questionService
+          .create(this.question)
+          .pipe(take(1))
+          .subscribe(
+            (question: any) => {
+              resolve(question._id);
+            },
+            (err) => {
+              reject(err);
+            }
+          );
+      }
+    });
   }
 }

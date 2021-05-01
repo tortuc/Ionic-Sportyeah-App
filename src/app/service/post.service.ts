@@ -20,7 +20,6 @@ export class PostService {
 
 constructor(
   private http:HttpClient,
-  private userService:UserService,
   private imageService:JdvimageService
 ) { }
 audio = new Howl({
@@ -194,5 +193,38 @@ fileRemoved(url: string) {
 fileRemovedSuscriber() {
   return this.removeFile$.asObservable();
 }
+
+ /**
+   * Saber si un usuario reacciono a un post
+   * @param id _id del post
+   * @param user _id del usuario
+   *
+   */
+
+  userReactToPost(id, user) {
+    return this.http.get(`${environment.URL_API}/post/reacted/${id}/${user}`);
+  }
+
+  changeReact(id, type) {
+    return this.http.put(
+      `${environment.URL_API}/post/changereact/${id}/${type}`,
+      null,
+      {
+        headers: new HttpHeaders({ "access-token": getToken() }),
+      }
+    );
+  }
+
+  /**
+   * Cantidad de reacciones en una publicacion
+   *
+   */
+
+   countReactionsByPost(post) {
+    return this.http.get<number>(
+      `${environment.URL_API}/post/reactions/${post}`
+    );
+  }
+
 
 }

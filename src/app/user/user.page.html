@@ -1,5 +1,5 @@
 <ion-header *ngIf="!loadingInit">
-  <ion-toolbar class="bg-gradient-person">
+  <ion-toolbar class="main-bg">
     <ion-buttons slot="start">
       <ion-back-button style="color: white"></ion-back-button>
     </ion-buttons>
@@ -10,7 +10,7 @@
 </ion-header>
 
 <ion-content
-  class="bg-gradient-person"
+  class="main-bg"
   [scrollEvents]="true"
   (ionScrollEnd)="logScrolling($event)"
   *ngIf="!loadingInit"

@@ -1,0 +1,16 @@
+<div class="user-reacted">
+
+  <div (click)="goToProfile(user.username)">
+    <img class="user-photo" [src]="user.photo" alt="" /><img
+      class="circle"
+      [src]="type | showReactionsImage"
+      alt=""
+    />
+  </div>
+  <div (click)="goToProfile(user.username)" style="flex: auto">
+    <span class="user-name"
+      >{{ user.name }} {{ user.last_name }}
+    </span>
+  </div>
+  <div><follow-button [user]="user._id"></follow-button></div>
+</div>

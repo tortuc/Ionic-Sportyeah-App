@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar class="bg-gradient-person">
+  <ion-toolbar class="main-bg">
     <ion-item style="--background:inherit">
       <ion-thumbnail slot="start">
         <ion-avatar class="mini">
@@ -16,12 +16,12 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-align-items-center ion-justify-content-center bg-gradient-person">
+<ion-content class="ion-align-items-center ion-justify-content-center main-bg">
   <ion-img [src]="msg.image" class="img">
 
   </ion-img>
 </ion-content>
-<ion-footer style="text-align: center;color: white;" class="bg-gradient-person">
+<ion-footer style="text-align: center;color: white;" class="main-bg">
   <span class="message-user" [innerHTML]="msg.message | links"></span>
 
 </ion-footer>

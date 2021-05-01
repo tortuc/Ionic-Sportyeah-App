@@ -13,40 +13,29 @@ import { CommentedPipe } from "./commented.pipe";
 import { SharedPipe } from "./shared.pipe";
 import { CustomCurrencyPipe } from "./custom-currency.pipe";
 import { CanVotePipe } from './can-vote.pipe';
+import { ShowReactionsImagePipe } from "./show-reactions-image.pipe";
 
+const pipes = [
+  LinksPipe,
+  LikedPipe,
+  IconsPipe,
+  YoutubePipe,
+  DiffTimePipe,
+  ScrollChatPipe,
+  ScrollChatPipe,
+  MentionsPipe,
+  SafeUrlPipe,
+  CustomDisplayDatePipe,
+  CommentedPipe,
+  SharedPipe,
+  CustomCurrencyPipe,
+  CanVotePipe,
+  ShowReactionsImagePipe
+  
+]
 @NgModule({
   imports: [CommonModule],
-  declarations: [
-    LinksPipe,
-    LikedPipe,
-    IconsPipe,
-    YoutubePipe,
-    DiffTimePipe,
-    ScrollChatPipe,
-    ScrollChatPipe,
-    MentionsPipe,
-    SafeUrlPipe,
-    CustomDisplayDatePipe,
-    CommentedPipe,
-    SharedPipe,
-    CustomCurrencyPipe,
-    CanVotePipe,
-    
-  ],
-  exports: [
-    LinksPipe,
-    LikedPipe,
-    IconsPipe,
-    YoutubePipe,
-    DiffTimePipe,
-    ScrollChatPipe,
-    MentionsPipe,
-    SafeUrlPipe,
-    CustomDisplayDatePipe,
-    CommentedPipe,
-    SharedPipe,
-    CustomCurrencyPipe,
-    CanVotePipe,
-  ],
+  declarations: pipes,
+  exports: pipes,
 })
 export class PipesModule {}

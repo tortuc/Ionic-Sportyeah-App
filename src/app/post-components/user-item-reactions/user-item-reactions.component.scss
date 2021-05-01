@@ -1,0 +1,34 @@
+.circle {
+    vertical-align: middle;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    position: absolute;
+    right: 5px;
+    bottom: 10px;
+  }
+  
+  .user-reacted {
+    display: flex;
+    div {
+      padding: 10px;
+      align-self: center;
+      position: relative;
+    }
+  }
+  
+  .user-photo {
+    border-radius: 50%;
+    height: 50px;
+    width: 50px;
+    cursor: pointer;
+  }
+  
+  .user-name {
+    color: #5f5b5b;
+    font-size: 14px;
+    cursor: pointer;
+    &:hover {
+      color: #3880ff;
+    }
+  }

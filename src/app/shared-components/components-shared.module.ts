@@ -10,7 +10,7 @@ import { LangBtnAppComponent } from "./lang-btn-app/lang-btn-app.component";
 const components = [
   
   LangButtonComponent,
-  LangBtnAppComponent
+  LangBtnAppComponent,
 
 ];
 

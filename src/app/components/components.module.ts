@@ -36,7 +36,6 @@ import { IonicModule } from "@ionic/angular";
 import { AddFriendsPage } from "../dashboard/add-friends/add-friends.page";
 import { MsgAudioComponent } from "./msg-audio/msg-audio.component";
 import { PostSharedComponent } from "./post-shared/post-shared.component";
-import { PostOptionsComponent } from "./post-options/post-options.component";
 import { PostContentComponent } from "./post-content/post-content.component";
 import { FriendsMobileComponent } from "./friends-mobile/friends-mobile.component";
 import { HeaderPostComponent } from "./header-post/header-post.component";
@@ -44,7 +43,6 @@ import { ContenteditableValueAccessorModule } from "@tinkoff/angular-contentedit
 import { DirectivesModule } from "../directives/directive.module";
 import { PickerModule } from "@ctrl/ngx-emoji-mart";
 import { LikesPostComponent } from "./likes-post/likes-post.component";
-import { SharedsPostComponent } from "./shareds-post/shareds-post.component";
 import { NewProfilePhotoComponent } from "./new-profile-photo/new-profile-photo.component";
 import { ChatUserItemComponent } from "./chat-user-item/chat-user-item.component";
 import { MessageDeletedComponent } from "./message-deleted/message-deleted.component";
@@ -85,7 +83,6 @@ import { SponsorsNodeComponent } from 'src/app/components/structure/sponsors/spo
 import { SponsorsCreateComponent } from 'src/app/components/structure/sponsors-create/sponsors-create.component';
 import { QuestionComponent } from "./question/question.component";
 import { GetMediaComponent } from "./get-media/get-media.component";
-import { EditQuestionComponent } from "./edit-question/edit-question.component";
 import { QuestionNotificationComponent } from "./question-notification/question-notification.component"
 import { NoResults } from './no-results/no-results.component';
 import { ProfilHeaderC } from './profile-challenges/profile-header-c.components';
@@ -113,13 +110,11 @@ import { FollowBtn } from './profile-challenges/follow-btn.component';
     AddFriendsPage,
     MsgAudioComponent,
     PostSharedComponent,
-    PostOptionsComponent,
     PostContentComponent,
     ImageSeeComponent,
     FriendsMobileComponent,
     HeaderPostComponent,
     LikesPostComponent,
-    SharedsPostComponent,
     NewProfilePhotoComponent,
     ChatUserItemComponent,
     ErrorComponent,
@@ -181,10 +176,8 @@ import { FollowBtn } from './profile-challenges/follow-btn.component';
     SponsorsNodeComponent,
     SponsorsCreateComponent,
     QuestionComponent,
-    EditQuestionComponent,
     QuestionNotificationComponent,
     GetMediaComponent,
-    EditQuestionComponent,
     MiniflagComponent,
     ModalMiniFlagComponent,
     NoResults,ProfilHeaderC,ProfileBodyC,FollowBtnC,FollowBtn
@@ -198,7 +191,6 @@ import { FollowBtn } from './profile-challenges/follow-btn.component';
     AwardsPage,
     MsgAudioComponent,
     PostSharedComponent,
-    PostOptionsComponent,
     ErrorComponent,
     PostContentComponent,
     CreateAwardChallengeComponent,
@@ -207,7 +199,6 @@ import { FollowBtn } from './profile-challenges/follow-btn.component';
     ChallengeContentComponent,
     StructureComponent,
     LikesPostComponent,
-    SharedsPostComponent,
     NewProfilePhotoComponent,
     ChatUserItemComponent,
     MessageDeletedComponent,
@@ -260,10 +251,8 @@ import { FollowBtn } from './profile-challenges/follow-btn.component';
     SponsorsNodeComponent,
     SponsorsCreateComponent,
     QuestionComponent,
-    EditQuestionComponent,
     QuestionNotificationComponent,
     GetMediaComponent,
-    EditQuestionComponent,
     MiniflagComponent,
     ModalMiniFlagComponent,
     NoResults,

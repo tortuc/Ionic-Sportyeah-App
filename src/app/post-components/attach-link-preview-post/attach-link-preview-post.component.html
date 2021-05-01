@@ -1,0 +1,16 @@
+<div (click)="goToLink(file.url)" class="link" [ngClass]="class">
+  <div class="icon-img">
+    <img
+      *ngIf="preview?.image"
+      [src]="preview.image.url"
+      alt=""
+      style="height: 100%; width: 100%"
+    />
+    <ion-icon *ngIf="!preview?.image" name="link-outline"></ion-icon>
+  </div>
+  <div class="link-text">
+    <p class="name">{{ file.name ? file.name : file.url }}</p>
+    <p *ngIf="preview?.title" class="desc">{{preview.title}}</p>
+    <p *ngIf="preview?.description" class="desc">{{preview.description}}</p>
+  </div>
+</div>

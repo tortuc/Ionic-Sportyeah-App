@@ -16,17 +16,15 @@ import {
 } from "@ionic/angular";
 import { TranslateService } from "@ngx-translate/core";
 import { NewPostPage } from "src/app/dashboard/new-post/new-post.page";
-import { ILike, IPost, IPostC, INewC, INew } from "src/app/models/iPost";
-import { NewCommentComponent } from "src/app/post/new-comment/new-comment.component";
+import { ILike, IPost, INewC, INew } from "src/app/models/iPost";
 import { PostService } from "src/app/service/post.service";
 import { UserService } from "src/app/service/user.service";
 import { Plugins } from "@capacitor/core";
 import { Clipboard } from "@angular/cdk/clipboard";
 import { LikesPostComponent } from "../likes-post/likes-post.component";
 import { SharedsPostComponent } from "../shareds-post/shareds-post.component";
-import { ReactionsPostsComponent } from "../reactions-posts/reactions-posts.component";
-import { Variable } from "@angular/compiler/src/render3/r3_ast";
 import { NewsService } from "src/app/service/news.service";
+import { CommentPostComponent } from "src/app/post-components/comment-post/comment-post.component";
 const { Share } = Plugins;
 
 @Component({
@@ -193,7 +191,7 @@ rea
 
   async comment2(news) {
     let comment = await this.modalController.create({
-      component: NewCommentComponent,
+      component: CommentPostComponent,
       componentProps: { news },
       backdropDismiss: false,
     });

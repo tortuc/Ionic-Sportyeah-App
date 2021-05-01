@@ -1,75 +1,60 @@
 .progress-item {
-    position: relative;
-    padding: 0px 20px;
-    width: 100%;
-    margin-right: auto;
-    cursor: pointer;
-    color: black;
-    height: 53px;
-    margin-left: auto;
-    margin-bottom: 10px;
-    pointer-events: none;
-  }
-  
-  .progress-item-unlok{
-      pointer-events: unset !important;
-  }
-  
-  .voted{
-    position: absolute;
-    visibility: hidden;
-    z-index: 10;
-    right: 30px;
-    bottom: 0;
-    font-size: 21px;
-    top: 13px;
-  }
-  
-  .userVoted{
-    .voted{
-      visibility: visible !important;
-    }
-  }
-  
-  .block{
-    .percentage{
-      visibility: visible !important;
-    }
-    .barProgres{
-        --progress-background:#80c1f3;;
-    }
-  }
-  
-  .percentage{
-    position: absolute;
-    z-index: 1000;
-    right: 60px;
-    top: 10px;
-    visibility: hidden !important;
-  }
+  position: relative;
+  width: 100%;
+  cursor: pointer;
+  color: black;
+  height: 53px;
+  margin-bottom: 10px;
+  pointer-events: none;
+}
 
-  ion-progress-bar {
-    height: 53px;
+.progress-item-unlok {
+  pointer-events: unset !important;
+}
+
+.voted {
+  position: absolute;
+  visibility: hidden;
+  z-index: 10;
+  right: 30px;
+  bottom: 0;
+  font-size: 21px;
+  top: 13px;
+}
+
+.userVoted {
+  .voted {
+    visibility: visible !important;
+  }
+}
+
+.block {
+  .percentage {
+    visibility: visible !important;
+  }
+  .barProgres {
     --progress-background: #80c1f3;
-    border-radius: 30px;
-    border: solid white 1px;
   }
+}
 
+.percentage {
+  position: absolute;
+  z-index: 1000;
+  right: 60px;
+  visibility: hidden !important;
+}
 
-  .barProgres{
-    height: 53px;
-    --progress-background:transparent;
-    border: solid #ffffff61 1px;
+ion-progress-bar {
+  height: 53px;
+  --progress-background: #9cc4e5;
+  border-radius: 30px;
+  border: solid black 1px;
+}
+
+.barProgres {
+  height: 53px;
+  --progress-background: transparent;
+  &:hover {
+    --background: #80c1f3;
   }
-
-  .questionDiv{
-    border-radius: 15px;
-    margin-bottom: 10px;
-    width: 90%;
-    margin-left: auto;
-    margin-right: auto;
-    background: linear-gradient(
-        90deg
-        ,rgb(16 42 82),rgb(131 197 247))!important;
-    padding: 1px;
 }

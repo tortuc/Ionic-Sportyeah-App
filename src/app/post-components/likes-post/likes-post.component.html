@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-toolbar class="main-bg">
+    <ion-title style="--color: white">{{ "seelikes" | translate }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismiss()" style="--color: white"
+        ><ion-icon name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [scrollEvents]="true" (ionScrollEnd)="logScrolling($event)">
+  <ion-segment [(ngModel)]="segment">
+    <ion-segment-button value="all">
+      {{ "all" | translate }}
+    </ion-segment-button>
+    <ion-segment-button *ngFor="let type of data" [value]="type._id">
+      <div class="circle">
+        <p>
+          <img
+            [src]="type._id | showReactionsImage"
+            alt=""
+            style="vertical-align: middle"
+          />
+          {{ type.total }}
+        </p>
+      </div>
+    </ion-segment-button>
+  </ion-segment>
+
+  <all-reactions
+    #all
+    [post]="post"
+    *ngIf="segment == 'all'"
+    (visit)="goToProfile($event)"
+  ></all-reactions>
+  <likes-reactions
+    #likes
+    [post]="post"
+    [type]="segment"
+    (visit)="goToProfile($event)"
+  ></likes-reactions>
+  
+</ion-content>

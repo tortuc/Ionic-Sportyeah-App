@@ -1,27 +1,18 @@
-
-.answer{
-    position: relative;
-    padding: 0px 20px;
-    margin-right: auto;
-    color: white;
-    height: 53px;
-    margin-left: auto;
-    margin-bottom: 10px;
-    width: 90%;
-    background-color:#ffffff61 ;
-    border:solid white 1px;
-    border-radius: 25px;
-
-
+.answer {
+  position: relative;
+  color: black;
+  border-radius: 30px;
+  height: 55px;
+  width: 100%;
+  background: #6da8d9ad;
+  margin-bottom: 15px;
+  border: solid #1a1818 1px;
 }
 
-.questionDiv{
-    border-radius: 15px;
-    margin-bottom: 10px;
-    width: 90%;
-    margin-left: auto;
-    margin-right: auto;
-    background: linear-gradient(
-        90deg
-        ,rgb(16 42 82),rgb(131 197 247))!important;
+
+
+.answer-text {
+  font-size: 16px;
+  padding-left: 20px;
+  color: black;
 }

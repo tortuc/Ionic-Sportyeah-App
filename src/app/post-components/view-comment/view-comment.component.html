@@ -17,7 +17,7 @@
     </div>
   </div>
 
-  <ion-card-content>
+  <div style="padding: 13px">
     <span *ngIf="comment.message" [innerHTML]="comment.message | links"></span>
     <div class="img-comments-container">
       <ng-container *ngFor="let file of comment.files">
@@ -39,14 +39,17 @@
             <video class="img-comment">
               <source [src]="file.url | safeUrl" type="video/mp4" />
             </video>
-
           </div>
-          <attach-link-preview-post    *ngSwitchCase="'link'" [file]="file"></attach-link-preview-post>
-
+          <attach-link-preview-post
+            *ngSwitchCase="'link'"
+            [file]="file"
+          ></attach-link-preview-post>
         </ng-container>
       </ng-container>
     </div>
-    <question-comment *ngIf="comment.question" [data]="comment.question" [notified]="comment.question.notified" (newItemEvent)="voted($event)" ></question-comment>
-
-  </ion-card-content>
+    <question-comment
+      *ngIf="comment.question"
+      [questionId]="comment.question"
+    ></question-comment>
+  </div>
 </ion-card>

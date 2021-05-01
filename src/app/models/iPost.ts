@@ -49,7 +49,6 @@ export interface IComment {
 
 export interface IPostC {
   post: IPost;
-  likes: ILike[];
   comments: IComment[];
   shareds: IPost[];
 }
@@ -61,11 +60,8 @@ export interface INewC {
   shareds: INew[];
 }
 
-export function hola() {}
-
-
 export interface IPostFile {
-    fileType?: string;
-    url: string;
-    name?:string;
-  }
+  fileType?: string;
+  url: string;
+  name?: string;
+}

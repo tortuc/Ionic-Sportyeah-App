@@ -1,32 +1,33 @@
-<div *ngIf="question.length != 0">
-  <p style="display: inline;">Fecha limite de votación</p>
-  <ion-checkbox  style="margin-left: 20px;" [(ngModel)]="whitTime"></ion-checkbox>
-<!-- <select>
-  <option *ngFor="let day of days" [(ngModel)]="dia">{{day}}</option>
-</select> 
-<select>
-  <option *ngFor="let month of months" [(ngModel)]="mes" >{{'months.'+month | translate}}</option>
-</select>
-<select>
-  <option *ngFor="let year of years" [(ngModel)]="anio" >{{year}}</option>
-</select> -->
-<input style="margin-left: 15px;" *ngIf="whitTime && question.length != 0" type="date" id="start" [(ngModel)]="endDate" 
-       [min]="today" [max]="limitYear">
-<p style="color: red;" *ngIf="badDate">Inroducir una fecha mayor al día actual</p>
+<div  style="padding: 10px;color: black;">
+  <p style="display: inline">{{'question.limit.title' | translate}}</p>
+  <ion-checkbox style="margin-left: 20px" [(ngModel)]="whitTime"></ion-checkbox>
+
+  <input
+    style="margin-left: 15px"
+    *ngIf="whitTime && question"
+    type="date"
+    id="start"
+    [(ngModel)]="endDate"
+    [min]="today"
+    [max]="limitYear"
+  />
+  <p style="color: red" *ngIf="badDate">
+    {{'question.limit.max' | translate}}
+  </p>
 </div>
 
-<div *ngFor="let quest of question;index as i "  class="questionDiv">
-  <div style="text-align: center;position: relative;padding-top: 1px;">
-    <h1 style="color: white;">{{quest.questionHeadline}}</h1>  
-  </div>    
-  <div *ngFor="let answer of quest.answer" class="answer">
-    <p style="position: absolute;left: 50px;">{{answer.option}}</p>
+<div  class="questionDiv">
+  <div style="text-align: center; position: relative; padding-top: 1px">
+    <h4 style="color: black; margin-top: 0">{{ question.questionHeadline }}</h4>
   </div>
-  <div style="text-align: right;width: 95%;">
-    <ion-button style="cursor: pointer;color: black;--background: white;font-size: 11px;" (click)="deleteQuestion(i)">
+  <div *ngFor="let answer of question.answer" class="answer">
+    <p class="answer-text">{{ answer.option }}</p>
+  </div>
+  <div style="text-align: right">
+    <ion-button class="btn-delete" (click)="deleteQuestion(i)">
       <ion-icon name="trash-outline"></ion-icon>
     </ion-button>
-    <ion-button style="cursor: pointer;color: black;--background: white;font-size: 11px;" (click)="editQuestion(i)">
+    <ion-button class="btn-primary" (click)="editQuestion(i)">
       <ion-icon name="pencil-sharp"></ion-icon>
     </ion-button>
   </div>

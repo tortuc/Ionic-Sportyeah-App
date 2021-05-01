@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar class="bg-gradient-person">
+  <ion-toolbar class="main-bg">
     <ion-title>
       <ion-icon name="medal-outline"></ion-icon>
       {{'challenges' | translate}}
@@ -21,7 +21,7 @@
   </ion-toolbar>
 </ion-header>
 <ion-content
-  class="bg-gradient-person"
+  class="main-bg"
   style="margin: 0px"
   [scrollEvents]="true"
   (ionScroll)="sendScrollEvent()"
@@ -34,15 +34,15 @@
     ><ion-icon name="add"></ion-icon
   ></ion-fab-button>
   <ion-grid style="padding: 0">
-    <ion-row class="bg-gradient-person">
+    <ion-row class="main-bg">
       <ion-col size-xs="12" size-lg="8" ngClass.xs="p-0" class="center">
         <app-friends-mobile-c
           (new_challenge)="create()"
           class="absoluteFriendsC"
         ></app-friends-mobile-c>
-        <ion-row class="actualizar bg-gradient-person">
+        <ion-row class="actualizar main-bg">
           <ion-button
-            class="btn-primary"
+            class="btn-secondary"
             style="z-index: 10"
             shape="round"
             (click)="init()"

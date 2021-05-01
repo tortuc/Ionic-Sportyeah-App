@@ -2,12 +2,12 @@
   <ion-buttons slot="start">
     <ion-back-button style="color: white"></ion-back-button>
   </ion-buttons>
-  <ion-toolbar class="bg-gradient-person">
+  <ion-toolbar class="main-bg">
     <ion-title>{{ 'news.newsSport'| translate}}</ion-title>
   </ion-toolbar>
 </ion-header>
  
-<ion-content *ngIf="news.length > 0" class="bg-gradient-person">
+<ion-content *ngIf="news.length > 0" class="main-bg">
 <ion-grid>
   <ion-row>
     <ion-col size="12">
@@ -80,7 +80,7 @@
           </div>   
         </ion-item>
         <div style="text-align: center;">
-          <ion-button *ngIf="indexLast < newsSportUser.length" class="bg-gradient-person"  (click)="verMasSport()">Ver Mas</ion-button>
+          <ion-button *ngIf="indexLast < newsSportUser.length" class="main-bg"  (click)="verMasSport()">Ver Mas</ion-button>
         </div>
         
       </ion-list>
@@ -132,7 +132,7 @@
           </div>   
         </ion-item>
         <div style="text-align: center;">
-          <ion-button *ngIf="indexLastFollow < newsFollow.length" class="bg-gradient-person"  (click)="verMasfollow()">Ver Mas</ion-button>
+          <ion-button *ngIf="indexLastFollow < newsFollow.length" class="main-bg"  (click)="verMasfollow()">Ver Mas</ion-button>
         </div>
         
       </ion-list>
@@ -175,7 +175,7 @@
           </div>   
         </ion-item>
         <div style="text-align: center;">
-          <ion-button *ngIf="indexStreaming < stream.length" class="bg-gradient-person"  (click)="verMasStreaming()">Ver Mas</ion-button>
+          <ion-button *ngIf="indexStreaming < stream.length" class="main-bg"  (click)="verMasStreaming()">Ver Mas</ion-button>
         </div>
         
       </ion-list>
@@ -227,7 +227,7 @@
           </div>   
         </ion-item>
         <div style="text-align: center;">
-          <ion-button *ngIf="indexLastMy < myNews.length" class="bg-gradient-person"  (click)="verMasMy()">Ver Mas</ion-button>
+          <ion-button *ngIf="indexLastMy < myNews.length" class="main-bg"  (click)="verMasMy()">Ver Mas</ion-button>
         </div>
         
       </ion-list>
@@ -247,7 +247,7 @@
 </ion-content>
 
 
-<ion-content *ngIf="news.length == 0" class="bg-gradient-person">
+<ion-content *ngIf="news.length == 0" class="main-bg">
   <ion-grid>
     <ion-row>
       <ion-col size="12"> 
