@@ -23,13 +23,38 @@
       </ion-avatar>
     </ion-thumbnail>
     <ion-label class="profile-name" (click)="goToProfile(user._id,user.username)">
+     
       <span>{{user.name}} {{user.last_name}} </span><br>
       <span style="font-size: 12px;">@{{user.username}}</span>
     </ion-label>
+    <!-- SPONSORS -->
+  <div *ngIf="user.sponsors.length != 0">
+    <ion-grid >
+      <ion-row style=" margin-top: 10px">
+        <ion-col
+         style="margin-left: 12px;"
+          size="4"
+          *ngFor="let sponsor of user.sponsors; let i = index"
+          >
+            <div style="z-index: 10000;" (click)="goToSponsor(sponsor.url,user._id, null)"  target="_blank">
+              <img
+              [src]="sponsor.image"
+              style="
+                height: 30px;
+                width: 60px;
+                border-radius: 10px;
+                object-fit: cover;
+                object-position: cover;
+                "
+              /></div>
+        </ion-col> 
+       </ion-row>
+      </ion-grid>
+    </div><br>    
+    <!-- TERMINO SPONSORS -->
     <ion-button *ngIf="!userService.isFollow(user._id)" (click)="userService.follow(user._id)">{{'search_friends.follow' | translate}}</ion-button>
     <ion-button *ngIf="userService.isFollow(user._id)" (click)="userService.unFollow(user._id)">{{'search_friends.unfollow' | translate}}</ion-button>
     <ion-button *ngIf="userService.isFollow(user._id)" (click)="createChat(user)" ><ion-icon name="chatbubble-ellipses-outline"></ion-icon></ion-button>
-
   </ion-item>
   <ion-fab-button  style="z-index: 100;" (click)="whatsapp()" color="secondary"  class="new"><ion-icon name="logo-whatsapp"></ion-icon></ion-fab-button>
 

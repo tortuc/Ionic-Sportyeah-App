@@ -1,0 +1,29 @@
+<ion-item
+     
+class="profile-name"
+>
+<ion-thumbnail
+  (click)="userService.goToProfile(user.username)"
+  slot="start"
+>
+  <ion-avatar>
+    <img class="user-img-shadow" [src]="user.photo" />
+    <div
+      class="connectedDIVlittle"
+      *ngIf="user.connected"
+    ></div>
+  </ion-avatar>
+</ion-thumbnail>
+<ion-label
+  (click)="userService.goToProfile(user.username)"
+
+  class="name"
+>
+  <p style="font-size: 14px"
+    >{{ user.name }} {{ user.last_name }}</p
+  >
+
+  <p style="font-size: 12px">@{{ user.username }}</p>
+</ion-label>
+<follow-button [user]="user._id"></follow-button>
+</ion-item>

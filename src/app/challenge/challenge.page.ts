@@ -52,7 +52,7 @@ export class ChallengePage implements OnInit {
     challenge.challenging.userId.data = r2;
     return challenge;
   }
-
+ 
   ngOnInit() {}
 
   ionViewWillEnter() {
@@ -68,8 +68,9 @@ export class ChallengePage implements OnInit {
       .subscribe((r: any) => {
       });
   }
+  
   ionViewWillLeave() {
     console.log('destroy')
     this.destroy.next();
   }
-}
+} 

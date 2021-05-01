@@ -10,6 +10,10 @@ export interface ISponsor{
    * Imagen
    */
   image: string
+    /*
+   * Nombre
+   */
+    name: string
 }
 
 

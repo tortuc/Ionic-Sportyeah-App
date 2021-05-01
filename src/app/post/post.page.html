@@ -51,8 +51,76 @@
                       (newComment)="newComment($event)"
                     ></comment-post>
                   </ion-col>
+<<<<<<< HEAD
                   <ion-col *ngFor="let comment of comments" size="12">
                     <view-comment [comment]="comment"></view-comment>
+=======
+                  <ion-col *ngFor="let comment of item.comments" size="12">
+                    <ion-card class="comment">
+                      <ion-card-header>
+                        <ion-card-subtitle class="user-header">
+                          <ion-avatar class="mini">
+                            <ion-img
+                              class="img-user-mini"
+                              [src]="comment.user.photo"
+                            ></ion-img>
+                            <div
+                              class="connectedDIVlittle"
+                              *ngIf="comment.user.connected"
+                            ></div>
+                          </ion-avatar>
+                          <div class="user-name">
+                            <span
+                              class="message profile-name"
+                              (click)="goToProfile(comment.user._id,comment.user.username)"
+                              >{{comment.user.name}}
+                              {{comment.user.last_name}}</span
+                            ><br />
+                            <span>{{comment.date | customDisplayDate}}</span>
+                          </div>
+                            <!-- SPONSORS -->
+                            <div>
+                              <ion-grid style="position: absolute;">
+                                <ion-row style=" margin-top: 10px">
+                                  <ion-col
+                                  style="margin-left: 12px;"
+                                    size="4"
+                                    *ngFor="let sponsor of comment.user.sponsors; let i = index"
+                                  >
+                                    <div style="z-index: 10000;" (click)="goToSponsorComment(sponsor.url,comment.user._id,comment.post)"  target="_blank">
+                                      <img
+                                        [src]="sponsor.image"
+                                        style="
+                                          height: 30px;
+                                          width: 60px;
+                                          border-radius: 10px;
+                                          object-fit: cover;
+                                          object-position: cover;
+                                        "
+                                    /></div>
+                                  </ion-col> 
+                                </ion-row>
+                              </ion-grid>
+                            </div>
+                           <!-- TERMINO SPONSORS -->
+                        </ion-card-subtitle>
+                      </ion-card-header>
+                      <ion-card-content>
+                        <span
+                          *ngIf="comment.message"
+                          [innerHTML]="comment.message | links"
+                        ></span>
+                        <ion-img
+                          (click)="openImg(comment)"
+                          class="img-comment"
+                          *ngIf="comment.image"
+                          [src]="comment.image"
+                        >
+                        </ion-img>
+                        <question-comment [data]="comment.question" [notified]="comment.question?.notified" (newItemEvent)="voted($event)" ></question-comment>
+                      </ion-card-content>
+                    </ion-card>
+>>>>>>> 158c24965fa072db8202e1d80337d6b1ca4eaa23
                   </ion-col>
                 </ion-row>
               </ion-grid>

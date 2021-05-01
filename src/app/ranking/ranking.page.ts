@@ -1,13 +1,6 @@
 import { Component, OnInit,ElementRef,ViewChild } from '@angular/core';
-import { PostService } from "src/app/service/post.service";
-import { UserService } from 'src/app/service/user.service';
-import { TranslateService } from "@ngx-translate/core";
-import * as moment from 'moment';
-import { couldStartTrivia } from 'typescript';
-import { ActivatedRoute, Router } from '@angular/router';
-import { ViewsProfileService } from "src/app/service/views-profile.service";
-import { read } from 'fs';
-import { promise } from 'selenium-webdriver';
+import { PostService } from "../service/post.service";
+import { UserService } from '../service/user.service';
 
 @Component({
   selector: 'app-ranking',
@@ -20,9 +13,6 @@ export class RankingPage implements OnInit {
   constructor(
     private postService: PostService,
     private userService:UserService,
-    private translate:TranslateService,
-    private router:Router,
-    private viewsProfileService: ViewsProfileService
   ) {
      this.postService.getAllPost().subscribe((post:any)=>{ 
       this.todolosPost = post;

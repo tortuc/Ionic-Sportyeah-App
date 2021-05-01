@@ -7,6 +7,7 @@ import { OptionsPostPage } from 'src/app/profile/options-post/options-post.page'
 import { PostService } from 'src/app/service/post.service';
 import { UserService } from 'src/app/service/user.service';
 import { ViewsProfileService } from "src/app/service/views-profile.service";
+import { ViewsSponsorService } from "src/app/service/views-sponsor.service";
 
 @Component({
   selector: 'header-post',
@@ -33,8 +34,8 @@ export class HeaderPostComponent implements OnInit {
     private modalController:ModalController,
     private alertController:AlertController,
     private postService:PostService,
-    private viewsProfileService: ViewsProfileService
-
+    private viewsProfileService: ViewsProfileService,
+    private viewsSponsorService:ViewsSponsorService
   ) { }
 
   ngOnInit() {}
@@ -69,6 +70,28 @@ export class HeaderPostComponent implements OnInit {
   goToPost(id){
     this.router.navigate([`/post/${id}`])
   }
+
+  goToSponsor(sponsor,id,username,post_id){
+    if(id != this.userService.User._id){
+      this.userService.getUserByUsername(username)
+      .subscribe(
+        (resp:any)=>{
+          this.viewsSponsorService
+          .createSponsorView(
+            {
+             user:resp.user._id,
+             visitor:this.userService.User._id,
+             from:"post",
+             link:`/post/${post_id}`,
+             urlSponsor:sponsor
+           }
+           )
+            .subscribe((response) => {
+              window.location.replace(sponsor);
+            });
+        })
+      }
+  }
   
   options(data){
     switch (data?.action) {
@@ -77,7 +100,7 @@ export class HeaderPostComponent implements OnInit {
         break;
       case 'edit':
         this.edit(data.post)
-        break;
+        break; 
     
       default:
         break;

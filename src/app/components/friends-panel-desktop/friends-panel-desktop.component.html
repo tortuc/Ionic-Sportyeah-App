@@ -1,4 +1,4 @@
-<ion-card class="friends-card" >
+<!-- <ion-card class="friends-card" >
   <ion-card-header>
     {{'dashboard.profile' | translate}}
     <ion-item lines="none" (click)="goToMyProfile()" style="cursor: pointer;">
@@ -34,4 +34,68 @@
      
         
   </ion-card-content>
+</ion-card> -->
+
+
+<ion-card
+  class="friends-card main-border"
+  style="margin: 0"
+  [ngClass]="postPage ? 'noshadow' : ''"
+>
+  <ion-segment [(ngModel)]="segment">
+    <ion-segment-button value="followings">
+      <ion-label>{{ "profile.followings" | translate }}</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="followers">
+      <ion-label>{{ "profile.followers" | translate }}</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+  <div *ngIf="segment == 'followings'">
+    <div *ngIf="userService.followings.length == 0" class="no-users">
+      <p>
+        {{ "panel.follow.not_followings" | translate }}
+      </p>
+      <ion-button class="btn-green" routerLink="/search">
+        {{ "panel.follow.search_friends" | translate }}</ion-button
+      >
+    </div>
+    <user-item-panel
+      *ngFor="let friend of userService.followings.slice(0, 4)"
+      [user]="friend.user"
+    ></user-item-panel>
+
+    <div
+      *ngIf="userService.followings.length > 0"
+      style="text-align: center; padding: 5px"
+    >
+      <ion-button class="see-more" routerLink="/profile/following">{{
+        "panel.seeAll" | translate
+      }}</ion-button>
+    </div>
+  </div>
+  <div *ngIf="segment == 'followers'">
+    <div
+      *ngIf="userService.followers.length == 0"
+      class="no-users"
+    >
+      <p>{{ "panel.follow.not_followers" | translate }}</p>
+      <ion-img
+        src="assets/logos/text_bear.png"
+        class="img-login logo"
+      ></ion-img>
+    </div>
+    <user-item-panel
+      *ngFor="let friend of userService.followers.slice(0, 4)"
+      [user]="friend.follower"
+    ></user-item-panel>
+
+    <div
+      *ngIf="userService.followers.length > 0"
+      style="text-align: center; padding: 5px"
+    >
+      <ion-button class="see-more" routerLink="/profile/follower">{{
+        "panel.seeAll" | translate
+      }}</ion-button>
+    </div>
+  </div>
 </ion-card>

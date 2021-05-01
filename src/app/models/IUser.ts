@@ -32,3 +32,32 @@ export interface IUser {
   structure: INode;
   geo:IGeo;
 }
+
+export interface User {
+  name: string;
+  last_name: string;
+  email: string;
+  role: string;
+  photo: string;
+  phone: string;
+  _id: string;
+  birth_date: Date;
+  username: string;
+  lastConection: Date;
+  connected: boolean;
+  lang:string;
+  tutorial: boolean;
+  fcmtoken:string;
+}
+
+
+
+export interface Followers {
+  follower: User;
+  _id: string;
+}
+
+export interface Followings {
+  user: User;
+  _id: string;
+}

@@ -6,6 +6,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { ChatService } from 'src/app/service/chat.service';
 import { Followings, User, UserService } from 'src/app/service/user.service';
 import { ViewsProfileService } from "src/app/service/views-profile.service";
+import { ViewsSponsorService } from "src/app/service/views-sponsor.service";
 
 @Component({
   selector: 'app-add-friends',
@@ -22,7 +23,9 @@ export class AddFriendsPage implements OnInit {
     private translate:TranslateService,
     private socialSharing: SocialSharing,
     private chatService:ChatService,
-    private viewsProfileService: ViewsProfileService
+    private viewsProfileService: ViewsProfileService,
+    private viewsSponsorService:ViewsSponsorService
+
   ) { }
 
   getUsers(){
@@ -32,7 +35,8 @@ export class AddFriendsPage implements OnInit {
             return (user._id != this.userService.User._id)
         })
         this.allUsers = this.users
-       
+        console.log(users);
+        
       })
       .catch((err)=>{
         // handle err
@@ -45,7 +49,6 @@ export class AddFriendsPage implements OnInit {
   }
 
   goToProfile(id,username){
-    
     if(id == this.userService.User._id){
       this.router.navigate(["/profile"])
     }else{
@@ -65,12 +68,28 @@ export class AddFriendsPage implements OnInit {
             });
         }
       )
-      
-  
     }
     this.modalController.dismiss()
   }
 
+
+  goToSponsor(sponsor,id){
+    if(id != this.userService.User._id){
+          this.viewsSponsorService
+          .createSponsorView(
+            {
+             user:id,
+             visitor:this.userService.User._id,
+             from:"search",
+             link:null,
+             urlSponsor:sponsor
+           }
+           )
+            .subscribe((response) => {
+              window.location.replace(sponsor);
+            });
+      }
+  }
   
   query = ''
 

@@ -112,7 +112,7 @@
            
             *ngFor="let sponsor of news.news.user.sponsors; let i = index"
           >
-            <a [href]="'//' + sponsor.url" target="_blank">
+            <div (click)="goToSponsor(sponsor.url,news.news.user._id, news.news.user.username, news.news._id)" target="_blank">
               <img
                 [src]="sponsor.photo"
                 style="
@@ -122,7 +122,7 @@
                   object-fit: cover;
                   object-position: cover;
                 "
-            /></a>
+            /></div>
           </ion-col>
         </ion-row>
       </ion-grid>
@@ -160,7 +160,31 @@
              >{{comment.user.name}} {{comment.user.last_name}}</span><br>
             <span>{{comment.date | customDisplayDate}}</span>
           </div>
-          
+             <!-- SPONSORS -->
+              <div>
+                <ion-grid style="position: absolute;">
+                  <ion-row style=" margin-top: 10px">
+                    <ion-col
+                     style="margin-left: 12px;"
+                      size="4"
+                      *ngFor="let sponsor of comment.user.sponsors; let i = index"
+                      >
+                        <div style="z-index: 10000;" (click)="goToSponsorComment(sponsor.url,comment.user._id, comment.news)"  target="_blank">
+                          <img
+                          [src]="sponsor.image"
+                          style="
+                            height: 30px;
+                            width: 60px;
+                            border-radius: 10px;
+                            object-fit: cover;
+                            object-position: cover;
+                            "
+                          /></div>
+                    </ion-col> 
+                   </ion-row>
+                  </ion-grid>
+                </div>
+            <!-- TERMINO SPONSORS -->
           </ion-card-subtitle>
         </ion-card-header>
         <ion-card-content>
@@ -169,7 +193,7 @@
            class="img-comment" *ngIf="comment.image" [src]="comment.image">
 
           </ion-img>
-          <question-comment [data]="comment.question" [notified]="comment.question.notified" (newItemEvent)="voted($event)" ></question-comment>
+          <question-comment [data]="comment.question" [notified]="comment.question?.notified" (newItemEvent)="voted($event)" ></question-comment>
         </ion-card-content>
         </ion-card>
  

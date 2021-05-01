@@ -69,6 +69,10 @@ export class RakingYearComponent implements OnInit,OnChanges {
           this.getViewsProfileSearchByTime(country)
           break;
 
+        case '6':
+          this.getViewsProfileReboundByTime(country)
+          break;
+
         default:
           break;
       }
@@ -148,10 +152,8 @@ export class RakingYearComponent implements OnInit,OnChanges {
 
     getViewsProfileSearchByTime(country){
 
-
       this.rankingService.getViewsProfileSearchByTime(this.userService.User._id,country,this.dayStart,this.dayEnd).pipe(take(1))
       .subscribe((resp)=>{
-        console.log(resp);
         this.ranking = resp.ranking
         this.myPosition = resp.myPosition
         this.total = resp.total
@@ -159,5 +161,42 @@ export class RakingYearComponent implements OnInit,OnChanges {
       },(e)=>{
         console.error(e);
       })
+    }
+
+    getViewsProfileReboundByTime(country){
+      this.rankingService.getViewsProfileReboundByTime(this.userService.User._id,country,this.dayStart,this.dayEnd).pipe(take(1))
+      .subscribe((resp)=>{
+        this.ranking = resp.ranking
+        this.myPosition = resp.myPosition
+        this.total = resp.total
+        this.load = true
+      },(e)=>{
+        console.error(e);
+      })
+    }
+
+
+    goToProfile(id,username){
+      if(id == this.userService.User._id){
+        this.router.navigate(["/profile"])
+      }else{
+        //this.router.navigate([`/user/${username}`])
+        this.userService.getUserByUsername(username)
+        .subscribe(
+          (resp:any)=>{
+            this.viewsProfileService
+            .createProfileView(
+              { user:resp.user._id,
+               visitor:this.userService.User._id,
+               from:"ranking",
+               link: null
+             }
+             )
+              .subscribe((response) => {
+                this.router.navigate([`/user/${username}`])
+              });
+          }
+        )
+      }
     }
   }

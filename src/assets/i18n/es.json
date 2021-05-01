@@ -705,6 +705,7 @@
     "reaction": "Reacciones",
     "comment": "Comentarios",
     "shared": "Compartido",
+    "news": "Noticias",
     "next": "Siguiente",
     "last": "Anterior",
     "back-profile": "Perfil",
@@ -927,37 +928,6 @@
     "f10": "Primeros 10 en hacerlo",
     "f20": "Primeros 20 en hacerlo"
   },
-  "seeImg": "Ver Imagen",
-  "ranking": {
-    "today": "Hoy",
-    "week": "Semana",
-    "month": "Mes",
-    "year": "Año",
-    "sinceEver": "Desde siempre",
-    "slide": "Desliza para filtrar"
-  },
-  "gostructure": "Ver la estructura",
-  "error": {
-    "img-upload": "Error al subir la imagen",
-    "video-upload": "Error al subir el vídeo",
-    "camera": "Error al abrir la cámara",
-    "invalidFormat": "Formato invalido"
-  },
-  "success": {
-    "img-upload": "Imagen subida con éxito",
-    "video-upload": "Vídeo subido con éxito",
-    "youtube-link": "Vídeo subido con éxito",
-    "sponsors-updated": "Los patrocinadores fueron actualizados"
-  },
-  "info": {
-    "img-upload": "Subiendo imagen, por favor espere..."
-  },
-  "timeLimit": "Límite de Tiempo",
-  "create_challenge": {
-    "header": "¡Crea tu reto para SportYeah!",
-    "invalid_field": "Este campo es invalido"
-  },
-  "rememberme": "Mantener sesion abierta",
   "attach_link": {
     "header": "Adjuntar un enlace",
     "name": "Nombre del enlace (opcional)",
@@ -984,5 +954,51 @@
       "max": "Introducir una fecha mayor al día actual"
     },
     "finish": "Votaciones finalizadas"
-  }
+  },
+  "seeImg":"Ver Imagen",
+  "ranking":{
+    "today":"Hoy",
+    "week":"Semana",
+    "month":"Mes",
+    "year":"Año",
+    "sinceEver":"Desde siempre",
+    "slide":"Desliza para filtrar" 
+   },
+  "gostructure":"Ver la estructura",
+  "error":{
+    "img-upload":"Error al subir la imagen",
+    "video-upload":"Error al subir el vídeo",
+    "camera":"Error al abrir la cámara",
+    "invalidFormat":"Formato invalido"
+  },
+  "success":{
+    "img-upload":"Imagen subida con éxito",
+    "video-upload":"Vídeo subido con éxito",
+    "youtube-link":"Vídeo subido con éxito",
+    "sponsors-updated":"Los patrocinadores fueron actualizados"
+  },
+  "info":{
+    "img-upload":"Subiendo imagen, por favor espere..."
+  },
+  "panel": {
+    "seeAll": "Ver todos",
+    "search": {
+      "most_popular": "Usuarios mas populares de Sportyeah!"
+    },
+    "follow": {
+      "not_followings": "Aun no estas siguiendo a ningun usuario, empieza buscando a tus amigos",
+      "search_friends": "Buscar amigos",
+      "not_followers": "Aun no tienes seguidores"
+    },
+    "groups": {
+      "message": "Grupos mas populares de kecuki! unete a uno"
+    }
+  },
+  "timeLimit":"Límite de Tiempo",
+  "create_challenge":{
+    "header":"¡Crea tu reto para SportYeah!",
+    "invalid_field":"Este campo es invalido"
+
+  },
+  "rememberme":"Mantener sesion abierta"
 }

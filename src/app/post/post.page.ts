@@ -8,6 +8,9 @@ import { UserService } from "../service/user.service";
 import { ViewsProfileService } from "src/app/service/views-profile.service";
 import { CommentService } from "../service/comment.service";
 import { take } from "rxjs/operators";
+import { ViewsSponsorService } from "../service/views-sponsor.service";
+
+
 
 @Component({
   selector: "app-post",
@@ -23,7 +26,8 @@ export class PostPage implements OnInit {
     private modalController: ModalController,
     private modalCtrl: ModalController,
     private viewsProfileService: ViewsProfileService,
-    public commentService: CommentService
+    public commentService: CommentService,
+    private viewsSponsorService:ViewsSponsorService
   ) {
     this.getPost(route.snapshot.paramMap.get("id"));
   }
@@ -98,22 +102,45 @@ export class PostPage implements OnInit {
           .subscribe((response) => {
             this.router.navigate([`/user/${username}`]);
           });
-      });
-    }
+        })
+      }}
+
+
+   
+  
+
+
+  goToSponsorComment(sponsor,id,post_id){
+    if(id != this.userService.User._id){
+     
+          this.viewsSponsorService
+          .createSponsorView(
+            {
+             user:id,
+             visitor:this.userService.User._id,
+             from:"comment",
+             link:`/post/${post_id}`,
+             urlSponsor:sponsor
+           }
+           )
+            .subscribe((response) => {
+              window.location.replace(sponsor);
+            });
+
+      }
+  }
+
+  async searchFriend(){
+    let modal = await this.modalController.create({
+      component: AddFriendsPage,
+      cssClass: 'my-custom-class'
+    });
   }
 
   goToMyProfile() {
     this.router.navigate(["/profile"]);
   }
 
-  async searchFriend() {
-    let modal = await this.modalController.create({
-      component: AddFriendsPage,
-      cssClass: "my-custom-class",
-    });
-    modal.onDidDismiss().then((data) => {});
-    return await modal.present();
-  }
 
   // comments($event) {
   //   this.item.comments = $event;

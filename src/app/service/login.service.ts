@@ -3,9 +3,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { getToken } from '../helpers/token';
-import { UserService } from './user.service';
-import { CookieService } from 'ngx-cookie-service';
-import { Router } from '@angular/router';
+import { Router } from "@angular/router";
+import { CookieService } from "ngx-cookie-service";
 
 interface Geo {
   ip:string
@@ -21,9 +20,8 @@ export class LoginService {
 
   constructor(
     private http:HttpClient,
-    private cookieService:CookieService,
-    private router:Router
-
+    private cookieService: CookieService,
+    private router: Router
   ) {
   
    }
@@ -46,10 +44,24 @@ export class LoginService {
     return geo.asObservable();
   }
   
-  create(body){
-  return this.http.post(`${environment.URL_API}/user/create`,body)
+ /**
+   * Crea a un usuario
+   * @param user
+   * @returns
+   */
+  create(user) {
+    // verificamos si el usuario se esta registrando, mediante una landing de un evento
+    let event = this.cookieService.check("join_event")
+      ? this.cookieService.get("join_event")
+      : null;
+    // borramos la cookie
+    this.cookieService.delete("join_event");
+    return this.http.post(`${environment.URL_API}/user/create`, {
+      user,
+      event,
+    });
   }
-  
+
   auth(body){
     body.geo = this.geo
     return this.http.post(`${environment.URL_API}/user/auth`,body)
@@ -95,4 +107,5 @@ export class LoginService {
     }
 
 
+   
 }

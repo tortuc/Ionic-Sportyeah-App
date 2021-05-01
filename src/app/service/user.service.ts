@@ -9,49 +9,14 @@ import { Howl } from "howler";
 import { ViewsProfileService } from "./views-profile.service"
 import { SocketService } from "./socket.service";
 import { ISponsor } from "../models/ISponsor";
-interface FollowingsResponse {
-  ids: string[];
-  followings: Followings[];
-}
-export interface User {
-  name: string;
-  last_name: string;
-  email: string;
-  role: string;
-  photo: string;
-  photoBanner: string;
-  slider: string[];
-  estado: string;
-  phone: string;
-  birth_date: Date;
-  username: string;
-  profile_user: string;
-  parents_email: string;
-  parents_last_name: string;
-  parents_name: string;
-  sport: string;
-  sub_profile: string;
-  _id: string;
-  attempts: number;
-  create: Date;
-  deleted: boolean;
-  recover_password_token: string;
-  verification_token: string;
-  verified: boolean;
-  lastConection: Date;
-  connected: boolean;
-  sponsors: ISponsor[];
-  structure: any;
-  geo:any;
-}
-export interface Followers {
-  follower: User;
-  _id: string;
-}
-export interface Followings {
-  user: User;
-  _id: string;
-}
+import { LoginService } from "./login.service";
+import { Followers, Followings, User } from "../models/IUser";
+import { TranslateService } from "@ngx-translate/core";
+import { CookieService } from "ngx-cookie-service";
+import { Subject } from "rxjs";
+
+// import { FcmService } from "./fcm.service";
+
 @Injectable({
   providedIn: "root",
 })
@@ -62,16 +27,36 @@ export class UserService {
     private socketService: SocketService,
     private chatService: ChatService,
     private wishService: WishService,
-    private viewsProfileService:ViewsProfileService
+    private viewsProfileService:ViewsProfileService,
+    private loginService: LoginService,
+    private translate: TranslateService,
+    // private fcmService: FcmService,
+    private cookieService: CookieService
   ) {}
 
-  public User: User;
-  public followers: Followers[] = [];
-  public followers_id: string[] = [];
-  public followings: Followings[] = [];
-  public followings_id: any[] = [];
 
-  setUser(user: User) {
+  /**
+   * Cuerpo principal del usuario
+   */
+   public User: User = null;
+
+   /**
+    * Seguidores del usuario
+    */
+   public followers: Followers[] = [];
+ 
+   /**
+    * Usuarios que sigo
+    */
+   public followings: Followings[] = [];
+
+  /**
+   * Setea al usuario
+   * @param user
+   */
+   setUser(user: User) {
+    this.translate.use(user.lang);
+    this.cookieService.set("lang", user.lang);
     this.User = user;
     this.wishService.getList(user._id);
   }
@@ -80,64 +65,82 @@ export class UserService {
     return this.User;
   }
 
-  public isFollow(id) {
-    let following = this.followings_id.find((following: any) => {
-      return following.user == id;
+
+  
+  
+  /**
+   * Retorna si esta siguiendo a un usuario
+   * @param id _id del usuario
+   * @returns
+   */
+
+   public isFollow(id) {
+    let following = this.followings.find((following: any) => {
+      return following.user._id == id;
     });
     return following ? true : false;
   }
 
   public unFollow(user) {
-    let following = this.followings_id.find((following: any) => {
-      return following.user == user;
+    let following = this.followings.find((following: any) => {
+      return following.user._id == user;
     });
 
     if (following) {
-      this.unFollowApi(following._id)
+      return this.unFollowApi(following._id)
         .toPromise()
-        .then((follow) => {
+        .then((folow) => {
           this.updateUnFollow(following._id);
+          return true;
         })
-        .catch((err) => {
-          // handle err
+        .catch(() => {
+          throw false;
         });
+    } else {
+      return false;
     }
   }
 
+  
   unFollowApi(id) {
     return this.http.delete(`${environment.URL_API}/friend/unfollow/${id}`, {
       headers: new HttpHeaders({ "access-token": getToken() }),
     });
   }
 
+  /**
+   * Saca al usuario que acaba de dejar de seguir, del array de los usuarios seguidos
+   */
   updateUnFollow(id) {
-    this.followings_id = this.followings_id.filter((follow) => {
-      return follow._id != id;
-    });
-
     this.followings = this.followings.filter((follow) => {
       return follow._id != id;
     });
   }
 
-  public follow(user) {
-    this.http
-      .post(
-        `${environment.URL_API}/friend/follow`,
-        {
-          user,
-        },
-        {
-          headers: new HttpHeaders({ "access-token": getToken() }),
-        }
-      )
-      .toPromise()
-      .then((resp: any) => {
-        this.getFollowings();
-      })
-      .catch((err) => {
-        // handle error
-      });
+  public follow(user, username = null) {
+    if (!this.User && username != null) {
+      this.loginService.goToLogin(`/user/${username}`);
+      return false;
+    } else {
+      return this.http
+        .post(
+          `${environment.URL_API}/friend/follow`,
+          {
+            user,
+          },
+          {
+            headers: new HttpHeaders({ "access-token": getToken() }),
+          }
+        )
+        .toPromise()
+        .then((follow: any) => {
+          this.followings.push({ _id: follow._id, user: follow.user });
+          return true;
+        })
+        .catch(() => {
+          return false;
+        });
+    }
   }
 
   getFollowers() {
@@ -146,9 +149,10 @@ export class UserService {
         headers: new HttpHeaders({ "access-token": getToken() }),
       })
       .toPromise()
-      .then((resp: any) => {
-        this.followers_id = resp.ids;
-        this.followers = resp.followers;
+      .then((resp: Followers[]) => {
+        this.followers = resp.sort((a, b) => {
+          return a.follower.name > b.follower.name ? 1 : -1;
+        });
       })
       .catch((err) => {
         // handle err
@@ -161,14 +165,16 @@ export class UserService {
         headers: new HttpHeaders({ "access-token": getToken() }),
       })
       .toPromise()
-      .then((resp: FollowingsResponse) => {
-        this.followings_id = resp.ids;
-        this.followings = resp.followings;
+      .then((resp: any) => {
+        this.followings = resp;
       })
       .catch((err) => {
         // handle err
       });
   }
+
+  users: User[] = null;
+
 
   getUsers() {
     return this.http.get(`${environment.URL_API}/user/users`, {
@@ -179,12 +185,12 @@ export class UserService {
   goLanding() {
     window.location.replace("https://www.sportyeah.com");
   }
-
   logout() {
+    this.User = null;
+    this.chatService.clearChat();
     localStorage.clear();
     sessionStorage.clear();
-    this.chatService.clearChat();
-    this.User = undefined;
+    this.logout$.next(true);
     this.router.navigate(["/login"]);
   }
 
@@ -196,26 +202,32 @@ export class UserService {
 
   async verifyToken(): Promise<Boolean> {
     return await new Promise((resolve, reject) => {
-      if (this.User == undefined) {
+      if (this.User == null) {
         if (getToken() != null) {
           this.http
             .get(`${environment.URL_API}/user/user`, {
               headers: new HttpHeaders({ "access-token": getToken() }),
             })
             .subscribe(
-               (resp: any) => {
-                if(resp.user){
+              (resp: any) => {
+                if (resp.user != null) {
+                  this.setUser(<User>resp.user);
+                  // this.fcmService.saveTokenUser(resp.user._id);
                   this.getFollowings();
                   this.getFollowers();
-                  this.setUser(<User>resp.user);
-                  this.socketService.socket.emit("login", { user: resp.user._id });
+
+                  this.socketService.socket.emit("login", {
+                    user: resp.user._id,
+                  });
                   resolve(true);
-                }else{
+                } else {
                   localStorage.clear();
                   reject(false);
                 }
               },
-              () => {
+              (err) => {
+              
+
                 localStorage.clear();
                 reject(false);
               }
@@ -235,12 +247,6 @@ export class UserService {
 
   getUserByUsername(username) {
     return this.http.get(`${environment.URL_API}/user/username/${username}`);
-  }
-
-  getUserById(id) {
-    return this.http.get(`${environment.URL_API}/user/id/${id}`, {
-      headers: new HttpHeaders({ "access-token": getToken() }),
-    });
   }
 
 
@@ -282,6 +288,28 @@ export class UserService {
       `${environment.URL_API}/user/sponsors`,
       {id:this.User._id,sponsors},
       {headers: new HttpHeaders({ "access-token": getToken() })}
+    );
+  }
+
+  private logout$ = new Subject<boolean>();
+
+  logoutObservable() {
+    return this.logout$.asObservable();
+  }
+
+
+  mostPopulateUsers() {
+    return this.http.get(`${environment.URL_API}/user/fivepopular`, {
+      headers: new HttpHeaders({ "access-token": getToken() }),
+    });
+  }
+
+  queryUsers(query) {
+    return this.http.get(`${environment.URL_API}/friend/query/${query}`);
+  }
+  queryUsersSkip(query, skip) {
+    return this.http.get(
+      `${environment.URL_API}/friend/query/${query}/${skip}`
     );
   }
 }
