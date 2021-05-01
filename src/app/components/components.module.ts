@@ -1,4 +1,7 @@
-import { MiniflagComponent, ModalMiniFlagComponent } from './miniflag/miniflag.component';
+import {
+  MiniflagComponent,
+  ModalMiniFlagComponent,
+} from "./miniflag/miniflag.component";
 import { OpenImgComponent } from "./open-img/open-img.component";
 import { ParteIzquierdaWebComponent } from "./challenge/parte-izquierda-web/parte-izquierda-web.component";
 import { ParteDerechaWebComponent } from "./challenge/parte-derecha-web/parte-derecha-web.component";
@@ -76,26 +79,25 @@ import { StructureComponent } from "src/app/profile/structure/structure.componen
 import { ChallengesPostOptionsComponent } from "./challenges/challenges-post-options/challenges-post-options.component";
 import { COptionsComponent } from "./challenges/c-options/c-options.component";
 import { NewsOptionsComponent } from "./news-options/news-options.component";
-import { ChallengesPotsOptionsIndivComponent } from './challenge/challenges-pots-options-indiv/challenges-pots-options-indiv.component' 
+import { ChallengesPotsOptionsIndivComponent } from "./challenge/challenges-pots-options-indiv/challenges-pots-options-indiv.component";
 import { NewQuestionComponent } from "./new-question/new-question.component";
-import { ModifyMediaComponent } from 'src/app/components/structure/modify-media/modify-media.component';
-import { SponsorsNodeComponent } from 'src/app/components/structure/sponsors/sponsors.component';
-import { SponsorsCreateComponent } from 'src/app/components/structure/sponsors-create/sponsors-create.component';
+import { ModifyMediaComponent } from "src/app/components/structure/modify-media/modify-media.component";
+import { SponsorsNodeComponent } from "src/app/components/structure/sponsors/sponsors.component";
+import { SponsorsCreateComponent } from "src/app/components/structure/sponsors-create/sponsors-create.component";
 import { QuestionComponent } from "./question/question.component";
 import { GetMediaComponent } from "./get-media/get-media.component";
-import { QuestionNotificationComponent } from "./question-notification/question-notification.component"
-import { NoResults } from './no-results/no-results.component';
-import { ProfilHeaderC } from './profile-challenges/profile-header-c.components';
-import { ProfileBodyC } from './profile-challenges/profile-body-c.component';
-import { FollowBtnC } from './profile-challenges/follow-c.component';
-import { FollowBtn } from './profile-challenges/follow-btn.component';
-import { DayComponent } from './analitics-views/day/day.component';
-import { MonthComponent } from './analitics-views/month/month.component';
-import { WeekComponent } from './analitics-views/week/week.component';
-import { YearComponent } from './analitics-views/year/year.component';
-import { AddUsersPanelDesktopComponent } from './add-users-panel-desktop/add-users-panel-desktop.component';
-import { UserItemPanelComponent } from './users/user-item-panel/user-item-panel.component';
-import { FollowButtonComponent } from './follow-button/follow-button.component';
+import { QuestionNotificationComponent } from "./question-notification/question-notification.component";
+import { NoResults } from "./no-results/no-results.component";
+import { ProfilHeaderC } from "./profile-challenges/profile-header-c.components";
+import { ProfileBodyC } from "./profile-challenges/profile-body-c.component";
+import { FollowBtnC } from "./profile-challenges/follow-c.component";
+import { DayComponent } from "./analitics-views/day/day.component";
+import { MonthComponent } from "./analitics-views/month/month.component";
+import { WeekComponent } from "./analitics-views/week/week.component";
+import { YearComponent } from "./analitics-views/year/year.component";
+import { AddUsersPanelDesktopComponent } from "./add-users-panel-desktop/add-users-panel-desktop.component";
+import { UserItemPanelComponent } from "./users/user-item-panel/user-item-panel.component";
+import { FollowButtonComponent } from "./follow-button/follow-button.component";
 
 @NgModule({
   imports: [
@@ -188,15 +190,17 @@ import { FollowButtonComponent } from './follow-button/follow-button.component';
     GetMediaComponent,
     MiniflagComponent,
     ModalMiniFlagComponent,
-    NoResults,ProfilHeaderC,ProfileBodyC,FollowBtnC,FollowBtn,
+    NoResults,
+    ProfilHeaderC,
+    ProfileBodyC,
+    FollowBtnC,
     DayComponent,
     MonthComponent,
     WeekComponent,
     YearComponent,
     AddUsersPanelDesktopComponent,
     UserItemPanelComponent,
-    FollowButtonComponent
-    
+    FollowButtonComponent,
   ],
   exports: [
     ImageComponent,
@@ -272,14 +276,16 @@ import { FollowButtonComponent } from './follow-button/follow-button.component';
     MiniflagComponent,
     ModalMiniFlagComponent,
     NoResults,
-    ProfilHeaderC,ProfileBodyC,FollowBtnC,FollowBtn,
+    ProfilHeaderC,
+    ProfileBodyC,
+    FollowBtnC,
     DayComponent,
     MonthComponent,
     WeekComponent,
     YearComponent,
     AddUsersPanelDesktopComponent,
     UserItemPanelComponent,
-    FollowButtonComponent
+    FollowButtonComponent,
   ],
 })
 export class ComponentsModule {}
