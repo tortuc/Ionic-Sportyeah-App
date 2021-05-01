@@ -1,4 +1,4 @@
-import { User } from "../service/user.service";
+import { User } from "./IUser";
 
 export interface IPost {
   _id: string | string;

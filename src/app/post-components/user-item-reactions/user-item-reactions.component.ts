@@ -1,7 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
-import { User, UserService } from 'src/app/service/user.service';
+import { User } from 'src/app/models/IUser';
+import {  UserService } from 'src/app/service/user.service';
 
 @Component({
   selector: 'user-item-reactions',

@@ -5,7 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ChallengeService, IChallenge } from 'src/app/service/challenge.service';
 import { UserService } from 'src/app/service/user.service';
 import { IUserDataResponse } from 'src/app/models/IUserDataResponse';
-import { IUser } from 'src/app/models/IUser';
+import { IUser, User } from 'src/app/models/IUser';
 import { ReusableComponentsIonic } from 'src/app/service/ionicHelpers.service';
 
 @Component({
@@ -15,7 +15,7 @@ import { ReusableComponentsIonic } from 'src/app/service/ionicHelpers.service';
 })
 export class ProfileChallengePage implements OnInit {
   destroy: Subject<void> = new Subject()
-  user: IUser = null
+  user: User = null
   noUser: boolean = false
   challenges: IChallenge[] = null
 

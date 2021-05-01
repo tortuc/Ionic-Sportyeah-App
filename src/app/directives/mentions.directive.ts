@@ -1,5 +1,6 @@
 import { Directive, ElementRef, EventEmitter, Output } from "@angular/core";
-import { User, UserService } from "../service/user.service";
+import { User } from "../models/IUser";
+import {  UserService } from "../service/user.service";
 
 @Directive({
   selector: "[Mentions]",

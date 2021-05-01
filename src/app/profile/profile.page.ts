@@ -15,7 +15,7 @@ import { NewsService } from "../service/news.service";
 import { ModalController } from "@ionic/angular";
 import { GetMediaComponent } from "../components/get-media/get-media.component";
 import { ReusableComponentsIonic } from "../service/ionicHelpers.service";
-import { IUser } from "../models/IUser";
+import { IUser, User } from "../models/IUser";
 import { typeSourceSpan } from "@angular/compiler";
 import { ISponsor } from "../models/ISponsor";
 
@@ -25,30 +25,30 @@ import { ISponsor } from "../models/ISponsor";
   styleUrls: ["./profile.page.scss"],
 })
 export class ProfilePage implements OnInit {
-  @ViewChild(GetMediaComponent) getMedia: GetMediaComponent
-  banderaIP:      string = null
-  ipLoaded:       Promise<boolean>
-  profile:        boolean = true
-  postsB:         boolean = false
-  newsB:          boolean = false
-  landingButton:  boolean = false
-  loadingPost:    boolean
-  countPost               = 0
-  user:           IUser   = this.userService.User
-  creator:        boolean = true
+  @ViewChild(GetMediaComponent) getMedia: GetMediaComponent;
+  banderaIP: string = null;
+  ipLoaded: Promise<boolean>;
+  profile: boolean = true;
+  postsB: boolean = false;
+  newsB: boolean = false;
+  landingButton: boolean = false;
+  loadingPost: boolean;
+  countPost = 0;
+  user: User = this.userService.User;
+  creator: boolean = true;
   constructor(
-    public  router                  : Router,
-    public  route                   : ActivatedRoute,
-    public  userService             : UserService,
-    public  mc                      : ModalController,
-    public  translate               : TranslateService,
-    public  popoverController       : PopoverController,
-    private postService             : PostService,
-    public  profileService          : ProfileService,
-    public  loginService            : LoginService,
-    private viewsProfileService     : ViewsProfileService,
-    public  newsService             : NewsService,
-    public  reusableCI              : ReusableComponentsIonic
+    public router: Router,
+    public route: ActivatedRoute,
+    public userService: UserService,
+    public mc: ModalController,
+    public translate: TranslateService,
+    public popoverController: PopoverController,
+    private postService: PostService,
+    public profileService: ProfileService,
+    public loginService: LoginService,
+    private viewsProfileService: ViewsProfileService,
+    public newsService: NewsService,
+    public reusableCI: ReusableComponentsIonic
   ) {
     this.viewsProfileService
       .getProfileView(this.userService.User._id)
@@ -78,10 +78,10 @@ export class ProfilePage implements OnInit {
     this.newsService
       .findUserNews(this.userService.User._id)
       .subscribe((response: any) => {
-        this.news = response/* .filter((news)=>{
+        this.news = response; /* .filter((news)=>{
           return news.stream == false;
         })*/
-      }); 
+      });
 
     this.loginService.getIP().subscribe((geo) => {
       this.banderaIP = geo.country;
@@ -262,7 +262,7 @@ export class ProfilePage implements OnInit {
       componentProps: {
         img,
         idUser: this.userService.User.username,
-        delete:false
+        delete: false,
       },
     });
     modal.present();
@@ -271,36 +271,33 @@ export class ProfilePage implements OnInit {
   /*
    * CAMBIAR EL BANNER
    */
-  changeBanner(){
-    this.getMedia.content$
-      .pipe(take(1))
-      .subscribe(
-        (media: string) => {
-          if(media !== null){
-            this.userService.User.photoBanner = media
-            this.userService.update(this.userService.User).pipe(take(1)).subscribe((r:any)=>{
-              this.reusableCI.toast('Banner actualizado con éxito')
-            }) 
-          }
-        }
-      )
-    this.getMedia.getMedia(
-      true,
-      false,
-      false,
-      false,
-      true,
-      true
-    )
+  changeBanner() {
+    this.getMedia.content$.pipe(take(1)).subscribe((media: string) => {
+      if (media !== null) {
+        this.userService.User.photoBanner = media;
+        this.userService
+          .update(this.userService.User)
+          .pipe(take(1))
+          .subscribe((r: any) => {
+            this.reusableCI.toast("Banner actualizado con éxito");
+          });
+      }
+    });
+    this.getMedia.getMedia(true, false, false, false, true, true);
   }
 
   /**
    * LOGICA PARA MODIFICAR SPONSORS
    */
-  changeSponsors(sponsors:ISponsor[]){
-    this.userService.User.sponsors = sponsors
-    this.userService.update(this.userService.User).pipe(take(1)).subscribe((r:any)=>{
-      this.reusableCI.toast(this.translate.instant('success.sponsors-updated'))
-    })
+  changeSponsors(sponsors: ISponsor[]) {
+    this.userService.User.sponsors = sponsors;
+    this.userService
+      .update(this.userService.User)
+      .pipe(take(1))
+      .subscribe((r: any) => {
+        this.reusableCI.toast(
+          this.translate.instant("success.sponsors-updated")
+        );
+      });
   }
 }

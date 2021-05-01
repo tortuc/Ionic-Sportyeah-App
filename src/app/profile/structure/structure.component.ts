@@ -1,6 +1,6 @@
 import { Input, Component, OnInit } from "@angular/core";
 import { ModifyMediaComponent } from "src/app/components/structure/modify-media/modify-media.component"
-import { User, UserService } from "src/app/service/user.service";
+import { UserService } from "src/app/service/user.service";
 import { ModalController } from "@ionic/angular";
 import { NewNodeComponent } from "./new-node/new-node.component";
 import { take } from "rxjs/operators";
@@ -10,6 +10,7 @@ import { Structures } from "src/app/models/defaultStructures"
 import { INode } from "src/app/models/INode"
 import { ISponsor } from "src/app/models/ISponsor"
 import { IUserDataResponse } from "src/app/models/IUserDataResponse"
+import { User } from "src/app/models/IUser";
 
 
 @Component({

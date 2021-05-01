@@ -1,4 +1,5 @@
-import { User } from '../service/user.service';
+import { User } from "./IUser";
+
 
 export interface IChat {
     _id:string

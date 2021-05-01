@@ -7,10 +7,12 @@ import { UserService } from './user.service';
 import {Howl, Howler} from 'howler';
 import { JdvimageService } from './jdvimage.service';
 import { Subject } from 'rxjs';
+import { Followings } from '../models/IUser';
 
 export interface idFriends {
-  friends_id: string[]
-  skip:number
+  friends_id: Followings[];
+  skip: number;
+  days: number;
 }
 
 @Injectable({
@@ -65,15 +67,10 @@ postByUser(id,skip){
   )
 }
 
-friendsPosts(body:idFriends){
-  return this.http.post(
-    `${environment.URL_API}/post/friends`,
-    body,
-    {
-      headers: new HttpHeaders({"access-token":getToken()})
-    }
-  )
- 
+friendsPosts(body: idFriends) {
+  return this.http.post(`${environment.URL_API}/post/friends`, body, {
+    headers: new HttpHeaders({ "access-token": getToken() }),
+  });
 }
 
 deleteOne(id){

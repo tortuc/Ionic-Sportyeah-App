@@ -312,4 +312,11 @@ export class UserService {
       `${environment.URL_API}/friend/query/${query}/${skip}`
     );
   }
+
+  getUserById(id) {
+    return this.http.get(`${environment.URL_API}/user/id/${id}`, {
+      headers: new HttpHeaders({ "access-token": getToken() }),
+    });
+  }
+
 }

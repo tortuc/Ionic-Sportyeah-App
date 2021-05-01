@@ -30,7 +30,7 @@ export interface IUser {
   connected: boolean;
   sponsors: ISponsor[];
   structure: INode;
-  geo:IGeo;
+  geo: IGeo;
 }
 
 export interface User {
@@ -45,12 +45,19 @@ export interface User {
   username: string;
   lastConection: Date;
   connected: boolean;
-  lang:string;
+  lang: string;
   tutorial: boolean;
-  fcmtoken:string;
+  fcmtoken: string;
+  profile_user: string;
+  slider: string[];
+  estado: string;
+  photoBanner: string;
+  geo: IGeo;
+  structure: INode;
+  sport: string;
+  sponsors: ISponsor[];
+
 }
-
-
 
 export interface Followers {
   follower: User;

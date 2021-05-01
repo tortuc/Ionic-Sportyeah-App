@@ -3,8 +3,9 @@ import { Router } from '@angular/router';
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 import { ModalController } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
+import { User } from 'src/app/models/IUser';
 import { ChatService } from 'src/app/service/chat.service';
-import { Followings, User, UserService } from 'src/app/service/user.service';
+import {  UserService } from 'src/app/service/user.service';
 import { ViewsProfileService } from "src/app/service/views-profile.service";
 import { ViewsSponsorService } from "src/app/service/views-sponsor.service";
 

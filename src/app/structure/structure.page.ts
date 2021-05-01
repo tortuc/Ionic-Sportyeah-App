@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core'
 import { ActivatedRoute } from '@angular/router'
-import { IUser } from 'src/app/models/IUser'
+import { IUser, User } from 'src/app/models/IUser'
 import { IUserDataResponse } from 'src/app/models/IUserDataResponse'
 import { UserService } from 'src/app/service/user.service'
 import { take } from 'rxjs/operators'
@@ -14,7 +14,7 @@ export class StructurePage implements OnInit {
   /*
    * Usuario dueño de la estructura
    */
-  user: IUser;
+  user: User;
 
   constructor(
     public route                : ActivatedRoute,

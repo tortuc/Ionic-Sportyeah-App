@@ -1,12 +1,13 @@
 import { ToastController } from '@ionic/angular';
 import { environment } from "src/environments/environment";
 import { IChallenge } from "./../../../service/challenge.service";
-import { UserService, User } from "./../../../service/user.service";
+import { UserService } from "./../../../service/user.service";
 import { Component, Input, OnInit } from "@angular/core";
 import { ModalController } from "@ionic/angular";
 import { MessageService } from "src/app/service/message.service"
 import { ChatService } from "src/app/service/chat.service"
 import { take } from 'rxjs/operators';
+import { User } from 'src/app/models/IUser';
 
 @Component({
   selector: "app-modal-created",

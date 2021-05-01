@@ -10,13 +10,14 @@ import { Router } from "@angular/router";
 import {
   ActionSheetController,
   AlertController,
+  IonContent,
   ModalController,
   PopoverController,
   ToastController,
 } from "@ionic/angular";
 import { TranslateService } from "@ngx-translate/core";
 import { LangsPage } from "../langs/langs.page";
-import { IPostC } from "../models/iPost";
+import { IPost, IPostC } from "../models/iPost";
 import { LoginService } from "../service/login.service";
 import { PostService } from "../service/post.service";
 import { UserService } from "../service/user.service";
@@ -24,6 +25,7 @@ import { AddFriendsPage } from "./add-friends/add-friends.page";
 import { NewPostPage } from "./new-post/new-post.page";
 import { JdvimageService } from "../service/jdvimage.service";
 import { ReusableComponentsIonic } from "../service/ionicHelpers.service";
+import { take } from "rxjs/operators";
 
 interface Connection {
   user: Object;
@@ -53,6 +55,8 @@ export class DashboardPage implements OnInit, AfterViewInit {
     public reusableCI: ReusableComponentsIonic
   ) {}
 
+  @ViewChild("content", { static: false }) content: IonContent;
+
   ngAfterViewInit() {}
 
   ngOnInit() {}
@@ -74,43 +78,66 @@ export class DashboardPage implements OnInit, AfterViewInit {
 
   ionViewWillEnter() {
     this.getPost();
-
-    this.getConnections();
   }
 
-  posts: IPostC[] = [];
+  all: boolean;
+
+  daysBefore = 7;
+
+  posts: IPost[] = [];
 
   getPost(event = null, newPosts = false) {
     if (newPosts) {
       this.skipPost = 0;
       this.posts = [];
+      this.all = false;
+      this.scrollTop();
     }
-    this.loadingPost = true;
-    this.postService
-      .friendsPosts({
-        friends_id: this.userService.followings_id,
-        skip: this.skipPost,
-      })
-      .toPromise()
-      .then((posts: IPostC[]) => {
-        this.posts = this.posts.concat(posts);
-        this.skipPost += 10;
-        if (event) {
-          event.target.complete();
-        }
-        this.loadingPost = false;
-      })
-      .catch((err) => {
-        this.loadingPost = false;
-        // handle error
-      });
+    if (!this.all) {
+      this.loadingPost = true;
+      this.postService
+        .friendsPosts({
+          friends_id: this.userService.followings,
+          skip: this.skipPost,
+          days: this.daysBefore,
+        })
+        .pipe(take(1))
+        .subscribe(
+          (posts: IPost[]) => {
+            this.posts = this.posts.concat(posts);
+            this.skipPost += 10;
+            if (event) {
+              event.target.complete();
+            }
+            if (posts.length < 10) {
+              this.skipPost -= 10 - posts.length;
+
+              // si encontro menos de 10 posts entonces evaluamos si hay mas de 100 posts y entonces no seguimos buscando
+              // o tambien si los dias de busqueda ya son 21 dias, entonces tampoco seguiremos buscando asi no hayan 100 posts
+              // pero mientras siga buscando de 10 en 10 y los dias no son mas de 21 puede encontrar miles de posts si es posible
+              if (this.posts.length > 100 || this.daysBefore == 21) {
+                // marcamos que ya encontro todos los posts, y no se sigue buscando
+                this.all = true;
+              } else if (this.daysBefore < 21) {
+                // pero si aun no hay mas de 100 post, entonces se le suma 7 dias a la busqueda para poder llegar a los 100 posts
+                this.daysBefore += 7;
+                // volvermos a buscar mas posts
+                this.getPost();
+              }
+            }
+            this.loadingPost = false;
+          },
+          (err) => {
+            this.loadingPost = false;
+
+            // handle error
+          }
+        );
+    }
   }
 
-  connections: Connection[] = [];
-  getConnections() {
-    this.loginService.connections().subscribe((connections) => {
-      this.connections = <Connection[]>connections;
-    });
+  scrollTop() {
+    this.content.scrollToTop();
   }
 
   async showAlert(header, message) {
@@ -126,7 +153,7 @@ export class DashboardPage implements OnInit, AfterViewInit {
     this.postService
       .getPost(post._id)
       .toPromise()
-      .then((post: IPostC) => {
+      .then((post: IPost) => {
         this.posts.unshift(post);
       })
       .catch((err) => {
@@ -189,11 +216,5 @@ export class DashboardPage implements OnInit, AfterViewInit {
     }
   }
 
-  async voted(voted: boolean, i) {
-    await this.postService
-      .getPost(this.posts[i].post._id)
-      .subscribe((post: any) => {
-        this.posts.splice(i, 1, post);
-      });
-  }
+  
 }

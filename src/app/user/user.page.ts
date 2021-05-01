@@ -4,14 +4,14 @@ import { LandingService } from "src/app/service/landingService";
 import { ActivatedRoute, Router } from "@angular/router";
 import { IPostC } from "../models/iPost";
 import { PostService } from "../service/post.service";
-import { User, UserService } from "../service/user.service";
+import {  UserService } from "../service/user.service";
 import { ChatService } from "../service/chat.service";
 import { LoginService } from "./../service/login.service";
 import { ViewsProfileService } from "../service/views-profile.service";
-import { AngularDelegate, ModalController } from "@ionic/angular";
+import {  ModalController } from "@ionic/angular";
 import { take } from "rxjs/operators";
-import { response } from "express";
 import { NewsService } from '../service/news.service';
+import { User } from "../models/IUser";
 
 interface UserData {
   user: User;
