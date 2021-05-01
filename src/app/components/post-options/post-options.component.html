@@ -1,13 +1,13 @@
-<ion-grid *ngIf="item" style="position: relative">
+<ion-grid style="position: relative">
   <ion-row class="options">
     <ion-col [size]="isPost ? 6 : 4">
-      <react-to-posts [post]="item.post" [isPost]="isPost"></react-to-posts>
+      <react-to-posts [post]="post" [isPost]="isPost"></react-to-posts>
     </ion-col>
     <ion-col size="4" *ngIf="!isPost">
-      <comments-in-pots [post]="item.post"></comments-in-pots>
+      <comments-in-pots [post]="post"></comments-in-pots>
     </ion-col>
     <ion-col [size]="isPost ? 6 : 4">
-      <shareds-in-post [post]="item.post" [isPost]="isPost"></shareds-in-post>
+      <shareds-in-post [post]="post" [isPost]="isPost"></shareds-in-post>
     </ion-col>
   </ion-row>
 </ion-grid>

@@ -38,7 +38,6 @@ import { PostPageRoutingModule } from "../post/post-routing.module";
 import { IonicModule } from "@ionic/angular";
 import { AddFriendsPage } from "../dashboard/add-friends/add-friends.page";
 import { MsgAudioComponent } from "./msg-audio/msg-audio.component";
-import { PostSharedComponent } from "./post-shared/post-shared.component";
 import { PostContentComponent } from "./post-content/post-content.component";
 import { FriendsMobileComponent } from "./friends-mobile/friends-mobile.component";
 import { HeaderPostComponent } from "./header-post/header-post.component";
@@ -97,7 +96,7 @@ import { WeekComponent } from "./analitics-views/week/week.component";
 import { YearComponent } from "./analitics-views/year/year.component";
 import { AddUsersPanelDesktopComponent } from "./add-users-panel-desktop/add-users-panel-desktop.component";
 import { UserItemPanelComponent } from "./users/user-item-panel/user-item-panel.component";
-import { FollowButtonComponent } from "./follow-button/follow-button.component";
+import { ComponentsSharedModule } from "../shared-components/components-shared.module";
 
 @NgModule({
   imports: [
@@ -114,12 +113,12 @@ import { FollowButtonComponent } from "./follow-button/follow-button.component";
     DirectivesModule,
     PickerModule,
     EmojiModule,
+    ComponentsSharedModule
   ],
   declarations: [
     ImageComponent,
     AddFriendsPage,
     MsgAudioComponent,
-    PostSharedComponent,
     PostContentComponent,
     ImageSeeComponent,
     FriendsMobileComponent,
@@ -199,8 +198,7 @@ import { FollowButtonComponent } from "./follow-button/follow-button.component";
     WeekComponent,
     YearComponent,
     AddUsersPanelDesktopComponent,
-    UserItemPanelComponent,
-    FollowButtonComponent,
+    UserItemPanelComponent
   ],
   exports: [
     ImageComponent,
@@ -210,7 +208,6 @@ import { FollowButtonComponent } from "./follow-button/follow-button.component";
     ImageSeeComponent,
     AwardsPage,
     MsgAudioComponent,
-    PostSharedComponent,
     ErrorComponent,
     PostContentComponent,
     CreateAwardChallengeComponent,
@@ -285,7 +282,6 @@ import { FollowButtonComponent } from "./follow-button/follow-button.component";
     YearComponent,
     AddUsersPanelDesktopComponent,
     UserItemPanelComponent,
-    FollowButtonComponent,
   ],
 })
 export class ComponentsModule {}

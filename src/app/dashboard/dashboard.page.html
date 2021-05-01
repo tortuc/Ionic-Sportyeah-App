@@ -76,39 +76,31 @@
               >Actualizar</ion-button
             >
           </ion-row>
-          <ion-row *ngFor="let item of posts;let i = index" class="post-card">
-            <ion-card  ngClass.xs="m-p-0" style="width: 100%;">
+          <ion-row *ngFor="let post of posts;let i = index" class="post-card">
+            <ion-card ngClass.xs="m-p-0" style="width: 100%">
               <ion-card-header>
                 <header-post
                   class="user-header"
-                  [post]="item.post"
+                  [post]="post"
                   (getPost)="getPost()"
-                  [views]="item.post.views.length"
+                  [views]="post.views.length"
                 ></header-post>
               </ion-card-header>
-              
+
               <ion-card-content>
-                <post-content [post]="item.post"></post-content>
-                <post-shared 
-                  *ngIf="item.post.post"
-                  [post]="item.post.post"
-                ></post-shared>
-                <post-shared
-                  *ngIf="item.post.news"
-                  [news]="item.post.news"
-                ></post-shared>
+                <post-content [post]="post"></post-content>
+                <post-shared *ngIf="post.post" [post]="post.post"></post-shared>
+                <post-shared *ngIf="post.news" [news]="post.news"></post-shared>
               </ion-card-content>
-                 <div *ngIf="item.post.question">
-                  <!-- style="margin-left: auto;margin-right: auto;text-align: center;width: 90%;border-radius: 15px;background: linear-gradient(
-                    90deg
-                    ,rgb(16 42 82),rgb(131 197 247))!important;
-                padding: 1px;"  
-                <p style="color: white;">Responde las preguntas</p>-->
-             <question [data]="item" (newItemEvent)="voted($event,i)"></question>
+              <div *ngIf="post.question">
+                <!-- <question
+                  [data]="post"
+                  (newItemEvent)="voted($event,i)"
+                ></question> -->
               </div>
-              
+
               <post-options
-                [item]="item"
+                [post]="post"
                 (sharedEvent)="getPost()"
               ></post-options>
             </ion-card>
