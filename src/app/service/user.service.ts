@@ -65,6 +65,8 @@ export class UserService {
     return this.User;
   }
 
+
+  
   
   /**
    * Retorna si esta siguiendo a un usuario
