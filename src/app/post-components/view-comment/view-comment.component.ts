@@ -17,10 +17,7 @@ export class ViewCommentComponent implements OnInit {
     public modalCtrl: ModalController
   ) {}
 
-  ngOnInit() {
-    console.log(this.comment);
-    
-  }
+  ngOnInit() {}
 
   async openImg() {
     let modal = await this.modalCtrl.create({

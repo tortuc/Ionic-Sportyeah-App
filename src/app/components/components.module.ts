@@ -38,13 +38,10 @@ import { PostPageRoutingModule } from "../post/post-routing.module";
 import { IonicModule } from "@ionic/angular";
 import { AddFriendsPage } from "../dashboard/add-friends/add-friends.page";
 import { MsgAudioComponent } from "./msg-audio/msg-audio.component";
-import { PostContentComponent } from "./post-content/post-content.component";
 import { FriendsMobileComponent } from "./friends-mobile/friends-mobile.component";
-import { HeaderPostComponent } from "./header-post/header-post.component";
 import { ContenteditableValueAccessorModule } from "@tinkoff/angular-contenteditable-accessor";
 import { DirectivesModule } from "../directives/directive.module";
 import { PickerModule } from "@ctrl/ngx-emoji-mart";
-import { LikesPostComponent } from "./likes-post/likes-post.component";
 import { NewProfilePhotoComponent } from "./new-profile-photo/new-profile-photo.component";
 import { ChatUserItemComponent } from "./chat-user-item/chat-user-item.component";
 import { MessageDeletedComponent } from "./message-deleted/message-deleted.component";
@@ -114,17 +111,14 @@ import { UserItemComponent } from "../componets/user-item/user-item.component";
     DirectivesModule,
     PickerModule,
     EmojiModule,
-    ComponentsSharedModule
+    ComponentsSharedModule,
   ],
   declarations: [
     ImageComponent,
     AddFriendsPage,
     MsgAudioComponent,
-    PostContentComponent,
     ImageSeeComponent,
     FriendsMobileComponent,
-    HeaderPostComponent,
-    LikesPostComponent,
     NewProfilePhotoComponent,
     ChatUserItemComponent,
     ErrorComponent,
@@ -211,13 +205,10 @@ import { UserItemComponent } from "../componets/user-item/user-item.component";
     AwardsPage,
     MsgAudioComponent,
     ErrorComponent,
-    PostContentComponent,
     CreateAwardChallengeComponent,
     FriendsMobileComponent,
-    HeaderPostComponent,
     ChallengeContentComponent,
     StructureComponent,
-    LikesPostComponent,
     NewProfilePhotoComponent,
     ChatUserItemComponent,
     MessageDeletedComponent,

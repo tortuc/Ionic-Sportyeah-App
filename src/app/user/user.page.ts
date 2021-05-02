@@ -1,16 +1,15 @@
-import { Component, OnInit } from "@angular/core";
+import { ChangeDetectorRef, Component, OnInit, ViewChild } from "@angular/core";
 import { OpenImgComponent } from "src/app/components/open-img/open-img.component";
 import { LandingService } from "src/app/service/landingService";
 import { ActivatedRoute, Router } from "@angular/router";
-import { IPostC } from "../models/iPost";
+import { IPost, IPostC } from "../models/iPost";
 import { PostService } from "../service/post.service";
-import {  UserService } from "../service/user.service";
+import { UserService } from "../service/user.service";
 import { ChatService } from "../service/chat.service";
 import { LoginService } from "./../service/login.service";
-import { ViewsProfileService } from "../service/views-profile.service";
-import {  ModalController } from "@ionic/angular";
+import { ModalController } from "@ionic/angular";
 import { take } from "rxjs/operators";
-import { NewsService } from '../service/news.service';
+import { NewsService } from "../service/news.service";
 import { User } from "../models/IUser";
 
 interface UserData {
@@ -28,6 +27,8 @@ interface UserData {
   styleUrls: ["./user.page.scss"],
 })
 export class UserPage implements OnInit {
+  @ViewChild("reloadButton", { static: false }) reloadButton: any;
+
   /**
    * Usuario que estamos visitando
    */
@@ -38,7 +39,7 @@ export class UserPage implements OnInit {
   user: any = null;
   friends: any = null;
   postsCount = 0;
-  posts: IPostC[] = [];
+  posts: IPost[] = [];
   lastConection: Date;
   connected: boolean = null;
   landingButton: boolean = false;
@@ -60,12 +61,10 @@ export class UserPage implements OnInit {
     private router: Router,
     private chatService: ChatService,
     public loginService: LoginService,
-    private viewsProfileService: ViewsProfileService,
+    private cd: ChangeDetectorRef,
     private ls: LandingService,
-    public newsService:NewsService
-
-  ) {
-  }
+    public newsService: NewsService
+  ) {}
 
   ionViewWillEnter() {
     this.ls
@@ -110,10 +109,9 @@ export class UserPage implements OnInit {
           this.estado = resp.user.estado;
 
           // Si es prensa obtenemos sus articulos
-          if(resp.user.profile_user == 'press'){
-            this.getArticle(resp.user._id)
+          if (resp.user.profile_user == "press") {
+            this.getArticle(resp.user._id);
           }
-
 
           //Llamamos a la getviews
           // this.visited = resp.user._id
@@ -133,8 +131,6 @@ export class UserPage implements OnInit {
           )
             this.landingButton = true;
           else this.landingButton = false;
-
-        
         },
         (err) => {
           // si hubo un error, lo mas probable es que sea porque el usuario no existe
@@ -162,29 +158,32 @@ export class UserPage implements OnInit {
     this.postService
       .postByUser(id, this.skip)
       .toPromise()
-      .then((posts: IPostC[]) => {
-        this.posts = this.posts.concat(posts);
-        if (event) {
-          event.target.complete();
+      .then(
+        (posts: IPost[]) => {
+          this.posts = this.posts.concat(posts);
+          if (event) {
+            event.target.complete();
+          }
+          this.skip += 10;
+          this.loadingPost = false;
+        },
+        (err) => {
+          // QUIERE DECIR QUE NO HAY POST
         }
-        this.skip += 10;
-        this.loadingPost = false;
-      },err=>{
-        // QUIERE DECIR QUE NO HAY POST
-      });
+      );
   }
 
-news = [];
-  getArticle(id){
-    this.newsService.findUserNews(id).subscribe((response:any)=>{
-      this.news = response.filter((news)=>{
+  news = [];
+  getArticle(id) {
+    this.newsService.findUserNews(id).subscribe((response: any) => {
+      this.news = response.filter((news) => {
         return news.stream == false;
-      })
-    })
+      });
+    });
   }
 
-  OpenNews(id){
-    this.router.navigate([`news/read/${id}`])
+  OpenNews(id) {
+    this.router.navigate([`news/read/${id}`]);
   }
 
   //Contendra el _id del viewProfile al que se visita
@@ -219,6 +218,23 @@ news = [];
 
   async logScrolling(ev) {
     let el = await ev.target.getScrollElement();
+    this.cd.detectChanges();
+    if (el.clientHeight * 0.4 < el.scrollTop) {
+      setTimeout(() => {
+        this.reloadButton?.el.classList.add(
+          "floating-reload",
+          "scale-in-center",
+          "btn-green"
+        );
+      }, 100);
+    } else {
+      this.reloadButton?.el.classList.remove(
+        "scale-in-center",
+        "floating-reload",
+        "btn-green"
+      );
+    }
+
     if (
       el.scrollHeight - el.scrollTop < el.clientHeight + 400 &&
       !this.loadingPost
@@ -226,20 +242,19 @@ news = [];
       this.getPosts(this.user._id);
     }
   }
-
   segmentChanged(e: CustomEvent) {
     if (e.detail.value === "posts") {
       this.profile = false;
-      this.newsB = false
+      this.newsB = false;
       this.postsB = true;
-    }else if(e.detail.value === 'profile'){
+    } else if (e.detail.value === "profile") {
       this.postsB = false;
-      this.newsB = false
-      this.profile = true; 
-    }else{
-      this.newsB = true
+      this.newsB = false;
+      this.profile = true;
+    } else {
+      this.newsB = true;
       this.postsB = false;
-      this.profile = false; 
+      this.profile = false;
     }
   }
 
@@ -249,7 +264,7 @@ news = [];
       componentProps: {
         img,
         idUser: this.route.snapshot.params.username,
-        delete:false
+        delete: false,
       },
     });
     modal.present();

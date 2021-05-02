@@ -85,18 +85,21 @@ ion-avatar.mini {
   width: 50px;
   height: 50px;
   cursor: pointer;
+  position: relative;
 }
 ion-avatar.mention {
   --border-radius: 50%;
   width: 35px;
   height: 35px;
   cursor: pointer;
+  position: relative;
 }
 ion-avatar.xmini {
   --border-radius: 50%;
   width: 40px;
   height: 40px;
   cursor: pointer;
+  position: relative;
 }
 ion-avatar.big {
   --border-radius: 50%;
@@ -104,6 +107,7 @@ ion-avatar.big {
   height: 150px;
   margin: auto;
   cursor: pointer;
+  position: relative;
 }
 
 ion-title {
@@ -143,7 +147,7 @@ calendar {
 }
 ion-checkbox {
   --border-color: auto;
-  vertical-align: middle; 
+  vertical-align: middle;
   --background: white;
   --border-color-checked: var(--color-secondary) !important;
   --background-checked: var(--color-secondary) !important;
@@ -479,49 +483,49 @@ ion-segment-button {
 
 .connectedDIV {
   border-radius: 50%;
-  border: black solid 3px;
-  background-color: #31a24c;
-  width: 30px;
-  height: 30px;
+  border: black solid 1px;
+  background-color: #2dd655;
+  width: 15px;
+  height: 15px;
   z-index: 1;
-  margin-top: -35px;
-  margin-left: 103px;
+  bottom: 0;
+  right: 0;
   position: absolute;
 }
 
 .connectedDIVlittle {
   border-radius: 50%;
-  border: black solid 3px;
-  background-color: #31a24c;
-  width: 15px;
-  height: 15px;
+  border: black solid 1px;
+  background-color: #2dd655;
+  width: 12px;
+  height: 12px;
   z-index: 1;
-  margin-top: -20px;
-  margin-left: 32px;
+  bottom: -3px;
+  right: 0px;
   position: absolute;
 }
 
 .connectedDIVlittlePost {
   border-radius: 50%;
-  border: black solid 3px;
-  background-color: #31a24c;
-  width: 15px;
-  height: 15px;
+  border: black solid 1px;
+  background-color: #2dd655;
+  width: 12px;
+  height: 12px;
   z-index: 1;
-  margin-top: -12px;
-  margin-left: 32px;
+  bottom: 0px;
+  right: 3px;
   position: absolute;
 }
 
 .connectedDIVlittlexs {
   border-radius: 50%;
   border: black solid 1px;
-  background-color: #31a24c;
+  background-color: #2dd655;
   width: 7px;
   height: 7px;
   z-index: 1;
-  margin-top: -8px;
-  margin-left: 10px;
+  right: 0;
+  bottom: 0;
   position: absolute;
 }
 
@@ -687,8 +691,8 @@ ion-segment-button {
   width: 20px;
 }
 
-.ajusteFuente{
-  font-size:13px;
+.ajusteFuente {
+  font-size: 13px;
 }
 
 .main-border {
@@ -705,7 +709,6 @@ ion-segment-button {
   cursor: pointer;
   margin-right: 5px;
 }
-
 
 // Clases SCSS para la zona principal del app
 // Login, registro, recuperar password, verification, etc
@@ -727,10 +730,9 @@ ion-segment-button {
   margin: auto;
 }
 
-.no-shadow{
+.no-shadow {
   box-shadow: none !important;
 }
-
 
 .questionDiv {
   border-radius: 15px;
@@ -738,4 +740,30 @@ ion-segment-button {
   border: solid 2px var(--color-primary);
   width: 100%;
   padding: 15px;
+}
+
+.reload-btn {
+  z-index: 10;
+
+  --background: var(--color-primary);
+  color: white;
+  ion-icon {
+    vertical-align: bottom;
+  }
+}
+
+.floating-reload {
+  position: fixed !important;
+  top: 60px !important;
+}
+
+
+.no-padding{
+  padding: 0;
+}
+
+.main-card-content {
+  visibility: visible;
+  max-width: 700px;
+  margin: auto;
 }

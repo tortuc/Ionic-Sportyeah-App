@@ -28,6 +28,5 @@ export class ProfilHeaderC implements OnInit {
   @Input() user: IUser
   constructor(){}
   ngOnInit(){
-    console.log(this.photo,this.banner,this.state)
   }
 }

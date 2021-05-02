@@ -62,7 +62,6 @@ export class AnaliticsViewsComponent implements OnInit {
       this.postId.push(elements.link.split("/")[2]);
     }
 
-    
     this.find_duplicate_in_array(this.postId);
 
     for (let elements of this.sortable) {
@@ -170,9 +169,11 @@ export class AnaliticsViewsComponent implements OnInit {
     }
   }
   ngOnInit() {
-    this.viewsSponsorService.getSponsorView(this.userService.User._id).subscribe((response:any)=>{
-     this.totalSponsor = response.length 
-    })
+    this.viewsSponsorService
+      .getSponsorView(this.userService.User._id)
+      .subscribe((response: any) => {
+        this.totalSponsor = response.length;
+      });
     //obtiene todos los post del usuario
     this.postService
       .getPostUser(this.userService.User._id)
@@ -239,7 +240,6 @@ export class AnaliticsViewsComponent implements OnInit {
           this.postUsersViews();
         }
       });
-
   }
 
   postInfoUser = [];
@@ -255,8 +255,8 @@ export class AnaliticsViewsComponent implements OnInit {
   }
 
   pieData() {
-    this.analyticsToShowSponsor = undefined
-    
+    this.analyticsToShowSponsor = undefined;
+
     this.segement = 0;
     if (this.allViews != undefined) {
       if (this.allViews.length != 0) {
@@ -336,182 +336,91 @@ export class AnaliticsViewsComponent implements OnInit {
   weekFormat;
   weekEndFormat;
   dia = moment(new Date());
-  changeWeekAdd = undefined
+  changeWeekAdd = undefined;
   generateWeek() {
-    
     this.weekFormat = this.dia.startOf("week").format("YYYY-MM-DD");
     this.weekEndFormat = this.weekEnd.format("YYYY-MM-DD");
     this.viewsProfileService
       .getVisitsByWeek(this.userService.User._id, this.dia, "comment")
       .pipe(take(1))
       .subscribe((response: any) => {
-        if(response.length == 0){
-      this.dataComment = [0,0,0,0,0,0,0]
-    }else{
-      this.dataComment = response;
-    };
+        if (response.length == 0) {
+          this.dataComment = [0, 0, 0, 0, 0, 0, 0];
+        } else {
+          this.dataComment = response;
+        }
         this.viewsProfileService
           .getVisitsByWeek(this.userService.User._id, this.dia, "chat")
           .pipe(take(1))
           .subscribe((response: any) => {
-    if(response.length == 0){
-          this.dataChat = [0,0,0,0,0,0,0]
-        }else{
-          this.dataChat = response;
-        }     
-      
-                  this.viewsProfileService
-                  .getVisitsByWeek(this.userService.User._id, this.dia, "post")
+            if (response.length == 0) {
+              this.dataChat = [0, 0, 0, 0, 0, 0, 0];
+            } else {
+              this.dataChat = response;
+            }
+
+            this.viewsProfileService
+              .getVisitsByWeek(this.userService.User._id, this.dia, "post")
+              .pipe(take(1))
+              .subscribe((response: any) => {
+                if (response.length == 0) {
+                  this.dataPost = [0, 0, 0, 0, 0, 0, 0];
+                } else {
+                  this.dataPost = response;
+                }
+                this.viewsProfileService
+                  .getVisitsByWeek(
+                    this.userService.User._id,
+                    this.dia,
+                    "profile"
+                  )
                   .pipe(take(1))
                   .subscribe((response: any) => {
-            if(response.length == 0){
-                  this.dataPost = [0,0,0,0,0,0,0]
-                }else{
-                  this.dataPost = response;
-                }    
-                                this.viewsProfileService
-                      .getVisitsByWeek(this.userService.User._id, this.dia, "profile")
+                    if (response.length == 0) {
+                      this.dataProfile = [0, 0, 0, 0, 0, 0, 0];
+                    } else {
+                      this.dataProfile = response;
+                    }
+
+                    this.viewsProfileService
+                      .getVisitsByWeek(
+                        this.userService.User._id,
+                        this.dia,
+                        "search"
+                      )
                       .pipe(take(1))
                       .subscribe((response: any) => {
-                        if(response.length == 0){
-                      this.dataProfile = [0,0,0,0,0,0,0]
-                    }else{
-                      this.dataProfile = response;
-                    };
+                        if (response.length == 0) {
+                          this.dataSearch = [0, 0, 0, 0, 0, 0, 0];
+                        } else {
+                          this.dataSearch = response;
+                        }
 
-                              this.viewsProfileService
-                              .getVisitsByWeek(this.userService.User._id, this.dia, "search")
-                              .pipe(take(1))
-                              .subscribe((response: any) => {
-                                if(response.length == 0){
-                              this.dataSearch = [0,0,0,0,0,0,0]
-                            }else{
-                              this.dataSearch = response;
-                            }
-
-                              this.viewsProfileService
-                              .getVisitsByWeek(this.userService.User._id, this.dia, "reaction")
-                              .pipe(take(1))
-                              .subscribe((response: any) => {
-                                if(response.length == 0){
-                              this.dataReaction = [0,0,0,0,0,0,0]
-                            }else{
+                        this.viewsProfileService
+                          .getVisitsByWeek(
+                            this.userService.User._id,
+                            this.dia,
+                            "reaction"
+                          )
+                          .pipe(take(1))
+                          .subscribe((response: any) => {
+                            if (response.length == 0) {
+                              this.dataReaction = [0, 0, 0, 0, 0, 0, 0];
+                            } else {
                               this.dataReaction = response;
-                            };
+                            }
                             this.linesData();
-
-                              });
-                              });
+                          });
                       });
-              
+                  });
               });
-           });
+          });
       });
-    
-    
-  
-    // this.weekFormat = this.week.format('YYYY-MM-DD')
-    // this.weekEndFormat = this.weekEnd.format('YYYY-MM-DD')
-    // this.noData = false;
-    //  this.weeks =[]
-    //         while (this.weekEnd.diff(this.week, 'days') >= 0) {
-    //           this.weeks.push({date:this.week.format('YYYY-MM-DD'),post:0,chat:0,search:0,profile:0,reaction:0,comment:0})
-    //           this.week.add(1,'days')
-    //          }
-    //          console.log(this.week.format('YYYY-MM-DD'));
-    //     this.allViews.forEach((visits) => {
-    //       let date = moment(new Date(visits.date)).format('YYYY-MM-DD')
-    //       for(let key in this.weeks){
-    //         if(this.weeks[key].date == date){this.noData = true}
-    //       }
-    //     });
   }
 
   linesData() {
     this.analyticsToShow = "weeks";
     this.cd.detectChanges();
-    // console.log(this.dia);
-    // console.log(this.dataComment);
-    // console.log(this.dataPost);
-    // console.log(this.dataProfile);
-    // console.log(this.dataSearch);
-    // console.log(this.dataChat);
-    // console.log(this.dataReaction);
-
-    //  this.dataPost = []
-    //  this.dataChat = []
-    //  this.dataSearch = []
-    //  this.dataProfile = []
-    //  this.dataReaction = []
-    //  this.dataComment = []
-    //  for(let i=1 ; i <= 12; i++){
-    //    this.dataPost.push(0)
-    //    this.dataChat.push(0)
-    //    this.dataSearch.push(0)
-    //    this.dataProfile.push(0)
-    //    this.dataReaction.push(0)
-    //    this.dataComment.push(0)
-    //  }
-
-    //  this.postViews.forEach((visits) => {
-    //   let date = moment(new Date(visits.date)).format('YYYY-MM-DD')
-    //   for(let key in this.weeks){
-    //     if(this.weeks[key].date == date){
-    //       this.weeks[key].post += 1
-    //       this.dataPost[key] += 1
-    //     }
-    //   }
-    // });
-
-    // this.commentViews.forEach((visits) => {
-    //   let date = moment(new Date(visits.date)).format('YYYY-MM-DD')
-    //   for(let key in this.weeks){
-    //     if(this.weeks[key].date == date){
-    //       this.weeks[key].post += 1
-    //       this.dataComment[key] += 1
-    //     }
-    //   }
-    // });
-
-    // this.chatViews.forEach((visits) => {
-    //   let date = moment(new Date(visits.date)).format('YYYY-MM-DD')
-    //   for(let key in this.weeks){
-    //     if(this.weeks[key].date == date){
-    //       this.weeks[key].post += 1
-    //       this.dataChat[key] += 1
-    //     }
-    //   }
-    // });
-
-    // this.searchViews.forEach((visits) => {
-    //   let date = moment(new Date(visits.date)).format('YYYY-MM-DD')
-    //   for(let key in this.weeks){
-    //     if(this.weeks[key].date == date){
-    //       this.weeks[key].post += 1
-    //       this.dataSearch[key] += 1
-    //     }
-    //   }
-    // });
-
-    // this.profileViews.forEach((visits) => {
-    //   let date = moment(new Date(visits.date)).format('YYYY-MM-DD')
-    //   for(let key in this.weeks){
-    //     if(this.weeks[key].date == date){
-    //       this.weeks[key].post += 1
-    //       this.dataProfile[key] += 1
-    //     }
-    //   }
-    // });
-
-    // this.reactionViews.forEach((visits) => {
-    //   let date = moment(new Date(visits.date)).format('YYYY-MM-DD')
-    //   for(let key in this.weeks){
-    //     if(this.weeks[key].date == date){
-    //       this.weeks[key].post += 1
-    //       this.dataReaction[key] += 1
-    //     }
-    //   }
-    // });
 
     this.lines = new Chart("lines", {
       type: "line",
@@ -584,7 +493,7 @@ export class AnaliticsViewsComponent implements OnInit {
       },
     });
   }
-  changeWeek(n) {        
+  changeWeek(n) {
     this.dia = moment(this.dia).add(n, "weeks");
     this.week = moment(this.week).add(n, "weeks");
     this.weekEnd = moment(this.weekEnd).add(n, "weeks");
@@ -604,7 +513,7 @@ export class AnaliticsViewsComponent implements OnInit {
   dataReaction = [];
   dataComment = [];
   year = new Date().getFullYear();
-  changeYearAdd = undefined
+  changeYearAdd = undefined;
   generateYear() {
     this.noData = false;
     this.years = [];
@@ -653,19 +562,6 @@ export class AnaliticsViewsComponent implements OnInit {
 
     this.linesDataYears();
   }
-  /* 
-  returnMes(fecha,desde){
-    let mes=[]
-    this.allViews.forEach((visits) => {
-      let month = moment(new Date(visits.Date)).format('YYYY-MM-DD')
-      for(let key in this.years ){
-        if( moment(new Date(this.years[key].date)).format('YYYY-MM-DD') == month && moment(month).format('MM') == fecha && visits.from == desde )
-        {mes.push(this.years[key])}
-      } 
-  });
- 
-  return mes.length
-  } */
 
   linesDataYears() {
     this.analyticsToShow = "years";
@@ -750,8 +646,6 @@ export class AnaliticsViewsComponent implements OnInit {
         }
       }
     });
-
-
 
     this.lines = new Chart("linesYear", {
       type: "line",
@@ -878,18 +772,6 @@ export class AnaliticsViewsComponent implements OnInit {
     this.linesHours();
   }
 
-  /* returnHour(hour,from){
-  let hours=[]
-  this.allViews.forEach((visits) => {
-    let time = moment(visits.Date).format('YYYY-MM-DD-HH')   
-    for(let key in this.hours ){
-      let now =  moment(this.hours[key].date.slice(0,10)).set('hours', this.hours[key].date.slice(11,13))
-      if(now.format('YYYY-MM-DD-HH') == time && moment(visits.Date).format('HH') == hour && visits.from == from )
-      {hours.push(this.hours[key])} 
-    } 
-});
-return hours.length
-} */
   linesHours() {
     this.analyticsToShow = "hours";
     this.cd.detectChanges();
@@ -971,7 +853,6 @@ return hours.length
       }
     });
 
- 
     this.linesHour = new Chart("linesHour", {
       type: "line",
       data: {
@@ -1054,9 +935,8 @@ return hours.length
   monthStart = moment();
   monthEnd = moment();
   labelMonths = [];
-  changeMonthAdd=undefined;
+  changeMonthAdd = undefined;
   generateMonth() {
-    
     this.noData = false;
     this.months = [];
     this.labelMonths = [];
@@ -1244,32 +1124,25 @@ return hours.length
     this.generateMonth();
   }
 
-
-  totalSponsor
-  sponsorLink
-  analyticsToShowSponsor
-  Sponsor(){
+  totalSponsor;
+  sponsorLink;
+  analyticsToShowSponsor;
+  Sponsor() {
     this.segement = 2;
     this.analyticsToShow = undefined;
     // this.option = 'analyticsSponsor'
-    this.analyticsToShowSponsor = 'hours'
-    console.log(this.segement);
+    this.analyticsToShowSponsor = "hours";
   }
-  sponsorDay(){
-    console.log("desde el seponsor day");
-    this.analyticsToShowSponsor = 'hours'
+  sponsorDay() {
+    this.analyticsToShowSponsor = "hours";
   }
-  sponsorWeek(){
-    console.log("desde el seponsor weeks");
-    this.analyticsToShowSponsor = 'weeks'
+  sponsorWeek() {
+    this.analyticsToShowSponsor = "weeks";
   }
-  sponsorMonth(){
-    console.log("desde el seponsor month");
-    this.analyticsToShowSponsor = 'months'
+  sponsorMonth() {
+    this.analyticsToShowSponsor = "months";
   }
-  sponsorYear(){
-    console.log("desde el seponsor year");
-    this.analyticsToShowSponsor = 'years'
+  sponsorYear() {
+    this.analyticsToShowSponsor = "years";
   }
- 
 }

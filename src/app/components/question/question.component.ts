@@ -17,7 +17,6 @@ constructor(
 ) { }
 
   ngOnInit() {
-    console.log(this.data);
     
   }
 

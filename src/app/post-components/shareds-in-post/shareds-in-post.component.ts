@@ -12,11 +12,11 @@ import { LoginService } from "src/app/service/login.service";
 import { PostService } from "src/app/service/post.service";
 import { SocketService } from "src/app/service/socket.service";
 import { UserService } from "src/app/service/user.service";
-import { SharedsPostComponent } from "../shareds-post/shareds-post.component";
 import { Plugins } from "@capacitor/core";
 import { SocialSharing } from "@ionic-native/social-sharing/ngx";
 import { ShareService } from "src/app/service/share.service";
 import { NewPostPage } from "src/app/dashboard/new-post/new-post.page";
+import { SharedsPostComponent } from "../shareds-post/shareds-post.component";
 
 const { Share } = Plugins;
 

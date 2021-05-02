@@ -2,11 +2,10 @@ import { SponsorsComponent } from "./sponsors/sponsors.component";
 import { OpenImgComponent } from "src/app/components/open-img/open-img.component";
 import { LoginService } from "./../service/login.service";
 import { take } from "rxjs/operators";
-import { Component, OnInit, ViewChild } from "@angular/core";
+import { ChangeDetectorRef, Component, OnInit, ViewChild } from "@angular/core";
 import { Router, ActivatedRoute } from "@angular/router";
 import { PopoverController } from "@ionic/angular";
 import { TranslateService } from "@ngx-translate/core";
-import { IPostC } from "../models/iPost";
 import { PostService } from "../service/post.service";
 import { UserService } from "../service/user.service";
 import { ProfileService } from "../service/profile.service";
@@ -15,9 +14,9 @@ import { NewsService } from "../service/news.service";
 import { ModalController } from "@ionic/angular";
 import { GetMediaComponent } from "../components/get-media/get-media.component";
 import { ReusableComponentsIonic } from "../service/ionicHelpers.service";
-import { IUser, User } from "../models/IUser";
-import { typeSourceSpan } from "@angular/compiler";
+import {  User } from "../models/IUser";
 import { ISponsor } from "../models/ISponsor";
+import { IPost } from "../models/iPost";
 
 @Component({
   selector: "app-profile",
@@ -26,6 +25,9 @@ import { ISponsor } from "../models/ISponsor";
 })
 export class ProfilePage implements OnInit {
   @ViewChild(GetMediaComponent) getMedia: GetMediaComponent;
+
+  @ViewChild("reloadButton", { static: false }) reloadButton: any;
+
   banderaIP: string = null;
   ipLoaded: Promise<boolean>;
   profile: boolean = true;
@@ -48,7 +50,8 @@ export class ProfilePage implements OnInit {
     public loginService: LoginService,
     private viewsProfileService: ViewsProfileService,
     public newsService: NewsService,
-    public reusableCI: ReusableComponentsIonic
+    public reusableCI: ReusableComponentsIonic,
+    public cd:ChangeDetectorRef
   ) {
     this.viewsProfileService
       .getProfileView(this.userService.User._id)
@@ -72,7 +75,7 @@ export class ProfilePage implements OnInit {
   }
 
   news = [];
-  posts: IPostC[] = [];
+  posts: IPost[] = [];
   views: [];
   ngOnInit() {
     this.newsService
@@ -89,6 +92,26 @@ export class ProfilePage implements OnInit {
     });
     this.getPost();
     this.getCountPost();
+    this.postService.newPostObservable().subscribe((id) => {
+      this.newPost(id);
+    });
+  }
+
+  /**
+   * Busca una publicacion creada
+   * @param id id de la pubublicacion
+   */
+   newPost(id) {
+    this.postService
+      .getPost(id)
+      .toPromise()
+      .then((post: IPost) => {
+        // una vez tenga todos los datos de esa publicacion, lo mete de primero en  las publicaciones
+        this.posts.unshift(post);
+      })
+      .catch((err) => {
+        // handle err
+      });
   }
 
   OpenNews(id) {
@@ -148,7 +171,7 @@ export class ProfilePage implements OnInit {
     this.postService
       .myPost(this.skip)
       .toPromise()
-      .then((posts: IPostC[]) => {
+      .then((posts: IPost[]) => {
         this.posts = this.posts.concat(posts);
         if (event) {
           event.target.complete();
@@ -163,15 +186,7 @@ export class ProfilePage implements OnInit {
       });
   }
 
-  async logScrolling(ev) {
-    let el = await ev.target.getScrollElement();
-    if (
-      el.scrollHeight - el.scrollTop < el.clientHeight + 400 &&
-      !this.loadingPost
-    ) {
-      this.getPost();
-    }
-  }
+  
 
   segmentChanged(e: CustomEvent) {
     if (e.detail.value === "posts") {
@@ -300,4 +315,34 @@ export class ProfilePage implements OnInit {
         );
       });
   }
+
+
+
+  async logScrolling(ev) {
+    let el = await ev.target.getScrollElement();
+    this.cd.detectChanges();
+    if (el.clientHeight * 0.4 < el.scrollTop) {
+      setTimeout(() => {
+        this.reloadButton?.el.classList.add(
+          "floating-reload",
+          "scale-in-center",
+          "btn-green"
+        );
+      }, 100);
+    } else {
+      this.reloadButton?.el.classList.remove(
+        "scale-in-center",
+        "floating-reload",
+        "btn-green"
+      );
+    }
+
+    if (
+      el.scrollHeight - el.scrollTop < el.clientHeight + 400 &&
+      !this.loadingPost
+    ) {
+      this.getPost();
+    }
+  }
+
 }

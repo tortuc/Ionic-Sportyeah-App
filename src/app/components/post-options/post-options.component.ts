@@ -16,7 +16,9 @@ export class PostOptionsComponent implements OnInit {
   @Input() isPost: boolean = false;
   constructor(
   ) {}
-  ngOnInit() {}
+  ngOnInit() {
+    
+  }
 
 
 }

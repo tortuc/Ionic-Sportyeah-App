@@ -12,6 +12,7 @@ import { ComponentsModule } from '../components/components.module';
 import { TranslateModule } from '@ngx-translate/core';
 
 import { CarrouselComponent } from './carrousel/carrousel.component';
+import { PostComponetsModule } from '../post-components/post-componets.module';
 
 @NgModule({
   imports: [
@@ -21,7 +22,8 @@ import { CarrouselComponent } from './carrousel/carrousel.component';
     UserPageRoutingModule,
     ComponentsModule,
     PipesModule,
-    TranslateModule
+    TranslateModule,
+    PostComponetsModule
   ],
   declarations: [
     UserPage,

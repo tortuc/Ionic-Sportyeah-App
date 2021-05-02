@@ -16,7 +16,6 @@ export class EditQuestionComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {
-    console.log(this.question);
     
   }
 

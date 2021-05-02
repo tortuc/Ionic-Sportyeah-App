@@ -14,6 +14,8 @@ import { SharedPipe } from "./shared.pipe";
 import { CustomCurrencyPipe } from "./custom-currency.pipe";
 import { CanVotePipe } from './can-vote.pipe';
 import { ShowReactionsImagePipe } from "./show-reactions-image.pipe";
+import { FilesPostCalSizePipe } from "./files-post-cal-size.pipe";
+import { FilesPostClassPipe } from "./files-post-class.pipe";
 
 const pipes = [
   LinksPipe,
@@ -30,7 +32,9 @@ const pipes = [
   SharedPipe,
   CustomCurrencyPipe,
   CanVotePipe,
-  ShowReactionsImagePipe
+  ShowReactionsImagePipe,
+  FilesPostCalSizePipe,
+  FilesPostClassPipe
   
 ]
 @NgModule({

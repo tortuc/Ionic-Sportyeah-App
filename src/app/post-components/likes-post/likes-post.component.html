@@ -35,6 +35,7 @@
     (visit)="goToProfile($event)"
   ></all-reactions>
   <likes-reactions
+  *ngIf="segment != 'all'"
     #likes
     [post]="post"
     [type]="segment"

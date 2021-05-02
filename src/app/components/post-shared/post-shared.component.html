@@ -1,17 +1,7 @@
 <div *ngIf="post" [ngClass]="{'disabled':disabled}">
   <ion-card ngClass.xs="m-p-0 " class="m-0"  style="width: 100%;">
-    <ion-card-header>
-      <header-post [displayOptions]="false" class="user-header" [post]="post" ></header-post>       
-
-    </ion-card-header>
-  
-    <ion-card-content (click)="goToPost(post._id)">
-      <p  style="user-select: none;pointer-events: none;white-space:pre-wrap;cursor: pointer;"><span class="message" [innerHTML]="post.message | links"></span></p>
-
-      <iframe *ngIf="post.message  | youtube" [src]="post.message  | youtube" frameborder="0"></iframe>
-     
-   
-    </ion-card-content>
+    <post-content [post]="post"></post-content>
+    <header-post [displayOptions]="false" class="user-header" [post]="post" ></header-post>       
    
   </ion-card>
 </div>
