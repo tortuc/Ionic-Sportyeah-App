@@ -1000,5 +1000,10 @@
     "invalid_field":"Este campo es invalido"
 
   },
-  "rememberme":"Mantener sesion abierta"
+  "rememberme":"Mantener sesion abierta",
+  "search_page": {
+    "search": "Buscar...",
+    "users_popular": "Usuarios más populares en Sportyeah!",
+    "more": "Ver mas resultados"
+  }
 }

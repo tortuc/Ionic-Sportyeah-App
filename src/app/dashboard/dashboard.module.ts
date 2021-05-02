@@ -9,7 +9,7 @@ import { DashboardPageRoutingModule } from './dashboard-routing.module';
 import { DashboardPage } from './dashboard.page';
 import { TranslateModule } from '@ngx-translate/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { NewPostPage } from './new-post/new-post.page';
+// import { NewPostPage } from './new-post/new-post.page';
 import { PickerModule } from '@ctrl/ngx-emoji-mart';
 import { EmojiModule } from '@ctrl/ngx-emoji-mart/ngx-emoji';
 import { PipesModule } from '../pipes/pipes.module';
@@ -19,7 +19,7 @@ import { DirectivesModule } from '../directives/directive.module';
 import { IonCustomScrollbarModule } from 'ion-custom-scrollbar';
 import { ComponentsSharedModule } from '../shared-components/components-shared.module';
 import { PostComponetsModule } from '../post-components/post-componets.module';
-
+ 
 @NgModule({
   imports: [
     CommonModule,
@@ -41,8 +41,6 @@ import { PostComponetsModule } from '../post-components/post-componets.module';
   ],
   declarations: [
     DashboardPage
-    
-    
   ],
   schemas:[CUSTOM_ELEMENTS_SCHEMA]
 })

@@ -1,0 +1,40 @@
+.friends-card {
+    ion-card-content {
+      max-height: 350px;
+      overflow: auto;
+      padding: 0px;
+    }
+  }
+  
+  
+  ion-avatar {
+    --border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    position: relative;
+  }
+  
+  ion-thumbnail {
+    margin: 3px;
+    height: 40px;
+  }
+  
+  .see-more {
+    width: 90%;
+    --background: #9ae6c0 !important;
+    font-size: 14px;
+    height: 30px;
+    color: black;
+    --border-radius: 20px;
+  }
+  
+  .inv-whatsapp{
+    z-index: 100;
+    position: absolute;
+    right: 5px;
+    bottom: 5px;
+    height: 50px;
+    width: 50px;
+    --background: var(--color-primary);
+  }
