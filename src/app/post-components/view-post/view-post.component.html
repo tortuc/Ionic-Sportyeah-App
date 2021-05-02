@@ -2,7 +2,7 @@
   *ngIf="!post.deleted"
   class="m-p-0"
   [ngClass]="postPage ? 'noshadow' : 'main-border'"
-  style="width: 100%; overflow: visible;margin: 0;"
+  style="width: 100%; overflow: visible;margin: 4px 0;"
 >
   <header-post [post]="post" (edited)="edited()"></header-post>
 

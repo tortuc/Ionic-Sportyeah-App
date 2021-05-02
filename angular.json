@@ -41,6 +41,9 @@
               },
               {
                 "input": "src/global.scss"
+              },
+              {
+                "input": "src/global_mobile.scss"
               }
              
             ],

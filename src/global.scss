@@ -741,3 +741,29 @@ ion-segment-button {
   width: 100%;
   padding: 15px;
 }
+
+.reload-btn {
+  z-index: 10;
+
+  --background: var(--color-primary);
+  color: white;
+  ion-icon {
+    vertical-align: bottom;
+  }
+}
+
+.floating-reload {
+  position: fixed !important;
+  top: 60px !important;
+}
+
+
+.no-padding{
+  padding: 0;
+}
+
+.main-card-content {
+  visibility: visible;
+  max-width: 700px;
+  margin: auto;
+}

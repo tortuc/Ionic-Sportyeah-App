@@ -1,0 +1,15 @@
+@media screen and (max-width:600px) {
+  /**
+  Aqui van a ir todos las clases responsivas para el mobile, o clases exclusivas para el mobile
+  */
+
+
+  
+
+  .main-card-content {
+    visibility: hidden !important;
+    position: absolute;
+    max-width: 700px;
+    margin: auto;
+  }
+}

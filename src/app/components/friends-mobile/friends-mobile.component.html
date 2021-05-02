@@ -1,38 +1,39 @@
-<ion-card>
-  <ion-card-header>
-    <ion-item lines="none">
-      <ion-thumbnail (click)="goToMyProfile()" slot="start">
+<ion-card style="margin: 0;padding: 8px;" class="main-border">
+    <ion-item *ngIf="!profile" lines="none" class="user" (click)="goToMyProfile()">
+      <ion-thumbnail class="userthumb" slot="start">
         <ion-avatar class="mini">
           <img [src]="userService.User?.photo" />
         </ion-avatar>
       </ion-thumbnail>
-      <ion-label style="margin-top: -10px"
-        >{{ userService.User?.name }} {{ userService.User?.last_name }} <br />
-        <ion-input
-          readonly
-          (ionFocus)="newPost()"
-          placeholder="{{ 'dashboard.new_post_placeholder' | translate }}"
-        ></ion-input>
+      <ion-label  style="margin-top: 0;">
+        <p class="name">
+          {{ userService.User?.name }} {{ userService.User?.last_name }}</p
+        >
+        
+        <p class="username"> @{{ userService.User?.username }}</p>
       </ion-label>
     </ion-item>
+    <div class="new-post" (click)="newPost()">
+      <p>{{ "dashboard.new_post_placeholder" | translate }}</p>
+    </div>
+
     {{ "dashboard.friends" | translate }}
     <div class="friends-mobile">
       <ion-fab-button
-        class="main-bg-fab"
-        (click)="searchFriend()"
+        class="main-bg"
+        routerLink="/search"
         size="small"
       >
         <ion-icon name="add"></ion-icon>
       </ion-fab-button>
       <ion-avatar
         *ngFor="let friend of userService.followings"
-        (click)="goToProfile(friend.user._id, friend.user.username)"
+        (click)="goToProfile(friend.user.username)"
         class="mini"
         style="margin: 0 5px"
       >
-        <img [src]="friend.user.photo" />
+        <img [src]="friend.user?.photo" />
         <div class="connectedDIVlittle" *ngIf="friend.user.connected"></div>
       </ion-avatar>
     </div>
-  </ion-card-header>
 </ion-card>

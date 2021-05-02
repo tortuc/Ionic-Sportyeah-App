@@ -1,5 +1,6 @@
 import {
   AfterViewInit,
+  ChangeDetectorRef,
   Component,
   ElementRef,
   HostListener,
@@ -41,25 +42,37 @@ interface Connection {
 })
 export class DashboardPage implements OnInit, AfterViewInit {
   public loadingPost: boolean;
+  @ViewChild("reloadButton", { static: false }) reloadButton: any;
+
   constructor(
     public toastController: ToastController,
     public translate: TranslateService,
     public userService: UserService,
     public modalController: ModalController,
     public postService: PostService,
-    private loginService: LoginService,
     private popover: PopoverController,
     private router: Router,
     private alertCtrl: AlertController,
     public el: ElementRef,
-    public reusableCI: ReusableComponentsIonic
+    public reusableCI: ReusableComponentsIonic,
+    public cd:ChangeDetectorRef
   ) {}
 
   @ViewChild("content", { static: false }) content: IonContent;
 
-  ngAfterViewInit() {}
+  logout = false;
+  ngAfterViewInit() {
+    this.userService.logoutObservable().subscribe(() => {
+      this.posts = [];
+      this.logout = true;
+    });
+  }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.postService.newPostObservable().subscribe((id) => {
+      this.newPost(id);
+    });
+  }
 
   newsStream;
   isScrolledIntoView() {
@@ -77,7 +90,9 @@ export class DashboardPage implements OnInit, AfterViewInit {
   skipPost = 0;
 
   ionViewWillEnter() {
-    this.getPost();
+    if (this.posts.length == 0) {
+      this.getPost(null, true);
+    }
   }
 
   all: boolean;
@@ -151,7 +166,7 @@ export class DashboardPage implements OnInit, AfterViewInit {
 
   newPost(post) {
     this.postService
-      .getPost(post._id)
+      .getPost(post)
       .toPromise()
       .then((post: IPost) => {
         this.posts.unshift(post);
@@ -159,18 +174,6 @@ export class DashboardPage implements OnInit, AfterViewInit {
       .catch((err) => {
         // handle err
       });
-  }
-
-  goToProfile(id, username) {
-    if (id == this.userService.User._id) {
-      this.router.navigate(["/profile"]);
-    } else {
-      this.router.navigate([`/user/${username}`]);
-    }
-  }
-
-  goToMyProfile() {
-    this.router.navigate(["/profile"]);
   }
 
   async presentModal() {
@@ -206,8 +209,29 @@ export class DashboardPage implements OnInit, AfterViewInit {
     this.router.navigate([`/post/${id}`]);
   }
 
-  async logScrolling(ev) {
+  /**
+   * Esta funcion se llama cuando el usuario baja el scroll, y si llega muy abajo, entonces se llaman mas posts automaticamente
+   * @param ev
+   */
+   async logScrolling(ev) {
     let el = await ev.target.getScrollElement();
+    this.cd.detectChanges();
+    if (el.clientHeight * 0.4 < el.scrollTop) {
+      setTimeout(() => {
+        this.reloadButton?.el.classList.add(
+          "floating-reload",
+          "scale-in-center"
+     
+        );
+      }, 100);
+    } else {
+      this.reloadButton?.el.classList.remove(
+        "scale-in-center",
+        "floating-reload"
+      
+      );
+    }
+
     if (
       el.scrollHeight - el.scrollTop < el.clientHeight + 400 &&
       !this.loadingPost
@@ -215,6 +239,4 @@ export class DashboardPage implements OnInit, AfterViewInit {
       this.getPost();
     }
   }
-
-  
 }

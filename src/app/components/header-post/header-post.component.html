@@ -48,7 +48,7 @@
 <div class="sponsors">
   <div
     *ngFor="let sponsor of post.user.sponsors.slice(0, 3); let i = index"
-    style="z-index: 10000"
+ 
     (click)="goToSponsor(sponsor.url, post.user._id, post._id)"
     target="_blank"
   >

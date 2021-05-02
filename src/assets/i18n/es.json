@@ -1006,5 +1006,12 @@
     "message":"¿Seguro que deseas eliminar esta publicación?"
   },
   "accept":"Aceptar",
-  "search_image_from": "Buscar imagen desde"
+  "search_image_from": "Buscar imagen desde",
+  "reload":"Actualizar",
+  "edit_at":"Editado el dia",
+  "main_card_user":{
+    "post":"Crear publicación",
+    "search":"Buscar amigos",
+    "chat":"ir al chat"
+  }
 }

@@ -32,7 +32,7 @@
   <ion-grid style="padding: 0" class="height-100vh">
     <ion-row class="height-100vh ion-justify-content-center">
       <ion-col ngClass.xs="m-p-0" size-md="8" size-sm="12">
-        <ion-card ngClass.xs="m-p-0" >
+        <ion-card ngClass.xs="m-p-0">
           <ion-card-header
             class="text-center"
             style="padding-top: 0; padding-left: 0; padding-right: 0"
@@ -52,9 +52,7 @@
                   style="margin-top: 6px"
                 ></ion-icon>
               </div>
-              <div 
-                style="padding-top: 96px; z-index:9999999999;" 
-              >
+              <div style="padding-top: 96px; z-index: 9999999999">
                 <new-profile-photo></new-profile-photo>
               </div>
             </ion-card>
@@ -84,21 +82,27 @@
               <ion-row>
                 <ion-col>
                   <ion-button
-                  class="analythics"
-                  [routerLink]="'/landing/'+userService.User._id+'/analytics-views'"
-                  ><ion-icon
-                    name="analytics-outline"
-                    style="cursor: pointer; color: black"
-                  ></ion-icon
-                  >{{'analytics-views.title' | translate}}</ion-button
-                >
+                    class="analythics"
+                    [routerLink]="'/landing/'+userService.User._id+'/analytics-views'"
+                    ><ion-icon
+                      name="analytics-outline"
+                      style="cursor: pointer; color: black"
+                    ></ion-icon
+                    >{{'analytics-views.title' | translate}}</ion-button
+                  >
                 </ion-col>
-                <ion-col  *ngIf="userService.User?.profile_user == 'press'">
-                  <ion-button [routerLink]="'/news/create'" ><ion-icon style="margin-right: 8px;" name="newspaper-outline"></ion-icon> {{'news.article' | translate}}</ion-button>
+                <ion-col *ngIf="userService.User?.profile_user == 'press'">
+                  <ion-button [routerLink]="'/news/create'"
+                    ><ion-icon
+                      style="margin-right: 8px"
+                      name="newspaper-outline"
+                    ></ion-icon>
+                    {{'news.article' | translate}}</ion-button
+                  >
                 </ion-col>
               </ion-row>
             </ion-grid>
-         
+
             <ion-card-subtitle class="estado">
               {{userService.User?.estado}}
             </ion-card-subtitle>
@@ -147,12 +151,11 @@
               </ion-icon>
               {{'gostructure' | translate}}
             </ion-button>
-
           </ion-card-header>
 
           <ion-card-content> </ion-card-content>
 
-          <div style="margin-bottom: 5px;">
+          <div style="margin-bottom: 5px">
             <app-sponsor
               [creator]="creator"
               [sponsors]="user.sponsors"
@@ -189,7 +192,7 @@
           <app-carrousel [id]="userService.User?._id"></app-carrousel>
           <ion-card
             ngClass.xs="m-p-0"
-            class=" mt5"
+            class="mt5"
             *ngIf="
               userService.User.profile_user !== 'sponsor' &&
               userService.User.profile_user !== 'foundation' &&
@@ -210,7 +213,7 @@
 
           <ion-card
             ngClass.xs="m-p-0"
-            class=" mt5"
+            class="mt5"
             *ngIf="
               userService.User.profile_user !== 'representative'
             "
@@ -226,7 +229,7 @@
 
           <ion-card
             ngClass.xs="m-p-0"
-            class=" mt5"
+            class="mt5"
             *ngIf="
               userService.User.profile_user !== 'sponsor' &&
               userService.User.profile_user !== 'federation' &&
@@ -249,28 +252,25 @@
         <!-- SEGMENT POSTST -->
         <div *ngIf="postsB">
           <ion-grid ngClass.xs="m-p-0">
+            <ion-row style="justify-content: center">
+              <ion-button
+                class="reload-btn"
+                *ngIf="posts.length > 0"
+                #reloadButton
+                style="z-index: 10"
+                shape="round"
+                (click)="getPost(null,true)"
+              >
+                <span>
+                  <ion-icon name="reload"></ion-icon> {{'reload' |
+                  translate}}</span
+                ></ion-button
+              >
+            </ion-row>
             <ion-row *ngFor="let post of posts" class="">
-              <ion-card ngClass.xs="m-p-0" style="width: 100%">
-                <ion-card-header>
-                  <header-post
-                    class="user-header"
-                    [post]="post"
-                    (getPost)="getPost()"
-                    [views]="post.views.length"
-                  ></header-post>
-                </ion-card-header>
-                <ion-card-content>
-                  <post-content [post]="post"></post-content>
-                  <post-shared
-                    *ngIf="post.post"
-                    [post]="post.post"
-                  ></post-shared>
-                </ion-card-content>
-                <post-options
-                  [post]="post"
-                  (sharedEvent)="getPost()"
-                ></post-options>
-              </ion-card>
+              <ion-col size="12">
+                <view-post [post]="post"></view-post>
+              </ion-col>
             </ion-row>
           </ion-grid>
         </div>

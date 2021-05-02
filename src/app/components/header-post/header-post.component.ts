@@ -26,7 +26,7 @@ export class HeaderPostComponent implements OnInit {
 
   @Input() displayOptions: boolean = true;
 
-  @Output() deleted = new EventEmitter();
+  @Output() edited = new EventEmitter();
 
   @Input() views: string;
 
@@ -135,8 +135,8 @@ export class HeaderPostComponent implements OnInit {
     this.postService
       .deleteOne(post._id)
       .toPromise()
-      .then(() => {
-        this.deleted.emit(true);
+      .then((post) => {
+        this.edited.emit();
       })
       .catch((err) => {
         // handle the error
@@ -159,7 +159,7 @@ export class HeaderPostComponent implements OnInit {
 
   modalClose(data) {
     if (data.edited) {
-      this.getPost.emit(true);
+      this.edited.emit();
     }
   }
 }
