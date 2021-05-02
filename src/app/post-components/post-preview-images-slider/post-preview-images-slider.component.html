@@ -3,18 +3,18 @@
   
   <ion-slides *ngIf="viewEntered" style="height: 100%" pager="true">
     <ion-slide *ngFor="let file of files" style="background: black"
-    [ngClass]="file.fileType == 'link'?'white':'black'"
+    [ngClass]="file.format == 'link'?'white':'black'"
     >
     <span class="close"  (click)="remove(file.url)">x</span>
     <img
-    *ngIf="file.fileType == 'image'"
+    *ngIf="file.format == 'image'"
     style="width: 100%; height: 100%"
     [src]="file.url"
     alt=""
     />
     
     <video
-      *ngIf="file.fileType == 'video'"
+      *ngIf="file.format == 'video'"
       style="width: 100%;height: 100%; background-color: black"
       controls="controls"
       preload="metadata"
@@ -22,7 +22,7 @@
     >
       <source [src]="file.url | safeUrl" type="video/mp4" />
     </video>
-    <attach-link-preview-post *ngIf="file.fileType == 'link'" [file]="file"></attach-link-preview-post>
+    <attach-link-preview-post *ngIf="file.format == 'link'" [file]="file"></attach-link-preview-post>
 
   </ion-slide>
   </ion-slides>

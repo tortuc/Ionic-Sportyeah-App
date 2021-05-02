@@ -1,7 +1,9 @@
 <div>
-  <p style="white-space: pre-wrap">
+  <p style="white-space: pre-wrap; padding: 0px 10px">
     <span class="message" [innerHTML]="post.message | links"></span>
   </p>
+
+  <see-files-post-content [files]="post.files"></see-files-post-content>
 
   <iframe
     *ngIf="post.message | youtube"

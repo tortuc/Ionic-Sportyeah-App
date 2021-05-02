@@ -1,0 +1,21 @@
+<ion-card
+  *ngIf="!post.deleted"
+  class="m-p-0"
+  [ngClass]="postPage ? 'noshadow' : 'main-border'"
+  style="width: 100%; overflow: visible;margin: 0;"
+>
+  <header-post [post]="post" (edited)="edited()"></header-post>
+
+  <div style="padding: 0">
+    <post-content [post]="post"></post-content>
+    <post-shared *ngIf="post.post || post.news" [post]="post.post" [news]="post.news"></post-shared>
+    <div *ngIf="post.question" style="padding: 10px">
+      <question-comment [questionId]="post.question"></question-comment>
+    </div>
+  </div>
+  <post-options
+    [isPost]="postPage"
+    (comments)="newComment($event)"
+    [post]="post"
+  ></post-options>
+</ion-card>

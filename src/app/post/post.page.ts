@@ -9,6 +9,7 @@ import { ViewsProfileService } from "src/app/service/views-profile.service";
 import { CommentService } from "../service/comment.service";
 import { take } from "rxjs/operators";
 import { ViewsSponsorService } from "../service/views-sponsor.service";
+import { IPost } from "../models/iPost";
 
 
 
@@ -18,6 +19,8 @@ import { ViewsSponsorService } from "../service/views-sponsor.service";
   styleUrls: ["./post.page.scss"],
 })
 export class PostPage implements OnInit {
+  notFound: boolean;
+
   constructor(
     public userService: UserService,
     private router: Router,
@@ -39,27 +42,27 @@ export class PostPage implements OnInit {
     this.postService
       .getPost(id)
       .toPromise() //agregamos el id del usuario actual
-      .then((post: any) => {
-
-        this.item = post;
-
+      .then((post: IPost) => {
+        
+        this.post = post;
+        console.log(this.post);
+        
         this.getComments();
       })
       .catch((err) => {
         // handle err
-        this.item = 404;
+        this.notFound = true;
       });
   }
   ngOnInit() {}
-  item = null;
-
+  post: IPost;
   comments = [];
   loading = false;
   skip = 0;
   getComments() {
     this.loading = true;
     this.commentService
-      .getCommentsByPost(this.item.post._id, this.skip)
+      .getCommentsByPost(this.post._id, this.skip)
       .pipe(take(1))
       .subscribe(
         (comments) => {
@@ -97,7 +100,7 @@ export class PostPage implements OnInit {
             user: resp.user._id,
             visitor: this.userService.User._id,
             from: "comment",
-            link: `/post/${this.item.post._id}`,
+            link: `/post/${this.post._id}`,
           })
           .subscribe((response) => {
             this.router.navigate([`/user/${username}`]);
@@ -148,7 +151,7 @@ export class PostPage implements OnInit {
 
   voted(voted: boolean) {
     if (voted) {
-      this.getPost(this.item.post._id);
+      this.getPost(this.post._id);
     }
   }
 

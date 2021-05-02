@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { OpenImgComponent } from "src/app/components/open-img/open-img.component";
 import { LandingService } from "src/app/service/landingService";
 import { ActivatedRoute, Router } from "@angular/router";
-import { IPostC } from "../models/iPost";
+import { IPost, IPostC } from "../models/iPost";
 import { PostService } from "../service/post.service";
 import {  UserService } from "../service/user.service";
 import { ChatService } from "../service/chat.service";
@@ -38,7 +38,7 @@ export class UserPage implements OnInit {
   user: any = null;
   friends: any = null;
   postsCount = 0;
-  posts: IPostC[] = [];
+  posts: IPost[] = [];
   lastConection: Date;
   connected: boolean = null;
   landingButton: boolean = false;
@@ -162,7 +162,7 @@ export class UserPage implements OnInit {
     this.postService
       .postByUser(id, this.skip)
       .toPromise()
-      .then((posts: IPostC[]) => {
+      .then((posts: IPost[]) => {
         this.posts = this.posts.concat(posts);
         if (event) {
           event.target.complete();

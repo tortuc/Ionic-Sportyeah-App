@@ -24,12 +24,16 @@ import { LikesPostComponent } from "./likes-post/likes-post.component";
 import { AllReactionsComponent } from "./all-reactions/all-reactions.component";
 import { LikesReactionsComponent } from "./likes-reactions/likes-reactions.component";
 import { PostOptionsComponent } from "../components/post-options/post-options.component";
-import { SharedsPostComponent } from "../components/shareds-post/shareds-post.component";
 import { UserItemReactionsComponent } from "./user-item-reactions/user-item-reactions.component";
 import { CommentsInPotsComponent } from "./comments-in-pots/comments-in-pots.component";
 import { SharedsInPostComponent } from "./shareds-in-post/shareds-in-post.component";
 import { NewPostPage } from "../dashboard/new-post/new-post.page";
 import { PostSharedComponent } from "../components/post-shared/post-shared.component";
+import { SharedsPostComponent } from "./shareds-post/shareds-post.component";
+import { ViewPostComponent } from "./view-post/view-post.component";
+import { HeaderPostComponent } from "../components/header-post/header-post.component";
+import { PostContentComponent } from "../components/post-content/post-content.component";
+import { SeeFilesPostContentComponent } from "./see-files-post-content/see-files-post-content.component";
 
 const componets = [
   CommentPostComponent,
@@ -51,7 +55,11 @@ const componets = [
   CommentsInPotsComponent,
   SharedsInPostComponent,
   NewPostPage,
-  PostSharedComponent
+  PostSharedComponent,
+  ViewPostComponent,
+  HeaderPostComponent,
+  PostContentComponent,
+  SeeFilesPostContentComponent
 ];
 
 @NgModule({

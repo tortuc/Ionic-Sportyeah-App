@@ -19,6 +19,7 @@ import { DirectivesModule } from '../directives/directive.module';
 import { ComponentsModule } from '../components/components.module';
 import { NewNodeComponent } from './structure/new-node/new-node.component';
 import { IonCustomScrollbarModule } from 'ion-custom-scrollbar';
+import { PostComponetsModule } from '../post-components/post-componets.module';
 
 @NgModule({
   imports: [
@@ -35,7 +36,8 @@ import { IonCustomScrollbarModule } from 'ion-custom-scrollbar';
     EmojiModule,
     PickerModule,
     DirectivesModule,
-    IonCustomScrollbarModule
+    IonCustomScrollbarModule,
+    PostComponetsModule
   ],
   declarations: [
     ProfilePage,

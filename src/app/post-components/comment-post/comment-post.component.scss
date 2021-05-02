@@ -42,3 +42,15 @@
     position: sticky;
   }
 }
+
+.white{
+  background: white;
+  border-radius: 10px;
+  margin: 0
+}
+
+@media screen and (max-width:600px) {
+  .white{
+    border-radius: unset !important;
+  }
+}

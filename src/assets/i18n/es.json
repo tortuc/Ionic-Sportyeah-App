@@ -755,7 +755,8 @@
   "structure": {
     "title": {
       "club": "Club",
-      "input": "Ingrese el nombre de su equipo, selección, etc"
+      "input": "Ingrese el nombre de su equipo, selección, etc",
+      "text":"Estructura"
     },
     "subtitle": {
       "club": "Club",
@@ -779,14 +780,14 @@
       "webPage": "Pagina Web",
       "initDate": "Fecha de Fundación / Inicio"
     },
-    "start": "Comenzar",
-    "title": "Estructura"
+    "start": "Comenzar"
   },
   "creating": "Creando nuevo elemento",
   "changing": "Editando elemento",
   "free-img": "Imagenes Gratis",
   "sponsorURL": "Pagina del patrocinador",
   "sponsorText": "Revisa estos perfiles",
+  "more_sponsors": "Ver más",
   "challenges": "Desafíos",
   "challenge": {
     "shared": {
@@ -806,7 +807,6 @@
     "awardtitle": "Premios",
     "date": "Fecha de Entrega",
     "retado": "te esta retando",
-    "shared": "Retar",
     "shareds": "Retados",
     "foryou": "Para ti",
     "awards": "¡Puedes ganar estos premios!",
@@ -1000,5 +1000,11 @@
     "invalid_field":"Este campo es invalido"
 
   },
-  "rememberme":"Mantener sesion abierta"
+  "rememberme":"Mantener sesion abierta",
+  "delete_post":{
+    "header":"Eliminar publicación",
+    "message":"¿Seguro que deseas eliminar esta publicación?"
+  },
+  "accept":"Aceptar",
+  "search_image_from": "Buscar imagen desde"
 }

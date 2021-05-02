@@ -1,4 +1,11 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnInit,
+  Output,
+} from "@angular/core";
 import { take } from "rxjs/operators";
 import { ILike } from "src/app/models/iPost";
 import { ReactionsService } from "src/app/service/reactions.service";
@@ -9,7 +16,7 @@ import { UserService } from "src/app/service/user.service";
   templateUrl: "./likes-reactions.component.html",
   styleUrls: ["./likes-reactions.component.scss"],
 })
-export class LikesReactionsComponent implements OnInit ,OnChanges{
+export class LikesReactionsComponent implements OnInit, OnChanges {
   /**
    * _id De la publicacion
    */
@@ -18,8 +25,7 @@ export class LikesReactionsComponent implements OnInit ,OnChanges{
   /**
    * _id De la publicacion
    */
-   @Input() type: number;
-
+  @Input() type: number;
 
   /**
    * Se dio click a un usuario
@@ -39,15 +45,12 @@ export class LikesReactionsComponent implements OnInit ,OnChanges{
     public userService: UserService
   ) {}
 
-  ngOnInit() {
-    this.getReactions();
-  }
+  ngOnInit() {}
 
-  ngOnChanges(){
-    this.skip = 0
-    this.reactions = []
-    this.getReactions()
-    
+  ngOnChanges() {
+    this.skip = 0;
+    this.reactions = [];
+    this.getReactions();
   }
 
   /**

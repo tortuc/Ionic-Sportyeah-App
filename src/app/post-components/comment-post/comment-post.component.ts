@@ -121,13 +121,11 @@ export class CommentPostComponent implements OnInit {
     let comment = this.form.value;
 
     // le asignamos los archivos (si son videos se sobrescribiran)
-    console.log(this.files);
 
     comment.files = await this.postService.uploadsVideos(
       this.videosToUploads,
       this.files
     );
-    console.log(comment.files);
 
     // asignamos valor real del input, con los emojis y los usuarios mencionados
     comment.message = this.mainInput.nativeElement.innerHTML;
@@ -179,9 +177,8 @@ export class CommentPostComponent implements OnInit {
     // cerramos el loading
     loading.dismiss();
     // cerramos la modal si existe
-    this.modalController.dismiss().catch((e)=>{
+    this.modalController.dismiss().catch((e) => {
       // handle
-      
     });
     // creamos un mensaje tipo toast, que se creo el mensaje
     const toast = await this.toastController.create({
@@ -197,7 +194,7 @@ export class CommentPostComponent implements OnInit {
   reset() {
     this.form.controls.message.setValue("");
     this.files = [];
-    this.question.questionGroup = null
+    this.question.questionGroup = null;
   }
 
   videosToUploads = [];
@@ -205,7 +202,7 @@ export class CommentPostComponent implements OnInit {
   async uploadVideo(file) {
     let url = URL.createObjectURL(file);
     this.videosToUploads.push({ file, url });
-    this.files.push({ url, fileType: "video" });
+    this.files.push({ url, format: "video" });
   }
 
   removeFile(url) {
@@ -309,7 +306,7 @@ export class CommentPostComponent implements OnInit {
   //         .then((url: string) => {
   //           this.files.push({
   //             url,
-  //             fileType: "image",
+  //             format: "image",
   //           });
   //         });
   //     }
@@ -346,7 +343,7 @@ export class CommentPostComponent implements OnInit {
         //           .then((url: string) => {
         //             this.files.push({
         //               url,
-        //               fileType: "video",
+        //               format: "video",
         //             });
         //           });
         //       }
@@ -392,7 +389,7 @@ export class CommentPostComponent implements OnInit {
           text: this.translate.instant("accept"),
           handler: (data) => {
             if (data.url) {
-              data.fileType = "link";
+              data.format = "link";
               this.files.push(data);
             }
           },

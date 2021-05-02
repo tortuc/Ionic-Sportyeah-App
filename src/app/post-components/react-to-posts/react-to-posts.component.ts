@@ -38,9 +38,9 @@ export class ReactToPostsComponent implements OnInit {
 
   ngOnInit() {
     this.getCountReacions();
-    window.addEventListener("click",()=>{
-      this.Close()
-    })
+    window.addEventListener("click", () => {
+      this.Close();
+    });
   }
 
   /**
@@ -69,7 +69,6 @@ export class ReactToPostsComponent implements OnInit {
       this.postService,
       this.userService
     ).transform(this.post._id, this.countReacions);
-  
   }
 
   reactions = [
@@ -144,7 +143,7 @@ export class ReactToPostsComponent implements OnInit {
       style: {
         color: "#e9651e",
       },
-    }, 
+    },
     {
       option: 10,
       url: "assets/images/legion.png",
@@ -280,18 +279,16 @@ export class ReactToPostsComponent implements OnInit {
   timeOutClose: any = null;
   reactionoff() {
     if (this.reacts.nativeElement.classList.contains("show")) {
-     
     }
-  } 
+  }
   reactionon(e) {
-    e.stopPropagation()
-    if (!this.reacts.nativeElement.classList.contains("show") ) {
+    e.stopPropagation();
+    if (!this.reacts.nativeElement.classList.contains("show")) {
       this.reacts.nativeElement.classList.add("show");
       this.overlay.nativeElement.classList.add("show");
-    }else{
+    } else {
       this.reacts.nativeElement.classList.remove("show");
       this.overlay.nativeElement.classList.remove("show");
-
     }
   }
   reactionsON() {

@@ -8,6 +8,8 @@ import {Howl, Howler} from 'howler';
 import { JdvimageService } from './jdvimage.service';
 import { Subject } from 'rxjs';
 import { Followings } from '../models/IUser';
+import { TranslateService } from '@ngx-translate/core';
+import { AlertController } from '@ionic/angular';
 
 export interface idFriends {
   friends_id: Followings[];
@@ -22,7 +24,9 @@ export class PostService {
 
 constructor(
   private http:HttpClient,
-  private imageService:JdvimageService
+  private imageService:JdvimageService,
+  private translate:TranslateService,
+  private alertCtrl:AlertController,
 ) { }
 audio = new Howl({
   src:['../../assets/sounds/comment.mp3']
@@ -223,5 +227,56 @@ fileRemovedSuscriber() {
     );
   }
 
+
+  async uploadVideoPost(post, videos, files) {
+    this.showAlert(
+      this.translate.instant("upload_video.uploading.header"),
+      this.translate.instant("upload_video.uploading.message")
+    );
+    post.files = await this.uploadsVideos(videos, files);
+    this.create(post)
+      .toPromise()
+      .then((post: IPost) => {
+        this.newPost(post._id);
+        this.showAlert(
+          this.translate.instant("upload_video.create.header"),
+          this.translate.instant("upload_video.create.message")
+        );
+      })
+      .catch((err) => {
+        this.showAlert(
+          this.translate.instant("upload_video.error.header"),
+          this.translate.instant("upload_video.error.message")
+        );
+      });
+  }
+
+  async showAlert(header, message) {
+    this.alertCtrl.dismiss().catch((e) => {
+      // no hay alerta que cerrar
+    });
+
+    let alert = await this.alertCtrl.create({
+      header,
+      message,
+      buttons: [{ text: this.translate.instant("okey") }],
+    });
+    alert.present();
+  }
+
+   // observable para cuando hay una nueva publicacion
+   private newPost$ = new Subject<string>();
+
+   // manda un evento para todos los observables suscritos
+   newPost(id: string) {
+     this.newPost$.next(id);
+   }
+ 
+   // funcion para suscribirse al observable de la nueva publicacion
+ 
+   newPostObservable() {
+     return this.newPost$.asObservable();
+   }
+ 
 
 }

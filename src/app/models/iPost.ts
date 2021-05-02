@@ -61,7 +61,7 @@ export interface INewC {
 }
 
 export interface IPostFile {
-  fileType?: string;
+  format?: string;
   url: string;
   name?: string;
 }

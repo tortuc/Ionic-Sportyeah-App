@@ -6,7 +6,6 @@ import { Component, OnInit, ViewChild } from "@angular/core";
 import { Router, ActivatedRoute } from "@angular/router";
 import { PopoverController } from "@ionic/angular";
 import { TranslateService } from "@ngx-translate/core";
-import { IPostC } from "../models/iPost";
 import { PostService } from "../service/post.service";
 import { UserService } from "../service/user.service";
 import { ProfileService } from "../service/profile.service";
@@ -15,9 +14,9 @@ import { NewsService } from "../service/news.service";
 import { ModalController } from "@ionic/angular";
 import { GetMediaComponent } from "../components/get-media/get-media.component";
 import { ReusableComponentsIonic } from "../service/ionicHelpers.service";
-import { IUser, User } from "../models/IUser";
-import { typeSourceSpan } from "@angular/compiler";
+import {  User } from "../models/IUser";
 import { ISponsor } from "../models/ISponsor";
+import { IPost } from "../models/iPost";
 
 @Component({
   selector: "app-profile",
@@ -72,7 +71,7 @@ export class ProfilePage implements OnInit {
   }
 
   news = [];
-  posts: IPostC[] = [];
+  posts: IPost[] = [];
   views: [];
   ngOnInit() {
     this.newsService
@@ -148,7 +147,7 @@ export class ProfilePage implements OnInit {
     this.postService
       .myPost(this.skip)
       .toPromise()
-      .then((posts: IPostC[]) => {
+      .then((posts: IPost[]) => {
         this.posts = this.posts.concat(posts);
         if (event) {
           event.target.complete();

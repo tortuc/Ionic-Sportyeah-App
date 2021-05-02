@@ -1,0 +1,60 @@
+.user-header {
+  display: flex;
+  position: relative;
+  padding: 10px;
+  padding-bottom: 8px;
+}
+
+.options-down {
+  cursor: pointer;
+  position: absolute;
+  right: 16px;
+  font-size: 18px;
+}
+
+.user-name {
+  font-family: "Poppins", sans-serif;
+}
+
+.sponsors {
+  display: flex;
+  gap: 20px;
+  padding: 10px;
+}
+
+.sponsor-img {
+  height: 30px;
+  width: 60px;
+  border-radius: 10px;
+  object-fit: cover;
+  cursor: pointer;
+  border: solid 1px var(--color-secondary);
+  background: var(--color-primary);
+}
+
+.views {
+  margin-left: 4px;
+  color: black;
+  ion-icon {
+    font-size: 17px;
+    margin-right: 2px;
+    vertical-align: middle;
+    color: var(--color-primary);
+  }
+}
+
+.see-more {
+  display: flex;
+  align-items: center;
+  border: solid 1px var(--color-secondary);
+  border-radius: 20px;
+  padding: 8px;
+  font-size: 12px;
+  height: 30px;
+  cursor: pointer;
+  color: black;
+  &:hover {
+    background: var(--color-primary);
+    color: white;
+  }
+}
