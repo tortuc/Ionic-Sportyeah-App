@@ -3,13 +3,19 @@ import { User } from "./IUser";
 export interface IPost {
   _id: string | string;
   user: User;
-  post: string | null;
+  post: IPost | null;
   message: string;
   files: IPostFile[];
 
   date: Date;
   edited: Date;
   deleted: boolean;
+}
+export interface INewPost {
+  user: string;
+  post?: string;
+  message?: string;
+  files?: IPostFile[];
 }
 
 //Noticia

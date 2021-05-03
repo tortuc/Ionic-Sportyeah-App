@@ -91,18 +91,25 @@ export class SharedsInPostComponent implements OnInit {
     }
   }
 
-  async shared(post) {
+  async shared() {
     let action = await this.actionSheetCtrl.create({
       header: this.translate.instant("share.header"),
       buttons: [
+        {
+          text: "Compartir ahora",
+          icon: "arrow-redo-outline",
+          handler: () => {
+            this.shareRigthNow();
+          },
+        },
         {
           text: this.translate.instant("share.now"),
           icon: "arrow-redo-outline",
           handler: async () => {
             if (!this.userService.User) {
-              this.loginService.goToLogin(`/post/${post._id}`);
+              this.loginService.goToLogin(`/post/${this.post._id}`);
             } else {
-              this.shareNow(post);
+              this.shareNow();
             }
           },
         },
@@ -115,10 +122,10 @@ export class SharedsInPostComponent implements OnInit {
                 this.translate.instant("share_with.text"),
                 this.translate.instant("share_with.title"),
                 null,
-                `https://app.kecuki.com/post/${post._id}`
+                `https://app.sportyeah.com/post/${this.post._id}`
               );
             } else {
-              this.sharedWeb(post);
+              this.sharedWeb();
             }
           },
         },
@@ -134,17 +141,34 @@ export class SharedsInPostComponent implements OnInit {
     action.present();
   }
 
+  shareRigthNow() {
+    let post = {
+      user:this.userService.User._id,
+      post:(this.post.post)?this.post.post._id:this.post._id
+      
+    }
+    this.postService
+    .create(post)
+    .toPromise()
+    .then((post: IPost) => {
+      this.postService.newPost(post._id);
+      this.modalController.dismiss();
+    })
+    .catch((err) => {
+    });
+  }
+
   /**
-   * Compartir en el muro de kecuki
+   * Compartir en el muro de sportyeah
    * @param post cuerpo de la publicacion
    * @returns
    */
-  async shareNow(post) {
+  async shareNow() {
     if (!this.modalOpen) {
       this.modalOpen = true;
       const modal = await this.modalController.create({
         component: NewPostPage,
-        componentProps: { post },
+        componentProps: { post: this.post },
         backdropDismiss: false,
       });
       modal.onDidDismiss().then((data) => {
@@ -159,7 +183,7 @@ export class SharedsInPostComponent implements OnInit {
   /**
    * Compartir al exterior, desde la web
    */
-  async sharedWeb(post: IPost) {
+  async sharedWeb() {
     let action = await this.actionSheetCtrl.create({
       header: this.translate.instant("share.header"),
       buttons: [
@@ -170,7 +194,7 @@ export class SharedsInPostComponent implements OnInit {
             window.open(
               `https://twitter.com/intent/tweet?text=${this.translate.instant(
                 "share_with.text"
-              )}&url=https://app.kecuki.com/post/${post._id}`,
+              )}&url=https://app.sportyeah.com/post/${this.post._id}`,
               "_blank"
             );
             this.socketService.socket.emit("shared", "twitter");
@@ -184,7 +208,7 @@ export class SharedsInPostComponent implements OnInit {
             window.open(
               `https://wa.me/?text=${this.translate.instant(
                 "share_with.text"
-              )} https://app.kecuki.com/post/${post._id}`,
+              )} https://app.sportyeah.com/post/${this.post._id}`,
               "_blank"
             );
             this.socketService.socket.emit("shared", "whatsapp");
@@ -196,7 +220,7 @@ export class SharedsInPostComponent implements OnInit {
           icon: "logo-facebook",
           handler: () => {
             window.open(
-              ` https://www.facebook.com/sharer/sharer.php?u=https://app.kecuki.com/post/${post._id}`,
+              ` https://www.facebook.com/sharer/sharer.php?u=https://app.sportyeah.com/post/${this.post._id}`,
               "_blank"
             );
             this.socketService.socket.emit("shared", "facebook");
@@ -209,11 +233,11 @@ export class SharedsInPostComponent implements OnInit {
 
           handler: () => {
             window.open(
-              `http://www.linkedin.com/shareArticle?mini=true&url=https://app.kecuki.com/post/${
-                post._id
+              `http://www.linkedin.com/shareArticle?mini=true&url=https://app.sportyeah.com/post/${
+                this.post._id
               }&title=${this.translate.instant(
                 "share_with.text"
-              )}&summary=Kecuki&source=app.kecuki.com`,
+              )}&summary=sportyeah&source=app.sportyeah.com`,
               "_blank"
             );
             this.socketService.socket.emit("shared", "linkedin");
@@ -227,7 +251,7 @@ export class SharedsInPostComponent implements OnInit {
             this.clipboard.copy(
               `${this.translate.instant(
                 "share_with.text"
-              )} https://app.kecuki.com/post/${post._id}`
+              )} https://app.sportyeah.com/post/${this.post._id}`
             );
             this.socketService.socket.emit("shared", "copy");
           },
