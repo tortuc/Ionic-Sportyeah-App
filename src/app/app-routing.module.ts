@@ -157,6 +157,10 @@ const routes: Routes = [
     canActivate:[AuthGuardService]
   },
   {
+    path: 'bet',
+    loadChildren: () => import('./bet/bet.module').then( m => m.BetPageModule)
+  },
+  {
     path:"**",
     loadChildren: () => import('./not-found/not-found.module').then( m => m.NotFoundPageModule)
   
@@ -168,7 +172,7 @@ const routes: Routes = [
   {
     path: 'structure',
     loadChildren: () => import('./structure/structure.module').then( m => m.StructurePageModule)
-  },
+  }
 ];
 @NgModule({
   imports: [

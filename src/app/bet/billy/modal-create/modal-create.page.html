@@ -1,0 +1,66 @@
+<ion-header no-border>
+  <ion-toolbar class="toolbar-modal-create">
+    <div style="display:flex;" class="ion-justify-content-between">
+      <ion-title>Crear Porra</ion-title>
+      <ion-button class="ion-button-modal" (click)="modalCloseBilly()" no-border>
+        <ion-icon name="close"></ion-icon>
+      </ion-button>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-tabs>
+    <ion-tab-bar slot="bottom">
+      <ion-tab-button tab="schedule">
+        <ion-icon name="calendar"></ion-icon>
+        <ion-label>Schedule</ion-label>
+        <ion-badge>6</ion-badge>
+      </ion-tab-button>
+  
+      <ion-tab-button tab="speakers">
+        <ion-icon name="person-circle"></ion-icon>
+        <ion-label>Speakers</ion-label>
+      </ion-tab-button>
+  
+      <ion-tab-button tab="map">
+        <ion-icon name="map"></ion-icon>
+        <ion-label>Map</ion-label>
+      </ion-tab-button>
+  
+      <ion-tab-button tab="about">
+        <ion-icon name="information-circle"></ion-icon>
+        <ion-label>About</ion-label>
+      </ion-tab-button>
+    </ion-tab-bar>
+  </ion-tabs>
+  <!--<ion-grid>
+    <ion-row>
+      <ion-col size="8" class="ion-padding">
+        <ion-item>
+          <ion-label position="floating"><ion-icon name="people" class="ion-margin-end"></ion-icon>Nombre del grupo</ion-label>
+          <ion-input></ion-input>
+        </ion-item>   
+        <ion-item>
+          <ion-label position="floating"><ion-icon name="cash" class="ion-margin-end"></ion-icon>Monto de la apuesta</ion-label>
+          <ion-input></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col size="4" class="ion-padding">
+        <ion-img src="../../../assets/images/soccer.jpg" class="rounded"></ion-img>
+      </ion-col>
+
+      <ion-col size="12">
+        <ion-item lines="none" class="ion-item-matches">
+          <ion-label class="ion-text-center ion-no-margin">Selección los tipos de eventos</ion-label>
+        </ion-item>
+      </ion-col>
+
+      <ion-col>
+        <ion-button color="primary" (click)="openModalLeague()">Torneos</ion-button>
+        <ion-button color="primary">Personalizado</ion-button>
+      </ion-col>
+
+    </ion-row>
+  </ion-grid>-->
+</ion-content>

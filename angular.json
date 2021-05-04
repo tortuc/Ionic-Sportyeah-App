@@ -41,10 +41,13 @@
               },
               {
                 "input": "src/global.scss"
-              }
+              },
+              "node_modules/@fortawesome/fontawesome-free/css/all.min.css"
              
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/@fortawesome/fontawesome-free/js/all.min.js"
+            ]
           },
           "configurations": {
             "production": {

@@ -207,6 +207,9 @@
   },
   "sidebar": {
     "home": "Muro de Publicaciones",
+    "bet": "Apuestas",
+    "tournament": "Torneos",
+    "billy": "Porras",
     "friends": "Buscar amigos",
     "profile": "Mi Perfil",
     "chat": "Chatear",

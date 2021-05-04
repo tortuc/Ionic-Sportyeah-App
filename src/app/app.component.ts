@@ -12,6 +12,7 @@ import { NotificationService } from "./service/notification.service";
 import { ReusableComponentsIonic } from "./service/ionicHelpers.service";
 import { CookieService } from "ngx-cookie-service";
 import { Meta } from "@angular/platform-browser";
+import { SIDEBAR_ITEMS } from "src/config/base";
 
 @Component({
   selector: "app-root",
@@ -27,6 +28,9 @@ export class AppComponent implements OnInit {
   public banderaIP: string = null;
   public ipLoaded: Promise<boolean>;
   public selectedIndex = 0;
+
+  // Contiene los items del sidebar menu
+  public appPages = SIDEBAR_ITEMS;
 
   constructor(
     private platform: Platform,
@@ -64,39 +68,6 @@ export class AppComponent implements OnInit {
   goTo(r) {
     this.router.navigate([r]);
   }
-
-  public appPages = [
-    {
-      title: "sidebar.profile",
-      url: "/profile",
-      icon: "person",
-    },
-    {
-      title: "sidebar.home",
-      url: "/dashboard",
-      icon: "home",
-    },
-    {
-      title: "sidebar.chat",
-      url: "/chat",
-      icon: "chatbox-ellipses",
-    },
-    {
-      title: "challenges",
-      url: "/challenges",
-      icon: "medal",
-    },
-    {
-      title: "sidebar.news",
-      url: "/news",
-      icon: "newspaper",
-    },
-    {
-      title: "sidebar.ranking",
-      url: "/ranking",
-      icon: "ribbon",
-    },
-  ];
 
   ngOnInit() {
     this.loginService.getIP().subscribe((geo) => {

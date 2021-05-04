@@ -1,0 +1,193 @@
+<ion-header no-border>
+  <ion-toolbar class="toolbar-modal-create">
+    <div style="display:flex;" class="ion-justify-content-between">
+      <ion-title>Crear Porra</ion-title>
+      <ion-button class="ion-button-modal" (click)="modalCloseLeague()" no-border>
+        <ion-icon name="close"></ion-icon>
+      </ion-button>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div>
+    <!--LIGA-->
+    <ion-list>
+      <ion-menu-toggle auto-hide="false">
+        <ion-item  (click)="open1 = !open1" lines="none">
+          <ion-img style="width: 60px;" src="../../../assets/images/icono-la-liga.png"></ion-img>
+          <ion-title size="large" color="primary">La Liga</ion-title>
+          <ion-icon name="chevron-forward" *ngIf="!open1"></ion-icon>
+          <ion-icon name="chevron-down" *ngIf="open1"></ion-icon>
+        </ion-item>
+      </ion-menu-toggle>
+    </ion-list>
+    
+    <!--PARTIDOS-->
+    <ion-list class="ion-list-matches" *ngIf="open1">
+      <ion-menu-toggle auto-hide="false">
+        <ion-grid>
+          <ion-row class="ion-align-items-center ion-justify-content-between">
+            <ion-col size="3">
+              <ion-img src="../../../assets/images/icono-barcelona.png"></ion-img>
+              <ion-title size="small" class="ion-text-center" color="dark">Barcelona</ion-title>
+            </ion-col>
+            <ion-col size="2">
+              <ion-title size="large" class="ion-text-center" color="dark">VS</ion-title>
+            </ion-col>
+            <ion-col size="3">
+              <ion-img src="../../../assets/images/icono-granada.png"></ion-img>
+              <ion-title size="small" class="ion-text-center" color="dark">Granada</ion-title>
+            </ion-col>
+            <ion-col size="3">
+              <ion-title size="small" color="dark">
+                30/04/2021 15:00
+              </ion-title>
+            </ion-col>
+            <ion-col size="1">
+              <ion-checkbox class="ion-margin-horizontal"></ion-checkbox>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+
+        <ion-grid>
+          <ion-row class="ion-align-items-center ion-justify-content-between">
+            <ion-col size="3">
+              <ion-img src="../../../assets/images/icono-elche.png"></ion-img>
+              <ion-title size="small" class="ion-text-center" color="dark">Elche</ion-title>
+            </ion-col>
+            <ion-col size="2">
+              <ion-title size="large" class="ion-text-center" color="dark">VS</ion-title>
+            </ion-col>
+            <ion-col size="3">
+              <ion-img src="../../../assets/images/icono-atletico-madrid.png"></ion-img>
+              <ion-title size="small" class="ion-text-center" color="dark">Atletico Madrid</ion-title>
+            </ion-col>
+            <ion-col size="3">
+              <ion-title size="small" color="dark">
+                30/04/2021 15:00
+              </ion-title>
+            </ion-col>
+            <ion-col size="1">
+              <ion-checkbox class="ion-margin-horizontal"></ion-checkbox>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+
+        <ion-grid>
+          <ion-row class="ion-align-items-center ion-justify-content-between">
+            <ion-col size="3">
+              <ion-img src="../../../assets/images/icono-real-madrid.png"></ion-img>
+              <ion-title size="small" class="ion-text-center" color="dark">Real Madrid</ion-title>
+            </ion-col>
+            <ion-col size="2">
+              <ion-title size="large" class="ion-text-center" color="dark">VS</ion-title>
+            </ion-col>
+            <ion-col size="3">
+              <ion-img src="../../../assets/images/icono-osasuna.png"></ion-img>
+              <ion-title size="small" class="ion-text-center" color="dark">Osasuna</ion-title>
+            </ion-col>
+            <ion-col size="3">
+              <ion-title size="small" color="dark">
+                30/04/2021 15:00
+              </ion-title>
+            </ion-col>
+            <ion-col size="1">
+              <ion-checkbox class="ion-margin-horizontal"></ion-checkbox>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-menu-toggle>
+    </ion-list>
+
+
+    <!--LIGA-->
+    <ion-list>
+      <ion-menu-toggle auto-hide="false">
+        <ion-item (click)="open = !open" lines="none">
+          <ion-img style="width: 60px;" src="../../../assets/images/icono-premier.png"></ion-img>
+          <ion-title size="large" color="primary">Liga Premier</ion-title>
+          <ion-icon name="chevron-forward" *ngIf="!open"></ion-icon>
+          <ion-icon name="chevron-down" *ngIf="open"></ion-icon>
+        </ion-item>
+      </ion-menu-toggle>
+    </ion-list>
+
+    <!--Premier-->
+    <ion-list class="ion-list-matches" *ngIf="open">
+      <ion-menu-toggle auto-hide="false">
+        <ion-grid>
+          <ion-row class="ion-align-items-center ion-justify-content-between">
+            <ion-col size="3">
+              <ion-img src="../../../assets/images/icono-cristal-palace.png"></ion-img>
+              <ion-title size="small" class="ion-text-center" color="dark">Crystal Palace</ion-title>
+            </ion-col>
+            <ion-col size="2">
+              <ion-title size="large" class="ion-text-center" color="dark">VS</ion-title>
+            </ion-col>
+            <ion-col size="3">
+              <ion-img src="../../../assets/images/icono-manchester-city.png"></ion-img>
+              <ion-title size="small" class="ion-text-center" color="dark">Manchester City</ion-title>
+            </ion-col>
+            <ion-col size="3">
+              <ion-title size="small" color="dark">
+                30/04/2021 15:00
+              </ion-title>
+            </ion-col>
+            <ion-col size="1">
+              <ion-checkbox class="ion-margin-horizontal"></ion-checkbox>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+
+        <ion-grid>
+          <ion-row class="ion-align-items-center ion-justify-content-between">
+            <ion-col size="3">
+              <ion-img src="../../../assets/images/icono-chelsea.png"></ion-img>
+              <ion-title size="small" class="ion-text-center" color="dark">Chelsea</ion-title>
+            </ion-col>
+            <ion-col size="2">
+              <ion-title size="large" class="ion-text-center" color="dark">VS</ion-title>
+            </ion-col>
+            <ion-col size="3">
+              <ion-img src="../../../assets/images/icono-fulham.png"></ion-img>
+              <ion-title size="small" class="ion-text-center" color="dark">Fulham</ion-title>
+            </ion-col>
+            <ion-col size="3">
+              <ion-title size="small" color="dark">
+                30/04/2021 15:00
+              </ion-title>
+            </ion-col>
+            <ion-col size="1">
+              <ion-checkbox class="ion-margin-horizontal"></ion-checkbox>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+
+        <ion-grid>
+          <ion-row class="ion-align-items-center ion-justify-content-between">
+            <ion-col size="3">
+              <ion-img src="../../../assets/images/icono-manchester-united.png"></ion-img>
+              <ion-title size="small" class="ion-text-center" color="dark">Manchester United</ion-title>
+            </ion-col>
+            <ion-col size="2">
+              <ion-title size="large" class="ion-text-center" color="dark">VS</ion-title>
+            </ion-col>
+            <ion-col size="3">
+              <ion-img src="../../../assets/images/icono-new-castle.png"></ion-img>
+              <ion-title size="small" class="ion-text-center" color="dark">Nwe Castle</ion-title>
+            </ion-col>
+            <ion-col size="3">
+              <ion-title size="small" color="dark">
+                30/04/2021 15:00
+              </ion-title>
+            </ion-col>
+            <ion-col size="1">
+              <ion-checkbox class="ion-margin-horizontal"></ion-checkbox>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-menu-toggle>
+    </ion-list>
+  </div>
+</ion-content>

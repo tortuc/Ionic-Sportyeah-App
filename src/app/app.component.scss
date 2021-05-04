@@ -145,3 +145,25 @@ ion-item.selected {
 //   font-size: 14px;
 //   color: black;
 // }
+
+.active {
+  --background: var(--color-secondary);
+  --color: #ffffff;
+  ion-icon {
+    color: white !important;
+  }
+}
+
+.active-parent {
+  font-weight: 500;
+}
+
+.sub-item {
+  padding-left: 20px;
+  ion-label {
+    font-size: 13.5px !important;
+  }
+  ion-icon {
+    font-size: 20px;
+  }
+}
