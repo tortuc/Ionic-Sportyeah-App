@@ -34,6 +34,7 @@ import { ViewPostComponent } from "./view-post/view-post.component";
 import { HeaderPostComponent } from "../components/header-post/header-post.component";
 import { PostContentComponent } from "../components/post-content/post-content.component";
 import { SeeFilesPostContentComponent } from "./see-files-post-content/see-files-post-content.component";
+import { SharePopoverComponent } from "./share-popover/share-popover.component";
 
 const componets = [
   CommentPostComponent,
@@ -59,7 +60,8 @@ const componets = [
   ViewPostComponent,
   HeaderPostComponent,
   PostContentComponent,
-  SeeFilesPostContentComponent
+  SeeFilesPostContentComponent,
+  SharePopoverComponent
 ];
 
 @NgModule({

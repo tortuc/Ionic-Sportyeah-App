@@ -9,13 +9,15 @@ import { LangBtnAppComponent } from "./lang-btn-app/lang-btn-app.component";
 import { FollowButtonComponent } from "../components/follow-button/follow-button.component";
 import { MainCardUserComponent } from "./main-card-user/main-card-user.component";
 import { RouterModule } from "@angular/router";
+import { ViewSponsorsComponent } from "./view-sponsors/view-sponsors.component";
 
 const components = [
   
   LangButtonComponent,
   LangBtnAppComponent,
   FollowButtonComponent,
-  MainCardUserComponent
+  MainCardUserComponent,
+  ViewSponsorsComponent
 
 ];
 
