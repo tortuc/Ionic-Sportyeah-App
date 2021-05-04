@@ -6,11 +6,16 @@ import { TranslateModule } from "@ngx-translate/core";
 import { PipesModule } from "../pipes/pipes.module";
 import { LangButtonComponent } from "./lang-button/lang-button.component";
 import { LangBtnAppComponent } from "./lang-btn-app/lang-btn-app.component";
+import { FollowButtonComponent } from "../components/follow-button/follow-button.component";
+import { MainCardUserComponent } from "./main-card-user/main-card-user.component";
+import { RouterModule } from "@angular/router";
 
 const components = [
   
   LangButtonComponent,
-  LangBtnAppComponent
+  LangBtnAppComponent,
+  FollowButtonComponent,
+  MainCardUserComponent
 
 ];
 
@@ -20,7 +25,8 @@ const components = [
     IonicModule,
     FormsModule,
     TranslateModule,
-    PipesModule
+    PipesModule,
+    RouterModule
     
   ],
   declarations: components,

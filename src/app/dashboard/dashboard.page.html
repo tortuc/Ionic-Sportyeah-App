@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar class="bg-gradient-person">
+  <ion-toolbar class="main-bg">
     <ion-buttons slot="start">
       <ion-menu-button style="color: white"></ion-menu-button>
     </ion-buttons>
@@ -15,7 +15,8 @@
 </ion-header>
 
 <ion-content
-  class="bg-gradient-person"
+  #content
+  class="main-bg"
   [scrollbar]="reusableCI.scrollbarStyle"
   allowAllScreens="true"
   [scrollEvents]="true"
@@ -31,95 +32,51 @@
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
 
-  <ion-grid style="padding: 0">
+  <ion-grid class="no-padding">
     <ion-row>
       <ion-col size-xs="12" size-lg="8" ngClass.xs="p-0">
-        <ion-grid>
+        <ion-grid class="no-padding">
           <ion-row fxShow.gt-sm="false" fxShow.lt-md="true" class="post-card">
-            <ion-col size="12">
-              <friends-mobile
-                style="max-width: 100%"
-                (post)="presentModal()"
-                (search)="searchFriend()"
-              ></friends-mobile
+            <ion-col size="12" class="no-padding">
+              <friends-mobile></friends-mobile
             ></ion-col>
           </ion-row>
-          <ion-row fxShow.gt-sm="true" fxShow.lt-md="false" class="post-card">
-            <ion-card style="width: 100%">
-              <ion-card-header>
-                <ion-item lines="none">
-                  <ion-thumbnail (click)="goToMyProfile()" slot="start">
-                    <ion-avatar class="mini">
-                      <img [src]="userService.User?.photo" />
-                    </ion-avatar>
-                  </ion-thumbnail>
-                  <ion-label>
-                    {{userService.User?.name}} {{userService.User?.last_name}}
-                  </ion-label>
-                </ion-item>
-                <ion-input
-                  readonly
-                  style="z-index: 100"
-                  (click)="presentModal()"
-                  placeholder="{{'dashboard.new_post_placeholder' | translate}}"
-                ></ion-input>
-              </ion-card-header>
-            </ion-card>
+          <ion-row class="main-card-content">
+            <ion-col size="12" style="padding: 0 !important">
+              <main-card-user></main-card-user>
+            </ion-col>
           </ion-row>
-          <ion-row style="justify-content: center; margin-bottom: -20px">
+
+          <ion-row style="justify-content: center">
             <ion-button
+              class="reload-btn"
               *ngIf="posts.length > 0"
+              #reloadButton
               style="z-index: 10"
               shape="round"
               (click)="getPost(null,true)"
-              >Actualizar</ion-button
             >
+              <span>
+                <ion-icon name="reload"></ion-icon> {{'reload' |
+                translate}}</span
+              ></ion-button
+            >
+            <br />
           </ion-row>
-          <ion-row *ngFor="let item of posts;let i = index" class="post-card">
-            <ion-card  ngClass.xs="m-p-0" style="width: 100%;">
-              <ion-card-header>
-                <header-post
-                  class="user-header"
-                  [post]="item.post"
-                  (getPost)="getPost()"
-                  [views]="item.post.views.length"
-                ></header-post>
-              </ion-card-header>
-              
-              <ion-card-content>
-                <post-content [post]="item.post"></post-content>
-                <post-shared 
-                  *ngIf="item.post.post"
-                  [post]="item.post.post"
-                ></post-shared>
-                <post-shared
-                  *ngIf="item.post.news"
-                  [news]="item.post.news"
-                ></post-shared>
-              </ion-card-content>
-                 <div *ngIf="item.post.question">
-                  <!-- style="margin-left: auto;margin-right: auto;text-align: center;width: 90%;border-radius: 15px;background: linear-gradient(
-                    90deg
-                    ,rgb(16 42 82),rgb(131 197 247))!important;
-                padding: 1px;"  
-                <p style="color: white;">Responde las preguntas</p>-->
-             <question [data]="item" (newItemEvent)="voted($event,i)"></question>
-              </div>
-              
-              <post-options
-                [item]="item"
-                (sharedEvent)="getPost()"
-              ></post-options>
-            </ion-card>
+          <ion-row *ngFor="let post of posts;let i = index" class="post-card">
+            <ion-col size="12" class="no-padding">
+              <view-post [post]="post"></view-post>
+            </ion-col>
           </ion-row>
         </ion-grid>
       </ion-col>
-      <ion-col
-        size-lg="4"
-        fxShow.lt-md="false"
-        class="ion-justify-content-center ion-align-items-center"
-      >
-        <friends-panel-desktop></friends-panel-desktop>
+
+      <ion-col size-lg="4" class="panel-desktop">
+        <div style="position: sticky; top: -300px; padding-left: 5px">
+          <friends-panel-desktop></friends-panel-desktop>
+          <add-users-panel-desktop></add-users-panel-desktop>
+          <!-- <popular-groups-panel></popular-groups-panel> -->
+        </div>
       </ion-col>
     </ion-row>
   </ion-grid>

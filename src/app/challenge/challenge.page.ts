@@ -15,7 +15,7 @@ export class ChallengePage implements OnInit {
   user: string = null;
 
   challenge: IChallenge = null;
-  nochallenge: boolean = false
+  nochallenge: boolean = false;
 
   // For destroy video
   destroy: Subject<void> = new Subject<void>();
@@ -36,9 +36,12 @@ export class ChallengePage implements OnInit {
     this.cs
       .getById(this.activeRouter.snapshot.params.id)
       .pipe(take(1))
-      .subscribe(async (r: any) => {
-        this.challenge = await this.getUserChallenge(r.challenge);
-      },err=>this.nochallenge =true);
+      .subscribe(
+        async (r: any) => {
+          this.challenge = await this.getUserChallenge(r.challenge);
+        },
+        (err) => (this.nochallenge = true)
+      );
   }
 
   async getUserChallenge(challenge: IChallenge): Promise<IChallenge> {
@@ -65,11 +68,10 @@ export class ChallengePage implements OnInit {
     this.userService
       .getUserByUsername(this.user)
       .pipe(take(1))
-      .subscribe((r: any) => {
-      });
+      .subscribe((r: any) => {});
   }
+
   ionViewWillLeave() {
-    console.log('destroy')
     this.destroy.next();
   }
 }

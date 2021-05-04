@@ -1,0 +1,35 @@
+<ion-card
+  class="friends-card main-border"
+  style="margin: 0; margin-top: 10px"
+  [ngClass]="postPage ? 'noshadow' : ''"
+>
+  <ion-searchbar
+    placeholder=" {{ 'search_your_friends' | translate }}"
+    (ionChange)="filter($event.detail.value)"
+  >
+  </ion-searchbar>
+
+  <div>
+    <div style="text-align: center; margin-top: 0.5em">
+      <ion-spinner *ngIf="loading"></ion-spinner>
+    </div>
+    <div
+      *ngIf="query == ''"
+      style="color: black; text-align: center; padding: 5px"
+    >
+      {{ "panel.search.most_popular" | translate }}
+      <ion-img
+        *ngIf="users.length == 0"
+        src="assets/images/logox.png"
+        class="img-login logo"
+      ></ion-img>
+    </div>
+    <user-item-panel *ngFor="let user of users" [user]="user"></user-item-panel>
+
+    <div style="text-align: center;padding: 5px;">
+      <ion-button class="see-more" (click)="seeAll()">{{
+        "panel.seeAll" | translate
+      }}</ion-button>
+    </div>
+  </div>
+</ion-card>

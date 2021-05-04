@@ -1,0 +1,39 @@
+<div
+  #overlay
+  class="overlay"
+  fxShow="false"
+  fxShow.xs="true"
+  (click)="Close()"
+  (touchstart)="Close()"
+></div>
+<div class="reacts" (mouseover)="time = true" (mouseout)="time = false" #reacts>
+  <div
+    *ngFor="let reaction of reactions"
+    class="circle"
+    (click)="react(post._id, reaction.option)"
+  >
+    <img [src]="reaction.option | showReactionsImage" alt="" />
+    <p>{{ reaction.name | translate }}</p>
+  </div>
+</div>
+<ion-button
+  [disabled]="loading"
+  fill="clean"
+  (click)="reactionon($event)"
+>
+  <span *ngIf="!reaction">
+    <ion-icon name="heart" class="btn-icon"></ion-icon>
+    <span class="btn-text"> {{ "post.like" | translate }}</span>
+  </span>
+
+  <span *ngIf="reaction">
+    <img class="img-reacted" #img [src]="reaction.type | showReactionsImage" />
+    <span class="btn-text" [ngStyle]="reactions[reaction.type - 1].style">
+      {{ reactions[reaction.type - 1].name | translate }}</span
+    >
+  </span>
+</ion-button>
+
+<p class="total" (click)="seeLikes()">
+  {{ countReacions }} {{ "post.likes" | translate }}
+</p>

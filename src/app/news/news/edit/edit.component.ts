@@ -446,7 +446,6 @@ async uploadVideo($event,type:string,i){
 
 uploadVideoPrincipal(video){
   this.jdvImage.uploadVideo(video)
-  .toPromise()
   .then((url)=>{
     this.videoSelected = url
   })
@@ -455,7 +454,6 @@ uploadVideoPrincipal(video){
 }
 uploadVideoNotPrincipal(video,i){
   this.jdvImage.uploadVideo(video)
-  .toPromise()
   .then((url)=>{
     this.parrafos[i].video = url
   })

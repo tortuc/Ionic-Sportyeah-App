@@ -60,7 +60,6 @@ export class ProfileBodyC implements OnInit {
     for (let i = this.pag; i < this.pag + 6; i++) if (this.challenges[i]) this.show.push(this.challenges[i]);
   }
   ngOnDestroy(): void {
-    console.log("destroy")
     
   }
 }

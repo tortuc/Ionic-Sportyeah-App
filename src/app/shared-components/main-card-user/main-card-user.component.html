@@ -1,0 +1,49 @@
+<div>
+  <ion-card class="main-card main-border">
+    <div class="content">
+      <ion-item
+        *ngIf="!profile"
+        lines="none"
+        class="user"
+        (click)="goToMyProfile()"
+      >
+        <ion-thumbnail slot="start">
+          <ion-avatar class="mini">
+            <img [src]="userService.User?.photo" />
+          </ion-avatar>
+        </ion-thumbnail>
+        <ion-label style="margin-top: 0">
+          <p class="name">
+            {{ userService.User?.name }} {{ userService.User?.last_name }}
+          </p>
+
+          <p class="username">@{{ userService.User?.username }}</p>
+        </ion-label>
+      </ion-item>
+      <div class="new-post" (click)="newPost()">
+        <p>{{ "dashboard.new_post_placeholder" | translate }}</p>
+      </div>
+
+      <div class="buttons">
+        <ion-button class="btn-primary" (click)="newPost()"
+          ><span
+            ><ion-icon name="create-outline"></ion-icon>
+            {{ "main_card_user.post" | translate }}</span
+          ></ion-button
+        >
+        <ion-button class="btn-primary" routerLink="/search"
+          ><span>
+            <ion-icon name="search-outline"></ion-icon>
+            {{ "main_card_user.search" | translate }}</span
+          ></ion-button
+        >
+        <ion-button class="btn-primary" routerLink="/chat"
+          ><span
+            ><ion-icon name="chatbox-ellipses-outline"></ion-icon>
+            {{ "main_card_user.chat" | translate }}</span
+          ></ion-button
+        >
+      </div>
+    </div>
+  </ion-card>
+</div>

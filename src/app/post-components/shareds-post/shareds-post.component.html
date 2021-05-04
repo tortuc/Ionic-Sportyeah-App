@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-toolbar class="main-bg">
+    <ion-title style="--color: white">{{ "shareds" | translate }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismiss()" style="--color: white"
+        ><ion-icon name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content
+  class="main-bg"
+  [scrollEvents]="true"
+  (ionScrollEnd)="logScrolling($event)"
+>
+  <div
+    *ngFor="let post of shareds"
+    style="padding: 16px; cursor: pointer; max-height: 160px; overflow: hidden"
+    (click)="goToPost(post._id)"
+  >
+    <post-shared [post]="post" disabled="true"></post-shared>
+  </div>
+</ion-content>

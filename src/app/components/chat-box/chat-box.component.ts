@@ -391,7 +391,6 @@ export class ChatBoxComponent implements OnInit, OnChanges, AfterViewInit {
     let formData = new FormData();
     formData.append("video", this.videoFile);
     this.JDVImage.uploadVideo(formData)
-      .toPromise()
       .then((url) => {
         msg.video = url;
         this.messageService.newMessage(msg).toPromise();

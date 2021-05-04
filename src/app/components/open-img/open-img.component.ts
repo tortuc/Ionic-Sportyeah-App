@@ -1,8 +1,9 @@
 import { NewPostPage } from "./../../dashboard/new-post/new-post.page";
 import { take } from "rxjs/operators";
-import { User, UserService } from "./../../service/user.service";
+import {  UserService } from "./../../service/user.service";
 import { AlertController, ModalController } from "@ionic/angular";
 import { Component, Input, OnInit } from "@angular/core";
+import { User } from "src/app/models/IUser";
 
 @Component({
   selector: "app-open-img",

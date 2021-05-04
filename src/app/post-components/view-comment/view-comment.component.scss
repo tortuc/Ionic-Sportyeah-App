@@ -1,0 +1,24 @@
+.comment {
+  margin: 0;
+  padding: 0;
+  box-shadow: none;
+  border-bottom: #ef8f97 solid 1px;
+}
+
+.img-comments-container {
+  display: flex;
+  justify-content: baseline;
+  align-items: baseline;
+  flex-wrap: wrap;
+}
+
+.img-comment {
+  max-width: 150px;
+  max-height: 150px;
+  cursor: pointer;
+}
+
+.user-header{
+  display: flex;
+  padding: 10px;
+}

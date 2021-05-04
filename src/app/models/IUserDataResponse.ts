@@ -1,4 +1,5 @@
-import { User } from "src/app/service/user.service"
+import { User } from "./IUser";
+
 export interface IUserDataResponse {
   user: User;
   friends: {

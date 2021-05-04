@@ -1,0 +1,17 @@
+.follow {
+  max-height: 30px;
+  
+  font-size: 12px;
+  font-weight: 700;
+  &.rounded {
+    --border-radius: 20px;
+  }
+  &.primary {
+    --color: black;
+    --background: #9ae6c0;
+  }
+  &.secondary {
+    --color: black;
+    --background: white;
+  }
+}

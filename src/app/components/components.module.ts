@@ -1,4 +1,7 @@
-import { MiniflagComponent, ModalMiniFlagComponent } from './miniflag/miniflag.component';
+import {
+  MiniflagComponent,
+  ModalMiniFlagComponent,
+} from "./miniflag/miniflag.component";
 import { OpenImgComponent } from "./open-img/open-img.component";
 import { ParteIzquierdaWebComponent } from "./challenge/parte-izquierda-web/parte-izquierda-web.component";
 import { ParteDerechaWebComponent } from "./challenge/parte-derecha-web/parte-derecha-web.component";
@@ -35,17 +38,10 @@ import { PostPageRoutingModule } from "../post/post-routing.module";
 import { IonicModule } from "@ionic/angular";
 import { AddFriendsPage } from "../dashboard/add-friends/add-friends.page";
 import { MsgAudioComponent } from "./msg-audio/msg-audio.component";
-import { PostSharedComponent } from "./post-shared/post-shared.component";
-import { PostOptionsComponent } from "./post-options/post-options.component";
-import { PostContentComponent } from "./post-content/post-content.component";
 import { FriendsMobileComponent } from "./friends-mobile/friends-mobile.component";
-import { HeaderPostComponent } from "./header-post/header-post.component";
-import { CommentPostComponent } from "./comment-post/comment-post.component";
 import { ContenteditableValueAccessorModule } from "@tinkoff/angular-contenteditable-accessor";
 import { DirectivesModule } from "../directives/directive.module";
 import { PickerModule } from "@ctrl/ngx-emoji-mart";
-import { LikesPostComponent } from "./likes-post/likes-post.component";
-import { SharedsPostComponent } from "./shareds-post/shareds-post.component";
 import { NewProfilePhotoComponent } from "./new-profile-photo/new-profile-photo.component";
 import { ChatUserItemComponent } from "./chat-user-item/chat-user-item.component";
 import { MessageDeletedComponent } from "./message-deleted/message-deleted.component";
@@ -60,12 +56,8 @@ import { SharedNotificationComponent } from "./shared-notification/shared-notifi
 import { MentionNotificationComponent } from "./mention-notification/mention-notification.component";
 import { ButtonNotificationComponent } from "./button-notification/button-notification.component";
 import { ButtonSearchFriendComponent } from "./button-search-friend/button-search-friend.component";
-import { WishItemComponent } from "./wish-item/wish-item.component";
-import { CreateWishComponent } from "./create-wish/create-wish.component";
 import { PreviewFilesComponent } from "./preview-files/preview-files.component";
 import { OptionsWishComponent } from "./options-wish/options-wish.component";
-import { EditWishComponent } from "./edit-wish/edit-wish.component";
-import { ViewWishComponent } from "./view-wish/view-wish.component";
 import { ViewFilesComponent } from "./view-files/view-files.component";
 import { ViewImageComponent } from "./view-image/view-image.component";
 import { ChatBoxComponent } from "./chat-box/chat-box.component";
@@ -83,21 +75,27 @@ import { StructureComponent } from "src/app/profile/structure/structure.componen
 import { ChallengesPostOptionsComponent } from "./challenges/challenges-post-options/challenges-post-options.component";
 import { COptionsComponent } from "./challenges/c-options/c-options.component";
 import { NewsOptionsComponent } from "./news-options/news-options.component";
-import { ChallengesPotsOptionsIndivComponent } from './challenge/challenges-pots-options-indiv/challenges-pots-options-indiv.component' 
+import { ChallengesPotsOptionsIndivComponent } from "./challenge/challenges-pots-options-indiv/challenges-pots-options-indiv.component";
 import { NewQuestionComponent } from "./new-question/new-question.component";
-import { ModifyMediaComponent } from 'src/app/components/structure/modify-media/modify-media.component';
-import { SponsorsNodeComponent } from 'src/app/components/structure/sponsors/sponsors.component';
-import { SponsorsCreateComponent } from 'src/app/components/structure/sponsors-create/sponsors-create.component';
+import { ModifyMediaComponent } from "src/app/components/structure/modify-media/modify-media.component";
+import { SponsorsNodeComponent } from "src/app/components/structure/sponsors/sponsors.component";
+import { SponsorsCreateComponent } from "src/app/components/structure/sponsors-create/sponsors-create.component";
 import { QuestionComponent } from "./question/question.component";
 import { GetMediaComponent } from "./get-media/get-media.component";
-import { EditQuestionComponent } from "./edit-question/edit-question.component";
-import { QuestionNotificationComponent } from "./question-notification/question-notification.component"
-import { QuestionCommentComponent } from "./question-comment/question-comment.component";
-import { NoResults } from './no-results/no-results.component';
-import { ProfilHeaderC } from './profile-challenges/profile-header-c.components';
-import { ProfileBodyC } from './profile-challenges/profile-body-c.component';
-import { FollowBtnC } from './profile-challenges/follow-c.component';
-import { FollowBtn } from './profile-challenges/follow-btn.component';
+import { QuestionNotificationComponent } from "./question-notification/question-notification.component";
+import { NoResults } from "./no-results/no-results.component";
+import { ProfilHeaderC } from "./profile-challenges/profile-header-c.components";
+import { ProfileBodyC } from "./profile-challenges/profile-body-c.component";
+import { FollowBtnC } from "./profile-challenges/follow-c.component";
+import { DayComponent } from "./analitics-views/day/day.component";
+import { MonthComponent } from "./analitics-views/month/month.component";
+import { WeekComponent } from "./analitics-views/week/week.component";
+import { YearComponent } from "./analitics-views/year/year.component";
+import { AddUsersPanelDesktopComponent } from "./add-users-panel-desktop/add-users-panel-desktop.component";
+import { UserItemPanelComponent } from "./users/user-item-panel/user-item-panel.component";
+import { ComponentsSharedModule } from "../shared-components/components-shared.module";
+import { UserItemComponent } from "../componets/user-item/user-item.component";
+
 @NgModule({
   imports: [
     CommonModule,
@@ -113,20 +111,14 @@ import { FollowBtn } from './profile-challenges/follow-btn.component';
     DirectivesModule,
     PickerModule,
     EmojiModule,
+    ComponentsSharedModule,
   ],
   declarations: [
     ImageComponent,
     AddFriendsPage,
     MsgAudioComponent,
-    PostSharedComponent,
-    PostOptionsComponent,
-    PostContentComponent,
     ImageSeeComponent,
     FriendsMobileComponent,
-    HeaderPostComponent,
-    CommentPostComponent,
-    LikesPostComponent,
-    SharedsPostComponent,
     NewProfilePhotoComponent,
     ChatUserItemComponent,
     ErrorComponent,
@@ -147,15 +139,11 @@ import { FollowBtn } from './profile-challenges/follow-btn.component';
     ButtonNotificationComponent,
     ButtonSearchFriendComponent,
     ViewFilesComponent,
-    WishItemComponent,
     CreateAwardChallengeComponent,
-    CreateWishComponent,
     ChallengesPostHeaderComponent,
     ChallengeContentComponent,
     PreviewFilesComponent,
     OptionsWishComponent,
-    EditWishComponent,
-    ViewWishComponent,
     ViewImageComponent,
     ChatBoxComponent,
     MessageBasicComponent,
@@ -192,14 +180,21 @@ import { FollowBtn } from './profile-challenges/follow-btn.component';
     SponsorsNodeComponent,
     SponsorsCreateComponent,
     QuestionComponent,
-    EditQuestionComponent,
     QuestionNotificationComponent,
     GetMediaComponent,
-    EditQuestionComponent,
-    QuestionCommentComponent,
     MiniflagComponent,
     ModalMiniFlagComponent,
-    NoResults,ProfilHeaderC,ProfileBodyC,FollowBtnC,FollowBtn
+    NoResults,
+    ProfilHeaderC,
+    ProfileBodyC,
+    FollowBtnC,
+    DayComponent,
+    MonthComponent,
+    WeekComponent,
+    YearComponent,
+    AddUsersPanelDesktopComponent,
+    UserItemPanelComponent,
+    UserItemComponent
   ],
   exports: [
     ImageComponent,
@@ -209,18 +204,11 @@ import { FollowBtn } from './profile-challenges/follow-btn.component';
     ImageSeeComponent,
     AwardsPage,
     MsgAudioComponent,
-    PostSharedComponent,
-    PostOptionsComponent,
     ErrorComponent,
-    PostContentComponent,
     CreateAwardChallengeComponent,
     FriendsMobileComponent,
-    HeaderPostComponent,
-    CommentPostComponent,
     ChallengeContentComponent,
     StructureComponent,
-    LikesPostComponent,
-    SharedsPostComponent,
     NewProfilePhotoComponent,
     ChatUserItemComponent,
     MessageDeletedComponent,
@@ -235,12 +223,8 @@ import { FollowBtn } from './profile-challenges/follow-btn.component';
     MentionNotificationComponent,
     ButtonNotificationComponent,
     ButtonSearchFriendComponent,
-    WishItemComponent,
-    CreateWishComponent,
     PreviewFilesComponent,
     OptionsWishComponent,
-    EditWishComponent,
-    ViewWishComponent,
     ViewFilesComponent,
     ViewImageComponent,
     ChatBoxComponent,
@@ -277,15 +261,21 @@ import { FollowBtn } from './profile-challenges/follow-btn.component';
     SponsorsNodeComponent,
     SponsorsCreateComponent,
     QuestionComponent,
-    EditQuestionComponent,
     QuestionNotificationComponent,
     GetMediaComponent,
-    EditQuestionComponent,
-    QuestionCommentComponent,
     MiniflagComponent,
     ModalMiniFlagComponent,
     NoResults,
-    ProfilHeaderC,ProfileBodyC,FollowBtnC,FollowBtn
+    ProfilHeaderC,
+    ProfileBodyC,
+    FollowBtnC,
+    DayComponent,
+    MonthComponent,
+    WeekComponent,
+    YearComponent,
+    AddUsersPanelDesktopComponent,
+    UserItemPanelComponent,
+    UserItemComponent
   ],
 })
 export class ComponentsModule {}

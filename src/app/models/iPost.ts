@@ -1,15 +1,21 @@
-import { User } from "../service/user.service";
+import { User } from "./IUser";
 
 export interface IPost {
   _id: string | string;
   user: User;
-  post: string | null;
+  post: IPost | null;
   message: string;
   files: IPostFile[];
 
   date: Date;
   edited: Date;
   deleted: boolean;
+}
+export interface INewPost {
+  user: string;
+  post?: string;
+  message?: string;
+  files?: IPostFile[];
 }
 
 //Noticia
@@ -41,7 +47,7 @@ export interface IComment {
   post: string;
   news: string; //revisar si se debe eliminars
   message: string;
-  image: string;
+  files: any;
   date: Date;
   _id: string;
   deleted: boolean;
@@ -49,7 +55,6 @@ export interface IComment {
 
 export interface IPostC {
   post: IPost;
-  likes: ILike[];
   comments: IComment[];
   shareds: IPost[];
 }
@@ -61,11 +66,8 @@ export interface INewC {
   shareds: INew[];
 }
 
-export function hola() {}
-
-
 export interface IPostFile {
-    fileType?: string;
-    url: string;
-    name?:string;
-  }
+  format?: string;
+  url: string;
+  name?: string;
+}

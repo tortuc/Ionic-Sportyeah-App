@@ -142,7 +142,6 @@ export class SliderLogic {
   async uploadVideo(formData: FormData) {
     await this.imageAPI
       .uploadVideo(formData)
-      .toPromise()
       .then((url) => {
         this.content.push(url);
           this.save()

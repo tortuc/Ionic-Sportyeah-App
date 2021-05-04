@@ -1,71 +1,61 @@
-<ion-avatar
-  class="mini"
-  (click)="goToProfile(post.user._id, post.user.username, post._id)"
->
-  <ion-img class="img-user-mini" [src]="post.user.photo"></ion-img>
-  <div class="connectedDIVlittlePost" *ngIf="post.user.connected"></div>
-</ion-avatar>
-<div class="user-name">
-  <span
-    class="message profile-name"
-    (click)="goToProfile(post.user._id, post.user.username, post._id)"
-    >{{ post.user.name }} {{ post.user.last_name }}</span
-  ><br />
-  <span
-    *ngIf="post.edited == null"
-    (click)="goToPost(post._id)"
-    class="profile-name date"
-    >{{ post.date | customDisplayDate }}</span
+<div class="user-header">
+  <ion-avatar
+    class="mini"
+    (click)="userService.goToProfile(post.user.username)"
   >
-  <span>
-    <div>
-      <ion-icon
-        name="eye-outline"
-        style="float: left; font-size: 17px"
-      ></ion-icon>
-      <p style="margin: 1px">{{ views }}</p>
-    </div>
-  </span>
-  <span
-    *ngIf="post.edited != null"
-    (click)="goToPost(post._id)"
-    class="profile-name date"
-    >editado el {{ post.edited | customDisplayDate }}</span
-  >
-  <span (click)="goToPost(post._id)" class="profile-name date">
-    <!-- SPONSORS -->
-    <div>
-      <ion-grid>
-        <ion-row style="margin-left: -70px; margin-top: 10px">
-          <ion-col
-            size="4"
-            *ngFor="let sponsor of post.user.sponsors; let i = index"
-          >
-            <a [href]="'//' + sponsor.url" target="_blank">
-              <img
-                [src]="sponsor.image"
-                style="
-                  height: 30px;
-                  width: 60px;
-                  border-radius: 10px;
-                  object-fit: cover;
-                  object-position: cover;
-                "
-            /></a>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-      <!-- <app-sponsor
-        [creator]="false"
-        [sponsors]="post.user.sponsors"
-      ></app-sponsor> -->
-    </div>
-    <!-- TERMINO SPONSORS -->
-  </span>
+    <img class="img-user-mini" [src]="post.user.photo" />
+    <div class="connectedDIVlittlePost" *ngIf="post.user.connected"></div>
+  </ion-avatar>
+  <div class="user-name">
+    <p
+      class="profile-name"
+      style="margin: 0"
+      (click)="userService.goToProfile(post.user.username)"
+    >
+      {{ post.user.name }} {{ post.user.last_name }}
+    </p>
+
+    <p style="margin: 0px">
+      <span
+        *ngIf="post.edited == null"
+        (click)="goToPost(post._id)"
+        class="profile-name date"
+        >{{ post.date | customDisplayDate }}</span
+      >
+      <span
+        *ngIf="post.edited != null"
+        (click)="goToPost(post._id)"
+        class="profile-name date"
+        style="font-size: 11px"
+        >{{ "edit_at" | translate }} {{ post.edited | customDisplayDate }}</span
+      >
+      <span class="views">
+        <ion-icon name="eye-outline"></ion-icon>
+        {{ post.views.length }}</span
+      >
+    </p>
+  </div>
+
+  <ion-icon
+    *ngIf="post.user._id == userService.User?._id && displayOptions"
+    name="chevron-down"
+    (click)="openOptions($event)"
+    class="options-down"
+  ></ion-icon>
 </div>
-<ion-icon
-  *ngIf="post.user._id == userService.User?._id && displayOptions"
-  name="chevron-down"
-  (click)="openOptions($event)"
-  class="options-down"
-></ion-icon>
+
+<!-- SPONSORS -->
+<div class="sponsors">
+  <div
+    *ngFor="let sponsor of post.user.sponsors.slice(0, 3); let i = index"
+ 
+    (click)="goToSponsor(sponsor.url, post.user._id, post._id)"
+    target="_blank"
+  >
+    <img class="sponsor-img" [src]="sponsor.image" />
+  </div>
+  <div class="see-more" *ngIf="post.user.sponsors.length > 3">
+    {{ "more_sponsors" | translate }}
+  </div>
+</div>
+<!-- TERMINO SPONSORS -->

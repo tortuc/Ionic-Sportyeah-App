@@ -16,17 +16,13 @@ import {
 } from "@ionic/angular";
 import { TranslateService } from "@ngx-translate/core";
 import { NewPostPage } from "src/app/dashboard/new-post/new-post.page";
-import { ILike, IPost, IPostC, INewC, INew } from "src/app/models/iPost";
-import { NewCommentComponent } from "src/app/post/new-comment/new-comment.component";
+import { ILike, IPost, INewC, INew } from "src/app/models/iPost";
 import { PostService } from "src/app/service/post.service";
 import { UserService } from "src/app/service/user.service";
 import { Plugins } from "@capacitor/core";
 import { Clipboard } from "@angular/cdk/clipboard";
-import { LikesPostComponent } from "../likes-post/likes-post.component";
-import { SharedsPostComponent } from "../shareds-post/shareds-post.component";
-import { ReactionsPostsComponent } from "../reactions-posts/reactions-posts.component";
-import { Variable } from "@angular/compiler/src/render3/r3_ast";
 import { NewsService } from "src/app/service/news.service";
+import { CommentPostComponent } from "src/app/post-components/comment-post/comment-post.component";
 const { Share } = Plugins;
 
 @Component({
@@ -152,48 +148,48 @@ rea
         //handle err
       });
   }
-  async seeLikes() {
+  // async seeLikes() {
    
-      let reaction1 = this.news.likes.filter((reactions: any) => {
-        return reactions.type == 1;
-      });
-      let reaction2 = this.news.likes.filter((reactions: any) => {
-        return reactions.type == 2;
-      });
-      let reaction3 = this.news.likes.filter((reactions: any) => {
-        return reactions.type == 3;
-      });
-      let reaction4 = this.news.likes.filter((reactions: any) => {
-        return reactions.type == 4;
-      });
-      let reaction5 = this.news.likes.filter((reactions: any) => {
-        return reactions.type == 5;
-      });
-      let reaction6 = this.news.likes.filter((reactions: any) => {
-        return reactions.type == 6;
-      });
+  //     let reaction1 = this.news.likes.filter((reactions: any) => {
+  //       return reactions.type == 1;
+  //     });
+  //     let reaction2 = this.news.likes.filter((reactions: any) => {
+  //       return reactions.type == 2;
+  //     });
+  //     let reaction3 = this.news.likes.filter((reactions: any) => {
+  //       return reactions.type == 3;
+  //     });
+  //     let reaction4 = this.news.likes.filter((reactions: any) => {
+  //       return reactions.type == 4;
+  //     });
+  //     let reaction5 = this.news.likes.filter((reactions: any) => {
+  //       return reactions.type == 5;
+  //     });
+  //     let reaction6 = this.news.likes.filter((reactions: any) => {
+  //       return reactions.type == 6;
+  //     });
 
-      let modal = await this.modalController.create({
-        component: LikesPostComponent,
-        componentProps: {
-          likes: this.news.likes,
-          likE: reaction1,
-          love: reaction2,
-          haha: reaction3,
-          wow: reaction4,
-          sad: reaction5,
-          angry: reaction6,
-          idPost: null,
-          idNews: this.news.news._id,
-        },
-      });
-      return modal.present();
+  //     let modal = await this.modalController.create({
+  //       component: LikesPostComponent,
+  //       componentProps: {
+  //         likes: this.news.likes,
+  //         likE: reaction1,
+  //         love: reaction2,
+  //         haha: reaction3,
+  //         wow: reaction4,
+  //         sad: reaction5,
+  //         angry: reaction6,
+  //         idPost: null,
+  //         idNews: this.news.news._id,
+  //       },
+  //     });
+  //     return modal.present();
     
-  }
+  // }
 
   async comment2(news) {
     let comment = await this.modalController.create({
-      component: NewCommentComponent,
+      component: CommentPostComponent,
       componentProps: { news },
       backdropDismiss: false,
     });
@@ -220,22 +216,22 @@ rea
       }
     }
   }
-  async seeShareds() {
+  // async seeShareds() {
     
-    let newsShareds;
+  //   let newsShareds;
   
-     newsShareds = this.news.shareds
+  //    newsShareds = this.news.shareds
    
 
-    let modal = await this.modalController.create({
-      component: SharedsPostComponent,
-      componentProps: { 
-        sharedsNews: newsShareds
-       },
-    });
+  //   let modal = await this.modalController.create({
+  //     component: SharedsPostComponent,
+  //     componentProps: { 
+  //       sharedsNews: newsShareds
+  //      },
+  //   });
 
-    return modal.present();
-  }
+  //   return modal.present();
+  // }
   async sharedWeb(post: IPost) {
     let action = await this.actionSheetCtrl.create({
       header: this.translate.instant("share.header"),

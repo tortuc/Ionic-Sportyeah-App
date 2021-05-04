@@ -16,7 +16,9 @@ constructor(
   public questionService:QuestionService,
 ) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    
+  }
 
 
   selectAnswer(id){

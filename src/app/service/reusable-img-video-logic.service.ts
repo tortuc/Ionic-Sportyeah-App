@@ -206,7 +206,6 @@ export class ImgVideoUpload {
   uploadVideo(formData: FormData, loading?) {
     this.imageAPI
       .uploadVideo(formData)
-      .toPromise()
       .then((url) => {
         if (loading) loading.dismiss();
         this.content.next(url);

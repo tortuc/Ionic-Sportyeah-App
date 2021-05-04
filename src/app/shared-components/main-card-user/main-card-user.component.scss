@@ -1,0 +1,41 @@
+.main-card {
+  padding: 0 !important;
+  margin: 0px;
+  width: 100%;
+  max-width: unset;
+  ion-thumbnail {
+    margin-right: 5px;
+  }
+
+  .username {
+    font-size: 12px;
+    margin:  0px;
+  }
+  .name {
+    font-size: 16px;
+    margin: 5px 0px;
+    margin-bottom: 0px;
+
+    font-weight: 500;
+    cursor: pointer;
+  }
+
+  .content {
+    padding: 10px;
+  }
+
+  .user {
+    cursor: pointer;
+  }
+
+  .new-post {
+    cursor: pointer;
+    text-align: center;
+
+    padding: 5px;
+  }
+
+  .buttons {
+    text-align: center;
+  }
+}

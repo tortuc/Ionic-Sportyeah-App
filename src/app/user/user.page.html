@@ -1,5 +1,5 @@
 <ion-header *ngIf="!loadingInit">
-  <ion-toolbar class="bg-gradient-person">
+  <ion-toolbar class="main-bg">
     <ion-buttons slot="start">
       <ion-back-button style="color: white"></ion-back-button>
     </ion-buttons>
@@ -10,7 +10,7 @@
 </ion-header>
 
 <ion-content
-  class="bg-gradient-person"
+  class="main-bg"
   [scrollEvents]="true"
   (ionScrollEnd)="logScrolling($event)"
   *ngIf="!loadingInit"
@@ -41,11 +41,13 @@
               (click)="open(user?.photoBanner)"
               [ngStyle]="{'background-image': 'url(' + user?.photoBanner + ')'}"
             >
-              <ion-avatar 
+              <ion-avatar
                 class="big user_photo"
                 (click)="$event.stopPropagation()"
               >
-                <ion-img class="img-user" [src]="user?.photo"
+                <ion-img
+                  class="img-user"
+                  [src]="user?.photo"
                   (click)="open(user?.photo)"
                 ></ion-img>
                 <div class="connectedDIV" *ngIf="user?.connected"></div>
@@ -104,10 +106,11 @@
             </div>
           </ion-card-header>
 
-          <div style="margin-bottom: 5px;">
+          <div style="margin-bottom: 5px">
             <app-sponsor
               [creator]="false"
               [sponsors]="user?.sponsors"
+              [idUser]="user?._id"
             ></app-sponsor>
           </div>
 
@@ -169,7 +172,7 @@
 
           <ion-card
             ngClass.xs="m-p-0"
-            class=" mt5"
+            class="mt5"
             *ngIf="
               user?.profile_user !== 'sponsor' &&
                   user?.profile_user !== 'association' &&
@@ -190,7 +193,7 @@
 
           <ion-card
             ngClass.xs="m-p-0"
-            class=" mt5"
+            class="mt5"
             *ngIf="
               user?.profile_user !== 'representative'
             "
@@ -206,7 +209,7 @@
 
           <ion-card
             ngClass.xs="m-p-0"
-            class=" mt5"
+            class="mt5"
             *ngIf="
               user?.profile_user !== 'sponsor' &&
               user?.profile_user !== 'association' &&
@@ -231,26 +234,25 @@
 
         <div *ngIf="postsB">
           <ion-grid ngClass.xs="m-p-0">
-            <ion-row *ngFor="let item of posts" class="">
-              <ion-card ngClass.xs="m-p-0" style="width: 100%">
-                <ion-card-header>
-                  <header-post
-                    class="user-header"
-                    [post]="item.post"
-                    [views]="item.post.views.length"
-                  ></header-post>
-                </ion-card-header>
-
-                <ion-card-content (click)="goToPost(item.post._id)">
-                  <post-content [post]="item.post"></post-content>
-                  <post-shared
-                    *ngIf="item.post.post"
-                    [post]="item.post.post"
-                    (sharedEvent)="getPosts(user._id)"
-                  ></post-shared>
-                </ion-card-content>
-                <post-options [item]="item"></post-options>
-              </ion-card>
+            <ion-row style="justify-content: center">
+              <ion-button
+                class="reload-btn"
+                *ngIf="posts.length > 0"
+                #reloadButton
+                style="z-index: 10"
+                shape="round"
+                (click)="getPosts(user._id,null,true)"
+              >
+                <span>
+                  <ion-icon name="reload"></ion-icon> {{'reload' |
+                  translate}}</span
+                ></ion-button
+              >
+            </ion-row>
+            <ion-row *ngFor="let post of posts" class="">
+              <ion-col size="12">
+                <view-post [post]="post"></view-post>
+              </ion-col>
             </ion-row>
           </ion-grid>
         </div>
@@ -348,7 +350,6 @@
           <ion-card-content> </ion-card-content>
         </ion-card>
       </ion-col>
-      
     </ion-row>
   </ion-grid>
 </ion-content>

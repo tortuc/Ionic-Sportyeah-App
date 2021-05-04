@@ -40,12 +40,14 @@ export class SponsorsCreateComponent implements OnInit {
         Validators.pattern(this.reg)
       ]
     ],
+    name: ['', [Validators.required]],
     image: ['', [Validators.required]]
   })
 
   ngOnInit() {
     this.form.controls.url.setValue(this.edit.url)
     this.form.controls.image.setValue(this.edit.image)
+    this.form.controls.name.setValue(this.edit.name)
   }
 
   /*

@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar class="bg-gradient-person">
+  <ion-toolbar class="main-bg">
     <ion-title style="--color: white"
       >{{'new_post.title' | translate}}</ion-title
     >
@@ -14,27 +14,18 @@
 <ion-content>
   <ion-grid>
     <ion-row>
-      <ion-col size="12" class="user-header">
-        <ion-avatar class="mini">
-          <ion-img
-            class="img-user-mini"
-            [src]="userService.User?.photo"
-          ></ion-img>
-        </ion-avatar>
-        <div class="user-name">
-          <span style="color: #222121"
-            >{{userService.User?.name}} {{userService.User?.last_name}}</span
-          ><br />
-        </div>
+      <ion-col size="12">
+        <new-post-header></new-post-header>
       </ion-col>
       <ion-col size="12">
-        <form [formGroup]="news?formNews:form">
+        <form [formGroup]="form">
           <span
-            *ngIf="news?formNews.controls.message.value == '':form.controls.message.value == ''"
+            *ngIf="form.controls.message.value == ''"
             class="fake-placeholder"
             >{{'dashboard.new_post_placeholder' | translate}}</span
           >
           <div
+            #mainInput
             style="max-height: 200px; color: #222121"
             formControlName="message"
             contenteditable
@@ -42,7 +33,7 @@
             Mentions
             (usersRender)="usersChange($event)"
             (mention)="newValue($event)"
-            #FormElementRef
+            (click)="stopPropagation($event)"
           ></div>
           <div style="max-height: 400px; overflow: auto">
             <div
@@ -62,31 +53,22 @@
             </div>
           </div>
 
-          <ion-avatar
-            style="width: 150px; height: 150px; position: relative"
-            *ngIf="news?formNews.controls.image.value != '':form.controls.image.value != ''"
-          >
-            <ion-icon
-              (click)="removeImg()"
-              class="icon-remove"
-              style="cursor: pointer"
-              name="close"
-            ></ion-icon>
-
-            <ion-img
-              style="border-radius: 5px !important"
-              [src]="news?formNews.controls.image.value:form.controls.image.value"
-            >
-            </ion-img>
-          </ion-avatar>
+          <post-preview-images
+            [loading]="loading"
+            [(files)]="files"
+          ></post-preview-images>
           <iframe
-            *ngIf="news?(formNews.controls.message.value | youtube):(form.controls.message.value | youtube)"
-            [src]="news?(formNews.controls.message.value | youtube):(form.controls.message.value | youtube)"
+            *ngIf="form.controls.message.value | youtube"
+            [src]="form.controls.message.value | youtube"
             frameborder="0"
           ></iframe>
         </form>
-        <post-shared *ngIf="post" [post]="post"></post-shared>
-        <post-shared *ngIf="news" [news]="news"></post-shared>
+        <post-shared
+          *ngIf="post || news"
+          [post]="post"
+          [news]="news"
+        ></post-shared>
+
         <div *ngIf="urlVideo" style="position: relative">
           <ion-icon
             name="close"
@@ -105,7 +87,7 @@
         </div>
       </ion-col>
       <ion-col class="buttons" size="12">
-        <div #emojisContainer>
+        <div (click)="stopPropagation($event)">
           <emoji-mart
             class="emojis"
             *ngIf="emoji"
@@ -118,42 +100,46 @@
         <input
           #openImage
           type="file"
-          accept="image/*"
-          (change)="uploadImg($event)"
+          accept="image/*,video/*"
+          (change)="uploadFile($event)"
           hidden
+          multiple
         />
-        <input
-          #openVideo
-          type="file"
-          accept="video/*"
-          (change)="uploadVideo($event)"
-          hidden
-        />
-        <span #emojiButton>
+
+        <span (click)="stopPropagation($event)">
           <ion-button (click)="openEmojis()">
             <ion-icon name="happy"></ion-icon>
           </ion-button>
         </span>
-        <ion-button (click)="openImage.click()">
+        <ion-button (click)="imageActionSheet()">
           <ion-icon name="image"></ion-icon>
         </ion-button>
-        <ion-button (click)="openVideo.click()">
+        <ion-button (click)="openImage.click()">
           <ion-icon name="videocam"></ion-icon>
         </ion-button>
         <ion-button (click)="createQuestion()">
           <ion-icon name="help-outline"></ion-icon>
         </ion-button>
+        <ion-button class="btn-rounded-options" (click)="link()">
+          <ion-icon name="link"></ion-icon>
+        </ion-button>
 
         <ion-button
-          [disabled]="news?formNews.invalid && videoFile == null:form.invalid && videoFile == null"
+          [disabled]="form.invalid && files.length == 0"
           (click)="save()"
         >
           {{'new_post.btn' | translate}}
         </ion-button>
       </ion-col>
-      
-      <ion-col size="12" >
-        <edit-question #editQuestionHash [question]="question.questionGroup" [badDate]="badDate" (delete)="deleteQuestion($event)" (edit)="editQuestion($event)"></edit-question>
+
+      <ion-col size="12" *ngIf="question.questionGroup">
+        <edit-question
+          #editQuestionHash
+          [question]="question.questionGroup"
+          [badDate]="badDate"
+          (delete)="deleteQuestion()"
+          (edit)="editQuestion()"
+        ></edit-question>
       </ion-col>
     </ion-row>
   </ion-grid>

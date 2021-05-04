@@ -1,0 +1,11 @@
+<ion-button
+  fill="clean"
+  [ngClass]="commented ? 'icomment' : ''"
+  (click)="comment(post)"
+>
+  <ion-icon class="btn-icon" name="chatbox-outline"></ion-icon>
+  <span class="btn-text">{{ "post.comment" | translate }}</span>
+</ion-button>
+<p (click)="goToPost(post._id)" class="total">
+  {{ countComments }} {{ "post.comments" | translate }}
+</p>

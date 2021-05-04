@@ -1,5 +1,5 @@
 <ion-header [fxShow.xs]="(!chat)?true:false">
-  <ion-toolbar  class="bg-gradient-person">
+  <ion-toolbar  class="main-bg">
     <ion-buttons slot="start">
       <ion-menu-button style="color: white;"></ion-menu-button>
     </ion-buttons>
@@ -17,7 +17,7 @@
     <ion-row  style="height: 100%;">
       <ion-col size-lg="4" fxShow.lt-md="false" style="height: 100%;">
         <ion-card class="friends-chat-card m-0" >
-          <ion-card-header style="padding: 0px !important;" class="bg-gradient-person">
+          <ion-card-header style="padding: 0px !important;" class="main-bg">
             <ion-item lines="none" style="--background:inherit">
               <ion-thumbnail slot="start">
                 <ion-avatar class="mini" routerLink="/profile">
@@ -38,7 +38,7 @@
       </ion-col>
       <ion-col size="12" *ngIf="!chat" ngClass.xs="p-0"  fxShow.gt-sm="false" style="height: 100%;">
         <ion-card class="friends-chat-card m-0" >
-          <ion-card-header style="padding: 0px !important;" class="bg-gradient-person">
+          <ion-card-header style="padding: 0px !important;" class="main-bg">
             <ion-item lines="none" style="--background:inherit">
               <ion-thumbnail slot="start">
                 <ion-avatar class="mini"  routerLink="/profile">

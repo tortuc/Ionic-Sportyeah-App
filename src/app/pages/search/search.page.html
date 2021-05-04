@@ -1,0 +1,69 @@
+<ion-header>
+  <ion-toolbar class="main-bg">
+    <ion-buttons slot="start">
+      <ion-menu-button style="--color: white"></ion-menu-button>
+    </ion-buttons>
+    <ion-title style="color: white"
+      >{{'search_page.search' | translate}}</ion-title
+    >
+  </ion-toolbar>
+</ion-header>
+
+<ion-content style="--background: white">
+  <ion-card style="box-shadow: unset">
+    <ion-searchbar
+      animated="true"
+      placeholder="{{
+      'search' | translate }}"
+      (ionChange)="filter($event)"
+      autocomplete="on"
+    ></ion-searchbar>
+
+    <div style="padding: 0">
+      <div style="text-align: center; margin-top: 0.5em">
+        <ion-spinner *ngIf="loading"></ion-spinner>
+      </div>
+      <div
+        *ngIf="query == ''"
+        style="color: black; text-align: center; padding: 5px"
+      >
+        {{'search_page.users_popular' | translate}}
+        <ion-img
+          *ngIf="users.length == 0"
+          src="assets/images/logox.png"
+          class="img-login logo"
+        ></ion-img>
+      </div>
+      <ion-grid>
+        <ion-row>
+          <ion-col
+            *ngFor="let user of users"
+            size-sm="12"
+            size-xs="12"
+            size-md="6"
+            size-lg="4"
+          >
+            <user-item [user]="user"> </user-item>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+      <div
+        *ngIf="!allUsers && query != ''"
+        style="padding: 10px; text-align: center; cursor: pointer"
+        (click)="usersQuery(query)"
+      >
+        <h3>
+          {{'search_page.more' | translate}}
+          <ion-icon
+            style="vertical-align: middle"
+            name="search-outline"
+          ></ion-icon>
+        </h3>
+      </div>
+    </div>
+  </ion-card>
+  <ion-fab-button style="z-index: 100" (click)="whatsapp()" class="inv-whatsapp"
+    ><ion-icon name="logo-whatsapp"></ion-icon
+  ></ion-fab-button>
+</ion-content>

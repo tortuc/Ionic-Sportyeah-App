@@ -1,43 +1,47 @@
-.buttons{
-    --background: white;
-    color: black;
-    --border-radius: 20px;
+.answers {
+  position: relative;
+  color: black;
+  border-radius: 30px;
+  height: 55px;
+  width: 100%;
+  background: #6da8d9ad;
+  margin-bottom: 15px;
+  border: solid #1a1818 1px;
 }
-.answers{
-    position:relative;
-    color: white;
-    border-radius: 57px;
-    height: 53px;
-    width: 550px;
-    margin-left: auto;
-    margin-right: auto;
-    background: #ffffff61;
-    margin-bottom: 15px;
-    border:solid white 1px
+.inputAnswer {
+  margin-left: 15px;
+  width: 500px;
+  font-size: 20px;
+  color: black;
 }
-.inputAnswer{
-    margin-left: 15px;
-    width: 500px;
-    font-size:20px;
-    color: white;
-}
-.deleteIcon{
-    cursor: pointer;
-    position:absolute;
-    color: black;
-    left: 510px;
-    top: 13px;
-    font-size: 25px;
+.deleteIcon {
+  cursor: pointer;
+  position: absolute;
+  color: black;
+  font-size: 25px;
+  right: 20px;
+  top: 15px;
 }
 
-.addAnswerDiv{
+.addAnswerDiv {
     position: relative;
-    border: dotted;
     cursor: pointer;
     color: white;
-    border-radius: 57px;
+    background: #2a4c78;
+    border: solid 1px;
+    border-radius: 30px;
     height: 53px;
-    width: 550px;
-    margin-left: auto;
-    margin-right: auto;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+}
+
+.headline-input {
+  width: 100%;
+  font-size: 20px;
+  text-align: center;
+  color: black;
+  border-bottom: solid 1px;
 }

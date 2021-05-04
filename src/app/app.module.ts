@@ -63,6 +63,7 @@ import { CookieService } from "ngx-cookie-service";
     StatusBar,
     SplashScreen,
     MediaCapture,
+    CookieService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     Camera,
     SocialSharing,

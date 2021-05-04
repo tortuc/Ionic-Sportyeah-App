@@ -1,5 +1,5 @@
 <ion-header >
-  <ion-toolbar  class="bg-gradient-person">
+  <ion-toolbar  class="main-bg">
     <ion-buttons slot="start">
       <ion-menu-button style="color: white;"></ion-menu-button>
     </ion-buttons>
@@ -15,7 +15,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="bg-gradient-person" [scrollEvents]="true" (ionScrollEnd)="logScrolling($event)"  >
+<ion-content class="main-bg" [scrollEvents]="true" (ionScrollEnd)="logScrolling($event)"  >
   <ion-card>
     <ion-card-header>
       <ion-row>
@@ -51,6 +51,10 @@
     
         <ion-segment-button (click)="postLines()" >
           <p style="visibility: visible">Publicaciones</p>
+        </ion-segment-button>
+ 
+        <ion-segment-button (click)="Sponsor()" >
+          <p style="visibility: visible">Patrocinadores</p>
         </ion-segment-button>
       </ion-segment>
 
@@ -120,6 +124,42 @@
 
       </ion-row>
     </div>
+
+
+    <div *ngIf="segement == 2">
+      <ion-row>
+        <ion-icon size="12">
+          <h1>Seleccio</h1>
+        </ion-icon>
+        <ion-col size="12">
+          <!-- SPONSORS -->
+            <div>
+              <ion-grid>
+                <ion-row style=" margin-top: 10px">
+                  <ion-col
+                    *ngFor="let sponsor of userService.User?.sponsors; let i = index"
+                  >
+                    <div style="text-align: center;"  target="_blank">
+                      <img
+                        (click)="sponsorLink = sponsor.url "
+                        [src]="sponsor.photo"
+                        style="
+                          height: 30px;
+                          width: 60px;
+                          border-radius: 10px;
+                          object-fit: cover;
+                          object-position: cover;
+                          cursor: pointer;
+                        "
+                    /></div>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </div>
+    <!-- TERMINO SPONSORS -->
+        </ion-col>
+      </ion-row>
+    </div>
     </ion-card-content>
   </ion-card>
 
@@ -137,7 +177,8 @@
                       </ion-col>
                       <ion-col size-xs="1" size-lg="1"></ion-col>
                       <ion-col size-xs="6" size-lg="4">
-                        <h1 style="float:left; text-align: end;font-size: 35px;">{{allViews.length}}</h1>
+                        <h1 *ngIf="segement == 0" style="float:left; text-align: end;font-size: 35px;">{{allViews.length}}</h1>
+                        <h1 *ngIf="segement == 2" style="float:left; text-align: end;font-size: 35px;">{{totalSponsor}}</h1>
                       </ion-col>
                     </ion-row>
                   </ion-grid>
@@ -146,7 +187,7 @@
 
               <ion-col class="columDates" size="6">
                 <div >
-                  <ion-button  class="botons" (click)="generateDay()" >
+                  <ion-button  class="botons" (click)="segement == 0?generateDay():sponsorDay()" >
                     <span >{{'analytics-views.today'| translate}}</span>
                   </ion-button>
                 </div>
@@ -154,7 +195,7 @@
 
               <ion-col class="columDates" size="6">
                 <div >
-                  <ion-button  class="botons" (click)="generateWeek()" >
+                  <ion-button  class="botons" (click)="segement == 0?generateWeek():sponsorWeek()" >
                     <span >{{'analytics-views.weeks'| translate}}</span>
                   </ion-button>
                 </div>
@@ -162,7 +203,7 @@
 
               <ion-col class="columDates" size="6">
                 <div >
-                  <ion-button  class="botons" (click)="generateMonth()" >
+                  <ion-button  class="botons" (click)="segement == 0?generateMonth():sponsorMonth()" >
                     <span >{{'analytics-views.months'| translate}}</span>
                   </ion-button>
                 </div>
@@ -170,13 +211,13 @@
 
               <ion-col class="columDates" size="6">
                 <div>
-                  <ion-button  class="botons" (click)="generateYear()" >
-                    <span >{{'analytics-views.years'| translate}}</span>
+                  <ion-button  class="botons" (click)="segement == 0?generateYear():sponsorYear()" >
+                    <span>{{'analytics-views.years'| translate}}</span>
                   </ion-button>
                 </div>
               </ion-col>
 
-              <ion-col size="12" *ngIf="analyticsToShow == 'years'">
+              <ion-col size="12" *ngIf="analyticsToShow == 'years' ">
                 <ion-row>
                   <ion-col size="12">
                   <ion-card style="background: #e0eaff;">
@@ -194,7 +235,6 @@
                  </ion-card>
                 </ion-col>
                       
-                  
                   <ion-col class="columDates" size="6">
                     <ion-button class="week-button"  (click)="changeYear(-1)">{{'analytics-views.last' | translate}}</ion-button>
                   </ion-col>
@@ -202,10 +242,9 @@
                     <ion-button class="week-button"  (click)="changeYear(1)">{{'analytics-views.next' | translate}}</ion-button>
                   </ion-col>
                 </ion-row>
-               
               </ion-col>
 
-              <ion-col size="12" *ngIf="analyticsToShow == 'months'">
+              <ion-col size="12" *ngIf="analyticsToShow == 'months' ">
                 <ion-row>
                   <ion-col size="12">
                     <ion-card style="background: #e0eaff;">
@@ -232,7 +271,7 @@
                 </ion-row>
               </ion-col>
 
-              <ion-col size="12" *ngIf="analyticsToShow == 'weeks'">
+              <ion-col size="12" *ngIf="analyticsToShow == 'weeks' ">
                 <ion-row>
                   <ion-col size="12">
                     <ion-card style="background: #e0eaff;">
@@ -242,7 +281,7 @@
                             <h1>{{'analytics-views.days' | translate}}:  </h1>
                           </ion-col>
                           <ion-col size-xs="12" size-lg="12" >
-                            <h1 style="float:left; text-align: end;font-size: 18px;">{{daysWeek[0].date}} - {{daysWeek[6].date}}</h1>
+                            <h1 style="float:left; text-align: end;font-size: 18px;">{{weekFormat | customDisplayDate:true}} - {{weekEndFormat | customDisplayDate:true}}</h1>
                           </ion-col>
                         </ion-row>
                       </ion-grid>
@@ -258,7 +297,7 @@
                 </ion-row>
               </ion-col>
 
-              <ion-col size="12" *ngIf="analyticsToShow == 'hours'">
+              <ion-col size="12" *ngIf="analyticsToShow == 'hours' || analyticsToShowSponsor == 'hours'">
                 <ion-row>
                   <ion-col size="12">
                     <ion-card style="background: #e0eaff;">
@@ -295,23 +334,32 @@
               <canvas  id="polarArea" width="400" height="400"></canvas>
             </div>
             
-            <div style="margin-left: auto;margin-right: auto;" class="divChart" *ngIf="analyticsToShow == 'hours' && noData ">
+            <div style="margin-left: auto;margin-right: auto;" class="divChart" *ngIf="analyticsToShow == 'hours' && noData && segement == 0">
               <canvas id="linesHour" width="400" height="400"></canvas>
             </div>
             
-            <div style="margin-left: auto;margin-right: auto;" class="divChart" *ngIf="analyticsToShow == 'weeks' && noData ">
+            <div style="margin-left: auto;margin-right: auto;" class="divChart" *ngIf="analyticsToShow == 'weeks' && noData && segement == 0">
               <canvas id="lines" width="400" height="400"></canvas>
             </div>
 
-            <div style="margin-left: auto;margin-right: auto;" class="divChart" *ngIf="analyticsToShow == 'months' && noData ">
+            <div style="margin-left: auto;margin-right: auto;" class="divChart" *ngIf="analyticsToShow == 'months' && noData && segement == 0">
               <canvas id="linesMonth" width="400" height="400"></canvas>
             </div>
 
-            <div style="margin-left: auto;margin-right: auto;" class="divChart" *ngIf="analyticsToShow == 'years' && noData " >
+            <div style="margin-left: auto;margin-right: auto;" class="divChart" *ngIf="analyticsToShow == 'years' && noData && segement == 0">
               <canvas  id="linesYear" width="400" height="400"></canvas>
             </div>
+
+
+
+<day  [hourStart]="hourStart" [hourEnd]="hourEnd" [day]="day" *ngIf="analyticsToShowSponsor == 'hours' && segement == 2  "></day>
+<week  [changeWeekAdd]="changeWeekAdd" [weekchange]="dia" [sponsorLink]="sponsorLink" *ngIf="analyticsToShowSponsor == 'weeks' && segement == 2  "></week>
+<month  [changeMonthAdd]="changeMonthAdd" [monthchange]="month" [sponsorLink]="sponsorLink" *ngIf="analyticsToShowSponsor == 'months' && segement == 2  "></month>
+<year  [changeYearAdd]="changeYearAdd" [yearchange]="dateStart" [sponsorLink]="sponsorLink" *ngIf="analyticsToShowSponsor == 'years' && segement == 2  "></year>
+
+
            
-            <div  *ngIf="noData === false " >
+            <div  *ngIf="noData === false && segement == 0 " >
               <ion-text  color="black">
                 <h1 class="textNoData">No hay datos para esta fecha</h1>
               </ion-text>
@@ -727,10 +775,6 @@
     </ion-grid>
   </ion-card-content>
 </ion-card>
-
-
-
-
 
 
 

@@ -30,5 +30,41 @@ export interface IUser {
   connected: boolean;
   sponsors: ISponsor[];
   structure: INode;
-  geo:IGeo;
+  geo: IGeo;
+}
+
+export interface User {
+  name: string;
+  last_name: string;
+  email: string;
+  role: string;
+  photo: string;
+  phone: string;
+  _id: string;
+  birth_date: Date;
+  username: string;
+  lastConection: Date;
+  connected: boolean;
+  lang: string;
+  tutorial: boolean;
+  fcmtoken: string;
+  profile_user: string;
+  slider: string[];
+  estado: string;
+  photoBanner: string;
+  geo: IGeo;
+  structure: INode;
+  sport: string;
+  sponsors: ISponsor[];
+
+}
+
+export interface Followers {
+  follower: User;
+  _id: string;
+}
+
+export interface Followings {
+  user: User;
+  _id: string;
 }

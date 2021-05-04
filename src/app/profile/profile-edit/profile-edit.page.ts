@@ -1,15 +1,10 @@
 import { Component, OnInit, ElementRef, ViewChild } from "@angular/core";
-import { User, UserService } from "src/app/service/user.service";
-import {
-  ActionSheetController,
-  AlertController,
-  LoadingController,
-  ModalController,
-} from "@ionic/angular";
+import { UserService } from "src/app/service/user.service";
+import { AlertController, LoadingController } from "@ionic/angular";
 import { TranslateService } from "@ngx-translate/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { AvatarComponent } from "./avatar/avatar.component";
 import * as moment from "moment";
+import { User } from "src/app/models/IUser";
 
 @Component({
   selector: "app-profile-edit",
@@ -32,11 +27,11 @@ export class ProfileEditPage implements OnInit {
     window.onclick = () => {
       this.emojis = false;
     };
-    setTimeout(()=>{
+    setTimeout(() => {
       this.inputNode.el.addEventListener("focusout", (e) => {
         this.caretPosition = e.target.selectionStart;
       });
-    },3000)
+    }, 3000);
   }
 
   form = this.fb.group(
@@ -106,8 +101,7 @@ export class ProfileEditPage implements OnInit {
     this.userService
       .update(body)
       .toPromise()
-      .then((user:User) => {
-        
+      .then((user: User) => {
         this.userService.User = user;
         loading.dismiss();
         this.clearPass();
@@ -116,7 +110,6 @@ export class ProfileEditPage implements OnInit {
           this.translate.instant("profile_edit.success.message"),
           this.translate.instant("profile_edit.success.btn")
         );
-       
       })
       .catch((err) => {
         loading.dismiss();

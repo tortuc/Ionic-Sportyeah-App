@@ -1,7 +1,8 @@
-import { Component, EventEmitter, OnInit, Output } from "@angular/core";
+import { Component, Input, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
+import { ModalController } from "@ionic/angular";
+import { NewPostPage } from "src/app/dashboard/new-post/new-post.page";
 import { UserService } from "src/app/service/user.service";
-import { ViewsProfileService } from "src/app/service/views-profile.service";
 
 @Component({
   selector: "friends-mobile",
@@ -12,43 +13,38 @@ export class FriendsMobileComponent implements OnInit {
   constructor(
     public userService: UserService,
     private router: Router,
-    private viewsProfileService: ViewsProfileService
+    private modalController: ModalController
   ) {}
 
   ngOnInit() {}
 
-  @Output() post = new EventEmitter();
-  @Output() search = new EventEmitter();
+  @Input() profile: boolean = false;
 
-  newPost() {
-    this.post.emit(true);
-  }
-
-  searchFriend() {
-    this.search.emit(true);
+  open = false;
+  async newPost() {
+    if (!this.open) {
+      this.open = true;
+      const modal = await this.modalController.create({
+        component: NewPostPage,
+        backdropDismiss: false,
+      });
+      modal.onDidDismiss().then((data) => {
+        this.open = false;
+        // this.modalClose(data);
+      });
+      return modal.present();
+    }
   }
 
   goToMyProfile() {
     this.router.navigate(["/profile"]);
   }
 
-  goToProfile(id, username) {
-    if (id == this.userService.User._id) {
+  goToProfile(username) {
+    if (username == this.userService.User.username) {
       this.router.navigate(["/profile"]);
     } else {
-      this.userService.getUserByUsername(username).subscribe((resp: any) => {
-        this.viewsProfileService
-        .createProfileView(
-          { user:resp.user._id,
-           visitor:this.userService.User._id,
-           from:"search",
-           link: null
-         }
-         )
-          .subscribe((response) => {
-            this.router.navigate([`/user/${username}`]);
-          });
-      });
+      this.router.navigate([`/user/${username}`]);
     }
   }
 }

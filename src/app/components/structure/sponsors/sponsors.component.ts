@@ -9,7 +9,8 @@ import { ModalController } from '@ionic/angular'
 import { ISponsor } from "src/app/models/ISponsor"
 import { ReusableComponentsIonic } from "src/app/service/ionicHelpers.service"
 import { SponsorsCreateComponent } from "src/app/components/structure/sponsors-create/sponsors-create.component"
-
+import { UserService } from 'src/app/service/user.service';
+import { ViewsSponsorService } from "src/app/service/views-sponsor.service";
 @Component({
   selector: 'app-sponsor',
   templateUrl: './sponsors.component.html',
@@ -24,6 +25,10 @@ export class SponsorsNodeComponent implements OnInit {
    * Trae todos los sponsors para su muestreo
    */
   @Input() sponsors: ISponsor[]
+    /*
+   * El id del usuario con patrocinadores
+   */
+    @Input() idUser: string[]
   /*
    * Envia la respuesta al componente padre de los cambios realizados
    */
@@ -34,7 +39,9 @@ export class SponsorsNodeComponent implements OnInit {
      * Componentes reusables
      */
     public reusableCI: ReusableComponentsIonic,
-    public mc: ModalController
+    public mc: ModalController,
+    public userService:UserService,
+    private viewsSponsorService:ViewsSponsorService
   ) { }
 
   ngOnInit() {
@@ -68,7 +75,7 @@ export class SponsorsNodeComponent implements OnInit {
     }
   }
 
-  async modalCreate(edit:ISponsor= {url:'',image:'./assets/images/logox.png'}){
+  async modalCreate(edit:ISponsor= {url:'',image:'./assets/images/logox.png',name:''}){
     const modal = await this.mc.create({
       component: SponsorsCreateComponent,
       cssClass: '',
@@ -79,7 +86,22 @@ export class SponsorsNodeComponent implements OnInit {
     return data
   }
 
+
+
+
   go(url:string){
-    window.open('//'+url,"_blank")
+    this.viewsSponsorService
+    .createSponsorView(
+      {
+       user:this.idUser,
+       visitor:this.userService.User._id,
+       from:"profile",
+       link:null,
+       urlSponsor:url
+     }
+     )
+      .subscribe((response) => {
+        window.location.replace(url);
+      });
   }
-}
+} 

@@ -1,6 +1,6 @@
 import { GetMediaComponent } from './../../get-media/get-media.component';
 import { take } from "rxjs/operators";
-import { User, UserService } from "src/app/service/user.service";
+import {  UserService } from "src/app/service/user.service";
 import { AlertController, ModalController } from "@ionic/angular";
 import { 
   Component,
@@ -11,6 +11,7 @@ import {
 } from "@angular/core";
 import { ImgVideoUpload } from "src/app/service/reusable-img-video-logic.service"
 import { ReusableComponentsIonic } from "src/app/service/ionicHelpers.service"
+import { User } from 'src/app/models/IUser';
 
 /*
  * Componente para modificar los archivos multimedia.

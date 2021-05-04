@@ -1,15 +1,29 @@
-<div *ngIf="notified" style="text-align: center;color: rgb(105, 105, 105);">
-  Votaciones finalizadas 
+<div *ngIf="question?.notified" style="text-align: center; color: rgb(105, 105, 105)">
+  {{ "question.finish" | translate }}
 </div>
 <div *ngIf="question != undefined" class="questionDiv">
-  <div style="text-align: center;position: relative;color: white;padding-top: 10px;">
-    <h1>{{question.questionHeadline}}</h1>  
-  </div>    
-  <div (click)="selectAnswer(answer._id)" *ngFor="let answer of question.answer" class="progress-item" [ngClass]="answer._id | canVote:question.questionGroup._id:notified | async">
-    <ion-icon name="checkmark-circle-outline" class="voted"></ion-icon>
-    <p  style="position: absolute;left: 50px;z-index: 1000;top: 10px;">{{answer.option}}</p>
-    <p class="percentage">{{((100 * answer.users/question.total)).toFixed(1)}}%</p>
-    <ion-progress-bar class="barProgres"  [value]="((100 * answer.users/question.total)/100).toFixed(2)"  ></ion-progress-bar>
+  <div style="text-align: center; position: relative; padding-top: 10px">
+    <h3 style="margin-top: 0; color: black">{{ question.questionHeadline }}</h3>
   </div>
+  <div
+    (click)="selectAnswer(answer._id)"
+    *ngFor="let answer of question.answer"
+    class="progress-item"
+    [ngClass]="
+      answer._id | canVote: question.questionGroup._id:notified | async
+    "
+  >
+    <ion-icon name="checkmark-circle-outline" class="voted"></ion-icon>
+    <p style="position: absolute; padding-left: 20px; z-index: 1000">
+      {{ answer.option }}
+    </p>
+    <p class="percentage">
+      {{ ((answer.users / question.total) * 100).toFixed(1) }}%
+    </p>
+    <ion-progress-bar
+      class="barProgres"
+      [value]="(answer.users / question.total).toFixed(2)"
+    ></ion-progress-bar>
+  </div>
+  <p style="margin:0; color: black;">{{question.total}} votos</p>
 </div>
-

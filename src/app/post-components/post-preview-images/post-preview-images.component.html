@@ -1,0 +1,48 @@
+<div>
+  <div *ngIf="loading" style="text-align: center; padding: 10px">
+    <ion-spinner></ion-spinner>
+    <p style="margin: 2px;"> {{ "loading" | translate }}</p>
+  </div>
+  <ion-row>
+    <ion-col
+      style="text-align: center"
+      *ngFor="let file of files.slice(0, 4); let i = index"
+      [ngClass]="files.length > 1 ? 'file-content' : ''"
+      [size]="(files.length > 1 && file.format != 'link')? 6 : 12"
+    >
+      <div
+        (click)="seeFiles()"
+        style="cursor: pointer"
+        class="more"
+        *ngIf="i == 3 && files.length > 4"
+      >
+        <p>
+          {{ files.length - 3 }} {{ "post_preview_images.more" | translate }}
+        </p>
+      </div>
+      <span class="remove-file" (click)="removeFile(file.url)">x</span>
+      <img
+        (click)="seeFiles()"
+        *ngIf="file.format == 'image'"
+        style="cursor: pointer"
+        [ngClass]="files.length > 1 ? 'multi' : ''"
+        [src]="file.url"
+        alt=""
+      />
+
+      <video
+        (click)="seeFiles()"
+        *ngIf="file.format == 'video'"
+        style="width: 100%; background-color: black"
+        controls="controls"
+        preload="metadata"
+        webkit-playsinline="webkit-playsinline"
+        [ngClass]="files.length > 1 ? 'multi' : ''"
+      >
+        <source [src]="file.url | safeUrl" type="video/mp4" />
+      </video>
+      <attach-link-preview-post *ngIf="file.format == 'link'" [file]="file"></attach-link-preview-post>
+    
+    </ion-col>
+  </ion-row>
+</div>

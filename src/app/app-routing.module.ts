@@ -161,6 +161,12 @@ const routes: Routes = [
     loadChildren: () => import('./bet/bet.module').then( m => m.BetPageModule)
   },
   {
+    path: "search",
+    loadChildren: () =>
+      import("./pages/search/search.module").then((m) => m.SearchPageModule),
+    canActivate: [AuthGuardService],
+  },
+  {
     path:"**",
     loadChildren: () => import('./not-found/not-found.module').then( m => m.NotFoundPageModule)
   

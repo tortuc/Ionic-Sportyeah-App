@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import { AddFriendsPage } from 'src/app/dashboard/add-friends/add-friends.page';
@@ -10,6 +10,10 @@ import { UserService } from 'src/app/service/user.service';
   styleUrls: ['./friends-panel-desktop.component.scss'],
 })
 export class FriendsPanelDesktopComponent implements OnInit {
+  /**
+   * Solo es true si esta en la pagina del post
+   */
+  @Input() postPage: boolean = false;
 
   constructor(
     public userService:UserService,
@@ -31,7 +35,8 @@ export class FriendsPanelDesktopComponent implements OnInit {
    
     return await modal.present();
   }
- 
+  segment = "followings";
+
   
 }
 

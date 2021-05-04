@@ -72,6 +72,10 @@ export class RankingSinceEverComponent implements OnInit,OnChanges {
         this.getSearchData(country)
         break;
 
+      case '6':
+        this.getViewsProfileReboundAllTime(country)
+        break;
+
       default:
         break;
     }
@@ -95,7 +99,6 @@ export class RankingSinceEverComponent implements OnInit,OnChanges {
     
     this.rankingService.getRankingCommentsAllTime(this.userService.User._id,country).pipe(take(1))
     .subscribe((resp)=>{
-      console.log(resp);
 
       this.ranking = resp.ranking
       this.myPosition = resp.myPosition
@@ -152,8 +155,6 @@ export class RankingSinceEverComponent implements OnInit,OnChanges {
   getSearchData(country){
         
     this.rankingService.getViewsProfileSearchAllTime(this.userService.User._id,country).subscribe((resp)=>{
-      console.log(resp);
-      
       this.ranking = resp.ranking
       this.myPosition = resp.myPosition
       this.total = resp.total
@@ -161,6 +162,18 @@ export class RankingSinceEverComponent implements OnInit,OnChanges {
     },(e)=>{
       console.error(e);
       
+    })
+  }
+
+
+  getViewsProfileReboundAllTime(country){
+    this.rankingService.getViewsProfileReboundAllTime(this.userService.User._id,country).subscribe((resp)=>{
+      this.ranking = resp.ranking
+      this.myPosition = resp.myPosition
+      this.total = resp.total
+      this.load = true
+    },(e)=>{
+      console.error(e);
     })
   }
 
