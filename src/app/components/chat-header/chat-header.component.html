@@ -3,14 +3,14 @@
     <ion-avatar 
     class="mini" 
     style="cursor: pointer;"
-    (click)="userService.goToProfile((chat?.sender._id != userService.User?._id)?chat?.sender.username:chat?.receiver.username,'chat',null)"
+    (click)="userService.goToProfile((chat?.sender._id != userService.User?._id)?chat?.sender.username:chat?.receiver.username,chat?.receiver._id,'chat',null)"
     >
       <img [src]="(chat?.sender._id != userService.User?._id)?chat?.sender.photo:chat?.receiver.photo">
       <div class="connectedDIVlittle" *ngIf="chat?.sender._id != userService.User?._id ? chat?.sender.connected : chat?.receiver.connected"></div>
     </ion-avatar>
   </ion-thumbnail>
   <ion-label style="color: white;" >
-  <span style="cursor: pointer;" (click)="userService.goToProfile((chat?.sender._id != userService.User?._id)?chat?.sender.username:chat?.receiver.username,'chat',null)">
+  <span style="cursor: pointer;" (click)="userService.goToProfile((chat?.sender._id != userService.User?._id)?chat?.sender.username:chat?.receiver.username,chat?.receiver._id,'chat',null)">
 
   {{(chat?.sender._id != userService.User?._id)?chat?.sender.name:chat?.receiver.name}} {{(chat?.sender._id != userService.User?._id)?chat?.sender.last_name:chat?.receiver.last_name}} <br>
   </span>

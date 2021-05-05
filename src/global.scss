@@ -326,14 +326,14 @@ a {
   cursor: pointer;
 }
 
-.friends-card {
-  height: 80vh;
-  margin-top: 20px;
-  width: 30%;
-  position: fixed;
-  right: 20px;
-  overflow-y: scroll;
-}
+// .friends-card {
+//   height: 80vh;
+//   margin-top: 20px;
+//   width: 30%;
+//   position: fixed;
+//   right: 20px;
+//   overflow-y: scroll;
+// }
 
 .no-img {
   color: white;
@@ -758,12 +758,17 @@ ion-segment-button {
 }
 
 
-.no-padding{
-  padding: 0;
-}
+// .no-padding{
+//   padding: 0;
+// }
 
 .main-card-content {
   visibility: visible;
   max-width: 700px;
   margin: auto;
+}
+
+.home-grid{
+  padding: 5px;
+  height: 100%;
 }

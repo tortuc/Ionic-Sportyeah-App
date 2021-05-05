@@ -1018,5 +1018,6 @@
     "post":"Crear publicación",
     "search":"Buscar amigos",
     "chat":"ir al chat"
-  }
+  },
+  "isfollowing": "Siguiendo"
 }
