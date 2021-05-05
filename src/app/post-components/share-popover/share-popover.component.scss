@@ -1,0 +1,20 @@
+.options {
+  padding: 5px;
+  .item {
+    cursor: pointer;
+    margin: 2px;
+    padding: 8px;
+    text-align: left;
+    font-size: 16px;
+    border-radius: 10px;
+    span ion-icon{
+        vertical-align: middle;
+        font-size: 24px;
+    }
+
+    &:hover {
+      background: var(--color-secondary);
+      color: white;
+    }
+  }
+}

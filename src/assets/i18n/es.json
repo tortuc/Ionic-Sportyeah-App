@@ -378,8 +378,9 @@
   },
   "share": {
     "header": "Compartir",
-    "now": "Compartir",
-    "with": "Comparir en ..."
+    "now": "Compartir ahora",
+    "with": "Comparir en ...",
+    "wall":"Compartir"
   },
   "following": {
     "title": "Siguiendo"
