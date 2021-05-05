@@ -8,6 +8,7 @@ import { IonicModule } from "@ionic/angular";
 import { ChallengesPageRoutingModule } from "./challenges-routing.module";
 import { ChallengesPage } from "./challenges.page";
 import { ScrollbarDirective } from "ion-custom-scrollbar";
+import { ComponentsSharedModule } from "../shared-components/components-shared.module";
 
 @NgModule({
   imports: [
@@ -16,6 +17,7 @@ import { ScrollbarDirective } from "ion-custom-scrollbar";
     IonicModule,
     ChallengesPageRoutingModule,
     TranslateModule,
+    ComponentsSharedModule,
     ComponentsModule,
     PipesModule,
   ],
