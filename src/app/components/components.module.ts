@@ -36,14 +36,12 @@ import { FlexLayoutModule } from "@angular/flex-layout";
 import { TranslateModule } from "@ngx-translate/core";
 import { PostPageRoutingModule } from "../post/post-routing.module";
 import { IonicModule } from "@ionic/angular";
-import { MsgAudioComponent } from "./msg-audio/msg-audio.component";
 import { FriendsMobileComponent } from "./friends-mobile/friends-mobile.component";
 import { ContenteditableValueAccessorModule } from "@tinkoff/angular-contenteditable-accessor";
 import { DirectivesModule } from "../directives/directive.module";
 import { PickerModule } from "@ctrl/ngx-emoji-mart";
 import { NewProfilePhotoComponent } from "./new-profile-photo/new-profile-photo.component";
 import { MessageDeletedComponent } from "./message-deleted/message-deleted.component";
-import { ChatHeaderComponent } from "./chat-header/chat-header.component";
 import { FriendsPanelDesktopComponent } from "./friends-panel-desktop/friends-panel-desktop.component";
 import { LangsPage } from "../langs/langs.page";
 import { FollowNotificationComponent } from "./follow-notification/follow-notification.component";
@@ -59,7 +57,6 @@ import { OptionsWishComponent } from "./options-wish/options-wish.component";
 import { ViewFilesComponent } from "./view-files/view-files.component";
 import { ViewImageComponent } from "./view-image/view-image.component";
 import { EmojiModule } from "@ctrl/ngx-emoji-mart/ngx-emoji";
-import { MessageBasicComponent } from "./message-basic/message-basic.component";
 import { MessageDocumentComponent } from "./message-document/message-document.component";
 import { UrlPreviewComponent } from "./url-preview/url-preview.component";
 import { ReactionsPostsComponent } from "./reactions-posts/reactions-posts.component";
@@ -96,13 +93,11 @@ import { ComponentsSharedModule } from "../shared-components/components-shared.m
 
 const components = [
   ImageComponent,
-  MsgAudioComponent,
   ImageSeeComponent,
   FriendsMobileComponent,
   NewProfilePhotoComponent,
   ErrorComponent,
   MessageDeletedComponent,
-  ChatHeaderComponent,
   FriendsPanelDesktopComponent,
   LangsPage,
   FollowNotificationComponent,
@@ -124,7 +119,6 @@ const components = [
   PreviewFilesComponent,
   OptionsWishComponent,
   ViewImageComponent,
-MessageBasicComponent,
   MessageDocumentComponent,
   UrlPreviewComponent,
   ExperiencePage,

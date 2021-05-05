@@ -27,6 +27,10 @@ import { PreviewFilesChatComponent } from "./preview-files-chat/preview-files-ch
 import { RecordAudioComponent } from "./record-audio/record-audio.component";
 import { ViewFilesChatComponent } from "./view-files-chat/view-files-chat.component";
 import { ViewFilesChatSliderComponent } from "./view-files-chat-slider/view-files-chat-slider.component";
+import { ChatHeaderComponent } from "./chat-header/chat-header.component";
+import { MessageBasicComponent } from "./message-basic/message-basic.component";
+import { MsgAudioComponent } from "./msg-audio/msg-audio.component";
+import { ChatboxOptionsComponent } from "./chatbox-options/chatbox-options.component";
 
 const componets = [
   NewChatComponent,
@@ -46,7 +50,11 @@ const componets = [
   PreviewFilesChatComponent,
   RecordAudioComponent,
   ViewFilesChatComponent,
-  ViewFilesChatSliderComponent
+  ViewFilesChatSliderComponent,
+  ChatHeaderComponent,
+  MessageBasicComponent,
+  MsgAudioComponent,
+  ChatboxOptionsComponent
 ];
 
 @NgModule({

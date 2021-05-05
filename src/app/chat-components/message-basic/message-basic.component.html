@@ -1,0 +1,56 @@
+<ion-card
+  class="msg "
+  [ngClass]="message.user._id == userService.User?._id ? 'my-msg' : ''"
+>
+  <ion-grid>
+    <ion-row>
+      <ion-col *ngIf="userService.User?._id != message.user._id" style="padding: 0">
+        <msg-user-preview [user]="message.user"></msg-user-preview>
+      </ion-col>
+      <ion-icon
+        style="z-index: 100"
+        *ngIf="message.user._id == userService.User?._id"
+        name="chevron-down"
+        class="msg-options-icon"
+        (click)="options($event, message)"
+      ></ion-icon>
+      <ion-col size="12" style="padding: 0">
+        <p
+          style="padding: 5px"
+          *ngIf="message.files.length > 0 && landing == true"
+        >
+          <ion-icon class="landing-img" name="image"></ion-icon>
+          {{ "chat.image_landing" | translate }}
+        </p>
+
+        <p class="msg-text" [innerHTML]="message.message | links | icons"></p>
+
+        <preview-wishlist-message
+          *ngIf="message.information?.type == 'wishlist'"
+          [message]="message"
+        ></preview-wishlist-message>
+        <view-files-chat *ngIf="message.files.length > 0 && !landing" [files]="message.files" ></view-files-chat>
+        <iframe
+        *ngIf="message.message | youtube"
+        [src]="message.message | youtube"
+        frameborder="0"
+      ></iframe>
+      <url-preview class="chat" *ngIf="preview && !(message.message | youtube)" [preview]="preview" ></url-preview>
+
+      </ion-col>
+      
+      <ion-col size="12" class="col-date">
+        <span class="date"
+          >{{ message.date | customDisplayDate }}
+          <ion-icon
+            *ngIf="message.user._id == userService.User?._id"
+            [ngClass]="message.read ? 'read' : ''"
+            name="checkmark-done"
+            style="font-size: 20px; vertical-align: middle"
+          ></ion-icon
+        ></span>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-card>
+ 

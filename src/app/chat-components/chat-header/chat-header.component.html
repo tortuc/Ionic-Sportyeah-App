@@ -1,0 +1,86 @@
+<ion-item style="--background: inherit">
+  <ion-icon
+    *ngIf="!landing"
+    slot="start"
+    style="color: white; cursor: pointer; margin-right: 10px"
+    (click)="closeChat()"
+    name="arrow-back"
+  ></ion-icon>
+  <ion-thumbnail slot="start">
+    <ion-avatar
+      *ngIf="!chat.group"
+      class="mini"
+      style="cursor: pointer"
+      (click)="
+        userService.goToProfile(
+          chat?.sender._id != userService.User?._id
+            ? chat?.sender.username
+            : chat?.receiver.username
+        )
+      "
+    >
+      <img
+        [src]="
+          chat?.sender._id != userService.User?._id
+            ? chat?.sender.photo
+            : chat?.receiver.photo
+        "
+      />
+      <div
+        class="connectedDIVlittle"
+        *ngIf="
+          chat?.sender._id != userService.User?._id
+            ? chat?.sender.connected
+            : chat?.receiver.connected
+        "
+      ></div>
+    </ion-avatar>
+
+    <ion-avatar
+      *ngIf="chat.group"
+      class="mini"
+      style="cursor: pointer; background: white"
+      (click)="infoGroup()"
+    >
+      <img [src]="chat.image" />
+    </ion-avatar>
+  </ion-thumbnail>
+  <ion-label *ngIf="!chat.group" style="color: white">
+    <span
+      style="cursor: pointer"
+      (click)="
+        userService.goToProfile(
+          chat?.sender._id != userService.User?._id
+            ? chat?.sender.username
+            : chat?.receiver.username
+        )
+      "
+    >
+      {{
+        chat?.sender._id != userService.User?._id
+          ? chat?.sender.name
+          : chat?.receiver.name
+      }}
+      {{
+        chat?.sender._id != userService.User?._id
+          ? chat?.sender.last_name
+          : chat?.receiver.last_name
+      }}
+      <br />
+    </span>
+  </ion-label>
+
+  <ion-label *ngIf="chat.group" style="color: white">
+    <span style="cursor: pointer" (click)="infoGroup()">
+      {{ chat.name }}
+    </span>
+  </ion-label>
+
+  <ion-icon
+    *ngIf="!landing"
+    slot="end"
+    style="color: white; cursor: pointer; margin-right: 10px"
+    (click)="optionsChatBox($event)"
+    name="ellipsis-vertical-outline"
+  ></ion-icon>
+</ion-item>

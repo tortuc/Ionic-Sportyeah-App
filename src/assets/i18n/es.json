@@ -326,17 +326,7 @@
     "input": "¿Qué estás pensando?",
     "btn": "Comentar"
   },
-  "chat": {
-    "title": "Chat",
-    "input_placeholder": "Deja un mensaje...",
-    "contacts": {
-      "err_header": "Error",
-      "err_message": "No se pudo acceder a la lista de contactos",
-      "err_button": "Aceptar"
-    },
-    "new": "Nuevo chat",
-    "start_chat": "¡Empiea a chatear con uno de tus amigos!"
-  },
+
   "contacts": {
     "title": "Contactos"
   },
@@ -380,7 +370,7 @@
     "header": "Compartir",
     "now": "Compartir ahora",
     "with": "Comparir en ...",
-    "wall":"Compartir"
+    "wall": "Compartir"
   },
   "following": {
     "title": "Siguiendo"
@@ -760,7 +750,7 @@
     "title": {
       "club": "Club",
       "input": "Ingrese el nombre de su equipo, selección, etc",
-      "text":"Estructura"
+      "text": "Estructura"
     },
     "subtitle": {
       "club": "Club",
@@ -959,30 +949,30 @@
     },
     "finish": "Votaciones finalizadas"
   },
-  "seeImg":"Ver Imagen",
-  "ranking":{
-    "today":"Hoy",
-    "week":"Semana",
-    "month":"Mes",
-    "year":"Año",
-    "sinceEver":"Desde siempre",
-    "slide":"Desliza para filtrar" 
-   },
-  "gostructure":"Ver la estructura",
-  "error":{
-    "img-upload":"Error al subir la imagen",
-    "video-upload":"Error al subir el vídeo",
-    "camera":"Error al abrir la cámara",
-    "invalidFormat":"Formato invalido"
+  "seeImg": "Ver Imagen",
+  "ranking": {
+    "today": "Hoy",
+    "week": "Semana",
+    "month": "Mes",
+    "year": "Año",
+    "sinceEver": "Desde siempre",
+    "slide": "Desliza para filtrar"
   },
-  "success":{
-    "img-upload":"Imagen subida con éxito",
-    "video-upload":"Vídeo subido con éxito",
-    "youtube-link":"Vídeo subido con éxito",
-    "sponsors-updated":"Los patrocinadores fueron actualizados"
+  "gostructure": "Ver la estructura",
+  "error": {
+    "img-upload": "Error al subir la imagen",
+    "video-upload": "Error al subir el vídeo",
+    "camera": "Error al abrir la cámara",
+    "invalidFormat": "Formato invalido"
   },
-  "info":{
-    "img-upload":"Subiendo imagen, por favor espere..."
+  "success": {
+    "img-upload": "Imagen subida con éxito",
+    "video-upload": "Vídeo subido con éxito",
+    "youtube-link": "Vídeo subido con éxito",
+    "sponsors-updated": "Los patrocinadores fueron actualizados"
+  },
+  "info": {
+    "img-upload": "Subiendo imagen, por favor espere..."
   },
   "panel": {
     "seeAll": "Ver todos",
@@ -998,29 +988,114 @@
       "message": "Grupos mas populares de kecuki! unete a uno"
     }
   },
-  "timeLimit":"Límite de Tiempo",
-  "create_challenge":{
-    "header":"¡Crea tu reto para SportYeah!",
-    "invalid_field":"Este campo es invalido"
-
+  "timeLimit": "Límite de Tiempo",
+  "create_challenge": {
+    "header": "¡Crea tu reto para SportYeah!",
+    "invalid_field": "Este campo es invalido"
   },
-  "rememberme":"Mantener sesion abierta",
+  "rememberme": "Mantener sesion abierta",
   "search_page": {
     "search": "Buscar...",
     "users_popular": "Usuarios más populares en Sportyeah!",
     "more": "Ver mas resultados"
   },
-  "delete_post":{
-    "header":"Eliminar publicación",
-    "message":"¿Seguro que deseas eliminar esta publicación?"
+  "delete_post": {
+    "header": "Eliminar publicación",
+    "message": "¿Seguro que deseas eliminar esta publicación?"
   },
-  "accept":"Aceptar",
+  "accept": "Aceptar",
   "search_image_from": "Buscar imagen desde",
-  "reload":"Actualizar",
-  "edit_at":"Editado el dia",
-  "main_card_user":{
-    "post":"Crear publicación",
-    "search":"Buscar amigos",
-    "chat":"ir al chat"
+  "reload": "Actualizar",
+  "edit_at": "Editado el dia",
+  "main_card_user": {
+    "post": "Crear publicación",
+    "search": "Buscar amigos",
+    "chat": "ir al chat"
+  },
+  "isfollowing": "Siguiendo",
+
+  "chat": {
+    "my_chats": "Mi chats",
+    "title": "Chat",
+    "input_placeholder": "Deja un mensaje...",
+    "contacts": {
+      "err_header": "Error",
+      "err_message": "No se pudo acceder a la lista de contactos",
+      "err_button": "Aceptar"
+    },
+    "new": "Nuevo chat",
+    "image_landing": "Envio una imagen/video",
+    "no_chats": "Crea un chat con alguien de tu red o un grupo abierto para que cualquiera pueda sumarse y comentar!!!",
+    "no_chat": "Crea un chat con alguien de tu red o un grupo abierto para que cualquiera pueda sumarse y comentar!!!",
+    "options": {
+      "new_chat": "Nuevo chat",
+      "new_group": "Nuevo grupo",
+      "close": "cerrar",
+      "pending_users": "Usuarios pendientes por aceptar"
+    },
+    "group": {
+      "new": {
+        "header": "Nuevo grupo",
+        "search": "Buscar...",
+        "next": "Siguiente",
+        "create": "Crear grupo"
+      },
+      "options": {
+        "visit": "visitar perfil de {{name}} {{last_name}}",
+        "chat": "Enviar un mensaje a {{name}} {{last_name}}",
+        "make_admin": "Hacerlo administrador",
+        "discard_admin": "Descartar como administrador",
+        "kick": "Expulsar del grupo"
+      },
+      "leave": {
+        "header": "Dejar grupo",
+        "message": "Seguro deseas dejar este grupo?",
+        "button": "Salirme del grupo"
+      },
+      "kick": {
+        "header": "Expulsar del grupo",
+        "message": "Seguro expulsar del grupo a {{name}} {{last_name}}?",
+        "button": "Expulsar del grupo"
+      },
+      "image": {
+        "delete": {
+          "header": "Eliminar imagen",
+          "message": "Seguro deseas eliminar la imagen de este grupo?",
+          "title": "Eliminar imagen"
+        },
+        "title": "Imagen del grupo",
+        "galery": "Galeria",
+        "camera": "Camara"
+      },
+      "invitation": {
+        "header": "Has sido invitado a unirte al grupo",
+        "no_exist": "El grupo que estas intentado buscar, no existe."
+      },
+      "public_groups": "Grupos públicos",
+      "name": "Nombre del grupo",
+      "add-users": "Añadir participantes",
+      "join": "Unirme al grupo",
+      "privacy": "Privacidad del grupo",
+      "admin": "admin",
+      "you": "Tú",
+      "invitation_url": "Enlace de invitacion al grupo",
+      "created": "Creado el",
+      "addUsers": {
+        "acceptPlural": "Aceptar participantes al grupo",
+        "acceptSingular": "Aceptar",
+        "reject": "Rechazar",
+        "header": "Añadir participantes al grupo",
+        "button": "Añadir",
+        "noUsersToAdd": "No hay usuarios por aceptar"
+      },
+      "privacy_type": {
+        "public": "Público",
+        "private": "Privado"
+      }
+    },
+    "clear": {
+      "header": "Vaciar chat",
+      "message": "Seguro deseas vaciar este chat?"
+    }
   }
 }
