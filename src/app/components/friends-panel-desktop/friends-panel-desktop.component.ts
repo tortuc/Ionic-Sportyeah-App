@@ -1,7 +1,6 @@
 import { Component, OnInit,Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
-import { AddFriendsPage } from 'src/app/dashboard/add-friends/add-friends.page';
 import { UserService } from 'src/app/service/user.service';
 
 @Component({
@@ -27,14 +26,7 @@ export class FriendsPanelDesktopComponent implements OnInit {
     this.router.navigate(["/profile"])
   }
 
-  async searchFriend(){
-    let modal = await this.modalController.create({
-      component: AddFriendsPage,
-      cssClass: 'my-custom-class'
-    });
-   
-    return await modal.present();
-  }
+
   segment = "followings";
 
   

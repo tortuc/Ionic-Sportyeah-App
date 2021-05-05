@@ -109,9 +109,8 @@
         *ngIf="question.questionGroup"
         #editQuestionHash
         [question]="question.questionGroup"
-        [badDate]="badDate"
-        (delete)="deleteQuestion($event)"
-        (edit)="editQuestion($event)"
+        (delete)="deleteQuestion()"
+        (edit)="editQuestion()"
       ></edit-question>
     </ion-col>
   </ion-row>

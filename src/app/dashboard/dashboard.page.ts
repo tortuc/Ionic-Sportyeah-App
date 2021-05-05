@@ -22,7 +22,6 @@ import { IPost, IPostC } from "../models/iPost";
 import { LoginService } from "../service/login.service";
 import { PostService } from "../service/post.service";
 import { UserService } from "../service/user.service";
-import { AddFriendsPage } from "./add-friends/add-friends.page";
 import { NewPostPage } from "./new-post/new-post.page";
 import { JdvimageService } from "../service/jdvimage.service";
 import { ReusableComponentsIonic } from "../service/ionicHelpers.service";
@@ -186,14 +185,7 @@ export class DashboardPage implements OnInit, AfterViewInit {
     return await modal.present();
   }
 
-  async searchFriend() {
-    let modal = await this.modalController.create({
-      component: AddFriendsPage,
-      cssClass: "my-custom-class",
-    });
 
-    return await modal.present();
-  }
 
   async langs(ev) {
     let langs = await this.popover.create({

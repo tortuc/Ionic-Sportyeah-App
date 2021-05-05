@@ -36,7 +36,6 @@ import { FlexLayoutModule } from "@angular/flex-layout";
 import { TranslateModule } from "@ngx-translate/core";
 import { PostPageRoutingModule } from "../post/post-routing.module";
 import { IonicModule } from "@ionic/angular";
-import { AddFriendsPage } from "../dashboard/add-friends/add-friends.page";
 import { MsgAudioComponent } from "./msg-audio/msg-audio.component";
 import { FriendsMobileComponent } from "./friends-mobile/friends-mobile.component";
 import { ContenteditableValueAccessorModule } from "@tinkoff/angular-contenteditable-accessor";
@@ -115,7 +114,6 @@ import { UserItemComponent } from "../componets/user-item/user-item.component";
   ],
   declarations: [
     ImageComponent,
-    AddFriendsPage,
     MsgAudioComponent,
     ImageSeeComponent,
     FriendsMobileComponent,
@@ -198,7 +196,6 @@ import { UserItemComponent } from "../componets/user-item/user-item.component";
   ],
   exports: [
     ImageComponent,
-    AddFriendsPage,
     ExperiencePage,
     AptitudesPage,
     ImageSeeComponent,
