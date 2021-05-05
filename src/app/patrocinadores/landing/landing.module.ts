@@ -25,7 +25,8 @@ import { PostComponetsModule } from 'src/app/post-components/post-componets.modu
     TranslateModule,
     ComponentsModule,
     PipesModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    PostComponetsModule
   ],
   declarations: [
     LandingPage,
@@ -36,8 +37,8 @@ import { PostComponetsModule } from 'src/app/post-components/post-componets.modu
     CreateProductComponent,
     ProductsComponent,
     AnaliticsViewsComponent,
-    ChangeComponent,
-    PostComponetsModule
+    ChangeComponent
+    
   ]
 })
 export class LandingPageModule {}

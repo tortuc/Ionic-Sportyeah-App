@@ -71,7 +71,7 @@
           </ion-card-header>
           <ion-card-content>
             {{'dashboard.friends' | translate}}
-            <ion-item (click)="searchFriend()" style="cursor: pointer">
+            <ion-item routerLink="/search" style="cursor: pointer">
               <ion-label>{{'dashboard.search_friend' | translate}}</ion-label>
             </ion-item>
             <ion-item *ngFor="let friend of userService.followings">

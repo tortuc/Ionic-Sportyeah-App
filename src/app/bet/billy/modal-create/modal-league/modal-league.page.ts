@@ -13,6 +13,9 @@ export class ModalLeaguePage implements OnInit {
   ngOnInit() {
   }
 
+  open1 = false
+  open = false
+
   modalCloseLeague() {
     this.modalController.dismiss();
   }
