@@ -36,16 +36,11 @@ import { FlexLayoutModule } from "@angular/flex-layout";
 import { TranslateModule } from "@ngx-translate/core";
 import { PostPageRoutingModule } from "../post/post-routing.module";
 import { IonicModule } from "@ionic/angular";
-import { MsgAudioComponent } from "./msg-audio/msg-audio.component";
-import { FriendsMobileComponent } from "./friends-mobile/friends-mobile.component";
 import { ContenteditableValueAccessorModule } from "@tinkoff/angular-contenteditable-accessor";
 import { DirectivesModule } from "../directives/directive.module";
 import { PickerModule } from "@ctrl/ngx-emoji-mart";
-import { NewProfilePhotoComponent } from "./new-profile-photo/new-profile-photo.component";
-import { ChatUserItemComponent } from "./chat-user-item/chat-user-item.component";
 import { MessageDeletedComponent } from "./message-deleted/message-deleted.component";
 import { ChatHeaderComponent } from "./chat-header/chat-header.component";
-import { FriendsPanelDesktopComponent } from "./friends-panel-desktop/friends-panel-desktop.component";
 import { LangsPage } from "../langs/langs.page";
 import { FollowNotificationComponent } from "./follow-notification/follow-notification.component";
 import { UnfollowNotificationComponent } from "./unfollow-notification/unfollow-notification.component";
@@ -63,7 +58,6 @@ import { ChatBoxComponent } from "./chat-box/chat-box.component";
 import { EmojiModule } from "@ctrl/ngx-emoji-mart/ngx-emoji";
 import { MessageBasicComponent } from "./message-basic/message-basic.component";
 import { MessageDocumentComponent } from "./message-document/message-document.component";
-import { UrlPreviewComponent } from "./url-preview/url-preview.component";
 import { ReactionsPostsComponent } from "./reactions-posts/reactions-posts.component";
 import { ViewProfileComponent } from "./view-profile/view-profile.component";
 import { AwardsPage } from "../profile/awards/awards.page";
@@ -90,23 +84,16 @@ import { DayComponent } from "./analitics-views/day/day.component";
 import { MonthComponent } from "./analitics-views/month/month.component";
 import { WeekComponent } from "./analitics-views/week/week.component";
 import { YearComponent } from "./analitics-views/year/year.component";
-import { AddUsersPanelDesktopComponent } from "./add-users-panel-desktop/add-users-panel-desktop.component";
 import { FollowBtn } from "./profile-challenges/follow-btn.component";
 import { UserItemComponent } from "./user-item/user-item.component";
-import { UserItemPanelComponent } from "./users/user-item-panel/user-item-panel.component";
 import { ComponentsSharedModule } from "../shared-components/components-shared.module";
 
 const components = [
   ImageComponent,
-  MsgAudioComponent,
   ImageSeeComponent,
-  FriendsMobileComponent,
-  NewProfilePhotoComponent,
-  ChatUserItemComponent,
   ErrorComponent,
   MessageDeletedComponent,
   ChatHeaderComponent,
-  FriendsPanelDesktopComponent,
   LangsPage,
   FollowNotificationComponent,
   UnfollowNotificationComponent,
@@ -130,7 +117,6 @@ const components = [
   ChatBoxComponent,
   MessageBasicComponent,
   MessageDocumentComponent,
-  UrlPreviewComponent,
   ExperiencePage,
   AwardsPage,
   LinkYoutubeComponent,
@@ -174,8 +160,6 @@ const components = [
   MonthComponent,
   WeekComponent,
   YearComponent,
-  AddUsersPanelDesktopComponent,
-  UserItemPanelComponent,
   UserItemComponent,
   FollowBtn
 ]

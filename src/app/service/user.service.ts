@@ -262,7 +262,7 @@ export class UserService {
             { user:idUser,
              visitor:this.User._id,
              from:from,
-             link: link!=null?`${link}`:link
+             link: link!=undefined?`${link}`:link
            }
            )
             .subscribe(() => {

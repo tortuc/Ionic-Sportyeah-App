@@ -21,7 +21,7 @@
           <div
             *ngIf="ranking[1] != undefined"
             class="tilt-in-fwd-tl"
-            (click)="userService.goToProfile(ranking[1]._id.user.username,ranking[1]._id.user._id)"
+            (click)="userService.goToProfile(ranking[1]._id.user.username,ranking[1]._id.user._id,'ranking',undefined)"
           >
             <ion-avatar
               style="margin-left: auto; margin-right: auto; cursor: pointer"
@@ -76,7 +76,7 @@
             *ngIf="ranking[0] != undefined"
             class="slide-in-bottom"
             (click)="
-              userService.goToProfile(ranking[0]._id.user.username,ranking[0]._id.user._id)
+              userService.goToProfile(ranking[0]._id.user.username,ranking[0]._id.user._id,'ranking',undefined)
             "
           >
             <ion-avatar style="margin-left: auto; margin-right: auto">
@@ -129,7 +129,7 @@
           <div
             *ngIf="ranking[2] != undefined"
             (click)="
-              userService.goToProfile(ranking[2]._id.user.username,ranking[2]._id.user.id_)
+              userService.goToProfile(ranking[2]._id.user.username,ranking[2]._id.user._id,'ranking',undefined)
             "
             class="tilt-in-fwd-tr"
           >
