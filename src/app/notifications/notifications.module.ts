@@ -11,6 +11,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { TranslateModule } from '@ngx-translate/core';
 import { PipesModule } from '../pipes/pipes.module';
 import { ComponentsModule } from '../components/components.module';
+import { ComponentsSharedModule } from '../shared-components/components-shared.module';
 
 @NgModule({
   imports: [
@@ -20,6 +21,7 @@ import { ComponentsModule } from '../components/components.module';
     NotificationsPageRoutingModule,
     FlexLayoutModule,
     TranslateModule,
+    ComponentsSharedModule,
     ComponentsModule,
     PipesModule
   ],

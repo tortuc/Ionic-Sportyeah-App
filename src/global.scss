@@ -261,8 +261,8 @@ a {
 }
 
 .img-user {
-  width: 150px;
-  height: 150px;
+  width: 120px;
+  height: 120px;
   margin: auto;
 }
 .img-user-mini {
@@ -734,6 +734,14 @@ ion-segment-button {
   box-shadow: none !important;
 }
 
+.rounded {
+  border-radius: 15px !important;
+  overflow: hidden;
+}
+
+.ion-button-modal {
+  --box-shadow: none !important;
+}
 .questionDiv {
   border-radius: 15px;
   margin-top: 10px;

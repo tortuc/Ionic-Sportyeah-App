@@ -207,6 +207,9 @@
   },
   "sidebar": {
     "home": "Muro de Publicaciones",
+    "bet": "Apuestas",
+    "tournament": "Torneos",
+    "billy": "Porras",
     "friends": "Buscar amigos",
     "profile": "Mi Perfil",
     "chat": "Chatear",
@@ -375,8 +378,9 @@
   },
   "share": {
     "header": "Compartir",
-    "now": "Compartir",
-    "with": "Comparir en ..."
+    "now": "Compartir ahora",
+    "with": "Comparir en ...",
+    "wall":"Compartir"
   },
   "following": {
     "title": "Siguiendo"

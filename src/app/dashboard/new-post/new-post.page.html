@@ -64,6 +64,7 @@
           ></iframe>
         </form>
         <post-shared
+          [sharing]="true"
           *ngIf="post || news"
           [post]="post"
           [news]="news"
@@ -136,7 +137,6 @@
         <edit-question
           #editQuestionHash
           [question]="question.questionGroup"
-          [badDate]="badDate"
           (delete)="deleteQuestion()"
           (edit)="editQuestion()"
         ></edit-question>

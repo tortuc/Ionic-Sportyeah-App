@@ -1,7 +1,7 @@
 <div *ngIf="post" [ngClass]="{'disabled':disabled}">
   <ion-card ngClass.xs="m-p-0 " class="m-0"  style="width: 100%;">
     <post-content [post]="post"></post-content>
-    <header-post [displayOptions]="false" class="user-header" [post]="post" ></header-post>       
+    <header-post [sharing]="sharing" [displayOptions]="false"  [post]="post" ></header-post>       
    
   </ion-card>
 </div>
@@ -69,7 +69,7 @@
   
   <ion-card style="width: 40%;margin: auto;height: 82%; cursor: pointer;" (click)="OpenNews()">
     <ion-card-header>
-      <header-post [displayOptions]="false" class="user-header" [post]="newsShared" ></header-post>       
+      <header-post [displayOptions]="false" [post]="newsShared" ></header-post>       
     </ion-card-header>
     
   </ion-card>

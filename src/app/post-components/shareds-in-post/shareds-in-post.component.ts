@@ -5,6 +5,7 @@ import {
   ActionSheetController,
   ModalController,
   Platform,
+  PopoverController,
 } from "@ionic/angular";
 import { TranslateService } from "@ngx-translate/core";
 import { IPost } from "src/app/models/iPost";
@@ -17,6 +18,7 @@ import { SocialSharing } from "@ionic-native/social-sharing/ngx";
 import { ShareService } from "src/app/service/share.service";
 import { NewPostPage } from "src/app/dashboard/new-post/new-post.page";
 import { SharedsPostComponent } from "../shareds-post/shareds-post.component";
+import { SharePopoverComponent } from "../share-popover/share-popover.component";
 
 const { Share } = Plugins;
 
@@ -38,7 +40,8 @@ export class SharedsInPostComponent implements OnInit {
     public userService: UserService,
     private platform: Platform,
     private socialShare: SocialSharing,
-    private shareService: ShareService
+    private shareService: ShareService,
+    private popover: PopoverController
   ) {}
 
   /**
@@ -91,55 +94,107 @@ export class SharedsInPostComponent implements OnInit {
     }
   }
 
-  async shared(post) {
-    let action = await this.actionSheetCtrl.create({
-      header: this.translate.instant("share.header"),
-      buttons: [
-        {
-          text: this.translate.instant("share.now"),
-          icon: "arrow-redo-outline",
-          handler: async () => {
-            if (!this.userService.User) {
-              this.loginService.goToLogin(`/post/${post._id}`);
-            } else {
-              this.shareNow(post);
-            }
+  async shared(ev) {
+    if (this.platform.is("mobile")) {
+      let action = await this.actionSheetCtrl.create({
+        header: this.translate.instant("share.header"),
+        buttons: [
+          {
+            text: this.translate.instant("share.now"),
+            icon: "arrow-redo-outline",
+            handler: () => {
+              this.shareRigthNow();
+            },
           },
-        },
-        {
-          text: this.translate.instant("share.with"),
-          icon: "arrow-redo-outline",
-          handler: async () => {
-            if (this.platform.is("mobile")) {
-              this.socialShare.share(
-                this.translate.instant("share_with.text"),
-                this.translate.instant("share_with.title"),
-                null,
-                `https://app.kecuki.com/post/${post._id}`
-              );
-            } else {
-              this.sharedWeb(post);
-            }
+          {
+            text: this.translate.instant("share.wall"),
+            icon: "create-outline",
+            handler: async () => {
+              if (!this.userService.User) {
+                this.loginService.goToLogin(`/post/${this.post._id}`);
+              } else {
+                this.shareNow();
+              }
+            },
           },
-        },
+          {
+            text: this.translate.instant("share.with"),
+            icon: "arrow-redo-outline",
+            handler: async () => {
+              this.shareWith();
+            },
+          },
 
-        {
-          text: this.translate.instant("cancel"),
-          icon: "close",
-          role: "cancel",
-          cssClass: "cancel",
-        },
-      ],
+          {
+            text: this.translate.instant("cancel"),
+            icon: "close",
+            role: "cancel",
+            cssClass: "cancel",
+          },
+        ],
+      });
+      action.present();
+    } else {
+      this.openPopover(ev);
+    }
+  }
+  shareWith() {
+    if (this.platform.is("mobile")) {
+      this.socialShare.share(
+        this.translate.instant("share_with.text"),
+        this.translate.instant("share_with.title"),
+        null,
+        `https://app.sportyeah.com/post/${this.post._id}`
+      );
+    } else {
+      this.sharedWeb();
+    }
+  }
+
+  async openPopover(ev) {
+    let popover = await this.popover.create({
+      component: SharePopoverComponent,
+      event: ev,
+      showBackdrop: false,
     });
-    action.present();
+    popover.onDidDismiss().then((response) => {
+      switch (response.data) {
+        case "now":
+          this.shareRigthNow();
+          break;
+        case "wall":
+          this.shareNow();
+          break;
+        case "with":
+          this.shareWith();
+        default:
+          break;
+      }
+    });
+    popover.present();
+  }
+
+  shareRigthNow() {
+    let post = {
+      user: this.userService.User._id,
+      post: this.post.post ? this.post.post._id : this.post._id,
+    };
+    this.postService
+      .create(post)
+      .toPromise()
+      .then((post: IPost) => {
+        this.postService.newPost(post._id);
+      })
+      .catch((err) => {});
   }
 
   /**
-   * Compartir en el muro de kecuki
+   * Compartir en el muro de sportyeah
    * @param post cuerpo de la publicacion
    * @returns
    */
-  async shareNow(post) {
+  async shareNow() {
+    let  post =  this.post.post ? this.post.post : this.post
     if (!this.modalOpen) {
       this.modalOpen = true;
       const modal = await this.modalController.create({
@@ -159,7 +214,7 @@ export class SharedsInPostComponent implements OnInit {
   /**
    * Compartir al exterior, desde la web
    */
-  async sharedWeb(post: IPost) {
+  async sharedWeb() {
     let action = await this.actionSheetCtrl.create({
       header: this.translate.instant("share.header"),
       buttons: [
@@ -170,7 +225,7 @@ export class SharedsInPostComponent implements OnInit {
             window.open(
               `https://twitter.com/intent/tweet?text=${this.translate.instant(
                 "share_with.text"
-              )}&url=https://app.kecuki.com/post/${post._id}`,
+              )}&url=https://app.sportyeah.com/post/${this.post._id}`,
               "_blank"
             );
             this.socketService.socket.emit("shared", "twitter");
@@ -184,7 +239,7 @@ export class SharedsInPostComponent implements OnInit {
             window.open(
               `https://wa.me/?text=${this.translate.instant(
                 "share_with.text"
-              )} https://app.kecuki.com/post/${post._id}`,
+              )} https://app.sportyeah.com/post/${this.post._id}`,
               "_blank"
             );
             this.socketService.socket.emit("shared", "whatsapp");
@@ -196,7 +251,7 @@ export class SharedsInPostComponent implements OnInit {
           icon: "logo-facebook",
           handler: () => {
             window.open(
-              ` https://www.facebook.com/sharer/sharer.php?u=https://app.kecuki.com/post/${post._id}`,
+              ` https://www.facebook.com/sharer/sharer.php?u=https://app.sportyeah.com/post/${this.post._id}`,
               "_blank"
             );
             this.socketService.socket.emit("shared", "facebook");
@@ -209,11 +264,11 @@ export class SharedsInPostComponent implements OnInit {
 
           handler: () => {
             window.open(
-              `http://www.linkedin.com/shareArticle?mini=true&url=https://app.kecuki.com/post/${
-                post._id
+              `http://www.linkedin.com/shareArticle?mini=true&url=https://app.sportyeah.com/post/${
+                this.post._id
               }&title=${this.translate.instant(
                 "share_with.text"
-              )}&summary=Kecuki&source=app.kecuki.com`,
+              )}&summary=sportyeah&source=app.sportyeah.com`,
               "_blank"
             );
             this.socketService.socket.emit("shared", "linkedin");
@@ -227,7 +282,7 @@ export class SharedsInPostComponent implements OnInit {
             this.clipboard.copy(
               `${this.translate.instant(
                 "share_with.text"
-              )} https://app.kecuki.com/post/${post._id}`
+              )} https://app.sportyeah.com/post/${this.post._id}`
             );
             this.socketService.socket.emit("shared", "copy");
           },

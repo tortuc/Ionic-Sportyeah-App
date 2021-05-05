@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { getToken } from '../helpers/token';
-import { IPost, IPostFile } from '../models/iPost';
+import { INewPost, IPost, IPostFile } from '../models/iPost';
 import { UserService } from './user.service';
 import {Howl, Howler} from 'howler';
 import { JdvimageService } from './jdvimage.service';
@@ -29,7 +29,7 @@ constructor(
   private alertCtrl:AlertController,
 ) { }
 audio = new Howl({
-  src:['../../assets/sounds/comment.mp3']
+  src:['assets/sounds/comment.mp3']
 })
 
 
@@ -40,7 +40,7 @@ public  commentAudio(){
 
 
 
-create(body:IPost){
+create(body:INewPost){
   return this.http.post(`${environment.URL_API}/post/create`,body)
 }
 
@@ -264,12 +264,16 @@ fileRemovedSuscriber() {
     alert.present();
   }
 
+
+
+
    // observable para cuando hay una nueva publicacion
    private newPost$ = new Subject<string>();
 
    // manda un evento para todos los observables suscritos
    newPost(id: string) {
      this.newPost$.next(id);
+     this.commentAudio()
    }
  
    // funcion para suscribirse al observable de la nueva publicacion

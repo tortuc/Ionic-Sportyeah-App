@@ -3,13 +3,21 @@ import { User } from "./IUser";
 export interface IPost {
   _id: string | string;
   user: User;
-  post: string | null;
+  post: IPost | null;
   message: string;
   files: IPostFile[];
-
+  question:any;
   date: Date;
   edited: Date;
   deleted: boolean;
+  news?:any;
+  views:any[];
+}
+export interface INewPost {
+  user: string;
+  post?: string;
+  message?: string;
+  files?: IPostFile[];
 }
 
 //Noticia
@@ -34,6 +42,7 @@ export interface ILike {
   date: Date;
   _id: string;
   deleted: boolean;
+  type:number;
 }
 
 export interface IComment {
@@ -45,6 +54,7 @@ export interface IComment {
   date: Date;
   _id: string;
   deleted: boolean;
+  question:any;
 }
 
 export interface IPostC {

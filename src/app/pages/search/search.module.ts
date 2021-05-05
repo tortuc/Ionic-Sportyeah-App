@@ -12,6 +12,7 @@ import { PipesModule } from '../../pipes/pipes.module';
 import { DirectivesModule } from '../../directives/directive.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { TranslateModule } from '@ngx-translate/core';
+import { ComponentsSharedModule } from 'src/app/shared-components/components-shared.module';
 
 @NgModule({
   imports: [
@@ -19,12 +20,13 @@ import { TranslateModule } from '@ngx-translate/core';
     FormsModule,
     IonicModule,
     SearchPageRoutingModule,
-    ComponentsModule,
     PipesModule,
     DirectivesModule,
     FlexLayoutModule,
     ReactiveFormsModule,
-    TranslateModule
+    TranslateModule,
+    ComponentsSharedModule,
+    ComponentsModule
   ],
   declarations: [SearchPage]
 })

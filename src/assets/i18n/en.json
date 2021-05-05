@@ -199,6 +199,9 @@
   },
   "sidebar": {
     "home": "Wall Posts",
+    "bet": "bet",
+    "tournament": "Tournaments",
+    "billy": "Billy",
     "profile": "My Profile",
     "friends": "Search Friends",
     "chat": "Chat",

@@ -30,6 +30,8 @@ export class HeaderPostComponent implements OnInit {
 
   @Input() views: string;
 
+  @Input() sharing: boolean = false;
+
   constructor(
     public userService: UserService,
     private router: Router,
@@ -65,24 +67,6 @@ export class HeaderPostComponent implements OnInit {
 
   goToPost(id) {
     this.router.navigate([`/post/${id}`]);
-  }
-
-  goToSponsor(sponsor, id, post_id) {
-    if (id != this.userService.User._id) {
-      this.viewsSponsorService
-        .createSponsorView({
-          user: id,
-          visitor: this.userService.User._id,
-          from: "post",
-          link: `/post/${post_id}`,
-          urlSponsor: sponsor,
-        })
-        .subscribe((response) => {
-          window.open("//" + sponsor, "_blank");
-        });
-    } else {
-      window.open("//" + sponsor, "_blank");
-    }
   }
 
   options(data) {
@@ -160,6 +144,24 @@ export class HeaderPostComponent implements OnInit {
   modalClose(data) {
     if (data.edited) {
       this.edited.emit();
+    }
+  }
+
+  goToSponsor(sponsor) {
+    if (this.post.user._id != this.userService.User._id) {
+      this.viewsSponsorService
+        .createSponsorView({
+          user: this.post.user._id,
+          visitor: this.userService.User._id,
+          from: "post",
+          link: `/post/${this.post._id}`,
+          urlSponsor: sponsor.url,
+        })
+        .subscribe((response) => {
+          window.open("//" + sponsor.url, "_blank");
+        });
+    } else {
+      window.open("//" + sponsor.url, "_blank");
     }
   }
 }

@@ -1,0 +1,24 @@
+.ion-img-league {
+
+    ion-img {
+        --width: 100px !important;
+    }
+}
+
+.ion-list-matches {
+    ion-grid {
+        margin-left: unset;
+        -webkit-margin-start: var(--ion-margin, 20px);
+        margin-inline-start: var(--ion-margin, 20px);
+    }
+
+    ion-title {
+        font-size: 14px;
+    }
+
+    ion-img {
+        width: 35px;
+        margin-left:auto;
+        margin-right:auto;
+    }
+}

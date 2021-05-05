@@ -2,7 +2,6 @@ import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { ModalController } from "@ionic/angular";
 import { ImageComponent } from "../chat/image/image.component";
-import { AddFriendsPage } from "../dashboard/add-friends/add-friends.page";
 import { PostService } from "../service/post.service";
 import { UserService } from "../service/user.service";
 import { ViewsProfileService } from "src/app/service/views-profile.service";
@@ -133,12 +132,7 @@ export class PostPage implements OnInit {
       }
   }
 
-  async searchFriend(){
-    let modal = await this.modalController.create({
-      component: AddFriendsPage,
-      cssClass: 'my-custom-class'
-    });
-  }
+ 
 
   goToMyProfile() {
     this.router.navigate(["/profile"]);
