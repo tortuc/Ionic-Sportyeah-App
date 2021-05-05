@@ -93,8 +93,8 @@ import { YearComponent } from "./analitics-views/year/year.component";
 import { AddUsersPanelDesktopComponent } from "./add-users-panel-desktop/add-users-panel-desktop.component";
 import { UserItemPanelComponent } from "./users/user-item-panel/user-item-panel.component";
 import { ComponentsSharedModule } from "../shared-components/components-shared.module";
-import { UserItemComponent } from "../componets/user-item/user-item.component";
 import { FollowBtn } from "./profile-challenges/follow-btn.component";
+import { UserItemComponent } from "./user-item/user-item.component";
 
 const components = [
   ImageComponent,
