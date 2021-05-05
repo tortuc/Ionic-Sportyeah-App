@@ -1,0 +1,57 @@
+.selected {
+  --background: #9ae6c09c;
+}
+
+.user-select {
+  text-align: center;
+  display: inline-grid;
+  text-align: -webkit-center;
+  grid-gap: 5px;
+}
+
+.change-img {
+  font-size: 25px;
+  position: absolute;
+  right: -6px;
+  bottom: 5px;
+  color: var(--color-green);
+}
+
+.not-friends {
+  text-align: center;
+  padding: 20px;
+}
+
+ion-header,
+ion-footer {
+  background: white;
+}
+
+.img-group {
+  position: relative;
+  cursor: pointer;
+  img {
+    height: 50px;
+    width: 50px;
+  }
+}
+
+.emojis {
+  ::ng-deep .emoji-mart {
+    width: 100% !important;
+  }
+}
+
+.privacy {
+  text-align: center;
+  padding-bottom: 5px;
+  p {
+    margin: 0;
+  }
+  span {
+    cursor: pointer;
+  }
+  ion-toggle {
+    vertical-align: middle;
+  }
+}

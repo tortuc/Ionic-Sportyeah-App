@@ -1,0 +1,58 @@
+<ion-card class="chat-card m-0">
+  <ion-card-header style="padding: 0px !important" class="main-bg chat-header">
+    <chat-header [chat]="chat" (clean)="clean()"></chat-header>
+  </ion-card-header>
+
+  <ion-content #chatMessage [scrollEvents]="true" (ionScrollEnd)="logScrollEnd($event)" class="chat-content">
+    <ion-grid>
+      <ion-row>
+        <ion-col *ngIf="empty" class="empty-content">
+          <chat-empty
+            [chat]="chat"
+            [friend]="
+              chat?.sender?._id != userService.User?._id
+                ? chat?.sender
+                : chat?.receiver
+            "
+          ></chat-empty>
+        </ion-col>
+        <ion-col
+          *ngIf="loadMessages"
+          class="empty-content"
+          style="justify-content: center"
+        >
+          <p><ion-spinner></ion-spinner></p>
+        </ion-col>
+        <ion-col size="12" *ngFor="let msg of messages" style="padding: 0px">
+          <section *ngIf="!msg.deleted && !msg.audio">
+            <message-basic [message]="msg"></message-basic>
+          </section>
+
+          <section *ngIf="!msg.deleted && msg.audio">
+            <msg-audio [message]="msg"></msg-audio>
+          </section>
+
+          <section *ngIf="msg.deleted">
+            <message-deleted [message]="msg"> </message-deleted>
+          </section>
+        </ion-col>
+
+        <div class="new-messages" *ngIf="newMessages > 0">
+          <ion-button (click)="goDown()"
+            ><span style="color: white"
+              >{{ "new_messages" | translate }} {{ newMessages }}
+              <ion-icon
+                class="down-button"
+                name="arrow-down-outline"
+              ></ion-icon></span
+          ></ion-button>
+        </div>
+      </ion-row>
+    </ion-grid>
+  </ion-content>
+  <chat-box-message-zone
+    [chat]="chat"
+    #messageZone
+    class="chat-footer"
+  ></chat-box-message-zone>
+</ion-card>

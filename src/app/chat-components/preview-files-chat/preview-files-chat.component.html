@@ -1,0 +1,24 @@
+<div class="all-content">
+  <div *ngFor="let file of files" class="scale-in-center">
+    <ion-icon name="close" class="close" (click)="close(file.url)"></ion-icon>
+    <div class="file-content image" *ngIf="file.format === 'image'">
+      <img [src]="file.url" alt="" />
+    </div>
+    <div class="file-content video" *ngIf="file.format === 'video'">
+      <video
+        [src]="file.url | safeUrl"
+        [muted]="true"
+        autoplay="false"
+        alt=""
+      ></video>
+    </div>
+    <div class="file-content document" *ngIf="file.format === 'document'">
+      <div>
+        <p class="icon"><ion-icon name="document-outline"></ion-icon></p>
+        <p class="name">{{ file.name }}</p>
+      </div>
+    </div>
+    <attach-link-preview-post  *ngIf="file.format == 'link'" [file]="file"></attach-link-preview-post>
+
+  </div>
+</div>

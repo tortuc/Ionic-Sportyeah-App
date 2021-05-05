@@ -1,0 +1,165 @@
+<ion-header>
+  <ion-toolbar class="main-bg">
+    <ion-title style="--color: white">{{
+      "chat.group.new.header" | translate
+    }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismiss()" style="--color: white"
+        ><ion-icon name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+
+  <ion-searchbar
+    *ngIf="step == 1"
+    placeholder="{{ 'chat.group.new.search' | translate }}"
+    (ionChange)="filter($event)"
+  >
+  </ion-searchbar>
+
+  <div
+    *ngIf="usersSelect.length > 0 && step == 1"
+    class="friends-mobile"
+    style="padding: 10px"
+  >
+    <div
+      style="text-align: center"
+      class="scale-in-center"
+      *ngFor="let user of usersSelect"
+      (click)="pushUser(user)"
+    >
+      <ion-avatar class="xmini" style="margin: 0 8px">
+        <img [src]="user.photo" />
+      </ion-avatar>
+      <span style="font-size: 12px">{{ user.name }}</span>
+    </div>
+  </div>
+  <div *ngIf="step == 2">
+    <div style="padding: 10px; font-size: 12px; text-align: center">
+      {{ "group_name" | translate }}
+    </div>
+    <input
+      #openImage
+      type="file"
+      accept="image/*"
+      (change)="uploadImg($event)"
+      hidden
+    />
+    <form [formGroup]="form">
+      <div style="display: flex; padding: 10px; gap: 15px; flex-wrap: wrap">
+        <div class="img-group" (click)="openImage.click()">
+          <img [src]="form.controls.image.value" />
+          <ion-icon name="create" class="change-img"></ion-icon>
+        </div>
+
+        <div style="flex: auto">
+          <ion-item style="height: 100%">
+            <ion-input
+              (click)="stopPropagation($event)"
+              (focusout)="focusout($event)"
+              formControlName="name"
+              placeholder="Nombre"
+            ></ion-input>
+            <ion-icon
+              (click)="openEmojis($event)"
+              style="color: #7c19b4; cursor: pointer"
+              slot="end"
+              name="happy"
+              #emojiButton
+            ></ion-icon>
+          </ion-item>
+        </div>
+      </div>
+      <div (click)="stopPropagation($event)">
+        <emoji-mart
+          class="emojis"
+          *ngIf="emojis"
+          (emojiClick)="addEmoji($event)"
+          title="Pick your emoji…"
+          emoji="point_up"
+          [showPreview]="false"
+        ></emoji-mart>
+      </div>
+    </form>
+    <div class="privacy">
+      <p>{{ "group_privacy" | translate }}</p>
+      <div>
+        <span (click)="privacy = false">{{ "private" | translate }}</span>
+        <ion-toggle [(ngModel)]="privacy"></ion-toggle>
+        <span (click)="privacy = true">{{ "public" | translate }}</span>
+      </div>
+    </div>
+  </div>
+</ion-header>
+
+<ion-content>
+  <div *ngIf="step == 1">
+    <div class="not-friends" *ngIf="allUsers.length == 0">
+      <img src="assets/logos/text_bear.png" style="height: 70px" alt="" />
+      <p>{{ "new_chat_not_friends" | translate }}</p>
+      <ion-button
+        class="btn-green"
+        (click)="modalCtrl.dismiss()"
+        routerLink="/search"
+        ><span
+          ><ion-icon name="search-outline"></ion-icon
+          >{{ "search_your_friends" | translate }}</span
+        ></ion-button
+      >
+    </div>
+    <ion-item
+      *ngFor="let user of users"
+      style="cursor: pointer"
+      [ngClass]="isSelect(user.user)"
+      (click)="pushUser(user.user)"
+    >
+      <ion-thumbnail slot="start">
+        <ion-avatar class="mini">
+          <img [src]="user.user.photo" />
+        </ion-avatar>
+      </ion-thumbnail>
+      <ion-label>
+        <span>{{ user.user.name }} {{ user.user.last_name }} </span><br />
+        <span style="font-size: 12px">@{{ user.user.username }}</span>
+      </ion-label>
+      <ion-icon
+        name="checkmark"
+        *ngIf="isSelect(user.user) == 'selected'"
+      ></ion-icon>
+    </ion-item>
+  </div>
+
+  <div *ngIf="step == 2" style="padding: 10px; font-size: 12px">
+    {{ "new_group_users" | translate }}
+  </div>
+
+  <div
+    *ngIf="usersSelect.length > 0 && step == 2"
+    class="friends-mobile"
+    style="padding: 10px 20px"
+  >
+    <div class="scale-in-center user-select" *ngFor="let user of usersSelect">
+      <ion-avatar class="xmini" style="margin: 0 8px">
+        <img [src]="user.photo" />
+      </ion-avatar>
+      <span style="font-size: 12px">{{ user.name }}</span>
+    </div>
+  </div>
+</ion-content>
+<ion-footer>
+  <ion-button
+    *ngIf="step == 1"
+    (click)="next()"
+    class="btn-green"
+    style="float: right; margin: 10px"
+    >{{ "chat.group.new.next" | translate }}</ion-button
+  >
+  <ion-button
+    *ngIf="step == 2"
+    [disabled]="form.invalid"
+    (click)="create()"
+    class="btn-green"
+    style="float: right; margin: 10px"
+    >{{ "chat.group.new.create" | translate }}</ion-button
+  >
+</ion-footer>

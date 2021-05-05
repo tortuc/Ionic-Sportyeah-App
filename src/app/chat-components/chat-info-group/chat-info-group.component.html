@@ -1,0 +1,138 @@
+<ion-content
+  class="main-bg"
+  *ngIf="public_group == false; else public_group_block"
+>
+  <div style="height: 100%">
+    <ion-icon
+      class="close"
+      name="close"
+      (click)="modalCtrl.dismiss()"
+    ></ion-icon>
+    <ion-avatar class="big" (click)="seeImage()">
+      <ion-img [src]="chat.image"></ion-img>
+    </ion-avatar>
+    <div style="color: white; text-align: center">
+      <span [ngSwitch]="chat.group_privacy">
+        <small *ngSwitchCase="'public'">
+          {{ "chat.group.privacy_type.public" | translate }}
+        </small>
+        <small *ngSwitchCase="'private'">
+          {{ "chat.group.privacy_type.private" | translate }}
+        </small>
+      </span>
+      <h2 style="margin: 2px; color: white">
+        {{ chat.name }}
+        <ion-icon
+          style="cursor: pointer"
+          (click)="editName()"
+          name="create-outline"
+        ></ion-icon>
+      </h2>
+      <p class="date-info">
+        {{ "chat.group.created" | translate }}
+        {{ chat.date | customDisplayDate }}
+      </p>
+      <ion-button class="btn-delete btn-small" (click)="leave()">
+        <ion-icon name="exit" style="margin-right: 0.5em"></ion-icon>
+        {{ "chat.group.leave.button" | translate }}</ion-button
+      >
+    </div>
+    <ion-list style="background: none !important">
+      <ion-item
+        class="user-item"
+        (click)="notifyTextCopied()"
+        cdkCopyToClipboard="{{ environment.URL_WEB }}/group/{{ chat._id }}"
+      >
+        <ion-thumbnail slot="start">
+          <ion-avatar class="mini add-users-img">
+            <ion-icon class="add-users" name="link"></ion-icon>
+          </ion-avatar>
+        </ion-thumbnail>
+        <ion-label>
+          <span>{{ "chat.group.invitation_url" | translate }}</span>
+        </ion-label>
+      </ion-item>
+      <ion-item
+        *ngIf="admin && chat.group_privacy == 'private'"
+        class="user-item"
+        (click)="pendingUsers()"
+      >
+        <ion-thumbnail slot="start">
+          <ion-avatar class="mini add-users-img">
+            <ion-icon class="add-users" name="people"></ion-icon>
+          </ion-avatar>
+        </ion-thumbnail>
+        <ion-label>
+          <span>{{ "chat.group.addUsers.acceptPlural" | translate }}</span>
+        </ion-label>
+      </ion-item>
+      <ion-item
+        *ngIf="chat.admins.includes(userService.User?._id)"
+        class="user-item"
+        (click)="addUsers()"
+      >
+        <ion-thumbnail slot="start">
+          <ion-avatar class="mini add-users-img">
+            <ion-icon class="add-users" name="person-add"></ion-icon>
+          </ion-avatar>
+        </ion-thumbnail>
+        <ion-label>
+          <span>{{ "chat.group.add-users" | translate }}</span>
+        </ion-label>
+      </ion-item>
+      <user-in-group-item
+        *ngFor="let user of chat.users"
+        [user]="user"
+        [admins]="chat.admins"
+        (click)="optionUser(user, $event)"
+      ></user-in-group-item>
+    </ion-list>
+  </div>
+</ion-content>
+
+<ng-template #public_group_block>
+  <ion-content class="main-bg">
+    <div style="height: 100%">
+      <ion-icon
+        class="close"
+        name="close"
+        (click)="modalCtrl.dismiss()"
+      ></ion-icon>
+      <ion-avatar class="big" (click)="seeImage(false)">
+        <ion-img [src]="chat.image"></ion-img>
+      </ion-avatar>
+      <div style="color: white; text-align: center">
+        <h2 style="margin: 2px; color: white">{{ chat.name }}</h2>
+        <p class="date-info">
+          {{ "chat.group.created" | translate }}
+          {{ chat.date | customDisplayDate }}
+        </p>
+        <ion-button class="btn-green btn-small" (click)="join()">{{
+          "chat.group.join" | translate
+        }}</ion-button>
+      </div>
+      <ion-list style="background: none !important">
+        <ion-item
+          class="user-item"
+          (click)="notifyTextCopied()"
+          cdkCopyToClipboard="{{ environment.URL_WEB }}/group/{{ chat._id }}"
+        >
+          <ion-thumbnail slot="start">
+            <ion-avatar class="mini add-users-img">
+              <ion-icon class="add-users" name="link"></ion-icon>
+            </ion-avatar>
+          </ion-thumbnail>
+          <ion-label>
+            <span>{{ "chat.group.invitation_url" | translate }}</span>
+          </ion-label>
+        </ion-item>
+
+        <user-in-group-item
+          *ngFor="let user of chat.users"
+          [user]="user"
+          [admins]="chat.admins"
+        ></user-in-group-item>
+      </ion-list>
+    </div>
+  </ion-content>
+</ng-template>

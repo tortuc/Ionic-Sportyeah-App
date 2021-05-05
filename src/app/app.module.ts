@@ -30,8 +30,9 @@ import { IonicRatingModule } from "ionic4-rating";
 import { Camera } from "@ionic-native/camera/ngx";
 import { SocialSharing } from "@ionic-native/social-sharing/ngx";
 import { LoadingInterceptor } from "./interceptors/loading.interceptor";
-import { IonCustomScrollbarModule } from 'ion-custom-scrollbar'
+import { IonCustomScrollbarModule } from "ion-custom-scrollbar";
 import { CookieService } from "ngx-cookie-service";
+import { Keyboard } from "@ionic-native/keyboard/ngx";
 
 @NgModule({
   declarations: [AppComponent],
@@ -68,6 +69,8 @@ import { CookieService } from "ngx-cookie-service";
     Camera,
     SocialSharing,
     CookieService,
+    Keyboard,
+
     {
       provide: HTTP_INTERCEPTORS,
       useClass: LoadingInterceptor,

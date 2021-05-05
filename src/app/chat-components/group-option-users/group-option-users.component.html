@@ -1,0 +1,27 @@
+<ion-list>
+  <ion-item (click)="visit()">
+    <ion-label>
+      {{'chat.group.options.visit' | translate:user}}
+    </ion-label>
+  </ion-item>
+  <ion-item (click)="createChat(user)">
+    <ion-label>
+      {{'chat.group.options.chat' | translate:user}}
+    </ion-label>
+  </ion-item>
+  <ion-item (click)="option('admin')" *ngIf="admins.includes(userService.User?._id) && !admins.includes(user._id)">
+    <ion-label>
+      {{'chat.group.options.make_admin' | translate}}
+    </ion-label>
+  </ion-item>
+  <ion-item (click)="option('discard_admin')" *ngIf="admins.includes(userService.User?._id) && admins.includes(user._id)">
+    <ion-label>
+      {{'chat.group.options.discard_admin' | translate}}
+    </ion-label>
+  </ion-item>
+  <ion-item (click)="option('kick')" *ngIf="admins.includes(userService.User?._id)">
+    <ion-label>
+      {{'chat.group.options.kick' | translate}}
+    </ion-label>
+  </ion-item>
+</ion-list>

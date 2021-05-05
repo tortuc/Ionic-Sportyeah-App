@@ -1,0 +1,11 @@
+.chat-item {
+  cursor: pointer;
+  &:hover {
+    --background: #b8edd3;
+  }
+}
+
+.chat-name {
+  color: black;
+  font-weight: 500;
+}

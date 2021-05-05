@@ -1,0 +1,24 @@
+<div
+  style="width: 100%; height: 100%; background-color: black; padding: 32px 0px"
+>
+  <ion-icon
+    name="arrow-back-outline"
+    class="go-back"
+    (click)="modalCtrl.dismiss()"
+  ></ion-icon>
+  <span class="title">{{ "chat.group.image.title" | translate }}</span>
+  <ion-icon
+    *ngIf="inChat"
+    name="create-outline"
+    class="edit-img"
+    (click)="edit()"
+  ></ion-icon>
+  <ion-img [src]="image" style="height: 100%; width: 100%"></ion-img>
+  <input
+    #openImage
+    type="file"
+    accept="image/*"
+    (change)="uploadImg($event)"
+    hidden
+  />
+</div>

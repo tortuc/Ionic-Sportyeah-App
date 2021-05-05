@@ -1,9 +1,9 @@
 <ion-header [fxShow.xs]="(!chat)?true:false">
-  <ion-toolbar  class="main-bg">
+  <ion-toolbar class="toolbar-bg">
     <ion-buttons slot="start">
-      <ion-menu-button style="color: white;"></ion-menu-button>
+      <ion-menu-button style="color: white"></ion-menu-button>
     </ion-buttons>
-    <ion-title style="--color:white">{{'chat.title' | translate}}</ion-title>
+    <ion-title style="--color: white">{{'chat.title' | translate}}</ion-title>
     <ion-buttons slot="end">
       <button-search-friend></button-search-friend>
 
@@ -12,90 +12,114 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content  >
-  <ion-grid  class="p-0"  style="height: 100%;">
-    <ion-row  style="height: 100%;">
-      <ion-col size-lg="4" fxShow.lt-md="false" style="height: 100%;">
-        <ion-card class="friends-chat-card m-0" >
-          <ion-card-header style="padding: 0px !important;" class="main-bg">
-            <ion-item lines="none" style="--background:inherit">
+<ion-content>
+  <ion-grid class="p-0" style="height: 100%">
+    <ion-row style="height: 100%">
+      <ion-col
+        *ngIf="!chat || mobileQuery.matches"
+        size-lg="4"
+        style="height: 100%"
+        ngClass.xs="p-0"
+      >
+        <ion-card class="friends-chat-card m-0">
+          <ion-card-header style="padding: 0px !important" class="main-bg">
+            <ion-item lines="none" style="--background: inherit">
               <ion-thumbnail slot="start">
                 <ion-avatar class="mini" routerLink="/profile">
-                  <img [src]="userService.User?.photo">
+                  <img [src]="userService.User?.photo" />
                 </ion-avatar>
               </ion-thumbnail>
-              <ion-title class="sport-title">SPORTYEAH!</ion-title>
-              <ion-icon slot="end" (click)="newChat()" name="chatbox" style="color:white !important;cursor: pointer;"></ion-icon>
+              <ion-label style="color: white; font-size: 24px">
+                KECUKI
+              </ion-label>
+              <ion-icon
+                slot="end"
+                (click)="newChat()"
+                name="chatbox"
+                style="color: white !important; cursor: pointer"
+              ></ion-icon>
+              <ion-icon
+                slot="end"
+                (click)="options($event)"
+                name="ellipsis-vertical-outline"
+                style="color: white !important; cursor: pointer"
+              ></ion-icon>
             </ion-item>
-          
-           
           </ion-card-header>
-          <ion-card-content class="p-0">
-            <chat-user-item *ngFor="let item of chatService.chats"   [item]="item" (selected)="setChat($event)"></chat-user-item>
+          <ion-segment (ionChange)="segmentChanged($event)">
+            <ion-segment-button value="my_chats">
+              <ion-label>{{'chat.my_chats' | translate}}</ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="public_groups">
+              <ion-label>{{'chat.group.public_groups' | translate}}</ion-label>
+            </ion-segment-button>
+          </ion-segment>
+          <ion-card-content class="p-0" *ngIf="activeSegment == 'my_chats'">
+            <chat-user-item
+              *ngFor="let item of chatService.chats"
+              [item]="item"
+              (selected)="setChat($event)"
+            ></chat-user-item>
+            <div
+              *ngIf="chatService.loading && chatService.chats.length == 0"
+              style="text-align: center; padding: 10px"
+            >
+              <ion-spinner></ion-spinner>
+            </div>
+            <div
+              *ngIf="chatService.chats.length == 0 && !chatService.loading"
+              style="color: black; text-align: center; padding: 10px"
+            >
+              <p>{{'chat.no_chats' | translate}}</p>
+              <ion-button (click)="newChat()" class="btn-green-small"
+                >{{'chat.new' | translate}}</ion-button
+              >
+            </div>
+          </ion-card-content>
+          <ion-card-content
+            class="p-0"
+            *ngIf="activeSegment == 'public_groups'"
+          >
+            <ion-searchbar
+              placeholder="{{'chat.group.new.search' | translate}}"
+              (ionChange)="searchPublicGroups($event)"
+            ></ion-searchbar>
+
+            <div style="text-align: center; margin-top: 0.5em">
+              <ion-spinner *ngIf="searchLoading"></ion-spinner>
+            </div>
+            <chat-user-item
+              *ngFor="let item of chatService.groups"
+              [item]="item"
+              (selected)="optionsChatBox($event)"
+            ></chat-user-item>
           </ion-card-content>
         </ion-card>
-
-      </ion-col>
-      <ion-col size="12" *ngIf="!chat" ngClass.xs="p-0"  fxShow.gt-sm="false" style="height: 100%;">
-        <ion-card class="friends-chat-card m-0" >
-          <ion-card-header style="padding: 0px !important;" class="main-bg">
-            <ion-item lines="none" style="--background:inherit">
-              <ion-thumbnail slot="start">
-                <ion-avatar class="mini"  routerLink="/profile">
-                  <img [src]="userService.User?.photo">
-                </ion-avatar>
-              </ion-thumbnail>
-              <ion-icon slot="end" (click)="newChat()" name="chatbox" style="color:white !important;cursor: pointer;"></ion-icon>
-            </ion-item>
-          
-           
-          </ion-card-header>
-          <ion-card-content class="p-0">
-            <chat-user-item *ngFor="let item of chatService.chats"   [item]="item" (selected)="setChat($event)"></chat-user-item>
-
-           
-          </ion-card-content>
-        
-        </ion-card>
-
-      </ion-col>
-  
-      <ion-col ngClass.xs="p-0" *ngIf="chat"   size-xs="12"  size-lg="8"  style="height: 100%; max-height: 100%;">
-        <chat-box [chat]="chat" (closeEvent)="chat = null"></chat-box>
-     
       </ion-col>
 
-
-      <ion-col ngClass.xs="p-0" *ngIf="!chat"   size-xs="12"  size-lg="8"  style="height: 100%; max-height: 100%;">
-        <ion-card  class="chat-card  m-0 "  >
-          <ion-content #chatMessage  class="chat-content "> 
-            <ion-grid>
-              <ion-row >
-
-                <ion-col size="12">
-                  <ion-header >
-                    <ion-toolbar class="toolbar" >
-                      <ion-title style="color:black">{{'chat.start_chat' | translate}}</ion-title>
-                    </ion-toolbar>
-                  </ion-header>
-                </ion-col>
-
-                <ion-col size="12">
-                  <img class="image" src="https://img.icons8.com/clouds/452/chat-messages.png" alt="logo de sportyeah">
-                  <img class="basket" src="https://img.icons8.com/cotton/452/basketball--v1.png" alt="logo de sportyeah">
-                  <img class="pingpong" src="https://img.icons8.com/dusk/452/ping-pong.png" alt="logo de sportyeah">
-                  <img class="voley" src="https://img.icons8.com/cotton/452/volleyball.png" alt="logo de sportyeah">
-                  <img class="rugby" src="https://img.icons8.com/dusk/452/sport.png" alt="logo de sportyeah">
-                </ion-col>
-                
-              </ion-row>  
-            </ion-grid>
-          </ion-content>
-        </ion-card>
+      <ion-col
+        ngClass.xs="p-0"
+        *ngIf="chat"
+        size-xs="12"
+        size-lg="8"
+        style="height: 100%; max-height: 100%"
+      >
+        <chat-box [chat]="chat"></chat-box>
       </ion-col>
-   
-  </ion-row>
-  
+      <ion-col
+        ngClass.xs="p-0"
+        *ngIf="!chat"
+        fxShow.xs="false"
+        size-xs="12"
+        size-lg="8"
+        style="height: 100%; max-height: 100%"
+      >
+        <div style="text-align: center; padding: 40px">
+          <h2>{{'chat.no_chat' | translate}}</h2>
+
+          <img class="chat-img" src="assets/logos/text_bear.png" alt="" />
+        </div>
+      </ion-col>
+    </ion-row>
   </ion-grid>
 </ion-content>
-

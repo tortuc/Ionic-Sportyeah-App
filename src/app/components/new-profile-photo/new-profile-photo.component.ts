@@ -6,7 +6,7 @@ import { Plugins, CameraResultType, CameraSource } from '@capacitor/core';
 import { AvatarComponent } from 'src/app/profile/profile-edit/avatar/avatar.component';
 import { JdvimageService } from 'src/app/service/jdvimage.service';
 
-const { Camera ,Filesystem} = Plugins;
+const { Camera } = Plugins;
 
 @Component({
   selector: 'new-profile-photo',

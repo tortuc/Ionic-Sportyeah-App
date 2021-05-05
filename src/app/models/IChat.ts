@@ -1,11 +1,19 @@
-import { User } from "./IUser";
-
+import { IPostFile } from './iPost';
+import { User } from './IUser';
 
 export interface IChat {
     _id:string
     sender:User
     receiver:User
     date:Date
+    group:boolean
+    group_privacy:string
+    image:string
+    users:User[]
+    admins:User[]
+    pending:User[]
+    closed:boolean
+    name:string
 }
 
 export interface IMessage {
@@ -13,12 +21,11 @@ export interface IMessage {
     date:Date
     user:User
     message:string
-    image:string
     read:boolean
     audio:string
     deleted:boolean
-    video:string
-    document:any
+    information:any
+    files:IPostFile[]
 }
 
 export interface IChatList {

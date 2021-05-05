@@ -1,0 +1,134 @@
+<ion-grid class="chat-footer main-bg">
+  <form [formGroup]="form">
+    <ion-row *ngIf="files.length > 0">
+      <preview-files-chat
+        style="max-width: 100%"
+        [(files)]="files"
+      ></preview-files-chat>
+    </ion-row>
+
+    <ion-row>
+      <input
+        #openImage
+        type="file"
+        accept="image/*,video/*"
+        (change)="uploadImg($event)"
+        multiple
+        hidden
+      />
+      <input
+        #openDocument
+        type="file"
+        accept="application/*"
+        (change)="uploadDocumet($event)"
+        multiple
+        hidden
+      />
+      <div (click)="stopPropagation($event)">
+        <emoji-mart
+          [style]="{ width: '100%' }"
+          *ngIf="emojis"
+          (emojiClick)="addEmoji($event)"
+          title="Pick your emoji…"
+          emoji="point_up"
+          [showPreview]="false"
+        ></emoji-mart>
+      </div>
+    </ion-row>
+    <ion-row
+      fxShow.xs="true"
+      fxShow="false"
+      class="footer-content"
+      style="justify-content: flex-end; min-height: 40px !important"
+    >
+      <div class="button">
+        <ion-icon
+          name="happy"
+          (click)="openEmojis()"
+          (click)="stopPropagation($event)"
+          class="icon"
+        ></ion-icon>
+      </div>
+
+      <div class="button">
+        <ion-icon
+          name="image"
+          (click)="openImage.click()"
+          class="icon"
+        ></ion-icon>
+      </div>
+
+      <div class="button">
+        <ion-icon
+          name="document"
+          (click)="openDocument.click()"
+          class="icon"
+        ></ion-icon>
+      </div>
+      <div class="button">
+        <ion-icon name="link" (click)="link()" class="icon"></ion-icon>
+      </div>
+    </ion-row>
+    <ion-row>
+      <ion-col class="footer-content">
+        <div
+          fxShow.xs="false"
+          fxShow="true"
+          class="button"
+          (click)="stopPropagation($event)"
+        >
+          <ion-icon
+            name="happy"
+            (click)="openEmojis()"
+            (click)="stopPropagation($event)"
+            class="icon"
+          ></ion-icon>
+        </div>
+
+        <div fxShow.xs="false" fxShow="true" class="button">
+          <ion-icon
+            name="image"
+            (click)="openImage.click()"
+            class="icon"
+          ></ion-icon>
+        </div>
+
+        <div fxShow.xs="false" fxShow="true" class="button">
+          <ion-icon
+            name="document"
+            (click)="openDocument.click()"
+            class="icon"
+          ></ion-icon>
+        </div>
+        <div class="button" fxShow.xs="false" fxShow="true" >
+          <ion-icon name="link" (click)="link()" class="icon"></ion-icon>
+        </div>
+        <!-- Esto va en el input, pero se buscara un metodo mas factible xd -->
+        <!-- (click)="readMessages(messages, chat._id)" -->
+        <div class="textarea">
+          <ion-textarea
+            (click)="stopPropagation($event)"
+            (focusout)="focusout($event)"
+            (keydown.enter)="send($event)"
+            rows="1"
+            formControlName="message"
+            class="input-message"
+            placeholder="{{ 'chat.input_placeholder' | translate }}"
+            autoGrow="true"
+          >
+          </ion-textarea>
+        </div>
+        <div
+          class="button"
+          *ngIf="form.controls.message.value || files.length > 0"
+        >
+          <ion-icon name="send" class="icon" (click)="send($event)"></ion-icon>
+        </div>
+        <record-audio
+          *ngIf="!form.controls.message.value && files.length == 0"
+          (newAudio)="msgAudio($event)"
+        ></record-audio>
+      </ion-col>
+    </ion-row>
+  </form>
+</ion-grid>

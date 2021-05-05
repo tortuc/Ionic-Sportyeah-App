@@ -42,7 +42,6 @@ import { ContenteditableValueAccessorModule } from "@tinkoff/angular-contentedit
 import { DirectivesModule } from "../directives/directive.module";
 import { PickerModule } from "@ctrl/ngx-emoji-mart";
 import { NewProfilePhotoComponent } from "./new-profile-photo/new-profile-photo.component";
-import { ChatUserItemComponent } from "./chat-user-item/chat-user-item.component";
 import { MessageDeletedComponent } from "./message-deleted/message-deleted.component";
 import { ChatHeaderComponent } from "./chat-header/chat-header.component";
 import { FriendsPanelDesktopComponent } from "./friends-panel-desktop/friends-panel-desktop.component";
@@ -59,7 +58,6 @@ import { PreviewFilesComponent } from "./preview-files/preview-files.component";
 import { OptionsWishComponent } from "./options-wish/options-wish.component";
 import { ViewFilesComponent } from "./view-files/view-files.component";
 import { ViewImageComponent } from "./view-image/view-image.component";
-import { ChatBoxComponent } from "./chat-box/chat-box.component";
 import { EmojiModule } from "@ctrl/ngx-emoji-mart/ngx-emoji";
 import { MessageBasicComponent } from "./message-basic/message-basic.component";
 import { MessageDocumentComponent } from "./message-document/message-document.component";
@@ -102,7 +100,6 @@ const components = [
   ImageSeeComponent,
   FriendsMobileComponent,
   NewProfilePhotoComponent,
-  ChatUserItemComponent,
   ErrorComponent,
   MessageDeletedComponent,
   ChatHeaderComponent,
@@ -127,8 +124,7 @@ const components = [
   PreviewFilesComponent,
   OptionsWishComponent,
   ViewImageComponent,
-  ChatBoxComponent,
-  MessageBasicComponent,
+MessageBasicComponent,
   MessageDocumentComponent,
   UrlPreviewComponent,
   ExperiencePage,

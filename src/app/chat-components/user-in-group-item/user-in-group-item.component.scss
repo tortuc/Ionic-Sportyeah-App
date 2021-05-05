@@ -1,0 +1,13 @@
+.admin {
+  color: white;
+  --background: #6e1ab5;
+  font-size: 12px;
+}
+
+.user-item {
+  cursor: pointer;
+  font-size: 14px;
+  &:hover {
+    --background: #b8edd3;
+  }
+}

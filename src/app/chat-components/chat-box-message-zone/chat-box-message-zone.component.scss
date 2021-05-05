@@ -1,0 +1,112 @@
+
+  .chat-footer {
+    position: relative;
+    z-index: 1;
+    flex: none;
+    order: 3;
+    box-sizing: border-box;
+    width: 100%;
+    min-height: 62px;
+    align-items: flex-end;
+  }
+  
+  .input-message {
+    max-height: 100px;
+    --background: white;
+    border-radius: 10px;
+  }
+  
+  .footer-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    box-sizing: border-box;
+    max-width: 100%;
+    min-height: 62px;
+    div {
+      padding: 0 10px;
+    }
+  }
+  
+  .button {
+    height: 32px;
+    flex: none;
+    box-sizing: border-box;
+    min-height: 32px;
+    .diff {
+      padding: 0 10px;
+      color: white;
+      font-size: 20px;
+      vertical-align: super;
+    }
+    .icon {
+      color: white;
+      font-size: 24px;
+      cursor: pointer;
+    }
+    .icon.audio-cancel {
+      color: black;
+      font-size: 32px;
+    }
+    .icon.audio-success {
+      color: #92efbb;
+      font-size: 32px;
+    }
+  }
+  
+  .textarea {
+    flex: 1 1 auto;
+    box-sizing: border-box;
+    width: inherit;
+    min-width: 0;
+    min-height: 20px;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 20px;
+    outline: none;
+    will-change: width;
+  }
+  
+  .col-date {
+    padding: 0px 5px;
+    .date {
+      float: right;
+      font-size: 12px;
+    }
+  }
+  
+  .img-remove {
+    color: black;
+    position: absolute;
+    font-size: 24px;
+    cursor: pointer;
+    top: -10px;
+    right: -10px;
+  }
+  
+  .chat-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    transition: background-color 0.3s ease;
+  }
+  
+  .friends-chat-card {
+    width: 100%;
+    height: 100%;
+  }
+  
+  .new-messages {
+    text-align: center;
+    position: sticky;
+    bottom: 10px;
+    width: 100%;
+    z-index: 100;
+  }
+  
+  .down-button{
+    vertical-align: bottom;
+    color: white;
+  }

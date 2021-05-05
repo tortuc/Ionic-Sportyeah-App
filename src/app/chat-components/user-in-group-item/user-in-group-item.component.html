@@ -1,0 +1,17 @@
+<ion-item  class="user-item">
+  <ion-thumbnail slot="start">
+    <ion-avatar class="mini">
+      <img [src]="user.photo" />
+    </ion-avatar>
+  </ion-thumbnail>
+  <ion-label>
+    <span *ngIf="user._id == userService.User?._id">{{'chat.group.you' | translate}}</span>
+    <span *ngIf="user._id != userService.User?._id"
+      >{{ user.name }} {{ user.last_name }} </span
+    ><br />
+    <span style="font-size: 12px">@{{ user.username }}</span>
+  </ion-label>
+  <ion-chip class="admin" *ngIf="admins.includes(user._id)"
+    >{{'chat.group.admin' | translate}}</ion-chip
+  >
+</ion-item>

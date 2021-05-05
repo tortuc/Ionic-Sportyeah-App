@@ -1,0 +1,25 @@
+.close {
+  color: white;
+  margin-right: 10px;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.selected {
+  --background: #bb14f724;
+}
+
+.user-select {
+  text-align: center;
+  display: inline-grid;
+  text-align: -webkit-center;
+  grid-gap: 5px;
+}
+
+.change-img {
+  font-size: 25px;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  color: #1f9e08;
+}

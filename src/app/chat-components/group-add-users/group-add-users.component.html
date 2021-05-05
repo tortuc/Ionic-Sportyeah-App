@@ -1,0 +1,67 @@
+<ion-header>
+  <ion-toolbar class="main-bg">
+    <ion-title>{{ "chat.group.addUsers.header" | translate }}</ion-title>
+    <ion-icon
+      name="close"
+      slot="end"
+      class="close"
+      (click)="modalCtrl.dismiss()"
+    ></ion-icon>
+  </ion-toolbar>
+
+  <ion-searchbar
+    placeholder="{{'chat.group.new.search' | translate}}"
+    (ionChange)="filter($event)"
+  >
+  </ion-searchbar>
+
+  <div
+    *ngIf="usersSelect.length > 0"
+    class="friends-mobile"
+    style="padding: 10px"
+  >
+    <div
+      style="text-align: center"
+      class="scale-in-center"
+      *ngFor="let user of usersSelect"
+      (click)="pushUser(user)"
+    >
+      <ion-avatar class="xmini" style="margin: 0 8px">
+        <img [src]="user.photo" />
+      </ion-avatar>
+      <span style="font-size: 12px">{{ user.name }}</span>
+    </div>
+  </div>
+</ion-header>
+<ion-content>
+  <div>
+    <ion-item
+      *ngFor="let user of users"
+      style="cursor: pointer"
+      [ngClass]="isSelect(user.user)"
+      (click)="pushUser(user.user)"
+    >
+      <ion-thumbnail slot="start">
+        <ion-avatar class="mini">
+          <img [src]="user.user.photo" />
+        </ion-avatar>
+      </ion-thumbnail>
+      <ion-label>
+        <span>{{ user.user.name }} {{ user.user.last_name }} </span><br />
+        <span style="font-size: 12px">@{{ user.user.username }}</span>
+      </ion-label>
+      <ion-icon
+        name="checkmark"
+        *ngIf="isSelect(user.user) == 'selected'"
+      ></ion-icon>
+    </ion-item>
+  </div>
+</ion-content>
+<ion-footer>
+  <ion-button
+    [disabled]="usersSelect.length == 0"
+    (click)="add()"
+    style="--background: var(--color-primary); float: right; margin: 10px"
+    >{{ "chat.group.addUsers.button" | translate }}</ion-button
+  >
+</ion-footer>

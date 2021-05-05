@@ -1,0 +1,7 @@
+<div class="content">
+  <h1>{{'chat_empty.title' | translate}}</h1>
+  <h5 *ngIf="!chat.group">{{'chat_empty.message' | translate:friend}}</h5>
+  <h5 *ngIf="chat.group">{{'chat_empty.message_group' | translate}}</h5>
+
+  <img src="assets/logos/only_bear.png" class="bear" alt="">
+</div>

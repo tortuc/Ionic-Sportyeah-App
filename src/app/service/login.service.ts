@@ -47,8 +47,6 @@ export class LoginService {
    * @returns
    */
   create(user) {
-    // borramos la cookie
-    this.cookieService.delete("join_event");
     return this.http.post(`${environment.URL_API}/user/create`, user);
   }
 

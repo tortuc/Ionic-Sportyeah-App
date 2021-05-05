@@ -1,0 +1,55 @@
+<ion-content>
+  <div style="height: 100%; padding: 10px">
+    <ion-item style="--background: none; color: white">
+      <ion-label position="floating">{{
+        "chat.group.name" | translate
+      }}</ion-label>
+      <ion-input
+        #inputName
+        (focusout)="updateCaret($event)"
+        [autofocus]="true"
+        [(ngModel)]="name"
+      ></ion-input>
+      <ion-icon
+        (click)="openEmojis($event)"
+        style="color: white; cursor: pointer"
+        slot="end"
+        name="happy"
+      ></ion-icon>
+    </ion-item>
+    <div #emojisContainer>
+      <emoji-mart
+        class="emojis"
+        *ngIf="emoji"
+        (emojiClick)="addEmoji($event)"
+        title="Pick your emoji…"
+        emoji="point_up"
+        [showPreview]="false"
+      ></emoji-mart>
+    </div>
+    <br />
+    <ion-item  *ngIf="admin">
+      <ion-label position="floating">{{
+        "chat.group.privacy" | translate
+      }}</ion-label>
+      <ion-select [(ngModel)]="privacy">
+        <ion-select-option value="private">{{
+          "chat.group.privacy_type.private" | translate
+        }}</ion-select-option>
+        <ion-select-option value="public">{{
+          "chat.group.privacy_type.public" | translate
+        }}</ion-select-option>
+      </ion-select>
+    </ion-item>
+  
+    <div class="div-button">
+      <ion-button class="btn-green btn-small" (click)="modalCtrl.dismiss()">
+        {{ "cancel" | translate }}
+      </ion-button>
+      <ion-button class="btn-green btn-small" (click)="save()">
+        {{ "save" | translate }}
+      </ion-button>
+    </div>
+  </div>
+  
+</ion-content>
