@@ -30,6 +30,8 @@ export class HeaderPostComponent implements OnInit {
 
   @Input() views: string;
 
+  @Input() sharing: boolean = false;
+
   constructor(
     public userService: UserService,
     private router: Router,
@@ -66,8 +68,6 @@ export class HeaderPostComponent implements OnInit {
   goToPost(id) {
     this.router.navigate([`/post/${id}`]);
   }
-
- 
 
   options(data) {
     switch (data?.action) {
@@ -151,7 +151,7 @@ export class HeaderPostComponent implements OnInit {
     if (this.post.user._id != this.userService.User._id) {
       this.viewsSponsorService
         .createSponsorView({
-          user: this.post.user._id ,
+          user: this.post.user._id,
           visitor: this.userService.User._id,
           from: "post",
           link: `/post/${this.post._id}`,

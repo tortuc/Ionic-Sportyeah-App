@@ -184,7 +184,6 @@ export class SharedsInPostComponent implements OnInit {
       .toPromise()
       .then((post: IPost) => {
         this.postService.newPost(post._id);
-        this.modalController.dismiss();
       })
       .catch((err) => {});
   }

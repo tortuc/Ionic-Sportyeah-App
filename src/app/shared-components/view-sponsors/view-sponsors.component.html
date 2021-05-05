@@ -5,7 +5,7 @@
     (click)="clickOnSponsor(sponsor)"
     target="_blank"
   >
-    <p style="margin: 1px; font-size: 12px; color: black;text-align: center;">{{ sponsor.name }}</p>
+    <p style="margin: 1px; font-size: 12px; color: black;text-align: center;">{{ sponsor?.name }}</p>
     <img class="sponsor-img" [src]="sponsor.image" />
   </div>
 </div>

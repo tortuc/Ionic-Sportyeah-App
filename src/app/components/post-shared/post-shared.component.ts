@@ -17,6 +17,7 @@ export class PostSharedComponent implements OnInit {
   @Input() post:IPost
   @Input() news: INew
   @Input() newsShared: INew
+  @Input() sharing: boolean = false
   constructor(
     public userService:UserService,
     private router:Router,
@@ -36,6 +37,8 @@ export class PostSharedComponent implements OnInit {
   // }
 
   ngOnInit(){
+   
+    
     // window.scroll()
     if(this.news){
       this.userService.getUserById(this.news.user).subscribe((response:any)=>{

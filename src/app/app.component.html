@@ -71,6 +71,9 @@
 					<ion-label>
 						{{ item.title | translate }}
 					</ion-label>
+          <ion-badge *ngIf="item.url == '/chat' && chatService.allUnread" style="--background: var(--color-primary)">
+            {{ chatService.allUnread }}
+          </ion-badge>
 				</ion-item>
 			</ion-menu-toggle>
 
@@ -95,9 +98,16 @@
 						</ion-label>
 					</ion-item>
 				</ion-menu-toggle>
+      
 			</ion-list>
+     
 		  </div>
-
+      <ion-menu-toggle auto-hide="false">
+        <ion-item (click)="logout()" routerLink="/" lines="none" detail="false">
+          <ion-icon slot="start" ios="exit-outline" md="exit-outline"></ion-icon>
+          <ion-label>{{ "sidebar.logout" | translate }}</ion-label>
+        </ion-item>
+      </ion-menu-toggle>
           <!--<ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
             <ion-item
               (click)="selectedIndex = i"
@@ -123,7 +133,6 @@
           </ion-menu-toggle>-->
 
         </ion-list>
-        <ion-list style="padding-top: 3px" id="inbox-list"></ion-list>
       </ion-content>
     </ion-menu>
     <ion-router-outlet id="main-content"></ion-router-outlet>

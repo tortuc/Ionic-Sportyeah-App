@@ -221,7 +221,7 @@ export class NewPostPage implements OnInit {
 
     return await modal.present();
   }
-  async editQuestion(i) {
+  async editQuestion() {
     const modalEdit = await this.modalController.create({
       component: NewQuestionComponent,
       cssClass: "my-custom-class",
@@ -241,7 +241,7 @@ export class NewPostPage implements OnInit {
       .catch((err) => {});
     return await modalEdit.present();
   }
-  deleteQuestion(i) {
+  deleteQuestion() {
     this.question.questionGroup = null;
   }
 

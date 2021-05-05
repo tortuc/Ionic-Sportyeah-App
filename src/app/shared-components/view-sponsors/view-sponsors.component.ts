@@ -21,17 +21,17 @@ export class ViewSponsorsComponent implements OnInit {
   @Input() sponsors: ISponsor[] = [];
 
   ngOnInit() {
-    console.log(this.sponsors);
-   
+    this.rotateSponsors();
+  }
+
+  rotateSponsors() {
     setInterval(() => {
-      let last = this.sponsors.pop()
-      this.sponsors.unshift(last)
+      let last = this.sponsors.pop();
+      this.sponsors.unshift(last);
     }, 3000);
   }
 
   clickOnSponsor(sponsor) {
     this.onSelect.emit(sponsor);
   }
-
- 
 }

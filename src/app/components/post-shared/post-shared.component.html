@@ -1,7 +1,7 @@
 <div *ngIf="post" [ngClass]="{'disabled':disabled}">
   <ion-card ngClass.xs="m-p-0 " class="m-0"  style="width: 100%;">
     <post-content [post]="post"></post-content>
-    <header-post [displayOptions]="false"  [post]="post" ></header-post>       
+    <header-post [sharing]="sharing" [displayOptions]="false"  [post]="post" ></header-post>       
    
   </ion-card>
 </div>
