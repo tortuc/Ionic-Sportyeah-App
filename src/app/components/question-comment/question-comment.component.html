@@ -10,7 +10,7 @@
     *ngFor="let answer of question.answer"
     class="progress-item"
     [ngClass]="
-      answer._id | canVote: question.questionGroup._id:notified | async
+      answer._id | canVote: question.questionGroup._id:question?.notified | async
     "
   >
     <ion-icon name="checkmark-circle-outline" class="voted"></ion-icon>

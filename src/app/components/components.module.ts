@@ -94,6 +94,7 @@ import { AddUsersPanelDesktopComponent } from "./add-users-panel-desktop/add-use
 import { UserItemPanelComponent } from "./users/user-item-panel/user-item-panel.component";
 import { ComponentsSharedModule } from "../shared-components/components-shared.module";
 import { UserItemComponent } from "../componets/user-item/user-item.component";
+import { FollowBtn } from "./profile-challenges/follow-btn.component";
 
 @NgModule({
   imports: [
@@ -272,7 +273,8 @@ import { UserItemComponent } from "../componets/user-item/user-item.component";
     YearComponent,
     AddUsersPanelDesktopComponent,
     UserItemPanelComponent,
-    UserItemComponent
+    UserItemComponent,
+    FollowBtn
   ],
 })
 export class ComponentsModule {}

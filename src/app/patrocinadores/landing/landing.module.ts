@@ -15,6 +15,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { AnaliticsViewsComponent } from 'src/app/components/analitics-views/analitics-views.component'
 import { ChangeComponent } from '../change/change.component';
 import { CreateProductComponent } from '../create-product/create-product.component';
+import { PostComponetsModule } from 'src/app/post-components/post-componets.module';
 @NgModule({
   imports: [
     CommonModule,
@@ -35,7 +36,8 @@ import { CreateProductComponent } from '../create-product/create-product.compone
     CreateProductComponent,
     ProductsComponent,
     AnaliticsViewsComponent,
-    ChangeComponent
+    ChangeComponent,
+    PostComponetsModule
   ]
 })
 export class LandingPageModule {}

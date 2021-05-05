@@ -352,7 +352,7 @@
 
 
 
-<day  [hourStart]="hourStart" [hourEnd]="hourEnd" [day]="day" *ngIf="analyticsToShowSponsor == 'hours' && segement == 2  "></day>
+<day   *ngIf="analyticsToShowSponsor == 'hours' && segement == 2  "></day>
 <week  [changeWeekAdd]="changeWeekAdd" [weekchange]="dia" [sponsorLink]="sponsorLink" *ngIf="analyticsToShowSponsor == 'weeks' && segement == 2  "></week>
 <month  [changeMonthAdd]="changeMonthAdd" [monthchange]="month" [sponsorLink]="sponsorLink" *ngIf="analyticsToShowSponsor == 'months' && segement == 2  "></month>
 <year  [changeYearAdd]="changeYearAdd" [yearchange]="dateStart" [sponsorLink]="sponsorLink" *ngIf="analyticsToShowSponsor == 'years' && segement == 2  "></year>

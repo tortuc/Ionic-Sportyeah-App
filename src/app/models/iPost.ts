@@ -6,10 +6,12 @@ export interface IPost {
   post: IPost | null;
   message: string;
   files: IPostFile[];
-
+  question:any;
   date: Date;
   edited: Date;
   deleted: boolean;
+  news?:any;
+  views:any[];
 }
 export interface INewPost {
   user: string;
@@ -40,6 +42,7 @@ export interface ILike {
   date: Date;
   _id: string;
   deleted: boolean;
+  type:number;
 }
 
 export interface IComment {
@@ -51,6 +54,7 @@ export interface IComment {
   date: Date;
   _id: string;
   deleted: boolean;
+  question:any;
 }
 
 export interface IPostC {
