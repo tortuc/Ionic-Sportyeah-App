@@ -193,8 +193,7 @@ const components = [
     IonicRatingModule,
     DirectivesModule,
     PickerModule,
-    EmojiModule,
-    ComponentsSharedModule,
+    EmojiModule
   ],
   declarations:  components,
   exports: components ,

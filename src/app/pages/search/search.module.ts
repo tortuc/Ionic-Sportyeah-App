@@ -20,13 +20,13 @@ import { ComponentsSharedModule } from 'src/app/shared-components/components-sha
     FormsModule,
     IonicModule,
     SearchPageRoutingModule,
-    ComponentsModule,
     PipesModule,
     DirectivesModule,
     FlexLayoutModule,
     ReactiveFormsModule,
     TranslateModule,
-    ComponentsSharedModule
+    ComponentsSharedModule,
+    ComponentsModule
   ],
   declarations: [SearchPage]
 })

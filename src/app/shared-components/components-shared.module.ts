@@ -15,10 +15,10 @@ const components = [
   
   LangButtonComponent,
   LangBtnAppComponent,
-  FollowButtonComponent,
   MainCardUserComponent,
-  ViewSponsorsComponent
-
+  ViewSponsorsComponent,
+  FollowButtonComponent,
+  
 ];
 
 @NgModule({
