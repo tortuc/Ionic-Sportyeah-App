@@ -1,0 +1,27 @@
+.read {
+  color: var(--color-secondary);
+}
+
+.right {
+  float: right;
+}
+
+.msg-text {
+  margin: 1px;
+  margin-left: 2px;
+  white-space: pre-wrap;
+}
+
+.col-date {
+  padding: 0px 5px;
+  .date {
+    float: right;
+    font-size: 10px;
+  }
+}
+
+.landing-img {
+  font-size: 24px;
+  color: #6719b4;
+  vertical-align: middle;
+}

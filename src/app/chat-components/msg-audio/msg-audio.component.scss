@@ -1,0 +1,77 @@
+.audio {
+  width: 200px;
+  border-radius: 5px;
+}
+.date {
+  float: right;
+  font-size: 12px;
+  margin-bottom: -8px;
+}
+
+.msg {
+  --background: var(--color-primary);
+  flex: 1 1 0;
+  max-width: 60%;
+  padding: 1px;
+  margin: 2px;
+  color: #000;
+  float: left;
+}
+
+.my-msg {
+  --background: #acffd5;
+  color: #000;
+  float: right !important;
+  .play {
+    color: var(--color-primary) !important;
+  }
+  ion-progress-bar {
+    --progress-background: var(--color-primary) !important;
+    --buffer-background: #b3a9a9;
+  }
+}
+
+.play {
+  color: var(--color-green);
+  font-size: 32px;
+  vertical-align: text-top;
+  cursor: pointer;
+}
+
+.p-10-0 {
+  padding: 0 10px !important;
+}
+
+.bar {
+  place-self: center !important;
+}
+.duration {
+  position: absolute;
+  right: 5px;
+  font-size: 10px;
+}
+.duration2 {
+  position: absolute;
+  right: 5px;
+  font-size: 10px;
+  color: white;
+  text-shadow: 1px 1px 1px black;
+}
+ion-progress-bar {
+  --progress-background: var(--color-green);
+  --buffer-background: #b3a9a9;
+}
+
+.read {
+  color: var(--color-secondary);
+}
+
+.bar-width {
+  width: 90%;
+}
+
+@media (max-width: 500px) {
+  .bar-width {
+    width: 80%;
+  }
+}

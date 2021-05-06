@@ -1,17 +1,14 @@
-<ion-content
-  class="main-bg"
-  *ngIf="public_group == false; else public_group_block"
->
+<ion-content *ngIf="public_group == false; else public_group_block">
   <div style="height: 100%">
     <ion-icon
       class="close"
       name="close"
       (click)="modalCtrl.dismiss()"
     ></ion-icon>
-    <ion-avatar class="big" (click)="seeImage()">
+    <ion-avatar class="big" style="margin-top: 10px;" (click)="seeImage()">
       <ion-img [src]="chat.image"></ion-img>
     </ion-avatar>
-    <div style="color: white; text-align: center">
+    <div style="color: black; text-align: center;padding: 10px;">
       <span [ngSwitch]="chat.group_privacy">
         <small *ngSwitchCase="'public'">
           {{ "chat.group.privacy_type.public" | translate }}
@@ -20,7 +17,7 @@
           {{ "chat.group.privacy_type.private" | translate }}
         </small>
       </span>
-      <h2 style="margin: 2px; color: white">
+      <h2 style="margin: 2px; color: black">
         {{ chat.name }}
         <ion-icon
           style="cursor: pointer"
@@ -101,8 +98,8 @@
       <ion-avatar class="big" (click)="seeImage(false)">
         <ion-img [src]="chat.image"></ion-img>
       </ion-avatar>
-      <div style="color: white; text-align: center">
-        <h2 style="margin: 2px; color: white">{{ chat.name }}</h2>
+      <div style="color: black; text-align: center">
+        <h2 style="margin: 2px; color: black">{{ chat.name }}</h2>
         <p class="date-info">
           {{ "chat.group.created" | translate }}
           {{ chat.date | customDisplayDate }}

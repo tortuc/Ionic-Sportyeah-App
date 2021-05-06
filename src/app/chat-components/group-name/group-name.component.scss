@@ -1,17 +1,14 @@
-.button-action{
-    --background:white;
-    color:black;
-    font-size: 11px;
-    height: 30px;
+.button-action {
+  --background: white;
+  color: black;
+  font-size: 11px;
+  height: 30px;
 }
 
-.div-button{
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
+.div-button {
+  text-align: right;
 }
 
-ion-content{
-    --background:var(--color-primary);
-    color:white
+ion-content {
+  color: black;
 }

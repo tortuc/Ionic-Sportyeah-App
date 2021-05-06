@@ -1,19 +1,15 @@
 ion-toolbar {
-    --background: var(--color-primary)
+  --background: var(--color-primary);
 }
 
 .ion-content-billy {
-    --background: #e7e9f1 !important;
+  --background: #e7e9f1 !important;
 }
 
 ion-list {
-    --background: #e7e9f1 !important;
-}
-
-ion-card {
-    border-radius: 15px;
+  --background: #e7e9f1 !important;
 }
 
 ion-img {
-    border-radius: 15px !important;
+  border-radius: 15px !important;
 }

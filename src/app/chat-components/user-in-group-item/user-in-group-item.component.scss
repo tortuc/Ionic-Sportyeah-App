@@ -8,6 +8,9 @@
   cursor: pointer;
   font-size: 14px;
   &:hover {
-    --background: #b8edd3;
+    &:hover {
+      --background: var(--color-secondary);
+      color: white;
+    }
   }
 }

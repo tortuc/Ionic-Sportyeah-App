@@ -5,7 +5,7 @@ import { IonicModule } from "@ionic/angular";
 // import { LoadingProgressComponent } from "../components/loading-progress/loading-progress.component";
 import { FormsModule } from "@angular/forms";
 import { TranslateModule } from "@ngx-translate/core";
-import { MsgAudioComponent } from "../components/msg-audio/msg-audio.component";
+// import { MsgAudioComponent } from "../components/msg-audio/msg-audio.component";
 import { PipesModule } from "../pipes/pipes.module";
 // import { MsgUserPreviewComponent } from "../components/msg-user-preview/msg-user-preview.component";
 // import { LangButtonComponent } from "../components/lang-button/lang-button.component";
@@ -31,7 +31,7 @@ const components = [
   // UserItemPanelComponent, 
   // ConfettiComponent,
   // LoadingProgressComponent,
-  MsgAudioComponent,
+  // MsgAudioComponent,
   // MsgUserPreviewComponent,
   // LangButtonComponent,
   // FollowButtonComponent,

@@ -251,8 +251,6 @@ export class UserService {
 
 
   public goToProfile(username,idUser,from,link) {
-    console.log(username,idUser,from,link);
-    
     if (username != this.User.username) {
       // this.getUserByUsername(username)
       // .subscribe(

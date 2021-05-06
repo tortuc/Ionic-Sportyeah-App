@@ -167,3 +167,10 @@ ion-item.selected {
     font-size: 20px;
   }
 }
+
+.progress{
+  margin-top: 40px;
+  position: fixed;
+  z-index: 1000;
+  width: 100%;
+}

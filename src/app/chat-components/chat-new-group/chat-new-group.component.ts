@@ -145,6 +145,8 @@ export class ChatNewGroupComponent implements OnInit {
       .pipe(take(1))
       .subscribe(
         (chat) => {
+          console.log(chat);
+          
           loading.dismiss();
           this.modalCtrl.dismiss({
             create: true,

@@ -1,0 +1,32 @@
+<ion-list>
+  <ion-item
+    (click)="option('info_group')"
+    *ngIf="group"
+    lines="none"
+    class="item"
+  >
+    <span>{{ "chat_options.info_group" | translate }}</span>
+  </ion-item>
+  <ion-item
+    (click)="option('profile')"
+    *ngIf="!group"
+    lines="none"
+    class="item"
+  >
+    <span>{{ "chat_options.profile" | translate }}</span>
+  </ion-item>
+  <ion-item (click)="option('clear')" lines="none" class="item">
+    <span>{{ "chat_options.clear" | translate }}</span>
+  </ion-item>
+  <ion-item (click)="option('leave')" *ngIf="group" lines="none" class="item">
+    <span>{{ "chat_options.leave" | translate }}</span>
+  </ion-item>
+  <ion-item
+    (click)="option('pending_users')"
+    *ngIf="group && admin && chat.group_privacy == 'private'"
+    lines="none"
+    class="item"
+  >
+    <span>{{ "chat_options.pending" | translate }}</span>
+  </ion-item>
+</ion-list>

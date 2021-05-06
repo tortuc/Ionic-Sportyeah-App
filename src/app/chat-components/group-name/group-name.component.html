@@ -1,6 +1,6 @@
 <ion-content>
   <div style="height: 100%; padding: 10px">
-    <ion-item style="--background: none; color: white">
+    <ion-item style="--background: none; color: black">
       <ion-label position="floating">{{
         "chat.group.name" | translate
       }}</ion-label>
@@ -12,7 +12,7 @@
       ></ion-input>
       <ion-icon
         (click)="openEmojis($event)"
-        style="color: white; cursor: pointer"
+        style="color: black; cursor: pointer"
         slot="end"
         name="happy"
       ></ion-icon>
@@ -42,14 +42,17 @@
       </ion-select>
     </ion-item>
   
-    <div class="div-button">
-      <ion-button class="btn-green btn-small" (click)="modalCtrl.dismiss()">
-        {{ "cancel" | translate }}
-      </ion-button>
-      <ion-button class="btn-green btn-small" (click)="save()">
-        {{ "save" | translate }}
-      </ion-button>
-    </div>
+   
   </div>
   
 </ion-content>
+<ion-footer>
+  <div class="div-button">
+    <ion-button class="btn-green btn-small" (click)="modalCtrl.dismiss()">
+      {{ "cancel" | translate }}
+    </ion-button>
+    <ion-button class="btn-green btn-small" (click)="save()">
+      {{ "save" | translate }}
+    </ion-button>
+  </div>
+</ion-footer>

@@ -39,7 +39,7 @@ export class ChatService {
 
   audio2 = new Howl({
     src: ["assets/sounds/drop.mp3"],
-    volume: 0.2
+    volume: 0.5
   });
 
   /**

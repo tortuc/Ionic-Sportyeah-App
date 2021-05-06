@@ -27,6 +27,16 @@ import { PreviewFilesChatComponent } from "./preview-files-chat/preview-files-ch
 import { RecordAudioComponent } from "./record-audio/record-audio.component";
 import { ViewFilesChatComponent } from "./view-files-chat/view-files-chat.component";
 import { ViewFilesChatSliderComponent } from "./view-files-chat-slider/view-files-chat-slider.component";
+import { ChatHeaderComponent } from "./chat-header/chat-header.component";
+import { MessageBasicComponent } from "./message-basic/message-basic.component";
+import { MsgAudioComponent } from "./msg-audio/msg-audio.component";
+import { ChatboxOptionsComponent } from "./chatbox-options/chatbox-options.component";
+import { FlexLayoutModule } from "@angular/flex-layout";
+import { UserInGroupItemComponent } from "./user-in-group-item/user-in-group-item.component";
+import { ClipboardModule } from "@angular/cdk/clipboard";
+import { ComponentsSharedModule } from "../shared-components/components-shared.module";
+import { MessageDeletedComponent } from "../components/message-deleted/message-deleted.component";
+import { MsgUserPreviewComponent } from "./msg-user-preview/msg-user-preview.component";
 
 const componets = [
   NewChatComponent,
@@ -46,11 +56,18 @@ const componets = [
   PreviewFilesChatComponent,
   RecordAudioComponent,
   ViewFilesChatComponent,
-  ViewFilesChatSliderComponent
+  ViewFilesChatSliderComponent,
+  ChatHeaderComponent,
+  MessageBasicComponent,
+  MsgAudioComponent,
+  ChatboxOptionsComponent,
+  UserInGroupItemComponent,
+  MessageDeletedComponent,
+  MsgUserPreviewComponent
 ];
 
 @NgModule({
-  declarations: componets,
+
   imports: [
     CommonModule,
     IonicModule,
@@ -63,7 +80,11 @@ const componets = [
     PickerModule,
     DirectivesModule,
     RouterModule,
+    FlexLayoutModule,
+    ClipboardModule,
+    ComponentsSharedModule
   ],
+  declarations: componets,
   exports: componets,
 })
 export class ChatComponetsModule {}

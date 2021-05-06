@@ -1,0 +1,18 @@
+ion-progress-bar {
+  --background: white;
+  height: 30px;
+  border-radius: 20px;
+  max-width: 400px;
+  margin: auto;
+  --progress-background: var(--color-secondary);
+  box-shadow: 0 0 6px var(--color-secondary);
+}
+
+.message-loading {
+  margin: 0;
+  margin-top: 5px;
+  z-index: 1000;
+  position: absolute;
+  text-align: center;
+  width: 100%;
+}

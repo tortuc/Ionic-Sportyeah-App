@@ -36,11 +36,12 @@ import { FlexLayoutModule } from "@angular/flex-layout";
 import { TranslateModule } from "@ngx-translate/core";
 import { PostPageRoutingModule } from "../post/post-routing.module";
 import { IonicModule } from "@ionic/angular";
+import { FriendsMobileComponent } from "./friends-mobile/friends-mobile.component";
 import { ContenteditableValueAccessorModule } from "@tinkoff/angular-contenteditable-accessor";
 import { DirectivesModule } from "../directives/directive.module";
 import { PickerModule } from "@ctrl/ngx-emoji-mart";
-import { MessageDeletedComponent } from "./message-deleted/message-deleted.component";
-import { ChatHeaderComponent } from "./chat-header/chat-header.component";
+import { NewProfilePhotoComponent } from "./new-profile-photo/new-profile-photo.component";
+import { FriendsPanelDesktopComponent } from "./friends-panel-desktop/friends-panel-desktop.component";
 import { LangsPage } from "../langs/langs.page";
 import { FollowNotificationComponent } from "./follow-notification/follow-notification.component";
 import { UnfollowNotificationComponent } from "./unfollow-notification/unfollow-notification.component";
@@ -55,7 +56,6 @@ import { OptionsWishComponent } from "./options-wish/options-wish.component";
 import { ViewFilesComponent } from "./view-files/view-files.component";
 import { ViewImageComponent } from "./view-image/view-image.component";
 import { EmojiModule } from "@ctrl/ngx-emoji-mart/ngx-emoji";
-import { MessageBasicComponent } from "./message-basic/message-basic.component";
 import { MessageDocumentComponent } from "./message-document/message-document.component";
 import { ReactionsPostsComponent } from "./reactions-posts/reactions-posts.component";
 import { ViewProfileComponent } from "./view-profile/view-profile.component";
@@ -85,12 +85,12 @@ import { WeekComponent } from "./analitics-views/week/week.component";
 import { YearComponent } from "./analitics-views/year/year.component";
 import { FollowBtn } from "./profile-challenges/follow-btn.component";
 import { UserItemComponent } from "./user-item/user-item.component";
-import { NewProfilePhotoComponent } from "./new-profile-photo/new-profile-photo.component";
-import { FriendsPanelDesktopComponent } from "./friends-panel-desktop/friends-panel-desktop.component";
 import { UserItemPanelComponent } from "./users/user-item-panel/user-item-panel.component";
 import { AddUsersPanelDesktopComponent } from "./add-users-panel-desktop/add-users-panel-desktop.component";
+import { FollowButtonComponent } from "./follow-button/follow-button.component";
 
 const components = [
+  FollowButtonComponent,
   AddUsersPanelDesktopComponent,
   NewProfilePhotoComponent,
   FriendsPanelDesktopComponent,
@@ -98,8 +98,7 @@ const components = [
   ImageComponent,
   ImageSeeComponent,
   ErrorComponent,
-  MessageDeletedComponent,
-  ChatHeaderComponent,
+  FriendsPanelDesktopComponent,
   LangsPage,
   FollowNotificationComponent,
   UnfollowNotificationComponent,
@@ -120,7 +119,6 @@ const components = [
   PreviewFilesComponent,
   OptionsWishComponent,
   ViewImageComponent,
-MessageBasicComponent,
   MessageDocumentComponent,
   ExperiencePage,
   AwardsPage,
@@ -166,7 +164,7 @@ MessageBasicComponent,
   WeekComponent,
   YearComponent,
   UserItemComponent,
-  FollowBtn
+  FollowBtn,
 ]
 @NgModule({
   imports: [

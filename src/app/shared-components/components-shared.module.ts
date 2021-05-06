@@ -6,19 +6,21 @@ import { TranslateModule } from "@ngx-translate/core";
 import { PipesModule } from "../pipes/pipes.module";
 import { LangButtonComponent } from "./lang-button/lang-button.component";
 import { LangBtnAppComponent } from "./lang-btn-app/lang-btn-app.component";
-import { FollowButtonComponent } from "../components/follow-button/follow-button.component";
+// import { FollowButtonComponent } from "../components/follow-button/follow-button.component";
 import { MainCardUserComponent } from "./main-card-user/main-card-user.component";
 import { RouterModule } from "@angular/router";
 import { ViewSponsorsComponent } from "./view-sponsors/view-sponsors.component";
+import { LoadingProgressComponent } from "./loading-progress/loading-progress.component";
+import { AttachLinkPreviewPostComponent } from "../post-components/attach-link-preview-post/attach-link-preview-post.component";
 
 const components = [
-  
+  // FollowButtonComponent,
   LangButtonComponent,
   LangBtnAppComponent,
-  FollowButtonComponent,
   MainCardUserComponent,
-  ViewSponsorsComponent
-
+  ViewSponsorsComponent,
+  LoadingProgressComponent,
+  AttachLinkPreviewPostComponent
 ];
 
 @NgModule({
