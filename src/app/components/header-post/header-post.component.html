@@ -1,7 +1,7 @@
 <div class="user-header">
   <ion-avatar
     class="mini"
-    (click)="userService.goToProfile(post.user.username)"
+    (click)="userService.goToProfile(post.user.username,post.user._id,'post','/post/'+post._id)"
   >
     <img class="img-user-mini" [src]="post.user.photo" />
     <div class="connectedDIVlittlePost" *ngIf="post.user.connected"></div>
@@ -10,7 +10,7 @@
     <p
       class="profile-name"
       style="margin: 0"
-      (click)="userService.goToProfile(post.user.username)"
+      (click)="userService.goToProfile(post.user.username,post.user._id,'post','/post/'+post._id)"
     >
       {{ post.user.name }} {{ post.user.last_name }}
     </p>

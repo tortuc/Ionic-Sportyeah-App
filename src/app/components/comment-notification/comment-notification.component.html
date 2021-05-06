@@ -22,7 +22,7 @@
           <ion-img class="img-user-mini" [src]="notification.comment.user.photo"></ion-img>
         </ion-avatar>
         <div class="user-name">
-          <span class="message profile-name" (click)="userService.goToProfile(notification.comment.user.username,'comment','/post/'+notification.post._id)" >{{notification.comment.user.name}} {{notification.comment.user.last_name}}</span><br>
+          <span class="message profile-name" (click)="userService.goToProfile(notification.comment.user.username,notification.comment.user._id,'comment','/post/'+notification.post._id)" >{{notification.comment.user.name}} {{notification.comment.user.last_name}}</span><br>
           <span>{{notification.comment.date | customDisplayDate}}</span>
         </div>
         </ion-card-subtitle>

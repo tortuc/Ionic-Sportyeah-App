@@ -33,6 +33,7 @@ import { LoadingInterceptor } from "./interceptors/loading.interceptor";
 import { IonCustomScrollbarModule } from "ion-custom-scrollbar";
 import { CookieService } from "ngx-cookie-service";
 import { Keyboard } from "@ionic-native/keyboard/ngx";
+import { ComponentsSharedModule } from "./shared-components/components-shared.module";
 
 @NgModule({
   declarations: [AppComponent],
@@ -59,6 +60,7 @@ import { Keyboard } from "@ionic-native/keyboard/ngx";
     ClipboardModule,
     IonicRatingModule,
     IonCustomScrollbarModule,
+    ComponentsSharedModule
   ],
   providers: [
     StatusBar,

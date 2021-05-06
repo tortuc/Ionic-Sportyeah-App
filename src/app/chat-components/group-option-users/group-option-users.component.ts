@@ -29,7 +29,9 @@ export class GroupOptionUsersComponent implements OnInit {
   }
 
   visit(){
-    this.userService.goToProfile(this.user.username)
+    console.log(this.user);
+    
+    // this.userService.goToProfile(this.user.username,this.user._id,'chat',undefined)
     this.modalCtrl.dismiss()
     this.popoverCtrl.dismiss('visit')
   }

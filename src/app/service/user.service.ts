@@ -250,25 +250,26 @@ export class UserService {
   }
 
 
-  public goToProfile(username,from = null,link = null) {
+  public goToProfile(username,idUser,from,link) {
+    console.log(username,idUser,from,link);
+    
     if (username != this.User.username) {
-      
-      this.getUserByUsername(username)
-      .subscribe(
-        (resp:any)=>{
-          this.viewsProfileService
+      // this.getUserByUsername(username)
+      // .subscribe(
+        // (resp:any)=>{
+          this.viewsProfileService 
           .createProfileView(
-            { user:resp.user._id,
+            { user:idUser,
              visitor:this.User._id,
              from:from,
-             link: link!=null?`${link}`:link
+             link: link!=undefined?`${link}`:link
            }
            )
-            .subscribe((response) => {
+            .subscribe(() => {
               this.router.navigate([`/user/${username}`])
             });
-        }
-      )
+        // }
+      // )
     } else {
       this.router.navigate(["/profile"]);
     }

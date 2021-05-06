@@ -1,0 +1,27 @@
+<ion-card
+  class="friends-card main-border"
+  style="margin: 0; margin-top: 10px"
+  [ngClass]="postPage ? 'noshadow' : ''"
+>
+  <div style="padding: 5px; text-align: center">
+    <h6>{{ "panel.groups.message" | translate }}</h6>
+  </div>
+  <ion-card-content style="padding: 0">
+    <chat-user-item
+      *ngFor="let item of chatService.groups.slice(0, 5)"
+      [item]="item"
+      (selected)="optionsChatBox($event)"
+    ></chat-user-item>
+    <div style="text-align: center;padding: 5px;">
+      <ion-img
+        *ngIf="chatService.groups.length == 0"
+        src="assets/logos/text_bear.png"
+        class="img-login logo"
+      ></ion-img>
+
+      <ion-button class="see-more" (click)="seeAll()">{{
+        "panel.seeAll" | translate
+      }}</ion-button>
+    </div>
+  </ion-card-content>
+</ion-card>

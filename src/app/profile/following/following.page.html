@@ -26,11 +26,11 @@
             <ion-item *ngFor="let item of userService.followings" >
 
               <ion-thumbnail slot="start">
-                <ion-avatar (click)="userService.goToProfile(item.user.username)" class="mini">
+                <ion-avatar (click)="userService.goToProfile(item.user.username,item.user._id,'profile',null)" class="mini">
                   <img [src]="item.user.photo">
                 </ion-avatar>
               </ion-thumbnail>
-              <ion-label class="profile-name" (click)="userService.goToProfile(item.user.username,'profile',null)">{{item.user.name}} {{item.user.last_name}}</ion-label>
+              <ion-label class="profile-name" (click)="userService.goToProfile(item.user.username,item.user._id,'profile',null)">{{item.user.name}} {{item.user.last_name}}</ion-label>
               <ion-button  *ngIf="!userService.isFollow(item.user._id)" (click)="userService.follow(item.user._id)">{{'search_friends.follow' | translate}}</ion-button>
               <ion-button *ngIf="userService.isFollow(item.user._id)" (click)="userService.unFollow(item.user._id)">{{'search_friends.unfollow' | translate}}</ion-button>
           

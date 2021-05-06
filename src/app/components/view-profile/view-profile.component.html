@@ -30,11 +30,11 @@
                 </ion-item-options>
             <ion-item  >
               <ion-thumbnail slot="start">
-                <ion-avatar (click)="userService.goToProfile(item.user.username,'profile',null)" class="mini">
+                <ion-avatar (click)="userService.goToProfile(item.user.username,item.user._id,'profile',null)" class="mini">
                   <img [src]="item.user.photo">
                 </ion-avatar>
               </ion-thumbnail>
-              <ion-label class="profile-name" (click)="userService.goToProfile(item.user.username,'profile',null)">{{item.user.name}} {{item.user.last_name}}</ion-label>
+              <ion-label class="profile-name" (click)="userService.goToProfile(item.user.username,item.user._id,'profile',null)">{{item.user.name}} {{item.user.last_name}}</ion-label>
  
             </ion-item>
             <ion-item-options side="end">

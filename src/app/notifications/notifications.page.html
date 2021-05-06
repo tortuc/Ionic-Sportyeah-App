@@ -43,10 +43,20 @@
       
      
       </ion-col>
-      <ion-col size-lg="4" fxShow.lt-md="false" class="ion-justify-content-center ion-align-items-center" >
+      <!-- <ion-col size-lg="4" fxShow.lt-md="false" class="ion-justify-content-center ion-align-items-center" >
         <friends-panel-desktop></friends-panel-desktop>
-      </ion-col>
-  
+      </ion-col> -->
+      <ion-col
+      style="padding: 0"
+      size-lg="4"
+      fxShow.lt-md="false"
+      class="ion-justify-content-center ion-align-items-center"
+    >
+      <div style="position: sticky; top: -300px; padding: 20px">
+        <add-users-panel-desktop></add-users-panel-desktop>
+        <!-- <popular-groups-panel></popular-groups-panel> -->
+      </div>
+    </ion-col>
    
   </ion-row>
   

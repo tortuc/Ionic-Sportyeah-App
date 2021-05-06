@@ -3,7 +3,7 @@
 class="profile-name"
 >
 <ion-thumbnail
-  (click)="userService.goToProfile(user.username)"
+  (click)="userService.goToProfile(user.username,user._id,'profile')"
   slot="start"
 >
   <ion-avatar>
@@ -15,10 +15,10 @@ class="profile-name"
   </ion-avatar>
 </ion-thumbnail>
 <ion-label
-  (click)="userService.goToProfile(user.username)"
+  (click)="userService.goToProfile(user.username,user._id,'profile')"
 
   class="name"
->
+> 
   <p style="font-size: 14px"
     >{{ user.name }} {{ user.last_name }}</p
   >

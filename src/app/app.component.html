@@ -18,7 +18,7 @@
             </h1> 
           </div>
 
-          <new-profile-photo></new-profile-photo>
+          <new-profile-photo *ngIf="userService.User"></new-profile-photo>
 
           <ion-list-header style="color: black; margin-top: 10px" (click)="goTo('/profile/edit')">
             <span style="margin: auto;font-size: 18px;color: #2a4c78;">
