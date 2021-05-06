@@ -1,10 +1,13 @@
 <ion-card
-  class="msg "
+  class="msg"
   [ngClass]="message.user._id == userService.User?._id ? 'my-msg' : ''"
 >
   <ion-grid>
     <ion-row>
-      <ion-col *ngIf="userService.User?._id != message.user._id" style="padding: 0">
+      <ion-col
+        *ngIf="userService.User?._id != message.user._id"
+        style="padding: 0"
+      >
         <msg-user-preview [user]="message.user"></msg-user-preview>
       </ion-col>
       <ion-icon
@@ -29,16 +32,22 @@
           *ngIf="message.information?.type == 'wishlist'"
           [message]="message"
         ></preview-wishlist-message>
-        <view-files-chat *ngIf="message.files.length > 0 && !landing" [files]="message.files" ></view-files-chat>
+        <view-files-chat
+          *ngIf="message.files.length > 0 && !landing"
+          [files]="message.files"
+        ></view-files-chat>
         <iframe
-        *ngIf="message.message | youtube"
-        [src]="message.message | youtube"
-        frameborder="0"
-      ></iframe>
-      <url-preview class="chat" *ngIf="preview && !(message.message | youtube)" [preview]="preview" ></url-preview>
-
+          *ngIf="message.message | youtube"
+          [src]="message.message | youtube"
+          frameborder="0"
+        ></iframe>
+        <url-preview
+          class="chat"
+          *ngIf="preview && !(message.message | youtube)"
+          [preview]="preview"
+        ></url-preview>
       </ion-col>
-      
+
       <ion-col size="12" class="col-date">
         <span class="date"
           >{{ message.date | customDisplayDate }}
@@ -53,4 +62,3 @@
     </ion-row>
   </ion-grid>
 </ion-card>
- 

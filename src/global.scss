@@ -157,7 +157,7 @@ ion-list {
   background: white !important;
 }
 ion-content {
-  --background: white !important;
+  --background: white ;
 }
 
 ion-card-title {
@@ -450,7 +450,7 @@ a {
 }
 
 .msg {
-  --background: var(--color-primary);
+  --background: white;
   flex: 1 1 0;
   max-width: 60%;
   padding: 1px;
@@ -458,15 +458,21 @@ a {
   color: white;
   float: left;
   .msg-text {
-    color: white;
+    color: black;
+  }
+  .date{
+    color: black;
   }
 }
 
 .my-msg {
-  --background: var(--color-secondary);
+  --background: var(--color-primary);
   float: right !important;
   .msg-text {
     color: #fff !important;
+  }
+  .date{
+    color: white;
   }
 }
 
@@ -781,3 +787,19 @@ ion-segment-button {
   margin: auto;
 }
 
+.modal-border .modal-wrapper {
+  border: solid 3px var(--color-secondary);
+}
+
+ion-avatar.chat-img {
+  --border-radius: 50%;
+  width: 18px;
+  height: 18px;
+  position: relative;
+}
+
+.img-chat {
+  margin: auto;
+  width: 18px;
+  height: 18px;
+}

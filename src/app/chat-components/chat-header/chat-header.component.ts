@@ -37,9 +37,7 @@ export class ChatHeaderComponent implements OnInit {
     private messageService: MessageService
   ) {}
 
-  ngOnInit() {
-    
-  }
+  ngOnInit() {}
 
   async optionsChatBox(ev) {
     let modal = await this.popoverCtrl.create({
@@ -82,10 +80,10 @@ export class ChatHeaderComponent implements OnInit {
     let modal = await this.modalCtrl.create({
       component: ChatInfoGroupComponent,
       componentProps: { chat: this.chat },
+      cssClass: "modal-border",
     });
 
-    modal.onDidDismiss().then((data) => {
-    });
+    modal.onDidDismiss().then((data) => {});
 
     modal.present();
   }
@@ -96,9 +94,9 @@ export class ChatHeaderComponent implements OnInit {
 
   seeProfile() {
     if (this.chat.sender._id != this.userService.User._id) {
-      this.router.navigate([`/user/${this.chat.sender.username}`]);
+      this.userService.goToProfile(this.chat.sender.username, "chat");
     } else {
-      this.router.navigate([`/user/${this.chat.receiver.username}`]);
+      this.userService.goToProfile(this.chat.receiver.username, "chat");
     }
   }
 
@@ -155,9 +153,8 @@ export class ChatHeaderComponent implements OnInit {
     alert.present();
   }
 
-  closeChat(){
+  closeChat() {
     this.chatService.closeChat();
-
   }
 
   /**

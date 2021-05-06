@@ -1,9 +1,5 @@
 import { NgModule } from "@angular/core";
-import { 
-  PreloadAllModules, 
-  RouterModule, 
-  Routes 
-} from "@angular/router";
+import { PreloadAllModules, RouterModule, Routes } from "@angular/router";
 import { AuthGuardService } from "./guards/auth-guard.service";
 import { LandingGuard } from "./guards/landing-guard.service";
 import { SessionGuardService } from "./guards/session-guard.service";
@@ -68,9 +64,7 @@ const routes: Routes = [
   {
     path: "structure/:username",
     loadChildren: () =>
-      import("./structure/structure.module").then(
-        (m) => m.StructurePageModule
-      ),
+      import("./structure/structure.module").then((m) => m.StructurePageModule),
     canActivate: [LandingGuard],
   },
   {
@@ -135,30 +129,27 @@ const routes: Routes = [
       ),
     canActivate: [AuthGuardService],
   },
- {
+  {
     path: "challenge/:id",
     loadChildren: () =>
-      import("./challenge/challenge.module").then(
-        (m) => m.ChallengePageModule
-      ),
+      import("./challenge/challenge.module").then((m) => m.ChallengePageModule),
     canActivate: [AuthGuardService],
   },
- {
+  {
     path: "challenge/:username/:id",
     loadChildren: () =>
-      import("./challenge/challenge.module").then(
-        (m) => m.ChallengePageModule
-      ),
+      import("./challenge/challenge.module").then((m) => m.ChallengePageModule),
     canActivate: [AuthGuardService],
   },
   {
-    path: 'ranking',
-    loadChildren: () => import('./ranking/ranking.module').then( m => m.RankingPageModule),
-    canActivate:[AuthGuardService]
+    path: "ranking",
+    loadChildren: () =>
+      import("./ranking/ranking.module").then((m) => m.RankingPageModule),
+    canActivate: [AuthGuardService],
   },
   {
-    path: 'bet',
-    loadChildren: () => import('./bet/bet.module').then( m => m.BetPageModule)
+    path: "bet",
+    loadChildren: () => import("./bet/bet.module").then((m) => m.BetPageModule),
   },
   {
     path: "search",
@@ -166,19 +157,30 @@ const routes: Routes = [
       import("./pages/search/search.module").then((m) => m.SearchPageModule),
     canActivate: [AuthGuardService],
   },
+
   {
-    path:"**",
-    loadChildren: () => import('./not-found/not-found.module').then( m => m.NotFoundPageModule)
-  
+    path: "challenge",
+    loadChildren: () =>
+      import("./challenge/challenge.module").then((m) => m.ChallengePageModule),
   },
   {
-    path: 'challenge',
-    loadChildren: () => import('./challenge/challenge.module').then( m => m.ChallengePageModule)
+    path: "structure",
+    loadChildren: () =>
+      import("./structure/structure.module").then((m) => m.StructurePageModule),
   },
   {
-    path: 'structure',
-    loadChildren: () => import('./structure/structure.module').then( m => m.StructurePageModule)
-  }
+    path: "group/:id",
+    loadChildren: () =>
+      import("./pages/invitation-group/invitation-group.module").then(
+        (m) => m.InvitationGroupModule
+      ),
+    canActivate: [LandingGuard],
+  },
+  {
+    path: "**",
+    loadChildren: () =>
+      import("./not-found/not-found.module").then((m) => m.NotFoundPageModule),
+  },
 ];
 @NgModule({
   imports: [

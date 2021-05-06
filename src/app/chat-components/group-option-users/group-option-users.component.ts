@@ -29,7 +29,7 @@ export class GroupOptionUsersComponent implements OnInit {
   }
 
   visit(){
-    this.userService.goToProfile(this.user.username)
+    this.userService.goToProfile(this.user.username,'chat')
     this.modalCtrl.dismiss()
     this.popoverCtrl.dismiss('visit')
   }

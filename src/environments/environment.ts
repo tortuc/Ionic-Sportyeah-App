@@ -9,6 +9,8 @@ export const environment = {
   URL_IMAGE: "http://localhost:3112/v1",
   URL_SOCKET: "http://localhost:3000",
   URL_CHALLENGE: "http://localhost:1000",
+  URL_WEB:'http://localhost:8100'
+
 };
 
 /*

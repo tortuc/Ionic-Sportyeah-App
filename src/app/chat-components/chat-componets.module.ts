@@ -36,6 +36,7 @@ import { UserInGroupItemComponent } from "./user-in-group-item/user-in-group-ite
 import { ClipboardModule } from "@angular/cdk/clipboard";
 import { ComponentsSharedModule } from "../shared-components/components-shared.module";
 import { MessageDeletedComponent } from "../components/message-deleted/message-deleted.component";
+import { MsgUserPreviewComponent } from "./msg-user-preview/msg-user-preview.component";
 
 const componets = [
   NewChatComponent,
@@ -61,7 +62,8 @@ const componets = [
   MsgAudioComponent,
   ChatboxOptionsComponent,
   UserInGroupItemComponent,
-  MessageDeletedComponent
+  MessageDeletedComponent,
+  MsgUserPreviewComponent
 ];
 
 @NgModule({

@@ -1120,6 +1120,11 @@
   "group_privacy": "Privacidad del grupo",
   "post_preview_images": {
     "more": "Más..."
+  },
+  "join_group": {
+    "public": "Te has unido al grupo {{name}}",
+    "private": "Se ha enviado tu peticion para unirte al grupo {{name}}",
+    "err": "No has podido unirte al grupo, intente mas tarde"
   }
 
 }

@@ -1,4 +1,7 @@
-<ion-item *ngIf="chat.group == false" style="--background: inherit">
+<ion-item
+  *ngIf="chat.group == false"
+  style="--background: var(--color-primary)"
+>
   <ion-icon
     *ngIf="!landing"
     slot="start"
@@ -14,7 +17,8 @@
         userService.goToProfile(
           chat?.sender._id != userService.User?._id
             ? chat?.sender.username
-            : chat?.receiver.username
+            : chat?.receiver.username,
+          'chat'
         )
       "
     >
@@ -42,7 +46,8 @@
         userService.goToProfile(
           chat?.sender._id != userService.User?._id
             ? chat?.sender.username
-            : chat?.receiver.username
+            : chat?.receiver.username,
+          'chat'
         )
       "
     >
@@ -68,7 +73,7 @@
     name="ellipsis-vertical-outline"
   ></ion-icon>
 </ion-item>
-<ion-item *ngIf="chat.group == true" style="--background: inherit">
+<ion-item *ngIf="chat.group == true" style="--background: var(--color-primary)">
   <ion-icon
     *ngIf="!landing"
     slot="start"
