@@ -24,6 +24,7 @@ import { environment } from "src/environments/environment";
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { TranslateLoader, TranslateModule } from "@ngx-translate/core";
 import { translateBrowserLoaderFactory } from "./shared/loaders/translate-browser.loader";
+import { ComponentsSharedModule } from "./shared-components/components-shared.module";
 import { ComponentsModule } from "./components/components.module";
 import { ClipboardModule } from "@angular/cdk/clipboard";
 import { IonicRatingModule } from "ionic4-rating";
@@ -33,12 +34,12 @@ import { LoadingInterceptor } from "./interceptors/loading.interceptor";
 import { IonCustomScrollbarModule } from "ion-custom-scrollbar";
 import { CookieService } from "ngx-cookie-service";
 import { Keyboard } from "@ionic-native/keyboard/ngx";
-import { ComponentsSharedModule } from "./shared-components/components-shared.module";
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
   imports: [
+    ComponentsSharedModule,
     BrowserModule.withServerTransition({ appId: "serverApp" }),
     IonicModule.forRoot(),
     AppRoutingModule,
@@ -60,7 +61,6 @@ import { ComponentsSharedModule } from "./shared-components/components-shared.mo
     ClipboardModule,
     IonicRatingModule,
     IonCustomScrollbarModule,
-    ComponentsSharedModule
   ],
   providers: [
     StatusBar,
