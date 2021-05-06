@@ -1,0 +1,8 @@
+<div style="padding: 20px;"  *ngIf="fileService.isUploading">
+  <h6 class="message-loading">
+    {{ "uploading" | translate }} {{ fileService.uploadProgress }}%
+  </h6>
+  <ion-progress-bar
+    [value]="fileService.uploadProgress / 100"
+  ></ion-progress-bar>
+</div>

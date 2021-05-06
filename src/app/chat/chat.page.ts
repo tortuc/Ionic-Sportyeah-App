@@ -14,12 +14,12 @@ import { UserService } from "../service/user.service";
 import { NewChatComponent } from "./new-chat/new-chat.component";
 import { ActivatedRoute, Router } from "@angular/router";
 import { SocketService } from "../service/socket.service";
-import { ChatInfoGroupComponent } from "../chat-components/chat-info-group/chat-info-group.component";
-import { ChatNewGroupComponent } from "../chat-components/chat-new-group/chat-new-group.component";
-import { ChatOptionsComponent } from "../chat-components/chat-options/chat-options.component";
 import { take } from "rxjs/operators";
 import { MediaMatcher } from "@angular/cdk/layout";
 import { CookieService } from "ngx-cookie-service";
+import { ChatOptionsComponent } from "../chat-components/chat-options/chat-options.component";
+import { ChatNewGroupComponent } from "../chat-components/chat-new-group/chat-new-group.component";
+import { ChatInfoGroupComponent } from "../chat-components/chat-info-group/chat-info-group.component";
 @Component({
   selector: "app-chat",
   templateUrl: "./chat.page.html",
@@ -199,7 +199,7 @@ export class ChatPage implements OnInit {
         this.newGroupOpen = false;
 
         if (data.data?.create) {
-          this.setChat(data.data);
+          this.setChat(data.data.chat);
           this.chatService.getMyChats();
         }
       });

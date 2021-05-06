@@ -13,6 +13,7 @@ import { ReusableComponentsIonic } from "./service/ionicHelpers.service";
 import { CookieService } from "ngx-cookie-service";
 import { Meta } from "@angular/platform-browser";
 import { SIDEBAR_ITEMS } from "src/config/base";
+import { JdvimageService } from "./service/jdvimage.service";
 
 @Component({
   selector: "app-root",
@@ -45,7 +46,8 @@ export class AppComponent implements OnInit {
     public notificationService: NotificationService,
     public reusableCI: ReusableComponentsIonic,
     private cookieService: CookieService,
-    private meta: Meta
+    private meta: Meta,
+    public fileService:JdvimageService
   ) {
     this.initializeApp();
 

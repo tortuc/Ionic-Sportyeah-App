@@ -41,7 +41,6 @@ import { ContenteditableValueAccessorModule } from "@tinkoff/angular-contentedit
 import { DirectivesModule } from "../directives/directive.module";
 import { PickerModule } from "@ctrl/ngx-emoji-mart";
 import { NewProfilePhotoComponent } from "./new-profile-photo/new-profile-photo.component";
-import { MessageDeletedComponent } from "./message-deleted/message-deleted.component";
 import { FriendsPanelDesktopComponent } from "./friends-panel-desktop/friends-panel-desktop.component";
 import { LangsPage } from "../langs/langs.page";
 import { FollowNotificationComponent } from "./follow-notification/follow-notification.component";
@@ -97,7 +96,6 @@ const components = [
   FriendsMobileComponent,
   NewProfilePhotoComponent,
   ErrorComponent,
-  MessageDeletedComponent,
   FriendsPanelDesktopComponent,
   LangsPage,
   FollowNotificationComponent,

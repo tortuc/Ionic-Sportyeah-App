@@ -10,6 +10,8 @@ import { FollowButtonComponent } from "../components/follow-button/follow-button
 import { MainCardUserComponent } from "./main-card-user/main-card-user.component";
 import { RouterModule } from "@angular/router";
 import { ViewSponsorsComponent } from "./view-sponsors/view-sponsors.component";
+import { LoadingProgressComponent } from "./loading-progress/loading-progress.component";
+import { AttachLinkPreviewPostComponent } from "../post-components/attach-link-preview-post/attach-link-preview-post.component";
 
 const components = [
   
@@ -17,7 +19,9 @@ const components = [
   LangBtnAppComponent,
   FollowButtonComponent,
   MainCardUserComponent,
-  ViewSponsorsComponent
+  ViewSponsorsComponent,
+  LoadingProgressComponent,
+  AttachLinkPreviewPostComponent
 
 ];
 

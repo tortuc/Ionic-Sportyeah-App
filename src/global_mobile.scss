@@ -1,15 +1,41 @@
-@media screen and (max-width:600px) {
+@media screen and (max-width: 600px) {
   /**
   Aqui van a ir todos las clases responsivas para el mobile, o clases exclusivas para el mobile
   */
-
-
-  
 
   .main-card-content {
     visibility: hidden !important;
     position: absolute;
     max-width: 700px;
     margin: auto;
+  }
+
+  .home-grid {
+    padding: 0px;
+    height: 100%;
+  }
+
+  .preview {
+    background-color: #faefff;
+    border-radius: 5px;
+    margin: auto;
+    padding: 10px;
+    width: 100% !important;
+    display: block !important;
+    text-align: center;
+  }
+
+  .link.message {
+    display: block !important;
+    max-width: 100% !important;
+    .link-text {
+      max-width: 100% !important;
+      flex: unset !important;
+    }
+  }
+
+  .postButton {
+    width: 80%;
+    font-size: 9px;
   }
 }

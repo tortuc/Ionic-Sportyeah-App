@@ -37,7 +37,9 @@ export class ChatHeaderComponent implements OnInit {
     private messageService: MessageService
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    
+  }
 
   async optionsChatBox(ev) {
     let modal = await this.popoverCtrl.create({

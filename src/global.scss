@@ -450,19 +450,24 @@ a {
 }
 
 .msg {
-  --background: white;
+  --background: var(--color-primary);
   flex: 1 1 0;
   max-width: 60%;
   padding: 1px;
   margin: 2px;
-  color: #000;
+  color: white;
   float: left;
+  .msg-text {
+    color: white;
+  }
 }
 
 .my-msg {
-  --background: #e3edff;
-  color: #000;
+  --background: var(--color-secondary);
   float: right !important;
+  .msg-text {
+    color: #fff !important;
+  }
 }
 
 // ------------------------------------------------------------------------

@@ -1097,5 +1097,29 @@
       "header": "Vaciar chat",
       "message": "Seguro deseas vaciar este chat?"
     }
+  },
+  "group_name": "Indica el nombre de tu grupo y agrega una imagen (opcional)",
+  "new_group_users": "Participantes",
+  "new_chat_not_friends": "No tienes amigos en kecuki con quien iniciar un chat... Busca a tus amigos y empieza a seguirlos para chatear con ellos en la red social mas cuqui!",
+  "left_group": "Has abandonado el grupo",
+  "chat_options": {
+    "info_group": "Info. del grupo",
+    "profile": "Visitar perfil",
+    "clear": "Vaciar chat",
+    "leave": "Salirme del grupo",
+    "pending": "Usuarios pendientes por aceptar"
+  },
+  "group_link_copied": "Enlace de invitacion copiado",
+  "joined_group": "Te has unido al grupo {{name}}",
+  "download": "Descargar",
+  "chat_empty": {
+    "title": "Vaya este chat parece vacio",
+    "message": "Enviale un mensaje a {{name}} {{last_name}} para saludarle 👋👋",
+    "message_group": "Empieza la conversacion en este grupo!!"
+  },
+  "group_privacy": "Privacidad del grupo",
+  "post_preview_images": {
+    "more": "Más..."
   }
+
 }

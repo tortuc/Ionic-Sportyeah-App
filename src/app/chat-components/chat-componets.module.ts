@@ -31,6 +31,11 @@ import { ChatHeaderComponent } from "./chat-header/chat-header.component";
 import { MessageBasicComponent } from "./message-basic/message-basic.component";
 import { MsgAudioComponent } from "./msg-audio/msg-audio.component";
 import { ChatboxOptionsComponent } from "./chatbox-options/chatbox-options.component";
+import { FlexLayoutModule } from "@angular/flex-layout";
+import { UserInGroupItemComponent } from "./user-in-group-item/user-in-group-item.component";
+import { ClipboardModule } from "@angular/cdk/clipboard";
+import { ComponentsSharedModule } from "../shared-components/components-shared.module";
+import { MessageDeletedComponent } from "../components/message-deleted/message-deleted.component";
 
 const componets = [
   NewChatComponent,
@@ -54,11 +59,13 @@ const componets = [
   ChatHeaderComponent,
   MessageBasicComponent,
   MsgAudioComponent,
-  ChatboxOptionsComponent
+  ChatboxOptionsComponent,
+  UserInGroupItemComponent,
+  MessageDeletedComponent
 ];
 
 @NgModule({
-  declarations: componets,
+
   imports: [
     CommonModule,
     IonicModule,
@@ -71,7 +78,11 @@ const componets = [
     PickerModule,
     DirectivesModule,
     RouterModule,
+    FlexLayoutModule,
+    ClipboardModule,
+    ComponentsSharedModule
   ],
+  declarations: componets,
   exports: componets,
 })
 export class ChatComponetsModule {}

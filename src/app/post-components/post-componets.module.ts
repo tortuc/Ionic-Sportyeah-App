@@ -18,7 +18,6 @@ import { ViewCommentComponent } from "./view-comment/view-comment.component";
 import { SeeFilesPostSliderComponent } from "./see-files-post-slider/see-files-post-slider.component";
 import { QuestionCommentComponent } from "../components/question-comment/question-comment.component";
 import { EditQuestionComponent } from "../components/edit-question/edit-question.component";
-import { AttachLinkPreviewPostComponent } from "./attach-link-preview-post/attach-link-preview-post.component";
 import { ReactToPostsComponent } from "./react-to-posts/react-to-posts.component";
 import { LikesPostComponent } from "./likes-post/likes-post.component";
 import { AllReactionsComponent } from "./all-reactions/all-reactions.component";
@@ -45,7 +44,6 @@ const componets = [
   SeeFilesPostSliderComponent,
   QuestionCommentComponent,
   EditQuestionComponent,
-  AttachLinkPreviewPostComponent,
   ReactToPostsComponent,
   LikesPostComponent,
   AllReactionsComponent,

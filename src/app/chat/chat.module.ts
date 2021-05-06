@@ -11,6 +11,8 @@ import { EmojiModule } from "@ctrl/ngx-emoji-mart/ngx-emoji";
 import { ComponentsModule } from "../components/components.module";
 import { PipesModule } from "../pipes/pipes.module";
 import { ChatComponetsModule } from "../chat-components/chat-componets.module";
+import { ClipboardModule } from "@angular/cdk/clipboard";
+import { ComponentsSharedModule } from "../shared-components/components-shared.module";
 
 @NgModule({
   imports: [
@@ -25,7 +27,9 @@ import { ChatComponetsModule } from "../chat-components/chat-componets.module";
     EmojiModule,
     PipesModule,
     ComponentsModule,
-    ChatComponetsModule
+    ComponentsSharedModule,
+    ChatComponetsModule,
+    ClipboardModule,
   ],
   declarations: [ChatPage],
 })
