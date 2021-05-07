@@ -8,31 +8,18 @@
   margin-bottom: -8px;
 }
 
-.msg {
-  --background: var(--color-primary);
-  flex: 1 1 0;
-  max-width: 60%;
-  padding: 1px;
-  margin: 2px;
-  color: #000;
-  float: left;
-}
-
 .my-msg {
-  --background: #acffd5;
-  color: #000;
-  float: right !important;
   .play {
-    color: var(--color-primary) !important;
+    color: white !important;
   }
-  ion-progress-bar {
-    --progress-background: var(--color-primary) !important;
-    --buffer-background: #b3a9a9;
+
+  .duration {
+    color: white;
   }
 }
 
 .play {
-  color: var(--color-green);
+  color: black;
   font-size: 32px;
   vertical-align: text-top;
   cursor: pointer;
@@ -46,20 +33,10 @@
   place-self: center !important;
 }
 .duration {
-  position: absolute;
-  right: 5px;
   font-size: 10px;
-}
-.duration2 {
   position: absolute;
-  right: 5px;
-  font-size: 10px;
-  color: white;
-  text-shadow: 1px 1px 1px black;
-}
-ion-progress-bar {
-  --progress-background: var(--color-green);
-  --buffer-background: #b3a9a9;
+  bottom: -10px;
+  color: black;
 }
 
 .read {
@@ -68,6 +45,10 @@ ion-progress-bar {
 
 .bar-width {
   width: 90%;
+}
+
+.date{
+  font-size: 10px;
 }
 
 @media (max-width: 500px) {

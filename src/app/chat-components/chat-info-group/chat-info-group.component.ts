@@ -45,6 +45,8 @@ export class ChatInfoGroupComponent implements OnInit {
 
   admin = false;
   ngOnInit() {
+    console.log(this.chat);
+    
     this.chatService
       .verifyIfUserIsAdminOfGroup(this.chat._id)
       .toPromise()
@@ -125,6 +127,7 @@ export class ChatInfoGroupComponent implements OnInit {
         name: this.chat.name,
         id: this.chat._id,
         privacy: this.chat.group_privacy,
+        admins:this.chat.admins
       },
       cssClass: "modal-little",
     });

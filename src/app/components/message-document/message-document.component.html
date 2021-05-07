@@ -1,7 +1,0 @@
-<ion-chip 
-(click)="downloadDoc(message.document.url)" 
-[ngClass]="(message.user._id == userService.User?._id)?'right':''" 
-style="--background:white;--color:black">
-  <ion-icon name="document" color="primary"></ion-icon>
-  <ion-label>{{message.document.name}}</ion-label>
-</ion-chip>

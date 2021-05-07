@@ -111,4 +111,9 @@ export class InvitationGroupComponent implements OnInit {
   nagivateTo(route) {
     this.router.navigate([route]);
   }
+
+  goChat(){
+    sessionStorage.setItem("chat", this.chat._id);
+    this.router.navigate(["/chat"]);
+  }
 }

@@ -9,6 +9,7 @@ import { ModalController, Platform } from "@ionic/angular";
 import { take } from "rxjs/operators";
 import { IChat } from "src/app/models/IChat";
 import { ChatService } from "src/app/service/chat.service";
+import { UserService } from "src/app/service/user.service";
 
 @Component({
   selector: "app-group-name",
@@ -19,6 +20,7 @@ export class GroupNameComponent implements OnInit {
   @Input() name: string;
   @Input() id: string;
   @Input() privacy: string;
+  @Input() admins: string[];
   @ViewChild("inputName") inputName: any;
   @ViewChild("emojisContainer") emojisContainer: any;
   admin = false;
@@ -26,7 +28,8 @@ export class GroupNameComponent implements OnInit {
     public modalCtrl: ModalController,
     private platform: Platform,
     private chatService: ChatService,
-    private cd: ChangeDetectorRef
+    private cd: ChangeDetectorRef,
+    private userService: UserService
   ) {
     this.platform.backButton.subscribeWithPriority(10, () => {
       this.modalCtrl.dismiss("close");
@@ -34,12 +37,9 @@ export class GroupNameComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.chatService
-      .verifyIfUserIsAdminOfGroup(this.id)
-      .toPromise()
-      .then((resp: any) => {
-        if (resp.admins.length > 0) this.admin = true;
-      });
+    console.log(this.admins);
+    let admin = this.admins.find((x) => x == this.userService.User._id);
+    this.admin = admin ? true : false;
 
     window.onclick = () => {
       this.emoji = false;

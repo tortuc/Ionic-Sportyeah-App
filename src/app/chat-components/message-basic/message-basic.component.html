@@ -1,6 +1,6 @@
 <ion-card
   class="msg"
-  [ngClass]="message.user._id == userService.User?._id ? 'my-msg' : ''"
+  [ngClass]="{'my-msg':(message.user._id == userService.User?._id),'full-width':(message.files.length > 1)}"
 >
   <ion-grid>
     <ion-row>
@@ -28,10 +28,7 @@
 
         <p class="msg-text" [innerHTML]="message.message | links | icons"></p>
 
-        <preview-wishlist-message
-          *ngIf="message.information?.type == 'wishlist'"
-          [message]="message"
-        ></preview-wishlist-message>
+     
         <view-files-chat
           *ngIf="message.files.length > 0 && !landing"
           [files]="message.files"

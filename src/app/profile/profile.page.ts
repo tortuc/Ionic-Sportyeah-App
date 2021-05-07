@@ -17,6 +17,7 @@ import { ReusableComponentsIonic } from "../service/ionicHelpers.service";
 import {  User } from "../models/IUser";
 import { ISponsor } from "../models/ISponsor";
 import { IPost } from "../models/iPost";
+import { GroupService } from "../service/group.service";
 
 @Component({
   selector: "app-profile",
@@ -51,8 +52,10 @@ export class ProfilePage implements OnInit {
     private viewsProfileService: ViewsProfileService,
     public newsService: NewsService,
     public reusableCI: ReusableComponentsIonic,
-    public cd:ChangeDetectorRef
+    public cd:ChangeDetectorRef,
+    private groupService:GroupService
   ) {
+    this.groupService.groupInvited();
     this.viewsProfileService
       .getProfileView(this.userService.User._id)
       .pipe(take(1))

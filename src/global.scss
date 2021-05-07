@@ -798,3 +798,16 @@ ion-avatar.chat-img {
   width: 18px;
   height: 18px;
 }
+
+.pending-chip{
+  font-size: 12px;
+  max-height: 25px;
+  border-radius: 50%;
+  color: white;
+  font-weight: 700;
+  background: var(--color-secondary);
+}
+
+.alert-wrapper{
+  --background:white  !important;
+}

@@ -2,6 +2,7 @@ import { Component, Input, OnChanges, OnInit } from "@angular/core";
 import { PopoverController } from "@ionic/angular";
 import { ChatService } from "../../service/chat.service";
 import { IChat } from "../../models/IChat";
+import { UserService } from "src/app/service/user.service";
 
 @Component({
   selector: "app-chatbox-options",
@@ -14,19 +15,13 @@ export class ChatboxOptionsComponent implements OnInit {
   admin = false;
   constructor(
     public popover: PopoverController,
-    private chatService: ChatService
+    private chatService: ChatService,
+    private userService: UserService
   ) {}
 
   async ngOnInit() {
-    this.chatService
-      .verifyIfUserIsAdminOfGroup(this.chat._id)
-      .toPromise()
-      .then((data: IChat) => {
-        if (data.admins.length > 0) this.admin = true;
-      })
-      .catch((e) => {
-        // Handle Catch
-      });
+    let admin = this.chat.admins.find((x) => x == this.userService.User._id);
+    this.admin = admin ? true : false;
   }
 
   option(o) {

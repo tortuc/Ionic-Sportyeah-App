@@ -24,6 +24,7 @@ export class ChatPendingUsersComponent implements OnInit {
 
   handleUserRequest( action, user ) {
     this.chatService.handleGroupJoinRequest( this.chat, user, action ).toPromise().then( ( chat: any ) => {
+      this.chatService.editedChat(chat)
       this.chat = chat;
     }).catch( (e) => {
       // handle catch

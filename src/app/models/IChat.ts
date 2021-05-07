@@ -10,7 +10,7 @@ export interface IChat {
     group_privacy:string
     image:string
     users:User[]
-    admins:User[]
+    admins:string[]
     pending:User[]
     closed:boolean
     name:string
