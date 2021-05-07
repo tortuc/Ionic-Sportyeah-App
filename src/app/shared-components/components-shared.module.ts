@@ -12,6 +12,7 @@ import { RouterModule } from "@angular/router";
 import { ViewSponsorsComponent } from "./view-sponsors/view-sponsors.component";
 import { LoadingProgressComponent } from "./loading-progress/loading-progress.component";
 import { AttachLinkPreviewPostComponent } from "../post-components/attach-link-preview-post/attach-link-preview-post.component";
+import { UrlPreviewComponent } from "../components/url-preview/url-preview.component";
 
 const components = [
   // FollowButtonComponent,
@@ -20,7 +21,8 @@ const components = [
   MainCardUserComponent,
   ViewSponsorsComponent,
   LoadingProgressComponent,
-  AttachLinkPreviewPostComponent
+  AttachLinkPreviewPostComponent,
+  UrlPreviewComponent
 ];
 
 @NgModule({

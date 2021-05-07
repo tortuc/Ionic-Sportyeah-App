@@ -28,10 +28,7 @@
 
         <p class="msg-text" [innerHTML]="message.message | links | icons"></p>
 
-        <preview-wishlist-message
-          *ngIf="message.information?.type == 'wishlist'"
-          [message]="message"
-        ></preview-wishlist-message>
+     
         <view-files-chat
           *ngIf="message.files.length > 0 && !landing"
           [files]="message.files"

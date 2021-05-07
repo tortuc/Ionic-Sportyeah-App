@@ -1,0 +1,16 @@
+<div  class="preview" >
+    <div *ngIf="preview.image">
+      <img class="image" [src]="preview.image.url">
+    </div>
+    <div style="padding: 0px 10px;" >
+      <p *ngIf="preview.title" class="preview-title">
+         <span>{{preview.title}}</span>
+        </p>
+     <p *ngIf="preview.description" class="description">
+      <span [innerHTML]="preview.description"></span>
+
+     </p>
+    </div>
+ 
+
+</div>
