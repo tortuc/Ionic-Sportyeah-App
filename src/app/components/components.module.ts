@@ -57,7 +57,6 @@ import { ViewFilesComponent } from "./view-files/view-files.component";
 import { ViewImageComponent } from "./view-image/view-image.component";
 import { EmojiModule } from "@ctrl/ngx-emoji-mart/ngx-emoji";
 import { MessageDocumentComponent } from "./message-document/message-document.component";
-import { UrlPreviewComponent } from "./url-preview/url-preview.component";
 import { ReactionsPostsComponent } from "./reactions-posts/reactions-posts.component";
 import { ViewProfileComponent } from "./view-profile/view-profile.component";
 import { AwardsPage } from "../profile/awards/awards.page";
@@ -84,17 +83,20 @@ import { DayComponent } from "./analitics-views/day/day.component";
 import { MonthComponent } from "./analitics-views/month/month.component";
 import { WeekComponent } from "./analitics-views/week/week.component";
 import { YearComponent } from "./analitics-views/year/year.component";
-import { AddUsersPanelDesktopComponent } from "./add-users-panel-desktop/add-users-panel-desktop.component";
 import { FollowBtn } from "./profile-challenges/follow-btn.component";
 import { UserItemComponent } from "./user-item/user-item.component";
 import { UserItemPanelComponent } from "./users/user-item-panel/user-item-panel.component";
-import { ComponentsSharedModule } from "../shared-components/components-shared.module";
+import { AddUsersPanelDesktopComponent } from "./add-users-panel-desktop/add-users-panel-desktop.component";
+import { FollowButtonComponent } from "./follow-button/follow-button.component";
 
 const components = [
+  FollowButtonComponent,
+  AddUsersPanelDesktopComponent,
+  NewProfilePhotoComponent,
+  FriendsPanelDesktopComponent,
+  UserItemPanelComponent,
   ImageComponent,
   ImageSeeComponent,
-  FriendsMobileComponent,
-  NewProfilePhotoComponent,
   ErrorComponent,
   FriendsPanelDesktopComponent,
   LangsPage,
@@ -118,7 +120,6 @@ const components = [
   OptionsWishComponent,
   ViewImageComponent,
   MessageDocumentComponent,
-  UrlPreviewComponent,
   ExperiencePage,
   AwardsPage,
   LinkYoutubeComponent,
@@ -162,10 +163,8 @@ const components = [
   MonthComponent,
   WeekComponent,
   YearComponent,
-  AddUsersPanelDesktopComponent,
-  UserItemPanelComponent,
   UserItemComponent,
-  FollowBtn
+  FollowBtn,
 ]
 @NgModule({
   imports: [
@@ -182,7 +181,6 @@ const components = [
     DirectivesModule,
     PickerModule,
     EmojiModule,
-    ComponentsSharedModule
   ],
   declarations:  components,
   exports: components ,

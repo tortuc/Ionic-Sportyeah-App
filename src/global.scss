@@ -326,15 +326,6 @@ a {
   cursor: pointer;
 }
 
-.friends-card {
-  height: 80vh;
-  margin-top: 20px;
-  width: 30%;
-  position: fixed;
-  right: 20px;
-  overflow-y: scroll;
-}
-
 .no-img {
   color: white;
   text-align: center;
@@ -777,9 +768,9 @@ ion-segment-button {
 }
 
 
-.no-padding{
-  padding: 0;
-}
+// .no-padding{
+//   padding: 0;
+// }
 
 .main-card-content {
   visibility: visible;
@@ -787,6 +778,10 @@ ion-segment-button {
   margin: auto;
 }
 
+.home-grid{
+  padding: 5px;
+  height: 100%;
+}
 .modal-border .modal-wrapper {
   border: solid 3px var(--color-secondary);
 }

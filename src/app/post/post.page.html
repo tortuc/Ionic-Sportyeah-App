@@ -48,7 +48,7 @@
           </ion-row>
         </ion-grid>
       </ion-col>
-      <ion-col
+      <!-- <ion-col
         size-lg="4"
         fxShow.lt-md="false"
         class="ion-justify-content-center ion-align-items-center"
@@ -86,7 +86,19 @@
             </ion-item>
           </ion-card-content>
         </ion-card>
-      </ion-col>
+      </ion-col> -->
+      <ion-col
+      *ngIf="userService.User != null"
+      size-lg="4"
+      fxShow.lt-md="false"
+      class="ion-justify-content-center ion-align-items-center"
+    >
+      <div style="position: sticky; top: -300px; padding: 5px">
+        <friends-panel-desktop [postPage]="true"></friends-panel-desktop>
+        <add-users-panel-desktop [postPage]="true"></add-users-panel-desktop>
+        <!-- <popular-groups-panel [postPage]="true"></popular-groups-panel> -->
+      </div>
+    </ion-col>
     </ion-row>
   </ion-grid>
 </ion-content>

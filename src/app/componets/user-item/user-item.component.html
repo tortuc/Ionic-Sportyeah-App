@@ -2,12 +2,12 @@
   <div class="header">
     <div class="image">
       <img
-        (click)="userService.goToProfile(user.username,user._id)"
+        (click)="userService.goToProfile(user.username,user._id,'search',undefinded)"
         class="img"
         [src]="user.photo"
       />
     </div>
-    <div class="name-content" (click)="userService.goToProfile(user.username,user._id)">
+    <div class="name-content" (click)="userService.goToProfile(user.username,user._id,'search',undefinded)">
       <p class="name">{{ user.name }} {{ user.last_name }}</p>
       <p class="username">@{{ user.username }}</p>
     </div>
@@ -15,7 +15,7 @@
       <follow-button [user]="user._id"></follow-button>
     </div>
   </div>
-  <div  (click)="userService.goToProfile(user.username,user._id)" class="content">
+  <div  (click)="userService.goToProfile(user.username,user._id,'search',undefinded)" class="content">
     <div>{{followers}} Seguidores</div>
     <div>{{followings}} Siguiendo</div>
   </div>

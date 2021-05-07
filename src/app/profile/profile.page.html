@@ -374,12 +374,23 @@
         </div>
         <!-- FINISH SEGMENT NEWS -->
       </ion-col>
-      <ion-col
+      <!-- <ion-col
         size-lg="4"
         fxShow.lt-md="false"
         class="ion-justify-content-center ion-align-items-center"
       >
         <friends-panel-desktop></friends-panel-desktop>
+      </ion-col> -->
+      <ion-col
+        size-lg="4"
+        fxShow.lt-md="false"
+        class="ion-justify-content-center ion-align-items-center"
+      >
+        <div style="position: sticky; top: -300px; padding-left: 5px">
+          <friends-panel-desktop></friends-panel-desktop>
+          <add-users-panel-desktop></add-users-panel-desktop>
+          <!-- <popular-groups-panel></popular-groups-panel> -->
+        </div>
       </ion-col>
     </ion-row>
   </ion-grid>

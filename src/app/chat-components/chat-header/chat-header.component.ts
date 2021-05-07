@@ -94,9 +94,9 @@ export class ChatHeaderComponent implements OnInit {
 
   seeProfile() {
     if (this.chat.sender._id != this.userService.User._id) {
-      this.userService.goToProfile(this.chat.sender.username, "chat");
+      this.userService.goToProfile(this.chat.sender.username,this.chat.receiver._id, "chat",undefined);
     } else {
-      this.userService.goToProfile(this.chat.receiver.username, "chat");
+      this.userService.goToProfile(this.chat.receiver.username,this.chat.receiver._id, "chat",undefined);
     }
   }
 

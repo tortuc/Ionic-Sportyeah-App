@@ -2,7 +2,7 @@
   <div class="user-header">
     <ion-avatar
       class="mini"
-      (click)="userService.goToProfile(comment.user.username)"
+      (click)="userService.goToProfile(comment.user.username,comment.user._id,'comment',undefined)"
     >
       <ion-img class="img-user-mini" [src]="comment.user.photo"></ion-img>
       <div class="connectedDIVlittle" *ngIf="comment.user.connected"></div>
@@ -10,7 +10,7 @@
     <div class="user-name">
       <span
         class="message profile-name"
-        (click)="userService.goToProfile(comment.user.username)"
+        (click)="userService.goToProfile(comment.user.username,comment.user._id,'comment',undefined)"
         >{{ comment.user.name }} {{ comment.user.last_name }}</span
       ><br />
       <span>{{ comment.date | customDisplayDate }}</span>

@@ -64,14 +64,14 @@ export class WeekComponent implements OnInit {
                   .getVisitsByWeek(
                     this.userService.User._id,
                     this.week,
-                    "search"
+                    "comment"
                   )
                   .pipe(take(1))
                   .subscribe((response: any) => {
                     if (response.length == 0) {
-                      this.dataSearch = [0, 0, 0, 0, 0, 0, 0];
+                      this.dataComment = [0, 0, 0, 0, 0, 0, 0];
                     } else {
-                      this.dataSearch = response;
+                      this.dataComment = response;
                     }
                     this.linesDataWeek();
                   });
@@ -155,13 +155,13 @@ export class WeekComponent implements OnInit {
             backgroundColor: "rgb(238, 241, 48, 0.1)", // array should have same number of elements as number of dataset
             borderWidth: 1,
           },
-          {
-            label: this.translate.instant("analytics-views.news"),
-            data: this.dataNews,
-            borderColor: "rgb(38, 194, 129)", // array should have same number of elements as number of dataset
-            backgroundColor: "rgb(38, 194,129, 0.1)", // array should have same number of elements as number of dataset
-            borderWidth: 1,
-          },
+          // {
+          //   label: this.translate.instant("analytics-views.news"),
+          //   data: this.dataNews,
+          //   borderColor: "rgb(38, 194, 129)", // array should have same number of elements as number of dataset
+          //   backgroundColor: "rgb(38, 194,129, 0.1)", // array should have same number of elements as number of dataset
+          //   borderWidth: 1,
+          // },
         ],
       },
       options: {
