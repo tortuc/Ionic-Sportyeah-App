@@ -29,7 +29,6 @@ import { ErrorComponent } from "./error/error.component";
 import { LinkYoutubeComponent } from "./link-youtube/link-youtube.component";
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { ImageComponent } from "../chat/image/image.component";
 import { PipesModule } from "../pipes/pipes.module";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { FlexLayoutModule } from "@angular/flex-layout";
@@ -56,7 +55,6 @@ import { OptionsWishComponent } from "./options-wish/options-wish.component";
 import { ViewFilesComponent } from "./view-files/view-files.component";
 import { ViewImageComponent } from "./view-image/view-image.component";
 import { EmojiModule } from "@ctrl/ngx-emoji-mart/ngx-emoji";
-import { MessageDocumentComponent } from "./message-document/message-document.component";
 import { ReactionsPostsComponent } from "./reactions-posts/reactions-posts.component";
 import { ViewProfileComponent } from "./view-profile/view-profile.component";
 import { AwardsPage } from "../profile/awards/awards.page";
@@ -95,7 +93,6 @@ const components = [
   NewProfilePhotoComponent,
   FriendsPanelDesktopComponent,
   UserItemPanelComponent,
-  ImageComponent,
   ImageSeeComponent,
   ErrorComponent,
   FriendsPanelDesktopComponent,
@@ -119,7 +116,6 @@ const components = [
   PreviewFilesComponent,
   OptionsWishComponent,
   ViewImageComponent,
-  MessageDocumentComponent,
   ExperiencePage,
   AwardsPage,
   LinkYoutubeComponent,

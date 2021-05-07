@@ -1,7 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { ModalController } from "@ionic/angular";
-import { ImageComponent } from "../chat/image/image.component";
 import { PostService } from "../service/post.service";
 import { UserService } from "../service/user.service";
 import { ViewsProfileService } from "src/app/service/views-profile.service";
@@ -79,15 +78,7 @@ export class PostPage implements OnInit {
     this.router.navigate([`/post/${id}`]);
   }
 
-  async openImg(msg) {
-    let modal = await this.modalCtrl.create({
-      component: ImageComponent,
-      componentProps: { msg },
-    });
-
-    return modal.present();
-  }
-
+  
   goToProfile(id, username) {
     if (id == this.userService.User?._id) {
       this.router.navigate(["/profile"]);
