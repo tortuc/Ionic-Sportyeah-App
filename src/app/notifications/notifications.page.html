@@ -5,43 +5,49 @@
     </ion-buttons>
     <ion-title style="--color:white" >{{'notifications.title' | translate}}</ion-title>
     <ion-buttons slot="end">
-
-      <ion-button  (click)="langs($event)" style="--background: inherit; color: white;"><ion-img style="width: 24px;height: 24px;margin-right: 5px;" src="./assets/flags/{{translate.currentLang}}.png"></ion-img> {{translate.currentLang}}</ion-button>
+      <!-- <ion-button  (click)="langs($event)" style="--background: inherit; color: white;"><ion-img style="width: 24px;height: 24px;margin-right: 5px;" src="./assets/flags/{{translate.currentLang}}.png"></ion-img> {{translate.currentLang}}</ion-button> -->
+      <button-search-friend></button-search-friend>
+      <button-notification></button-notification>
     </ion-buttons>
- 
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="main-bg " >
-
+  <ion-refresher
+  slot="fixed"
+  (ionRefresh)="reload($event)"
+  pullFactor="0.5"
+  pullMin="100"
+  pullMax="200"
+>
+  <ion-refresher-content></ion-refresher-content>
+</ion-refresher>
   <ion-grid  class="container"  ngClass.xs="container-xs">
     <ion-row style="padding:0"  style="height: 100%;">
       <ion-col size-xs="12"  size-lg="8" ngClass.xs="p-0" style="background-color: white;height: 100%;border-radius: 5px;padding:0 !important">
-        <ion-grid class="noticontent">
-          <ion-row style="padding: 10px;">
-            <span class="btn" (click)="seeAll()">{{'notifications.readall' | translate}}</span>
-          </ion-row>
-          <ion-row style="padding:0">
-            <ion-col style="padding:0"  *ngFor="let notification of notifications" size="12" >
-              <follow-notification      *ngIf="notification.action === 'follow'"    [notification]="notification"></follow-notification>
-              <unfollow-notification    *ngIf="notification.action === 'unfollow'"  [notification]="notification"></unfollow-notification>
-              <like-notification        *ngIf="notification.action === 'like'"      [notification]="notification"></like-notification>
-              <comment-notification     *ngIf="notification.action === 'comment'"   [notification]="notification"></comment-notification>
-              <shared-notification      *ngIf="notification.action === 'shared'"    [notification]="notification"></shared-notification>
-              <mention-notification      *ngIf="notification.action === 'mention' || notification.action === 'mention_comment'"    [notification]="notification"></mention-notification>
-              <question-notification     *ngIf="notification.action === 'questionEnd'"    [notification]="notification"></question-notification>
-            </ion-col>
-            
-          </ion-row>
-         
-          
-       
-        </ion-grid>
-       
-     
-        
-      
-     
+        <div style="height: 100%; border-radius: 5px">
+          <ion-content [scrollEvents]="true" (ionScroll)="logScrolling($event)">
+            <ion-grid class="noticontent" #colNotification>
+              <ion-row style="padding: 10px;">
+                <span class="btn" (click)="seeAll()">{{'notifications.readall' | translate}}</span>
+              </ion-row>
+              <ion-row style="padding:0">
+                <ion-col style="padding:0"  *ngFor="let notification of notifications" size="12" >
+                  <follow-notification      *ngIf="notification.action === 'follow'"    [notification]="notification"></follow-notification>
+                  <unfollow-notification    *ngIf="notification.action === 'unfollow'"  [notification]="notification"></unfollow-notification>
+                  <like-notification        *ngIf="notification.action === 'like'"      [notification]="notification"></like-notification>
+                  <comment-notification     *ngIf="notification.action === 'comment'"   [notification]="notification"></comment-notification>
+                  <shared-notification      *ngIf="notification.action === 'shared'"    [notification]="notification"></shared-notification>
+                  <mention-notification      *ngIf="notification.action === 'mention' || notification.action === 'mention_comment'"    [notification]="notification"></mention-notification>
+                  <question-notification     *ngIf="notification.action === 'questionEnd'"    [notification]="notification"></question-notification>
+                </ion-col>
+                <ion-col style="text-align: center; min-height: 50px;"
+                      ><ion-spinner *ngIf="loadingContent"></ion-spinner
+                ></ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-content>     
+        </div>
       </ion-col>
       <!-- <ion-col size-lg="4" fxShow.lt-md="false" class="ion-justify-content-center ion-align-items-center" >
         <friends-panel-desktop></friends-panel-desktop>
@@ -58,8 +64,7 @@
       </div>
     </ion-col>
    
-  </ion-row>
-  
+    </ion-row>
   </ion-grid>
 
 

@@ -37,9 +37,9 @@ public  sound(){
 
 public unreads:number = 0
 
-getNotifications(){
+getNotifications(skip){
   return this.http.get(
-    `${environment.URL_API}/notification/getall`, 
+    `${environment.URL_API}/notification/getall/${skip}`, 
     {
     headers: new HttpHeaders({"access-token":getToken()})
     }
