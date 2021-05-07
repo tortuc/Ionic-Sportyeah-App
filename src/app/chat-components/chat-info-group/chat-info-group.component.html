@@ -62,6 +62,12 @@
         <ion-label>
           <span>{{ "chat.group.addUsers.acceptPlural" | translate }}</span>
         </ion-label>
+        <ion-chip *ngIf="chat.pending.length > 0" class="pending-chip"
+          ><span *ngIf="chat.pending.length > 9">+9</span>
+          <span *ngIf="chat.pending.length <= 9">{{
+            chat.pending.length
+          }}</span></ion-chip
+        >
       </ion-item>
       <ion-item
         *ngIf="chat.admins.includes(userService.User?._id)"
@@ -88,17 +94,17 @@
 </ion-content>
 
 <ng-template #public_group_block>
-  <ion-content class="main-bg">
+  <ion-content >
     <div style="height: 100%">
       <ion-icon
         class="close"
         name="close"
         (click)="modalCtrl.dismiss()"
       ></ion-icon>
-      <ion-avatar class="big" (click)="seeImage(false)">
+      <ion-avatar class="big" style="margin-top: 10px;" (click)="seeImage(false)">
         <ion-img [src]="chat.image"></ion-img>
       </ion-avatar>
-      <div style="color: black; text-align: center">
+      <div style="color: black; text-align: center;padding: 10px;">
         <h2 style="margin: 2px; color: black">{{ chat.name }}</h2>
         <p class="date-info">
           {{ "chat.group.created" | translate }}

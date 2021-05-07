@@ -96,7 +96,15 @@
       {{ chat.name }}
     </span>
   </ion-label>
-
+  <ion-chip
+    *ngIf="chat.pending.length > 0"
+    (click)="infoGroup()"
+    class="pending-chip"
+    ><span *ngIf="chat.pending.length > 9">+9</span>
+    <span *ngIf="chat.pending.length <= 9">{{
+      chat.pending.length
+    }}</span></ion-chip
+  >
   <ion-icon
     *ngIf="!landing"
     slot="end"

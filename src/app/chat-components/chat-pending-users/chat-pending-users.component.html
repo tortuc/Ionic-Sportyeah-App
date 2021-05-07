@@ -1,8 +1,14 @@
-<ion-content class="main-bg">
+<ion-content style="--background: var(--color-secondary);">
   <div style="padding: 10px; height: 100%">
-    <ion-icon class="close" name="close" (click)="modalCtrl.dismiss()"></ion-icon>
+    <ion-icon
+      class="close"
+      name="close"
+      (click)="modalCtrl.dismiss()"
+    ></ion-icon>
     <div style="color: white; text-align: center">
-      <h2 style="margin-bottom: .5em;color: white;">{{'chat.group.addUsers.header' | translate}}</h2>
+      <h2 style="margin-bottom: 0.5em; color: white">
+        {{ "chat.group.addUsers.header" | translate }}
+      </h2>
     </div>
 
     <ion-item *ngFor="let user of chat.pending" class="user-item">
@@ -14,13 +20,20 @@
       <ion-label>
         <span style="font-size: 12px">@{{ user.username }}</span>
       </ion-label>
-      <ion-chip class="admin" color="primary" (click)="handleUserRequest( true, user )"> {{'chat.group.addUsers.acceptSingular' | translate}}</ion-chip
-        >
-      <ion-chip class="admin" color="danger" (click)="handleUserRequest( false, user)">{{'chat.group.addUsers.reject' | translate}} </ion-chip
-        >
+      <ion-chip class="reject" (click)="handleUserRequest(false, user)"
+        >{{ "chat.group.addUsers.reject" | translate }}
+      </ion-chip>
+      <ion-chip class="accept" (click)="handleUserRequest(true, user)">
+        {{ "chat.group.addUsers.acceptSingular" | translate }}</ion-chip
+      >
     </ion-item>
-    <div style="color: white; text-align: center" *ngIf="chat.pending.length == 0 ">
-      <p style="margin-top: 1em;color: white;">{{'chat.group.addUsers.noUsersToAdd' | translate}}</p>
+    <div
+      style="color: white; text-align: center"
+      *ngIf="chat.pending.length == 0"
+    >
+      <p style="margin-top: 1em; color: white">
+        {{ "chat.group.addUsers.noUsersToAdd" | translate }}
+      </p>
     </div>
   </div>
 </ion-content>

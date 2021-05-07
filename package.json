@@ -15,7 +15,7 @@
     "build:ssr": "ng build --prod && ng run app:server:production",
     "prerender": "ng run app:prerender",
     "prod": "ng build --prod && ng run app:server:production && pm2 start dist/app/server/main.js",
-    "dev":"ionic serve"
+    "dev": "ionic serve"
   },
   "private": true,
   "dependencies": {
@@ -49,6 +49,7 @@
     "@schematics/angular": "^9.1.2",
     "@schematics/schematics": "^0.1100.5",
     "@tinkoff/angular-contenteditable-accessor": "^1.1.0",
+    "@types/howler": "^2.2.2",
     "agora-rtc-sdk-ng": "^4.3.0",
     "chart.js": "^2.9.4",
     "cordova-plugin-camera": "^5.0.1",

@@ -28,5 +28,11 @@
     class="item"
   >
     <span>{{ "chat_options.pending" | translate }}</span>
+    <ion-chip *ngIf="chat.pending.length > 0" class="pending-chip"
+      ><span *ngIf="chat.pending.length > 9">+9</span>
+      <span *ngIf="chat.pending.length <= 9">{{
+        chat.pending.length
+      }}</span></ion-chip
+    >
   </ion-item>
 </ion-list>

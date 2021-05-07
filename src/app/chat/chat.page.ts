@@ -211,14 +211,11 @@ export class ChatPage implements OnInit {
     this.activeSegment = e.detail.value;
   }
 
-  async optionsChatBox(item) {
+  async optionsChatBox(chat) {
     let modal = await this.modalCtrl.create({
       component: ChatInfoGroupComponent,
-      componentProps: { chat: item.chat, public_group: true },
-    });
-
-    modal.onDidDismiss().then((data) => {
-      // this.option(data.data)
+      componentProps: { chat, public_group: true },
+      cssClass:"modal-border"
     });
 
     modal.present();

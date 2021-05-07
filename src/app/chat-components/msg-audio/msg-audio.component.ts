@@ -20,6 +20,7 @@ import { OptionsMsgComponent } from "src/app/chat/options-msg/options-msg.compon
   styleUrls: ["./msg-audio.component.scss"],
 })
 export class MsgAudioComponent implements OnInit {
+  interval: NodeJS.Timeout;
   constructor(
     public userService: UserService,
     private cd: ChangeDetectorRef,
@@ -32,25 +33,33 @@ export class MsgAudioComponent implements OnInit {
   @Output() delete = new EventEmitter();
 
   duration = 0;
-  async ngOnInit() {
-    this.duration = await getBlobDuration(this.message?.audio);
 
+  loaded = false;
+  async ngOnInit() {
     this.audio = new Howl({
       src: [this.message.audio],
     });
-
     this.audio.load();
-    setInterval(() => {
-      this.updateWidth();
-    }, 100);
+
+    this.audio.on("load", (ev) => {
+      this.loaded = true;
+      this.getDuration();
+    });
+
+    if (this.audio.state() == "loaded") {
+      this.loaded = true;
+      this.getDuration();
+    }
 
     this.messageService.soundPlaying().subscribe((id) => {
       if (id != this.message._id) {
-        this.pause = true;
-        this.audio.pause();
-        this.cd.detectChanges();
+        this.pauseAudio();
       }
     });
+  }
+
+  getDuration() {
+    this.duration = this.audio.duration();
   }
 
   updateWidth() {
@@ -64,11 +73,18 @@ export class MsgAudioComponent implements OnInit {
   currentTime: any = 0;
   pause = false;
 
+  /**
+   * Id del audio
+   */
+
+  id: number;
+
   audio: Howl = null;
   /**
    * Esta funcion reproduce un audio
    * @param url Url del audio
    */
+
   playAudio() {
     if (!(this.currentTime != 0 && !this.pause)) {
       this.pause = false;
@@ -76,15 +92,24 @@ export class MsgAudioComponent implements OnInit {
 
       this.messageService.playSound(this.message?._id);
 
-      this.audio.play();
+      this.id = this.audio.play();
+
       this.cd.detectChanges();
+      if (!this.interval) {
+        this.interval = setInterval(() => {
+          this.updateWidth();
+        }, 100);
+      }
     } else {
       this.pauseAudio();
     }
   }
 
   pauseAudio() {
-    this.pause = !this.pause;
+    clearInterval(this.interval);
+    this.interval = null;
+
+    this.pause = true;
     this.cd.detectChanges();
     this.audio.pause();
   }
@@ -108,6 +133,20 @@ export class MsgAudioComponent implements OnInit {
 
       default:
         break;
+    }
+  }
+
+  changeRange(ev) {
+    if (!this.id) {
+      this.id = this.audio.play();
+      this.audio.pause();
+      let pos = this.audio.duration(this.id) * Number(ev.target.value);
+      this.audio.seek(pos, this.id);
+      this.currentTime = this.audio.seek();
+    } else {
+      let pos = this.audio.duration(this.id) * Number(ev.target.value);
+
+      this.audio.seek(pos, this.id);
     }
   }
   deleted() {

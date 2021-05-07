@@ -1,8 +1,26 @@
-.close{
-    font-size:30px;
-    color: white;
-    cursor: pointer;
-    position: absolute;
-    right: 5px;
-    top: 5px;
+.close {
+  font-size: 30px;
+  color: white;
+  cursor: pointer;
+  position: absolute;
+  right: 5px;
+  top: 5px;
+}
+
+.user-item {
+  --border-radius: 15px;
+}
+
+.reject{
+    background: red;
+    color: beige;
+    border: solid 1px black;
+    box-shadow: 0 0 2px black;
+}
+
+.accept{
+    background: #4caf50;
+    color: beige;
+    border: solid 1px black;
+    box-shadow: 0 0 2px black;
 }

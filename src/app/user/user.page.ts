@@ -207,12 +207,10 @@ export class UserPage implements OnInit {
   createChat(user) {
     this.chatService
       .create(user._id)
-      .toPromise()
-      .then((resp) => {
-        this.router.navigate(["/chat"], { state: { chat: resp } });
-      })
-      .catch((err) => {
-        // handle
+      .pipe(take(1))
+      .subscribe((resp:any) => {
+        sessionStorage.setItem("chat", resp._id);
+        this.router.navigate(["/chat"]);
       });
   }
 

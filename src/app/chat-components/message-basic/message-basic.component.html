@@ -1,6 +1,6 @@
 <ion-card
   class="msg"
-  [ngClass]="message.user._id == userService.User?._id ? 'my-msg' : ''"
+  [ngClass]="{'my-msg':(message.user._id == userService.User?._id),'full-width':(message.files.length > 1)}"
 >
   <ion-grid>
     <ion-row>
