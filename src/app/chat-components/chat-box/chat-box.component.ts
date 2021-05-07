@@ -63,7 +63,7 @@ export class ChatBoxComponent implements OnInit, OnChanges, AfterViewInit {
       let el = await this.chatContent.getScrollElement();
       if (el.scrollHeight - el.scrollTop < el.clientHeight + 200) {
         this.scrollToBottom(150);
-        this.readMessages([msg], this.chat._id);
+        this.readMessages();
       } else {
         this.newMessages += 1;
       }
@@ -80,7 +80,7 @@ export class ChatBoxComponent implements OnInit, OnChanges, AfterViewInit {
    * El chat ha cambiado, o abierto un nuevo hcat
    */
   newChat() {
-    this.lastScrollHeight = 0
+    this.lastScrollHeight = 0;
     this.chatChange = true;
     this.messages = [];
     this.skip = 0;
@@ -145,7 +145,7 @@ export class ChatBoxComponent implements OnInit, OnChanges, AfterViewInit {
       this.scrollToBottom();
     }
 
-    this.readMessages(messages, this.chat._id);
+    this.readMessages();
     this.loadMessages = false;
   }
 
@@ -158,13 +158,15 @@ export class ChatBoxComponent implements OnInit, OnChanges, AfterViewInit {
     }, delay);
   }
 
-  readMessages(messages: IMessage[], chat) {
-    let messagesUnread = messages.filter((message) => {
+  readMessages() {
+    let messagesUnread = this.messages.filter((message) => {
       return (
         message.read == false && message.user._id != this.userService.User._id
       );
     });
-    this.messageService.readMessages(messagesUnread, chat).subscribe();
+    console.log(messagesUnread);
+
+    this.messageService.readMessages(messagesUnread, this.chat._id).subscribe();
   }
 
   updateReads(messages: String[]) {
@@ -180,7 +182,7 @@ export class ChatBoxComponent implements OnInit, OnChanges, AfterViewInit {
 
   goDown() {
     this.scrollToBottom(100);
-    this.readMessages(this.messages, this.chat._id);
+    this.readMessages();
   }
 
   lastScrollHeight = 0;
@@ -215,7 +217,10 @@ export class ChatBoxComponent implements OnInit, OnChanges, AfterViewInit {
         // no hay suficiente scroll, asi que hay pocos mensajes y no es necesario buscar nuevos
       }
     } else {
-      if (this.lastScrollHeight != scrollHeight && scrollHeight - this.lastScrollHeight  > 100) {
+      if (
+        this.lastScrollHeight != scrollHeight &&
+        scrollHeight - this.lastScrollHeight > 100
+      ) {
         this.chatContent.scrollToPoint(0, 30, 10);
       }
     }

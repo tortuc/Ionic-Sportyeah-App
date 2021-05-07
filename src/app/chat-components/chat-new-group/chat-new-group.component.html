@@ -35,7 +35,7 @@
     </div>
   </div>
   <div *ngIf="step == 2">
-    <div style="padding: 10px; font-size: 12px; text-align: center">
+    <div style="padding: 10px; font-size: 12px; text-align: center;color:black">
       {{ "group_name" | translate }}
     </div>
     <input
@@ -84,9 +84,9 @@
     <div class="privacy">
       <p>{{ "group_privacy" | translate }}</p>
       <div>
-        <span (click)="privacy = false">{{ "private" | translate }}</span>
+        <span style="color: black;" (click)="privacy = false">{{ "private" | translate }}</span>
         <ion-toggle [(ngModel)]="privacy"></ion-toggle>
-        <span (click)="privacy = true">{{ "public" | translate }}</span>
+        <span style="color: black;" (click)="privacy = true">{{ "public" | translate }}</span>
       </div>
     </div>
   </div>
@@ -129,7 +129,7 @@
     </ion-item>
   </div>
 
-  <div *ngIf="step == 2" style="padding: 10px; font-size: 12px">
+  <div *ngIf="step == 2" style="padding: 10px; font-size: 12px;color: black;">
     {{ "new_group_users" | translate }}
   </div>
 
@@ -142,7 +142,7 @@
       <ion-avatar class="xmini" style="margin: 0 8px">
         <img [src]="user.photo" />
       </ion-avatar>
-      <span style="font-size: 12px">{{ user.name }}</span>
+      <span style="font-size: 12px;color: black;">{{ user.name }}</span>
     </div>
   </div>
 </ion-content>
