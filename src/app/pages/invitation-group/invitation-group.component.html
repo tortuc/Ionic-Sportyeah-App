@@ -8,15 +8,15 @@
           <ion-card-header class="text-center">
             <ion-img
               class="img-login"
-              style="cursor: pointer;margin-bottom: 10px;"
+              style="cursor: pointer; margin-bottom: 10px"
               (click)="userService.goLanding()"
               src="assets/logos/logo.png"
             ></ion-img>
             <ng-container *ngIf="chat; else chatError">
-              <ion-card-title *ngIf="!inside">{{
+              <ion-card-title >{{
                 "chat.group.invitation.header" | translate
               }}</ion-card-title>
-              <img src="{{ chat.image }}" style="max-width: 150px" />
+              <img [src]="chat.image" class="chat-img" />
               <ion-card-subtitle> {{ chat.name }}</ion-card-subtitle>
             </ng-container>
             <ng-template #chatError>
@@ -32,18 +32,16 @@
                   <ion-button
                     (click)="join()"
                     class="btn-primary"
-                    expand="block"
-                    fill="outline"
                     *ngIf="chat && !inside"
                     >{{ "chat.group.join" | translate }}</ion-button
                   >
                   <ion-button
                     (click)="goChat()"
                     class="btn-primary"
-                    expand="block"
-                    fill="outline"
                     *ngIf="chat && inside"
-                    >{{ "Ya estas en este grupo, entrar al chat" | translate }}</ion-button
+                    >{{
+                      "Ya estas en este grupo, entrar al chat" | translate
+                    }}</ion-button
                   >
                 </ion-col>
               </ion-row>

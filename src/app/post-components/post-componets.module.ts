@@ -59,13 +59,11 @@ const componets = [
   HeaderPostComponent,
   PostContentComponent,
   SeeFilesPostContentComponent,
-  SharePopoverComponent
-  
-  
+  SharePopoverComponent,
 ];
 
 @NgModule({
-   imports: [
+  imports: [
     CommonModule,
     IonicModule,
     TranslateModule,
@@ -80,7 +78,7 @@ const componets = [
     RouterModule,
   ],
   declarations: componets,
- 
+
   exports: componets,
 })
 export class PostComponetsModule {}
