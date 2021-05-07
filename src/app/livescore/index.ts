@@ -1,0 +1,1 @@
+export { LivescoreComponent } from './livescore.component';
