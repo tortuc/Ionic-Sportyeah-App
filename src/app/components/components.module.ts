@@ -80,6 +80,7 @@ import { DayComponent } from "./analitics-views/day/day.component";
 import { MonthComponent } from "./analitics-views/month/month.component";
 import { WeekComponent } from "./analitics-views/week/week.component";
 import { YearComponent } from "./analitics-views/year/year.component";
+import { ComponentsSharedModule } from "../shared-components/components-shared.module";
 
 const components = [
   NewProfilePhotoComponent,
@@ -165,6 +166,7 @@ const components = [
     DirectivesModule,
     PickerModule,
     EmojiModule,
+    ComponentsSharedModule
   ],
   declarations:  components,
   exports: components ,
