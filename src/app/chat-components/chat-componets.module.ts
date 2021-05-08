@@ -14,7 +14,6 @@ import { OptionsMsgComponent } from "../chat/options-msg/options-msg.component";
 import { ChatInfoGroupComponent } from "./chat-info-group/chat-info-group.component";
 import { ChatNewGroupComponent } from "./chat-new-group/chat-new-group.component";
 import { ChatOptionsComponent } from "./chat-options/chat-options.component";
-import { ChatUserItemComponent } from "./chat-user-item/chat-user-item.component";
 import { ChatPendingUsersComponent } from "./chat-pending-users/chat-pending-users.component";
 import { GroupOptionUsersComponent } from "./group-option-users/group-option-users.component";
 import { GroupImageComponent } from "./group-image/group-image.component";
@@ -44,7 +43,6 @@ const componets = [
   ChatInfoGroupComponent,
   ChatNewGroupComponent,
   ChatOptionsComponent,
-  ChatUserItemComponent,
   ChatPendingUsersComponent,
   GroupOptionUsersComponent,
   GroupImageComponent,
@@ -67,6 +65,7 @@ const componets = [
 ];
 
 @NgModule({
+  declarations: componets,
 
   imports: [
     CommonModule,
@@ -84,7 +83,6 @@ const componets = [
     ClipboardModule,
     ComponentsSharedModule
   ],
-  declarations: componets,
   exports: componets,
 })
 export class ChatComponetsModule {}

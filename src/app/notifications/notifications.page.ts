@@ -38,9 +38,7 @@ export class NotificationsPage implements OnInit {
         this.notificationService.getNotifications(0).pipe(take(1))
         .subscribe((data)=>{
           this.notifications.unshift(data[0])
-          
         })
-
     })
   }
 
@@ -109,7 +107,6 @@ export class NotificationsPage implements OnInit {
       component: LangsPage,
       translucent: true,
       event:ev
-  
     })
   
     langs.present()

@@ -15,6 +15,12 @@ import { AttachLinkPreviewPostComponent } from "../post-components/attach-link-p
 import { UrlPreviewComponent } from "../components/url-preview/url-preview.component";
 import { FriendsMobileComponent } from "../components/friends-mobile/friends-mobile.component";
 import { PopularGroupsPanelComponent } from "../components/popular-groups-panel/popular-groups-panel.component";
+import { ChatUserItemComponent } from "../chat-components/chat-user-item/chat-user-item.component";
+import { UserItemComponent } from "../components/user-item/user-item.component";
+import { UserItemPanelComponent } from "../components/users/user-item-panel/user-item-panel.component";
+import { FriendsPanelDesktopComponent } from "../components/friends-panel-desktop/friends-panel-desktop.component";
+import { AddUsersPanelDesktopComponent } from "../components/add-users-panel-desktop/add-users-panel-desktop.component";
+import { FollowBtn } from "../components/profile-challenges/follow-btn.component";
 
 const components = [
   FollowButtonComponent,
@@ -26,7 +32,13 @@ const components = [
   AttachLinkPreviewPostComponent,
   UrlPreviewComponent,
   PopularGroupsPanelComponent,
-  FriendsMobileComponent
+  FriendsMobileComponent,
+  ChatUserItemComponent,
+  UserItemComponent,
+  UserItemPanelComponent,
+  FriendsPanelDesktopComponent,
+  AddUsersPanelDesktopComponent,
+  FollowBtn,
 ];
 
 @NgModule({
