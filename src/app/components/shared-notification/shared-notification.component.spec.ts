@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
 import { SharedNotificationComponent } from './shared-notification.component';
@@ -7,7 +7,7 @@ describe('SharedNotificationComponent', () => {
   let component: SharedNotificationComponent;
   let fixture: ComponentFixture<SharedNotificationComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ SharedNotificationComponent ],
       imports: [IonicModule.forRoot()]

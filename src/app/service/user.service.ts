@@ -250,7 +250,7 @@ export class UserService {
   }
 
 
-  public goToProfile(username,idUser,from,link) {
+  public goToProfile(username,idUser,from,link = null) {
     if (username != this.User.username) {
       // this.getUserByUsername(username)
       // .subscribe(
@@ -260,7 +260,7 @@ export class UserService {
             { user:idUser,
              visitor:this.User._id,
              from:from,
-             link: link!=undefined?`${link}`:link
+             link: link
            }
            )
             .subscribe(() => {

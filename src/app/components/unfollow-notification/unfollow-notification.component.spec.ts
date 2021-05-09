@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
 import { UnfollowNotificationComponent } from './unfollow-notification.component';
@@ -7,7 +7,7 @@ describe('UnfollowNotificationComponent', () => {
   let component: UnfollowNotificationComponent;
   let fixture: ComponentFixture<UnfollowNotificationComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ UnfollowNotificationComponent ],
       imports: [IonicModule.forRoot()]

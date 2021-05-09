@@ -1,21 +1,20 @@
-<div *ngIf="!notification.read" [ngClass]="(notification.read)?'':'unread'"><span class="see"><ion-icon style="cursor: pointer;" (click)="read()"   class=" eye "  name="eye-outline"></ion-icon></span></div>
-<div class="notification" [ngClass]="(notification.read)?'':'unread'" routerLink="{{notification.routerlink}}">
-  <div>
-  
-    <ion-icon name="arrow-redo-outline" class="icon" style="margin-right: 2px;"></ion-icon>
-
+<div
+  class="notification"
+  (click)="read()"
+  [ngClass]="notification.read ? '' : 'unread'"
+  routerLink="{{ notification.routerlink }}"
+>
+  <div class="notification-user">
+    <img class="user" [src]="notification.friend.photo" />
+    <ion-icon name="arrow-redo" class="icon"></ion-icon>
   </div>
- <div style="padding-left: 10px;">
-  <div style="display: flex;align-items: center;">
-    <ion-avatar class="xmini" >
-      <ion-img [src]="notification.friend.photo"></ion-img>
-    </ion-avatar>
-   <span class="notificationP" style="margin-left: 5px;">{{notification.friend.name}} {{notification.friend.last_name}} {{'notifications.shared.text' | translate}}</span>
 
+  <div style="padding-left: 15px">
+    <p style="margin-left: 5px; color: black">
+      {{ notification.friend.name }} {{ notification.friend.last_name }}
+      {{ "notifications.shared.text" | translate }}
+    </p>
+
+    <span class="date">{{ notification.date | customDisplayDate }}</span>
   </div>
- 
-  
-   <span class="date">{{notification.date | customDisplayDate}}</span>
- </div>
-
 </div>

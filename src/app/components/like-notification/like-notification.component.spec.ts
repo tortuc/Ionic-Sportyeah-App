@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
 import { LikeNotificationComponent } from './like-notification.component';
@@ -7,7 +7,7 @@ describe('LikeNotificationComponent', () => {
   let component: LikeNotificationComponent;
   let fixture: ComponentFixture<LikeNotificationComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ LikeNotificationComponent ],
       imports: [IonicModule.forRoot()]

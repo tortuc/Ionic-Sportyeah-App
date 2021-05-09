@@ -1,8 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
+import { ChatInfoGroupComponent } from 'src/app/chat-components/chat-info-group/chat-info-group.component';
 import { ChatService } from 'src/app/service/chat.service';
-// import { ChatInfoGroupComponent } from '../chat-info-group/chat-info-group.component';
 
 @Component({
   selector: 'popular-groups-panel',
@@ -28,15 +28,15 @@ export class PopularGroupsPanelComponent implements OnInit {
   }
 
   
-// async optionsChatBox( item ){
-//   let modal = await this.modalCtrl.create({
-//     component: ChatInfoGroupComponent,
-//     componentProps: { chat: item.chat, public_group: true },
-//   });
+async optionsChatBox( item ){
+  let modal = await this.modalCtrl.create({
+    component: ChatInfoGroupComponent,
+    componentProps: { chat: item.chat, public_group: true },
+  });
 
 
-//   modal.present();
-// }
+  modal.present();
+}
 
 seeAll(){
   this.router.navigate(["/chat"],{queryParams:{s:'g'}})

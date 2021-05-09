@@ -1,44 +1,5 @@
-.notification{
-    display: flex;
-    cursor: pointer;
-    border-bottom: 1px solid #ccc ;
-    padding: 10px;
-    position: relative;
-}
-
-.unread{
-     background: var(--ion-color-secondary);
-  
-}
-.notification:hover{
-     background: var(--ion-color-secondary);
-}
-
-.date{
-    font-size: 12px;
-    position: absolute;
-    bottom: 2px; right: 5px;
-}
 
 .icon{
     color: #17bf63;
     font-size: 32px;
 }
-
-.see{
-    position: relative;
-    left: 90%;
-}
-
-.eye{
-    color: rgba(0, 0, 0, 0.808);
-    font-size: 32px;
-}
-
-@media screen and (max-width:600px){
-    .see{
-        position: relative;
-        left: 80%;
-    }
-    
-  }

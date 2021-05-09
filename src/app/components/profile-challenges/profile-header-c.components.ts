@@ -13,7 +13,7 @@ import { IUser } from "src/app/models/IUser";
       </ion-avatar>
       <div class="estado">
         @{{username}}
-        <follow-btn [user]="user" style="margin-top:10px;"></follow-btn>
+        <!-- <follow-btn [user]="user" style="margin-top:10px;"></follow-btn> -->
       </div>
     </div>
     
