@@ -33,6 +33,7 @@
     "@capacitor/core": "2.4.6",
     "@ctrl/ngx-emoji-mart": "^4.1.1",
     "@fortawesome/fontawesome-free": "^5.15.3",
+    "@giphy/js-fetch-api": "^3.0.0",
     "@ionic-native/camera": "^5.31.1",
     "@ionic-native/core": "^5.0.0",
     "@ionic-native/keyboard": "^5.32.1",

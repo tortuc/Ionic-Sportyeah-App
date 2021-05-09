@@ -679,6 +679,11 @@ ion-segment-button {
   --color: #1586e4;
 }
 
+.toolbar-bg {
+  --background: var(--color-primary) !important;
+}
+
+
 .btn-dismiss {
   color: gray;
   right: 5px;
