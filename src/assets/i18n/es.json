@@ -438,6 +438,9 @@
     "mention_comment": {
       "text": "te ha mencionado en un comentario"
     },
+    "finish_question": {
+      "text": "finializo la votación de tu cuestionario"
+    },
     "readall": "Marcar todas como leidas"
   },
   "edit": "Editar",
@@ -1126,7 +1129,10 @@
     "private": "Se ha enviado tu peticion para unirte al grupo {{name}}",
     "err": "No has podido unirte al grupo, intente mas tarde"
   },
-  "new_messages": "Nuevos mensajes"
+  "new_messages": "Nuevos mensajes",
+  "pdf":{
+    "data_sponsor":"Datos del patrocinador en el año"
 
+  }
 
 }

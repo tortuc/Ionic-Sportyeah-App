@@ -1,37 +1,24 @@
+<div
+  class="notification"
+  (click)="read()"
+  [ngClass]="notification.read ? '' : 'unread'"
+  routerLink="{{ notification.routerlink }}"
+>
+  <div class="notification-user">
+    <img class="user" [src]="notification.friend.photo" />
+    <ion-icon name="chatbox" class="icon"></ion-icon>
+  </div>
 
-<div *ngIf="!notification.read" [ngClass]="(notification.read)?'':'unread'" ><span class="see"><ion-icon style="cursor: pointer;" (click)="read()" class=" eye "  name="eye-outline"></ion-icon></span></div>
-<div class="notification" routerLink="{{notification.routerlink}}" [ngClass]="(notification.read)?'':'unread'" >
-  <div>
-  
-    <ion-icon name="chatbox-outline" class="icon" style="margin-right: 2px;"></ion-icon>
-    
+  <div style="padding-left: 15px">
+    <div style="display: flex; align-items: center">
+      <p>
+        {{ "notifications.comment.text" | translate: notification.friend }}
+      </p>
+    </div>
+    <div *ngIf="notification.comment">
+      <view-comment [comment]="notification.comment"></view-comment>
+    </div>
+
+    <span class="date">{{ notification.date | customDisplayDate }}</span>
   </div>
- <div style="padding-left: 10px;">
-    
-  <div style="display: flex;align-items: center;">
-    <ion-avatar class="xmini" >
-      <ion-img [src]="notification.friend.photo"></ion-img>
-    </ion-avatar>
-   <span class="notificationP" style="margin-left: 5px;">{{notification.friend.name}} {{notification.friend.last_name}} {{'notifications.comment.text' | translate}}</span>
-  </div>
-  <div *ngIf="notification.comment">
-    <ion-card class="comment"  >
-      <ion-card-header>
-        <ion-card-subtitle class="user-header">
-          <ion-avatar class="mini">
-          <ion-img class="img-user-mini" [src]="notification.comment.user.photo"></ion-img>
-        </ion-avatar>
-        <div class="user-name">
-          <span class="message profile-name" (click)="userService.goToProfile(notification.comment.user.username,notification.comment.user._id,'comment','/post/'+notification.post._id)" >{{notification.comment.user.name}} {{notification.comment.user.last_name}}</span><br>
-          <span>{{notification.comment.date | customDisplayDate}}</span>
-        </div>
-        </ion-card-subtitle>
-      </ion-card-header>
-      <ion-card-content>
-        <span *ngIf="notification.comment.message" [innerHTML]="notification.comment.message | links"></span>
-      </ion-card-content>
-      </ion-card>
-  </div>
-   <span class="date">{{notification.date | customDisplayDate}}</span>
- </div>
 </div>

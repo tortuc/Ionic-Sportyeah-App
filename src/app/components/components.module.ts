@@ -40,7 +40,6 @@ import { ContenteditableValueAccessorModule } from "@tinkoff/angular-contentedit
 import { DirectivesModule } from "../directives/directive.module";
 import { PickerModule } from "@ctrl/ngx-emoji-mart";
 import { NewProfilePhotoComponent } from "./new-profile-photo/new-profile-photo.component";
-import { FriendsPanelDesktopComponent } from "./friends-panel-desktop/friends-panel-desktop.component";
 import { LangsPage } from "../langs/langs.page";
 import { FollowNotificationComponent } from "./follow-notification/follow-notification.component";
 import { UnfollowNotificationComponent } from "./unfollow-notification/unfollow-notification.component";
@@ -81,20 +80,12 @@ import { DayComponent } from "./analitics-views/day/day.component";
 import { MonthComponent } from "./analitics-views/month/month.component";
 import { WeekComponent } from "./analitics-views/week/week.component";
 import { YearComponent } from "./analitics-views/year/year.component";
-import { UserItemComponent } from "./user-item/user-item.component";
-import { UserItemPanelComponent } from "./users/user-item-panel/user-item-panel.component";
-import { AddUsersPanelDesktopComponent } from "./add-users-panel-desktop/add-users-panel-desktop.component";
-import { FollowButtonComponent } from "./follow-button/follow-button.component";
+import { ComponentsSharedModule } from "../shared-components/components-shared.module";
 
 const components = [
-  FollowButtonComponent,
-  AddUsersPanelDesktopComponent,
   NewProfilePhotoComponent,
-  FriendsPanelDesktopComponent,
-  UserItemPanelComponent,
   ImageSeeComponent,
   ErrorComponent,
-  FriendsPanelDesktopComponent,
   LangsPage,
   FollowNotificationComponent,
   UnfollowNotificationComponent,
@@ -157,8 +148,8 @@ const components = [
   DayComponent,
   MonthComponent,
   WeekComponent,
-  YearComponent,
-  UserItemComponent
+  YearComponent
+  
 ]
 @NgModule({
   imports: [
@@ -175,6 +166,7 @@ const components = [
     DirectivesModule,
     PickerModule,
     EmojiModule,
+    ComponentsSharedModule
   ],
   declarations:  components,
   exports: components ,

@@ -1,33 +1,22 @@
-
-<div *ngIf="!notification.read" [ngClass]="(notification.read)?'':'unread'"><span class="see"><ion-icon style="cursor: pointer;" (click)="read()"   class=" eye "  name="eye-outline"></ion-icon></span></div>
-<div class="notification" [ngClass]="(notification.read)?'':'unread'" routerLink="{{notification.routerlink}}">
-  <div>
-
-    <div class="reacts show"  #reacts >
-      <div class="circle" *ngIf="notification.like==1"  #circle><img #img src="https://res.cloudinary.com/prvnbist/image/upload/v1492531171/XZOPuv9_eyqlr2.png" alt=""/>
-      </div>
-      <div class="circle" *ngIf="notification.like==2"  #circle><img #img src="https://res.cloudinary.com/prvnbist/image/upload/v1492531172/uIjLl6R_cmbnqb.png" alt=""/>
-      </div>
-      <div class="circle" *ngIf="notification.like==3"  #circle><img #img src="https://res.cloudinary.com/prvnbist/image/upload/v1492531177/lsHmtDy_ycqnbp.png" alt=""/>
-       </div>
-       <div class="circle" *ngIf="notification.like==4"  #circle><img #img src="https://res.cloudinary.com/prvnbist/image/upload/v1492531177/s475u9d_o8trbg.png" alt=""/>
-       
-      </div>
-      <div class="circle" *ngIf="notification.like==5"  #circle><img #img src="https://res.cloudinary.com/prvnbist/image/upload/v1492531172/JJuD9qb_a7gkmu.png" alt=""/>
-      </div>
-      <div class="circle" *ngIf="notification.like==6"  #circle><img #img src="https://res.cloudinary.com/prvnbist/image/upload/v1492531178/VDM3zOV_qy9fqj.png" alt=""/>
-      </div>
-    </div>
- 
-   
-<!--     <ion-icon name="heart" class="heart" style="margin-right: 2px;"></ion-icon>
- -->
+<div
+  class="notification"
+  (click)="read()"
+  [ngClass]="notification.read ? '' : 'unread'"
+  routerLink="{{ notification.routerlink }}"
+>
+  <div class="notification-user">
+    <img class="user" [src]="notification.friend.photo" />
+    <img
+      class="reaction"
+      [src]="notification.like | showReactionsImage"
+      alt=""
+    />
   </div>
- <div style="padding-left: 10px;">
-<ion-avatar class="xmini">
-      <ion-img [src]="notification.friend.photo"></ion-img>
-    </ion-avatar>
-   <p class="notificationP">{{notification.friend.name}} {{notification.friend.last_name}} {{'notifications.like.text' | translate}}</p>
-   <span class="date">{{notification.date | customDisplayDate}}</span>
- </div>
+
+  <div style="padding-left: 15px">
+    <p>
+      {{ "notifications.like.text" | translate: notification.friend }}
+    </p>
+    <span class="date">{{ notification.date | customDisplayDate }}</span>
+  </div>
 </div>

@@ -14,9 +14,7 @@ import { CommentPostComponent } from "./comment-post/comment-post.component";
 import { NewPostHeaderComponent } from "./new-post-header/new-post-header.component";
 import { PostPreviewImagesComponent } from "./post-preview-images/post-preview-images.component";
 import { PostPreviewImagesSliderComponent } from "./post-preview-images-slider/post-preview-images-slider.component";
-import { ViewCommentComponent } from "./view-comment/view-comment.component";
 import { SeeFilesPostSliderComponent } from "./see-files-post-slider/see-files-post-slider.component";
-import { QuestionCommentComponent } from "../components/question-comment/question-comment.component";
 import { EditQuestionComponent } from "../components/edit-question/edit-question.component";
 import { ReactToPostsComponent } from "./react-to-posts/react-to-posts.component";
 import { LikesPostComponent } from "./likes-post/likes-post.component";
@@ -40,17 +38,15 @@ const componets = [
   NewPostHeaderComponent,
   PostPreviewImagesComponent,
   PostPreviewImagesSliderComponent,
-  ViewCommentComponent,
   SeeFilesPostSliderComponent,
-  QuestionCommentComponent,
   EditQuestionComponent,
   ReactToPostsComponent,
   LikesPostComponent,
   AllReactionsComponent,
+  UserItemReactionsComponent,
   LikesReactionsComponent,
   PostOptionsComponent,
   SharedsPostComponent,
-  UserItemReactionsComponent,
   CommentsInPotsComponent,
   SharedsInPostComponent,
   NewPostPage,
