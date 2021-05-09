@@ -816,7 +816,6 @@ ion-avatar.chat-img {
   font-size: 13px;
   display: flex;
   cursor: pointer;
-  border-bottom: 1px solid #f08f97;
   padding: 10px;
   position: relative;
   &:hover {
@@ -840,7 +839,7 @@ ion-avatar.chat-img {
       min-width: 40px;
       min-height: 40px;
       border-radius: 40%;
-      box-shadow: 0 0 10px 1px #f08f97;
+      box-shadow: 0 0 10px 1px #2a4c78 ;
       object-fit: cover;
     }
     .icon{

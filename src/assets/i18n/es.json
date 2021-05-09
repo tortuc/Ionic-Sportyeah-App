@@ -1129,7 +1129,10 @@
     "private": "Se ha enviado tu peticion para unirte al grupo {{name}}",
     "err": "No has podido unirte al grupo, intente mas tarde"
   },
-  "new_messages": "Nuevos mensajes"
+  "new_messages": "Nuevos mensajes",
+  "pdf":{
+    "data_sponsor":"Datos del patrocinador en el año"
 
+  }
 
 }
