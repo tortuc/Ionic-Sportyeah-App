@@ -50,8 +50,11 @@ dia = moment().startOf("days")
   ngOnChanges(){
     // this.getData()
   }
-  changeDay(n) {
+  changeDay(n) { 
+    console.log(n);
     this.hour = moment(this.hour).add(n, "days");
+    console.log(this.hour);
+
     this.takeDataDay();
   }
   takeDataDay() {
@@ -103,7 +106,7 @@ dia = moment().startOf("days")
   labelHours=[];
   hours=[];
   linesHourSponsor;
-  hour = moment(new Date()).startOf("days")
+  hour = moment().startOf("days")
   hourShow
 linesHours(){
   this.cd.detectChanges()

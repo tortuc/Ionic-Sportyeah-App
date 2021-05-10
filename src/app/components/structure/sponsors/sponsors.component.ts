@@ -88,8 +88,7 @@ export class SponsorsNodeComponent implements OnInit {
 
 
 
-
-  go(url:string){
+  go(url:string,name){
     this.viewsSponsorService
     .createSponsorView(
       {
@@ -97,7 +96,7 @@ export class SponsorsNodeComponent implements OnInit {
        visitor:this.userService.User._id,
        from:"profile",
        link:null,
-       urlSponsor:url
+       nameSponsor:name
      }
      )
       .subscribe((response) => {

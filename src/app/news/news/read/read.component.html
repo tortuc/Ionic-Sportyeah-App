@@ -112,7 +112,7 @@
            
             *ngFor="let sponsor of news.news.user.sponsors; let i = index"
           >
-            <div (click)="goToSponsor(sponsor.url,news.news.user._id, news.news.user.username, news.news._id)" target="_blank">
+            <div (click)="goToSponsor(sponsor.url,sponsor.name,news.news.user._id, news.news.user.username, news.news._id)" target="_blank">
               <img
                 [src]="sponsor.photo"
                 style="
@@ -169,7 +169,7 @@
                       size="4"
                       *ngFor="let sponsor of comment.user.sponsors; let i = index"
                       >
-                        <div style="z-index: 10000;" (click)="goToSponsorComment(sponsor.url,comment.user._id, comment.news)"  target="_blank">
+                        <div style="z-index: 10000;" (click)="goToSponsorComment(sponsor.url,sponsor.name,comment.user._id, comment.news)"  target="_blank">
                           <img
                           [src]="sponsor.image"
                           style="
