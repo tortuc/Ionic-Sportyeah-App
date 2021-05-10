@@ -175,9 +175,6 @@ export class AnaliticsViewsComponent implements OnInit {
   c = document.getElementById('areaPoplar') as HTMLCanvasElement
 
   ngOnInit() {
-    console.log(this.userService.User.sponsors);
-
-
     this.viewsSponsorService
       .getSponsorView(this.userService.User._id)
       .subscribe((response: any) => {
