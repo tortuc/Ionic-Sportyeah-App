@@ -122,19 +122,26 @@
                   <ion-col
                     *ngFor="let sponsor of userService.User?.sponsors; let i = index"
                   >
-                    <div style="text-align: center;"  target="_blank">
+
+                  <ion-segment scrollable class="segement" [(ngModel)] = "sponsorSelect"  >
+                    <ion-segment-button [value]="sponsor.name">
                       <img
-                        (click)=" generatePdf(sponsor.name)"
-                        [src]="sponsor.image"
-                        style="
-                          height: 30px;
-                          width: 60px;
-                          border-radius: 10px;
-                          object-fit: cover;
-                          object-position: cover;
-                          cursor: pointer;
-                        "
-                    /></div>
+                      (click)=" generatePdf(sponsor.name)"
+                      [src]="sponsor.image"
+                      style="
+                        height: 30px;
+                        width: 60px;
+                        border-radius: 10px;
+                        object-fit: cover;
+                        object-position: cover;
+                        cursor: pointer;
+                      "
+                  />     
+                      <p style="visibility: visible">{{sponsor.name}}</p>
+                    </ion-segment-button>
+                  </ion-segment>
+                    <!-- <div style="text-align: center;"  target="_blank">
+                     </div> -->
                   </ion-col>
                 </ion-row>
               </ion-grid>
@@ -335,10 +342,10 @@
 
 
 
-<day   *ngIf="analyticsToShowSponsor == 'hours' && segement == 2  "></day>
-<week  [changeWeekAdd]="changeWeekAdd" [weekchange]="dia"  *ngIf="analyticsToShowSponsor == 'weeks' && segement == 2  "></week>
-<month  [changeMonthAdd]="changeMonthAdd" [monthchange]="month"  *ngIf="analyticsToShowSponsor == 'months' && segement == 2  "></month>
-<year  [changeYearAdd]="changeYearAdd" [yearchange]="dateStart"  *ngIf="analyticsToShowSponsor == 'years' && segement == 2  "></year>
+<day    [sponsorSelect]="sponsorSelect" *ngIf="analyticsToShowSponsor == 'hours' && segement == 2  "></day>
+<week  [sponsorSelect]="sponsorSelect" [changeWeekAdd]="changeWeekAdd" [weekchange]="dia"  *ngIf="analyticsToShowSponsor == 'weeks' && segement == 2  "></week>
+<month  [sponsorSelect]="sponsorSelect" [changeMonthAdd]="changeMonthAdd" [monthchange]="month"  *ngIf="analyticsToShowSponsor == 'months' && segement == 2  "></month>
+<year  [sponsorSelect]="sponsorSelect" [changeYearAdd]="changeYearAdd" [yearchange]="dateStart"  *ngIf="analyticsToShowSponsor == 'years' && segement == 2  "></year>
 
 
            

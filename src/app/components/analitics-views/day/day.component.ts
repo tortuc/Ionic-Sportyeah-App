@@ -1,21 +1,23 @@
-import { Component, OnInit, ChangeDetectorRef, Input} from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, Input, OnChanges} from '@angular/core';
 import { TranslateService } from "@ngx-translate/core";
 import * as moment from 'moment';
 import { Chart } from 'chart.js';
 import { ViewsSponsorService } from 'src/app/service/views-sponsor.service';
 import { UserService } from 'src/app/service/user.service';
 import { take } from 'rxjs/operators';
+import html2canvas from "html2canvas"; 
 
 @Component({
   selector: 'day',
   templateUrl: './day.component.html',
   styleUrls: ['./day.component.scss'],
 })
-export class DayComponent implements OnInit {
+export class DayComponent implements OnInit, OnChanges {
 
   @Input() changeHourAdd:number;
   @Input() sponsorLink:any;
   @Input() hourchange:any;
+  @Input() sponsorSelect:any;
 
 
   constructor(
@@ -45,10 +47,10 @@ dia = moment().startOf("days")
     //   console.log(response);
     // })
     // console.log(moment().hour())
-    this.takeDataDay();
+    // this.takeDataDay();
   }
   ngOnChanges(){
-    // this.getData()
+    this.takeDataDay()
   }
   changeDay(n) { 
     console.log(n);
@@ -60,7 +62,7 @@ dia = moment().startOf("days")
   takeDataDay() {
     this.hourShow = moment(this.hour).format("DD-MM-YYYY")
     this.viewsSponsorService
-      .getVisitsByHour(this.userService.User._id, this.hour, "search")
+      .getVisitsByHour(this.userService.User._id, this.hour, "search",this.sponsorSelect)
       .pipe(take(1))
       .subscribe((response: any) => {
         if (response.length == 0) {
@@ -69,13 +71,13 @@ dia = moment().startOf("days")
           this.dataSearch = response;
         }
         this.viewsSponsorService
-          .getVisitsByHour(this.userService.User._id, this.hour, "post")
+          .getVisitsByHour(this.userService.User._id, this.hour, "post",this.sponsorSelect)
           .pipe(take(1))
           .subscribe((response: any) => {
               this.dataPost = response;
 
             this.viewsSponsorService
-              .getVisitsByHour(this.userService.User._id, this.hour, "profile")
+              .getVisitsByHour(this.userService.User._id, this.hour, "profile",this.sponsorSelect)
               .pipe(take(1))
               .subscribe((response: any) => {
               
@@ -84,7 +86,7 @@ dia = moment().startOf("days")
                   .getVisitsByHour(
                     this.userService.User._id,
                     this.hour,
-                    "comment"
+                    "comment",this.sponsorSelect
                   )
                   .pipe(take(1))
                   .subscribe((response: any) => {
@@ -108,7 +110,8 @@ dia = moment().startOf("days")
   linesHourSponsor;
   hour = moment().startOf("days")
   hourShow
-linesHours(){
+
+  linesHours(){
   this.cd.detectChanges()
   this.labelHours = [];
 
@@ -176,6 +179,22 @@ linesHours(){
         }
       }
     });
-}
 
+
+  }
+  imgcreada = false;
+
+  imagenCreada;
+
+
+  crearImagen() {
+    html2canvas(document.querySelector("#contenido")).then(canvas => {
+
+      this.imagenCreada = canvas.toDataURL();      
+      console.log(this.imagenCreada);
+      
+    });
+    this.imgcreada = true;
+  }
+  
 }

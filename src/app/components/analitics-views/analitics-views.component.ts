@@ -1270,5 +1270,9 @@ const documentDefinition = {
 
     // pdfMake.createPdf(documentDefinition).download();
  }
-  
+ sponsorSelect = this.userService.User.sponsors[0].name
+
+ logo(){
+   console.log(this.sponsorSelect);
+ }
 }

@@ -24,6 +24,31 @@
   </ion-row>
 </ion-col>
 
-<div style="margin-left: auto;margin-right: auto;" class="divChart" >
+
+
+
+
+
+
+<button type="button" class="btn btn-primary mt-3 mb-5 mx-auto d-block" (click)="crearImagen()">Crear Imagen</button> 
+ 
+<!-- Imagen Creada -->
+<ng-container *ngIf="imgcreada === true;">
+  <div align="center">
+
+     <!-- Imagen Creada -->
+     <h4>Imagen Creada:</h4>
+     <img [src]=imagenCreada>
+
+  </div>
+
+  <!-- Botón para descargar la imagen creada -->
+   <div class="row">
+     <a type="button" class="btn btn-success mt-3 mx-auto d-block" [href]="imagenCreada" download> 
+     Descargar
+ </a>
+   </div>
+</ng-container>
+<div id="contenido" style="margin-left: auto;margin-right: auto;" class="divChart" >
   <canvas id="linesHourSponsor" width="400" height="400"></canvas>
 </div>

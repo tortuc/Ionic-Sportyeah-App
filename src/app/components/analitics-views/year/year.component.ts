@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef, Input } from "@angular/core";
+import { Component, OnInit, ChangeDetectorRef, Input, OnChanges } from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
 import * as moment from "moment";
 import { Chart } from "chart.js";
@@ -11,10 +11,11 @@ import { take } from "rxjs/operators";
   templateUrl: "./year.component.html",
   styleUrls: ["./year.component.scss"],
 })
-export class YearComponent implements OnInit {
+export class YearComponent implements OnInit, OnChanges {
   @Input() yearchange: any;
   @Input() changeYearAdd: any;
   @Input() sponsorLink: any;
+  @Input() sponsorSelect:any;
 
   constructor(
     private translate: TranslateService,
@@ -65,7 +66,7 @@ export class YearComponent implements OnInit {
 
   takeDataYear() {
     this.viewsSponsorService
-      .getVisitsByYear(this.userService.User._id, this.year, "search")
+      .getVisitsByYear(this.userService.User._id, this.year, "search",this.sponsorSelect)
       .pipe(take(1))
       .subscribe((response: any) => {
         if (response.length == 0) {
@@ -74,7 +75,7 @@ export class YearComponent implements OnInit {
           this.dataSearch = response;
         }
         this.viewsSponsorService
-          .getVisitsByYear(this.userService.User._id, this.year, "post")
+          .getVisitsByYear(this.userService.User._id, this.year, "post",this.sponsorSelect)
           .pipe(take(1))
           .subscribe((response: any) => {
             if (response.length == 0) {
@@ -84,7 +85,7 @@ export class YearComponent implements OnInit {
             }
 
             this.viewsSponsorService
-              .getVisitsByYear(this.userService.User._id, this.year, "profile")
+              .getVisitsByYear(this.userService.User._id, this.year, "profile",this.sponsorSelect)
               .pipe(take(1))
               .subscribe((response: any) => {
                 if (response.length == 0) {
@@ -96,14 +97,14 @@ export class YearComponent implements OnInit {
                   .getVisitsByYear(
                     this.userService.User._id,
                     this.year,
-                    "search"
+                    "comment",this.sponsorSelect
                   )
                   .pipe(take(1))
                   .subscribe((response: any) => {
                     if (response.length == 0) {
-                      this.dataSearch = [0, 0, 0, 0, 0, 0, 0];
+                      this.dataComment = [0, 0, 0, 0, 0, 0, 0];
                     } else {
-                      this.dataSearch = response;
+                      this.dataComment = response;
                     }
                     this.linesDataYears();
                   });
@@ -145,6 +146,7 @@ export class YearComponent implements OnInit {
             backgroundColor: "rgb(56, 94, 129, 0.1)", // array should have same number of elements as number of dataset
             borderWidth: 1,
           },
+
           {
             label: this.translate.instant("analytics-views.search"),
             data: this.dataSearch,
@@ -167,13 +169,13 @@ export class YearComponent implements OnInit {
             backgroundColor: "rgb(238, 241, 48, 0.1)", // array should have same number of elements as number of dataset
             borderWidth: 1,
           },
-          {
-            label: this.translate.instant("analytics-views.news"),
-            data: this.dataNews,
-            borderColor: "rgb(38, 194, 129)", // array should have same number of elements as number of dataset
-            backgroundColor: "rgb(38, 194,129, 0.1)", // array should have same number of elements as number of dataset
-            borderWidth: 1,
-          },
+          // {
+          //   label: this.translate.instant("analytics-views.news"),
+          //   data: this.dataNews,
+          //   borderColor: "rgb(38, 194, 129)", // array should have same number of elements as number of dataset
+          //   backgroundColor: "rgb(38, 194,129, 0.1)", // array should have same number of elements as number of dataset
+          //   borderWidth: 1,
+          // },
         ],
       },
       options: {
