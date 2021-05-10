@@ -14,10 +14,11 @@ import { NewsService } from "../service/news.service";
 import { ModalController } from "@ionic/angular";
 import { GetMediaComponent } from "../components/get-media/get-media.component";
 import { ReusableComponentsIonic } from "../service/ionicHelpers.service";
-import {  User } from "../models/IUser";
+import { User } from "../models/IUser";
 import { ISponsor } from "../models/ISponsor";
 import { IPost } from "../models/iPost";
 import { GroupService } from "../service/group.service";
+import { MsgProfileEditComponent } from "./msg-profile-edit/msg-profile-edit.component";
 
 @Component({
   selector: "app-profile",
@@ -43,7 +44,7 @@ export class ProfilePage implements OnInit {
     public router: Router,
     public route: ActivatedRoute,
     public userService: UserService,
-    public mc: ModalController,
+    public modalCtrl: ModalController,
     public translate: TranslateService,
     public popoverController: PopoverController,
     private postService: PostService,
@@ -52,9 +53,12 @@ export class ProfilePage implements OnInit {
     private viewsProfileService: ViewsProfileService,
     public newsService: NewsService,
     public reusableCI: ReusableComponentsIonic,
-    public cd:ChangeDetectorRef,
-    private groupService:GroupService
+    public cd: ChangeDetectorRef,
+    private groupService: GroupService
   ) {
+    if (this.userService.User.msgProfile == false) {
+      this.editProfileMsg();
+    }
     this.groupService.groupInvited();
     this.viewsProfileService
       .getProfileView(this.userService.User._id)
@@ -75,6 +79,20 @@ export class ProfilePage implements OnInit {
     )
       this.landingButton = true;
     else this.landingButton = false;
+  }
+
+  async editProfileMsg() {
+    let modal = await this.modalCtrl.create({
+      component: MsgProfileEditComponent,
+      cssClass:'msg-edit-modal',
+      backdropDismiss:false
+    });
+
+    modal.onDidDismiss().then(()=>{
+      this.router.navigate(["/profile/edit"])
+    })
+
+    modal.present();
   }
 
   news = [];
@@ -104,7 +122,7 @@ export class ProfilePage implements OnInit {
    * Busca una publicacion creada
    * @param id id de la pubublicacion
    */
-   newPost(id) {
+  newPost(id) {
     this.postService
       .getPost(id)
       .toPromise()
@@ -189,8 +207,6 @@ export class ProfilePage implements OnInit {
       });
   }
 
-  
-
   segmentChanged(e: CustomEvent) {
     if (e.detail.value === "posts") {
       this.profile = false;
@@ -208,7 +224,7 @@ export class ProfilePage implements OnInit {
   }
 
   public async createSponsor() {
-    const modal = await this.mc.create({
+    const modal = await this.modalCtrl.create({
       component: SponsorsComponent,
       cssClass: "my-custom-class",
       backdropDismiss: false,
@@ -249,7 +265,7 @@ export class ProfilePage implements OnInit {
   }
 
   public async editSponsor(i: number) {
-    const modal = await this.mc.create({
+    const modal = await this.modalCtrl.create({
       component: SponsorsComponent,
       cssClass: "my-custom-class",
       componentProps: { data: this.userService.User.sponsors[i] },
@@ -275,7 +291,7 @@ export class ProfilePage implements OnInit {
   }
 
   async open(img: string) {
-    const modal = await this.mc.create({
+    const modal = await this.modalCtrl.create({
       component: OpenImgComponent,
       componentProps: {
         img,
@@ -319,8 +335,6 @@ export class ProfilePage implements OnInit {
       });
   }
 
-
-
   async logScrolling(ev) {
     let el = await ev.target.getScrollElement();
     this.cd.detectChanges();
@@ -347,5 +361,4 @@ export class ProfilePage implements OnInit {
       this.getPost();
     }
   }
-
 }

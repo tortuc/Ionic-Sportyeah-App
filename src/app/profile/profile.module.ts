@@ -21,6 +21,7 @@ import { NewNodeComponent } from "./structure/new-node/new-node.component";
 import { IonCustomScrollbarModule } from "ion-custom-scrollbar";
 import { PostComponetsModule } from "../post-components/post-componets.module";
 import { ComponentsSharedModule } from "../shared-components/components-shared.module";
+import { MsgProfileEditComponent } from "./msg-profile-edit/msg-profile-edit.component";
 
 @NgModule({
   imports: [
@@ -49,6 +50,7 @@ import { ComponentsSharedModule } from "../shared-components/components-shared.m
     FollowerPage,
     CarrouselComponent,
     NewNodeComponent,
+    MsgProfileEditComponent
   ],
 })
 export class ProfilePageModule {}

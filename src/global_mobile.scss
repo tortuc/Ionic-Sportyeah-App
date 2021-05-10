@@ -39,14 +39,23 @@
     font-size: 9px;
   }
 
-  .hidden-mobile{
+  .hidden-mobile {
     visibility: hidden !important;
     position: absolute;
   }
-  
-  .divChart{
+
+  .divChart {
     display: block;
     width: 300px;
     height: 300px;
+  }
+
+  .msg-edit-modal .modal-wrapper {
+    height: 350px;
+    width: 90%;
+    top: 25%;
+    position: absolute;
+    display: block;
+    border-radius: 20px;
   }
 }

@@ -1144,5 +1144,6 @@
     "empty_results": "Sin resultados"
   },
   "select": "Seleccionar",
-  "uploading": "Subiendo archivo"
+  "uploading": "Subiendo archivo",
+  "msgProfileEdit":"Bienvenido a SportYeah, por favor, amplie la información de su perfil al máximo, ya que es la manera en la que le verá el resto de la red social, pulsando en la ⚙️ a un lado de tu nombre."
 }

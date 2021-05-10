@@ -3,13 +3,11 @@ import {
   ChangeDetectorRef,
   Component,
   ElementRef,
-  HostListener,
   OnInit,
   ViewChild,
 } from "@angular/core";
 import { Router } from "@angular/router";
 import {
-  ActionSheetController,
   AlertController,
   IonContent,
   ModalController,
@@ -18,22 +16,15 @@ import {
 } from "@ionic/angular";
 import { TranslateService } from "@ngx-translate/core";
 import { LangsPage } from "../langs/langs.page";
-import { IPost, IPostC } from "../models/iPost";
+import { IPost } from "../models/iPost";
 import { LoginService } from "../service/login.service";
 import { PostService } from "../service/post.service";
 import { UserService } from "../service/user.service";
 import { NewPostPage } from "./new-post/new-post.page";
-import { JdvimageService } from "../service/jdvimage.service";
 import { ReusableComponentsIonic } from "../service/ionicHelpers.service";
 import { take } from "rxjs/operators";
 
-interface Connection {
-  user: Object;
-  ip: String;
-  country: String;
-  city: String;
-  date: Date;
-}
+
 @Component({
   selector: "app-dashboard",
   templateUrl: "./dashboard.page.html",
@@ -54,8 +45,16 @@ export class DashboardPage implements OnInit, AfterViewInit {
     private alertCtrl: AlertController,
     public el: ElementRef,
     public reusableCI: ReusableComponentsIonic,
-    public cd:ChangeDetectorRef
-  ) {}
+    public cd: ChangeDetectorRef,
+    private loginService: LoginService
+  ) {
+    this.loginService.connections().subscribe((connections:any[])=>{
+      if(connections.length < 2 && this.userService.User.msgProfile == false){
+        this.router.navigate(["/profile"])
+      }
+      
+    })
+  }
 
   @ViewChild("content", { static: false }) content: IonContent;
 
@@ -185,8 +184,6 @@ export class DashboardPage implements OnInit, AfterViewInit {
     return await modal.present();
   }
 
-
-
   async langs(ev) {
     let langs = await this.popover.create({
       component: LangsPage,
@@ -205,7 +202,7 @@ export class DashboardPage implements OnInit, AfterViewInit {
    * Esta funcion se llama cuando el usuario baja el scroll, y si llega muy abajo, entonces se llaman mas posts automaticamente
    * @param ev
    */
-   async logScrolling(ev) {
+  async logScrolling(ev) {
     let el = await ev.target.getScrollElement();
     this.cd.detectChanges();
     if (el.clientHeight * 0.4 < el.scrollTop) {
@@ -213,14 +210,12 @@ export class DashboardPage implements OnInit, AfterViewInit {
         this.reloadButton?.el.classList.add(
           "floating-reload",
           "scale-in-center"
-     
         );
       }, 100);
     } else {
       this.reloadButton?.el.classList.remove(
         "scale-in-center",
         "floating-reload"
-      
       );
     }
 
