@@ -38,4 +38,9 @@
     width: 80%;
     font-size: 9px;
   }
+
+  .hidden-mobile{
+    visibility: hidden !important;
+    position: absolute;
+  }
 }
