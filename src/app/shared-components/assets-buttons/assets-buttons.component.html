@@ -6,20 +6,23 @@
   <ion-icon name="happy"></ion-icon>
 </ion-button>
 
-<ion-button class="btn-rounded-options" (click)="assetsOptions('galery')">
+<ion-button [disabled]="question" class="btn-rounded-options" (click)="assetsOptions('galery')">
   <ion-icon name="image"></ion-icon>
 </ion-button>
-<ion-button class="btn-rounded-options" (click)="assetsOptions('link')">
+<ion-button [disabled]="question" class="btn-rounded-options" (click)="assetsOptions('link')">
   <ion-icon name="link"></ion-icon>
 </ion-button>
-<ion-button *ngIf="chat" class="btn-rounded-options" (click)="openDocument.click()">
+<ion-button [disabled]="question" *ngIf="chat" class="btn-rounded-options" (click)="openDocument.click()">
   <ion-icon name="document"></ion-icon
 ></ion-button>
-<ion-button class="btn-rounded-options" (click)="assetsOptions('online')">
+<ion-button [disabled]="question" class="btn-rounded-options" (click)="assetsOptions('online')">
   <ion-icon name="globe-outline"></ion-icon>
 </ion-button>
-<ion-button class="btn-rounded-options" (click)="assetsOptions('gif')">
+<ion-button [disabled]="question" class="btn-rounded-options" (click)="assetsOptions('gif')">
   GIF
+</ion-button>
+<ion-button [disabled]="files.length > 0" *ngIf="!editPost"  (click)="createQuestion()">
+  <ion-icon name="help-outline"></ion-icon>
 </ion-button>
 
 <ion-button

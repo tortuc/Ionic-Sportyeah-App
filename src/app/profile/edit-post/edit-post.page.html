@@ -12,6 +12,8 @@
 </ion-header>
 
 <ion-content>
+  <loading-progress class="progress"></loading-progress>
+
   <ion-grid>
     <ion-row>
       <ion-col size="12" class="user-header">
@@ -35,15 +37,26 @@
             >{{'dashboard.new_post_placeholder' | translate}}</span
           >
           <div
+            #mainInput 
             style="max-height: 200px; color: #222121"
             formControlName="message"
             contenteditable
-            class="custom-textarea"
+            class="custom-textarea"  
             Mentions
             (usersRender)="usersChange($event)"
             (mention)="newValue($event)"
-            #FormElementRef
+            (click)="stopPropagation($event)"
           ></div>
+          <div (click)="stopPropagation($event)">
+            <emoji-mart
+              *ngIf="emoji"
+              (emojiClick)="addEmoji($event)"
+              title="Pick your emoji…"
+              emoji="point_up"
+              [showPreview]="false"
+              class="emoji-content"
+            ></emoji-mart>
+          </div>
           <div style="max-height: 400px; overflow: auto">
             <div
               class="users-mentions"
@@ -61,44 +74,33 @@
               >
             </div>
           </div>
-
+          <post-preview-images
+            [loading]="loading"
+            [(files)]="files"
+          ></post-preview-images>
           <iframe
             *ngIf="form.controls.message.value | youtube"
             [src]="form.controls.message.value | youtube"
             frameborder="0"
           ></iframe>
         </form>
-        <post-shared *ngIf="post.post" [post]="post.post"></post-shared>
-       
-        <div #emojisContainer>
-          <emoji-mart
-            *ngIf="emoji"
-            (emojiClick)="addEmoji($event)"
-            title="Pick your emoji…"
-            emoji="point_up"
-            [showPreview]="false"
-          ></emoji-mart>
+        <div *ngIf="post.question" style="padding: 10px">
+          <question-comment [questionId]="post.question"></question-comment>
         </div>
+        <post-shared *ngIf="post.post" [post]="post.post"></post-shared>
       </ion-col>
-      <input
-        #openImage
-        type="file"
-        accept="image/*"
-        (change)="uploadImg($event)"
-        hidden
-      />
-      <ion-col class="buttons" size="12">
-        <span #emojiButton>
-          <ion-button (click)="openEmojis()">
-            <ion-icon name="happy"></ion-icon>
-          </ion-button>
-        </span>
-        <ion-button (click)="openImage.click()">
-          <ion-icon name="image"></ion-icon>
-        </ion-button>
-        <!-- <ion-button>
-          <ion-icon name="videocam"></ion-icon>
-        </ion-button> -->
+      <ion-col class="buttons">
+        <assets-buttons
+          #assetsBtn
+          [editPost]="true"
+          (videoToUpload)="pushVideoToUpload($event)"
+          (newQuestion)="newQuestion($event)"
+          (newFile)="addFile($event)"
+          (emoji)="openEmojis()"
+          (emoji)="stopPropagation($event)"
+          [files]="files"
+          [question]="post.question"
+        ></assets-buttons>
 
         <ion-button [disabled]="form.invalid" (click)="save()">
           {{'edit_post.btn' | translate}}

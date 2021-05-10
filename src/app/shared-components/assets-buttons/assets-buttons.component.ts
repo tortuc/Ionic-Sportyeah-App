@@ -3,6 +3,7 @@ import {
   ElementRef,
   EventEmitter,
   Input,
+  OnChanges,
   OnInit,
   Output,
   ViewChild,
@@ -14,8 +15,12 @@ import {
   Platform,
 } from "@ionic/angular";
 import { TranslateService } from "@ngx-translate/core";
+import { take } from "rxjs/operators";
+import { NewQuestionComponent } from "src/app/components/new-question/new-question.component";
+import { IPostFile } from "src/app/models/iPost";
 import { JdvimageService } from "src/app/service/jdvimage.service";
 import { MessageService } from "src/app/service/message.service";
+import { QuestionService } from "src/app/service/question.service";
 import { GifsModalComponent } from "../gifs-modal/gifs-modal.component";
 import { ImagePickerComponent } from "../image-picker/image-picker.component";
 import { VideoPickerComponent } from "../video-picker/video-picker.component";
@@ -24,11 +29,14 @@ import { VideoPickerComponent } from "../video-picker/video-picker.component";
   templateUrl: "./assets-buttons.component.html",
   styleUrls: ["./assets-buttons.component.scss"],
 })
-export class AssetsButtonsComponent implements OnInit {
+export class AssetsButtonsComponent implements OnInit, OnChanges {
   @Output() emoji = new EventEmitter();
   @ViewChild("openImage") fileChooser: ElementRef;
 
   @Input() chat: boolean = false;
+  @Input() editPost: boolean = false;
+  @Input() question = null;
+  @Input() files: IPostFile[] = [];
 
   @Output() videoToUpload = new EventEmitter();
   @Output() newFile = new EventEmitter();
@@ -48,10 +56,15 @@ export class AssetsButtonsComponent implements OnInit {
     private alertCtrl: AlertController,
     private actionSheetController: ActionSheetController,
     private modalController: ModalController,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private questionService: QuestionService
   ) {}
 
   ngOnInit() {}
+
+  ngOnChanges() {
+    console.log(this.question);
+  }
 
   assetsOptions(option) {
     switch (option) {
@@ -265,5 +278,70 @@ export class AssetsButtonsComponent implements OnInit {
     });
 
     modal.present();
+  }
+
+  @Output() newQuestion = new EventEmitter();
+
+  //Crea una modal donde se pueden crear preguntas
+  async createQuestion() {
+    const modal = await this.modalController.create({
+      component: NewQuestionComponent,
+      cssClass: "my-custom-class",
+      backdropDismiss: false,
+      componentProps: {
+        edit: false,
+      },
+    });
+    modal
+      .onDidDismiss()
+      .then((data) => {
+        if (data.data.question != undefined) {
+          this.newQuestion.emit(data.data.question);
+        }
+      })
+      .catch((err) => {});
+
+    return await modal.present();
+  }
+
+  async editQuestion(question) {
+    const modalEdit = await this.modalController.create({
+      component: NewQuestionComponent,
+      cssClass: "my-custom-class",
+      backdropDismiss: false,
+      componentProps: {
+        question,
+        edit: true,
+      },
+    });
+    modalEdit
+      .onDidDismiss()
+      .then((data) => {
+        if (data.data.question != undefined) {
+          this.newQuestion.emit(data.data.question);
+        }
+      })
+      .catch((err) => {});
+    return await modalEdit.present();
+  }
+
+  saveQuestion(question) {
+    return new Promise((resolve, reject) => {
+      if (!question.questionGroup) {
+        resolve(null);
+      } else {
+        this.questionService
+          .create(question)
+          .pipe(take(1))
+          .subscribe(
+            (question: any) => {
+              resolve(question._id);
+            },
+            (err) => {
+              reject(err);
+            }
+          );
+      }
+    });
   }
 }
