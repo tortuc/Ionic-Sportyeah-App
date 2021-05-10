@@ -6,6 +6,7 @@ import { ViewsSponsorService } from 'src/app/service/views-sponsor.service';
 import { UserService } from 'src/app/service/user.service';
 import { take } from 'rxjs/operators';
 import html2canvas from "html2canvas"; 
+import { Html2CanvasService } from 'src/app/service/html2-canvas.service';
 
 @Component({
   selector: 'day',
@@ -25,6 +26,7 @@ export class DayComponent implements OnInit, OnChanges {
     private cd:ChangeDetectorRef,
     private viewsSponsorService:ViewsSponsorService,
     private userService:UserService,
+    private html2Canvas:Html2CanvasService
     ) {}
 postViews;
 chatViews;
@@ -185,16 +187,26 @@ dia = moment().startOf("days")
   imgcreada = false;
 
   imagenCreada;
-
+  img
 
   crearImagen() {
-    html2canvas(document.querySelector("#contenido")).then(canvas => {
+    // html2canvas(document.querySelector("#contenido")).then(canvas => {
 
-      this.imagenCreada = canvas.toDataURL();      
-      console.log(this.imagenCreada);
+    //   this.imagenCreada = canvas.toDataURL();      
+    //   console.log(this.imagenCreada);
       
+    // });
+    // this.imgcreada = true;
+  
+    const element = document.getElementById('html2canvas');
+    const targetElement = document.getElementById('target').cloneNode(true);
+    element.appendChild(targetElement);
+    this.html2Canvas.html2canvas(element.firstChild).then((img) => {
+        this.img = img;
+        element.firstChild.remove();
+    }).catch((res) => {
+        console.log(res);
     });
-    this.imgcreada = true;
   }
   
 }
