@@ -15,7 +15,8 @@
     "build:ssr": "ng build --prod && ng run app:server:production",
     "prerender": "ng run app:prerender",
     "prod": "ng build --prod && ng run app:server:production && pm2 start dist/app/server/main.js",
-    "dev": "ionic serve"
+    "dev": "ionic serve",
+    "build-android": "ionic build --prod && npx cap copy android && cordova-res android --skip-config --copy && npx cap open android"
   },
   "private": true,
   "dependencies": {
@@ -30,6 +31,7 @@
     "@angular/platform-server": "~10.0.0",
     "@angular/router": "~10.0.0",
     "@angular/service-worker": "~10.0.0",
+    "@capacitor/android": "^2.4.6",
     "@capacitor/core": "2.4.6",
     "@ctrl/ngx-emoji-mart": "^4.1.1",
     "@fortawesome/fontawesome-free": "^5.15.3",
@@ -54,8 +56,10 @@
     "agora-rtc-sdk-ng": "^4.3.0",
     "chart.js": "^2.9.4",
     "cordova-plugin-camera": "^5.0.1",
+    "cordova-plugin-file": "^6.0.2",
     "cordova-plugin-ionic-keyboard": "^2.2.0",
     "cordova-plugin-x-socialsharing": "^6.0.3",
+    "es6-promise-plugin": "^4.2.2",
     "express": "^4.15.2",
     "get-blob-duration": "^1.1.2",
     "howler": "^2.2.1",

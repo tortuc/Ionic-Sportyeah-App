@@ -157,7 +157,7 @@ ion-list {
   background: white !important;
 }
 ion-content {
-  --background: white ;
+  --background: white;
 }
 
 ion-card-title {
@@ -166,6 +166,10 @@ ion-card-title {
 
 ion-item {
   --border-color: #dad3d3 !important;
+}
+
+.main-grid{
+  padding: 0;
 }
 .date {
   font-size: 12px;
@@ -451,7 +455,7 @@ a {
   .msg-text {
     color: black;
   }
-  .date{
+  .date {
     color: black;
   }
 }
@@ -462,7 +466,7 @@ a {
   .msg-text {
     color: #fff !important;
   }
-  .date{
+  .date {
     color: white;
   }
 }
@@ -683,7 +687,6 @@ ion-segment-button {
   --background: var(--color-primary) !important;
 }
 
-
 .btn-dismiss {
   color: gray;
   right: 5px;
@@ -773,10 +776,9 @@ ion-segment-button {
   top: 60px !important;
 }
 
-
-// .no-padding{
-//   padding: 0;
-// }
+.no-padding{
+  padding: 0;
+}
 
 .main-card-content {
   visibility: visible;
@@ -784,8 +786,8 @@ ion-segment-button {
   margin: auto;
 }
 
-.home-grid{
-  padding: 5px;
+.home-grid {
+  padding: 0px;
   height: 100%;
 }
 .modal-border .modal-wrapper {
@@ -805,7 +807,7 @@ ion-avatar.chat-img {
   height: 18px;
 }
 
-.pending-chip{
+.pending-chip {
   font-size: 12px;
   max-height: 25px;
   border-radius: 50%;
@@ -814,8 +816,8 @@ ion-avatar.chat-img {
   background: var(--color-secondary);
 }
 
-.alert-wrapper{
-  --background:white  !important;
+.alert-wrapper {
+  --background: white !important;
 }
 
 .notification {
@@ -845,10 +847,10 @@ ion-avatar.chat-img {
       min-width: 40px;
       min-height: 40px;
       border-radius: 40%;
-      box-shadow: 0 0 10px 1px #2a4c78 ;
+      box-shadow: 0 0 10px 1px #2a4c78;
       object-fit: cover;
     }
-    .icon{
+    .icon {
       font-size: 21px;
       position: absolute;
       bottom: -5px;
@@ -857,8 +859,18 @@ ion-avatar.chat-img {
   }
 }
 
-.divChart{
+.divChart {
   display: block;
   width: 400px;
   height: 400px;
-    }
+}
+
+
+.msg-edit-modal .modal-wrapper{
+  height: 270px;
+  width: 500px;
+  top: 35%;
+  position: absolute;
+  display: block;
+  border-radius: 20px;
+}

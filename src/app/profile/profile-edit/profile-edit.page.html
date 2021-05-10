@@ -16,14 +16,14 @@
         <ion-card-header class="text-center">
           <new-profile-photo></new-profile-photo>
           <ion-card-title>{{userService.User?.email}}</ion-card-title>
-          <ion-card-title style="margin-bottom: 20px;"
+          <!-- <ion-card-title style="margin-bottom: 20px;"
             ><ion-icon
               style="vertical-align: middle"
               name="phone-portrait-outline"
             ></ion-icon
             >{{userService.User?.phone || 'profile_edit.unassigned' |
             translate}}</ion-card-title
-          >
+          > -->
           <app-miniflag [user]="userService.User" [edit]="true"></app-miniflag>
         </ion-card-header>
         <form [formGroup]="form">

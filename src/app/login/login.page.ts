@@ -45,7 +45,7 @@ export class LoginPage implements OnInit {
         } else {
           localStorage.setItem("token", token);
         }
-        this.router.navigate(["/profile"], {
+        this.router.navigate(["/dashboard"], {
           preserveFragment: false,
           replaceUrl: true,
         });

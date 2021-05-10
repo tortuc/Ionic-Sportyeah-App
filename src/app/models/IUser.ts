@@ -31,6 +31,7 @@ export interface IUser {
   sponsors: ISponsor[];
   structure: INode;
   geo: IGeo;
+  msgProfile:boolean;
 }
 
 export interface User {
@@ -56,6 +57,8 @@ export interface User {
   structure: INode;
   sport: string;
   sponsors: ISponsor[];
+  msgProfile:boolean;
+
 
 }
 
