@@ -16,7 +16,7 @@
     "prerender": "ng run app:prerender",
     "prod": "ng build --prod && ng run app:server:production && pm2 start dist/app/server/main.js",
     "dev": "ionic serve",
-    "build-android":"ionic build --prod && npx cap copy android && npx cap open android"
+    "build-android": "ionic build --prod && npx cap copy android && cordova-res android --skip-config --copy && npx cap open android"
   },
   "private": true,
   "dependencies": {
