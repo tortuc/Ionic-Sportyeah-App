@@ -48,45 +48,7 @@
           </ion-row>
         </ion-grid>
       </ion-col>
-      <!-- <ion-col
-        size-lg="4"
-        fxShow.lt-md="false"
-        class="ion-justify-content-center ion-align-items-center"
-      >
-        <ion-card class="friends-card">
-          <ion-card-header>
-            {{'dashboard.profile' | translate}}
-            <ion-item
-              lines="none"
-              (click)="goToMyProfile()"
-              style="cursor: pointer"
-            >
-              <ion-thumbnail slot="start">
-                <ion-avatar class="mini">
-                  <img [src]="userService.User?.photo" />
-                </ion-avatar>
-              </ion-thumbnail>
-              <ion-label>{{userService.User?.name}}</ion-label>
-            </ion-item>
-          </ion-card-header>
-          <ion-card-content>
-            {{'dashboard.friends' | translate}}
-            <ion-item routerLink="/search" style="cursor: pointer">
-              <ion-label>{{'dashboard.search_friend' | translate}}</ion-label>
-            </ion-item>
-            <ion-item *ngFor="let friend of userService.followings">
-              <ion-thumbnail slot="start">
-                <ion-avatar class="mini">
-                  <img [src]="friend.user.photo" />
-                </ion-avatar>
-              </ion-thumbnail>
-              <ion-label
-                >{{friend.user.name}} {{friend.user.last_name}}</ion-label
-              >
-            </ion-item>
-          </ion-card-content>
-        </ion-card>
-      </ion-col> -->
+      
       <ion-col
       *ngIf="userService.User != null"
       size-lg="4"

@@ -15,7 +15,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="main-bg" [scrollEvents]="true" (ionScrollEnd)="logScrolling($event)"  >
+<ion-content  [scrollEvents]="true" (ionScrollEnd)="logScrolling($event)"  >
   <ion-card>
     <ion-card-header>
       <ion-row>
@@ -23,24 +23,7 @@
           <ion-card-title>{{'analytics-views.subTilte' | translate}}</ion-card-title>
           <ion-card-subtitle>{{'analytics-views.info' | translate}}</ion-card-subtitle>
         </ion-col>
-       <!--  <ion-col size-lg="4"  size-xs="12" >
-          <div style="text-align: center;" class="button">
-            <ion-button class="botons"  (click)="pieData()">
-              {{'analytics-views.all' | translate}}
-              <ion-icon class="icon" name="color-filter"></ion-icon>
-            </ion-button>
-          </div>
-        </ion-col>
-        <ion-col size-lg="4"  size-xs="12" >
-          <div style="text-align: center;"  class="button">
-            <ion-button  class="botons" (click)="postLines()"  >
-              {{'analytics-views.post' | translate}}
-              <ion-icon class="icon" name="browsers"></ion-icon>
-            </ion-button>
-          </div>
-        </ion-col> -->
       </ion-row>
-      
     </ion-card-header>
 
     <ion-card-content>
@@ -49,9 +32,9 @@
           <p style="visibility: visible">Todas</p>
         </ion-segment-button>
     
-        <ion-segment-button (click)="postLines()" >
+        <!-- <ion-segment-button  (click)="postLines()">
           <p style="visibility: visible">Publicaciones</p>
-        </ion-segment-button>
+        </ion-segment-button> -->
  
         <ion-segment-button (click)="Sponsor()" >
           <p style="visibility: visible">Patrocinadores</p>
@@ -101,7 +84,7 @@
     </div>
 
 
-    <div *ngIf="segement == 1">
+    <!-- <div *ngIf="segement == 1">
       <ion-row>
 
         <ion-col size-xs="6" size-md="4"  size-lg="4">
@@ -123,7 +106,7 @@
         </ion-col>
 
       </ion-row>
-    </div>
+    </div> -->
 
 
     <div *ngIf="segement == 2">
@@ -141,8 +124,8 @@
                   >
                     <div style="text-align: center;"  target="_blank">
                       <img
-                        (click)="sponsorLink = sponsor.url "
-                        [src]="sponsor.photo"
+                        (click)=" generatePdf(sponsor.name)"
+                        [src]="sponsor.image"
                         style="
                           height: 30px;
                           width: 60px;

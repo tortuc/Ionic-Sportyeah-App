@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from "@angular/core";
 import { ModalController } from "@ionic/angular";
 import { IComment } from "src/app/models/iPost";
 import { UserService } from "src/app/service/user.service";
+import { ViewsSponsorService } from "src/app/service/views-sponsor.service";
 import { SeeFilesPostSliderComponent } from "../see-files-post-slider/see-files-post-slider.component";
 
 @Component({
@@ -14,7 +15,8 @@ export class ViewCommentComponent implements OnInit {
 
   constructor(
     public userService: UserService,
-    public modalCtrl: ModalController
+    public modalCtrl: ModalController,
+    public viewsSponsorService:ViewsSponsorService
   ) {}
 
   ngOnInit() {}
@@ -25,5 +27,24 @@ export class ViewCommentComponent implements OnInit {
       componentProps: { files: this.comment.files },
     });
     modal.present();
+  }
+
+  goToSponsor(sponsor) { console.log("desde coment views sponosr");
+  
+    if (this.comment.user._id != this.userService.User._id) {
+      this.viewsSponsorService
+        .createSponsorView({
+          user: this.comment.user._id,
+          visitor: this.userService.User._id,
+          from: "comment",
+          link: `/post/${this.comment.post}`,
+          nameSponsor: sponsor.name,
+        })
+        .subscribe((response) => {
+          window.open("//" + sponsor.url, "_blank");
+        });
+    } else {
+      window.open("//" + sponsor.url, "_blank");
+    }
   }
 }

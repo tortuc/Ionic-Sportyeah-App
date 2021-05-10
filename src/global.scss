@@ -679,6 +679,11 @@ ion-segment-button {
   --color: #1586e4;
 }
 
+.toolbar-bg {
+  --background: var(--color-primary) !important;
+}
+
+
 .btn-dismiss {
   color: gray;
   right: 5px;
@@ -750,6 +755,7 @@ ion-segment-button {
   border: solid 2px var(--color-primary);
   width: 100%;
   padding: 15px;
+  background: white;
 }
 
 .reload-btn {
@@ -810,4 +816,43 @@ ion-avatar.chat-img {
 
 .alert-wrapper{
   --background:white  !important;
+}
+
+.notification {
+  font-size: 13px;
+  display: flex;
+  cursor: pointer;
+  padding: 10px;
+  position: relative;
+  &:hover {
+    background: #9ae6c075;
+  }
+  &.unread {
+    background: #9ae6c075;
+  }
+  .date {
+    font-size: 12px;
+    position: absolute;
+    bottom: 2px;
+    right: 5px;
+  }
+  .notification-user {
+    position: relative;
+    height: fit-content;
+    img.user {
+      height: 40px !important;
+      width: 40px !important;
+      min-width: 40px;
+      min-height: 40px;
+      border-radius: 40%;
+      box-shadow: 0 0 10px 1px #2a4c78 ;
+      object-fit: cover;
+    }
+    .icon{
+      font-size: 21px;
+      position: absolute;
+      bottom: -5px;
+      right: -10px;
+    }
+  }
 }

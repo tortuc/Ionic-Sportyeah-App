@@ -401,6 +401,9 @@
     "mention_comment": {
       "text": "he mentioned you in a comment"
     },
+    "finish_question": {
+      "text": "I finalize the voting of your questionnaire"
+    },
     "readall": "Mark all as read"
   },
   "edit": "Edit",

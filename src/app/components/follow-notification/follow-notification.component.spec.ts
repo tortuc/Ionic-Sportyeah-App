@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
 import { FollowNotificationComponent } from './follow-notification.component';
@@ -7,7 +7,7 @@ describe('FollowNotificationComponent', () => {
   let component: FollowNotificationComponent;
   let fixture: ComponentFixture<FollowNotificationComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ FollowNotificationComponent ],
       imports: [IonicModule.forRoot()]

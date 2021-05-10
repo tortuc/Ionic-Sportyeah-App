@@ -1,7 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { INotification } from 'src/app/models/INotification';
 import { NotificationService } from 'src/app/service/notification.service';
-import { UserService } from 'src/app/service/user.service';
 
 @Component({
   selector: 'follow-notification',
@@ -12,9 +11,7 @@ export class FollowNotificationComponent implements OnInit {
 
   @Input() notification:INotification
   constructor(
-    private notificationService:NotificationService,
-    public userService:UserService
-
+    private notificationService:NotificationService
   ) { 
 
   

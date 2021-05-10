@@ -18,7 +18,11 @@
           chat?.sender._id != userService.User?._id
             ? chat?.sender.username
             : chat?.receiver.username,
-          'chat'
+            chat?.sender._id != userService.User?._id
+            ? chat?.sender._id
+            : chat?.receiver._id,
+          'chat',
+          undefined
         )
       "
     >
@@ -47,7 +51,11 @@
           chat?.sender._id != userService.User?._id
             ? chat?.sender.username
             : chat?.receiver.username,
-          'chat'
+            chat?.sender._id != userService.User?._id
+            ? chat?.sender._id
+            : chat?.receiver._id,
+          'chat',
+          undefined
         )
       "
     >

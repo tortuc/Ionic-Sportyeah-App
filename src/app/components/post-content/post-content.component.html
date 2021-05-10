@@ -2,7 +2,9 @@
   <p style="white-space: pre-wrap; padding: 0px 10px">
     <span class="message" [innerHTML]="post.message | links"></span>
   </p>
-
+  <div *ngIf="post.question" style="padding: 10px">
+    <question-comment [questionId]="post.question"></question-comment>
+  </div>
   <see-files-post-content [files]="post.files"></see-files-post-content>
 
   <iframe

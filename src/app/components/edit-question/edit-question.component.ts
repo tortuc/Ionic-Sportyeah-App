@@ -1,6 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
 import * as moment from "moment";
-import { TranslateService } from "@ngx-translate/core";
 
 @Component({
   selector: "edit-question",
@@ -15,9 +14,7 @@ export class EditQuestionComponent implements OnInit {
   @Output() edit = new EventEmitter<number>();
   constructor() {}
 
-  ngOnInit() {
-    
-  }
+  ngOnInit() {}
 
   deleteQuestion() {
     this.delete.emit();
@@ -25,7 +22,7 @@ export class EditQuestionComponent implements OnInit {
   editQuestion() {
     this.edit.emit();
   }
-  today = moment().add(1,'day').format("YYYY-MM-DD");
+  today = moment().add(1, "day").format("YYYY-MM-DD");
   limitYear = moment().add(1, "year").format("YYYY-MM-DD").toString();
 
   whitTime: boolean = false;

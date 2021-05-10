@@ -438,6 +438,9 @@
     "mention_comment": {
       "text": "te ha mencionado en un comentario"
     },
+    "finish_question": {
+      "text": "finializo la votación de tu cuestionario"
+    },
     "readall": "Marcar todas como leidas"
   },
   "edit": "Editar",
@@ -1126,7 +1129,20 @@
     "private": "Se ha enviado tu peticion para unirte al grupo {{name}}",
     "err": "No has podido unirte al grupo, intente mas tarde"
   },
-  "new_messages": "Nuevos mensajes"
-
-
+  "new_messages": "Nuevos mensajes",
+  "pdf": {
+    "data_sponsor": "Datos del patrocinador en el año"
+  },
+  "images_online": {
+    "header": "Subir imagen / video desde la web",
+    "image": "Imagen",
+    "video": "Video"
+  },
+  "image_picker": {
+    "load_more": "Cargar mas",
+    "next": "Continuar",
+    "empty_results": "Sin resultados"
+  },
+  "select": "Seleccionar",
+  "uploading": "Subiendo archivo"
 }

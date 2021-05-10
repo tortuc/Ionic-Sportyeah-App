@@ -1,22 +1,24 @@
-<div *ngIf="!notification.read" [ngClass]="(notification.read)?'':'unread'"><span class="see"><ion-icon style="cursor: pointer;" (click)="read()"   class=" eye "  name="eye-outline"></ion-icon></span></div>
-<div class="notification" [ngClass]="(notification.read)?'':'unread'" routerLink="{{notification.routerlink}}">
-  <div>
-  
-    <ion-icon name="bookmark-outline" class="icon" style="margin-right: 2px;"></ion-icon>
-
+<div
+  class="notification"
+  (click)="read()"
+  [ngClass]="notification.read ? '' : 'unread'"
+  routerLink="{{ notification.routerlink }}"
+>
+  <div class="notification-user">
+    <img class="user" [src]="notification.friend.photo" />
+    <ion-icon name="bookmark" class="icon"></ion-icon>
   </div>
- <div style="padding-left: 10px;">
-  <div style="display: flex;align-items: center;">
-    <ion-avatar class="xmini" >
-      <ion-img [src]="notification.friend.photo"></ion-img>
-    </ion-avatar>
-   <span class="notificationP" *ngIf="notification.action == 'mention'" style="margin-left: 5px;">{{notification.friend.name}} {{notification.friend.last_name}} {{'notifications.mention.text' | translate}}</span>
-   <span class="notificationP" *ngIf="notification.action == 'mention_comment'" style="margin-left: 5px;">{{notification.friend.name}} {{notification.friend.last_name}} {{'notifications.mention_comment.text' | translate}}</span>
 
+  <div style="padding-left: 15px">
+    <p *ngIf="notification.action == 'mention'">
+      {{ "notifications.mention.text" | translate: notification.friend }}
+    </p>
+    <p *ngIf="notification.action == 'mention_comment'">
+      {{
+        "notifications.mention_comment.text" | translate: notification.friend
+      }}
+    </p>
+
+    <span class="date">{{ notification.date | customDisplayDate }}</span>
   </div>
- 
-  
-   <span class="date">{{notification.date | customDisplayDate}}</span>
- </div>
-
 </div>

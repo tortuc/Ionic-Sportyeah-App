@@ -15,7 +15,7 @@
     *ngFor="let sponsor of sponsors"
     class="sponsor bg-black"
   >
-    <img (click)="go(sponsor.url)" class="img" [src]="sponsor.image"/>
+    <img (click)="go(sponsor.url,sponsor.name)" class="img" [src]="sponsor.image"/>
     <div class="btns">
       <ion-icon
         *ngIf="creator"

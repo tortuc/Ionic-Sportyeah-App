@@ -9,9 +9,7 @@
   <div style="padding: 0">
     <post-content [post]="post"></post-content>
     <post-shared *ngIf="post.post || post.news" [post]="post.post" [news]="post.news"></post-shared>
-    <div *ngIf="post.question" style="padding: 10px">
-      <question-comment [questionId]="post.question"></question-comment>
-    </div>
+   
   </div>
   <post-options
     [isPost]="postPage"

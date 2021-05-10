@@ -97,4 +97,13 @@ export class ViewsSponsorService {
         return this.http.get(`${environment.URL_API}/viewsSponsor/hour/${user}/${format}/${from}`)
       }
     
+
+     /**
+   * Trae las vistas de los sponsor por fecha,para los pdf
+   * @param user `_id` del usuario
+   */
+    getVisitsByYearPdf(user,date,name){       
+      let format = moment(new Date(date)).format("YYYY-MM-DD");
+      return this.http.get(`${environment.URL_API}/viewsSponsor/year/pdf/${user}/${format}/${name}`)
+    }
 }

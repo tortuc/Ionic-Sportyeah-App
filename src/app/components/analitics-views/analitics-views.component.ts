@@ -9,6 +9,9 @@ import { ToastController } from "@ionic/angular";
 import { ViewsSponsorService } from "src/app/service/views-sponsor.service";
 import { response } from "express";
 import { take } from "rxjs/operators";
+import pdfMake from 'pdfmake/build/pdfmake';
+import pdfFonts from 'pdfmake/build/vfs_fonts';
+pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 @Component({
   selector: "app-analitics-views",
@@ -168,7 +171,13 @@ export class AnaliticsViewsComponent implements OnInit {
       this.indexLast += 5;
     }
   }
+
+  c = document.getElementById('areaPoplar') as HTMLCanvasElement
+
   ngOnInit() {
+    console.log(this.userService.User.sponsors);
+
+
     this.viewsSponsorService
       .getSponsorView(this.userService.User._id)
       .subscribe((response: any) => {
@@ -518,7 +527,6 @@ export class AnaliticsViewsComponent implements OnInit {
     this.noData = false;
     this.years = [];
     /*  this.dateStart = moment(this.dateStart).add(-1,'years')
-    
     this.dateEnd = moment(this.dateEnd).add(-1,'years') */
     // this.dateStart.set('year',moment().year());
     this.dateStart.set("month", 0);
@@ -921,13 +929,15 @@ export class AnaliticsViewsComponent implements OnInit {
     this.day = moment(this.day).add(n, "days");
     this.hourStart = moment(this.hourStart).add(n, "day");
     this.hourEnd = moment(this.hourEnd).add(n, "day");
+    console.log(this.day);
+    
     this.generateDay();
   }
   option: string = "";
-  postLines() {
-    this.option = "post";
-    this.segement = 1;
-  }
+  // postLines() {
+  //   this.option = "post";
+  //   this.segement = 1;
+  // }
 
   months = [];
   month = moment();
@@ -962,14 +972,13 @@ export class AnaliticsViewsComponent implements OnInit {
     this.monthStart = moment(this.monthStart).add(-1, "month");
 
     this.allViews.forEach((visits) => {
-      let date = moment(new Date(visits.Date)).format("YYYY-MM-DD");
+      let date = moment(new Date(visits.date)).format("YYYY-MM-DD");
       for (let key in this.months) {
         if (this.months[key].date == date) {
           this.noData = true;
         }
       }
     });
-
     this.linesDataMonths();
   }
 
@@ -994,7 +1003,7 @@ export class AnaliticsViewsComponent implements OnInit {
       this.labelMonths.push(i);
     }
     this.postViews.forEach((visits) => {
-      let date = moment(new Date(visits.Date)).format("YYYY-MM-DD");
+      let date = moment(new Date(visits.date)).format("YYYY-MM-DD");
       for (let key in this.months) {
         if (this.months[key].date == date) {
           this.months[key].post += 1;
@@ -1003,7 +1012,7 @@ export class AnaliticsViewsComponent implements OnInit {
       }
     });
     this.chatViews.forEach((visits) => {
-      let date = moment(new Date(visits.Date)).format("YYYY-MM-DD");
+      let date = moment(new Date(visits.date)).format("YYYY-MM-DD");
       for (let key in this.months) {
         if (this.months[key].date == date) {
           this.months[key].chat += 1;
@@ -1013,7 +1022,7 @@ export class AnaliticsViewsComponent implements OnInit {
     });
 
     this.searchViews.forEach((visits) => {
-      let date = moment(new Date(visits.Date)).format("YYYY-MM-DD");
+      let date = moment(new Date(visits.date)).format("YYYY-MM-DD");
       for (let key in this.months) {
         if (this.months[key].date == date) {
           this.months[key].search += 1;
@@ -1023,7 +1032,7 @@ export class AnaliticsViewsComponent implements OnInit {
     });
 
     this.profileViews.forEach((visits) => {
-      let date = moment(new Date(visits.Date)).format("YYYY-MM-DD");
+      let date = moment(new Date(visits.date)).format("YYYY-MM-DD");
       for (let key in this.months) {
         if (this.months[key].date == date) {
           this.months[key].profile += 1;
@@ -1033,7 +1042,7 @@ export class AnaliticsViewsComponent implements OnInit {
     });
 
     this.reactionViews.forEach((visits) => {
-      let date = moment(new Date(visits.Date)).format("YYYY-MM-DD");
+      let date = moment(new Date(visits.date)).format("YYYY-MM-DD");
       for (let key in this.months) {
         if (this.months[key].date == date) {
           this.months[key].reaction += 1;
@@ -1043,7 +1052,7 @@ export class AnaliticsViewsComponent implements OnInit {
     });
 
     this.commentViews.forEach((visits) => {
-      let date = moment(new Date(visits.Date)).format("YYYY-MM-DD");
+      let date = moment(new Date(visits.date)).format("YYYY-MM-DD");
       for (let key in this.months) {
         if (this.months[key].date == date) {
           this.months[key].comment += 1;
@@ -1125,7 +1134,6 @@ export class AnaliticsViewsComponent implements OnInit {
   }
 
   totalSponsor;
-  sponsorLink;
   analyticsToShowSponsor;
   Sponsor() {
     this.segement = 2;
@@ -1145,4 +1153,125 @@ export class AnaliticsViewsComponent implements OnInit {
   sponsorYear() {
     this.analyticsToShowSponsor = "years";
   }
+
+  
+  async generatePdf(name){
+  
+let sponsorPages = [];
+let data;
+let jan = `Vistas totales en el mes de ${this.translate.instant(`months.0`)}`
+let feb = `Vistas totales en el mes de ${this.translate.instant(`months.1`)}`
+let mar = `Vistas totales en el mes de ${this.translate.instant(`months.2`)}`
+let apr = `Vistas totales en el mes de ${this.translate.instant(`months.3`)}`
+let may = `Vistas totales en el mes de ${this.translate.instant(`months.4`)}`
+let jun = `Vistas totales en el mes de ${this.translate.instant(`months.5`)}`
+let jul = `Vistas totales en el mes de ${this.translate.instant(`months.6`)}`
+let aug = `Vistas totales en el mes de ${this.translate.instant(`months.7`)}`
+let sep = `Vistas totales en el mes de ${this.translate.instant(`months.8`)}`
+let oct = `Vistas totales en el mes de ${this.translate.instant(`months.9`)}`
+let nov = `Vistas totales en el mes de ${this.translate.instant(`months.10`)}`
+let dec = `Vistas totales en el mes de ${this.translate.instant(`months.11`)}`
+let post = `Total de vistas por ${this.translate.instant('analytics-views.post')}`
+let chat = `Total de vistas por ${this.translate.instant('analytics-views.chat')}`
+let search = `Total de vistas por ${this.translate.instant('analytics-views.search')}`
+let profile = `Total de vistas por ${this.translate.instant('analytics-views.profile')}`
+let reaction = `Total de vistas por ${this.translate.instant('analytics-views.reaction')}`
+let comment = `Total de vistas por ${this.translate.instant('analytics-views.comment')}`
+let ranking = `Total de vistas por ${this.translate.instant('analytics-views.ranking')}`
+let news = `Total de vistas por ${this.translate.instant('analytics-views.news')}`
+
+
+  data = await this.viewsSponsorService.getVisitsByYearPdf(this.userService.User._id,moment().startOf("year"),name)
+  .toPromise()
+    
+  sponsorPages.push(
+    [
+      {
+        text:  `${this.translate.instant("pdf.data_sponsor")}\n\n`,
+        style: 'header'
+      },
+      {
+        text:  `Vistas totales de ${name}:  ${data.total}`,
+        style: 'header'
+      },
+      'Estos son los datos del año en curso, en fragmentos correspondiente de el origen de las vistas.\n\n',
+      {
+        text:  post + ` ${data.year[0].total}`,
+        style: 'header'
+      },
+      {
+        text:  chat + ` ${data.year[1].total}`,
+        style: 'header'
+      },
+      {
+        text:  search + ` ${data.year[2].total}`,
+        style: 'header'
+      },
+      {
+        text:  profile + ` ${data.year[3].total}`,
+        style: 'header'
+      },
+      {
+        text:  reaction + ` ${data.year[4].total}`,
+        style: 'header'
+      },
+      {
+        text:  comment + ` ${data.year[5].total}`,
+        style: 'header'
+      },
+      {
+        text:  ranking + ` ${data.year[6].total}`,
+        style: 'header'
+      },
+      {
+        text:  news + ` ${data.year[7].total}`,
+        style: 'header'
+      },
+      // {
+      //   text: 'Subheader 1 - using subheader style',
+      //   style: 'subheader'
+      // },
+      // 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Confectum ponit legam, perferendis nomine miserum, animi. Moveat nesciunt triari naturam posset, eveniunt specie deorsus efficiat sermone instituendarum fuisse veniat, eademque mutat debeo. Delectet plerique protervi diogenem dixerit logikh levius probabo adipiscuntur afficitur, factis magistra inprobitatem aliquo andriam obiecta, religionis, imitarentur studiis quam, clamat intereant vulgo admonitionem operis iudex stabilitas vacillare scriptum nixam, reperiri inveniri maestitiam istius eaque dissentias idcirco gravis, refert suscipiet recte sapiens oportet ipsam terentianus, perpauca sedatio aliena video.',
+      // 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Confectum ponit legam, perferendis nomine miserum, animi. Moveat nesciunt triari naturam posset, eveniunt specie deorsus efficiat sermone instituendarum fuisse veniat, eademque mutat debeo. Delectet plerique protervi diogenem dixerit logikh levius probabo adipiscuntur afficitur, factis magistra inprobitatem aliquo andriam obiecta, religionis, imitarentur studiis quam, clamat intereant vulgo admonitionem operis iudex stabilitas vacillare scriptum nixam, reperiri inveniri maestitiam istius eaque dissentias idcirco gravis, refert suscipiet recte sapiens oportet ipsam terentianus, perpauca sedatio aliena video.',
+      // 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Confectum ponit legam, perferendis nomine miserum, animi. Moveat nesciunt triari naturam posset, eveniunt specie deorsus efficiat sermone instituendarum fuisse veniat, eademque mutat debeo. Delectet plerique protervi diogenem dixerit logikh levius probabo adipiscuntur afficitur, factis magistra inprobitatem aliquo andriam obiecta, religionis, imitarentur studiis quam, clamat intereant vulgo admonitionem operis iudex stabilitas vacillare scriptum nixam, reperiri inveniri maestitiam istius eaque dissentias idcirco gravis, refert suscipiet recte sapiens oportet ipsam terentianus, perpauca sedatio aliena video.\n\n',
+      // {
+      //   text: 'Subheader 2 - using subheader style',
+      //   style: 'subheader'
+      // },
+      // 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Confectum ponit legam, perferendis nomine miserum, animi. Moveat nesciunt triari naturam posset, eveniunt specie deorsus efficiat sermone instituendarum fuisse veniat, eademque mutat debeo. Delectet plerique protervi diogenem dixerit logikh levius probabo adipiscuntur afficitur, factis magistra inprobitatem aliquo andriam obiecta, religionis, imitarentur studiis quam, clamat intereant vulgo admonitionem operis iudex stabilitas vacillare scriptum nixam, reperiri inveniri maestitiam istius eaque dissentias idcirco gravis, refert suscipiet recte sapiens oportet ipsam terentianus, perpauca sedatio aliena video.',
+      // 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Confectum ponit legam, perferendis nomine miserum, animi. Moveat nesciunt triari naturam posset, eveniunt specie deorsus efficiat sermone instituendarum fuisse veniat, eademque mutat debeo. Delectet plerique protervi diogenem dixerit logikh levius probabo adipiscuntur afficitur, factis magistra inprobitatem aliquo andriam obiecta, religionis, imitarentur studiis quam, clamat intereant vulgo admonitionem operis iudex stabilitas vacillare scriptum nixam, reperiri inveniri maestitiam istius eaque dissentias idcirco gravis, refert suscipiet recte sapiens oportet ipsam terentianus, perpauca sedatio aliena video.\n\n',
+      // {
+      //   text: 'It is possible to apply multiple styles, by passing an array. This paragraph uses two styles: quote and small. When multiple styles are provided, they are evaluated in the specified order which is important in case they define the same properties',
+      //   style: ['quote', 'small']
+      // }
+    ]
+  )
+  
+const documentDefinition = { 
+    content:sponsorPages,
+    styles: {
+      header: {
+        fontSize: 18,
+        bold: true
+      },
+      subheader: {
+        fontSize: 15,
+        bold: true
+      },
+      quote: {
+        italics: true
+      },
+      small: {
+        fontSize: 8
+      }
+    }
+    
+  };
+  
+  
+  pdfMake.createPdf(documentDefinition).open();
+
+    // pdfMake.createPdf(documentDefinition).download();
+ }
+  
 }

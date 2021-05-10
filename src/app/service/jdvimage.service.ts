@@ -169,14 +169,47 @@ export class JdvimageService {
         );
     });
   }
-  uploadVideoFromUrl(url) {
-    const body = { url };
-    return this.http.post(
-      `${environment.URL_IMAGE}/video/uploadFromUrl`,
-      body,
-      { reportProgress: true }
-    );
+  uploadVideoFromUrl(url, page = false) {
+    this.isUploadingPage = page;
+
+    this.uploadProgress = 0;
+    return new Promise((resolve, reject) => {
+      const body = { url };
+      return this.http
+        .post(`${environment.URL_IMAGE}/video/uploadFromUrl`, body, {
+          reportProgress: true,
+          observe: "events",
+        })
+        .subscribe(
+          (event) => {
+            // indicamos que se esta subiendo un archivo
+            this.isUploading = true;
+            if (event.type == HttpEventType.UploadProgress) {
+              // si el evento responde con el tipo upload progress, entonces actualizamos el progreso de carga
+              let { loaded, total } = event;
+              // el cargado entre el total por 100 da el porcentaje
+              this.uploadProgress =
+                Number(((loaded / total) * 100).toFixed(0)) || 0;
+            } else if (event.type == HttpEventType.Response) {
+              // termino la carga, se marca false el is uploading
+              this.isUploading = false;
+              // si salio ok respondemos con el body
+              if (event.status == 200) {
+                resolve(event.body);
+              } else {
+                reject(event);
+              }
+            }
+          },
+          (e) => {
+            this.isUploading = false;
+
+            reject(e);
+          }
+        );
+    });
   }
+
 
   public DataURIToBlob(dataURI: string) {
     const splitDataURI = dataURI.split(",");

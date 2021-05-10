@@ -164,7 +164,6 @@ export class ChatBoxComponent implements OnInit, OnChanges, AfterViewInit {
         message.read == false && message.user._id != this.userService.User._id
       );
     });
-    console.log(messagesUnread);
 
     this.messageService.readMessages(messagesUnread, this.chat._id).subscribe();
   }
