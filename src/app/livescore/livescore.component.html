@@ -1,3 +1,23 @@
-<p>
-  livescore works!
-</p>
+<ion-segment 
+  value="ALL"
+  [scrollable]="true" 
+  (ionChange)="onSegmentChange($event)">
+  <ion-segment-button value="ALL">
+    <ion-label>Todos</ion-label>
+  </ion-segment-button>
+  <ion-segment-button value="LIVE">
+    <ion-label>En Directo</ion-label>
+  </ion-segment-button>
+  <ion-segment-button value="FAVORITES">
+    <ion-label>Mis Partidos</ion-label>
+  </ion-segment-button>
+      <ion-segment-button value="FINISHED">
+    <ion-label>Finalizados</ion-label>
+  </ion-segment-button>
+      <ion-segment-button value="UPCOMING">
+    <ion-label>Próximos</ion-label>
+  </ion-segment-button>
+</ion-segment>
+<ion-content>
+  <!-- TODO -->
+</ion-content>

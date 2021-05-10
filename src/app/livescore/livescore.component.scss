@@ -1,0 +1,41 @@
+ion-segment-button {
+  --background-checked: var(--ion-color-primary);
+  --color-checked: var(--ion-color-primary-contrast);
+  --indicator-color: transparent;
+}
+
+.team-name {
+  font-size: 14px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  white-space: normal;
+  text-align: center;
+  align-self: center;
+}
+
+.winner {
+  font-weight: bold;
+}
+
+.score-time {
+  font-size: 24px;
+  color: var(--ion-color-step-600, #666666);
+  text-align: center;
+}
+
+small {
+  text-align: right;
+  color: var(--ion-color-step-600, #666666);
+  &.time {
+    background: var(--ion-color-success);
+    color: white;
+    padding: 0px 8px;
+  }
+}
+
+.team-shield {
+  width: 24px;
+  vertical-align: middle;
+}
