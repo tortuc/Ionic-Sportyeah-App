@@ -1,6 +1,9 @@
 <ion-card
   class="msg"
-  [ngClass]="{'my-msg':(message.user._id == userService.User?._id),'full-width':(message.files.length > 1)}"
+  [ngClass]="{
+    'my-msg': message.user._id == userService.User?._id,
+    'full-width': message.files.length > 1
+  }"
 >
   <ion-grid>
     <ion-row>
@@ -27,8 +30,11 @@
         </p>
 
         <p class="msg-text" [innerHTML]="message.message | links | icons"></p>
+        <question-comment
+          *ngIf="message.question"
+          [questionId]="message.question"
+        ></question-comment>
 
-     
         <view-files-chat
           *ngIf="message.files.length > 0 && !landing"
           [files]="message.files"

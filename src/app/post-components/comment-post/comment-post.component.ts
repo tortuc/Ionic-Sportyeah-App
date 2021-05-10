@@ -113,7 +113,10 @@ export class CommentPostComponent implements OnInit {
 
   @Output() newComment = new EventEmitter();
 
+   creating = false
+ 
   async send() {
+    this.creating = true
     // obtenemos los datos del formulario
     let comment = this.form.value;
 
@@ -144,6 +147,7 @@ export class CommentPostComponent implements OnInit {
           this.newCommentSuccess(comment, loading);
         })
         .catch((err) => {
+          this.creating = false
           // handle err
           loading.dismiss();
         });
@@ -156,6 +160,7 @@ export class CommentPostComponent implements OnInit {
           this.newCommentSuccess(comment, loading);
         })
         .catch((err) => {
+          this.creating = false
           // handle err
         });
     }
@@ -189,6 +194,8 @@ export class CommentPostComponent implements OnInit {
   }
 
   reset() {
+    this.creating = false
+
     this.form.controls.message.setValue("");
     this.files = [];
     this.question.questionGroup = null;

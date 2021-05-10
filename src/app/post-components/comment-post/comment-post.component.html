@@ -75,7 +75,7 @@
       <ion-button
         class="btn-green"
         [disabled]="
-          form.invalid && files.length == 0 && !question.questionGroup
+          form.invalid && files.length == 0 && !question.questionGroup || creating
         "
         (click)="send()"
       >
