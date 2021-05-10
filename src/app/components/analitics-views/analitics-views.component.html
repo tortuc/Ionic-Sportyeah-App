@@ -31,11 +31,11 @@
         <ion-segment-button  (click)="pieData()" >     
           <p style="visibility: visible">Todas</p>
         </ion-segment-button>
-    <!-- (click)="postLines()"
-        <ion-segment-button (click)=" generatePdf()" >
+    
+        <!-- <ion-segment-button  (click)="postLines()">
           <p style="visibility: visible">Publicaciones</p>
-        </ion-segment-button>
-  -->
+        </ion-segment-button> -->
+ 
         <ion-segment-button (click)="Sponsor()" >
           <p style="visibility: visible">Patrocinadores</p>
         </ion-segment-button>
@@ -124,8 +124,8 @@
                   >
                     <div style="text-align: center;"  target="_blank">
                       <img
-                        (click)="sponsorLink = sponsor.url "
-                        [src]="sponsor.photo"
+                        (click)=" generatePdf(sponsor.name)"
+                        [src]="sponsor.image"
                         style="
                           height: 30px;
                           width: 60px;

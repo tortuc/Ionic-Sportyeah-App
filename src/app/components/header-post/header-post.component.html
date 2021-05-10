@@ -45,7 +45,6 @@
 </div>
 
 <view-sponsors
-
   *ngIf="post.user.sponsors.length > 0 && !sharing"
   [sponsors]="post.user.sponsors"
   (onSelect)="goToSponsor($event)"

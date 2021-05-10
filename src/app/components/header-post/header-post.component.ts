@@ -155,7 +155,7 @@ export class HeaderPostComponent implements OnInit {
           visitor: this.userService.User._id,
           from: "post",
           link: `/post/${this.post._id}`,
-          urlSponsor: sponsor.url,
+          nameSponsor: sponsor.name,
         })
         .subscribe((response) => {
           window.open("//" + sponsor.url, "_blank");

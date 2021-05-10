@@ -46,7 +46,7 @@ export class ReadComponent implements OnInit {
     this.news.comments = $event;
   }
 
-  goToSponsor(sponsor, id, username, post_id) {
+  goToSponsor(sponsor,name, id, username, post_id) {
     if (id != this.userService.User._id) {
       this.userService.getUserByUsername(username).subscribe((resp: any) => {
         this.viewsSponsorService
@@ -55,7 +55,7 @@ export class ReadComponent implements OnInit {
             visitor: this.userService.User._id,
             from: "news",
             link: `/news/read/${post_id}`,
-            urlSponsor: sponsor,
+            nameSponsor: name,
           })
           .subscribe((response) => {
             window.location.replace(sponsor);
@@ -64,7 +64,7 @@ export class ReadComponent implements OnInit {
     }
   }
 
-  goToSponsorComment(sponsor, id, news_id) {
+  goToSponsorComment(sponsor,name, id, news_id) {
     if (id != this.userService.User._id) {
       this.viewsSponsorService
         .createSponsorView({
@@ -72,7 +72,7 @@ export class ReadComponent implements OnInit {
           visitor: this.userService.User._id,
           from: "comment",
           link: `/news/read/${news_id}`,
-          urlSponsor: sponsor,
+          nameSponsor: name,
         })
         .subscribe((response) => {
           window.location.replace(sponsor);
