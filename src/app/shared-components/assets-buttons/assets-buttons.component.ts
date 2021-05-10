@@ -37,6 +37,7 @@ export class AssetsButtonsComponent implements OnInit, OnChanges {
   @Input() editPost: boolean = false;
   @Input() question = null;
   @Input() files: IPostFile[] = [];
+  @Input() group:boolean = false;
 
   @Output() videoToUpload = new EventEmitter();
   @Output() newFile = new EventEmitter();
@@ -60,10 +61,20 @@ export class AssetsButtonsComponent implements OnInit, OnChanges {
     private questionService: QuestionService
   ) {}
 
-  ngOnInit() {}
+  canCreateQuestion = true;
+  ngOnInit() {
+    
+  
+  }
 
   ngOnChanges() {
-    console.log(this.question);
+    if(this.editPost){
+      this.canCreateQuestion = false
+    }else if(this.chat && !this.group){
+      this.canCreateQuestion = false
+    }else{
+      this.canCreateQuestion = true
+    }
   }
 
   assetsOptions(option) {

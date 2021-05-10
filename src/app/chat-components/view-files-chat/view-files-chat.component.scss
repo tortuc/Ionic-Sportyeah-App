@@ -14,9 +14,7 @@
     right: 0;
   }
 
-  .document{
-    padding-top: 20%;
-  }
+ 
   attach-link-preview-post {
     position: absolute;
     top: 0;
@@ -167,14 +165,18 @@
 
 
 .document{
-    cursor: pointer;
-    border: solid 2px var(--color-green);
+  cursor: pointer;
+    border: solid 2px black;
     border-radius: 10px;
     margin: 10px;
-    padding-top: 10%;
-    background:white;
+    min-height: 150px;
+    background: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     p{
       margin:0;
+      color: black;
     }
     ion-icon{
         font-size:30px;

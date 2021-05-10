@@ -7,9 +7,6 @@ import { IPost, INew, IPostFile } from "src/app/models/iPost";
 import { JdvimageService } from "src/app/service/jdvimage.service";
 import { PostService } from "src/app/service/post.service";
 import { UserService } from "src/app/service/user.service";
-import { QuestionService } from "../../service/question.service";
-import { EditQuestionComponent } from "src/app/components/edit-question/edit-question.component";
-import { take } from "rxjs/operators";
 import { AssetsButtonsComponent } from "src/app/shared-components/assets-buttons/assets-buttons.component";
 @Component({
   selector: "app-new-post",
@@ -22,7 +19,6 @@ export class NewPostPage implements OnInit {
   @Input() img: string;
   @ViewChild("assetsBtn") assetsBtn: AssetsButtonsComponent;
   @ViewChild(MentionsDirective) mentions;
-  @ViewChild("editQuestionHash") editQuestionComponent: EditQuestionComponent;
   @ViewChild("openImage") fileChooser: ElementRef;
   @ViewChild("mainInput") mainInput: ElementRef;
 
@@ -34,8 +30,7 @@ export class NewPostPage implements OnInit {
     public JDVImage: JdvimageService,
     public loadingCtrl: LoadingController,
     private postService: PostService,
-    private platform: Platform,
-    public questionService: QuestionService
+    private platform: Platform
   ) {
     this.platform.backButton.subscribeWithPriority(10, () => {
       this.modalController.dismiss();
@@ -157,6 +152,10 @@ export class NewPostPage implements OnInit {
     this.question.questionGroup = null;
   }
 
+  newQuestion($event) {
+    this.question.questionGroup = $event;
+  }
+
   files: IPostFile[] = [];
   videosToUploads = [];
 
@@ -170,7 +169,5 @@ export class NewPostPage implements OnInit {
     this.videosToUploads.push(file);
   }
 
-  newQuestion($event) {
-    this.question.questionGroup = $event;
-  }
+ 
 }

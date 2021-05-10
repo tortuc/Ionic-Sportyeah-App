@@ -15,7 +15,6 @@ import { NewPostHeaderComponent } from "./new-post-header/new-post-header.compon
 import { PostPreviewImagesComponent } from "./post-preview-images/post-preview-images.component";
 import { PostPreviewImagesSliderComponent } from "./post-preview-images-slider/post-preview-images-slider.component";
 import { SeeFilesPostSliderComponent } from "./see-files-post-slider/see-files-post-slider.component";
-import { EditQuestionComponent } from "../components/edit-question/edit-question.component";
 import { ReactToPostsComponent } from "./react-to-posts/react-to-posts.component";
 import { LikesPostComponent } from "./likes-post/likes-post.component";
 import { AllReactionsComponent } from "./all-reactions/all-reactions.component";
@@ -39,7 +38,6 @@ const componets = [
   PostPreviewImagesComponent,
   PostPreviewImagesSliderComponent,
   SeeFilesPostSliderComponent,
-  EditQuestionComponent,
   ReactToPostsComponent,
   LikesPostComponent,
   AllReactionsComponent,

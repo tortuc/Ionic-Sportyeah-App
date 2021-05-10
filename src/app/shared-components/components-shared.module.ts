@@ -27,6 +27,7 @@ import { AssetsButtonsComponent } from "./assets-buttons/assets-buttons.componen
 import { GifsModalComponent } from "./gifs-modal/gifs-modal.component";
 import { ImagePickerComponent } from "./image-picker/image-picker.component";
 import { VideoPickerComponent } from "./video-picker/video-picker.component";
+import { EditQuestionComponent } from "../components/edit-question/edit-question.component";
 
 const components = [
   ViewCommentComponent,
@@ -50,7 +51,8 @@ const components = [
   AssetsButtonsComponent,
   GifsModalComponent,
   ImagePickerComponent,
-  VideoPickerComponent
+  VideoPickerComponent,
+  EditQuestionComponent
 ];
 
 @NgModule({

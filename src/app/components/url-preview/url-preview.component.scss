@@ -1,12 +1,12 @@
 .preview {
-    width: 500px;
-    background-color: #faefff;
-    border-radius: 5px;
-    margin: auto;
-    display: flex;
-    padding: 10px;
+  width: 500px;
+  background-color: #ffffff;
+  border-radius: 5px;
+  margin: auto;
+  display: flex;
+  padding: 10px;
 }
-  
+
 .preview-mini {
   background-color: #faefff;
   border-radius: 5px;
@@ -15,20 +15,21 @@
   width: 100% !important;
   display: block !important;
 }
-  
-  .preview-text {
-    padding: 10px;
-  }
 
-  .image{
-      max-width: 150px !important;
-  }
+.preview-text {
+  padding: 10px;
+}
 
-  .preview-title{
-    color: var(--color-primary);
-    text-align: center;
-  }
+.image {
+  max-width: 150px !important;
+}
 
-  .description{
-      font-size: 12px;
-  }
+.preview-title {
+  color: var(--color-primary);
+  text-align: center;
+}
+
+.description {
+  font-size: 12px;
+  color: black;
+}

@@ -21,7 +21,7 @@
 <ion-button [disabled]="question" class="btn-rounded-options" (click)="assetsOptions('gif')">
   GIF
 </ion-button>
-<ion-button [disabled]="files.length > 0" *ngIf="!editPost"  (click)="createQuestion()">
+<ion-button [disabled]="files.length > 0" *ngIf="canCreateQuestion"  (click)="createQuestion()">
   <ion-icon name="help-outline"></ion-icon>
 </ion-button>
 

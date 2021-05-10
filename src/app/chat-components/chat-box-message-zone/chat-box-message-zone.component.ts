@@ -1,13 +1,13 @@
-import { Component, Input, OnInit, QueryList, ViewChildren } from "@angular/core";
+import { ChangeDetectorRef, Component, Input, OnInit, ViewChild } from "@angular/core";
 import { FormBuilder, Validators } from "@angular/forms";
 import { Keyboard } from "@ionic-native/keyboard/ngx";
-import { AlertController, IonRouterOutlet, Platform } from "@ionic/angular";
+import { AlertController } from "@ionic/angular";
 import { TranslateService } from "@ngx-translate/core";
 import { IChat } from "src/app/models/IChat";
 import { IPostFile } from "src/app/models/iPost";
-import { JdvimageService } from "src/app/service/jdvimage.service";
 import { MessageService } from "src/app/service/message.service";
-import { UserService } from "src/app/service/user.service"; 
+import { UserService } from "src/app/service/user.service";
+import { AssetsButtonsComponent } from "src/app/shared-components/assets-buttons/assets-buttons.component";
 @Component({
   selector: "chat-box-message-zone",
   templateUrl: "./chat-box-message-zone.component.html",
@@ -15,33 +15,32 @@ import { UserService } from "src/app/service/user.service";
 })
 export class ChatBoxMessageZoneComponent implements OnInit {
   @Input() chat: IChat;
+  @ViewChild("assetsBtn") assetsBtn: AssetsButtonsComponent;
 
   emojis: boolean;
 
   constructor(
     private fb: FormBuilder,
-    private JDVImage: JdvimageService,
     private messageService: MessageService,
     public userService: UserService,
     public alertCtrl: AlertController,
     public translate: TranslateService,
-    public keyboard:Keyboard,
-   
-
-  ) {
-
-  }
-
-
+    public keyboard: Keyboard,
+    public cd:ChangeDetectorRef
+  ) {}
 
   ngOnInit() {
+
+    this.cd.detectChanges()
+    console.log(this.assetsBtn);
+    
     window.onclick = () => {
       this.emojis = false;
     };
 
-    this.keyboard.onKeyboardWillShow().subscribe(()=>{
-      this.emojis = false
-    })
+    this.keyboard.onKeyboardWillShow().subscribe(() => {
+      this.emojis = false;
+    });
   }
 
   focusout(e) {
@@ -79,89 +78,9 @@ export class ChatBoxMessageZoneComponent implements OnInit {
   }
 
   /**
-   * Esta funcion la llama el file picker
-   */
-
-  async uploadDocumet($event) {
-    this.uploadDocumets($event.target.files);
-  }
-
-  /**
-   * Subir documentos de forma masiva
-   * @param files
-   * @param i
-   */
-
-  uploadDocumets(files: any[], i = 0) {
-    if (files.length > i) {
-      let formData: FormData = new FormData();
-      formData.append("file", files[i]);
-      this.JDVImage.uploadFile(formData)
-        .toPromise()
-        .then((data: any) => {
-          this.files.push({
-            url: data.url,
-            name: data.name,
-            format: "document",
-          });
-          this.messageService.playDropsound();
-          this.uploadDocumets(files, ++i);
-        })
-        .catch((err) => {
-          this.uploadDocumets(files, ++i);
-        });
-    }
-  }
-
-  /**
-   * funcion que se activa cuando el usuario utiliza el file picker
-   * @param $event evento con los archivos
-   */
-
-  async uploadImg($event) {
-    /**
-     * enviamos los archivos
-     */
-    this.uploadImages($event.target.files);
-  }
-
-  /**
    * videos a subir posteriormente
    */
   videosToUploads = [];
-
-  /**
-   * Subir imagenes, o videos de forma masiva
-   */
-  uploadImages(files, i = 0) {
-    if (files.length > i) {
-      let name = files[i].type.split("/")[0];
-
-      let formData: FormData = new FormData();
-      if (name == "video") {
-        let url = URL.createObjectURL(files[i]);
-        this.videosToUploads.push({ file: files[i], url });
-        this.files.push({ url, format: "video" });
-        this.messageService.playDropsound();
-
-        this.uploadImages(files, ++i);
-      } else if (name == "image") {
-        formData.append("image", files[i]);
-        this.JDVImage.uploadImageProgress(formData, true)
-          .then((url: string) => {
-            this.files.push({ url, format: "image" });
-            this.messageService.playDropsound();
-
-            this.uploadImages(files, ++i);
-          })
-          .catch((e) => {
-            this.uploadImages(files, ++i);
-          });
-      } else {
-        // handle
-      }
-    }
-  }
 
   /**
    * Reinicia el formulario, y los archivos
@@ -171,6 +90,7 @@ export class ChatBoxMessageZoneComponent implements OnInit {
     this.form.controls.message.setValue("");
     this.files = [];
     this.videosToUploads = [];
+    this.question.questionGroup = null;
   }
   /**
    * Enviar mensaje
@@ -190,6 +110,7 @@ export class ChatBoxMessageZoneComponent implements OnInit {
     let filesToUpload = this.files;
     // obtenemos los videos (si existen) de este mesnaje
     let videos = this.videosToUploads;
+    msg.question = await this.assetsBtn.saveQuestion(this.question);
 
     if (msg.message || filesToUpload.length > 0) {
       this.resetForm();
@@ -216,41 +137,29 @@ export class ChatBoxMessageZoneComponent implements OnInit {
     });
   }
 
-  async link() {
-    let alert = await this.alertCtrl.create({
-      header: this.translate.instant("attach_link.header"),
-      inputs: [
-        {
-          placeholder: this.translate.instant("attach_link.url"),
-          name: "url",
-          type: "text",
-          attributes: {
-            required: true,
-          },
-        },
-        {
-          placeholder: this.translate.instant("attach_link.name"),
-          name: "name",
-          type: "text",
-        },
-      ],
-      buttons: [
-        {
-          text: this.translate.instant("cancel"),
-          role: "cancel",
-        },
-        {
-          text: this.translate.instant("accept"),
-          handler: (data) => {
-            if (data.url) {
-              data.format = "link";
-              this.files.push(data);
-            }
-          },
-        },
-      ],
-    });
+  addFile(file) {
+    this.files.push(file);
+  }
 
-    alert.present();
+  pushVideoToUpload(file) {
+    this.videosToUploads.push(file);
+  }
+
+  question = {
+    user: this.userService.User._id,
+    questionGroup: null,
+    finishVotes: undefined,
+  };
+
+  async editQuestion() {
+    this.assetsBtn.editQuestion(this.question.questionGroup);
+  }
+
+  deleteQuestion() {
+    this.question.questionGroup = null;
+  }
+
+  newQuestion($event) {
+    this.question.questionGroup = $event;
   }
 }

@@ -27,6 +27,7 @@ import { NewsService } from "src/app/service/news.service";
 import { PostService } from "src/app/service/post.service";
 import { QuestionService } from "src/app/service/question.service";
 import { UserService } from "src/app/service/user.service";
+import { AssetsButtonsComponent } from "src/app/shared-components/assets-buttons/assets-buttons.component";
 // import { ImagePickerComponent } from "../image-picker/image-picker.component";
 // import { VideoPickerComponent } from "../video-picker/video-picker.component";
 
@@ -40,15 +41,11 @@ export class CommentPostComponent implements OnInit {
     public userService: UserService,
     public fb: FormBuilder,
     private translate: TranslateService,
-    private imageService: JdvimageService,
     private postService: PostService,
-    private platform: Platform,
-    private actionSheetController: ActionSheetController,
     public modalController: ModalController,
     public loadingCtrl: LoadingController,
     private toastController: ToastController,
     private commentService: CommentService,
-    private alertCtrl: AlertController,
     public newsService: NewsService,
     public questionService: QuestionService
   ) {}
@@ -67,6 +64,7 @@ export class CommentPostComponent implements OnInit {
   @ViewChild(MentionsDirective) mentions: MentionsDirective;
   @ViewChild("openImage") openImage: ElementRef;
   @ViewChild("mainInput") mainInput: ElementRef;
+  @ViewChild("assetsBtn") assetsBtn: AssetsButtonsComponent;
 
   ngOnInit() {
     try {
@@ -83,7 +81,6 @@ export class CommentPostComponent implements OnInit {
    * @param ev
    */
 
-  lastCaretPosition = 0;
   addEmoji(ev) {
     this.mentions.setEmoji(ev.emoji.native);
   }
@@ -116,7 +113,10 @@ export class CommentPostComponent implements OnInit {
 
   @Output() newComment = new EventEmitter();
 
+   creating = false
+ 
   async send() {
+    this.creating = true
     // obtenemos los datos del formulario
     let comment = this.form.value;
 
@@ -134,7 +134,7 @@ export class CommentPostComponent implements OnInit {
       message: this.translate.instant("loading"),
     });
 
-    comment.question = await this.saveQuestion();
+    comment.question = await this.assetsBtn.saveQuestion(this.question);
 
     // presentamos el loading
     loading.present();
@@ -147,6 +147,7 @@ export class CommentPostComponent implements OnInit {
           this.newCommentSuccess(comment, loading);
         })
         .catch((err) => {
+          this.creating = false
           // handle err
           loading.dismiss();
         });
@@ -159,6 +160,7 @@ export class CommentPostComponent implements OnInit {
           this.newCommentSuccess(comment, loading);
         })
         .catch((err) => {
+          this.creating = false
           // handle err
         });
     }
@@ -192,18 +194,14 @@ export class CommentPostComponent implements OnInit {
   }
 
   reset() {
+    this.creating = false
+
     this.form.controls.message.setValue("");
     this.files = [];
     this.question.questionGroup = null;
   }
 
   videosToUploads = [];
-
-  async uploadVideo(file) {
-    let url = URL.createObjectURL(file);
-    this.videosToUploads.push({ file, url });
-    this.files.push({ url, format: "video" });
-  }
 
   removeFile(url) {
     this.files = this.files.filter((file) => {
@@ -214,191 +212,8 @@ export class CommentPostComponent implements OnInit {
     });
   }
 
-  photovideo() {
-    this.imageService
-      .takePhoto()
-      .then((file) => {
-        this.files.push(file);
-      })
-      .catch((err) => {});
-  }
-
   loading = false;
   files: IPostFile[] = [];
-
-  uploadFile(event) {
-    let file = event.target.files[0];
-    let name = file.type.split("/")[0];
-    let formData = new FormData();
-    formData.append(name, file);
-
-    if (name == "video") {
-      this.uploadVideo(file);
-    } else if (name == "image") {
-      this.uploadImage(formData);
-    } else {
-      // handle
-    }
-  }
-
-  uploadImage(formData: FormData) {
-    this.imageService
-      .uploadImageServer(formData)
-      .then((file) => {
-        this.files.push(file);
-        this.loading = false;
-      })
-      .catch((err) => {
-        this.loading = false;
-      });
-    this.loading = true;
-  }
-
-  async imageActionSheet() {
-    let buttons = [
-      {
-        text: this.translate.instant("img-options.galery"),
-        icon: "images",
-        handler: () => {
-          this.openImage.nativeElement.click();
-        },
-      },
-      // {
-      //   text: this.translate.instant("img-options.online"),
-      //   icon: "globe",
-      //   handler: async () => {
-      //     this.imageOnline();
-      //   },
-      // },
-      {
-        text: this.translate.instant("img-options.cancel"),
-        icon: "close",
-        role: "cancel",
-      },
-    ];
-
-    if (this.platform.is("cordova")) {
-      buttons.unshift({
-        text: this.translate.instant("img-options.camera"),
-        icon: "camera",
-        handler: () => {
-          this.photovideo();
-        },
-      });
-    }
-    const actionSheet = await this.actionSheetController.create({
-      header: "Buscar una imagen desde ",
-      buttons,
-    });
-    await actionSheet.present();
-  }
-
-  // async imageOnline() {
-  //   let modal = await this.modalController.create({
-  //     component: ImagePickerComponent,
-  //   });
-
-  //   modal.onDidDismiss().then((data: any) => {
-  //     if (data.data != undefined && "image" in data.data) {
-  //       this.imageService
-  //         .uploadImageFromUrl(data.data.image.largeImageURL,true)
-
-  //         .then((url: string) => {
-  //           this.files.push({
-  //             url,
-  //             format: "image",
-  //           });
-  //         });
-  //     }
-  //   });
-
-  //   return await modal.present();
-  // }
-
-  async videoActionSheet() {
-    const actionSheet = await this.actionSheetController.create({
-      header: this.translate.instant("search_video_from"),
-      buttons: [
-        {
-          text: this.translate.instant("img-options.galery"),
-          icon: "videocam",
-          handler: () => {
-            // this.photovideo()
-            this.openImage.nativeElement.click();
-          },
-        },
-        // {
-        //   text: this.translate.instant("img-options.online"),
-        //   icon: "globe",
-        //   handler: async () => {
-        //     let modal = await this.modalController.create({
-        //       component: VideoPickerComponent,
-        //     });
-
-        //     modal.onDidDismiss().then((data: any) => {
-        //       if (data.data != undefined && "video" in data.data) {
-        //         this.imageService
-        //           .uploadVideoFromUrl(data.data.video.videos.medium.url)
-        //           .toPromise()
-        //           .then((url: string) => {
-        //             this.files.push({
-        //               url,
-        //               format: "video",
-        //             });
-        //           });
-        //       }
-        //     });
-
-        //     return await modal.present();
-        //   },
-        // },
-        {
-          text: this.translate.instant("img-options.cancel"),
-          icon: "close",
-          role: "cancel",
-        },
-      ],
-    });
-    await actionSheet.present();
-  }
-
-  async link() {
-    let alert = await this.alertCtrl.create({
-      header: this.translate.instant("attach_link.header"),
-      inputs: [
-        {
-          placeholder: this.translate.instant("attach_link.url"),
-          name: "url",
-          type: "text",
-          attributes: {
-            required: true,
-          },
-        },
-        {
-          placeholder: this.translate.instant("attach_link.name"),
-          name: "name",
-          type: "text",
-        },
-      ],
-      buttons: [
-        {
-          text: this.translate.instant("cancel"),
-          role: "cancel",
-        },
-        {
-          text: this.translate.instant("accept"),
-          handler: (data) => {
-            if (data.url) {
-              data.format = "link";
-              this.files.push(data);
-            }
-          },
-        },
-      ],
-    });
-
-    alert.present();
-  }
 
   //Para hacer cuestionarios en lo comentarios
   question = {
@@ -407,69 +222,23 @@ export class CommentPostComponent implements OnInit {
     finishVotes: undefined,
   };
 
-  //Crea una modal donde se pueden crear preguntas
-  async createQuestion() {
-    const modal = await this.modalController.create({
-      component: NewQuestionComponent,
-      cssClass: "my-custom-class",
-      backdropDismiss: false,
-      componentProps: {
-        edit: false,
-      },
-    });
-    modal
-      .onDidDismiss()
-      .then((data) => {
-        if (data.data?.question != undefined) {
-          this.question.questionGroup = data.data.question; //Las preguntas creadas se introducen en el grupo de preguntas
-        }
-      })
-      .catch((err) => {});
-
-    return await modal.present();
-  }
-
   async editQuestion() {
-    const modalEdit = await this.modalController.create({
-      component: NewQuestionComponent,
-      cssClass: "my-custom-class",
-      backdropDismiss: false,
-      componentProps: {
-        question: this.question.questionGroup,
-        edit: true,
-      },
-    });
-    modalEdit
-      .onDidDismiss()
-      .then((data) => {
-        if (data.data.question != undefined) {
-          this.question.questionGroup = data.data.question;
-        }
-      })
-      .catch((err) => {});
-    return await modalEdit.present();
+    this.assetsBtn.editQuestion(this.question.questionGroup);
   }
+
   deleteQuestion() {
     this.question.questionGroup = null;
   }
 
-  saveQuestion() {
-    return new Promise((resolve, reject) => {
-      if (!this.question.questionGroup) {
-        resolve(null);
-      } else {
-        this.questionService
-          .create(this.question)
-          .pipe(take(1))
-          .subscribe(
-            (question: any) => {
-              resolve(question._id);
-            },
-            (err) => {
-              reject(err);
-            }
-          );
-      }
-    });
+  newQuestion($event) {
+    this.question.questionGroup = $event;
+  }
+
+  pushVideoToUpload(file) {
+    this.videosToUploads.push(file);
+  }
+
+  addFile(file) {
+    this.files.push(file);
   }
 }

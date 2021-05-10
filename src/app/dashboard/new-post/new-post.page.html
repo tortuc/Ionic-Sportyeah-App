@@ -104,7 +104,6 @@
 
       <ion-col size="12" *ngIf="question.questionGroup">
         <edit-question
-          #editQuestionHash
           [question]="question.questionGroup"
           (delete)="deleteQuestion()"
           (edit)="editQuestion()"
