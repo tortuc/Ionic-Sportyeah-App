@@ -4,6 +4,7 @@ import { environment as env } from '@env/environment';
 import { Score, ScoreAdapter } from '../models';
 import { Observable, Subject, timer } from 'rxjs';
 import { map, switchMap, share, retry, takeUntil } from 'rxjs/operators';
+import { LIVESCORE_POLLING_INTERVAL } from '@app/constants';
 
 enum Tabs {
   ALL,
@@ -28,7 +29,7 @@ export class LivescoreComponent implements OnInit {
 
   public ngOnInit(): void { 
     this.getScores().subscribe((data: any) => console.log(data));
-    timer(1, 20000).pipe(
+    timer(1, LIVESCORE_POLLING_INTERVAL).pipe(
       switchMap((): Observable<Score[]> => this.getScores()),
       retry(),
       share(),

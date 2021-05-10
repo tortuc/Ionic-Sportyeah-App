@@ -1,0 +1,1 @@
+export const LIVESCORE_POLLING_INTERVAL: number = 20000;
