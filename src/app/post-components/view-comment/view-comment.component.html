@@ -17,7 +17,7 @@
     </div> 
   </div>
   <view-sponsors
-  *ngIf="comment.user.sponsors.length > 0 && !sharing"
+  *ngIf="comment.user.sponsors.length > 0"
   [sponsors]="comment.user.sponsors"
   (onSelect)="goToSponsor($event)"
 ></view-sponsors> 
