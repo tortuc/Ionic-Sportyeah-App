@@ -1,1 +1,1 @@
-export { LivescoreComponent } from './livescore.component';
+export { LivescoreModule } from './livescore.module';
