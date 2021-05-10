@@ -1,0 +1,47 @@
+<ion-content #content>
+  <div style="height: 100%">
+    <ion-icon class="close" name="close" (click)="modalCtrl.dismiss()"></ion-icon>
+    <ion-searchbar [placeholder]=" 'chat.group.new.search' | translate " animated debounce="1000" (ionChange)="search($event)"></ion-searchbar>
+    
+    
+    <div *ngIf="videos.length > 0">
+      <div class="flex-images">
+        <div 
+        class="flex-image-container" 
+        *ngFor="let video of videos" 
+        >
+        <video 
+        [src]="video.videos.tiny.url"
+        controls
+        ></video>
+        <ion-button color="tertiary" class="select-btn" [ngClass]="{'active': video == selectedVideo}" (click)="selectVideo(video)" expand="full">
+          {{ 'select' | translate }}
+        </ion-button>
+      </div>
+    </div>
+    <div style="text-align: center;" *ngIf="!searching && !noMoreVideos">
+      <ion-button (click)="loadMore()" color="tertiary">
+        {{ 'image_picker.load_more' | translate }}
+      </ion-button>
+    </div>
+    <div style="height: 50px"></div>
+  </div>
+  <div style="text-align: center;" *ngIf="videos.length == 0">
+    <p>{{ 'image_picker.empty_results' | translate }}</p>
+  </div>
+
+  <div style="text-align: center;" *ngIf="searching">
+    <ion-spinner ></ion-spinner>
+  </div>
+
+  </div>
+</ion-content>
+
+<div class="stickyBtn">
+  <ion-button expand="full" [disabled]="!selectedVideo || videos.length == 0" (click)="handleVideo()">
+    {{ 'image_picker.next' | translate }}
+  </ion-button>
+  <ion-button style="--background: red;" expand="full"  (click)="modalCtrl.dismiss()">
+    {{ 'cancel' | translate }}
+  </ion-button>
+</div>

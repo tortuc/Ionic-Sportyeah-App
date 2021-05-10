@@ -5,6 +5,21 @@ export const SIDEBAR_ITEMS = [{
     fas: '',
     children: []
   },
+ 
+  {
+    title: "sidebar.home",
+    url: "/dashboard",
+    icon: "home",
+    fas: '',
+    children: []
+  },
+  {
+    title: "sidebar.chat",
+    url: "/chat",
+    icon: "chatbox-ellipses",
+    fas: '',
+    children: []
+  },
   {
     title: "sidebar.bet",
     url: "",
@@ -24,20 +39,6 @@ export const SIDEBAR_ITEMS = [{
         fas: '<i class="fas fa-hand-holding-usd"></i>'
       }
     ]
-  },
-  {
-    title: "sidebar.home",
-    url: "/dashboard",
-    icon: "home",
-    fas: '',
-    children: []
-  },
-  {
-    title: "sidebar.chat",
-    url: "/chat",
-    icon: "chatbox-ellipses",
-    fas: '',
-    children: []
   },
   {
     title: "challenges",

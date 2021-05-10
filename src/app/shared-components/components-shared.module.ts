@@ -23,6 +23,10 @@ import { AddUsersPanelDesktopComponent } from "../components/add-users-panel-des
 import { FollowBtn } from "../components/profile-challenges/follow-btn.component";
 import { ViewCommentComponent } from "../post-components/view-comment/view-comment.component";
 import { QuestionCommentComponent } from "../components/question-comment/question-comment.component";
+import { AssetsButtonsComponent } from "./assets-buttons/assets-buttons.component";
+import { GifsModalComponent } from "./gifs-modal/gifs-modal.component";
+import { ImagePickerComponent } from "./image-picker/image-picker.component";
+import { VideoPickerComponent } from "./video-picker/video-picker.component";
 
 const components = [
   ViewCommentComponent,
@@ -43,6 +47,10 @@ const components = [
   FriendsPanelDesktopComponent,
   AddUsersPanelDesktopComponent,
   FollowBtn,
+  AssetsButtonsComponent,
+  GifsModalComponent,
+  ImagePickerComponent,
+  VideoPickerComponent
 ];
 
 @NgModule({
