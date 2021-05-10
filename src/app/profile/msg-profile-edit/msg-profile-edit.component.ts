@@ -13,7 +13,7 @@ export class MsgProfileEditComponent implements OnInit {
 
   constructor(
     private modalCtrl:ModalController,
-    private userService:UserService,
+    public userService:UserService,
     private loadingCtrl:LoadingController,
     private translate:TranslateService
   ) { }
