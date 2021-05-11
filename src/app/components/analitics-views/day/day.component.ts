@@ -1,12 +1,12 @@
-import { Component, OnInit, ChangeDetectorRef, Input, OnChanges} from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, Input, OnChanges,ViewChild,ElementRef} from '@angular/core';
 import { TranslateService } from "@ngx-translate/core";
 import * as moment from 'moment';
 import { Chart } from 'chart.js';
 import { ViewsSponsorService } from 'src/app/service/views-sponsor.service';
 import { UserService } from 'src/app/service/user.service';
 import { take } from 'rxjs/operators';
-import html2canvas from "html2canvas"; 
 import { Html2CanvasService } from 'src/app/service/html2-canvas.service';
+import html2canvas from "html2canvas"; 
 
 @Component({
   selector: 'day',
@@ -20,7 +20,6 @@ export class DayComponent implements OnInit, OnChanges {
   @Input() hourchange:any;
   @Input() sponsorSelect:any;
 
-
   constructor(
     private translate:TranslateService,
     private cd:ChangeDetectorRef,
@@ -28,6 +27,22 @@ export class DayComponent implements OnInit, OnChanges {
     private userService:UserService,
     private html2Canvas:Html2CanvasService
     ) {}
+    imgcreada=false
+    imagenCreada
+    capture(){
+      const element = document.getElementById('html2canvas');
+      const targetElement = document.getElementById('linesHourSponsor')
+      element.appendChild(targetElement);
+      this.html2Canvas.html2canvas(element.firstChild).then((img) => {
+        this.img = img;
+        element.firstChild.remove();
+        this.ngOnChanges()
+    }).catch((res) => {
+        console.log(res);
+    });
+    }
+    img
+
 postViews;
 chatViews;
 searchViews;
@@ -38,30 +53,17 @@ rankingViews;
 newsViews;
 
 dia = moment().startOf("days")
-  ngOnInit() {
-  // for(let i = 1 ; i < 25;i++ ) {
-  //   console.log(this.dia.hour());
-  //   console.log(this.dia.format("YYYY-MM-DD-HH"));
-    
-  //   this.dia.add( 1,"hour")
-  // }
-    // this.viewsSponsorService.getVisitsByHour(this.userService.User._id,this.dia,"profile").subscribe((response)=>{
-    //   console.log(response);
-    // })
-    // console.log(moment().hour())
-    // this.takeDataDay();
-  }
+date
+  ngOnInit() { }
   ngOnChanges(){
     this.takeDataDay()
   }
   changeDay(n) { 
-    console.log(n);
     this.hour = moment(this.hour).add(n, "days");
-    console.log(this.hour);
-
     this.takeDataDay();
   }
   takeDataDay() {
+ 
     this.hourShow = moment(this.hour).format("DD-MM-YYYY")
     this.viewsSponsorService
       .getVisitsByHour(this.userService.User._id, this.hour, "search",this.sponsorSelect)
@@ -171,6 +173,7 @@ dia = moment().startOf("days")
       ]
       },
       options: {
+        responsive: true,
         scales: {
           yAxes: [{
             ticks: {
@@ -184,29 +187,4 @@ dia = moment().startOf("days")
 
 
   }
-  imgcreada = false;
-
-  imagenCreada;
-  img
-
-  crearImagen() {
-    // html2canvas(document.querySelector("#contenido")).then(canvas => {
-
-    //   this.imagenCreada = canvas.toDataURL();      
-    //   console.log(this.imagenCreada);
-      
-    // });
-    // this.imgcreada = true;
-  
-    const element = document.getElementById('html2canvas');
-    const targetElement = document.getElementById('target').cloneNode(true);
-    element.appendChild(targetElement);
-    this.html2Canvas.html2canvas(element.firstChild).then((img) => {
-        this.img = img;
-        element.firstChild.remove();
-    }).catch((res) => {
-        console.log(res);
-    });
-  }
-  
 }

@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
+import html2canvas from "html2canvas"; 
 
-declare let html2canvas;
 
 @Injectable()
 @Injectable({
@@ -12,8 +12,7 @@ export class Html2CanvasService {
 
   }
 
-  public html2canvas(ele) {
-
+   html2canvas(ele) {
       if (!ele) {
           return;
       }

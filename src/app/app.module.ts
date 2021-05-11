@@ -61,7 +61,6 @@ import { Keyboard } from "@ionic-native/keyboard/ngx";
     ClipboardModule,
     IonicRatingModule,
     IonCustomScrollbarModule,
-    ComponentsSharedModule
   ],
   providers: [
     StatusBar,

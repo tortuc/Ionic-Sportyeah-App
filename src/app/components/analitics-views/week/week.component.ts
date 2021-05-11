@@ -167,6 +167,7 @@ export class WeekComponent implements OnInit, OnChanges {
         ],
       },
       options: {
+        responsive: true,
         scales: {
           yAxes: [
             {

@@ -179,6 +179,7 @@ export class YearComponent implements OnInit, OnChanges {
         ],
       },
       options: {
+        responsive: true,
         scales: {
           yAxes: [
             {

@@ -166,6 +166,7 @@ export class MonthComponent implements OnInit , OnChanges{
         ],
       },
       options: {
+        responsive: true,
         scales: {
           yAxes: [
             {
