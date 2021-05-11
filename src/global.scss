@@ -269,6 +269,13 @@ a {
   --background: var(--color-primary);
   --color: white;
   --border-radius: 25px;
+  span {
+    font-size: 12px;
+    ion-icon {
+      vertical-align: sub;
+      font-size: 16px;
+    }
+  }
 }
 .btn-delete {
   --background: #d73226;
