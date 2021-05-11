@@ -58,4 +58,13 @@
     display: block;
     border-radius: 20px;
   }
+
+  .post-button {
+    font-size: 12px !important;
+    ion-icon {
+      font-size: 18px;
+      vertical-align: middle;
+      color: #3c3a3a;
+    }
+  }
 }
