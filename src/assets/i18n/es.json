@@ -1145,5 +1145,23 @@
   },
   "select": "Seleccionar",
   "uploading": "Subiendo archivo",
-  "msgProfileEdit":"Bienvenido a SportYeah, por favor, amplie la información de su perfil al máximo, ya que es la manera en la que le verá el resto de la red social, pulsando en la ⚙️ a un lado de tu nombre."
+  "msgProfileEdit": "Bienvenido a SportYeah, por favor, amplie la información de su perfil al máximo, ya que es la manera en la que le verá el resto de la red social, pulsando en la ⚙️ a un lado de tu nombre.",
+  "profile_banner_options": {
+    "see": "Ver imagen",
+    "upload": "Subir imagen",
+    "online": "Imagenes gratis"
+  },
+  "profile_photo_options": {
+    "see": "Ver imagen",
+    "upload": "Subir imagen",
+    "avatar": "Selecciona un avatar",
+    "camera": "Tomar foto"
+  },
+  "change_flag":{
+    "title":"Puedes cambiar tu bandera con la bandera de la comunidad autónoma a donde perteneces 😉",
+    "es":"España",
+    "ca":"Cataluña",
+    "eu":"Euskal Herria"
+  },
+  "update_profile_data":"Modificar datos del perfil"
 }

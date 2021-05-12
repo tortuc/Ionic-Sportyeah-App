@@ -28,6 +28,11 @@ import { GifsModalComponent } from "./gifs-modal/gifs-modal.component";
 import { ImagePickerComponent } from "./image-picker/image-picker.component";
 import { VideoPickerComponent } from "./video-picker/video-picker.component";
 import { EditQuestionComponent } from "../components/edit-question/edit-question.component";
+import { ProfileBannerComponent } from "./profile-banner/profile-banner.component";
+import { ProfileBannerOptionsComponent } from "./profile-banner-options/profile-banner-options.component";
+import { SeeProfileBannerComponent } from "./see-profile-banner/see-profile-banner.component";
+import { ProfilePhotoComponent } from "./profile-photo/profile-photo.component";
+import { ProfilePhotoOptionsComponent } from "./profile-photo-options/profile-photo-options.component";
 
 const components = [
   ViewCommentComponent,
@@ -52,7 +57,12 @@ const components = [
   GifsModalComponent,
   ImagePickerComponent,
   VideoPickerComponent,
-  EditQuestionComponent
+  EditQuestionComponent,
+  ProfileBannerComponent,
+  ProfileBannerOptionsComponent,
+  SeeProfileBannerComponent,
+  ProfilePhotoComponent,
+  ProfilePhotoOptionsComponent
 ];
 
 @NgModule({

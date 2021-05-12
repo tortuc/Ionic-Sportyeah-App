@@ -7,16 +7,20 @@
       type="overlay"
     >
       <ion-content
-        style="--background:white !important;"
+        style="--background: white !important"
         [scrollbar]="reusableCI.scrollbarStyle"
         allowAllScreens="true"
       >
-        <ion-list style="padding-bottom: 0px; padding-top: 0px" id="inbox-list">
+        <ion-list
+          *ngIf="userService.User"
+          style="padding-bottom: 0px; padding-top: 0px"
+          id="inbox-list"
+        >
           <div style="text-align: center">
             <img style="width: 150px" src="assets/logos/imagotipo_azul.png" />
           </div>
 
-          <new-profile-photo *ngIf="userService.User"></new-profile-photo>
+          <new-profile-photo></new-profile-photo>
 
           <ion-list-header
             style="color: black; margin-top: 10px"
@@ -24,10 +28,7 @@
           >
             <span style="margin: auto; font-size: 18px; color: #2a4c78">
               <!-- ENCUENTRA LA BANDERA DEPENDIENDO DE LA IP DEL USUARIO API https://www.countryflags.io/ -->
-              <app-miniflag
-                [user]="userService.User"
-                *ngIf="userService.User"
-              ></app-miniflag>
+              <miniflag [user]="userService.User"></miniflag>
               {{ userService.User?.name || "" }}
               {{ userService.User?.last_name || "" }}
             </span>

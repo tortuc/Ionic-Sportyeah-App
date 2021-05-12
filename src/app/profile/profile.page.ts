@@ -30,8 +30,6 @@ export class ProfilePage implements OnInit {
 
   @ViewChild("reloadButton", { static: false }) reloadButton: any;
 
-  banderaIP: string = null;
-  ipLoaded: Promise<boolean>;
   profile: boolean = true;
   postsB: boolean = false;
   newsB: boolean = false;
@@ -107,10 +105,7 @@ export class ProfilePage implements OnInit {
         })*/
       });
 
-    this.loginService.getIP().subscribe((geo) => {
-      this.banderaIP = geo.country;
-      this.ipLoaded = Promise.resolve(true);
-    });
+    
     this.getPost();
     this.getCountPost();
     this.postService.newPostObservable().subscribe((id) => {

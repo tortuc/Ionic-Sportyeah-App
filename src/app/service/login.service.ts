@@ -1,4 +1,4 @@
-import { Observable, Subject } from "rxjs";
+import { Subject } from "rxjs";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { environment } from "src/environments/environment";
@@ -22,23 +22,26 @@ export class LoginService {
     private router: Router
   ) {}
 
-  geo: Geo = {
-    ip: "",
-    country: "",
-    city: "",
-  };
+  /**
+   * Esta funcion retorna el codigo de pais del usuario que se esta registrando
+   */
 
-  getIP() {
-    const geo = new Subject<Geo>();
-    this.http
-      .get("https://extreme-ip-lookup.com/json/")
-      .subscribe((resp: any) => {
-        this.geo.ip = resp.query;
-        this.geo.country = resp.country;
-        this.geo.city = resp.city;
-        geo.next(this.geo);
-      });
-    return geo.asObservable();
+  getCountryCode(): Promise<string> {
+    // creamos una promesa que retorna el codigo del pais, o null si ocurre un error en la busqueda
+    return new Promise((resolve) => {
+      this.http.get("https://extreme-ip-lookup.com/json/").subscribe(
+        (response: any) => {
+          // destructuramos la informacion y obtenemos solo el countryCode
+          let { countryCode } = response;
+          // devolvemos el codigo del pais
+          resolve(countryCode);
+        },
+        () => {
+          // devolvemos null como respuesta
+          resolve(null);
+        }
+      );
+    });
   }
 
   /**
@@ -51,7 +54,6 @@ export class LoginService {
   }
 
   auth(body) {
-    body.geo = this.geo;
     return this.http.post(`${environment.URL_API}/user/auth`, body);
   }
 

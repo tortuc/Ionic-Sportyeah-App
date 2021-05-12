@@ -46,7 +46,7 @@ export class RankingSinceEverComponent implements OnInit,OnChanges {
   getData(){
     let country = 'null'
     if(this.country){
-      country = this.userService.User?.geo.country
+      country = this.userService.User?.country
     }
     
     switch (this.segment.toString()) {

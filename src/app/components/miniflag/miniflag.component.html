@@ -1,43 +1,5 @@
 <img
-  *ngIf="!user?.geo?.flag && !edit"
-  class="bandera"
-  [src]="
-    'https://www.countryflags.io/' +
-    user.geo?.country[0] +
-    user.geo?.country[1] +
-    '/flat/64.png'
-  "
-  alt=""
-/>
-
-<img
-  *ngIf="user?.geo?.flag && !edit"
-  class="bandera"
-  [src]="
-    user.geo?.flag
-  "
-  alt=""
-/>
-
-<img
-  *ngIf="!user?.geo?.flag && edit"
-  style="width: 100px;"
-  (click)="editM()"
-  [src]="
-    'https://www.countryflags.io/' +
-    user.geo?.country[0] +
-    user.geo?.country[1] +
-    '/flat/64.png'
-  "
-  alt=""
-/>
-
-<img
-  *ngIf="user?.geo?.flag && edit"
-  style="width: 100px;"
-  (click)="editM()"
-  [src]="
-    user.geo?.flag
-  "
+  class="flag"
+  [src]="user | flagCountry"
   alt=""
 />

@@ -16,8 +16,6 @@ export class ImagePickerComponent implements OnInit {
   @ViewChild("content") private content: any;
   @Input() minDimensions: [number, number] = [0, 0];
 
-  @Input() type: string;
-
   constructor(
     private pixabayService: PixabayService,
     public modalCtrl: ModalController,
@@ -29,20 +27,19 @@ export class ImagePickerComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.searching = true;
     this.pixabayService.minDimensions = this.minDimensions;
-    let search = "";
-    if (this.type) {
-      search = this.type.split("_").join(" ");
-    }
-    this.pixabayService.searchImages(search).then((resp: PixabayResp) => {
+    this.lastQuery = "deportes";
+    this.pixabayService.searchImages("deportes").then((resp: PixabayResp) => {
       this.images = resp.hits as PixabayImage[];
-
+      this.page += 1;
       this.searching = false;
     });
   }
 
   searching = false;
   search(ev) {
+    this.page = 1;
     this.selectedImage = null;
     this.searching = true;
     this.lastQuery = ev.detail.value;
@@ -51,12 +48,7 @@ export class ImagePickerComponent implements OnInit {
       .then((resp: PixabayResp) => {
         this.images = resp.hits as PixabayImage[];
         this.searching = false;
-
-        if (resp.hits.length != this.pixabayService.maxImagesPerResp) {
-          this.noMoreImages = true;
-        } else {
-          this.noMoreImages = false;
-        }
+        this.page += 1;
       });
   }
 
@@ -67,21 +59,19 @@ export class ImagePickerComponent implements OnInit {
 
   page = 1;
   lastQuery = "";
-  noMoreImages = false;
   loadMore() {
     this.searching = true;
-    this.page = this.page + 1;
 
     this.pixabayService
       .searchImages(this.lastQuery, this.page)
       .then((resp: PixabayResp) => {
         if (resp.hits.length > 0) {
+          this.page += 1;
+
           this.images.push(...(resp.hits as PixabayImage[]));
           this.searching = false;
-          this.content.scrollByPoint(0, 300, 500);
         } else {
           this.searching = false;
-          this.noMoreImages = true;
         }
       });
   }
