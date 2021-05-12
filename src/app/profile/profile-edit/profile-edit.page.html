@@ -29,7 +29,7 @@
             @{{userService.User.username}}
           </p>
         </ion-card-header>
-        <change-flag *ngIf="userService.User.country == 'es'"></change-flag>
+        <change-flag *ngIf="userService.User.country.toLowerCase() == 'es'"></change-flag>
       </ion-card>
     </ion-col>
     <ion-col style="padding: 0;" size-md="5" size-xs="12">
