@@ -26,8 +26,6 @@ export class AppComponent implements OnInit {
     await this.modalController.dismiss();
   }
 
-  public banderaIP: string = null;
-  public ipLoaded: Promise<boolean>;
   public selectedIndex = 0;
 
   // Contiene los items del sidebar menu
@@ -47,7 +45,7 @@ export class AppComponent implements OnInit {
     public reusableCI: ReusableComponentsIonic,
     private cookieService: CookieService,
     private meta: Meta,
-    public fileService:JdvimageService
+    public fileService: JdvimageService
   ) {
     this.initializeApp();
 
@@ -71,12 +69,7 @@ export class AppComponent implements OnInit {
     this.router.navigate([r]);
   }
 
-  ngOnInit() {
-    this.loginService.getIP().subscribe((geo) => {
-      this.banderaIP = geo.country;
-      this.ipLoaded = Promise.resolve(true);
-    });
-  }
+  ngOnInit() {}
 
   langSettings() {
     this.translate.addLangs([

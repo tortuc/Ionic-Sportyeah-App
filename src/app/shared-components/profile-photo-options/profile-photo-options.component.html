@@ -1,0 +1,32 @@
+<div class="options">
+  <div class="item" (click)="option('see')">
+    <span>
+      <ion-icon name="eye-outline"></ion-icon>
+      {{ "profile_photo_options.see" | translate }}
+    </span>
+  </div>
+  <div class="item" (click)="option('upload')">
+    <span>
+      <ion-icon name="image-outline"></ion-icon>
+      {{ "profile_photo_options.upload" | translate }}
+    </span>
+  </div>
+  <div *ngIf="platform.is('mobile')" class="item" (click)="option('camera')">
+    <span>
+      <ion-icon name="camera-outline"></ion-icon>
+      {{ "profile_photo_options.camera" | translate }}
+    </span>
+  </div>
+  <div class="item" (click)="option('avatar')">
+    <span>
+      <ion-icon name="person-outline"></ion-icon>
+      {{ "profile_photo_options.avatar" | translate }}
+    </span>
+  </div>
+  <div class="item" (click)="option('cancel')">
+    <span>
+      <ion-icon name="close-circle-outline"></ion-icon>
+      {{ "cancel" | translate }}
+    </span>
+  </div>
+</div>

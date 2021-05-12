@@ -45,7 +45,7 @@ export class RankingTodayComponent implements OnInit,OnChanges {
     this.dayEnd = moment(new Date).add(1,'day').format('YYYY-MM-DD')
 
     if(this.country){
-      country = this.userService.User?.geo.country
+      country = this.userService.User?.country
     }
     
     switch (this.segment.toString()) {

@@ -45,7 +45,7 @@ export class RankingMonthComponent implements OnInit , OnChanges {
 
 
     if(this.country){
-      country = this.userService.User?.geo.country
+      country = this.userService.User?.country
     }
     
     switch (this.segment.toString()) {

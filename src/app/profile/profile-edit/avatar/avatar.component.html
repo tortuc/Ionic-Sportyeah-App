@@ -1,26 +1,30 @@
 <ion-header>
-  <ion-toolbar class="main-bg">
-    <ion-title style="--color:white">{{'avatar.title' | translate}}</ion-title>
-    <ion-buttons slot="end" >
-      <ion-button (click)="dismiss()"  style="--color:white"><ion-icon name="close"></ion-icon>
+  <ion-toolbar class="toolbar-bg">
+    <ion-title style="--color: white">{{
+      "avatar.title" | translate
+    }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismiss()" style="--color: white"
+        ><ion-icon name="close"></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
-  
 </ion-header>
 
 <ion-content>
   <ion-grid>
     <ion-row>
-      <ion-col *ngFor="let avatar of avatars" (click)="selectAvatar(avatar.url)" size-lg="4" size-xs="6" style="padding: 10px;">
-        <ion-avatar class="big">
-
-          <ion-img class="img-user" [src]="avatar.url"></ion-img>
-     
-        </ion-avatar>
+      <ion-col
+        *ngFor="let avatar of avatars"
+       
+        size-lg="4"
+        size-xs="6"
+        style="padding: 10px"
+      >
+        <div>
+          <img  (click)="selectAvatar(avatar.url)" class="img-avatar" [src]="avatar.url" />
+        </div>
       </ion-col>
-  
-   
     </ion-row>
   </ion-grid>
 </ion-content>

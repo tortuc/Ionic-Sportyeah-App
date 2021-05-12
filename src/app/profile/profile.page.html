@@ -32,7 +32,7 @@
   <ion-grid style="padding: 0" class="height-100vh">
     <ion-row class="height-100vh ion-justify-content-center">
       <ion-col ngClass.xs="m-p-0" size-md="8" size-sm="12">
-        <ion-card ngClass.xs="m-p-0">
+        <ion-card style="margin: 0;padding: 0;" >
           <ion-card-header
             class="text-center"
             style="padding-top: 0; padding-left: 0; padding-right: 0"
@@ -58,7 +58,7 @@
             </ion-card>
 
             <ion-card-title (click)="goTo('/profile/edit')">
-              <app-miniflag [user]="userService.User"></app-miniflag>
+              <miniflag [user]="userService.User"></miniflag>
               {{userService.User?.name}} {{userService.User?.last_name}}
               <ion-icon class="edit" name="settings-outline"></ion-icon>
             </ion-card-title>

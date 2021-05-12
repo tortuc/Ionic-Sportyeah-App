@@ -16,6 +16,7 @@ import { CanVotePipe } from './can-vote.pipe';
 import { ShowReactionsImagePipe } from "./show-reactions-image.pipe";
 import { FilesPostCalSizePipe } from "./files-post-cal-size.pipe";
 import { FilesPostClassPipe } from "./files-post-class.pipe";
+import { FlagCountryPipe } from "./flag-country.pipe";
 
 const pipes = [
   LinksPipe,
@@ -34,7 +35,8 @@ const pipes = [
   CanVotePipe,
   ShowReactionsImagePipe,
   FilesPostCalSizePipe,
-  FilesPostClassPipe
+  FilesPostClassPipe,
+  FlagCountryPipe
   
 ]
 @NgModule({

@@ -24,12 +24,7 @@ export class SignupPage implements OnInit {
     private loadingCtrl: LoadingController
   ) {}
 
-  ngOnInit() {
-    this.loginService.getIP().subscribe((geo) => {
-      this.geo = geo;
-    });
-  }
-  geo; //para el país
+  ngOnInit() {}
   form = this.fb.group(
     {
       name: [
@@ -64,8 +59,7 @@ export class SignupPage implements OnInit {
       profile_user: ["", [Validators.required]],
       sub_profile: ["", [Validators.required]],
       agree: [false],
-      authorize: [true],
-      geo: [""],
+      authorize: [true]
     },
     { validator: this.checkPasswords }
   );
@@ -202,14 +196,29 @@ export class SignupPage implements OnInit {
     this.form.controls.username.setValue(value.replace(/\s/g, ""));
   }
 
+  /**
+   * Intentamos crear el usuario
+   */
   async create() {
-    this.form.value.geo = this.geo;
+    // creamos un loading para bloquear las funcionalidades mientras se crea el usuario
     let loading = await this.loadingCtrl.create({
       message: this.translate.instant("loading"),
     });
+    // presentamos el loading
     loading.present();
+
+    // obtenemos los datos del formulario y ese sera nuestro usuario
+    let user = this.form.value;
+
+    // obtenemos el country code del usuario que se registra y lo guardamos en el campo country
+
+    user.country = await this.loginService.getCountryCode();
+
+
+    console.log(user);
+    
     this.loginService
-      .create(this.form.value)
+      .create(user)
       .toPromise()
       .then(() => {
         loading.dismiss();

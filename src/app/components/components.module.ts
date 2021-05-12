@@ -1,7 +1,4 @@
-import {
-  MiniflagComponent,
-  ModalMiniFlagComponent,
-} from "./miniflag/miniflag.component";
+import { MiniflagComponent } from "./miniflag/miniflag.component";
 import { OpenImgComponent } from "./open-img/open-img.component";
 import { ParteIzquierdaWebComponent } from "./challenge/parte-izquierda-web/parte-izquierda-web.component";
 import { ParteDerechaWebComponent } from "./challenge/parte-derecha-web/parte-derecha-web.component";
@@ -35,7 +32,6 @@ import { FlexLayoutModule } from "@angular/flex-layout";
 import { TranslateModule } from "@ngx-translate/core";
 import { PostPageRoutingModule } from "../post/post-routing.module";
 import { IonicModule } from "@ionic/angular";
-import { FriendsMobileComponent } from "./friends-mobile/friends-mobile.component";
 import { ContenteditableValueAccessorModule } from "@tinkoff/angular-contenteditable-accessor";
 import { DirectivesModule } from "../directives/directive.module";
 import { PickerModule } from "@ctrl/ngx-emoji-mart";
@@ -140,7 +136,6 @@ const components = [
   QuestionNotificationComponent,
   GetMediaComponent,
   MiniflagComponent,
-  ModalMiniFlagComponent,
   NoResults,
   ProfilHeaderC,
   ProfileBodyC,
@@ -148,9 +143,8 @@ const components = [
   DayComponent,
   MonthComponent,
   WeekComponent,
-  YearComponent
-  
-]
+  YearComponent,
+];
 @NgModule({
   imports: [
     CommonModule,
@@ -166,9 +160,9 @@ const components = [
     DirectivesModule,
     PickerModule,
     EmojiModule,
-    ComponentsSharedModule
+    ComponentsSharedModule,
   ],
-  declarations:  components,
-  exports: components ,
+  declarations: components,
+  exports: components,
 })
 export class ComponentsModule {}

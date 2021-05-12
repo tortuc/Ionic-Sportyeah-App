@@ -1,0 +1,26 @@
+.flag-content {
+  text-align: center;
+  position: relative;
+  cursor: pointer;
+  img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    &.selected {
+      box-shadow: 0 0 10px 2px var(--color-primary);
+    }
+  }
+  ion-icon {
+    position: absolute;
+    font-size: 40px;
+    color: var(--color-primary);
+    margin: auto;
+    left: 0;
+    right: 0;
+    top: 15px;
+  }
+  p {
+    margin: 2px;
+    color: black;
+  }
+}

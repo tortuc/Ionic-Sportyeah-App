@@ -42,7 +42,7 @@ export class RakingYearComponent implements OnInit,OnChanges {
       this.dayEnd = moment(new Date).endOf('year').format('YYYY-MM-DD')
 
       if(this.country){
-        country = this.userService.User?.geo.country
+        country = this.userService.User?.country
       }
       
       switch (this.segment.toString()) {
