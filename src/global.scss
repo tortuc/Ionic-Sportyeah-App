@@ -842,6 +842,12 @@ ion-avatar.chat-img {
 
 .alert-wrapper {
   --background: white !important;
+  .alert-head{
+    .alert-title{
+      color: black;
+    }
+  }
+
 }
 
 .notification {

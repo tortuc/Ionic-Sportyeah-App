@@ -58,7 +58,7 @@
             </ion-card>
 
             <ion-card-title (click)="goTo('/profile/edit')">
-              <app-miniflag [user]="userService.User"></app-miniflag>
+              <miniflag [user]="userService.User"></miniflag>
               {{userService.User?.name}} {{userService.User?.last_name}}
               <ion-icon class="edit" name="settings-outline"></ion-icon>
             </ion-card-title>

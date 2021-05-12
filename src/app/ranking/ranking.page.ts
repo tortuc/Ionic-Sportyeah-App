@@ -1,69 +1,58 @@
-import { Component, OnInit,ElementRef,ViewChild } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild } from "@angular/core";
 import { PostService } from "../service/post.service";
-import { UserService } from '../service/user.service';
+import { UserService } from "../service/user.service";
 
 @Component({
-  selector: 'app-ranking',
-  templateUrl: './ranking.page.html',
-  styleUrls: ['./ranking.page.scss'],
+  selector: "app-ranking",
+  templateUrl: "./ranking.page.html",
+  styleUrls: ["./ranking.page.scss"],
 })
 export class RankingPage implements OnInit {
   //@ViewChild('slide') slide;
 
   constructor(
     private postService: PostService,
-    private userService:UserService,
+    private userService: UserService
   ) {
-     this.postService.getAllPost().subscribe((post:any)=>{ 
+    this.postService.getAllPost().subscribe((post: any) => {
       this.todolosPost = post;
-     /*  this.filterAllPost()
+      /*  this.filterAllPost()
       this.userPosition() */
-    })
-   }
+    });
+  }
 
-  segment=0;
+  segment = 0;
   slideOpts = {
     initialSlide: 0,
-    speed: 400
+    speed: 400,
   };
-  ngOnInit() {
-    if(this.userService.User.geo != undefined){
-      this.banderaIP = this.userService.User.geo.country;
-      this.ipLoaded = Promise.resolve(true);
-    }
+  ngOnInit() {}
+  positionLike;
+  userLike;
+  positionComment;
+  userComment;
+  positionShared;
+  userShared;
+  //Datos para los post,en seccion de post
+  todolosPost = [];
+  postUser = [];
+  likes = [];
+  comments = [];
+  shareds = [];
+  interaccionActual = "";
+  actualLikes() {
+    this.interaccionActual = "likes";
   }
-ipLoaded
-banderaIP  
-positionLike
-userLike;
-positionComment
-userComment;
-positionShared
-userShared;
-//Datos para los post,en seccion de post
-todolosPost = [];
-postUser = [];
-likes = [];
-comments = [];
-shareds = [];
-interaccionActual = '';
-actualLikes(){
-  this.interaccionActual = 'likes';
-}
-actualComments(){
-  this.interaccionActual = 'comments';
-}
-actualShareds(){
-  this.interaccionActual = 'shareds';
-}
-country:boolean = false;
-filterCountry(){
-  if(this.userService.User.geo != null){
-    this.country = !this.country;
+  actualComments() {
+    this.interaccionActual = "comments";
   }
-}
-///////////////////////ELiminar su ni sirve//////////////
-/* fechaSelect(){
+  actualShareds() {
+    this.interaccionActual = "shareds";
+  }
+  country: boolean = false;
+
+  ///////////////////////ELiminar su ni sirve//////////////
+  /* fechaSelect(){
   this.slide.getActiveIndex().then(index => {
     switch (index) {
       case 0:
@@ -81,9 +70,9 @@ filterCountry(){
         break;
     }  
  });
-} */////////////////////ELiminar su ni sirve//////////////
+} */ ////////////////////ELiminar su ni sirve//////////////
 
-/* goToProfile(id,username){
+  /* goToProfile(id,username){
   if(id == this.userService.User._id){
     this.router.navigate(["/profile"])
   }else{
@@ -208,10 +197,10 @@ if(this.shareds.length == 0){
 
 } */
 
-//Muestra los resultados de hoy
+  //Muestra los resultados de hoy
 
-//Muestra los resultados de la semana
-/* async week(){
+  //Muestra los resultados de la semana
+  /* async week(){
   await this.filterAllPost()
   setTimeout(()=>{ 
   
@@ -380,7 +369,7 @@ async month(){
   },300)
 } */
 
-/* async year(){
+  /* async year(){
   await this.filterAllPost()
   setTimeout(()=>{ 
   
@@ -462,5 +451,4 @@ async month(){
    this.userPosition() 
   },300)
 } */
-
 }

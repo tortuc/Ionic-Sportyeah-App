@@ -1,0 +1,47 @@
+<div style="width: 100%; text-align: center; padding: 15px">
+  <p style="font-size: 16px; color: black">
+    {{ "change_flag.title" | translate }}
+  </p>
+  <div
+    style="display: flex; justify-content: center; gap: 30px; margin-top: 20px"
+  >
+    <div (click)="change(null)" class="flag-content">
+      <ion-icon
+        *ngIf="userService.User.flag == null"
+        name="checkmark-outline"
+      ></ion-icon>
+      <img
+        src="assets/flags/es.png"
+        alt=""
+        [ngClass]="{ selected: userService.User.flag == null }"
+      />
+      <p>{{ "change_flag.es" | translate }}</p>
+    </div>
+    <div (click)="change('euskal')" class="flag-content">
+      <ion-icon
+        *ngIf="userService.User.flag == 'euskal'"
+        name="checkmark-outline"
+      ></ion-icon>
+
+      <img
+        src="assets/flags/eu.png"
+        alt=""
+        [ngClass]="{ selected: userService.User.flag == 'euskal' }"
+      />
+      <p>{{ "change_flag.eu" | translate }}</p>
+    </div>
+    <div (click)="change('catalunya')" class="flag-content">
+      <ion-icon
+        *ngIf="userService.User.flag == 'catalunya'"
+        name="checkmark-outline"
+      ></ion-icon>
+
+      <img
+        src="assets/flags/ca.png"
+        alt=""
+        [ngClass]="{ selected: userService.User.flag == 'catalunya' }"
+      />
+      <p>{{ "change_flag.ca" | translate }}</p>
+    </div>
+  </div>
+</div>

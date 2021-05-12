@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from "@angular/core";
-import { IUser } from "src/app/models/IUser";
+import {  User } from "src/app/models/IUser";
 import { UserService } from "src/app/service/user.service";
 
 @Component({
@@ -19,7 +19,7 @@ import { UserService } from "src/app/service/user.service";
   styleUrls:['./profile-challenges.component.scss']
 })
 export class FollowBtn implements OnInit {
-  @Input() user: IUser
+  @Input() user: User
   buttonFollowState: boolean = null;
   buttonFollowText: string = "follow";
   constructor(
