@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef, Input } from "@angular/core";
+import { Component, OnInit, ChangeDetectorRef, Input, OnChanges } from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
 import * as moment from "moment";
 import { Chart } from "chart.js";
@@ -11,11 +11,13 @@ import { take } from "rxjs/operators";
   templateUrl: "./week.component.html",
   styleUrls: ["./week.component.scss"],
 })
-export class WeekComponent implements OnInit {
+export class WeekComponent implements OnInit, OnChanges {
   //  @Input() weekchange:any;
   @Input() changeWeekAdd: number;
   @Input() sponsorLink: any;
   @Input() weekchange: any;
+  @Input() sponsorSelect:any;
+
   constructor(
     private translate: TranslateService,
     private cd: ChangeDetectorRef,
@@ -33,7 +35,7 @@ export class WeekComponent implements OnInit {
     this.weekFormat = this.week.startOf("week").format("YYYY-MM-DD");
     this.weekEndFormat = this.weekEnd.format("YYYY-MM-DD");
     this.viewsSponsorService
-      .getVisitsByWeek(this.userService.User._id, this.week, "search")
+      .getVisitsByWeek(this.userService.User._id, this.week, "search",this.sponsorSelect)
       .pipe(take(1))
       .subscribe((response: any) => {
         if (response.length == 0) {
@@ -42,7 +44,7 @@ export class WeekComponent implements OnInit {
           this.dataSearch = response;
         }
         this.viewsSponsorService
-          .getVisitsByWeek(this.userService.User._id, this.week, "post")
+          .getVisitsByWeek(this.userService.User._id, this.week, "post",this.sponsorSelect)
           .pipe(take(1))
           .subscribe((response: any) => {
             if (response.length == 0) {
@@ -52,7 +54,7 @@ export class WeekComponent implements OnInit {
             }
 
             this.viewsSponsorService
-              .getVisitsByWeek(this.userService.User._id, this.week, "profile")
+              .getVisitsByWeek(this.userService.User._id, this.week, "profile",this.sponsorSelect)
               .pipe(take(1))
               .subscribe((response: any) => {
                 if (response.length == 0) {
@@ -64,7 +66,7 @@ export class WeekComponent implements OnInit {
                   .getVisitsByWeek(
                     this.userService.User._id,
                     this.week,
-                    "comment"
+                    "comment",this.sponsorSelect
                   )
                   .pipe(take(1))
                   .subscribe((response: any) => {
@@ -165,6 +167,7 @@ export class WeekComponent implements OnInit {
         ],
       },
       options: {
+        responsive: true,
         scales: {
           yAxes: [
             {

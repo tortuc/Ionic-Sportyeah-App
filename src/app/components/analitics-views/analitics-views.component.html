@@ -122,19 +122,26 @@
                   <ion-col
                     *ngFor="let sponsor of userService.User?.sponsors; let i = index"
                   >
-                    <div style="text-align: center;"  target="_blank">
+                  <!-- (click)=" generatePdf(sponsor.name)" -->
+                  <ion-segment scrollable class="segement" [(ngModel)] = "sponsorSelect"  >
+                    <ion-segment-button [value]="sponsor.name">
                       <img
-                        (click)=" generatePdf(sponsor.name)"
-                        [src]="sponsor.image"
-                        style="
-                          height: 30px;
-                          width: 60px;
-                          border-radius: 10px;
-                          object-fit: cover;
-                          object-position: cover;
-                          cursor: pointer;
-                        "
-                    /></div>
+                     
+                      [src]="sponsor.image"
+                      style="
+                        height: 30px;
+                        width: 60px;
+                        border-radius: 10px;
+                        object-fit: cover;
+                        object-position: cover;
+                        cursor: pointer;
+                      "
+                  />     
+                      <p style="visibility: visible">{{sponsor.name}}</p>
+                    </ion-segment-button>
+                  </ion-segment>
+                    <!-- <div style="text-align: center;"  target="_blank">
+                     </div> -->
                   </ion-col>
                 </ion-row>
               </ion-grid>
@@ -335,10 +342,10 @@
 
 
 
-<day   *ngIf="analyticsToShowSponsor == 'hours' && segement == 2  "></day>
-<week  [changeWeekAdd]="changeWeekAdd" [weekchange]="dia"  *ngIf="analyticsToShowSponsor == 'weeks' && segement == 2  "></week>
-<month  [changeMonthAdd]="changeMonthAdd" [monthchange]="month"  *ngIf="analyticsToShowSponsor == 'months' && segement == 2  "></month>
-<year  [changeYearAdd]="changeYearAdd" [yearchange]="dateStart"  *ngIf="analyticsToShowSponsor == 'years' && segement == 2  "></year>
+<day    [sponsorSelect]="sponsorSelect" *ngIf="analyticsToShowSponsor == 'hours' && segement == 2  "></day>
+<week  [sponsorSelect]="sponsorSelect" [changeWeekAdd]="changeWeekAdd" [weekchange]="dia"  *ngIf="analyticsToShowSponsor == 'weeks' && segement == 2  "></week>
+<month  [sponsorSelect]="sponsorSelect" [changeMonthAdd]="changeMonthAdd" [monthchange]="month"  *ngIf="analyticsToShowSponsor == 'months' && segement == 2  "></month>
+<year  [sponsorSelect]="sponsorSelect" [changeYearAdd]="changeYearAdd" [yearchange]="dateStart"  *ngIf="analyticsToShowSponsor == 'years' && segement == 2  "></year>
 
 
            
@@ -363,7 +370,7 @@
     <!-- Columna de las reacciones -->
     <ion-col size-lg="4"  size-xs="12" *ngIf="interaccionActual == ''" >
       <div style="background: #95bbfd73;" >
-        <div style="cursor: pointer;background: #3880ff73;" (click)="actualLikes()">
+        <div style="cursor: pointer;background: #3880ff73;" > <!-- (click)="actualLikes()" -->
           <ion-img class="iconsPost"  src="https://img.icons8.com/bubbles/344/facebook-like.png" alt="Reaction icon"></ion-img>
           <ion-text   class="textCenter">
             <h4 class="semiBlack">{{'analytics-views.reaction' | translate}}</h4>
@@ -401,7 +408,7 @@
     <ion-col size="12" style="margin-top: 5%;" *ngIf="interaccionActual == 'likes'" >
       <div style="background: #b0cdff73;"> 
         <div style="background: #3880ff73;" >
-          <ion-icon  class="xClose" name="close" (click)="sinInteraccionActual()"></ion-icon>
+          <ion-icon  class="xClose" name="close" ></ion-icon> <!-- (click)="sinInteraccionActual()" -->
           <ion-img class="iconActual"  src="https://img.icons8.com/bubbles/344/facebook-like.png" alt="Reaction icon"></ion-img>
         </div>
         <div>
@@ -435,7 +442,7 @@
     <!-- Columna de los comentarios -->
     <ion-col size-lg="4"  size-xs="12" *ngIf="interaccionActual == ''" >
       <div style="background: #f5bec369;">
-        <div style="background: #f4989e69;cursor: pointer;" (click)="actualComments()">
+        <div style="background: #f4989e69;cursor: pointer;" > <!-- (click)="actualComments()" -->
           <ion-img class="iconsPost"  src="https://img.icons8.com/bubbles/344/comments.png" alt="Reaction icon"></ion-img>
           <ion-text   class="textCenter">
             <h4 class="semiBlack">{{'analytics-views.comment' | translate}}</h4>
@@ -474,7 +481,7 @@
 <ion-col size="12" style="margin-top: 5%;" *ngIf="interaccionActual == 'comments'" >
   <div  style="background: #f3cccf69;">
     <div style="background: #f4989e69;">
-      <ion-icon  class="xClose" name="close" (click)="sinInteraccionActual()"></ion-icon>
+      <ion-icon  class="xClose" name="close" ></ion-icon> <!-- (click)="sinInteraccionActual()" -->
       <ion-img class="iconActual"  src="https://img.icons8.com/bubbles/344/comments.png" alt="Reaction icon"></ion-img>
     </div>
     <div>
@@ -510,7 +517,7 @@
     <!-- Columna de compartidos -->
     <ion-col size-lg="4"  size-xs="12" *ngIf="interaccionActual == ''">
       <div style="background: #92c9aa85;">
-        <div style="background: #67ba8c85;cursor: pointer;"  (click)="actualShareds()">
+        <div style="background: #67ba8c85;cursor: pointer;"  > <!-- (click)="actualShareds()" -->
           <ion-img class="iconsPost"  src="https://img.icons8.com/bubbles/452/undo.png" alt="Reaction icon"></ion-img>
           <ion-text   class="textCenter">
             <h4 class="semiBlack">{{'analytics-views.shared' | translate}}</h4>
@@ -549,7 +556,7 @@
     <ion-col size="12" style="margin-top: 5%;" *ngIf="interaccionActual == 'shareds'">
       <div style="background: #92c9aa85;">
         <div style="background: #67ba8c85;">
-          <ion-icon  name="close" class="xClose" (click)="sinInteraccionActual()"></ion-icon>
+          <ion-icon  name="close" class="xClose" ></ion-icon> <!-- (click)="sinInteraccionActual()" -->
           <ion-img class="iconsPost" style="margin-top: -5%;width: 20%;" src="https://img.icons8.com/bubbles/452/undo.png" alt="shared"></ion-img>
         </div>
         <div>
@@ -705,7 +712,7 @@
 <!--  Aqui llego lo que comente-->
 
 <!-- Seccion no post INICIO -->
-<ion-card *ngIf="todolosPost.length == 0">
+<!-- <ion-card *ngIf="todolosPost.length == 0">
   <ion-card-content>
     <ion-grid>
       <ion-row >
@@ -718,7 +725,7 @@
       </ion-row>
     </ion-grid>
   </ion-card-content>
-</ion-card>
+</ion-card> -->
 <!-- Seccion no post FINAL -->
 
 

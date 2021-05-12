@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef, Input } from "@angular/core";
+import { Component, OnInit, ChangeDetectorRef, Input, OnChanges } from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
 import * as moment from "moment";
 import { Chart } from "chart.js";
@@ -11,10 +11,11 @@ import { take } from "rxjs/operators";
   templateUrl: "./month.component.html",
   styleUrls: ["./month.component.scss"],
 })
-export class MonthComponent implements OnInit {
+export class MonthComponent implements OnInit , OnChanges{
   @Input() monthchange: any;
   @Input() changeMonthAdd: number;
   @Input() sponsorLink: any;
+  @Input() sponsorSelect:any;
 
   constructor(
     private translate: TranslateService,
@@ -57,7 +58,7 @@ export class MonthComponent implements OnInit {
   takeDataMonth() {
     this.monthName = this.translate.instant(`months.${this.month.month()}`);
     this.viewsSponsorService
-      .getVisitsByMonth(this.userService.User._id, this.month, "search")
+      .getVisitsByMonth(this.userService.User._id, this.month, "search",this.sponsorSelect)
       .pipe(take(1))
       .subscribe((response: any) => {
         if (response.length == 0) {
@@ -66,7 +67,7 @@ export class MonthComponent implements OnInit {
           this.dataSearch = response;
         }
         this.viewsSponsorService
-          .getVisitsByMonth(this.userService.User._id, this.month, "post")
+          .getVisitsByMonth(this.userService.User._id, this.month, "post",this.sponsorSelect)
           .pipe(take(1))
           .subscribe((response: any) => {
             if (response.length == 0) {
@@ -79,7 +80,7 @@ export class MonthComponent implements OnInit {
               .getVisitsByMonth(
                 this.userService.User._id,
                 this.month,
-                "profile"
+                "profile",this.sponsorSelect
               )
               .pipe(take(1))
               .subscribe((response: any) => {
@@ -92,14 +93,14 @@ export class MonthComponent implements OnInit {
                   .getVisitsByMonth(
                     this.userService.User._id,
                     this.month,
-                    "search"
+                    "comment",this.sponsorSelect
                   )
                   .pipe(take(1))
                   .subscribe((response: any) => {
                     if (response.length == 0) {
-                      this.dataSearch = [0, 0, 0, 0, 0, 0, 0];
+                      this.dataComment = [0, 0, 0, 0, 0, 0, 0];
                     } else {
-                      this.dataSearch = response;
+                      this.dataComment = response;
                     }
                     this.linesDataMonths();
                   });
@@ -155,16 +156,17 @@ export class MonthComponent implements OnInit {
             backgroundColor: "rgb(238, 241, 48, 0.1)", // array should have same number of elements as number of dataset
             borderWidth: 1,
           },
-          {
-            label: this.translate.instant("analytics-views.news"),
-            data: this.dataNews,
-            borderColor: "rgb(38, 194, 129)", // array should have same number of elements as number of dataset
-            backgroundColor: "rgb(38, 194,129, 0.1)", // array should have same number of elements as number of dataset
-            borderWidth: 1,
-          },
+          // {
+          //   label: this.translate.instant("analytics-views.news"),
+          //   data: this.dataNews,
+          //   borderColor: "rgb(38, 194, 129)", // array should have same number of elements as number of dataset
+          //   backgroundColor: "rgb(38, 194,129, 0.1)", // array should have same number of elements as number of dataset
+          //   borderWidth: 1,
+          // },
         ],
       },
       options: {
+        responsive: true,
         scales: {
           yAxes: [
             {

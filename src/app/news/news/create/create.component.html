@@ -208,7 +208,7 @@
               <ion-row>
                 <ion-col style="text-align: center;color:white" size="12">
                   <div style="text-align: center;">
-                    <img class="logoSport" #sportyeah src="https://i.ibb.co/g6TFj6G/Logo-TRANSPARENTE.png" alt="logoSportyeah!" >
+                    <img class="logoSport" src="assets/logos/imagotipo_azul.png" alt="logoSportyeah!" >
                     <h1 style="color: black;">{{ 'news.newNews' | translate }}</h1>
                   </div>
                   <ion-button *ngIf="!redactarArticulo" (click)="redactar()">Redactar Artículo</ion-button>
@@ -575,14 +575,17 @@
             <ion-col style="text-align: center;" size="12">
               <ion-button *ngIf="redactarArticulo" (click)="todoConOrigen()" [disabled]="(titulo1 != null && titulo1 != '') && (deporte != null && deporte != '') && ((urlVideo != null && urlVideo != '') || (parrafos.length > 0)) && ((origen != null && origen != '')) ?false:true"  >Listo para publicar</ion-button>
             </ion-col>
-            <ion-col style="text-align: center;" size="12">
+            <!-- <ion-col style="text-align: center;" size="12">
               <ion-button (click)="createQuestion()">
                 <ion-icon name="help-outline"></ion-icon>
               </ion-button>
             </ion-col>
             <ion-col size="12">
-              <edit-question #editQuestionHash [badDate]="badDate" [question]="question.questionGroup" (delete)="deleteQuestion($event)" (edit)="editQuestion($event)"></edit-question>
-            </ion-col>
+              <edit-question #editQuestionHash [question]="question.questionGroup" (delete)="deleteQuestion($event)" (edit)="editQuestion($event)"></edit-question>
+            </ion-col> -->
+
+
+
             <!-- <ion-col  size="12">
               <ion-item *ngIf="miNoticia == undefined ">
               <ion-label position="floating">{{'sport.sport' | translate}}</ion-label>

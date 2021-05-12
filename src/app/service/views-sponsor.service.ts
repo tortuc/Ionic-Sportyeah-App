@@ -54,26 +54,26 @@ export class ViewsSponsorService {
    * Trae las vistas de los sponsor por fecha, donde el id coincida con el id del visitado 
    * @param user `_id` del usuario
    */
-     getSponsorViewByDate(user,dateStart,dateEnd){       
-      return this.http.get(`${environment.URL_API}/viewsSponsor/day/${user}/${dateStart}/${dateEnd}`)
+     getSponsorViewByDate(user,dateStart,dateEnd,name){       
+      return this.http.get(`${environment.URL_API}/viewsSponsor/day/${user}/${dateStart}/${dateEnd}/${name}`)
     }
 
      /**
    * Trae las vistas de los sponsor por fecha, donde el id coincida con el id del visitado 
    * @param user `_id` del usuario
    */
-      getVisitsByWeek(user,date,from){       
+      getVisitsByWeek(user,date,from,name){       
         let format = moment(new Date(date)).format("YYYY-MM-DD");
-        return this.http.get(`${environment.URL_API}/viewsSponsor/week/${user}/${format}/${from}`)
+        return this.http.get(`${environment.URL_API}/viewsSponsor/week/${user}/${format}/${from}/${name}`)
       }
 
           /**
    * Trae las vistas de los sponsor por fecha, donde el id coincida con el id del visitado 
    * @param user `_id` del usuario
    */
-      getVisitsByMonth(user,date,from){       
+      getVisitsByMonth(user,date,from,name){       
         let format = moment(new Date(date)).format("YYYY-MM-DD");
-        return this.http.get(`${environment.URL_API}/viewsSponsor/month/${user}/${format}/${from}`)
+        return this.http.get(`${environment.URL_API}/viewsSponsor/month/${user}/${format}/${from}/${name}`)
       }
 
 
@@ -81,9 +81,9 @@ export class ViewsSponsorService {
    * Trae las vistas de los sponsor por fecha, donde el id coincida con el id del visitado 
    * @param user `_id` del usuario
    */
-    getVisitsByYear(user,date,from){       
+    getVisitsByYear(user,date,from,name){       
       let format = moment(new Date(date)).format("YYYY-MM-DD");
-      return this.http.get(`${environment.URL_API}/viewsSponsor/year/${user}/${format}/${from}`)
+      return this.http.get(`${environment.URL_API}/viewsSponsor/year/${user}/${format}/${from}/${name}`)
     }
 
 
@@ -92,9 +92,9 @@ export class ViewsSponsorService {
    * Trae las vistas de los sponsor por fecha, donde el id coincida con el id del visitado 
    * @param user `_id` del usuario
    */
-      getVisitsByHour(user,date,from){       
+      getVisitsByHour(user,date,from,name){       
         let format = moment(new Date(date)).format("YYYY-MM-DD");
-        return this.http.get(`${environment.URL_API}/viewsSponsor/hour/${user}/${format}/${from}`)
+        return this.http.get(`${environment.URL_API}/viewsSponsor/hour/${user}/${format}/${from}/${name}`)
       }
     
 

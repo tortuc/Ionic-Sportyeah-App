@@ -545,6 +545,8 @@ export class CreateComponent implements OnInit {
   listoPublicar: boolean = false;
   listoParaPublicar() {
     this.listoPublicar = !this.listoPublicar;
+    this.sportyeah.nativeElement.classList.remove("logoSport");
+      this.sportyeah.nativeElement.classList.add("logoSportBig");
   }
 
   //Origen de la noticia
@@ -609,8 +611,8 @@ export class CreateComponent implements OnInit {
     this.parrafos[i].originMedia = null;
   }
   todoConOrigen() {
-    this.whitTime = this.editQuestionComponent.whitTime;
-    this.endDate = this.editQuestionComponent.endDate;
+    // this.whitTime = this.editQuestionComponent.whitTime;
+    // this.endDate = this.editQuestionComponent.endDate;
     this.todosParrafosConOrigen = false;
     for (let parrafo of this.parrafos) {
       if ((parrafo.video || parrafo.image) && parrafo.originMedia == null) {
@@ -731,7 +733,7 @@ export class CreateComponent implements OnInit {
   }
   redactarArticulo: boolean = false;
   redactar() {
-    this.animateSportyeah();
+    
     this.redactarArticulo = true;
   }
 
@@ -760,21 +762,21 @@ export class CreateComponent implements OnInit {
         this.router.navigate(["news"]);
       });
     });
-    loading.dismiss();
+    loading.dismiss(); 
   }
   createNewsAndQuestion(loading) {
-    if (this.whitTime && new Date(this.endDate) >= new Date()) {
-      this.question.finishVotes = new Date(this.endDate);
-      this.badDate = false;
+    // if (this.whitTime && new Date(this.endDate) >= new Date()) {
+    //   this.question.finishVotes = new Date(this.endDate);
+      // this.badDate = false;
       this.createdNews(loading);
-    } else {
-      this.badDate = true;
-      loading.dismiss();
-    }
-    if (!this.whitTime) {
-      this.badDate = false;
-      this.createdNews(loading);
-    }
+    // } else {
+    //   this.badDate = true;
+    //   loading.dismiss();
+    // }
+    // if (!this.whitTime) {
+    //   this.badDate = false;
+    //   this.createdNews(loading);
+    // }
   }
   whitTime: boolean;
   endDate;
@@ -794,6 +796,8 @@ export class CreateComponent implements OnInit {
       .then((data) => {
         if (data.data.question != undefined) {
           this.question.questionGroup.push(data.data.question); //Las preguntas creadas se introducen en el grupo de preguntas
+          console.log(this.question);
+          
         }
       })
       .catch((err) => {});
