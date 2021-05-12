@@ -153,6 +153,13 @@ ion-checkbox {
   --background-checked: var(--color-secondary) !important;
 }
 
+ion-searchbar {
+  --background: white !important;
+  --color: black;
+  --icon-color: black;
+  --cancel-button-color: black;
+}
+
 ion-list {
   background: white !important;
 }
@@ -168,7 +175,7 @@ ion-item {
   --border-color: #dad3d3 !important;
 }
 
-.main-grid{
+.main-grid {
   padding: 0;
 }
 .date {
@@ -235,6 +242,16 @@ ion-item {
 
 .text-right {
   text-align: right;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  color: black;
 }
 
 a {
@@ -776,7 +793,7 @@ ion-segment-button {
   top: 60px !important;
 }
 
-.no-padding{
+.no-padding {
   padding: 0;
 }
 
@@ -865,8 +882,7 @@ ion-avatar.chat-img {
   max-height: 400px;
 }
 
-
-.msg-edit-modal .modal-wrapper{
+.msg-edit-modal .modal-wrapper {
   height: 270px;
   width: 500px;
   top: 35%;
