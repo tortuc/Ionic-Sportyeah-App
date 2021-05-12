@@ -19,7 +19,8 @@ import { HttpClientModule} from '@angular/common/http';
 import { TranslateModule } from '@ngx-translate/core';
 import { PipesModule } from '../../pipes/pipes.module';
 import { ComponentsModule } from '../../components/components.module';
-
+import { ButtonsOptionsComponent } from './buttons-options/buttons-options.component';
+ 
 @NgModule({
   imports: [
     CommonModule,
@@ -39,7 +40,8 @@ import { ComponentsModule } from '../../components/components.module';
     EditComponent,
     ReadComponent,
     StreamComponent,
-    CreateStreamComponent
+    CreateStreamComponent,
+    ButtonsOptionsComponent
   ],
   schemas:[CUSTOM_ELEMENTS_SCHEMA]
 })

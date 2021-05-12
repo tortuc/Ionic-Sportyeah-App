@@ -182,6 +182,7 @@ export class CreateComponent implements OnInit {
   this.deporte= `Escribe el Subtitulo # ${this.parrafos.length+1} `; */
     this.agregandoParrafo = false;
     this.subTitleParrafo = null;
+    console.log(this.parrafos)
   }
   selectParrafo() {
     this.text1 = this.parrafos[this.number].parrafo;
@@ -329,6 +330,8 @@ export class CreateComponent implements OnInit {
           .then((url: string) => {
             loading.dismiss();
             this.parrafos[i].image = url;
+            console.log(url);
+            
             this.openArray = false;
           })
           .catch((err) => {
@@ -825,5 +828,28 @@ export class CreateComponent implements OnInit {
   }
   deleteQuestion(i) {
     this.question.questionGroup.splice(i, 1);
+  }
+
+  files = []
+  addFile(file) {
+    this.files.push(file);
+    if(file.format){
+
+    }
+    this.parrafos.push({
+      subtitle: null,
+      parrafo: undefined,
+      position: this.parrafos.length,
+      image: file.format =='image'?file.url:null,
+      video: file.format =='video'?file.url:null,
+      originMedia: null,
+    });
+    console.log(this.parrafos);
+    console.log(this.files);
+
+  }
+  videosToUploads = []
+  pushVideoToUpload(file) {
+    this.videosToUploads.push(file);
   }
 }

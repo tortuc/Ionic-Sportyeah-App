@@ -27,6 +27,7 @@ export class ReadComponent implements OnInit {
       .findById(id)
       .toPromise()
       .then((response: any) => {
+        console.log(response)
         this.news = response;
       })
       .catch((err) => {

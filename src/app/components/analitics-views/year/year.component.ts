@@ -5,6 +5,7 @@ import { Chart } from "chart.js";
 import { ViewsSponsorService } from "src/app/service/views-sponsor.service";
 import { UserService } from "src/app/service/user.service";
 import { take } from "rxjs/operators";
+import { PdfMakeService } from "src/app/service/pdf-make.service";
 
 @Component({
   selector: "year",
@@ -21,7 +22,9 @@ export class YearComponent implements OnInit, OnChanges {
     private translate: TranslateService,
     private cd: ChangeDetectorRef,
     private viewsSponsorService: ViewsSponsorService,
-    private userService: UserService
+    private userService: UserService,
+    private pdfMakeSerice:PdfMakeService
+
   ) {}
 
   ngOnInit() {}
@@ -57,6 +60,10 @@ export class YearComponent implements OnInit, OnChanges {
   daysYears = [];
 
   data = [];
+
+  pdfDay(){
+    this.pdfMakeSerice.generatePdf(this.sponsorSelect,'year',this.year )
+  }
 
   changeYear(n) {
     this.year = moment(this.year).add(n, "years");

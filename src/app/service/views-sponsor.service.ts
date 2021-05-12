@@ -81,7 +81,7 @@ export class ViewsSponsorService {
    * Trae las vistas de los sponsor por fecha, donde el id coincida con el id del visitado 
    * @param user `_id` del usuario
    */
-    getVisitsByYear(user,date,from,name){       
+    getVisitsByYear(user,date,from,name){ 
       let format = moment(new Date(date)).format("YYYY-MM-DD");
       return this.http.get(`${environment.URL_API}/viewsSponsor/year/${user}/${format}/${from}/${name}`)
     }
@@ -102,8 +102,8 @@ export class ViewsSponsorService {
    * Trae las vistas de los sponsor por fecha,para los pdf
    * @param user `_id` del usuario
    */
-    getVisitsByYearPdf(user,date,name){       
+    getVisitsByYearPdf(user,date,name){    
       let format = moment(new Date(date)).format("YYYY-MM-DD");
-      return this.http.get(`${environment.URL_API}/viewsSponsor/year/pdf/${user}/${format}/${name}`)
+      return this.http.get(`${environment.URL_API}/viewsSponsor/pdfyear/${user}/${format}/${name}`)
     }
 }

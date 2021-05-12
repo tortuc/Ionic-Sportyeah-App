@@ -7,7 +7,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content *ngIf="news && news != 404" class="main-bg">
+<ion-content *ngIf="news && news != 404" >
 <div style="background:white; text-align: center;width: 85%;margin: auto;">
  <ion-grid>
   <ion-row>
@@ -102,7 +102,7 @@
     <ion-col  size="12" >
       <p style="text-align: center;color: #737373;font-size: 14px;"><i>{{news?.news.origin}}</i></p>
      </ion-col>
-    <ion-col size="12">
+    <ion-col *ngIf="news.news.user.sponsors.length != 0" size="12">
     <!-- SPONSORS -->
     <h2 *ngIf="news?.news.principalSubtitle" style="text-align: center;color: #5a5a5a;">Patrocinado por:</h2> 
     <div>
@@ -114,7 +114,7 @@
           >
             <div (click)="goToSponsor(sponsor.url,sponsor.name,news.news.user._id, news.news.user.username, news.news._id)" target="_blank">
               <img
-                [src]="sponsor.photo"
+                [src]="sponsor.image"
                 style="
                   height: 30px;
                   width: 60px;
@@ -130,7 +130,7 @@
     <!-- TERMINO SPONSORS -->
   </ion-col>
     
-    <ion-col *ngIf="news.news.question" size="12">
+    <ion-col *ngIf="news.news.question != null" size="12">
       <question [data]="news" [notified]="notified" (newItemEvent)="voted($event)"></question>
     </ion-col>
    </ion-row>

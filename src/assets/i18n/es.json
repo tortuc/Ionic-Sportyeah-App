@@ -1131,7 +1131,8 @@
   },
   "new_messages": "Nuevos mensajes",
   "pdf": {
-    "data_sponsor": "Datos del patrocinador en el año"
+    "data_sponsor": "Datos del patrocinador ",
+    "date":"Fecha"
   },
   "images_online": {
     "header": "Subir imagen / video desde la web",
