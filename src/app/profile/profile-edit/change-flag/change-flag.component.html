@@ -2,46 +2,25 @@
   <p style="font-size: 16px; color: black">
     {{ "change_flag.title" | translate }}
   </p>
-  <div
-    style="display: flex; justify-content: center; gap: 30px; margin-top: 20px"
-  >
-    <div (click)="change(null)" class="flag-content">
+  <div class="main-content-flags">
+    <div
+      *ngFor="let flag of flags"
+      (click)="change(flag.name)"
+      class="flag-content"
+    >
       <ion-icon
-        *ngIf="userService.User.flag == null"
-        name="checkmark-outline"
-      ></ion-icon>
-      <img
-        src="assets/flags/es.png"
-        alt=""
-        [ngClass]="{ selected: userService.User.flag == null }"
-      />
-      <p>{{ "change_flag.es" | translate }}</p>
-    </div>
-    <div (click)="change('euskal')" class="flag-content">
-      <ion-icon
-        *ngIf="userService.User.flag == 'euskal'"
+        *ngIf="userService.User.flag == flag.name"
         name="checkmark-outline"
       ></ion-icon>
 
       <img
-        src="assets/flags/eu.png"
+        [src]="flag.src"
         alt=""
-        [ngClass]="{ selected: userService.User.flag == 'euskal' }"
+        [ngClass]="{ selected: userService.User.flag == flag.name }"
       />
-      <p>{{ "change_flag.eu" | translate }}</p>
+      <p>{{ flag.translate | translate }}</p>
     </div>
-    <div (click)="change('catalunya')" class="flag-content">
-      <ion-icon
-        *ngIf="userService.User.flag == 'catalunya'"
-        name="checkmark-outline"
-      ></ion-icon>
 
-      <img
-        src="assets/flags/ca.png"
-        alt=""
-        [ngClass]="{ selected: userService.User.flag == 'catalunya' }"
-      />
-      <p>{{ "change_flag.ca" | translate }}</p>
-    </div>
+   
   </div>
 </div>

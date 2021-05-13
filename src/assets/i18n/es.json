@@ -1161,7 +1161,22 @@
     "title":"Puedes cambiar tu bandera con la bandera de la comunidad autónoma a donde perteneces 😉",
     "es":"España",
     "ca":"Cataluña",
-    "eu":"Euskal Herria"
+    "eu":"País Vasco",
+    "an":"Andalucía",
+    "ar":"Aragón",
+    "as":"Principado de Asturias",
+    "bl":"Islas Baleares",
+    "can":"Canarias",
+    "cb":"Cantabria",
+    "cm":"Castilla - La mancha",
+    "cl":"Castilla y León",
+    "va":"Comunidad valenciana",
+    "ex":"Extremadura",
+    "gl":"Galicia",
+    "lr":"La Rioja",
+    "ma":"Comunidad de Madrid",
+    "mu":"Región de Murcia",
+    "na":"Comunidad Foral de Navarra"
   },
   "update_profile_data":"Modificar datos del perfil"
 }
