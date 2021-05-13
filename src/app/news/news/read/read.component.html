@@ -24,7 +24,10 @@
     <ion-item>
       <ion-label>
         <ion-text color="black">
-          <h1 style="font-size:14px">{{news?.news.user.name}} {{news?.news.user.last_name}} </h1>
+          <ion-avatar (click)="userService.goToProfile(news?.news.user.username,news?.news.user._id,'news',undefined)">
+            <img class="user-img-shadow" [src]="news?.news.user.photo" />
+          </ion-avatar>
+          <h1 style="font-size:14px ;cursor: pointer;" (click)="userService.goToProfile(news?.news.user.username,news?.news.user._id,'news',undefined)" >{{news?.news.user.name}} {{news?.news.user.last_name}} </h1>
         </ion-text>
       </ion-label>
       <ion-text color="black">
@@ -111,7 +114,7 @@
           <ion-col
            
             *ngFor="let sponsor of news.news.user.sponsors; let i = index"
-          >
+          > 
             <div (click)="goToSponsor(sponsor.url,sponsor.name,news.news.user._id, news.news.user.username, news.news._id)" target="_blank">
               <img
                 [src]="sponsor.image"

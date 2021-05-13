@@ -34,13 +34,13 @@
               <!--  Header de la noticia -->
             <div>
               <ion-item ><!-- *ngIf="!titlebool" -->
-                <ion-label>{{'news.title' | translate}}</ion-label>
-                <ion-input  style="background: white; color: black;"  [(ngModel)]="titulo1"></ion-input>
+                <ion-label position="floating">{{'news.title' | translate}}</ion-label>
+                <ion-input  style=" color: black;"  [(ngModel)]="titulo1"></ion-input>
 <!--                 <ion-button (click)="tituloListo()" [disabled]="(titulo1 != null && titulo1 != '')?false:true"  float-right ion-button ><ion-icon name="add"></ion-icon></ion-button>
  -->              </ion-item>
               <ion-item ><!-- *ngIf="!subTitlebool" -->
-                <ion-label>{{'news.subTitle' | translate}}</ion-label>
-                <ion-input  style="background: white; color: black;"  [(ngModel)]="subTitle"></ion-input>
+                <ion-label position="floating">{{'news.subTitle' | translate}}</ion-label>
+                <ion-input  style=" color: black;"  [(ngModel)]="subTitle"></ion-input>
 <!--                 <ion-button (click)="subTituloListo(1)" [disabled]="(subTitle != null && subTitle != '')?false:true"  float-right ion-button ><ion-icon name="add"></ion-icon></ion-button>
  -->              </ion-item>
               <ion-item ><!-- *ngIf="!deporte" (click)="deporteListo()"-->
@@ -49,6 +49,10 @@
                   <ion-select-option  *ngFor="let sport of sports" [value]="sport" >{{ 'sport.'+sport| translate}}</ion-select-option>              
                 </ion-select>
               </ion-item> 
+              <ion-item>
+                <ion-label position="floating" style="    margin-bottom: 10px;">{{'news.date' | translate}}</ion-label>
+                <ion-input  style=" color: black;" type="date" [(ngModel)]="date"></ion-input>
+              </ion-item>
              
               <ion-item>
                 <ion-label>
@@ -56,9 +60,9 @@
                     <h1 style="font-size:14px">{{userService.User?.name}} {{userService.User?.last_name}} </h1>
                   </ion-text>
                 </ion-label>
-                <ion-text color="black">
+                <!-- <ion-text color="black">
                   <h2 style="font-size:14px">{{fecha}}</h2>
-                </ion-text>   
+                </ion-text>    -->
               </ion-item>
             </div>
               </ion-col>
@@ -71,13 +75,7 @@
              <ion-button *ngIf="!imagenSelected && !urlVideo" style="text-align: center;" (click)="takePhotoFrom('principal',1)"  >
               <ion-icon  name="images" style="--color: black;font-size:30px" ></ion-icon>
             </ion-button> 
-            <buttons-options 
-          #assetsBtn
-          (videoToUpload)="pushVideoToUpload($event)"
-          (newFile)="addFile($event)"
-          (newText)="agregandoParrafo = !agregandoParrafo"
-          [files]="files"
-        ></buttons-options>
+            
         <!-- [question]="question.questionGroup"
           (newQuestion)="newQuestion($event)"
         (emoji)="openEmojis()"
@@ -190,9 +188,9 @@
                   
                   
                   </ion-col>
-
-                  <ion-col style="text-align: center;" *ngIf="!parrafo.image  && !parrafo.video" size="12">
-                    <!-- Boton para agregar imagenes a este parrafo -->
+                   
+                  <!-- Boton para agregar imagenes a este parrafo -->
+                  <!-- <ion-col style="text-align: center;" *ngIf="!parrafo.image  && !parrafo.video" size="12">
                     <p >Agregar imagen</p> 
                     <ion-button  style="text-align: center;" (click)="takePhotoFrom('notPrincipal',i)"  >
                       <ion-icon  name="images" style="--color: black;font-size:30px" ></ion-icon>
@@ -204,17 +202,17 @@
                               (change)="uploadVideo($event,'notPrincipal',parrafo.position)"
                               hidden
                             />
-                   </ion-col>
+                   </ion-col> -->
                    
                     
-                    <ion-col *ngIf="parrafo.image || parrafo.video" size="12">
+                    <ion-col *ngIf="parrafo.image || parrafo.video || parrafo.url" size="12">
                               <!--  Imagen del parrafo -->
                     <ion-img  *ngIf="parrafo.image " (click)="clickImageArray(i)"  class="imageArray" [src]="parrafo.image"></ion-img>
                     <div *ngIf="parrafo.image " style="    width: 80%;text-align: end;">
                       <ion-button  style="text-align: center;height: 25px;" (click)="takePhotoFrom('other',i)"  >
                         <ion-icon  name="pencil-outline" style="--color: black;font-size:20px" ></ion-icon>
                       </ion-button>
-                      <ion-button  style="text-align: center;height: 25px;" (click)="deleteImage(i)">
+                      <ion-button  style="text-align: center;height: 25px;" (click)="eliminarParrafo(i)"><!-- deleteImage -->
                         <ion-icon  name="trash-outline" style="--color: black;font-size:20px" ></ion-icon>
                       </ion-button>
                      </div>
@@ -223,7 +221,7 @@
                     <ion-icon
                       name="close"
                       class="close-video"
-                      (click)="closeVideoNotPrincipal(parrafo.position)"
+                      (click)="eliminarParrafo(parrafo.position)"
                     ></ion-icon>
                     <video
                       controls="controls"
@@ -234,6 +232,29 @@
                     >
                       <source [src]="parrafo.video | safeUrl" type="video/mp4" />
                     </video>
+                  </div>
+
+                  <div *ngIf="parrafo.urlYoutube">
+                      <iframe
+                  *ngIf="parrafo.urlYoutube | youtube"
+                  [src]="parrafo.urlYoutube | youtube"
+                  frameborder="0"
+                    ></iframe>
+                    <div  style="text-align: center;" *ngIf="editYoutube">
+                      <div
+                      #mainInputEdit
+                      style="max-height: 200px; color: #222121"
+                      contenteditable
+                    ></div>
+                    
+                  <ion-button (click)="saveEditYoutube(parrafo.position)"  >{{'news.addYoutube' | translate}}</ion-button>
+                    </div>
+                    <ion-button  style="text-align: center;height: 25px;" (click)="editYoutube = true"  >
+                      <ion-icon  name="pencil-outline" style="--color: black;font-size:20px" ></ion-icon>
+                    </ion-button>
+                    <ion-button  style="text-align: center;height: 25px;" (click)="eliminarParrafo(i)"><!-- deleteImage -->
+                      <ion-icon  name="trash-outline" style="--color: black;font-size:20px" ></ion-icon>
+                    </ion-button>
                   </div>
                   
                   <!-- Origen de la imagen o video Parrafo -->
@@ -278,11 +299,30 @@
 <!--               <ion-button *ngIf="parrafos.length > 0 && positionEditactual != null" style="--background:rgba(255, 100, 100, 0.685);" (click)="eliminarParrafo(parrafo.position)" >{{'news.delete' | translate}}</ion-button>-->              <ion-button *ngIf="parrafos.length > 0 && positionEditactual != null"  (click)="cancelar()" >{{'news.cancel' | translate}}</ion-button><br>
               <span *ngIf="parrafos.length > 0 && positionEditactual != null">{{'news.editParagraph' | translate}}: {{positionEditactual+1}}...: </span>
             </div>
+
+            <div style="text-align: center;" *ngIf="agregandoYoutube">
+              <div>{{'news.addYoutube' | translate}}:</div>
+              <div
+              #mainInput
+              style="max-height: 200px; color: #222121;background: #2a4c7854;border-radius: 9px;"
+              contenteditable
+            ></div>
+            
+          <ion-button (click)="addYoutube()"  >{{'news.addVideo' | translate}}</ion-button>
+        </div>
              </ion-col>
              <ion-col style="text-align: center;"  size="12">
              
-            <ion-button *ngIf="!agregandoParrafo" (click)="agregandoParrafo = true"  float-right ion-button >Agregar párrafo</ion-button>
-            </ion-col>
+            <!-- <ion-button *ngIf="!agregandoParrafo" (click)="agregandoParrafo = true"  float-right ion-button >Agregar párrafo</ion-button> -->
+            <buttons-options 
+            #assetsBtn
+            (videoToUpload)="pushVideoToUpload($event)"
+            (newFile)="addFile($event)"
+            (newText)="agregandoParrafo = !agregandoParrafo"
+            (newYoutube)="agregandoYoutube = !agregandoYoutube"
+            [files]="files"
+          ></buttons-options>  
+          </ion-col>
             <ion-col  size="12">
               <!-- <ion-item *ngIf="miNoticia == undefined && !origen">
               <ion-label position="floating">{{'sport.sport' | translate}}</ion-label>

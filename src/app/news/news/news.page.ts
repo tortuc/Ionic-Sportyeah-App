@@ -66,7 +66,6 @@ export class NewsPage implements OnInit {
         }
       })
       this.newsFollow.splice(0,3)
-    
     })
   }
   OpenNews(idNews){

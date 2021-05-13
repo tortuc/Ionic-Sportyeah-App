@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from "@angular/core";
+import { Component, OnChanges, OnInit, ViewChild } from "@angular/core";
 //import { FormBuilder, FormControl,FormGroup} from '@angular/forms';
 import { TranslateService } from "@ngx-translate/core";
 import { UserService } from "../../../service/user.service";
@@ -31,11 +31,21 @@ const { Camera, Filesystem } = Plugins;
   templateUrl: "./create.component.html",
   styleUrls: ["./create.component.scss"],
 })
-export class CreateComponent implements OnInit {
+export class CreateComponent implements OnInit,OnChanges {
   @ViewChild("openVideo") openVideo: any;
   @ViewChild("openVideoParrafo") openVideoParrafo: any;
   @ViewChild("sportyeah") sportyeah: any;
   @ViewChild("editQuestionHash") editQuestionComponent: EditQuestionComponent;
+  
+
+  @ViewChild("mainInputEdit") mainInputEdit: ElementRef;
+
+  @ViewChild("mainInput") mainInput: ElementRef;
+
+ngOnChanges(){
+//  this.urlYu  = this.mainInput.nativeElement.innerHTML
+}
+urlYu
 
   constructor(
     private fb: FormBuilder,
@@ -66,6 +76,8 @@ export class CreateComponent implements OnInit {
     sport: ["", [Validators.required]],
     stream: ["", [Validators.required]],
     postStream: ["", [Validators.required]],
+    date: ["", [Validators.required]],
+
   });
 
   async presentToastWithOptions() {
@@ -89,6 +101,7 @@ export class CreateComponent implements OnInit {
     this.form.value.headline = this.titulo1;
     this.form.value.principalSubtitle = this.subTitle;
     this.form.value.content = this.parrafos;
+    this.form.value.date = this.date;
     /* if(this.miNoticia){
       this.form.value.origin = 'De mi propiedad'
     }else{ */
@@ -127,7 +140,7 @@ export class CreateComponent implements OnInit {
   parrafoAntesEdicion;
   parrafos = [];
 
-  text1 = `Escribe el párrafo # ${this.parrafos.length + 1} `;
+  text1 = ``;
   titulo1 = null;
   deporte = null;
   subTitle = null;
@@ -147,7 +160,7 @@ export class CreateComponent implements OnInit {
     "esport",
     "various",
   ];
-
+  date;
   slideOpts = {
     initialSlide: 0,
     speed: 400,
@@ -175,8 +188,11 @@ export class CreateComponent implements OnInit {
       image: null,
       video: null,
       originMedia: null,
+      urlYoutube:undefined,
+      online:undefined,
+      url:undefined,
     }); //title:this.titulo1,subtitle:this.deporte
-    this.text1 = `Escribe el párrafo # ${this.parrafos.length + 1} `;
+    this.text1 = ``;
 
     /* this.titulo1= `Escribe el Titulo # ${this.parrafos.length+1} `;
   this.deporte= `Escribe el Subtitulo # ${this.parrafos.length+1} `; */
@@ -208,7 +224,7 @@ export class CreateComponent implements OnInit {
     // this.parrafos[this.positionEditactual].subtitle = this.deporte;
     this.positionEditactual = null;
     this.editando = false;
-    this.text1 = `Escribe el párrafo # ${this.parrafos.length + 1} `;
+    this.text1 = ``;
     /*   this.titulo1= `Escribe el Título # ${this.parrafos.length+1} `;
   this.deporte= `Escribe el Subtítulo # ${this.parrafos.length+1} `; */
     this.agregandoParrafo = false;
@@ -224,10 +240,11 @@ export class CreateComponent implements OnInit {
       this.number -= 1;
     }
 
-    this.text1 = `Escribe el párrafo # ${this.parrafos.length + 1} `;
+    this.text1 = ``;
     /*   this.titulo1= `Escribe el Título # ${this.parrafos.length+1} `;
   this.deporte= `Escribe el Subtítulo # ${this.parrafos.length+1} `; */
     this.agregandoParrafo = false;
+    console.log(this.parrafos)
   }
   numberPositionSelect(number) {
     this.number += number;
@@ -236,7 +253,7 @@ export class CreateComponent implements OnInit {
     this.positionEditactual = null;
     this.parrafoAntesEdicion = null;
     this.editando = false;
-    this.text1 = `Escribe el párrafo # ${this.parrafos.length + 1} `;
+    this.text1 = ``;
     /*  this.titulo1= `Escribe el Título # ${this.parrafos.length+1} `;
   this.deporte= `Escribe el Subtítulo # ${this.parrafos.length+1} `; */
     this.agregandoParrafo = false;
@@ -433,7 +450,7 @@ export class CreateComponent implements OnInit {
     this.imagenACambiar = undefined;
   }
 
-  deleteImage(i) {
+  deleteImage(i) { /////////////////////////////7
     this.parrafos[i].image = "";
     this.openArray = false;
   }
@@ -451,7 +468,7 @@ export class CreateComponent implements OnInit {
     this.originPrincipaMedia = null;
     this.agregandoOrigenPrincipaMedia = false;
   }
-  closeVideoNotPrincipal(i) {
+  closeVideoNotPrincipal(i) {//////////////////////
     this.parrafos[i].video = null;
   }
   async uploadVideo($event, type: string, i) {
@@ -833,9 +850,8 @@ export class CreateComponent implements OnInit {
   files = []
   addFile(file) {
     this.files.push(file);
-    if(file.format){
-
-    }
+    console.log("EStoy ejecutandome");
+    
     this.parrafos.push({
       subtitle: null,
       parrafo: undefined,
@@ -843,13 +859,53 @@ export class CreateComponent implements OnInit {
       image: file.format =='image'?file.url:null,
       video: file.format =='video'?file.url:null,
       originMedia: null,
+      urlYoutube:undefined,
+      online:undefined,
+      url:undefined,
     });
     console.log(this.parrafos);
-    console.log(this.files);
-
   }
   videosToUploads = []
   pushVideoToUpload(file) {
     this.videosToUploads.push(file);
   }
+
+  addYoutube(){
+    console.log("esstoy");
+    console.log(this.mainInput.nativeElement.innerHTML);
+    if(this.mainInput.nativeElement.innerHTML){
+      this.parrafos.push({
+        subtitle: null,
+        parrafo: undefined,
+        position: this.parrafos.length,
+        image: null,
+        video: null,
+        originMedia: 'Youtube.com ' + this.mainInput.nativeElement.innerHTML ,
+        urlYoutube:this.mainInput.nativeElement.innerHTML,
+        online:undefined,
+        url:undefined,
+      });
+    }
+    console.log(this.parrafos);
+
+this.agregandoYoutube = false
+  }
+  saveEditYoutube(i){
+    if(this.mainInputEdit.nativeElement.innerHTML){
+      this.parrafos[i] = {
+        subtitle: null,
+        parrafo: undefined,
+        position: this.parrafos.length,
+        image: null,
+        video: null,
+        originMedia: 'Youtube.com ' + this.mainInputEdit.nativeElement.innerHTML ,
+        urlYoutube:this.mainInputEdit.nativeElement.innerHTML,
+        online:undefined,
+        url:undefined,
+      };
+    }
+this.editYoutube = false
+  }
+  editYoutube:boolean = false;
+  agregandoYoutube:boolean = false;
 }

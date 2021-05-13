@@ -44,6 +44,9 @@ export class ButtonsOptionsComponent implements OnInit {
   @Output() newFile = new EventEmitter();
 
   @Output() newText = new EventEmitter();
+
+  @Output() newYoutube = new EventEmitter();
+
   // clickEmoji(ev) {
   //   this.emoji.emit(ev);
   // }
@@ -95,6 +98,9 @@ export class ButtonsOptionsComponent implements OnInit {
         this.text();
         break;
 
+      case "youtube":
+        this.youtube();
+        break;
       // case "online":
       //   this.filesOnline();
       //   break;
@@ -300,6 +306,10 @@ export class ButtonsOptionsComponent implements OnInit {
 
   text(){
     this.newText.emit(true);
+  }
+
+  youtube(){
+    this.newYoutube.emit(true);
   }
   // @Output() newQuestion = new EventEmitter();
 
