@@ -14,7 +14,7 @@ export class EditQuestionComponent implements OnInit {
   @Output() edit = new EventEmitter<number>();
   constructor() {}
 
-  ngOnInit() {console.log(this.question);
+  ngOnInit() {
   }
 
   deleteQuestion() {

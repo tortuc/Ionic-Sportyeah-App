@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar class="main-bg">
     <ion-buttons slot="start">
-      <ion-back-button style="color: white"></ion-back-button>
+      <ion-menu-button style="color: white"></ion-menu-button>
     </ion-buttons>
     <ion-title>{{ 'news.read' | translate}}</ion-title>
   </ion-toolbar>
@@ -31,15 +31,22 @@
         </ion-text>
       </ion-label>
       <ion-text color="black">
-        <h2 style="font-size:14px" >{{news?.news.date | customDisplayDate}}</h2>
+        <h2 style="font-size:14px" >{{news?.news.date | customDisplayDate:true}}</h2>
       </ion-text>   
     </ion-item>
   </div>
     </ion-col>
  
   <ion-col size="12">
+
+    <div *ngIf="news?.news.audioNews">
+      <h4 style="color: rgb(128, 128, 128);">{{'news.audioNews' | translate}}</h4 >
+      <msg-audio-news [urlAudio]="news?.news.audioNews"></msg-audio-news>
+    </div>
    <!-- Imagen Principal -->
-   <ion-img *ngIf="news?.news.principalImage"   class="imageSelected" [src]="news?.news.principalImage"></ion-img>
+   <div style="margin-top: 90px;" *ngIf="news?.news.principalImage" >
+    <ion-img   class="imageSelected" [src]="news?.news.principalImage"></ion-img>
+   </div>
       <!-- Video Principal -->
    <div *ngIf="news?.news.principalVideo" style="position: relative">
      <video
@@ -52,8 +59,7 @@
        <source [src]="news?.news.principalVideo | safeUrl" type="video/mp4" />
      </video>
    </div> 
-   <p *ngIf="news?.news.principalVideo != null || news?.news.principalImage != null " style="text-align: center;color: #737373;font-size: 14px;"><i>{{news?.news.originPrincipaMedia }}</i></p>
-
+   <p *ngIf="news?.news.principalVideo != null || news?.news.principalImage != null " style="text-align: center;color: #737373;font-size: 14px;" (click)="isLink(news?.news.originPrincipaMedia)"><i>{{news?.news.originPrincipaMedia }}</i></p>
 </ion-col> 
 
   <!--  Cuerpo de la noticia -->
@@ -75,7 +81,7 @@
     
         
           
-          <ion-col *ngIf="parrafo.image || parrafo.video" size="12">
+          <ion-col *ngIf="parrafo.image || parrafo.video || parrafo.question || parrafo.link || parrafo.url" size="12">
                     <!--  Imagen del parrafo -->
           <ion-img  *ngIf="parrafo.image "  class="imageArray" [src]="parrafo.image"></ion-img>
           <!-- Videos notPrincipal (del parrafo) -->
@@ -94,8 +100,26 @@
             <source [src]="parrafo.video | safeUrl" type="video/mp4" />
           </video>
         </div> 
-        <p *ngIf="parrafo.originMedia" style="text-align: center;color: #737373;font-size: 14px;"><i>{{parrafo.originMedia}}</i></p>
 
+        <!--  Link del parrafo -->
+        <attach-link-preview-news  *ngIf="parrafo.link" [file]="parrafo.link"></attach-link-preview-news>
+
+      <!--  Youtube del parrafo -->
+        <div *ngIf="parrafo.url">
+          <iframe
+      *ngIf="parrafo.url | youtube"
+      [src]="parrafo.url | youtube"
+      frameborder="0"
+        ></iframe>
+      </div>
+
+        <!--  Cuestionario del parrafo -->
+        <question-comment
+         *ngIf="parrafo.question"
+         [questionId]="parrafo.question"
+         ></question-comment>
+        <p *ngIf="parrafo.originMedia" style="text-align: center;color: #737373;font-size: 14px;" (click)="isLink(parrafo.originMedia)"><i>{{parrafo.originMedia}}</i></p>
+   
       </ion-col>
 
       </ion-row>

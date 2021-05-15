@@ -6,6 +6,7 @@ import { TranslateService } from "@ngx-translate/core";
 import { getToken } from "../helpers/token";
 import { UserService } from "./user.service";
 import {Howl, Howler} from 'howler';
+import { Subject } from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -32,6 +33,8 @@ export class NewsService {
 
 
   create(body){
+    console.log("CREATE DESDE EK SERVIs");
+    
     return this.http.post(`${environment.URL_API}/news/create`,body)
   }
 
@@ -52,6 +55,8 @@ export class NewsService {
   }
 
   updateNews(news:any){
+      console.log("estoy");
+      
     return this.http.put(`${environment.URL_API}/news/update/${news._id}`,news)
   }
   
@@ -128,5 +133,27 @@ export class NewsService {
       }
     )
   }
+
+
+
+  private idSound$ = new Subject<string>();
+  idSound = null;
+
+  /**
+   * Avisa a los otros componentes de msg-audio, que un nuevo audio se esta reproduciendo
+   */
+  playSound(url) {
+    this.idSound = url;
+    this.idSound$.next(this.idSound);
+  }
+
+  /**
+   * Un observable para saber cuando empieza a reproducirse un audio
+   */
+
+  soundPlaying() {
+    return this.idSound$.asObservable();
+  }
+
 
 }

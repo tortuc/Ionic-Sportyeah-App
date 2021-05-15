@@ -33,6 +33,7 @@ export class ButtonsOptionsComponent implements OnInit {
 
   // @Output() emoji = new EventEmitter();
   @ViewChild("openImage") fileChooser: ElementRef;
+  // @ViewChild("openImageEdit") fileChooserEdit: ElementRef;
 
   @Input() chat: boolean = false;
   @Input() editPost: boolean = false;
@@ -42,10 +43,15 @@ export class ButtonsOptionsComponent implements OnInit {
 
   @Output() videoToUpload = new EventEmitter();
   @Output() newFile = new EventEmitter();
+  @Output() editedFile = new EventEmitter();
 
   @Output() newText = new EventEmitter();
 
   @Output() newYoutube = new EventEmitter();
+
+  
+  @Output() editLink = new EventEmitter();
+  @Output() questionEdited = new EventEmitter();
 
   // clickEmoji(ev) {
   //   this.emoji.emit(ev);
@@ -82,14 +88,17 @@ export class ButtonsOptionsComponent implements OnInit {
     }
   }
 
+edit= false;  
   assetsOptions(option) {
+    this.edit = false;
     switch (option) {
       case "galery":
         this.fileChooser.nativeElement.click();
         break;
-      // case "link": 
-      //   this.link();
-        // break;
+      case "link": 
+        this.link();
+        break;
+
       case "gif":
         this.gif();
         break;
@@ -101,9 +110,11 @@ export class ButtonsOptionsComponent implements OnInit {
       case "youtube":
         this.youtube();
         break;
+
       // case "online":
       //   this.filesOnline();
       //   break;
+
       case "camera":
         this.fileService.takePhoto().then((file) => {
           this.newFile.emit(file);
@@ -153,10 +164,45 @@ export class ButtonsOptionsComponent implements OnInit {
     alert.present();
   }
 
+ async editedLink(i){
+    let alert = await this.alertCtrl.create({
+      header: this.translate.instant("attach_link.edit_link"),
+      inputs: [
+        {
+          placeholder: this.translate.instant("attach_link.url"),
+          name: "url",
+          type: "text",
+          attributes: {
+            required: true,
+          },
+        },
+      ],
+      buttons: [
+        {
+          text: this.translate.instant("cancel"),
+          role: "cancel",
+        },
+        {
+          text: this.translate.instant("news.edit"),
+          handler: (data) => {
+            if (data.url) {
+              data.format = "link";
+              data.position = i;
+              this.editLink.emit(data);
+            }
+          },
+        },
+      ],
+    });
+    alert.present();
+  }
+
   /**
    * Subir imagenes, o videos de forma masiva
    */
   uploadImages(files, i = 0) {
+    console.log("Original", files[i].type.split("/")[0]);
+
     if (files.length > i) {
       let name = files[i].type.split("/")[0];
 
@@ -172,7 +218,14 @@ export class ButtonsOptionsComponent implements OnInit {
         this.fileService
           .uploadImageProgress(formData)
           .then((url: string) => {
-            this.newFile.emit({ url, format: "image" });
+            if(this.edit){
+              console.log("edtito desde el upload images");
+              
+              this.editedFile.emit({ url, format: "image",position:this.editImageVideo});
+              this.editImageVideo =undefined
+            }else{
+              this.newFile.emit({ url, format: "image" });
+            }
 
             this.uploadImages(files, ++i);
           })
@@ -295,7 +348,7 @@ export class ButtonsOptionsComponent implements OnInit {
       if (response.data?.url) {
         this.newFile.emit({
           url: response.data.url,
-          format: "image",
+          format: "imageGif",
         });
       }
     });
@@ -304,6 +357,61 @@ export class ButtonsOptionsComponent implements OnInit {
   }
 
 
+  // uploadFileEdit(files, i = 0){
+    
+  //   console.log("me usaron", files[i].type.split("/")[0]);
+  //     if (files.length > i) {
+  //       let name = files[i].type.split("/")[0];
+  //       let formData: FormData = new FormData();
+  //       if (name == "video") {
+  //         let url = URL.createObjectURL(files[i]);
+  //         this.videoToUpload.emit({ file: files[i], url });
+  //         this.editedFile.emit({ url, format: "video" ,position:this.editImageVideo});
+  //         this.editImageVideo = undefined
+          
+  //       } else if (name == "image") {
+
+  //         formData.append("image", files[i]);
+  //         this.fileService
+  //           .uploadImageProgress(formData)
+  //           .then((url: string) => {
+  //             this.editedFile.emit({ url, format: "image",position:this.editImageVideo });
+  //             this.editImageVideo = undefined
+  //             console.log(url);
+  //           })
+  //           .catch((e) => {
+  //             this.uploadImages(files, ++i);
+  //           });
+  //       } else {
+  //         // handle
+  //       }
+  //     }
+  // }
+  editImageVideo
+  async editFile(format,i){
+    this.edit= true
+    this.editImageVideo = i
+    if(format == "imageGif"){
+      let modal = await this.modalController.create({
+        component: GifsModalComponent,
+      });
+  
+      modal.onDidDismiss().then((response) => {
+        if (response.data?.url) {
+          this.editedFile.emit({
+            url: response.data.url,
+            format: "imageGif",
+            position:i
+          });
+          this.editImageVideo = undefined
+        }
+      });
+      modal.present();
+    }else{
+      this.fileChooser.nativeElement.click();
+    }
+  }
+
   text(){
     this.newText.emit(true);
   }
@@ -311,68 +419,70 @@ export class ButtonsOptionsComponent implements OnInit {
   youtube(){
     this.newYoutube.emit(true);
   }
-  // @Output() newQuestion = new EventEmitter();
+  @Output() newQuestion = new EventEmitter();
 
-  // //Crea una modal donde se pueden crear preguntas
-  // async createQuestion() {
-  //   const modal = await this.modalController.create({
-  //     component: NewQuestionComponent,
-  //     cssClass: "my-custom-class",
-  //     backdropDismiss: false,
-  //     componentProps: {
-  //       edit: false,
-  //     },
-  //   });
-  //   modal
-  //     .onDidDismiss()
-  //     .then((data) => {
-  //       if (data.data.question != undefined) {
-  //         this.newQuestion.emit(data.data.question);
-  //       }
-  //     })
-  //     .catch((err) => {});
+  //Crea una modal donde se pueden crear preguntas
+  async createQuestion() {
+    const modal = await this.modalController.create({
+      component: NewQuestionComponent,
+      cssClass: "my-custom-class",
+      backdropDismiss: false,
+      componentProps: {
+        edit: false,
+      },
+    });
+    modal
+      .onDidDismiss()
+      .then((data) => {
+        if (data.data.question != undefined) {
+          this.newQuestion.emit(data.data.question);
+        }
+      })
+      .catch((err) => {});
 
-  //   return await modal.present();
-  // }
+    return await modal.present();
+  }
 
-  // async editQuestion(question) {
-  //   const modalEdit = await this.modalController.create({
-  //     component: NewQuestionComponent,
-  //     cssClass: "my-custom-class",
-  //     backdropDismiss: false,
-  //     componentProps: {
-  //       question,
-  //       edit: true,
-  //     },
-  //   });
-  //   modalEdit
-  //     .onDidDismiss()
-  //     .then((data) => {
-  //       if (data.data.question != undefined) {
-  //         this.newQuestion.emit(data.data.question);
-  //       }
-  //     })
-  //     .catch((err) => {});
-  //   return await modalEdit.present();
-  // }
+  async editQuestion(question,i) {
+    
+    const modalEdit = await this.modalController.create({
+      component: NewQuestionComponent,
+      cssClass: "my-custom-class",
+      backdropDismiss: false,
+      componentProps: {
+        question,
+        edit: true,
+      },
+    });
+    modalEdit
+      .onDidDismiss()
+      .then((data) => {
+        if (data.data.question != undefined) {
+          data.data.position = i
+          this.questionEdited.emit(data.data);
+        }
+      })
+      .catch((err) => {});
+    return await modalEdit.present();
+  }
 
-  // saveQuestion(question) {
-  //   return new Promise((resolve, reject) => {
-  //     if (!question.questionGroup) {
-  //       resolve(null);
-  //     } else {
-  //       this.questionService
-  //         .create(question)
-  //         .pipe(take(1))
-  //         .subscribe(
-  //           (question: any) => {
-  //             resolve(question._id);
-  //           },
-  //           (err) => {
-  //             reject(err);
-  //           }
-  //         );
-  //     }
-  //   });
-  // }
+  saveQuestion(question) {
+    return new Promise((resolve, reject) => {
+      if (!question.questionGroup) {
+        resolve(null);
+      } else {
+        this.questionService
+          .create(question)
+          .pipe(take(1))
+          .subscribe(
+            (question: any) => {
+              resolve(question._id);
+            },
+            (err) => {
+              reject(err);
+            }
+          );
+      }
+    });
+  }
 }

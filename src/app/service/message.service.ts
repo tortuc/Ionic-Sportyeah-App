@@ -68,6 +68,8 @@ export class MessageService {
   playSound(id) {
     this.idSound = id;
     this.idSound$.next(this.idSound);
+    console.log(this.idSound$);
+    
   }
 
   /**

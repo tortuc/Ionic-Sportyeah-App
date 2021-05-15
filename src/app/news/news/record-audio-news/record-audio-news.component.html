@@ -1,0 +1,24 @@
+<div
+  class="button"
+  *ngIf="mediaRecorder == null || mediaRecorder.state == 'inactive'"
+>
+  <ion-icon name="mic" (click)="captureAudio()" class="icon"></ion-icon>
+</div>
+<div
+  class="button"
+  style="margin-bottom: 5px !important"
+  *ngIf="mediaRecorder != null && mediaRecorder.state == 'recording'"
+  [ngClass]="mediaRecorder?.state"
+>
+  <ion-icon
+    name="close-circle-outline"
+    (click)="stopRecord(false)"
+    class="icon audio-cancel"
+  ></ion-icon>
+  <span class="diff">{{ diffRecord | diffTime }}</span>
+  <ion-icon
+    name="checkmark-circle-outline"
+    class="icon audio-success"
+    (click)="stopRecord(true)"
+  ></ion-icon>
+</div>

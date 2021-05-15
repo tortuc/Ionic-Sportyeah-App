@@ -23,6 +23,8 @@ import { ElementRef } from "@angular/core";
 import { QuestionService } from "src/app/service/question.service";
 import { NewQuestionComponent } from "src/app/components/new-question/new-question.component";
 import { EditQuestionComponent } from "src/app/components/edit-question/edit-question.component";
+import { ButtonsOptionsComponent } from "../buttons-options/buttons-options.component";
+import { format } from "path";
 
 const { Camera, Filesystem } = Plugins;
 
@@ -36,8 +38,9 @@ export class CreateComponent implements OnInit,OnChanges {
   @ViewChild("openVideoParrafo") openVideoParrafo: any;
   @ViewChild("sportyeah") sportyeah: any;
   @ViewChild("editQuestionHash") editQuestionComponent: EditQuestionComponent;
-  
+  @ViewChild("optionsBtn") optionsBtn: ButtonsOptionsComponent;
 
+  
   @ViewChild("mainInputEdit") mainInputEdit: ElementRef;
 
   @ViewChild("mainInput") mainInput: ElementRef;
@@ -67,17 +70,11 @@ urlYu
     user: ["", [Validators.required]],
     question: [null, [Validators.required]],
     headline: ["", [Validators.required]],
-    content: ["", [Validators.required]],
     principalSubtitle: ["", [Validators.required]],
-    principalImage: ["", [Validators.required]],
-    principalVideo: ["", [Validators.required]],
-    origin: ["", [Validators.required]],
-    originPrincipaMedia: ["", [Validators.required]],
     sport: ["", [Validators.required]],
-    stream: ["", [Validators.required]],
+    stream: [false, [Validators.required]],
     postStream: ["", [Validators.required]],
     date: ["", [Validators.required]],
-
   });
 
   async presentToastWithOptions() {
@@ -95,37 +92,29 @@ urlYu
       message: this.translate.instant("loading"),
     });
     loading.present();
-    this.form.value.principalVideo = this.videoSelected;
-    this.form.value.principalImage = this.imagenSelected;
-    this.form.value.user = this.userService.User._id;
-    this.form.value.headline = this.titulo1;
-    this.form.value.principalSubtitle = this.subTitle;
-    this.form.value.content = this.parrafos;
-    this.form.value.date = this.date;
-    /* if(this.miNoticia){
-      this.form.value.origin = 'De mi propiedad'
-    }else{ */
-    this.form.value.origin = this.origen;
-    /*  }
-    if(this.MiprincipalMedia){
-      this.form.value.originPrincipaMedia = 'De mi propiedad'
-   } }else{ */
-    this.form.value.originPrincipaMedia = this.originPrincipaMedia;
+    let news = this.form.value
+    news.principalVideo = this.videoSelected;
+    news.principalImage = this.imagenSelected;
+    news.user = this.userService.User._id;
+    news.headline = this.titulo1;
+    news.principalSubtitle = this.subTitle;
+    news.content = await this.questionService.parrafoFilter(this.parrafos);
+    news.date = this.date;
+    news.origin = this.origen;
+    news.originPrincipaMedia = this.originPrincipaMedia;
+    news.audioNews = this.audioNews;
 
-    //this.form.value.originPrincipaMedia = this.originPrincipaMedia
-    this.form.value.stream = false;
-    this.form.value.postStream = null;
-
-    this.form.value.sport = this.deporte;
-    if (this.question.questionGroup.length > 0) {
-      this.createNewsAndQuestion(loading);
-    } else {
-      this.newsService.create(this.form.value).subscribe((response) => {
+    news.sport = this.deporte;
+   console.log(news)
+    // if (this.question.questionGroup.length > 0) {
+    //   this.createNewsAndQuestion(loading);
+    // } else {
+      this.newsService.create(news).subscribe((response) => {
         this.presentToastWithOptions();
         this.router.navigate(["news"]);
       });
       loading.dismiss();
-    }
+    // }
   }
   fecha =
     new Date().getDate() +
@@ -188,9 +177,10 @@ urlYu
       image: null,
       video: null,
       originMedia: null,
-      urlYoutube:undefined,
       online:undefined,
       url:undefined,
+      link:undefined,
+      format:'text'
     }); //title:this.titulo1,subtitle:this.deporte
     this.text1 = ``;
 
@@ -823,47 +813,82 @@ urlYu
       .catch((err) => {});
     return await modal.present();
   }
-  async editQuestion(i) {
-    const modalEdit = await this.modalController.create({
-      component: NewQuestionComponent,
-      cssClass: "my-custom-class",
-      backdropDismiss: false,
-      componentProps: {
-        question: this.question.questionGroup[i],
-        edit: true,
-      },
-    });
-    modalEdit
-      .onDidDismiss()
-      .then((data) => {
-        if (data.data.question != undefined) {
-          this.question.questionGroup.splice(i, 1, data.data.question);
-        }
-      })
-      .catch((err) => {});
-    return await modalEdit.present();
-  }
+  // async editQuestion(i) {
+  //   const modalEdit = await this.modalController.create({
+  //     component: NewQuestionComponent,
+  //     cssClass: "my-custom-class",
+  //     backdropDismiss: false,
+  //     componentProps: {
+  //       question: this.question.questionGroup[i],
+  //       edit: true,
+  //     },
+  //   });
+  //   modalEdit
+  //     .onDidDismiss()
+  //     .then((data) => {
+  //       if (data.data.question != undefined) {
+  //         this.question.questionGroup.splice(i, 1, data.data.question);
+  //       }
+  //     })
+  //     .catch((err) => {});
+  //   return await modalEdit.present();
+  // }
   deleteQuestion(i) {
     this.question.questionGroup.splice(i, 1);
   }
 
-  files = []
   addFile(file) {
-    this.files.push(file);
-    console.log("EStoy ejecutandome");
-    
     this.parrafos.push({
       subtitle: null,
       parrafo: undefined,
       position: this.parrafos.length,
-      image: file.format =='image'?file.url:null,
+      image: (file.format =='image' || file.format == 'imageGif')?file.url:null,
       video: file.format =='video'?file.url:null,
       originMedia: null,
-      urlYoutube:undefined,
       online:undefined,
       url:undefined,
+      link:file.format =='link'?file.url:null,
+      format:file.format
     });
     console.log(this.parrafos);
+  }
+  editFile(format,i){
+    this.optionsBtn.editFile(format,i)
+  }
+  editedFile(file){
+    console.log(this.parrafos[file.position]);
+    console.log(file);
+
+    this.parrafos[file.position] = {
+      subtitle: null,
+      parrafo: undefined,
+      position: file.position,
+      image: (file.format =='image' || file.format == 'imageGif')?file.url:null,
+      video: file.format =='video'?file.url:null,
+      originMedia: null,
+      online:undefined,
+      url:undefined,
+      link:file.format =='link'?file.url:null,
+      format:file.format
+    }
+
+  }
+  editLink(i){
+    this.optionsBtn.editedLink(i);
+  }
+  editedLink(file){
+    this.parrafos[file.position] = {
+      subtitle: null,
+      parrafo: undefined,
+      position: file.position,
+      image: null,
+      video: null,
+      originMedia: null,
+      online:undefined,
+      url:undefined,
+      link:file.url,
+
+    }
   }
   videosToUploads = []
   pushVideoToUpload(file) {
@@ -871,8 +896,6 @@ urlYu
   }
 
   addYoutube(){
-    console.log("esstoy");
-    console.log(this.mainInput.nativeElement.innerHTML);
     if(this.mainInput.nativeElement.innerHTML){
       this.parrafos.push({
         subtitle: null,
@@ -881,13 +904,11 @@ urlYu
         image: null,
         video: null,
         originMedia: 'Youtube.com ' + this.mainInput.nativeElement.innerHTML ,
-        urlYoutube:this.mainInput.nativeElement.innerHTML,
-        online:undefined,
-        url:undefined,
+        url:this.mainInput.nativeElement.innerHTML,
+        link:undefined,
+        format:'youtube'
       });
     }
-    console.log(this.parrafos);
-
 this.agregandoYoutube = false
   }
   saveEditYoutube(i){
@@ -895,17 +916,83 @@ this.agregandoYoutube = false
       this.parrafos[i] = {
         subtitle: null,
         parrafo: undefined,
-        position: this.parrafos.length,
+        position: i,
         image: null,
         video: null,
         originMedia: 'Youtube.com ' + this.mainInputEdit.nativeElement.innerHTML ,
-        urlYoutube:this.mainInputEdit.nativeElement.innerHTML,
-        online:undefined,
-        url:undefined,
+        url:this.mainInputEdit.nativeElement.innerHTML,
+        link:undefined,
+        format:'youtube'
       };
     }
 this.editYoutube = false
   }
   editYoutube:boolean = false;
   agregandoYoutube:boolean = false;
+  
+  newQuestion($event) {
+   let question = {
+      user: this.userService.User._id,
+      questionGroup:$event,
+      finishVotes: undefined,
+    };
+    this.question.questionGroup.push($event) ;
+    this.parrafos.push({
+      subtitle: null,
+      parrafo: undefined,
+      position: this.parrafos.length,
+      image: null,
+      video: null,
+      originMedia: undefined ,
+      online:undefined,
+      url:undefined,
+      link:undefined,
+      question,
+      format:'question'
+    }) 
+    console.log(this.parrafos);
+  }
+  questionEdited($event) {
+    let question = {
+       user: this.userService.User._id,
+       questionGroup:$event.question,
+       finishVotes: undefined,
+     };
+     this.parrafos[$event.position] = {
+       subtitle: null,
+       parrafo: undefined,
+       position: $event.position,
+       image: null,
+       video: null,
+       originMedia: undefined ,
+       online:undefined,
+       url:undefined,
+       link:undefined,
+       question
+     }
+   }
+   async editQuestion(question,i) {
+    this.optionsBtn.editQuestion(question.questionGroup,i);
+  }
+
+
+   audioNews
+
+   /**
+   * Envia un audio por el chat
+   * @param url url del audio
+   */
+  msgAudio(url) {
+    this.audioNews = url;
+    this.newsAudio = true;
+    console.log( this.audioNews)
+  }
+  deleteAudio(){
+    this.audioNews = null;
+    this.newsAudio = false;
+    console.log( this.audioNews)
+  }
+ 
+  newsAudio:boolean=false
+
 }

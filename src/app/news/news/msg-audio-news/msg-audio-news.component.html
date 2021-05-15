@@ -1,0 +1,56 @@
+<ion-card
+  class="audio msgNew"
+>
+  <!-- <ion-icon
+    style="z-index: 100"
+    *ngIf="message.user._id == userService.User?._id"
+    name="chevron-down"
+    class="msg-options-icon"
+    (click)="options($event, message)"
+  ></ion-icon> -->
+
+  <ion-grid>
+    <ion-row style="align-items: center; margin-top: 5px;">
+      <!-- <ion-col *ngIf="userService.User?._id != message.user._id" size="12">
+        <msg-user-preview [user]="message.user"></msg-user-preview>
+      </ion-col> -->
+      <ion-col size="1">
+        <ion-icon
+        *ngIf="loaded"
+          class="play"
+          (click)="playAudio()"
+          [name]="!(currentTime != 0 && !pause) ? 'play' : 'pause'"
+        ></ion-icon>
+        <ion-spinner style="height: 20px;" *ngIf="!loaded"></ion-spinner>
+      </ion-col>
+      <ion-col size="11" class="bar p-10-0">
+        <input
+          type="range"
+          [value]="currentTime / duration"
+          min="0"
+          max="1"
+          step="0.01"
+          (input)="changeRange($event)"
+        />
+        <span class="duration"
+        >{{ currentTime | diffTime }} / {{ duration | diffTime }}</span
+      >
+      </ion-col>
+    </ion-row>
+    <!--  <ion-row>
+      <ion-col size="12">
+       
+
+       <span class="date"
+          >{{ message.date | customDisplayDate }}
+          <ion-icon
+            *ngIf="message.user._id == userService.User?._id"
+            [ngClass]="message.read ? 'read' : ''"
+            name="checkmark-done"
+            style="font-size: 20px; vertical-align: middle"
+          ></ion-icon
+        ></span>
+      </ion-col> 
+    </ion-row>-->
+  </ion-grid>
+</ion-card>

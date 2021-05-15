@@ -3,6 +3,9 @@
     <ion-back-button style="color: white"></ion-back-button>
   </ion-buttons>
   <ion-toolbar class="main-bg">
+    <ion-buttons slot="start">
+      <ion-menu-button style="color: white"></ion-menu-button>
+    </ion-buttons>
     <ion-title>{{ 'news.newsSport'| translate}}</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -16,10 +19,10 @@
          <h1 style="font-size:35px;color: white; text-align: center;"><i></i></h1> 
       </ion-text>-->
     </ion-col>
-    <ion-col *ngFor="let new of newsFollowthree" size-xs="12" size-lg="4">
+    <!-- <ion-col *ngFor="let new of newsFollowthree" size-xs="12" size-lg="4">
       <div (click)="OpenNews(new._id)" class="threeNews">
         <div style="background: black;">
-          <ion-img *ngIf="new.principalImage" style=" width: 100%;
+          <ion-img *ngIf="new.principalImage" style=" width: 100%;max-width: 256px; ;
           margin-left: auto;
           margin-right: auto;"  [src]="new.principalImage"></ion-img>
           <div *ngIf="new.principalVideo" style="position: relative ;width: 100%;">
@@ -54,34 +57,25 @@
               </ion-col>
             </ion-row>
           </ion-grid>
-          <!-- <h3 style="margin-bottom: -8px;padding-left: 10px;color: rgb(58, 58, 58);text-align: justify; font-size: 9px;">{{ 'sport.'+new.sport| translate}}<span style="font-size: 8 !important;margin-left:8px !important">{{new.date | customDisplayDate}}</span>
-            <span> 
-              <ion-avatar (click)="userService.goToProfile(new.user.username,news.user._id,'news',undefined)">
-                <img class="user-img-shadow" [src]="new.user.photo" />
-               </ion-avatar>
-          </span>
-            <span  style="font-size: 8 !important;margin-left:8px !important;color: rgb(0, 0, 0) ;cursor: pointer;" (click)="userService.goToProfile(new.user.username,new.user._id,'news',undefined)" >{{new.user.name}} {{new.user.last_name}}</span>
-          </h3> 
-          <h2 style="padding-right: 10px;padding-left: 10px;padding-bottom: 10px; color: black;text-align: justify; font-size: 15px;"><b>{{new.headline}}</b></h2>
-        -->
       </div>
       </div>
-    </ion-col>
+    </ion-col> -->
   </ion-row>
 </ion-grid>
 <ion-fab-button style="z-index:1000;" *ngIf="userService.User?.profile_user == 'press' "  [routerLink]="'/news/create'" class="new addNews"><ion-icon name="add"></ion-icon></ion-fab-button>
 
-<!-- Noticias del deporte del Usuario -->
+<!-- Noticias generales  -->
 <ion-card>
-  <ion-card-header>
+  <!--  <ion-card-header>
     <ion-text color="black">
-      <!-- <h1 style="font-size:35px;color: black; text-align: center;"><i>Más noticias</i></h1>  de {{'sport.'+userService.User?.sport| translate}} -->
+     <h1 style="font-size:35px;color: black; text-align: center;"><i>Más noticias</i></h1>  de {{'sport.'+userService.User?.sport| translate}}
    </ion-text>
-  </ion-card-header>
+  </ion-card-header> -->
   
-  <ion-card-content *ngIf="newsSportUser.length > 0">
+  <ion-card-content  *ngIf="newsSportUser.length > 0">
       <ion-list>
-        <!-- <ion-item  *ngFor="let new of newsSportUser?.slice(0,indexLast )">
+       <!--  <ion-item  *ngFor="let new of newsSportUser?.slice(0,indexLast )">
+
           <ion-note slot="start">
             <ion-img (click)="OpenNews(new._id)" *ngIf="new.principalImage"  class="imageMiniCard" [src]="new.principalImage"></ion-img>
             <div (click)="OpenNews(new._id)"  *ngIf="new.principalVideo" style="position: relative; cursor: pointer;">
@@ -99,7 +93,7 @@
           <br>
           <div>
             <h5 class="deporteTitle">{{ 'sport.'+new.sport| translate}}<span style="font-size: 8 !important;color: rgb(58, 58, 58);margin-left:15px">{{new.date | customDisplayDate}}</span>
-              <div style="float: right;">
+              <div style="float: rightf;">
               <ion-avatar style="width: 25px;height: 25px;margin-left: auto; margin-right: auto;" (click)="userService.goToProfile(new.user.username,news.user._id,'news',undefined)">
                 <img class="user-img-shadow" [src]="new.user.photo" />
                </ion-avatar>

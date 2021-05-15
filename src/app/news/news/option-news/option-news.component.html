@@ -1,0 +1,17 @@
+
+  <ion-content>
+    <ion-list>
+      <ion-item style="cursor:pointer" (click)="edit()">
+        <ion-icon style="color: var(--color-primary);margin-right:3px" name="create-outline"></ion-icon>  {{'options_post.edit' | translate}}
+      </ion-item>
+  
+      <ion-item style="cursor:pointer"  (click)="delete()">
+        <ion-icon style="color: #e41919;margin-right:3px"  name="trash-bin-outline"></ion-icon>  {{'options_post.delete' | translate}}
+      </ion-item>
+  
+      <ion-item style="cursor:pointer" (click)="close()">
+        <ion-icon style="color: #e41919;margin-right:3px"  name="close"></ion-icon> {{'options_post.close' | translate}}
+      </ion-item>
+    </ion-list>
+  </ion-content>
+ 
