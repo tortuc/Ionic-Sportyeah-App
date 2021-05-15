@@ -24,7 +24,7 @@
 <ion-button  class="btn-rounded-options" (click)="assetsOptions('text')">
   <ion-icon name="text-outline"></ion-icon>
 </ion-button>
-<ion-button [disabled]="files?.length > 0" *ngIf="canCreateQuestion"  (click)="createQuestion()">
+<ion-button  *ngIf="canCreateQuestion"  (click)="createQuestion()">
   <ion-icon name="help-outline"></ion-icon>
 </ion-button>
 <ion-button  class="btn-rounded-options" (click)="assetsOptions('youtube')">
