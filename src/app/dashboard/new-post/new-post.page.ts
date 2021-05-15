@@ -44,7 +44,7 @@ export class NewPostPage implements OnInit {
 
   removeFile(url) {
     this.files = this.files.filter((file) => {
-      return file.url != url;
+      return file.url != url; 
     });
     this.videosToUploads = this.videosToUploads.filter((video) => {
       return video.url != url;

@@ -26,7 +26,8 @@ export class UserItemComponent implements OnInit {
   async getFollows() {
     let data = await this.analyticService
       .getFollowsAnalytic(this.user._id)
-      .toPromise();
+      .toPromise(); 
+      console.log(data)
     if (data) {
       this.followers = data.followers;
       this.followings = data.followings;

@@ -19,7 +19,7 @@ export class QuestionService {
   ) { }
 
   create(body){
-    return this.http.post(`${environment.URL_API}/question/create`,body)
+    return this.http.post<any>(`${environment.URL_API}/question/create`,body)
   }
 
   findById(id){
@@ -73,6 +73,39 @@ export class QuestionService {
 
   userVotedAnswer(id,user){
     return this.http.get(`${environment.URL_API}/question/answer/voted/${id}/${user}`)
+  }
+
+
+  parrafoFilter(parrafos) {
+    return new Promise(async (resolve) => {
+  
+      let newParrafo = await Promise.all(
+        // utilziamos un .map que recorre el array y lo modifica
+        parrafos.map(
+          async (parrafo) => {
+            
+            console.log(parrafo.question);
+            
+            if (parrafo.question) {
+              if(parrafo.question.headline){
+              // esperamos la url
+              parrafo.question = (await this.create(parrafo.question).toPromise())._id as string;
+              // modificamos el archivo
+               return parrafo;
+              }
+              return parrafo;
+            } else {
+              // no existe cuestionario, no modificamos el archivo
+              return parrafo;
+            }
+          }
+        )
+      );
+      // devolvemos la data correctamente
+  
+      resolve(newParrafo);
+    
+    });
   }
 
 }

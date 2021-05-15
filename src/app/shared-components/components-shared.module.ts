@@ -62,7 +62,8 @@ const components = [
   ProfileBannerOptionsComponent,
   SeeProfileBannerComponent,
   ProfilePhotoComponent,
-  ProfilePhotoOptionsComponent
+  ProfilePhotoOptionsComponent,
+  
 ];
 
 @NgModule({

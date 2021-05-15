@@ -856,6 +856,7 @@
     "images": "Imágenes",
     "add": "Agregar",
     "edit": "Editar",
+    "save":"Guardar cambios",
     "editParagraph": "Editando párrafo",
     "delete": "Eliminar",
     "cancel": "Cancelar",
@@ -869,6 +870,14 @@
     "publish": "Publicar",
     "published": "Artículo publicado con exito!",
     "edited": "Artículo editado con exito!",
+    "date":"Fecha",
+    "addVideo":"Agregar video",
+    "addYoutube":"Agrega un link de Youtube",
+    "intelectual_rights":"Por favor, díganos quien tiene los derechos intelectuales",
+    "intelectual_rights_news":"Por favor, díganos quien tiene los derechos intelectuales de la noticia",
+    "my_property":"De mi propiedad",
+    "of_other":"De otro",
+    "audioNews":"Audio Noticia",
     "deleteModal": {
       "cancel": "Cancelar",
       "confirm": "Esta seguro que desea eliminar este artículo.",
@@ -928,7 +937,8 @@
   "attach_link": {
     "header": "Adjuntar un enlace",
     "name": "Nombre del enlace (opcional)",
-    "url": "Pegue un vinculo aqui..."
+    "url": "Pegue un vinculo aqui...",
+    "edit_link":"Editar enlace"
   },
   "remove_file": {
     "header": "Remover archivo",
@@ -1131,7 +1141,8 @@
   },
   "new_messages": "Nuevos mensajes",
   "pdf": {
-    "data_sponsor": "Datos del patrocinador en el año"
+    "data_sponsor": "Datos del patrocinador ",
+    "date":"Fecha"
   },
   "images_online": {
     "header": "Subir imagen / video desde la web",

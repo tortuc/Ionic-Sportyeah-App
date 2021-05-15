@@ -19,6 +19,7 @@ import { ISponsor } from "../models/ISponsor";
 import { IPost } from "../models/iPost";
 import { GroupService } from "../service/group.service";
 import { MsgProfileEditComponent } from "./msg-profile-edit/msg-profile-edit.component";
+import { OptionNewsComponent } from "../news/news/option-news/option-news.component";
 
 @Component({
   selector: "app-profile",
@@ -138,6 +139,33 @@ export class ProfilePage implements OnInit {
   }
   editNews(idNews) {
     this.router.navigate([`news/edit/${idNews}`]);
+  }
+
+  options(data) {
+    switch (data?.action) {
+      case "delete":
+        this.deleteNew(data.news);
+        break;
+      case "edit":
+        this.editNews(data.news);
+        break;
+
+      default:
+        break;
+    }
+  }
+  async openOptions(ev: any,news) {
+    const popover = await this.popoverController.create({
+      component: OptionNewsComponent,
+      cssClass: "my-custom-class",
+      event: ev,
+      translucent: true,
+      componentProps: { news },
+    });
+    popover.onDidDismiss().then((data) => {
+      this.options(data.data);
+    });
+    return await popover.present();
   }
 
   getCountPost() {

@@ -22,6 +22,7 @@ import { IonCustomScrollbarModule } from "ion-custom-scrollbar";
 import { PostComponetsModule } from "../post-components/post-componets.module";
 import { ComponentsSharedModule } from "../shared-components/components-shared.module";
 import { MsgProfileEditComponent } from "./msg-profile-edit/msg-profile-edit.component";
+import { OptionNewsComponent } from "../news/news/option-news/option-news.component";
 
 @NgModule({
   imports: [
@@ -50,7 +51,8 @@ import { MsgProfileEditComponent } from "./msg-profile-edit/msg-profile-edit.com
     FollowerPage,
     CarrouselComponent,
     NewNodeComponent,
-    MsgProfileEditComponent
+    MsgProfileEditComponent,
+    OptionNewsComponent
   ],
 })
 export class ProfilePageModule {}

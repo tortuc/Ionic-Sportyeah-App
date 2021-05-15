@@ -1,0 +1,60 @@
+.link {
+    display: flex;
+    cursor: pointer;
+    max-width: 90%;
+    margin: auto;
+    padding: 5px;
+    .icon-img {
+      min-width: 120px;
+      align-self: center;
+      font-size: 32px;
+      display: flex;
+      min-height: 70px;
+      justify-content: center;
+      align-items: center;
+      background: #eaeaea;
+      img {
+        height: 100%;
+        width: 100%;
+        max-width: 100px;
+        max-height: 100px;
+      }
+    }
+  
+    .link-text {
+      padding-left: 10px;
+      text-align: left;
+      flex: auto;
+      max-width: 70%;
+      p.name {
+        margin: 2px;
+        margin: 2px;
+        font-size: 13px;
+        color: black;
+        font-weight: 600;
+      }
+      p.desc {
+        margin: 0;
+        font-size: 11px;
+      }
+      p.title {
+        font-weight: 600;
+        margin: 0;
+        font-size: 12px;
+      }
+    }
+  }
+  
+  .chat {
+    .link-text {
+      p.name{
+        color: white;
+      }
+      p.desc {
+        color: white;
+        margin: 0;
+        font-size: 11px;
+      }
+    }
+  }
+  
