@@ -4,35 +4,62 @@ ion-segment-button {
   --indicator-color: transparent;
 }
 
-.team-name {
-  font-size: 14px;
-  overflow: hidden;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  white-space: normal;
-  text-align: center;
-  align-self: center;
+ion-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px;
 }
 
-.winner {
-  font-weight: bold;
+.league {
+  height: 48px;
+  display: flex;
+  align-items: center;
+  padding: 12px;
+  img {
+    height: 100%;
+    margin-right: 10px;
+  }
 }
 
-.score-time {
-  font-size: 24px;
-  color: var(--ion-color-step-600, #666666);
-  text-align: center;
-}
-
-small {
-  text-align: right;
-  color: var(--ion-color-step-600, #666666);
-  &.time {
+.date-time {
+  width: 100%;
+  position: absolute;
+  top: 8px;
+  font-size: 8pt;
+  .time {
     background: var(--ion-color-success);
     color: white;
     padding: 0px 8px;
+    &.ft {
+      background: var(--ion-color-medium);
+    }
   }
+  .date {
+    text-align: center;
+    font-size: inherit !important;
+    color: var(--ion-color-step-600, #666666) !important;
+  }
+}
+
+ion-card-content {
+  padding: 32px 0px 16px 0px;
+}
+
+.score-teams {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  font-size: 8pt;
+  .score {
+    font-size: 16px;
+  }
+}
+
+.score-teams, .date-time {
+  ion-col {
+    padding: 0;
+  } 
 }
 
 .team-shield {

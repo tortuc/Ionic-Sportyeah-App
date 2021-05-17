@@ -1,23 +1,91 @@
 <ion-segment 
-  value="ALL"
-  [scrollable]="true" 
+  [value]="currentTab"
+  [scrollable]="false"
   (ionChange)="onSegmentChange($event)">
-  <ion-segment-button value="ALL">
-    <ion-label>Todos</ion-label>
+  <ion-segment-button 
+    [value]="Tabs.LIVE">
+    <ion-label>
+      {{ Tabs.LIVE }}
+    </ion-label>
   </ion-segment-button>
-  <ion-segment-button value="LIVE">
-    <ion-label>En Directo</ion-label>
+  <ion-segment-button 
+    [value]="Tabs.FINISHED">
+    <ion-label>
+      {{ Tabs.FINISHED }}
+    </ion-label>
   </ion-segment-button>
-  <ion-segment-button value="FAVORITES">
-    <ion-label>Mis Partidos</ion-label>
-  </ion-segment-button>
-      <ion-segment-button value="FINISHED">
-    <ion-label>Finalizados</ion-label>
-  </ion-segment-button>
-      <ion-segment-button value="UPCOMING">
-    <ion-label>Próximos</ion-label>
+  <ion-segment-button 
+    [value]="Tabs.UPCOMING">
+    <ion-label>
+      {{ Tabs.UPCOMING }}
+    </ion-label>
   </ion-segment-button>
 </ion-segment>
 <ion-content>
-  <!-- TODO -->
+  <ng-container *ngIf="items; else emptyState">
+    <ng-container *ngFor="let item of items">
+      <ion-card>
+        <ion-card-header color="light">
+          <span class="league">
+            <img src="https://t.resfu.com/media/img/league_logos/premier.png?size=120x&ext=jpeg">
+            {{ item.leagueName || item.competitionName || item.competition.name }}
+          </span>
+          <ion-buttons>
+            <ion-button>
+              <ion-icon 
+                slot="icon-only" 
+                name="ellipsis-vertical"
+                size="small">  
+              </ion-icon>
+            </ion-button>
+          </ion-buttons>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-row class="date-time">
+            <ion-col size="4">
+              <ng-container *ngIf="currentTab !== Tabs.UPCOMING">
+                <span class="time" [ngClass]="{ 'ft': currentTab == Tabs.FINISHED }">
+                  <ng-container [ngSwitch]="currentTab">
+                    <ng-container *ngSwitchCase="Tabs.FINISHED">
+                      FINALIZADO
+                    </ng-container>
+                    <ng-container *ngSwitchDefault>
+                      {{ (item.time == 'FT' || item.time == 'HT') ? item.time : "'"+item.time }}
+                    </ng-container>
+                  </ng-container>
+                </span>
+              </ng-container>
+            </ion-col>
+            <ion-col size="4" class="date">
+              {{ item.date ? item.date.format('D MMM YYYY') : item.added.format('D MMM YYYY') }}
+            </ion-col>
+          </ion-row>
+          <ion-row class="score-teams">
+            <ion-col size="4" class="team home">
+              {{ item.homeName }}
+            </ion-col>
+            <ion-col size="1">
+            <img 
+              class="team-shield" 
+              src="https://t.resfu.com/img_data/escudos/medium/2080.jpg?size=120x&ext=jpeg">
+            </ion-col>
+            <ion-col size="2" class="score">
+              {{ item.score || item.etScore || item.time.format('hh:mm') }}
+            </ion-col>
+            <ion-col size="1">
+              <img 
+                class="team-shield" 
+                src="https://t.resfu.com/img_data/escudos/medium/1598.jpg?size=120x&ext=jpeg">
+            </ion-col>
+            <ion-col size="4" class="team away">
+              {{ item.awayName }}
+            </ion-col>
+          </ion-row>
+        </ion-card-content>
+      </ion-card>
+    </ng-container>
+  </ng-container> 
 </ion-content>
+<ng-template #emptyState>
+  No hay encuentros para mostrar
+</ng-template>

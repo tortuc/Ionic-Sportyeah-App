@@ -11,7 +11,6 @@ export const environment: Environment = {
   URL_SOCKET: "http://localhost:3000",
   URL_CHALLENGE: "http://localhost:1000",
   URL_WEB:'http://localhost:8100',
-  URL_LIVESCORE_API: 'https://www.thesportsdb.com/api/v1',
 };
 
 /*

@@ -6,5 +6,4 @@ export interface Environment {
   URL_SOCKET: string,
   URL_CHALLENGE: string,
   URL_WEB: string,
-  URL_LIVESCORE_API: string,
 }
