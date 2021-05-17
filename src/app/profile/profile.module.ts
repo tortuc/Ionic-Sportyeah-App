@@ -23,6 +23,7 @@ import { PostComponetsModule } from "../post-components/post-componets.module";
 import { ComponentsSharedModule } from "../shared-components/components-shared.module";
 import { MsgProfileEditComponent } from "./msg-profile-edit/msg-profile-edit.component";
 import { OptionNewsComponent } from "../news/news/option-news/option-news.component";
+import { ProfileSponsorsComponent } from "./profile-sponsors/profile-sponsors.component";
 
 @NgModule({
   imports: [
@@ -52,7 +53,8 @@ import { OptionNewsComponent } from "../news/news/option-news/option-news.compon
     CarrouselComponent,
     NewNodeComponent,
     MsgProfileEditComponent,
-    OptionNewsComponent
+    OptionNewsComponent,
+    ProfileSponsorsComponent
   ],
 })
 export class ProfilePageModule {}
