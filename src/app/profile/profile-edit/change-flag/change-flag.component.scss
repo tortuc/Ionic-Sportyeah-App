@@ -2,10 +2,19 @@
   text-align: center;
   position: relative;
   cursor: pointer;
+  place-items: center;
+  display: inline-grid;
+  margin: 5px 20px;
+  max-width: 70px;
+  width: 70px;
   img {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
+    width: 60px;
+    height: 40px;
+    min-width: 60px;
+    min-height: 40px;
+    border-radius: 15px;
+    border: solid 1px var(--color-primary);
+    object-fit: cover;
     &.selected {
       box-shadow: 0 0 10px 2px var(--color-primary);
     }
@@ -17,10 +26,21 @@
     margin: auto;
     left: 0;
     right: 0;
-    top: 15px;
+    top: 5px;
   }
   p {
     margin: 2px;
+    font-size: 12px;
     color: black;
   }
+}
+
+.main-content-flags {
+  display: -webkit-box;
+  justify-content: center;
+
+  gap: 30px;
+  margin-top: 20px;
+  max-width: 90%;
+  margin: auto;
 }

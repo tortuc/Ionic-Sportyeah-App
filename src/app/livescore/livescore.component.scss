@@ -1,0 +1,68 @@
+ion-segment-button {
+  --background-checked: var(--ion-color-primary);
+  --color-checked: var(--ion-color-primary-contrast);
+  --indicator-color: transparent;
+}
+
+ion-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px;
+}
+
+.league {
+  height: 48px;
+  display: flex;
+  align-items: center;
+  padding: 12px;
+  img {
+    height: 100%;
+    margin-right: 10px;
+  }
+}
+
+.date-time {
+  width: 100%;
+  position: absolute;
+  top: 8px;
+  font-size: 8pt;
+  .time {
+    background: var(--ion-color-success);
+    color: white;
+    padding: 0px 8px;
+    &.ft {
+      background: var(--ion-color-medium);
+    }
+  }
+  .date {
+    text-align: center;
+    font-size: inherit !important;
+    color: var(--ion-color-step-600, #666666) !important;
+  }
+}
+
+ion-card-content {
+  padding: 32px 0px 16px 0px;
+}
+
+.score-teams {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  font-size: 8pt;
+  .score {
+    font-size: 16px;
+  }
+}
+
+.score-teams, .date-time {
+  ion-col {
+    padding: 0;
+  } 
+}
+
+.team-shield {
+  width: 24px;
+  vertical-align: middle;
+}

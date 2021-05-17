@@ -32,52 +32,29 @@
   <ion-grid style="padding: 0" class="height-100vh">
     <ion-row class="height-100vh ion-justify-content-center">
       <ion-col ngClass.xs="m-p-0" size-md="8" size-sm="12">
-        <ion-card style="margin: 0;padding: 0;" >
+        <ion-card style="margin: 0; padding: 0">
           <ion-card-header
             class="text-center"
             style="padding-top: 0; padding-left: 0; padding-right: 0"
           >
-            <ion-card
-              class="banner"
-              (click)="open(userService.User?.photoBanner)"
-              [ngStyle]="{'background-image': 'url(' + userService.User?.photoBanner + ')'}"
-            >
-              <div
-                class="button-photo-banner"
-                (click)="$event.stopPropagation()"
-              >
-                <ion-icon
-                  name="camera-outline"
-                  (click)="changeBanner()"
-                  style="margin-top: 6px"
-                ></ion-icon>
-              </div>
-              <div style="padding-top: 96px; z-index: 9999999999">
-                <new-profile-photo></new-profile-photo>
-              </div>
-            </ion-card>
-
+            <profile-banner
+              [user]="userService.User"
+              [editable]="true"
+            ></profile-banner>
+            <div style="margin-top: -80px">
+              <profile-photo [user]="userService.User"
+              [editable]="true" ></profile-photo>
+            </div>
             <ion-card-title (click)="goTo('/profile/edit')">
               <miniflag [user]="userService.User"></miniflag>
               {{userService.User?.name}} {{userService.User?.last_name}}
               <ion-icon class="edit" name="settings-outline"></ion-icon>
             </ion-card-title>
-            <ion-card-subtitle
-              style="color: rgba(35, 112, 61, 0.993); font-weight: bold"
-              (click)="goTo('/profile/edit')"
-            >
-              <span style="margin: auto; margin-bottom: 10px; font-size: 14px">
-                {{'sport.'+userService.User?.sport | translate}} |
-                <span *ngIf="userService.User?.profile_user === 'player'"
-                  >{{'profile_user.'+userService.User?.profile_user+'.'+userService.User?.sport
-                  | translate}}</span
-                >
-                <span *ngIf="userService.User?.profile_user !== 'player'"
-                  >{{'profile_user.'+userService.User?.profile_user |
-                  translate}}</span
-                >
-              </span>
-            </ion-card-subtitle>
+            <profile-user-info
+              routerLink="/profile/edit"
+              [user]="userService.User"
+            ></profile-user-info>
+
             <ion-grid>
               <ion-row>
                 <ion-col>

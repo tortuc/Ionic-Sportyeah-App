@@ -3,12 +3,19 @@ import { PreloadAllModules, RouterModule, Routes } from "@angular/router";
 import { AuthGuardService } from "./guards/auth-guard.service";
 import { LandingGuard } from "./guards/landing-guard.service";
 import { SessionGuardService } from "./guards/session-guard.service";
+import { LivescoreModule } from './livescore';
 
 const routes: Routes = [
   {
     path: "",
     redirectTo: "login",
     pathMatch: "full",
+  },
+  {
+    path: 'livescore',
+    loadChildren: (): Promise<LivescoreModule> => (
+      import('./livescore').then(m => m.LivescoreModule)
+    ),
   },
   {
     path: "login",
@@ -147,10 +154,10 @@ const routes: Routes = [
       import("./ranking/ranking.module").then((m) => m.RankingPageModule),
     canActivate: [AuthGuardService],
   },
-  {
-    path: "bet",
-    loadChildren: () => import("./bet/bet.module").then((m) => m.BetPageModule),
-  },
+  // {
+  //   path: "bet",
+  //   loadChildren: () => import("./bet/bet.module").then((m) => m.BetPageModule),
+  // },
   {
     path: "search",
     loadChildren: () =>

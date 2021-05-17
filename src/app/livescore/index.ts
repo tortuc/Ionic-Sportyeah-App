@@ -1,0 +1,1 @@
+export { LivescoreModule } from './livescore.module';

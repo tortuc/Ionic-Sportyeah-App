@@ -3,6 +3,7 @@
   height: 155px;
   width: 155px;
   object-fit: cover;
+  border: solid 2px black;
 }
 
 .photo-content {
@@ -15,9 +16,8 @@
 .photo-cover {
   position: relative;
   background: black;
-  width: 162px;
-  padding: 3px;
-  height: 162px;
+  width: 155px;
+  height: 155px;
   border-radius: 50%;
 }
 

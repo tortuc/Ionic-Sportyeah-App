@@ -20,26 +20,26 @@ export const SIDEBAR_ITEMS = [{
     fas: '',
     children: []
   },
-  {
-    title: "sidebar.bet",
-    url: "",
-    icon: "diamond",
-    fas: '',
-    children: [ 
-      {
-        title: "sidebar.tournament",
-        url: "/bet/tourney",
-        icon: "",
-        fas: '<i class="fas fa-sitemap"></i>'
-      },
-      {
-        title: "sidebar.billy",
-        url: "/bet/billy",
-        icon: "",
-        fas: '<i class="fas fa-hand-holding-usd"></i>'
-      }
-    ]
-  },
+  // {
+  //   title: "sidebar.bet",
+  //   url: "",
+  //   icon: "diamond",
+  //   fas: '',
+  //   children: [ 
+  //     {
+  //       title: "sidebar.tournament",
+  //       url: "/bet/tourney",
+  //       icon: "",
+  //       fas: '<i class="fas fa-sitemap"></i>'
+  //     },
+  //     {
+  //       title: "sidebar.billy",
+  //       url: "/bet/billy",
+  //       icon: "",
+  //       fas: '<i class="fas fa-hand-holding-usd"></i>'
+  //     }
+  //   ]
+  // },
   {
     title: "challenges",
     url: "/challenges",
@@ -58,6 +58,13 @@ export const SIDEBAR_ITEMS = [{
     title: "sidebar.ranking",
     url: "/ranking",
     icon: "ribbon",
+    fas: '',
+    children: []
+  },
+  {
+    title: "livescore",
+    url: "/livescore",
+    icon: "football",
     fas: '',
     children: []
   }];

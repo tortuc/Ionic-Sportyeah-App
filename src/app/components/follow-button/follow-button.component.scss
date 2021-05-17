@@ -1,10 +1,11 @@
 .follow {
   max-height: 30px;
-  
+
   font-size: 12px;
   font-weight: 700;
   &.rounded {
     --border-radius: 20px;
+    overflow: unset !important;
   }
   &.primary {
     --color: white;
