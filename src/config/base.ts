@@ -60,4 +60,11 @@ export const SIDEBAR_ITEMS = [{
     icon: "ribbon",
     fas: '',
     children: []
+  },
+  {
+    title: "livescore",
+    url: "/livescore",
+    icon: "football",
+    fas: '',
+    children: []
   }];
