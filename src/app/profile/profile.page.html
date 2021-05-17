@@ -255,7 +255,7 @@
         <!-- SEGMENT NEWS -->
         <div *ngIf="newsB">
           <ion-grid ngClass.xs="m-p-0">
-            <ion-row *ngFor="let item of news" class="">
+            <ion-row *ngFor="let item of news" >
               <ion-card
                 style="
                   width: 100%;
@@ -264,41 +264,13 @@
                   margin-bottom: 3%;
                 "
               >
-                <ion-button
-                  style="
-                    position: relative;
-                    left: 0;
-                    z-index: 10;
-                    --background: none;
-                    color: black;
-                    --box-shadow: none;
-                    top: 0%;
-                  "
-                  (click)="editNews(item?._id)"
-                >
-                  <ion-icon
-                    name="create-outline"
-                    style="--color: black; font-size: 30px"
-                  ></ion-icon>
-                </ion-button>
-                <ion-button
-                  style="
-                    position: relative;
-                    left: 74%;
-                    z-index: 10;
-                    --background: none;
-                    color: #ff000096;
-                    --box-shadow: none;
-                    top: 0%;
-                    width: 15%;
-                  "
-                  (click)="deleteNew(item?._id)"
-                >
-                  <ion-icon
-                    name="trash-outline"
-                    style="--color: black; font-size: 30px"
-                  ></ion-icon>
-                </ion-button>
+              <div style="height:40px;margin-top: 8px;">
+                <ion-icon
+                name="chevron-down"
+                (click)="openOptions($event,item)"
+                class="options-down"
+              ></ion-icon>
+              </div>
                 <ion-card-header
                   (click)="OpenNews(item?._id)"
                   style="cursor: pointer"

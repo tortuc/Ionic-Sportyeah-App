@@ -19,7 +19,12 @@ import { HttpClientModule} from '@angular/common/http';
 import { TranslateModule } from '@ngx-translate/core';
 import { PipesModule } from '../../pipes/pipes.module';
 import { ComponentsModule } from '../../components/components.module';
-
+import { ButtonsOptionsComponent } from './buttons-options/buttons-options.component';
+import { AttachLinkPreviewNewsComponent } from './attach-link-preview-news/attach-link-preview-news.component';
+import { ComponentsSharedModule } from 'src/app/shared-components/components-shared.module';
+import { RecordAudioNewsComponent } from './record-audio-news/record-audio-news.component';
+import { MsgAudioNewsComponent } from './msg-audio-news/msg-audio-news.component';
+ 
 @NgModule({
   imports: [
     CommonModule,
@@ -32,14 +37,19 @@ import { ComponentsModule } from '../../components/components.module';
     TranslateModule,
     PipesModule,
     ComponentsModule,
+    ComponentsSharedModule,
   ],
   declarations: [
     NewsPage,
     CreateComponent,
-    EditComponent,
+    EditComponent, 
     ReadComponent,
     StreamComponent,
-    CreateStreamComponent
+    CreateStreamComponent,
+    ButtonsOptionsComponent,
+    AttachLinkPreviewNewsComponent,
+    RecordAudioNewsComponent,
+    MsgAudioNewsComponent
   ],
   schemas:[CUSTOM_ELEMENTS_SCHEMA]
 })

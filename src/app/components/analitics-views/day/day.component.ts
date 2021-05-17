@@ -7,6 +7,7 @@ import { UserService } from 'src/app/service/user.service';
 import { take } from 'rxjs/operators';
 import { Html2CanvasService } from 'src/app/service/html2-canvas.service';
 import html2canvas from "html2canvas"; 
+import { PdfMakeService } from 'src/app/service/pdf-make.service';
 
 @Component({
   selector: 'day',
@@ -25,24 +26,35 @@ export class DayComponent implements OnInit, OnChanges {
     private cd:ChangeDetectorRef,
     private viewsSponsorService:ViewsSponsorService,
     private userService:UserService,
-    private html2Canvas:Html2CanvasService
+    private html2Canvas:Html2CanvasService,
+    private pdfMakeSerice:PdfMakeService
     ) {}
     imgcreada=false
     imagenCreada
-    capture(){
-      const element = document.getElementById('html2canvas');
-      const targetElement = document.getElementById('linesHourSponsor')
-      element.appendChild(targetElement);
-      this.html2Canvas.html2canvas(element.firstChild).then((img) => {
-        this.img = img;
-        element.firstChild.remove();
-        this.ngOnChanges()
-    }).catch((res) => {
-        console.log(res);
-    });
-    }
-    img
+    // capture(){
+    //   const element = document.getElementById('html2canvas');
+    //   const targetElement = document.getElementById('linesHourSponsor')
+    //   element.appendChild(targetElement);
+    //   this.html2Canvas.html2canvas(element.firstChild).then( (img) => {
+    //     this.img = img;
+    //     element.firstChild.remove();
+    //    const original = document.getElementById("contenido");
+    //    const nuevoCanvas = document.createElement("canvas")
+    //     nuevoCanvas.style.width = "400px"
+    //     nuevoCanvas.style.height = "400px";
+    //     nuevoCanvas.setAttribute("id","linesHourSponsor")
+    //     original.append(nuevoCanvas)
+        
+    //      this.linesHours()
+    // }).catch((res) => {
+    //     console.log(res);
+    // });
+    // }
+    // img
 
+    pdfDay(){
+      this.pdfMakeSerice.generatePdf(this.sponsorSelect,'day',this.hour )
+    }
 postViews;
 chatViews;
 searchViews;
@@ -63,7 +75,6 @@ date
     this.takeDataDay();
   }
   takeDataDay() {
- 
     this.hourShow = moment(this.hour).format("DD-MM-YYYY")
     this.viewsSponsorService
       .getVisitsByHour(this.userService.User._id, this.hour, "search",this.sponsorSelect)

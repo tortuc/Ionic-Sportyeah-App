@@ -65,6 +65,7 @@ const components = [
   ProfilePhotoComponent,
   ProfilePhotoOptionsComponent,
   ProfileUserInfoComponent
+  
 ];
 
 @NgModule({
