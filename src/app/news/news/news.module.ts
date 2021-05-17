@@ -24,7 +24,14 @@ import { AttachLinkPreviewNewsComponent } from './attach-link-preview-news/attac
 import { ComponentsSharedModule } from 'src/app/shared-components/components-shared.module';
 import { RecordAudioNewsComponent } from './record-audio-news/record-audio-news.component';
 import { MsgAudioNewsComponent } from './msg-audio-news/msg-audio-news.component';
- 
+import { NewsOptionPostComponent } from './news-option-post/news-option-post.component';
+import { ReactToNewsComponent } from './react-to-news/react-to-news.component';
+import { CommentsInNewsComponent } from './comments-in-news/comments-in-news.component';
+import { SharedsInNewsComponent } from './shareds-in-news/shareds-in-news.component';
+import { CommentNewsComponent } from './comment-news/comment-news.component';
+import { NewPostHeaderComponent } from 'src/app/post-components/new-post-header/new-post-header.component';
+import { ContenteditableValueAccessorModule } from '@tinkoff/angular-contenteditable-accessor';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -36,8 +43,9 @@ import { MsgAudioNewsComponent } from './msg-audio-news/msg-audio-news.component
     HttpClientModule,
     TranslateModule,
     PipesModule,
-    ComponentsModule,
+    ComponentsModule, 
     ComponentsSharedModule,
+    ContenteditableValueAccessorModule
   ],
   declarations: [
     NewsPage,
@@ -49,7 +57,14 @@ import { MsgAudioNewsComponent } from './msg-audio-news/msg-audio-news.component
     ButtonsOptionsComponent,
     AttachLinkPreviewNewsComponent,
     RecordAudioNewsComponent,
-    MsgAudioNewsComponent
+    MsgAudioNewsComponent,
+    NewsOptionPostComponent,
+    ReactToNewsComponent,
+    CommentsInNewsComponent,
+    CommentNewsComponent,
+    SharedsInNewsComponent,
+    NewPostHeaderComponent
+
   ],
   schemas:[CUSTOM_ELEMENTS_SCHEMA]
 })

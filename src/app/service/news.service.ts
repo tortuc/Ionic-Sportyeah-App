@@ -156,4 +156,38 @@ export class NewsService {
   }
 
 
+  changeReact(id, type) {
+    return this.http.put(
+      `${environment.URL_API}/news/changereact/${id}/${type}`,
+      null,
+      {
+        headers: new HttpHeaders({ "access-token": getToken() }),
+      }
+    );
+  }
+
+  
+  /**
+   * Cantidad de reacciones en una publicacion
+   *
+   */
+
+   countReactionsByNews(news) {
+     console.log("estoy",news)
+    return this.http.get<number>(
+      `${environment.URL_API}/news/reactions/${news}`
+    );
+  }
+
+   /**
+   * Saber si un usuario reacciono a un news
+   * @param id _id del news
+   * @param user _id del usuario
+   *
+   */
+
+    userReactToNews(id, user) {
+      return this.http.get(`${environment.URL_API}/news/reacted/${id}/${user}`);
+    }
+
 }

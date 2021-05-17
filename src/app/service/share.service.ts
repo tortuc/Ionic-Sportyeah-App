@@ -19,6 +19,17 @@ export class ShareService {
     );
   }
 
+
+   /**
+   * Retorna la cantidad de veces que se ha compartido una noticia
+   * @param news _id de la noticia
+   */
+    getTotalSharedsInNews(news) {
+      return this.http.get<number>(
+        `${environment.URL_API}/news/totalshareds/${news}`
+      );
+    }
+
   /**
    * Obtiene 10 comparticiones de un post, los traera dependiendo del skip
    * @param post _id del post

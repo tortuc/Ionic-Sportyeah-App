@@ -1,0 +1,13 @@
+<ion-grid style="position: relative">
+  <ion-row class="options">
+    <ion-col [size]="isNews ? 6 : 4">
+      <react-to-news [news]="news" [isNews]="isNews"></react-to-news>
+    </ion-col>
+    <!-- <ion-col size="4" *ngIf="!isNews">
+      <comments-in-news [news]="news"></comments-in-news>
+    </ion-col> -->
+    <ion-col [size]="isNews ? 6 : 4">
+      <shareds-in-news [news]="news" [isNews]="isNews"></shareds-in-news>
+    </ion-col>
+  </ion-row>
+</ion-grid>

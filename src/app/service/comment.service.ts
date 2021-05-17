@@ -33,6 +33,17 @@ export class CommentService {
     );
   }
 
+    /**
+   * Retorna la cantiddad de comentarios en una noticia
+   * @param news _id del news
+   * @returns
+   */
+     getCountsOfCommentsNews(news) {
+      return this.http.get<number>(
+        `${environment.URL_API}/news/countcomments/${news}`
+      );
+    }
+
   /**
    * Obtiene comentarios de una publicacion, dependiendo de la paginacion
    * @param post _id del post
@@ -65,4 +76,26 @@ export class CommentService {
         throw false;
       });
   }
+
+
+
+    /**
+   * Retorna si el usuario comento una noticia
+   */
+
+     userCommentThisNews(user, news) {
+      return this.http
+        .get(`${environment.URL_API}/news/usercomment/${news}/${user}`)
+        .toPromise()
+        .then((comment) => {
+          if (comment) {
+            return true;
+          } else {
+            throw false;
+          }
+        })
+        .catch(() => {
+          throw false;
+        });
+    }
 }

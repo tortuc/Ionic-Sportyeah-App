@@ -165,16 +165,19 @@
  </div>
 
  <div style="--background: white;width: 85%;margin-top: 5%;margin-left: auto;margin-right: auto;">
- <post-options style="background: white;"
-  [news]="news"
-  isPost="false"
-></post-options>
+ <news-option-post style="background: white;"
+  [news]="news.news"
+  [isNews]="true"
+></news-option-post>
 <ion-grid>
   <ion-row>
-    <ion-col size="12">
-      <comment-post  [news]="news?.news" (newComment)="comments($event)"></comment-post>
+    <ion-col size="12"> 
+      <comment-news  [news]="news?.news" (newComment)="comments($event)"></comment-news>
     </ion-col>
-    <ion-col *ngFor="let comment of news?.comments"  size="12">
+    <ion-col *ngFor="let comment of news?.comments" size="12">
+      <view-comment [comment]="comment"></view-comment>
+    </ion-col>
+    <!-- <ion-col *ngFor="let comment of news?.comments"  size="12">
       <ion-card class="comment"  >
         <ion-card-header>
           <ion-card-subtitle class="user-header">
@@ -187,7 +190,7 @@
              >{{comment.user.name}} {{comment.user.last_name}}</span><br>
             <span>{{comment.date | customDisplayDate}}</span>
           </div>
-             <!-- SPONSORS -->
+            
               <div>
                 <ion-grid style="position: absolute;">
                   <ion-row style=" margin-top: 10px">
@@ -211,7 +214,7 @@
                    </ion-row>
                   </ion-grid>
                 </div>
-            <!-- TERMINO SPONSORS -->
+            
           </ion-card-subtitle>
         </ion-card-header>
         <ion-card-content>
@@ -224,7 +227,7 @@
         </ion-card-content>
         </ion-card>
  
-    </ion-col>
+    </ion-col> -->
   </ion-row>
 </ion-grid>
 </div>

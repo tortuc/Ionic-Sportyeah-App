@@ -84,8 +84,6 @@ export class QuestionService {
         parrafos.map(
           async (parrafo) => {
             
-            console.log(parrafo.question);
-            
             if (parrafo.question) {
               if(parrafo.question.headline){
               // esperamos la url
@@ -93,6 +91,7 @@ export class QuestionService {
               // modificamos el archivo
                return parrafo;
               }
+              // parrafo.question = (await this.create(parrafo.question).toPromise())._id as string;
               return parrafo;
             } else {
               // no existe cuestionario, no modificamos el archivo

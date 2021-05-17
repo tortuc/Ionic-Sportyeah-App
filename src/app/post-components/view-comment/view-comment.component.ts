@@ -19,7 +19,8 @@ export class ViewCommentComponent implements OnInit {
     public viewsSponsorService:ViewsSponsorService
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {console.log(this.comment);
+  }
 
   async openImg() {
     let modal = await this.modalCtrl.create({
@@ -29,7 +30,7 @@ export class ViewCommentComponent implements OnInit {
     modal.present();
   }
 
-  goToSponsor(sponsor) { console.log("desde coment views sponosr");
+  goToSponsor(sponsor) {
   
     if (this.comment.user._id != this.userService.User._id) {
       this.viewsSponsorService
