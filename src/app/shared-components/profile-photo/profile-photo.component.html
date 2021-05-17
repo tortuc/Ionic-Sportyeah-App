@@ -1,7 +1,7 @@
 <div class="photo-content">
   <div class="photo-cover" >
-    <img (click)="see()" class="photo-user" [src]="userService.User.photo" alt="" />
-    <ion-icon (click)="options($event)" class="photo-edit" name="camera"></ion-icon>
+    <img (click)="see()" class="photo-user" [src]="user.photo" alt="" />
+    <ion-icon *ngIf="editable" (click)="options($event)" class="photo-edit" name="camera"></ion-icon>
   </div>
 </div>
 

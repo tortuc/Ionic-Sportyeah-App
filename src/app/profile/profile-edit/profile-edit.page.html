@@ -20,7 +20,8 @@
           ></profile-banner>
 
           <div style="margin-top: -80px">
-            <profile-photo></profile-photo>
+            <profile-photo [user]="userService.User" ></profile-photo>
+
           </div>
 
           <p class="email">{{userService.User.email}}</p>

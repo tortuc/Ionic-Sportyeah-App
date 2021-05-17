@@ -1,0 +1,18 @@
+<div
+  class="ion-justify-content-center ion-margin-vertical"
+  style="display: flex"
+>
+  <ion-badge color="secondary ion-margin-end">{{
+    "sport." + user?.sport | translate
+  }}</ion-badge>
+  <ion-badge color="secondary">
+    <span>
+      <span *ngIf="user?.profile_user === 'player'">{{
+        "profile_user." + user?.profile_user + "." + user?.sport | translate
+      }}</span>
+      <span *ngIf="user?.profile_user !== 'player'">{{
+        "profile_user." + user?.profile_user | translate
+      }}</span>
+    </span>
+  </ion-badge>
+</div>

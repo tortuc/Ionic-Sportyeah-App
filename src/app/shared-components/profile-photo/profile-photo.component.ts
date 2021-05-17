@@ -1,5 +1,6 @@
-import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
+import { Component, ElementRef, Input, OnInit, ViewChild } from "@angular/core";
 import { ModalController, PopoverController } from "@ionic/angular";
+import { User } from "src/app/models/IUser";
 import { AvatarComponent } from "src/app/profile/profile-edit/avatar/avatar.component";
 import { JdvimageService } from "src/app/service/jdvimage.service";
 import { UserService } from "src/app/service/user.service";
@@ -21,14 +22,18 @@ export class ProfilePhotoComponent implements OnInit {
     public fileService: JdvimageService
   ) {}
 
+
+  @Input() user:User;
+  @Input() editable: boolean = false;
+
   ngOnInit() {}
 
   async see() {
     let modal = await this.modal.create({
       component: SeeProfileBannerComponent,
       componentProps: {
-        user: this.userService.User,
-        photo: this.userService.User.photo,
+        user: this.user,
+        photo: this.user.photo,
       },
     });
     modal.present();
@@ -69,6 +74,7 @@ export class ProfilePhotoComponent implements OnInit {
    this.fileService.takePhoto().then((file)=>{
      this.userService.update({photo:file.url}).subscribe(()=>{
        this.userService.User.photo = file.url
+       this.user.photo = file.url
      })
    })
   }
@@ -87,6 +93,7 @@ export class ProfilePhotoComponent implements OnInit {
     this.fileService.uploadImageProgress(formData).then((url: string) => {
       this.userService.update({ photo: url }).subscribe(() => {
         this.userService.User.photo = url;
+        this.user.photo = url
       });
     });
   }

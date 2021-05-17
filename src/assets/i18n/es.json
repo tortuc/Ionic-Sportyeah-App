@@ -1178,5 +1178,7 @@
     "mu":"Región de Murcia",
     "na":"Comunidad Foral de Navarra"
   },
-  "update_profile_data":"Modificar datos del perfil"
+  "update_profile_data":"Modificar datos del perfil",
+  "goToAdmin": "Panel administrador"
+
 }

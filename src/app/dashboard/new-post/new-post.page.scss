@@ -6,10 +6,3 @@
 [contentEditable="true"]:empty:not(:focus):before {
   content: attr(data-placeholder);
 }
-
-.progress {
-  margin-top: 30px;
-  position: fixed;
-  z-index: 1000;
-  width: 100%;
-}

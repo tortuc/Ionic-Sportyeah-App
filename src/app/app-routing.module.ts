@@ -147,10 +147,10 @@ const routes: Routes = [
       import("./ranking/ranking.module").then((m) => m.RankingPageModule),
     canActivate: [AuthGuardService],
   },
-  {
-    path: "bet",
-    loadChildren: () => import("./bet/bet.module").then((m) => m.BetPageModule),
-  },
+  // {
+  //   path: "bet",
+  //   loadChildren: () => import("./bet/bet.module").then((m) => m.BetPageModule),
+  // },
   {
     path: "search",
     loadChildren: () =>

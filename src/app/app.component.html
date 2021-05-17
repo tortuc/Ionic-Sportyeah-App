@@ -20,7 +20,8 @@
             <img style="width: 150px" src="assets/logos/imagotipo_azul.png" />
           </div>
 
-          <new-profile-photo></new-profile-photo>
+          <profile-photo [user]="userService.User" [editable]="true" ></profile-photo>
+
 
           <ion-list-header
             style="color: black; margin-top: 10px"
@@ -33,29 +34,8 @@
               {{ userService.User?.last_name || "" }}
             </span>
           </ion-list-header>
-
-          <div
-            class="ion-justify-content-center ion-margin-vertical"
-            style="display: flex"
-            (click)="goTo('/profile/edit')"
-          >
-            <ion-badge color="secondary ion-margin-end">{{
-              "sport." + userService.User?.sport | translate
-            }}</ion-badge>
-            <ion-badge color="secondary">
-              <span>
-                <span *ngIf="userService.User?.profile_user === 'player'">{{
-                  "profile_user." +
-                    userService.User?.profile_user +
-                    "." +
-                    userService.User?.sport | translate
-                }}</span>
-                <span *ngIf="userService.User?.profile_user !== 'player'">{{
-                  "profile_user." + userService.User?.profile_user | translate
-                }}</span>
-              </span>
-            </ion-badge>
-          </div>
+          <profile-user-info routerLink="/profile/edit" [user]="userService.User"></profile-user-info>
+       
 
           <ion-list-header style="color: rgb(75, 72, 72)">
             <span style="margin: auto; font-size: 14px">
@@ -74,6 +54,24 @@
               <!-- <span><ion-icon name="create-outline" class="editOutline"></ion-icon></span> -->
             </p>
           </ion-list-header>
+          <ion-menu-toggle
+            *ngIf="userService.User?.role == 'admin'"
+            auto-hide="false"
+          >
+            <ion-item
+              (click)="admin()"
+              style="cursor: pointer"
+              lines="none"
+              detail="false"
+            >
+              <ion-icon
+                slot="start"
+                ios="settings-outline"
+                md="settings-outline"
+              ></ion-icon>
+              <ion-label>{{ "goToAdmin" | translate }}</ion-label>
+            </ion-item>
+          </ion-menu-toggle>
 
           <div *ngFor="let item of appPages">
             <ion-menu-toggle auto-hide="false" *ngIf="item.url">

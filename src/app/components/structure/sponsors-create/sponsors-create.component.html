@@ -1,6 +1,6 @@
 <ion-icon
   name="close-outline"
-  (click)="mc.dismiss()"
+  (click)="modalCtrl.dismiss()"
   style="
     color: gray;
     right: 5px;
@@ -12,67 +12,66 @@
   "
 ></ion-icon>
 <ion-content class="content">
+  <loading-progress class="progress"></loading-progress>
+
   <form [formGroup]="form">
-    <div class="text">
-      Selecciona la imagen de la marca
-    </div>
+    <div class="text" style="text-align: center;">Sube una imagen de tu patrocinador</div>
     <div class="image-container">
-      <img 
-        class="img"
-        [src]="form.value.image" 
-        (click)="add()"
-      />
+      <img class="img" [src]="form.value.image" (click)="add()" />
     </div>
     <ion-list>
       <ion-item>
-        <ion-label position="stacked">
-          Pagina de la marca
-        </ion-label>
-        <ion-input
-          placeholder="https://app.sportyeah.com/"
-          type="text"
-          formControlName="url"
-        ></ion-input>
-      </ion-item>
-      <p 
-        class="errormsj"
-        *ngIf="
-          (form.get('url').dirty || 
-          form.get('url').touched) &&
-          form.get('url').status !== 
-          'VALID'
-        "
-      >
-        No corresponde con una URL
-      </p>
-      <ion-item>
-        <ion-label position="stacked">
-          Nombre de la marca
-        </ion-label>
+        <ion-label position="stacked"> Nombre del patrocinador </ion-label>
         <ion-input
           placeholder="SportYeah!"
           type="text"
           formControlName="name"
         ></ion-input>
       </ion-item>
-      <p 
+      <p
         class="errormsj"
         *ngIf="
-          (form.get('name').dirty || 
-          form.get('name').touched) &&
-          form.get('name').status !== 
-          'VALID'
+          (form.get('name').dirty || form.get('name').touched) &&
+          form.get('name').status !== 'VALID'
         "
       >
-        Introduce el nombre de la marca
+        Introduce el nombre del patrocinador
+      </p>
+      <ion-item>
+        <ion-label position="stacked"> Pagina del patrocinador </ion-label>
+        <ion-input
+          placeholder="https://app.sportyeah.com/"
+          type="text"
+          formControlName="url"
+        ></ion-input>
+      </ion-item>
+      <p
+        class="errormsj"
+        *ngIf="
+          (form.get('url').dirty || form.get('url').touched) &&
+          form.get('url').status !== 'VALID'
+        "
+      >
+        No corresponde con una URL
       </p>
     </ion-list>
   </form>
+ <div style="padding: 10px;text-align: center;">
   <ion-button
-    fill="outline"
-    (click)="send()"
-    [disabled]="form.status !== 'VALID'"
-  >
-    Guardar Marca
-  </ion-button>
+  fill="outline"
+  (click)="send()"
+  [disabled]="form.status !== 'VALID'"
+>
+  Guardar patrocinador
+</ion-button>
+ </div>
+  <input
+  #openImage
+  type="file"
+  accept="image/*"
+  (change)="uploadImage($event)"
+  hidden
+/>
 </ion-content>
+
+
