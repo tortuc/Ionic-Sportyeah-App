@@ -3,7 +3,7 @@
     <div
       class="image"
       (click)="
-        userService.goToProfile(user.username, user._id, 'search', undefinded)
+        userService.goToProfile(user.username, user._id, 'search')
       "
     >
       <img class="banner-img" [src]="user.photoBanner" alt="" />
@@ -13,7 +13,7 @@
     <div
       class="name-content"
       (click)="
-        userService.goToProfile(user.username, user._id, 'search', undefined)
+        userService.goToProfile(user.username, user._id, 'search')
       "
     >
       <p class="name">{{ user.name }} {{ user.last_name }}</p>
@@ -22,7 +22,7 @@
   </div>
   <div
     (click)="
-      userService.goToProfile(user.username, user._id, 'search', undefined)
+      userService.goToProfile(user.username, user._id, 'search')
     "
     class="content"
   >

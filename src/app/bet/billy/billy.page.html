@@ -4,9 +4,9 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-content-billy"> 
+<ion-content class="ion-content-billy">
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button expand="full" (click)="openModalCreateBilly()">
+    <ion-fab-button expand="full">
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>
@@ -18,16 +18,21 @@
           <ion-card-content>
             <ion-row>
               <ion-col size="2">
-                <ion-img src="../../../assets/images/soccer.jpg" class="rounded"></ion-img>
+                <ion-img
+                  src="assets/images/soccer.jpg"
+                  class="rounded"
+                ></ion-img>
               </ion-col>
 
               <ion-col size="4" class="ion-padding-start">
                 <div>
-                  <h6 class="ion-no-margin color-primary" >Apuesta de futbol</h6>
+                  <h6 class="ion-no-margin color-primary">Apuesta de futbol</h6>
                 </div>
                 <div>Monto de apuesta: 200 €</div>
                 <div>Monto Acumulado: 0 €</div>
-                <ion-badge color="warning" class="ion-text-uppercase">porra privada</ion-badge>
+                <ion-badge color="warning" class="ion-text-uppercase"
+                  >porra privada</ion-badge
+                >
               </ion-col>
 
               <ion-col size="4">
@@ -46,22 +51,27 @@
           </ion-card-content>
         </ion-card>
       </ion-col>
-          
+
       <ion-col size="12">
         <ion-card class="ion-padding">
           <ion-card-content>
             <ion-row>
               <ion-col size="2">
-                <ion-img src="../../../assets/images/soccer.jpg" class="rounded"></ion-img>
+                <ion-img
+                  src="assets/images/soccer.jpg"
+                  class="rounded"
+                ></ion-img>
               </ion-col>
 
               <ion-col size="4" class="ion-padding-start">
                 <div>
-                  <h6 class="ion-no-margin color-primary" >Apuesta de futbol</h6>
+                  <h6 class="ion-no-margin color-primary">Apuesta de futbol</h6>
                 </div>
                 <div>Monto de apuesta: 200 €</div>
                 <div>Monto Acumulado: 0 €</div>
-                <ion-badge color="secondary" class="ion-text-uppercase">porra publica</ion-badge>
+                <ion-badge color="secondary" class="ion-text-uppercase"
+                  >porra publica</ion-badge
+                >
               </ion-col>
 
               <ion-col size="4">
@@ -82,5 +92,4 @@
       </ion-col>
     </ion-row>
   </ion-grid>
-
 </ion-content>

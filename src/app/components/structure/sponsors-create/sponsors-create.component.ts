@@ -20,7 +20,7 @@ export class SponsorsCreateComponent implements OnInit {
 
   constructor(
     public fb: FormBuilder,
-    private modalCtrl: ModalController,
+    public modalCtrl: ModalController,
     public actionSheetCtrl: ActionSheetController,
     public fileService: JdvimageService,
     private sponsorService: SponsorService,

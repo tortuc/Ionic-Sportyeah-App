@@ -1,26 +1,16 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { FormsModule } from "@angular/forms";
 
-import { IonicModule } from '@ionic/angular';
+import { IonicModule } from "@ionic/angular";
 
-import { BillyPageRoutingModule } from './billy-routing.module';
+import { BillyPageRoutingModule } from "./billy-routing.module";
 
-import { BillyPage } from './billy.page';
-import { ModalCreatePage } from './modal-create/modal-create.page';
-import { ModalCreatePageModule } from './modal-create/modal-create.module';
+import { BillyPage } from "./billy.page";
 
 @NgModule({
-  entryComponents: [
-    ModalCreatePage
-  ],
-  imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    BillyPageRoutingModule,
-    ModalCreatePageModule
-  ],
-  declarations: [BillyPage]
+  entryComponents: [],
+  imports: [CommonModule, FormsModule, IonicModule, BillyPageRoutingModule],
+  declarations: [BillyPage],
 })
 export class BillyPageModule {}

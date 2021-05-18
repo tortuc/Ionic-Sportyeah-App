@@ -18,7 +18,7 @@
     <div class="divExperiences" *ngIf="!e.deleted">
       <ion-row>
         <ion-col size="4" class="text-center">
-          <ion-slides pager="true" [options]="slideOpts">
+          <ion-slides pager="true" >
             <ion-slide *ngFor="let url of e.multimediaContent" class="slide">
               <img
                 *ngIf="url.indexOf('image') !== -1"
