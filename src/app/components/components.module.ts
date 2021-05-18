@@ -46,7 +46,6 @@ import { MentionNotificationComponent } from "./mention-notification/mention-not
 import { ButtonNotificationComponent } from "./button-notification/button-notification.component";
 import { ButtonSearchFriendComponent } from "./button-search-friend/button-search-friend.component";
 import { PreviewFilesComponent } from "./preview-files/preview-files.component";
-import { OptionsWishComponent } from "./options-wish/options-wish.component";
 import { ViewFilesComponent } from "./view-files/view-files.component";
 import { ViewImageComponent } from "./view-image/view-image.component";
 import { EmojiModule } from "@ctrl/ngx-emoji-mart/ngx-emoji";
@@ -64,7 +63,6 @@ import { ChallengesPotsOptionsIndivComponent } from "./challenge/challenges-pots
 import { NewQuestionComponent } from "./new-question/new-question.component";
 import { ModifyMediaComponent } from "src/app/components/structure/modify-media/modify-media.component";
 import { SponsorsNodeComponent } from "src/app/components/structure/sponsors/sponsors.component";
-import { SponsorsCreateComponent } from "src/app/components/structure/sponsors-create/sponsors-create.component";
 import { QuestionComponent } from "./question/question.component";
 import { GetMediaComponent } from "./get-media/get-media.component";
 import { QuestionNotificationComponent } from "./question-notification/question-notification.component";
@@ -100,7 +98,6 @@ const components = [
   ChallengesPostHeaderComponent,
   ChallengeContentComponent,
   PreviewFilesComponent,
-  OptionsWishComponent,
   ViewImageComponent,
   ExperiencePage,
   AwardsPage,
@@ -131,7 +128,6 @@ const components = [
   NewQuestionComponent,
   ModifyMediaComponent,
   SponsorsNodeComponent,
-  SponsorsCreateComponent,
   QuestionComponent,
   QuestionNotificationComponent,
   GetMediaComponent,

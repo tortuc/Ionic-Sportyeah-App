@@ -1,22 +1,35 @@
-<div class="user-item" >
+<div class="user-item">
   <div class="header">
-    <div class="image">
-      <img
-        (click)="userService.goToProfile(user.username,user._id,'search',undefined)"
-        class="img"
-        [src]="user.photo"
-      />
+    <div
+      class="image"
+      (click)="
+        userService.goToProfile(user.username, user._id, 'search', undefinded)
+      "
+    >
+      <img class="banner-img" [src]="user.photoBanner" alt="" />
+      <img class="img" [src]="user.photo" />
     </div>
-    <div class="name-content" (click)="userService.goToProfile(user.username,user._id,'search',undefined)">
+
+    <div
+      class="name-content"
+      (click)="
+        userService.goToProfile(user.username, user._id, 'search', undefined)
+      "
+    >
       <p class="name">{{ user.name }} {{ user.last_name }}</p>
       <p class="username">@{{ user.username }}</p>
     </div>
-    <div class="follow">
-      <follow-button [user]="user._id"></follow-button>
-    </div>
   </div>
-  <div  (click)="userService.goToProfile(user.username,user._id,'search',undefined)" class="content">
-    <div>{{followers}} Seguidores</div>
-    <div>{{followings}} Siguiendo</div>
+  <div
+    (click)="
+      userService.goToProfile(user.username, user._id, 'search', undefined)
+    "
+    class="content"
+  >
+    <div>{{ followers }} {{ "followers" | translate }}</div>
+    <div>{{ followings }} {{ "followings" | translate }}</div>
+  </div>
+  <div class="follow">
+    <follow-button [user]="user._id"></follow-button>
   </div>
 </div>

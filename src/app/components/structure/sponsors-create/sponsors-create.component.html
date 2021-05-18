@@ -1,77 +1,82 @@
-<ion-icon
-  name="close-outline"
-  (click)="modalCtrl.dismiss()"
-  style="
-    color: gray;
-    right: 5px;
-    top: 15px;
-    position: absolute;
-    font-size: 40px;
-    z-index: 9999999;
-    cursor: pointer;
-  "
-></ion-icon>
 <ion-content class="content">
+  <ion-icon
+    name="close-outline"
+    (click)="modalCtrl.dismiss()"
+    class="close"
+  ></ion-icon>
   <loading-progress class="progress"></loading-progress>
+  <div class="sponsor-content" *ngIf="!noAccount">
+    <h4 class="title">
+      {{ "sponsors.create.account.title" | translate }}
+    </h4>
+    <sponsors-search></sponsors-search>
+   
+  </div>
 
-  <form [formGroup]="form">
-    <div class="text" style="text-align: center;">Sube una imagen de tu patrocinador</div>
-    <div class="image-container">
-      <img class="img" [src]="form.value.image" (click)="add()" />
-    </div>
-    <ion-list>
-      <ion-item>
-        <ion-label position="stacked"> Nombre del patrocinador </ion-label>
-        <ion-input
-          placeholder="SportYeah!"
-          type="text"
-          formControlName="name"
-        ></ion-input>
-      </ion-item>
-      <p
-        class="errormsj"
-        *ngIf="
-          (form.get('name').dirty || form.get('name').touched) &&
-          form.get('name').status !== 'VALID'
-        "
-      >
-        Introduce el nombre del patrocinador
-      </p>
-      <ion-item>
-        <ion-label position="stacked"> Pagina del patrocinador </ion-label>
-        <ion-input
-          placeholder="https://app.sportyeah.com/"
-          type="text"
-          formControlName="url"
-        ></ion-input>
-      </ion-item>
-      <p
-        class="errormsj"
-        *ngIf="
-          (form.get('url').dirty || form.get('url').touched) &&
-          form.get('url').status !== 'VALID'
-        "
-      >
-        No corresponde con una URL
-      </p>
-    </ion-list>
-  </form>
- <div style="padding: 10px;text-align: center;">
-  <ion-button
-  fill="outline"
-  (click)="send()"
-  [disabled]="form.status !== 'VALID'"
->
-  Guardar patrocinador
-</ion-button>
- </div>
+  <div *ngIf="noAccount">
+    <form [formGroup]="form">
+      <div class="text" style="text-align: center">
+        Sube una imagen de tu patrocinador
+      </div>
+      <div class="image-container">
+        <img class="img" [src]="form.value.image" (click)="add()" />
+      </div>
+      <ion-list>
+        <ion-item>
+          <ion-label position="stacked"> Nombre del patrocinador </ion-label>
+          <ion-input
+            placeholder="SportYeah!"
+            type="text"
+            formControlName="name"
+          ></ion-input>
+        </ion-item>
+        <p
+          class="errormsj"
+          *ngIf="
+            (form.get('name').dirty || form.get('name').touched) &&
+            form.get('name').status !== 'VALID'
+          "
+        >
+          Introduce el nombre del patrocinador
+        </p>
+        <ion-item>
+          <ion-label position="stacked"> Pagina del patrocinador </ion-label>
+          <ion-input
+            placeholder="https://app.sportyeah.com/"
+            type="text"
+            formControlName="url"
+          ></ion-input>
+        </ion-item>
+        <p
+          class="errormsj"
+          *ngIf="
+            (form.get('url').dirty || form.get('url').touched) &&
+            form.get('url').status !== 'VALID'
+          "
+        >
+          No corresponde con una URL
+        </p>
+      </ion-list>
+    </form>
+  </div>
+  <ion-item>
+    <ion-label>Mi patrocinador no tiene cuenta en sportyeah</ion-label>
+    <ion-checkbox slot="end" [(ngModel)]="noAccount"></ion-checkbox>
+  </ion-item>
+  <div style="padding: 10px; text-align: center">
+    <ion-button
+      fill="outline"
+      (click)="send()"
+      [disabled]="form.status !== 'VALID'"
+    >
+      Guardar patrocinador
+    </ion-button>
+  </div>
   <input
-  #openImage
-  type="file"
-  accept="image/*"
-  (change)="uploadImage($event)"
-  hidden
-/>
+    #openImage
+    type="file"
+    accept="image/*"
+    (change)="uploadImage($event)"
+    hidden
+  />
 </ion-content>
-
-

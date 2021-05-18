@@ -1168,6 +1168,8 @@
     "avatar": "Selecciona un avatar",
     "camera": "Tomar foto"
   },
+  "followers":"Seguidores",
+  "followings":"Siguiendo",
   "change_flag":{
     "title":"Puedes cambiar tu bandera con la bandera de la comunidad autónoma a donde perteneces 😉",
     "es":"España",
@@ -1190,6 +1192,18 @@
     "na":"Comunidad Foral de Navarra"
   },
   "update_profile_data":"Modificar datos del perfil",
-  "goToAdmin": "Panel administrador"
+  "goToAdmin": "Panel administrador",
+  "sponsors":{
+    "create":{
+      "account":{
+        "title":"Ingresa el nombre de usuario de tu patrocinador en sportyeah!"
+      },
+      "action":{
+        "header":"Subir una imagen para el patrocinador",
+        "gallery":"Galeria",
+        "free":"Añadir imagen gratuita"
+      }
+    }
+  }
 
 }

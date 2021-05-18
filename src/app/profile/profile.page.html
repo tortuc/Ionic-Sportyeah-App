@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar class="main-bg">
+  <ion-toolbar class="toolbar-bg">
     <ion-buttons slot="start">
       <ion-menu-button style="color: white"></ion-menu-button>
     </ion-buttons>
@@ -325,14 +325,19 @@
         </div>
         <!-- FINISH SEGMENT NEWS -->
       </ion-col>
-    
+
       <ion-col
         size-lg="5"
         fxShow.lt-md="false"
         class="ion-justify-content-center ion-align-items-center"
       >
         <div style="position: sticky; top: -300px; padding-left: 5px">
-          <profile-sponsors></profile-sponsors>
+          <profile-sponsors
+            *ngIf="userService.User.profile_user !== 'sponsor'"
+          ></profile-sponsors>
+          <custom-sponsor
+            *ngIf="userService.User.profile_user == 'sponsor'"
+          ></custom-sponsor>
           <friends-panel-desktop></friends-panel-desktop>
           <add-users-panel-desktop></add-users-panel-desktop>
           <!-- <popular-groups-panel></popular-groups-panel> -->

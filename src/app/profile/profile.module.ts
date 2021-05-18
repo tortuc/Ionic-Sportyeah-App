@@ -24,6 +24,10 @@ import { ComponentsSharedModule } from "../shared-components/components-shared.m
 import { MsgProfileEditComponent } from "./msg-profile-edit/msg-profile-edit.component";
 import { OptionNewsComponent } from "../news/news/option-news/option-news.component";
 import { ProfileSponsorsComponent } from "./profile-sponsors/profile-sponsors.component";
+import { SponsorsCreateComponent } from "../components/structure/sponsors-create/sponsors-create.component";
+import { SponsorsSearchComponent } from "../components/structure/sponsors-create/sponsors-search/sponsors-search.component";
+import { SponsorUserItemComponent } from "../components/structure/sponsors-create/sponsor-user-item/sponsor-user-item.component";
+import { CustomSponsorComponent } from "./custom-sponsor/custom-sponsor.component";
 
 @NgModule({
   imports: [
@@ -54,7 +58,11 @@ import { ProfileSponsorsComponent } from "./profile-sponsors/profile-sponsors.co
     NewNodeComponent,
     MsgProfileEditComponent,
     OptionNewsComponent,
-    ProfileSponsorsComponent
+    ProfileSponsorsComponent,
+    SponsorsCreateComponent,
+    SponsorsSearchComponent,
+    SponsorUserItemComponent,
+    CustomSponsorComponent
   ],
 })
 export class ProfilePageModule {}

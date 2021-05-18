@@ -24,14 +24,7 @@
   <div style="cursor: pointer; text-align: center">
     <p style="font-size: 12px" *ngIf="!country">Ranking Global</p>
     <p style="font-size: 12px" *ngIf="country">Ranking en mi país</p>
-    <!-- <img
-      *ngIf="(ipLoaded | async) && country"
-      class="bandera"
-      [src]="'https://www.countryflags.io/'+banderaIP[0]+banderaIP[1]+'/flat/64.png'"
-      alt=""
-      style="height: 100px"
-      class="slide-in-bck-center"
-    /> -->
+  
     <img
       *ngIf="!country"
       src="https://img.icons8.com/offices/344/geography.png"

@@ -1,0 +1,24 @@
+<ion-card class="sponsors-card main-border">
+  <div class="title">
+    <h5>Personaliza tu tarjeta de patrocinio</h5>
+    <p>De esta manera se mostrara tu tarjeta en los perfiles que patrocinas</p>
+  </div>
+
+  <div class="content">
+    <div class="mini">
+      <p>{{ userService.User.sponsor_info.name }}</p>
+      <img [src]="userService.User.sponsor_info.miniature" alt="" />
+      <p>(Miniatura)</p>
+    </div>
+    <div class="profile">
+      <p>{{ userService.User.sponsor_info.name }}</p>
+      <img [src]="userService.User.sponsor_info.profile_image" alt="" />
+      <p>(Perfil)</p>
+    </div>
+  </div>
+  <div style="text-align: center">
+    <ion-button class="btn-primary" (click)="createSponsor()"
+      >Personalizar</ion-button
+    >
+  </div>
+</ion-card>

@@ -10,7 +10,7 @@
 </ion-header>
 
 <ion-content style="--background: white">
-  <ion-card style="box-shadow: unset;margin: 0;">
+  <ion-card style="box-shadow: unset; margin: 0">
     <ion-searchbar
       animated="true"
       placeholder="{{
@@ -38,10 +38,10 @@
         <ion-row>
           <ion-col
             *ngFor="let user of users"
-            size-sm="12"
-            size-xs="12"
-            size-md="6"
-            size-lg="4"
+            size-sm="6"
+            size-xs="6"
+            size-md="4"
+            size-lg="3"
           >
             <user-item [user]="user"> </user-item>
           </ion-col>

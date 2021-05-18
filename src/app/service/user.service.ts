@@ -4,9 +4,8 @@ import { environment } from "../../environments/environment";
 import { Router } from "@angular/router";
 import { ChatService } from "./chat.service";
 import { getToken } from "../helpers/token";
-import { WishService } from "./wish.service";
 import { Howl } from "howler";
-import { ViewsProfileService } from "./views-profile.service"
+import { ViewsProfileService } from "./views-profile.service";
 import { SocketService } from "./socket.service";
 import { ISponsor } from "../models/ISponsor";
 import { LoginService } from "./login.service";
@@ -26,55 +25,49 @@ export class UserService {
     private router: Router,
     private socketService: SocketService,
     private chatService: ChatService,
-    private wishService: WishService,
-    private viewsProfileService:ViewsProfileService,
+    private viewsProfileService: ViewsProfileService,
     private loginService: LoginService,
     private translate: TranslateService,
     // private fcmService: FcmService,
     private cookieService: CookieService
   ) {}
 
-
   /**
    * Cuerpo principal del usuario
    */
-   public User: User = null;
+  public User: User = null;
 
-   /**
-    * Seguidores del usuario
-    */
-   public followers: Followers[] = [];
- 
-   /**
-    * Usuarios que sigo
-    */
-   public followings: Followings[] = [];
+  /**
+   * Seguidores del usuario
+   */
+  public followers: Followers[] = [];
+
+  /**
+   * Usuarios que sigo
+   */
+  public followings: Followings[] = [];
 
   /**
    * Setea al usuario
    * @param user
    */
-   setUser(user: User) {
+  setUser(user: User) {
     this.translate.use(user.lang);
     this.cookieService.set("lang", user.lang);
     this.User = user;
-    this.wishService.getList(user._id);
   }
 
   getUser() {
     return this.User;
   }
 
-
-  
-  
   /**
    * Retorna si esta siguiendo a un usuario
    * @param id _id del usuario
    * @returns
    */
 
-   public isFollow(id) {
+  public isFollow(id) {
     let following = this.followings.find((following: any) => {
       return following.user._id == id;
     });
@@ -101,7 +94,6 @@ export class UserService {
     }
   }
 
-  
   unFollowApi(id) {
     return this.http.delete(`${environment.URL_API}/friend/unfollow/${id}`, {
       headers: new HttpHeaders({ "access-token": getToken() }),
@@ -175,7 +167,6 @@ export class UserService {
 
   users: User[] = null;
 
-
   getUsers() {
     return this.http.get(`${environment.URL_API}/user/users`, {
       headers: new HttpHeaders({ "access-token": getToken() }),
@@ -195,7 +186,7 @@ export class UserService {
   }
 
   update(body) {
-    return this.http.put(`${environment.URL_API}/user/update`, body, {
+    return this.http.put<User>(`${environment.URL_API}/user/update`, body, {
       headers: new HttpHeaders({ "access-token": getToken() }),
     });
   }
@@ -226,8 +217,6 @@ export class UserService {
                 }
               },
               (err) => {
-              
-
                 localStorage.clear();
                 reject(false);
               }
@@ -249,24 +238,22 @@ export class UserService {
     return this.http.get(`${environment.URL_API}/user/username/${username}`);
   }
 
-
-  public goToProfile(username,idUser,from,link = null) {
+  public goToProfile(username, idUser, from, link = null) {
     if (username != this.User.username) {
       // this.getUserByUsername(username)
       // .subscribe(
-        // (resp:any)=>{
-          this.viewsProfileService 
-          .createProfileView(
-            { user:idUser,
-             visitor:this.User._id,
-             from:from,
-             link: link
-           }
-           )
-            .subscribe(() => {
-              this.router.navigate([`/user/${username}`])
-            });
-        // }
+      // (resp:any)=>{
+      this.viewsProfileService
+        .createProfileView({
+          user: idUser,
+          visitor: this.User._id,
+          from: from,
+          link: link,
+        })
+        .subscribe(() => {
+          this.router.navigate([`/user/${username}`]);
+        });
+      // }
       // )
     } else {
       this.router.navigate(["/profile"]);
@@ -282,11 +269,11 @@ export class UserService {
     this.audio.play();
   }
 
-  public changeSponsors(sponsors:ISponsor[]){
+  public changeSponsors(sponsors: ISponsor[]) {
     this.http.post(
       `${environment.URL_API}/user/sponsors`,
-      {id:this.User._id,sponsors},
-      {headers: new HttpHeaders({ "access-token": getToken() })}
+      { id: this.User._id, sponsors },
+      { headers: new HttpHeaders({ "access-token": getToken() }) }
     );
   }
 
@@ -295,7 +282,6 @@ export class UserService {
   logoutObservable() {
     return this.logout$.asObservable();
   }
-
 
   mostPopulateUsers() {
     return this.http.get(`${environment.URL_API}/user/fivepopular`, {
@@ -317,5 +303,4 @@ export class UserService {
       headers: new HttpHeaders({ "access-token": getToken() }),
     });
   }
-
 }

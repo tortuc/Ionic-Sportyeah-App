@@ -1,19 +1,38 @@
-.image-container{
-  width:400px;
+.image-container {
+  width: 400px;
   height: 200px;
   background: black;
   text-align: center;
-  justify-content:center;
-  margin-left:auto;
-  margin-right:auto;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
   border-radius: 10px;
 }
 
-.img{
-  cursor:pointer;
-  height:100%;
+.img {
+  cursor: pointer;
+  height: 100%;
 }
-.text{
-  font-weight:bold;
-  padding:5px;
+.text {
+  font-weight: bold;
+  padding: 5px;
+}
+
+.close {
+  color: white;
+  background: #00000075;
+  border-radius: 50%;
+  right: 5px;
+  top: 10px;
+  position: absolute;
+  font-size: 30px;
+  z-index: 10;
+  cursor: pointer;
+}
+
+.sponsor-content{
+  padding: 10px;
+  .title{
+    text-align: center;
+  }
 }
