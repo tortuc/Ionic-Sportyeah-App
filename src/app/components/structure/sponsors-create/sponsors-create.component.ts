@@ -3,9 +3,10 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { ActionSheetController, ModalController } from "@ionic/angular";
 import { ISponsor } from "src/app/models/ISponsor";
 import { ImagePickerComponent } from "src/app/shared-components/image-picker/image-picker.component";
-import { JdvimageService } from "src/app/service/jdvimage.service";
-import { SponsorService } from "src/app/service";
 import { TranslateService } from "@ngx-translate/core";
+import { SponsorService } from "src/app/service";
+import { User } from "src/app/models/IUser";
+import { FilesService } from "src/app/service/files.service";
 
 @Component({
   selector: "sponsors-create",
@@ -17,12 +18,11 @@ export class SponsorsCreateComponent implements OnInit {
 
   @ViewChild("openImage") openImage: ElementRef;
 
-
   constructor(
     public fb: FormBuilder,
     public modalCtrl: ModalController,
     public actionSheetCtrl: ActionSheetController,
-    public fileService: JdvimageService,
+    public fileService: FilesService,
     private sponsorService: SponsorService,
     private readonly translate: TranslateService
   ) {}
@@ -112,5 +112,9 @@ export class SponsorsCreateComponent implements OnInit {
     });
   }
 
- 
+  sponsorSelected: User = null;
+
+  setSponsor(sponsor: User) {
+    this.sponsorSelected = sponsor;
+  }
 }

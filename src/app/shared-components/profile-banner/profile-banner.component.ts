@@ -1,7 +1,7 @@
 import { Component, ElementRef, Input, OnInit, ViewChild } from "@angular/core";
 import { ModalController, PopoverController } from "@ionic/angular";
 import { User } from "src/app/models/IUser";
-import { JdvimageService } from "src/app/service/jdvimage.service";
+import { FilesService } from "src/app/service/files.service";
 import { UserService } from "src/app/service/user.service";
 import { ImagePickerComponent } from "../image-picker/image-picker.component";
 import { ProfileBannerOptionsComponent } from "../profile-banner-options/profile-banner-options.component";
@@ -19,7 +19,7 @@ export class ProfileBannerComponent implements OnInit {
   constructor(
     private popover: PopoverController,
     private modal: ModalController,
-    private fileService: JdvimageService,
+    private fileService: FilesService,
     private userService: UserService
   ) {}
 

@@ -1,5 +1,4 @@
 import { Component, OnChanges, OnInit, ViewChild } from "@angular/core";
-//import { FormBuilder, FormControl,FormGroup} from '@angular/forms';
 import { TranslateService } from "@ngx-translate/core";
 import { UserService } from "../../../service/user.service";
 import {
@@ -15,7 +14,6 @@ import {
   LoadingController,
   ModalController,
 } from "@ionic/angular";
-import { JdvimageService } from "src/app/service/jdvimage.service";
 import { NewsService } from "../../../service/news.service";
 import { ToastController } from "@ionic/angular";
 import { Router } from "@angular/router";
@@ -24,9 +22,9 @@ import { QuestionService } from "src/app/service/question.service";
 import { NewQuestionComponent } from "src/app/components/new-question/new-question.component";
 import { EditQuestionComponent } from "src/app/components/edit-question/edit-question.component";
 import { ButtonsOptionsComponent } from "../buttons-options/buttons-options.component";
-import { format } from "path";
+import { FilesService } from "src/app/service/files.service";
 
-const { Camera, Filesystem } = Plugins;
+const { Camera } = Plugins;
 
 @Component({
   selector: "app-create",
@@ -56,7 +54,7 @@ urlYu
     public translate: TranslateService,
     private modalCtrl: ModalController,
     private loading: LoadingController,
-    private jdvImage: JdvimageService,
+    private filesServices: FilesService,
     private actionSheetCtrl: ActionSheetController,
     public newsService: NewsService,
     public toastController: ToastController,
@@ -331,7 +329,7 @@ urlYu
         loading.present();
         let blob = this.DataURIToBlob(image.dataUrl);
         formData.append("image", blob);
-        this.jdvImage
+        this.filesServices
           .uploadImage(formData)
           .toPromise()
           .then((url: string) => {
@@ -365,7 +363,7 @@ urlYu
         loading.present();
         let blob = this.DataURIToBlob(image.dataUrl);
         formData.append("image", blob);
-        this.jdvImage
+        this.filesServices
           .uploadImage(formData)
           .toPromise()
           .then((url: string) => {
@@ -481,7 +479,7 @@ urlYu
   }
 
   uploadVideoPrincipal(video) {
-    this.jdvImage
+    this.filesServices
       .uploadVideo(video)
       .then((url) => {
         this.videoSelected = url;
@@ -490,7 +488,7 @@ urlYu
       .catch((err) => {});
   }
   uploadVideoNotPrincipal(video, i) {
-    this.jdvImage
+    this.filesServices
       .uploadVideo(video)
 
       .then((url) => {

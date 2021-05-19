@@ -4,12 +4,12 @@ import { environment } from 'src/environments/environment';
 import { getToken } from '../helpers/token';
 import { INewPost, IPost, IPostFile } from '../models/iPost';
 import {Howl} from 'howler';
-import { JdvimageService } from './jdvimage.service';
 import { Subject } from 'rxjs';
 import { Followings } from '../models/IUser';
 import { TranslateService } from '@ngx-translate/core';
 import { AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { FilesService } from './files.service';
 
 export interface idFriends {
   friends_id: Followings[];
@@ -24,7 +24,7 @@ export class PostService {
 
 constructor(
   private http:HttpClient,
-  private imageService:JdvimageService,
+  private filesServices:FilesService,
   private translate:TranslateService,
   private alertCtrl:AlertController,
   private router:Router
@@ -164,7 +164,7 @@ uploadsVideos(videos: any[], files: IPostFile[], i = 0) {
             let form = new FormData();
             form.append("video", video.file);
             // esperamos la url
-            file.url = (await this.imageService.uploadVideo(
+            file.url = (await this.filesServices.uploadVideo(
               form,
               true
             )) as string;

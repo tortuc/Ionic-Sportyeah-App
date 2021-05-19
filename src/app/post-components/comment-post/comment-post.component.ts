@@ -7,29 +7,21 @@ import {
   Output,
   ViewChild,
 } from "@angular/core";
-import { FormBuilder, FormsModule, Validators } from "@angular/forms";
+import { FormBuilder, Validators } from "@angular/forms";
 import {
-  ActionSheetController,
-  AlertController,
   LoadingController,
   ModalController,
-  Platform,
   ToastController,
 } from "@ionic/angular";
 import { TranslateService } from "@ngx-translate/core";
-import { take } from "rxjs/operators";
-import { NewQuestionComponent } from "src/app/components/new-question/new-question.component";
 import { MentionsDirective } from "src/app/directives/mentions.directive";
 import { INew, IPost, IPostFile } from "src/app/models/iPost";
 import { CommentService } from "src/app/service/comment.service";
-import { JdvimageService } from "src/app/service/jdvimage.service";
 import { NewsService } from "src/app/service/news.service";
 import { PostService } from "src/app/service/post.service";
 import { QuestionService } from "src/app/service/question.service";
 import { UserService } from "src/app/service/user.service";
 import { AssetsButtonsComponent } from "src/app/shared-components/assets-buttons/assets-buttons.component";
-// import { ImagePickerComponent } from "../image-picker/image-picker.component";
-// import { VideoPickerComponent } from "../video-picker/video-picker.component";
 
 @Component({
   selector: "comment-post",
@@ -113,10 +105,10 @@ export class CommentPostComponent implements OnInit {
 
   @Output() newComment = new EventEmitter();
 
-   creating = false
- 
+  creating = false;
+
   async send() {
-    this.creating = true
+    this.creating = true;
     // obtenemos los datos del formulario
     let comment = this.form.value;
 
@@ -147,7 +139,7 @@ export class CommentPostComponent implements OnInit {
           this.newCommentSuccess(comment, loading);
         })
         .catch((err) => {
-          this.creating = false
+          this.creating = false;
           // handle err
           loading.dismiss();
         });
@@ -160,7 +152,7 @@ export class CommentPostComponent implements OnInit {
           this.newCommentSuccess(comment, loading);
         })
         .catch((err) => {
-          this.creating = false
+          this.creating = false;
           // handle err
         });
     }
@@ -194,7 +186,7 @@ export class CommentPostComponent implements OnInit {
   }
 
   reset() {
-    this.creating = false
+    this.creating = false;
 
     this.form.controls.message.setValue("");
     this.files = [];

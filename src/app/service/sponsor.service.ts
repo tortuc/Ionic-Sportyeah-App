@@ -2,6 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { environment } from "src/environments/environment";
 import { ISponsor } from "../models/ISponsor";
+import { User } from "../models/IUser";
 
 @Injectable({
   providedIn: "root",
@@ -36,6 +37,6 @@ export class SponsorService {
    *
    */
   getSponsorsUsersByQuery(query: string = '') {
-    return this.http.get<ISponsor[]>(`${this.route}/query/${query}/0`);
+    return this.http.get<User[]>(`${this.route}/query/${query}/0`);
   }
 }

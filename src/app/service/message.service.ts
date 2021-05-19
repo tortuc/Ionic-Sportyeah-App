@@ -5,8 +5,8 @@ import { Subject } from "rxjs";
 import { getToken } from "../helpers/token";
 import { take } from "rxjs/operators";
 import { Howl } from "howler";
-import { JdvimageService } from "./jdvimage.service";
 import { IPostFile } from "../models/iPost";
+import { FilesService } from "./files.service";
 
 @Injectable({
   providedIn: "root",
@@ -14,7 +14,7 @@ import { IPostFile } from "../models/iPost";
 export class MessageService {
   constructor(
     private http: HttpClient,
-    private imageService: JdvimageService
+    private filesServices: FilesService
   ) {}
   audio = new Howl({
     src: ["assets/sounds/drop.mp3"],
@@ -108,7 +108,7 @@ export class MessageService {
               let form = new FormData();
               form.append("video", video.file);
               // esperamos la url
-              file.url = (await this.imageService.uploadVideo(
+              file.url = (await this.filesServices.uploadVideo(
                 form,
                 true
               )) as string;

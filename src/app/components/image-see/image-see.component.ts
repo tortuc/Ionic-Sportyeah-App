@@ -1,6 +1,5 @@
 import { IPixelBayResponse } from './../../models/IPixelBayResponse';
 import { take } from "rxjs/operators";
-import { JdvimageService } from "src/app/service/jdvimage.service";
 import { FreeImgService } from "./../../service/freeImg.service";
 import { 
   ModalController,
@@ -8,6 +7,7 @@ import {
 } from "@ionic/angular";
 import { Component, Input, OnInit } from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
+import { FilesService } from 'src/app/service/files.service';
 
 export interface EventTargetResponse extends EventTarget{
   response: Blob;
@@ -32,7 +32,7 @@ export class ImageSeeComponent implements OnInit {
     public modalCtrl: ModalController,
     private loading: LoadingController,
     private translate: TranslateService,
-    private imageAPI: JdvimageService,
+    private filesServices: FilesService,
     public freeImg: FreeImgService
   ) {}
 
@@ -69,7 +69,7 @@ export class ImageSeeComponent implements OnInit {
   }
 
   uploadImage(formData: FormData, loading?) {
-    this.imageAPI
+    this.filesServices
       .uploadImage(formData)
       .toPromise()
       .then((url) => {

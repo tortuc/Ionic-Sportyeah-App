@@ -2,7 +2,6 @@ import { Router } from "@angular/router";
 import { take } from "rxjs/operators";
 import { ChallengeService } from "../../../service/challenge.service";
 import { TranslateService } from "@ngx-translate/core";
-import { JdvimageService } from "../../../service/jdvimage.service";
 import { FormBuilder } from "@angular/forms";
 import { MentionsDirective } from "../../../directives/mentions.directive";
 import { UserService } from "../../../service/user.service";
@@ -13,6 +12,7 @@ import {
 } from "@ionic/angular";
 import { Component, OnInit, Input, ViewChild } from "@angular/core";
 import { ReusableComponentsIonic } from "src/app/service/ionicHelpers.service";
+import { FilesService } from "src/app/service/files.service";
 
 @Component({
   selector: "app-challenge-comments",
@@ -44,7 +44,7 @@ export class ChallengeCommentsComponent implements OnInit {
     public userService: UserService,
     public fb: FormBuilder,
     public loadingCtrl: LoadingController,
-    public imageService: JdvimageService,
+    public filesServices: FilesService,
     public translate: TranslateService,
     public challengeService: ChallengeService,
     public router: Router,
@@ -193,7 +193,7 @@ export class ChallengeCommentsComponent implements OnInit {
 
     let formData: FormData = new FormData();
     formData.append("image", $event.target.files[0]);
-    this.imageService
+    this.filesServices
       .uploadImage(formData)
       .toPromise()
       .then((url) => {

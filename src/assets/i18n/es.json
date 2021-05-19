@@ -856,7 +856,7 @@
     "images": "Imágenes",
     "add": "Agregar",
     "edit": "Editar",
-    "save":"Guardar cambios",
+    "save": "Guardar cambios",
     "editParagraph": "Editando párrafo",
     "delete": "Eliminar",
     "cancel": "Cancelar",
@@ -870,14 +870,14 @@
     "publish": "Publicar",
     "published": "Artículo publicado con exito!",
     "edited": "Artículo editado con exito!",
-    "date":"Fecha",
-    "addVideo":"Agregar video",
-    "addYoutube":"Agrega un link de Youtube",
-    "intelectual_rights":"Por favor, díganos quien tiene los derechos intelectuales",
-    "intelectual_rights_news":"Por favor, díganos quien tiene los derechos intelectuales de la noticia",
-    "my_property":"De mi propiedad",
-    "of_other":"De otro",
-    "audioNews":"Audio Noticia",
+    "date": "Fecha",
+    "addVideo": "Agregar video",
+    "addYoutube": "Agrega un link de Youtube",
+    "intelectual_rights": "Por favor, díganos quien tiene los derechos intelectuales",
+    "intelectual_rights_news": "Por favor, díganos quien tiene los derechos intelectuales de la noticia",
+    "my_property": "De mi propiedad",
+    "of_other": "De otro",
+    "audioNews": "Audio Noticia",
     "deleteModal": {
       "cancel": "Cancelar",
       "confirm": "Esta seguro que desea eliminar este artículo.",
@@ -938,7 +938,7 @@
     "header": "Adjuntar un enlace",
     "name": "Nombre del enlace (opcional)",
     "url": "Pegue un vinculo aqui...",
-    "edit_link":"Editar enlace"
+    "edit_link": "Editar enlace"
   },
   "remove_file": {
     "header": "Remover archivo",
@@ -1142,7 +1142,7 @@
   "new_messages": "Nuevos mensajes",
   "pdf": {
     "data_sponsor": "Datos del patrocinador ",
-    "date":"Fecha"
+    "date": "Fecha"
   },
   "images_online": {
     "header": "Subir imagen / video desde la web",
@@ -1168,42 +1168,52 @@
     "avatar": "Selecciona un avatar",
     "camera": "Tomar foto"
   },
-  "followers":"Seguidores",
-  "followings":"Siguiendo",
-  "change_flag":{
-    "title":"Puedes cambiar tu bandera con la bandera de la comunidad autónoma a donde perteneces 😉",
-    "es":"España",
-    "ca":"Cataluña",
-    "eu":"País Vasco",
-    "an":"Andalucía",
-    "ar":"Aragón",
-    "as":"Principado de Asturias",
-    "bl":"Islas Baleares",
-    "can":"Canarias",
-    "cb":"Cantabria",
-    "cm":"Castilla - La mancha",
-    "cl":"Castilla y León",
-    "va":"Comunidad valenciana",
-    "ex":"Extremadura",
-    "gl":"Galicia",
-    "lr":"La Rioja",
-    "ma":"Comunidad de Madrid",
-    "mu":"Región de Murcia",
-    "na":"Comunidad Foral de Navarra"
+  "followers": "Seguidores",
+  "followings": "Siguiendo",
+  "change_flag": {
+    "title": "Puedes cambiar tu bandera con la bandera de la comunidad autónoma a donde perteneces 😉",
+    "es": "España",
+    "ca": "Cataluña",
+    "eu": "País Vasco",
+    "an": "Andalucía",
+    "ar": "Aragón",
+    "as": "Principado de Asturias",
+    "bl": "Islas Baleares",
+    "can": "Canarias",
+    "cb": "Cantabria",
+    "cm": "Castilla - La mancha",
+    "cl": "Castilla y León",
+    "va": "Comunidad valenciana",
+    "ex": "Extremadura",
+    "gl": "Galicia",
+    "lr": "La Rioja",
+    "ma": "Comunidad de Madrid",
+    "mu": "Región de Murcia",
+    "na": "Comunidad Foral de Navarra"
   },
-  "update_profile_data":"Modificar datos del perfil",
+  "update_profile_data": "Modificar datos del perfil",
   "goToAdmin": "Panel administrador",
-  "sponsors":{
-    "create":{
-      "account":{
-        "title":"Ingresa el nombre de usuario de tu patrocinador en sportyeah!"
+  "sponsors": {
+    "miniature": "(Miniatura)",
+    "miniature_hint": "De esta manera le aparecera a tus patrocinados en sus publicaciones",
+    "profile": "(Perfil)",
+    "change_btn":"Cambiar imagen",
+    "create": {
+      "account": {
+        "title": "Ingresa el nombre de usuario de tu patrocinador en sportyeah!",
+        "hint": "Asi se vera tu patrocinador en las publicaciones (miniatura) y en tu perfil (perfil)"
       },
-      "action":{
-        "header":"Subir una imagen para el patrocinador",
-        "gallery":"Galeria",
-        "free":"Añadir imagen gratuita"
+      "action": {
+        "header": "Subir una imagen para el patrocinador",
+        "gallery": "Galeria",
+        "free": "Añadir imagen gratuita"
       }
+    },
+    "custom": {
+      "title": "Personaliza tu tarjeta de patrocinio",
+      "subtitle": "De esta manera se mostrara tu tarjeta en los perfiles que patrocinas",
+      "btn": "Personalizar"
     }
-  }
-
+  },
+  "no_results": "No hay resultados"
 }
