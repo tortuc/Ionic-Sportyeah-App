@@ -12,7 +12,7 @@ import { TranslateService } from "@ngx-translate/core";
 import { UserService } from "src/app/service/user.service";
 import { Plugins, CameraResultType, CameraSource } from "@capacitor/core";
 import { AvatarComponent } from "src/app/profile/profile-edit/avatar/avatar.component";
-import { JdvimageService } from "src/app/service/jdvimage.service";
+import { FilesService } from "./files.service";
 
 const { Camera, Filesystem } = Plugins;
 
@@ -23,12 +23,11 @@ export class SliderLogic {
   constructor(
     public userService: UserService,
     private actionSheetCtrl: ActionSheetController,
-    private imageAPI: JdvimageService,
+    private filesServices: FilesService,
     private translate: TranslateService,
     private modalCtrl: ModalController,
     private loading: LoadingController,
     private freeImgService: FreeImgService,
-    private jdvImage: JdvimageService
   ) {}
 
   content: any[] = this.userService.User.slider;
@@ -140,7 +139,7 @@ export class SliderLogic {
    */
 
   async uploadVideo(formData: FormData) {
-    await this.imageAPI
+    await this.filesServices
       .uploadVideo(formData)
       .then((url) => {
         this.content.push(url);
@@ -155,7 +154,7 @@ export class SliderLogic {
    * @param formData
    */
   async uploadImage(formData: FormData) {
-    const url = await this.imageAPI.uploadImage(formData).toPromise();
+    const url = await this.filesServices.uploadImage(formData).toPromise();
     this.content.push(url);
           this.save()
   }
@@ -214,7 +213,7 @@ export class SliderLogic {
 
         formData.append("image", blob);
 
-        this.jdvImage
+        this.filesServices
           .uploadImage(formData)
           .toPromise()
           .then((url: string) => {

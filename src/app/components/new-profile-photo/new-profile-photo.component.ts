@@ -4,7 +4,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { UserService } from 'src/app/service/user.service';
 import { Plugins, CameraResultType, CameraSource } from '@capacitor/core';
 import { AvatarComponent } from 'src/app/profile/profile-edit/avatar/avatar.component';
-import { JdvimageService } from 'src/app/service/jdvimage.service';
+import { FilesService } from 'src/app/service/files.service';
 
 const { Camera } = Plugins;
 
@@ -21,7 +21,7 @@ export class NewProfilePhotoComponent implements OnInit {
     private translate:TranslateService,
     private modalCtrl:ModalController,
     private loading:LoadingController,
-    private jdvImage:JdvimageService
+    private filesServices:FilesService
   ) { }
 
   ngOnInit() {}
@@ -105,7 +105,7 @@ export class NewProfilePhotoComponent implements OnInit {
       
       formData.append('image', blob)
  
-        this.jdvImage.uploadImage(formData).toPromise()
+        this.filesServices.uploadImage(formData).toPromise()
           .then((url:string)=>{
             loading.dismiss()
             this.userService.update({photo:url})

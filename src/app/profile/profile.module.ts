@@ -23,11 +23,13 @@ import { PostComponetsModule } from "../post-components/post-componets.module";
 import { ComponentsSharedModule } from "../shared-components/components-shared.module";
 import { MsgProfileEditComponent } from "./msg-profile-edit/msg-profile-edit.component";
 import { OptionNewsComponent } from "../news/news/option-news/option-news.component";
-import { ProfileSponsorsComponent } from "./profile-sponsors/profile-sponsors.component";
 import { SponsorsCreateComponent } from "../components/structure/sponsors-create/sponsors-create.component";
-import { SponsorsSearchComponent } from "../components/structure/sponsors-create/sponsors-search/sponsors-search.component";
-import { SponsorUserItemComponent } from "../components/structure/sponsors-create/sponsor-user-item/sponsor-user-item.component";
+import { PreviewCardsSponsorComponent } from "./preview-cards-sponsor/preview-cards-sponsor.component";
 import { CustomSponsorComponent } from "./custom-sponsor/custom-sponsor.component";
+import { SponsorUserItemComponent } from "../components/structure/sponsors-create/sponsor-user-item/sponsor-user-item.component";
+import { SponsorsSearchComponent } from "../components/structure/sponsors-create/sponsors-search/sponsors-search.component";
+import { ProfileSponsorsComponent } from "./profile-sponsors/profile-sponsors.component";
+import { CustomizeSponsorComponent } from "./custom-sponsor/customize-sponsor/customize-sponsor.component";
 
 @NgModule({
   imports: [
@@ -62,7 +64,9 @@ import { CustomSponsorComponent } from "./custom-sponsor/custom-sponsor.componen
     SponsorsCreateComponent,
     SponsorsSearchComponent,
     SponsorUserItemComponent,
-    CustomSponsorComponent
+    CustomSponsorComponent,
+    PreviewCardsSponsorComponent,
+    CustomizeSponsorComponent
   ],
 })
 export class ProfilePageModule {}

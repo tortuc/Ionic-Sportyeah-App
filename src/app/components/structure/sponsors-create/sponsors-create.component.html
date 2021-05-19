@@ -2,15 +2,30 @@
   <ion-icon
     name="close-outline"
     (click)="modalCtrl.dismiss()"
-    class="close"
+    class="close-modal"
   ></ion-icon>
   <loading-progress class="progress"></loading-progress>
   <div class="sponsor-content" *ngIf="!noAccount">
-    <h4 class="title">
+    <h4 class="title" *ngIf="sponsorSelected == null">
       {{ "sponsors.create.account.title" | translate }}
     </h4>
-    <sponsors-search></sponsors-search>
-   
+    <sponsors-search
+      *ngIf="sponsorSelected == null"
+      (selected)="setSponsor($event)"
+    ></sponsors-search>
+    <div *ngIf="sponsorSelected != null" style="text-align: center">
+      <h3>
+        {{ "sponsors.create.account.hint" | translate }}
+      </h3>
+      <preview-cards-sponsor
+        [info]="sponsorSelected.sponsor_info"
+      ></preview-cards-sponsor>
+      <div>
+        <ion-button class="btn-cancel" (click)="sponsorSelected = null">{{
+          "cancel" | translate
+        }}</ion-button>
+      </div>
+    </div>
   </div>
 
   <div *ngIf="noAccount">

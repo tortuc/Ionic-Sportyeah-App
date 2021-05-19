@@ -2,7 +2,7 @@ import { Component, ElementRef, Input, OnInit, ViewChild } from "@angular/core";
 import { ModalController, PopoverController } from "@ionic/angular";
 import { User } from "src/app/models/IUser";
 import { AvatarComponent } from "src/app/profile/profile-edit/avatar/avatar.component";
-import { JdvimageService } from "src/app/service/jdvimage.service";
+import { FilesService } from "src/app/service/files.service";
 import { UserService } from "src/app/service/user.service";
 import { ProfilePhotoOptionsComponent } from "../profile-photo-options/profile-photo-options.component";
 import { SeeProfileBannerComponent } from "../see-profile-banner/see-profile-banner.component";
@@ -19,7 +19,7 @@ export class ProfilePhotoComponent implements OnInit {
     public userService: UserService,
     public modal: ModalController,
     public popover: PopoverController,
-    public fileService: JdvimageService
+    public fileService: FilesService
   ) {}
 
 

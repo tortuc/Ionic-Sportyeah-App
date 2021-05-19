@@ -6,12 +6,12 @@ import { FormBuilder, FormGroup, FormControl, Validators} from '@angular/forms';
 import { Plugins, CameraResultType, CameraSource } from '@capacitor/core';
 import { ActionSheetController ,LoadingController, ModalController   } from '@ionic/angular';
 import { TranslateService } from "@ngx-translate/core";
-import { JdvimageService } from 'src/app/service/jdvimage.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import {  ElementRef } from "@angular/core";
 import { NewQuestionComponent } from "src/app/components/new-question/new-question.component"
 import { QuestionService } from 'src/app/service/question.service';
 import { EditQuestionComponent } from 'src/app/components/edit-question/edit-question.component'
+import { FilesService } from 'src/app/service/files.service';
 import { ButtonsOptionsComponent } from '../buttons-options/buttons-options.component';
 
 const { Camera ,Filesystem} = Plugins;
@@ -40,7 +40,7 @@ export class EditComponent implements OnInit {
     private fb:FormBuilder,
     public translate: TranslateService,
     private actionSheetCtrl:ActionSheetController,
-    private jdvImage:JdvimageService,
+    private filesServices:FilesService,
     private loading:LoadingController,
     private route:ActivatedRoute,
     public questionService:QuestionService,
@@ -323,7 +323,7 @@ async takePictures(source,i) {
     loading.present()
     let blob = this.DataURIToBlob(image.dataUrl);
     formData.append('image', blob)
-    this.jdvImage.uploadImage(formData).toPromise()
+    this.filesServices.uploadImage(formData).toPromise()
     .then((url:string)=>{
       loading.dismiss()
       this.parrafos[i].image= url;
@@ -357,7 +357,7 @@ async takePrincipal(source) {
     loading.present()
     let blob = this.DataURIToBlob(image.dataUrl);
     formData.append('image', blob)
-    this.jdvImage.uploadImage(formData).toPromise()
+    this.filesServices.uploadImage(formData).toPromise()
     .then((url:string)=>{
       loading.dismiss() 
       this.imagenSelected = url 
@@ -466,7 +466,7 @@ async uploadVideo($event,type:string,i){
 }
 
 uploadVideoPrincipal(video){
-  this.jdvImage.uploadVideo(video)
+  this.filesServices.uploadVideo(video)
   .then((url)=>{
     this.videoSelected = url
   })
@@ -474,7 +474,7 @@ uploadVideoPrincipal(video){
   })
 }
 uploadVideoNotPrincipal(video,i){
-  this.jdvImage.uploadVideo(video)
+  this.filesServices.uploadVideo(video)
   .then((url)=>{
     this.parrafos[i].video = url
   })

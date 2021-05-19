@@ -349,9 +349,6 @@ a {
   cursor: pointer;
 }
 
-
-
-
 .login-xs {
   width: 100vw;
   margin: 0;
@@ -472,8 +469,6 @@ a {
 }
 
 // ------------------------------------------------------------------------
-
-
 
 .emoji {
   font-size: 20px !important;
@@ -606,7 +601,6 @@ ion-segment-button {
 .messageC {
   color: white;
 }
-
 
 .absoluteFriendsC {
   left: 0;
@@ -874,4 +868,22 @@ ion-avatar.chat-img {
   position: fixed;
   z-index: 1000;
   width: 100%;
+}
+
+.btn-cancel {
+  --background: #fa1e0e;
+  --color: white;
+  --border-radius: 20px;
+}
+
+.close-modal {
+  color: white;
+  background: #00000075;
+  border-radius: 50%;
+  right: 5px;
+  top: 5px;
+  position: absolute;
+  font-size: 30px;
+  z-index: 10;
+  cursor: pointer;
 }

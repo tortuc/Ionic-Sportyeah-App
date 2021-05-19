@@ -1,141 +1,132 @@
-import { IPixelBayResponse, IPixelBayIMG } from './../../models/IPixelBayResponse';
-import { 
-  Component, 
-  OnInit, 
-  ElementRef,
-  ViewChild
-} from '@angular/core';
+import {
+  IPixelBayResponse,
+  IPixelBayIMG,
+} from "./../../models/IPixelBayResponse";
+import { Component, OnInit, ElementRef, ViewChild } from "@angular/core";
 import {
   ActionSheetController,
   LoadingController,
   ModalController,
 } from "@ionic/angular";
-import { 
-  Plugins, 
-  CameraResultType, 
-  CameraSource 
-} from "@capacitor/core";
+import { Plugins, CameraResultType, CameraSource } from "@capacitor/core";
 import { take } from "rxjs/operators";
 import { FreeImgService } from "src/app/service/freeImg.service";
 import { LinkYoutubeComponent } from "src/app/components/link-youtube/link-youtube.component";
 import { Subject } from "rxjs";
 import { TranslateService } from "@ngx-translate/core";
-import { JdvimageService } from "src/app/service/jdvimage.service";
-import { ReusableComponentsIonic } from "src/app/service/ionicHelpers.service"
-import { ImageSeeComponent } from '../image-see/image-see.component';
+import { ReusableComponentsIonic } from "src/app/service/ionicHelpers.service";
+import { ImageSeeComponent } from "../image-see/image-see.component";
+import { FilesService } from "src/app/service/files.service";
 const { Camera } = Plugins;
 
 @Component({
-  selector: 'app-get-media',
-  templateUrl: './get-media.component.html',
-  styleUrls: ['./get-media.component.scss'],
+  selector: "app-get-media",
+  templateUrl: "./get-media.component.html",
+  styleUrls: ["./get-media.component.scss"],
 })
 export class GetMediaComponent implements OnInit {
   /*
    * Inputs de imagenes, videos, tanto individuales como multiples
    */
-  @ViewChild('img')     img       : ElementRef
-  @ViewChild('imgs')    imgs      : ElementRef
-  @ViewChild('video')   video     : ElementRef
-  @ViewChild('videos')  videos    : ElementRef
+  @ViewChild("img") img: ElementRef;
+  @ViewChild("imgs") imgs: ElementRef;
+  @ViewChild("video") video: ElementRef;
+  @ViewChild("videos") videos: ElementRef;
   /*
    * Por aqui enviaremos el material audiovisual una vez subido
    */
   content$ = new Subject();
   constructor(
-    private       actionSheetCtrl    :  ActionSheetController,
-    private       imageAPI           :  JdvimageService,
-    private       translate          :  TranslateService,
-    private       modalCtrl          :  ModalController,
-    private       loading            :  LoadingController,
-    private       jdvImage           :  JdvimageService,
-    private       freeImgService     :  FreeImgService,
-    public        reusableCI         :  ReusableComponentsIonic
+    private actionSheetCtrl: ActionSheetController,
+    private filesServices: FilesService,
+    private translate: TranslateService,
+    private modalCtrl: ModalController,
+    private loading: LoadingController,
+    private freeImgService: FreeImgService,
+    public reusableCI: ReusableComponentsIonic
   ) {}
-  ngOnInit() {
-    
-  }
+  ngOnInit() {}
   /*
    * Botones del getMedia
    */
   youtubeVideoBtn = {
-    text:null,
+    text: null,
     icon: "logo-youtube",
-    handler: () => this.youtubeVideo()
-  }
+    handler: () => this.youtubeVideo(),
+  };
   galeryImgBtn = {
-    text:null,
+    text: null,
     icon: "image-outline",
-    handler: () => this.img.nativeElement.click()
-  }
+    handler: () => this.img.nativeElement.click(),
+  };
   galeryImgsBtn = {
-    text:null,
+    text: null,
     icon: "image-outline",
-    handler: () => this.imgs.nativeElement.click()
-  }
+    handler: () => this.imgs.nativeElement.click(),
+  };
   galeryVideoBtn = {
-    text:null,
+    text: null,
     icon: "image-outline",
-    handler: () => this.video.nativeElement.click()
-  }
+    handler: () => this.video.nativeElement.click(),
+  };
   galeryVideosBtn = {
-    text:null,
+    text: null,
     icon: "image-outline",
-    handler: () => this.videos.nativeElement.click()
-  }
+    handler: () => this.videos.nativeElement.click(),
+  };
   camaraBtn = {
-    text:null,
+    text: null,
     icon: "camera",
-    handler: () => this.takePicture(CameraSource.Camera)
-  }
+    handler: () => this.takePicture(CameraSource.Camera),
+  };
   freeImagesBtn = {
-    text:null,
+    text: null,
     icon: "image-outline",
-    handler: () => this.freeImg()
-  }
+    handler: () => this.freeImg(),
+  };
   cancelBtn = {
-    text:null,
+    text: null,
     icon: "close",
     role: "cancel",
-  }
+  };
   /**
-    * Inicializando los textos de los botones
-    */
-  initBtn(){
-     this.youtubeVideoBtn.text   = this.translate.instant('img-options.youtube')
-     this.galeryImgBtn.text      = this.translate.instant('img-options.img')
-     this.galeryImgsBtn.text     = this.translate.instant('img-options.imgs')
-     this.galeryVideoBtn.text    = this.translate.instant('img-options.video')
-     this.galeryVideosBtn.text   = this.translate.instant("img-options.videos")
-     this.camaraBtn.text         = this.translate.instant("img-options.camera")
-     this.freeImagesBtn.text     = this.translate.instant("free-img")
-     this.cancelBtn.text         = this.translate.instant("cancel")
+   * Inicializando los textos de los botones
+   */
+  initBtn() {
+    this.youtubeVideoBtn.text = this.translate.instant("img-options.youtube");
+    this.galeryImgBtn.text = this.translate.instant("img-options.img");
+    this.galeryImgsBtn.text = this.translate.instant("img-options.imgs");
+    this.galeryVideoBtn.text = this.translate.instant("img-options.video");
+    this.galeryVideosBtn.text = this.translate.instant("img-options.videos");
+    this.camaraBtn.text = this.translate.instant("img-options.camera");
+    this.freeImagesBtn.text = this.translate.instant("free-img");
+    this.cancelBtn.text = this.translate.instant("cancel");
   }
   /*
    * Obtiene el material audiovisual
    */
   async getMedia(
-    img     : boolean,
-    imgs    : boolean,
-    video   : boolean,
-    videos  : boolean,
-    camara  : boolean,
-    freeImg : boolean
+    img: boolean,
+    imgs: boolean,
+    video: boolean,
+    videos: boolean,
+    camara: boolean,
+    freeImg: boolean
   ) {
-    this.initBtn()
+    this.initBtn();
     const actionSheet = {
       header: this.translate.instant("img-options.header"),
-      buttons: []
-    }
-    if(img)     actionSheet.buttons.push(this.galeryImgBtn)
-    if(imgs)    actionSheet.buttons.push(this.galeryImgsBtn)
-    if(video)   actionSheet.buttons.push(this.galeryVideoBtn)
-    if(videos)  actionSheet.buttons.push(this.galeryVideosBtn)
-    if(camara)  actionSheet.buttons.push(this.camaraBtn)
-    if(freeImg) actionSheet.buttons.push(this.freeImagesBtn)
-                actionSheet.buttons.push(this.cancelBtn)
-    const action = await this.actionSheetCtrl.create(actionSheet)
-    await action.present()
+      buttons: [],
+    };
+    if (img) actionSheet.buttons.push(this.galeryImgBtn);
+    if (imgs) actionSheet.buttons.push(this.galeryImgsBtn);
+    if (video) actionSheet.buttons.push(this.galeryVideoBtn);
+    if (videos) actionSheet.buttons.push(this.galeryVideosBtn);
+    if (camara) actionSheet.buttons.push(this.camaraBtn);
+    if (freeImg) actionSheet.buttons.push(this.freeImagesBtn);
+    actionSheet.buttons.push(this.cancelBtn);
+    const action = await this.actionSheetCtrl.create(actionSheet);
+    await action.present();
   }
   /*
    * FUNCIONES DE LOS BOTONES DE OBTENER MEDIA
@@ -149,7 +140,7 @@ export class GetMediaComponent implements OnInit {
       .getImages()
       .pipe(take(1))
       .subscribe(async (pixelBayResponse: IPixelBayResponse) => {
-        await this.freeImgModal(pixelBayResponse.hits)
+        await this.freeImgModal(pixelBayResponse.hits);
       });
   }
   /*
@@ -164,8 +155,8 @@ export class GetMediaComponent implements OnInit {
       },
       backdropDismiss: false,
     });
-    await modal.present()
-    await this.loading.dismiss(null, null, "loading") 
+    await modal.present();
+    await this.loading.dismiss(null, null, "loading");
     const { data } = await modal.onDidDismiss();
     if (data) this.content$.next(data);
   }
@@ -176,38 +167,34 @@ export class GetMediaComponent implements OnInit {
     quality: 90,
     allowEditing: false,
     resultType: CameraResultType.DataUrl,
-  }
+  };
   async takePicture(source) {
     const formData = new FormData();
-    this.optionsIonicCamara.source = source
+    this.optionsIonicCamara.source = source;
     Camera.getPhoto(this.optionsIonicCamara)
-      .then(async (image:any) => {
-        this.reusableCI.loading("loading")
+      .then(async (image: any) => {
+        this.reusableCI.loading("loading");
         const blob = this.DataURIToBlob(image.dataUrl);
         formData.append("image", blob);
-        this.jdvImage
+        this.filesServices
           .uploadImage(formData)
           .toPromise()
           .then(async (url: string) => {
             await this.loading.dismiss(null, null, "loading");
-            if(url) { 
-              this.content$.next(url)
+            if (url) {
+              this.content$.next(url);
               this.reusableCI.toast(
-                this.translate.instant( "success.img-upload")
-              )
-            }else this.content$.next(null);
+                this.translate.instant("success.img-upload")
+              );
+            } else this.content$.next(null);
           })
           .catch((err) => {
             this.loading.dismiss(null, null, "loading");
-            this.reusableCI.toast(
-              this.translate.instant("error.img-upload")
-            )
+            this.reusableCI.toast(this.translate.instant("error.img-upload"));
           });
       })
       .catch((err) => {
-        this.reusableCI.toast(
-          this.translate.instant("error.camera")
-        )
+        this.reusableCI.toast(this.translate.instant("error.camera"));
       });
   }
   /*
@@ -217,63 +204,53 @@ export class GetMediaComponent implements OnInit {
    * Transform un formato URI a Blob
    */
   DataURIToBlob(dataURI: string) {
-    const splitDataURI = dataURI.split(",")
+    const splitDataURI = dataURI.split(",");
     const byteString =
       splitDataURI[0].indexOf("base64") >= 0
         ? atob(splitDataURI[1])
-        : decodeURI(splitDataURI[1])
-    const mimeString = splitDataURI[0].split(":")[1].split(";")[0]
-    const ia = new Uint8Array(byteString.length)
+        : decodeURI(splitDataURI[1]);
+    const mimeString = splitDataURI[0].split(":")[1].split(";")[0];
+    const ia = new Uint8Array(byteString.length);
     for (let i = 0; i < byteString.length; i++)
-      ia[i] = byteString.charCodeAt(i)
-    return new Blob([ia], { type: mimeString })
+      ia[i] = byteString.charCodeAt(i);
+    return new Blob([ia], { type: mimeString });
   }
   /**
    * Sube un video al servidor
    * @param formData
    */
   uploadVideo(formData: FormData) {
-    this.reusableCI.loading("video")
-    this.imageAPI
+    this.reusableCI.loading("video");
+    this.filesServices
       .uploadVideo(formData)
       .then((url) => {
-        this.modalCtrl.dismiss(null,null,"video")
-        this.reusableCI.toast(
-          this.translate.instant("success.video-upload")
-        )
-        this.content$.next(url)
+        this.modalCtrl.dismiss(null, null, "video");
+        this.reusableCI.toast(this.translate.instant("success.video-upload"));
+        this.content$.next(url);
       })
       .catch((err) => {
-        this.modalCtrl.dismiss(null,null,"video")
-        this.reusableCI.toast(
-          this.translate.instant("error.video-upload")
-        )
-        this.content$.next(null)
-      })
+        this.modalCtrl.dismiss(null, null, "video");
+        this.reusableCI.toast(this.translate.instant("error.video-upload"));
+        this.content$.next(null);
+      });
   }
   /**
    * Sube una imagen al servidor y la guarda en `files`
    * @param formData
    */
   async uploadImage(formData: FormData) {
-    this.reusableCI.toast(
-      this.translate.instant('info.img-upload')
-    )
-    this.imageAPI
+    this.reusableCI.toast(this.translate.instant("info.img-upload"));
+    this.filesServices
       .uploadImage(formData)
       .toPromise()
-      .then(async(url) => {
-        this.content$.next(url)
-        this.reusableCI.toast(
-          this.translate.instant('success.img-upload')
-        )
+      .then(async (url) => {
+        this.content$.next(url);
+        this.reusableCI.toast(this.translate.instant("success.img-upload"));
       })
-      .catch(async(err) => {
-        this.content$.next(null)
-        this.reusableCI.toast(
-          this.translate.instant('error.img-upload')
-        )
-      })
+      .catch(async (err) => {
+        this.content$.next(null);
+        this.reusableCI.toast(this.translate.instant("error.img-upload"));
+      });
   }
   /*
    * Sube un archivo descifrando si es una imagen o un video
@@ -290,9 +267,7 @@ export class GetMediaComponent implements OnInit {
         formData.append("image", file);
         this.uploadImage(formData);
       } else {
-        this.reusableCI.toast(
-          this.translate.instant('error.invalidFormat')
-        )
+        this.reusableCI.toast(this.translate.instant("error.invalidFormat"));
       }
     }
   }
@@ -304,13 +279,11 @@ export class GetMediaComponent implements OnInit {
       component: LinkYoutubeComponent,
     });
     modal.onDidDismiss().then((data) => {
-      if(data.data){ 
-        this.content$.next(data.data)
-        this.reusableCI.toast(
-          this.translate.instant("success.youtube-link")
-        )
-      }else{
-        this.content$.next(null)
+      if (data.data) {
+        this.content$.next(data.data);
+        this.reusableCI.toast(this.translate.instant("success.youtube-link"));
+      } else {
+        this.content$.next(null);
       }
     });
     return modal.present();

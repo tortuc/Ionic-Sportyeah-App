@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController, LoadingController, ModalController } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
-import { JdvimageService } from 'src/app/service/jdvimage.service';
+import { FilesService } from 'src/app/service/files.service';
 import { UserService } from 'src/app/service/user.service';
 
 @Component({
@@ -13,7 +13,7 @@ export class AvatarComponent implements OnInit {
 
   constructor(
     private modalCtrl:ModalController,
-    private imageService:JdvimageService,
+    private filesServices:FilesService,
     private alertCtrl:AlertController,
     public translate:TranslateService,
     public userService:UserService,
@@ -23,7 +23,7 @@ export class AvatarComponent implements OnInit {
   avatars = []
 
   ngOnInit() {
-    this.imageService.getAvatars().toPromise()
+    this.filesServices.getAvatars().toPromise()
       .then((avatars:any[])=>{
         this.avatars = avatars
       })

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { JdvimageService } from 'src/app/service/jdvimage.service';
+import { FilesService } from 'src/app/service/files.service';
 
 @Component({
   selector: 'loading-progress',
@@ -9,7 +9,7 @@ import { JdvimageService } from 'src/app/service/jdvimage.service';
 export class LoadingProgressComponent implements OnInit {
 
   constructor(
-    public fileService:JdvimageService
+    public fileService:FilesService
   ) { }
 
   ngOnInit() {}
