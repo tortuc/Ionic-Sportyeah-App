@@ -5,7 +5,7 @@
       <img class="img" [src]="user.photo" />
     </div>
     <div class="name-content">
-      <p class="name">{{ user.name }} {{ user.last_name }}</p>
+      <p class="name"><miniflag [user]="user"></miniflag> {{ user.name }} {{ user.last_name }}</p>
       <p class="username">@{{ user.username }}</p>
     </div>
   </div>

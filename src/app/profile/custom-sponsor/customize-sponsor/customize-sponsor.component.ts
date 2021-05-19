@@ -25,13 +25,13 @@ export class CustomizeSponsorComponent implements OnInit {
     miniature: null,
   };
 
-  upload_option: "miniature" | "profile" = "miniature";
-
+  
   ngOnInit() {
     let { profile_image, name, miniature } = this.userService.User.sponsor_info;
     this.copy_info = { profile_image, name, miniature };
   }
-
+  
+  upload_option: "miniature" | "profile" = "miniature";
   uploadFile(event) {
     let option = this.upload_option;
     let form = new FormData();
