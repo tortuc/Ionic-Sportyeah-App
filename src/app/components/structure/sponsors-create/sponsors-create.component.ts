@@ -7,6 +7,7 @@ import { TranslateService } from "@ngx-translate/core";
 import { SponsorService } from "src/app/service";
 import { User } from "src/app/models/IUser";
 import { FilesService } from "src/app/service/files.service";
+import { UserService } from "src/app/service/user.service";
 
 @Component({
   selector: "sponsors-create",
@@ -24,7 +25,8 @@ export class SponsorsCreateComponent implements OnInit {
     public actionSheetCtrl: ActionSheetController,
     public fileService: FilesService,
     private sponsorService: SponsorService,
-    private readonly translate: TranslateService
+    private readonly translate: TranslateService,
+    private readonly userService: UserService
   ) {}
 
   /*
@@ -84,7 +86,20 @@ export class SponsorsCreateComponent implements OnInit {
    * Crea un patrocinador
    */
   create() {
-    this.modalCtrl.dismiss(this.form.value);
+    let sponsor: ISponsor = {
+      user: this.userService.User._id,
+    };
+
+    sponsor.idSponsor =
+      this.sponsorSelected != null ? this.sponsorSelected._id : null;
+
+   
+    console.log(sponsor);
+
+    this.sponsorService.createSponsor(sponsor).subscribe((newSponsor)=>{
+      console.log(newSponsor);
+      
+    })
   }
 
   async freeImage() {

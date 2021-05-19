@@ -1199,14 +1199,18 @@
     
     "create": {
       "account": {
-        "title": "Ingresa el nombre de usuario de tu patrocinador en sportyeah!",
+        "title": "Busca a tu patrocinador en sportyeah!",
         "hint": "Asi se vera tu patrocinador en las publicaciones (miniatura) y en tu perfil (perfil)"
+        
       },
       "action": {
         "header": "Subir una imagen para el patrocinador",
         "gallery": "Galeria",
         "free": "Añadir imagen gratuita"
-      }
+      },
+      "save":"Guardar patrocinador",
+      "no_account":"Mi patrocinador no tiene cuenta en sportyeah"
+
     },
     "custom": {
       "title": "Personaliza tu tarjeta de patrocinio",

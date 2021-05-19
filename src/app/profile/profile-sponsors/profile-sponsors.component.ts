@@ -35,6 +35,8 @@ export class ProfileSponsorsComponent implements OnInit {
       .subscribe(
         (sponsors) => {
           this.sponsors = sponsors;
+          console.log(sponsors);
+          
         },
         (error) => {
           // handle error

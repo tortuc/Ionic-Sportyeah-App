@@ -7,19 +7,19 @@ export interface ISponsor {
   /*
    * Url de la pagina del patrocinador
    */
-  url: string;
+  url?: string;
   /*
    * Imagen del sponsor
    */
-  image: string;
+  image?: string;
   /*
    * Nombre del sponsor
    */
-  name: string;
+  name?: string;
   /*
    * _id del sponsor en sportyeah, o el cuerpo del mismo
    */
-  idSponsor: User | string;
+  idSponsor?: User | string;
   /*
    * _id del usuario que creo el sponsor
    */

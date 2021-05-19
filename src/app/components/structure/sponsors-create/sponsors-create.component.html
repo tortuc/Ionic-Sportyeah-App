@@ -74,17 +74,20 @@
       </ion-list>
     </form>
   </div>
-  <ion-item>
-    <ion-label>Mi patrocinador no tiene cuenta en sportyeah</ion-label>
+  <ion-item *ngIf="sponsorSelected == null">
+    <ion-label> {{ "sponsors.create.no_account" | translate }}</ion-label>
     <ion-checkbox slot="end" [(ngModel)]="noAccount"></ion-checkbox>
   </ion-item>
   <div style="padding: 10px; text-align: center">
     <ion-button
-      fill="outline"
+      class="btn-primary"
       (click)="create()"
-      [disabled]="form.status !== 'VALID'"
+      [disabled]="form.invalid && sponsorSelected == null"
     >
-      Guardar patrocinador
+      <span
+        ><ion-icon name="save-outline"></ion-icon>
+        {{ "sponsors.create.save" | translate }}</span
+      >
     </ion-button>
   </div>
   <input
