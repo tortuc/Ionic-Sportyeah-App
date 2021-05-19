@@ -1195,9 +1195,8 @@
   "goToAdmin": "Panel administrador",
   "sponsors": {
     "miniature": "(Miniatura)",
-    "miniature_hint": "De esta manera le aparecera a tus patrocinados en sus publicaciones",
     "profile": "(Perfil)",
-    "change_btn":"Cambiar imagen",
+    
     "create": {
       "account": {
         "title": "Ingresa el nombre de usuario de tu patrocinador en sportyeah!",
@@ -1213,6 +1212,16 @@
       "title": "Personaliza tu tarjeta de patrocinio",
       "subtitle": "De esta manera se mostrara tu tarjeta en los perfiles que patrocinas",
       "btn": "Personalizar"
+    },
+    "customize": {
+      "miniature_hint": "De esta manera le aparecera a tus patrocinados en sus publicaciones",
+      "miniature_ratio": "La imagen en miniatura debe tener una relacion de aspecto de 2:1",
+      "profile_hint": "De esta manera le aparecera a tus patrocinados en su perfil publico y privado",
+      "profile_ratio": "La imagen en miniatura debe tener una relacion de aspecto de 1:1 ( 500x500 recomendado)",
+      "change_btn": "Cambiar imagen",
+      "save":"Guardar Cambios",
+      "header":"Desde esta herramienta puedes personalizar tu tarjeta de patrocinador",
+      "name":"Nombre de tu marca"
     }
   },
   "no_results": "No hay resultados"

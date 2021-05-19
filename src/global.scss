@@ -272,6 +272,21 @@ a {
     }
   }
 }
+
+.btn-cancel {
+  --background: #fa1e0e;
+  --color: white;
+  --border-radius: 20px;
+  span {
+    font-size: 12px;
+    ion-icon {
+      vertical-align: sub;
+      font-size: 16px;
+    }
+  }
+}
+
+
 .btn-delete {
   --background: #d73226;
   --color: white;
@@ -870,11 +885,7 @@ ion-avatar.chat-img {
   width: 100%;
 }
 
-.btn-cancel {
-  --background: #fa1e0e;
-  --color: white;
-  --border-radius: 20px;
-}
+
 
 .close-modal {
   color: white;
