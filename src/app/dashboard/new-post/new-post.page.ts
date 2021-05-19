@@ -80,6 +80,7 @@ export class NewPostPage implements OnInit {
   }
 
   async save() {
+    
     // obtenemos la data del formulario
     let post = this.form.value;
     // si hay un post significa que es una comparticion

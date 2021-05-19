@@ -96,6 +96,7 @@ export class CommentNewsComponent implements OnInit {
   emoji = false;
   // cambia la variable de control del emoji
   openEmojis() {
+
     this.emoji = !this.emoji;
   }
 
@@ -132,8 +133,7 @@ export class CommentNewsComponent implements OnInit {
       message: this.translate.instant("loading"),
     });
 
-    comment.question = await this.assetsBtn.saveQuestion(this.question);
-
+    comment.question = await this.assetsBtn.saveQuestion(this.question);    
     // presentamos el loading
     loading.present();
    
@@ -141,7 +141,7 @@ export class CommentNewsComponent implements OnInit {
       this.newsService
         .newComment(comment)
         .toPromise()
-        .then(async (comment) => {
+        .then(async (comment) => {          
           this.newCommentSuccess(comment, loading);
         })
         .catch((err) => {
@@ -213,7 +213,6 @@ export class CommentNewsComponent implements OnInit {
   deleteQuestion() {
     this.question.questionGroup = null;
   }
-
   newQuestion($event) {
     this.question.questionGroup = $event;
   }

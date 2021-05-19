@@ -6,6 +6,7 @@ import { ReadComponent } from './read/read.component'
 import { EditComponent } from './edit/edit.component';
 import { StreamComponent } from './stream/stream.component';
 import { CreateStreamComponent } from './create-stream/create-stream.component';
+import { LandingGuard } from 'src/app/guards/landing-guard.service';
 
 const routes: Routes = [
   {
@@ -18,7 +19,7 @@ const routes: Routes = [
   },
   {
     path: 'read/:id',
-    component: ReadComponent
+    component: ReadComponent,
   },
   {
     path: 'edit/:id',

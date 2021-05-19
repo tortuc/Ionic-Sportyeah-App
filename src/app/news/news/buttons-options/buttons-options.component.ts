@@ -201,8 +201,6 @@ edit= false;
    * Subir imagenes, o videos de forma masiva
    */
   uploadImages(files, i = 0) {
-    console.log("Original", files[i].type.split("/")[0]);
-
     if (files.length > i) {
       let name = files[i].type.split("/")[0];
 
@@ -357,36 +355,7 @@ edit= false;
   }
 
 
-  // uploadFileEdit(files, i = 0){
-    
-  //   console.log("me usaron", files[i].type.split("/")[0]);
-  //     if (files.length > i) {
-  //       let name = files[i].type.split("/")[0];
-  //       let formData: FormData = new FormData();
-  //       if (name == "video") {
-  //         let url = URL.createObjectURL(files[i]);
-  //         this.videoToUpload.emit({ file: files[i], url });
-  //         this.editedFile.emit({ url, format: "video" ,position:this.editImageVideo});
-  //         this.editImageVideo = undefined
-          
-  //       } else if (name == "image") {
 
-  //         formData.append("image", files[i]);
-  //         this.fileService
-  //           .uploadImageProgress(formData)
-  //           .then((url: string) => {
-  //             this.editedFile.emit({ url, format: "image",position:this.editImageVideo });
-  //             this.editImageVideo = undefined
-  //             console.log(url);
-  //           })
-  //           .catch((e) => {
-  //             this.uploadImages(files, ++i);
-  //           });
-  //       } else {
-  //         // handle
-  //       }
-  //     }
-  // }
   editImageVideo
   async editFile(format,i){
     this.edit= true

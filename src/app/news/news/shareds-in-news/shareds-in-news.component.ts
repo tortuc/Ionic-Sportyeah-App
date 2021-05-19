@@ -141,7 +141,7 @@ export class SharedsInNewsComponent implements OnInit {
    shareWith() {
      if (this.platform.is("mobile")) {
        this.socialShare.share(
-         this.translate.instant("share_with.text"),
+         this.translate.instant("share_with.text-news"),
          this.translate.instant("share_with.title"),
          null,
          `https://app.sportyeah.com/news/read/${this.news._id}`
@@ -177,7 +177,7 @@ export class SharedsInNewsComponent implements OnInit {
    shareRigthNow() {//////////Revisar esta CAGADA
      let post = {
        user: this.userService.User._id,
-       post: this.news.post ? this.news.post._id : this.news._id,
+       news: this.news._id
      };
      this.postService
        .create(post)
@@ -194,12 +194,12 @@ export class SharedsInNewsComponent implements OnInit {
     * @returns
     */
    async shareNow() {//////////Revisar esta CAGADA
-     let  post =  this.news.post ? this.news.post : this.news
+     let  news =  this.news.post ? this.news.post : this.news
      if (!this.modalOpen) {
        this.modalOpen = true;
        const modal = await this.modalController.create({
          component: NewPostPage,
-         componentProps: { post },
+         componentProps: { news },
          backdropDismiss: false,
        });
        modal.onDidDismiss().then((data) => {
@@ -224,7 +224,7 @@ export class SharedsInNewsComponent implements OnInit {
            handler: () => {
              window.open(
                `https://twitter.com/intent/tweet?text=${this.translate.instant(
-                 "share_with.text"
+                 "share_with.text-news"
                )}&url=https://app.sportyeah.com/news/read/${this.news._id}`,
                "_blank"
              );
@@ -238,7 +238,7 @@ export class SharedsInNewsComponent implements OnInit {
            handler: () => {
              window.open(
                `https://wa.me/?text=${this.translate.instant(
-                 "share_with.text"
+                 "share_with.text-news"
                )} https://app.sportyeah.com/news/read/${this.news._id}`,
                "_blank"
              );
@@ -265,7 +265,7 @@ export class SharedsInNewsComponent implements OnInit {
            handler: () => {
              window.open(
                `http://www.linkedin.com/shareArticle?mini=true&url=https://app.sportyeah.com/news/read/${this.news._id}&title=${this.translate.instant(
-                 "share_with.text"
+                 "share_with.text-news"
                )}&summary=sportyeah&source=app.sportyeah.com`,
                "_blank"
              );
@@ -279,7 +279,7 @@ export class SharedsInNewsComponent implements OnInit {
            handler: () => {
              this.clipboard.copy(
                `${this.translate.instant(
-                 "share_with.text"
+                 "share_with.text-news"
                )} https://app.sportyeah.com/news/read/${this.news._id}`
              );
              this.socketService.socket.emit("shared", "copy");

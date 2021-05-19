@@ -41,7 +41,8 @@ export class PostPreviewImagesComponent implements OnInit {
     });
     alert.present()
   }
-  ngOnInit() {
+  ngOnInit() { 
+  
   }
 
   async seeFiles() {

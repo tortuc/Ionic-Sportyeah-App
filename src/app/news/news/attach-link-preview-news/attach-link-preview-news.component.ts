@@ -11,7 +11,7 @@ export class AttachLinkPreviewNewsComponent implements OnInit {
   @Input() class: string;
   constructor(private wishService: WishService) {}
 
-  ngOnInit() {    console.log(this.file);
+  ngOnInit() { 
 
     this.previewUrl();
   }

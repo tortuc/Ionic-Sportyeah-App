@@ -43,6 +43,7 @@ export class AssetsButtonsComponent implements OnInit, OnChanges {
   @Output() newFile = new EventEmitter();
 
   clickEmoji(ev) {
+    
     this.emoji.emit(ev);
   }
 

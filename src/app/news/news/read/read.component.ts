@@ -4,6 +4,8 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { QuestionService } from "src/app/service/question.service";
 import { UserService } from "src/app/service/user.service";
 import { ViewsSponsorService } from "src/app/service/views-sponsor.service";
+import { take } from "rxjs/operators";
+import { CommentService } from "src/app/service/comment.service";
 
 @Component({
   selector: "app-read",
@@ -16,7 +18,9 @@ export class ReadComponent implements OnInit {
     private route: ActivatedRoute,
     public questionService: QuestionService,
     public userService: UserService,
-    private viewsSponsorService: ViewsSponsorService
+    private viewsSponsorService: ViewsSponsorService,
+    public commentService: CommentService,
+
   ) {
     this.idNews = route.snapshot.paramMap.get("id");
     this.getNews(this.idNews);
@@ -27,25 +31,47 @@ export class ReadComponent implements OnInit {
       .findById(id)
       .toPromise()
       .then((response: any) => {
-        console.log(response)
         this.news = response;
+        this.getComments();
       })
       .catch((err) => {
         this.news = 404;
       });
-    this.notified = this.news.news.question
-      ? this.news.news.question.notified
-      : undefined;
+    // this.notified = this.news.news.question
+    //   ? this.news.news.question.notified
+    //   : undefined;
   }
   news = undefined;
   item = undefined;
-  notified = null;
+  // notified = null;
 
   ngOnInit() {}
+  comments = [];
+  loading = false;
+  skip = 0;
 
-  comments($event) {
-    this.news.comments = $event;
+  getComments() {
+    this.loading = true;
+    
+    this.commentService
+      .getCommentsByNews(this.news.news._id, this.skip)
+      .pipe(take(1))
+      .subscribe(
+        (comments) => {
+          this.loading = false;
+          this.comments = this.comments.concat(comments);
+          this.skip += 10;
+          
+        },
+        () => {
+          this.loading = false;
+        }
+      );
   }
+
+  // comments($event) {
+  //   this.news.comments = $event;
+  // }
 
   goToSponsor(sponsor,name, id, username, post_id) {
     if (id != this.userService.User._id) {
@@ -96,5 +122,10 @@ export class ReadComponent implements OnInit {
       if(match){
         window.open(origen);
       }
+  }
+
+
+  newComment(event) {
+    this.comments.unshift(event);
   }
 }

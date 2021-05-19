@@ -31,6 +31,11 @@ import { SharedsInNewsComponent } from './shareds-in-news/shareds-in-news.compon
 import { CommentNewsComponent } from './comment-news/comment-news.component';
 import { NewPostHeaderComponent } from 'src/app/post-components/new-post-header/new-post-header.component';
 import { ContenteditableValueAccessorModule } from '@tinkoff/angular-contenteditable-accessor';
+import { PostPreviewImagesSliderComponent } from 'src/app/post-components/post-preview-images-slider/post-preview-images-slider.component';
+import { PostPreviewImagesComponent } from 'src/app/post-components/post-preview-images/post-preview-images.component';
+import { EmojiModule } from '@ctrl/ngx-emoji-mart/ngx-emoji';
+import { PickerModule } from '@ctrl/ngx-emoji-mart';
+import { DirectivesModule } from 'src/app/directives/directive.module';
 
 @NgModule({
   imports: [
@@ -45,7 +50,10 @@ import { ContenteditableValueAccessorModule } from '@tinkoff/angular-contentedit
     PipesModule,
     ComponentsModule, 
     ComponentsSharedModule,
-    ContenteditableValueAccessorModule
+    ContenteditableValueAccessorModule,
+    EmojiModule,
+    PickerModule,
+    DirectivesModule
   ],
   declarations: [
     NewsPage,
@@ -63,9 +71,11 @@ import { ContenteditableValueAccessorModule } from '@tinkoff/angular-contentedit
     CommentsInNewsComponent,
     CommentNewsComponent,
     SharedsInNewsComponent,
-    NewPostHeaderComponent
-
+    NewPostHeaderComponent,
+    PostPreviewImagesSliderComponent,
+    PostPreviewImagesComponent
   ],
+ 
   schemas:[CUSTOM_ELEMENTS_SCHEMA]
 })
 export class NewsPageModule {}

@@ -57,6 +57,20 @@ export class CommentService {
     );
   }
 
+
+
+  /**
+   * Obtiene comentarios de una noticia, dependiendo de la paginacion
+   * @param news _id del news
+   * @param skip cantidad de datos a saltar (paginacion)
+   * @returns
+   */
+
+   getCommentsByNews(news, skip) {
+    return this.http.get<IComment[]>(
+      `${environment.URL_API}/news/comments/${news}/${skip}`
+    );
+  }
   /**
    * Retorna si el usuario comento una publicacion
    */

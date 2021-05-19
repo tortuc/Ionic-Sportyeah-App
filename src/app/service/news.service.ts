@@ -173,7 +173,6 @@ export class NewsService {
    */
 
    countReactionsByNews(news) {
-     console.log("estoy",news)
     return this.http.get<number>(
       `${environment.URL_API}/news/reactions/${news}`
     );

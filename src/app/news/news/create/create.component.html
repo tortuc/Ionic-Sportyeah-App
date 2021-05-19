@@ -22,8 +22,8 @@
                     <img class="logoSport" src="assets/logos/imagotipo_azul.png" alt="logoSportyeah!" >
                     <h1 style="color: black;">{{ 'news.newNews' | translate }}</h1>
                   </div>
-                  <ion-button *ngIf="!redactarArticulo" (click)="redactar()">Redactar Artículo</ion-button>
-                  <ion-button *ngIf="!redactarArticulo" (click)="createStream()">Transmitir</ion-button>
+                  <ion-button *ngIf="!redactarArticulo" (click)="redactar()">{{ 'news.article _write' | translate }}</ion-button>
+                  <ion-button *ngIf="!redactarArticulo" (click)="createStream()">{{ 'news.transmit' | translate }}</ion-button>
                 </ion-col>
                
         <ion-col *ngIf="redactarArticulo" size="12">
@@ -71,7 +71,7 @@
 
             <ion-col style="text-align: center;" size="12">
               <!-- Boton para imagen Principal -->
-             <p *ngIf="!imagenSelected && !urlVideo">Imagen/Video principal</p> 
+             <p *ngIf="!imagenSelected && !urlVideo">{{'news.image_video' | translate}}</p> 
              <ion-button *ngIf="!imagenSelected && !urlVideo" style="text-align: center;" (click)="takePhotoFrom('principal',1)"  >
               <ion-icon  name="images" style="--color: black;font-size:30px" ></ion-icon>
             </ion-button> <br>
@@ -102,7 +102,7 @@
 
               <div *ngIf="audioNews">
                 <msg-audio-news [urlAudio]="audioNews"></msg-audio-news>
-                <ion-button  style="text-align: center;height: 25px;" (click)="deleteAudio()"  >
+                <ion-button class="buttonDelete"  (click)="deleteAudio()"  >
                   <ion-icon  name="trash-outline" style="--color: black;font-size:20px" ></ion-icon>
                 </ion-button>
               </div>
@@ -113,7 +113,7 @@
               <ion-button  style="text-align: center;height: 25px;" (click)="takePhotoFrom('principal', 1 )"  >
                 <ion-icon  name="pencil-outline" style="--color: black;font-size:20px" ></ion-icon>
               </ion-button>
-              <ion-button  style="text-align: center;height: 25px;" (click)="deleteImagePrincipal()"  >
+              <ion-button class="buttonDelete"  (click)="deleteImagePrincipal()"  >
                 <ion-icon  name="trash-outline" style="--color: black;font-size:20px" ></ion-icon>
               </ion-button>
              </div>
@@ -190,11 +190,11 @@
                     <!-- Esto edita el texto del parrafo -->
                     <div *ngIf="editando && parrafo.position == number">
                       <ngx-wig style="color: black;" [(ngModel)]="text1" [buttons]="'list1,list2,bold,italic,link,underline'"></ngx-wig>
-                      <ion-button *ngIf="parrafos.length > 0 " style="font-size: 10px;" (click)="cancelar()" >{{'news.cancel' | translate}}</ion-button><br>
+                      <ion-button *ngIf="parrafos.length > 0 " style="font-size: 10px;--background:rgba(255, 0, 0, 0.685)" (click)="cancelar()" >{{'news.cancel' | translate}}</ion-button><br>
                     </div>
                     <div *ngIf="parrafo.parrafo != '' && parrafo.parrafo != undefined ">
                     <ion-button *ngIf="parrafos.length > 0  " [disabled]="(text1 == '' && text1 == null)?true:false" style="font-size: 10px;"  (click)="(positionEditactual != parrafo.position)?selectParrafoCards(parrafo.position):EditParrafo()" >{{((positionEditactual != parrafo.position)?'news.edit':'news.save') | translate}}</ion-button>
-                    <ion-button *ngIf="parrafos.length > 0 " style="--background:rgba(255, 100, 100, 0.685);font-size: 10px;" (click)="eliminarParrafo(parrafo.position)" >{{'news.delete' | translate}}</ion-button>
+                    <ion-button *ngIf="parrafos.length > 0 && !editando" style="--background:rgba(255, 0, 0, 0.685);font-size: 10px;" (click)="eliminarParrafo(parrafo.position)" >{{'news.delete' | translate}}</ion-button>
                     </div>
                   
                   
@@ -223,7 +223,7 @@
                       <ion-button  style="text-align: center;height: 25px;" (click)="editFile(parrafo.format,parrafo.position)"  >
                         <ion-icon  name="pencil-outline" style="--color: black;font-size:20px" ></ion-icon>
                       </ion-button>
-                      <ion-button  style="text-align: center;height: 25px;" (click)="eliminarParrafo(i)"><!-- deleteImage -->
+                      <ion-button class="buttonDelete"  (click)="eliminarParrafo(i)"><!-- deleteImage -->
                         <ion-icon  name="trash-outline" style="--color: black;font-size:20px" ></ion-icon>
                       </ion-button>
                      </div>
@@ -263,7 +263,7 @@
                     <ion-button  style="text-align: center;height: 25px;" (click)="editYoutube = true"  >
                       <ion-icon  name="pencil-outline" style="--color: black;font-size:20px" ></ion-icon>
                     </ion-button>
-                    <ion-button  style="text-align: center;height: 25px;" (click)="eliminarParrafo(i)"><!-- deleteImage -->
+                    <ion-button class="buttonDelete"  (click)="eliminarParrafo(i)"><!-- deleteImage -->
                       <ion-icon  name="trash-outline" style="--color: black;font-size:20px" ></ion-icon>
                     </ion-button>
                   </div>
@@ -273,7 +273,7 @@
                     <ion-button  style="text-align: center;height: 25px;" (click)="editLink(parrafo.position)"  >
                       <ion-icon  name="pencil-outline" style="--color: black;font-size:20px" ></ion-icon>
                     </ion-button>
-                    <ion-button  style="text-align: center;height: 25px;" (click)="eliminarParrafo(i)"><!-- deleteImage -->
+                    <ion-button class="buttonDelete"  (click)="eliminarParrafo(i)"><!-- deleteImage -->
                       <ion-icon  name="trash-outline" style="--color: black;font-size:20px" ></ion-icon>
                     </ion-button>
                   </div>
@@ -382,7 +382,7 @@
               <p *ngIf="origen && agregandoOrigen == true" style="text-align: center;color: #737373;font-size: 14px;"><i>{{origen}}</i><ion-icon  (click)="origenListo(0)" class="editIcon" name="pencil-outline" ></ion-icon></p>
             </ion-col>
             <ion-col style="text-align: center;" size="12">
-              <ion-button *ngIf="redactarArticulo" (click)="todoConOrigen()" [disabled]="(titulo1 != null && titulo1 != '') && (deporte != null && deporte != '') && ((urlVideo != null && urlVideo != '') || (parrafos.length > 0)) && ((origen != null && origen != '')) ?false:true"  >Listo para publicar</ion-button>
+              <ion-button *ngIf="redactarArticulo" (click)="todoConOrigen()" [disabled]="(titulo1 != null && titulo1 != '') && (deporte != null && deporte != '') && ((urlVideo != null && urlVideo != '') || (parrafos.length > 0)) && ((origen != null && origen != '')) ?false:true"  >{{ 'news.rody_post' | translate}}</ion-button>
             </ion-col>
            
              </ion-row>

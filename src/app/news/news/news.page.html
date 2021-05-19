@@ -14,7 +14,7 @@
 <ion-grid>
   <ion-row>
     <ion-col size="12">
-      <h1 class="title">Últimas noticias</h1>
+      <h1 class="title">{{'news.last' | translate}}</h1>
       <!--<ion-text color="black">
          <h1 style="font-size:35px;color: white; text-align: center;"><i></i></h1> 
       </ion-text>-->
@@ -132,10 +132,12 @@
               </h5>
               <h3 (click)="OpenNews(new._id)" class="newsTitle">{{new.headline}}</h3>
             </ion-col>   
+            <div style="background: rgb(136, 136, 136); height: 1px;width: 100%;margin-bottom: 10px;"></div>
           </ion-row>
+         
         </ion-grid>
         <div style="text-align: center;">
-          <ion-button *ngIf="indexLast < newsSportUser.length" class="main-bg"  (click)="verMasSport()">Ver Mas</ion-button>
+          <ion-button *ngIf="indexLast < newsSportUser.length" class="main-bg"  (click)="verMasSport()">{{ 'news.see_more'| translate}}</ion-button>
         </div>
         
       </ion-list>
@@ -187,7 +189,7 @@
           </div>   
         </ion-item>
         <div style="text-align: center;">
-          <ion-button *ngIf="indexLastFollow < newsFollow.length" class="main-bg"  (click)="verMasfollow()">Ver Mas</ion-button>
+          <ion-button *ngIf="indexLastFollow < newsFollow.length" class="main-bg"  (click)="verMasfollow()">{{ 'news.see_more'| translate}}</ion-button>
         </div>
         
       </ion-list>
@@ -209,7 +211,7 @@
 <ion-card *ngIf="stream != undefined">
   <ion-card-header>
     <ion-text color="black">
-      <h1 style="font-size:35px;color: black; text-align: center;"><i>Directos</i></h1> 
+      <h1 style="font-size:35px;color: black; text-align: center;"><i>{{'news.live' | translate}}</i></h1> 
    </ion-text>
   </ion-card-header>
   
@@ -232,7 +234,7 @@
         </ion-row>
       </ion-grid>
         <div style="text-align: center;">
-          <ion-button *ngIf="indexStreaming < stream.length" class="main-bg"  (click)="verMasStreaming()">Ver Mas</ion-button>
+          <ion-button *ngIf="indexStreaming < stream.length" class="main-bg"  (click)="verMasStreaming()">{{ 'news.see_more'| translate}}</ion-button>
         </div>
         
       </ion-list>
@@ -254,7 +256,7 @@
 <ion-card *ngIf="userService.User?.profile_user == 'press'">
   <ion-card-header>
     <ion-text color="black">
-      <h1 style="font-size:35px;color: black; text-align: center;"><i>Mis noticias</i></h1> 
+      <h1 style="font-size:35px;color: black; text-align: center;"><i>{{ 'news.my_news'| translate}}</i></h1> 
    </ion-text>
   </ion-card-header>
   
@@ -262,7 +264,7 @@
       <ion-list>
         <ion-grid>
         <ion-row  *ngFor="let new of myNews?.slice(0,indexLastMy )">
-          <ion-col size-xs="12" size-lg="9" >
+          <ion-col size-xs="12" size-lg="3" >
             <ion-img (click)="OpenNews(new._id)" *ngIf="new.principalImage"  class="imageMiniCard" [src]="new.principalImage"></ion-img>
             <div (click)="OpenNews(new._id)"  *ngIf="new.principalVideo" style="position: relative; cursor: pointer;">
               <video
@@ -288,10 +290,11 @@
             </h5>
             <h3 (click)="OpenNews(new._id)" class="newsTitle">{{new.headline}}</h3>
           </ion-col>   
+          <div style="background: rgb(136, 136, 136); height: 1px;width: 100%;margin-bottom: 10px;"></div>
         </ion-row>
       </ion-grid>
         <div style="text-align: center;">
-          <ion-button *ngIf="indexLastMy < myNews.length" class="main-bg"  (click)="verMasMy()">Ver Mas</ion-button>
+          <ion-button *ngIf="indexLastMy < myNews.length" class="main-bg"  (click)="verMasMy()">{{ 'news.see_more'| translate}}</ion-button>
         </div>
         
       </ion-list>

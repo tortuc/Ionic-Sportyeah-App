@@ -364,7 +364,8 @@
   "share_with": {
     "title": "Publicación",
     "text": "wow! Debes ver esta publicación en SPORTYEAH",
-    "dialogTitle": "Compartir en ..."
+    "dialogTitle": "Compartir en ...",
+    "text-news":"wow! Debes ver esta noticia en SPORTYEAH"
   },
   "share": {
     "header": "Compartir",
@@ -845,6 +846,8 @@
 
   "news": {
     "news": "Noticias",
+    "article _write":"Redactar noticia",
+    "transmit":"Transimitir",
     "notNews": "No se encontraron noticias",
     "newsSport": "Noticias Sportyeah!",
     "create": "Crear Nuevo Artículo",
@@ -854,6 +857,7 @@
     "subTitle": "Subtítulo",
     "writeParagraph": "Escribe el párrafo",
     "images": "Imágenes",
+    "image_video":"Imagen/Video principal",
     "add": "Agregar",
     "edit": "Editar",
     "save":"Guardar cambios",
@@ -867,6 +871,7 @@
     "next": "Siguiente",
     "newNews": "Nueva Noticia",
     "editNews": "Editando Noticia",
+    "rody_post":"Listo para publicar",
     "publish": "Publicar",
     "published": "Artículo publicado con exito!",
     "edited": "Artículo editado con exito!",
@@ -878,6 +883,10 @@
     "my_property":"De mi propiedad",
     "of_other":"De otro",
     "audioNews":"Audio Noticia",
+    "see_more":"Ver mas",
+    "live":"Directo",
+    "last":"Últimas Noticias",
+    "my_news":"Mis noticias",
     "deleteModal": {
       "cancel": "Cancelar",
       "confirm": "Esta seguro que desea eliminar este artículo.",

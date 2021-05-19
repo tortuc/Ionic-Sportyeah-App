@@ -98,6 +98,8 @@ export class CommentPostComponent implements OnInit {
   emoji = false;
   // cambia la variable de control del emoji
   openEmojis() {
+    console.log("emojis");
+    
     this.emoji = !this.emoji;
   }
 
@@ -240,5 +242,7 @@ export class CommentPostComponent implements OnInit {
 
   addFile(file) {
     this.files.push(file);
+    console.log(this.files);
+    
   }
 }

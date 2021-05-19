@@ -19,7 +19,7 @@ export class ViewCommentComponent implements OnInit {
     public viewsSponsorService:ViewsSponsorService
   ) {}
 
-  ngOnInit() {console.log(this.comment);
+  ngOnInit() {
   }
 
   async openImg() {
