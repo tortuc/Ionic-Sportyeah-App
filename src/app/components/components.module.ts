@@ -20,7 +20,6 @@ import { CreateAwardChallengeComponent } from "./challenges/create-award-challen
 import { ChallengeReactionsComponent } from "./challenges/challenge-reactions/challenge-reactions.component";
 import { ChallengeCommentsComponent } from "./challenges/challenge-comments/challenge-comments.component";
 import { CreateChallengeComponent } from "./challenges/create/create.component";
-import { SponsorsComponent } from "./../profile/sponsors/sponsors.component";
 import { ImageSeeComponent } from "./image-see/image-see.component";
 import { ErrorComponent } from "./error/error.component";
 import { LinkYoutubeComponent } from "./link-youtube/link-youtube.component";
@@ -62,7 +61,6 @@ import { NewsOptionsComponent } from "./news-options/news-options.component";
 import { ChallengesPotsOptionsIndivComponent } from "./challenge/challenges-pots-options-indiv/challenges-pots-options-indiv.component";
 import { NewQuestionComponent } from "./new-question/new-question.component";
 import { ModifyMediaComponent } from "src/app/components/structure/modify-media/modify-media.component";
-import { SponsorsNodeComponent } from "src/app/components/structure/sponsors/sponsors.component";
 import { QuestionComponent } from "./question/question.component";
 import { GetMediaComponent } from "./get-media/get-media.component";
 import { QuestionNotificationComponent } from "./question-notification/question-notification.component";
@@ -85,7 +83,6 @@ const components = [
   UnfollowNotificationComponent,
   LikeNotificationComponent,
   CommentNotificationComponent,
-  SponsorsComponent,
   StructureComponent,
   SharedNotificationComponent,
   ChallengeCommentsComponent,
@@ -127,7 +124,6 @@ const components = [
   ChallengesPotsOptionsIndivComponent,
   NewQuestionComponent,
   ModifyMediaComponent,
-  SponsorsNodeComponent,
   QuestionComponent,
   QuestionNotificationComponent,
   GetMediaComponent,

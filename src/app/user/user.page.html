@@ -94,13 +94,7 @@
             </div>
           </ion-card-header>
 
-          <div style="margin-bottom: 5px">
-            <app-sponsor
-              [creator]="false"
-              [sponsors]="user?.sponsors"
-              [idUser]="user?._id"
-            ></app-sponsor>
-          </div>
+      
 
           <ion-card-content> </ion-card-content>
           <div class="text-center">
@@ -320,6 +314,10 @@
         class="ion-justify-content-center ion-align-items-center"
       >
         <div style="position: sticky; top: -300px; padding-left: 5px">
+            <profile-sponsors
+            *ngIf="user.profile_user !== 'sponsor'"
+            [user]="user"
+          ></profile-sponsors>
           <friends-panel-desktop></friends-panel-desktop>
           <add-users-panel-desktop></add-users-panel-desktop>
           <!-- <popular-groups-panel></popular-groups-panel> -->

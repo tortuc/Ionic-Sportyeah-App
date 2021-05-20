@@ -1,11 +1,11 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { ModalController } from "@ionic/angular";
 import { take } from "rxjs/operators";
-import { SponsorsCreateComponent } from "src/app/components/structure/sponsors-create/sponsors-create.component";
 import { ISponsor } from "src/app/models/ISponsor";
 import { User } from "src/app/models/IUser";
 import { SponsorService } from "src/app/service";
 import { UserService } from "src/app/service/user.service";
+import { SponsorsCreateComponent } from "../sponsors-create/sponsors-create.component";
 import { AllSponsorsComponent } from "./all-sponsors/all-sponsors.component";
 
 @Component({
