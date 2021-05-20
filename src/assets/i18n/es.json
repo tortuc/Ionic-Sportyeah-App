@@ -1201,8 +1201,14 @@
       "add": "Agrega un patrocinador",
       "all": "Ver todos"
     },
+    "public_profile": {
+      "title": "Patrocinadores de esta cuenta",
+      "add": "Agrega un patrocinador",
+      "all": "Ver todos"
+    },
     "allSponsors": {
-      "title_mine": " Desde esta opcion puedes editar, eliminar o ver las analiticas de tus patrocinadores",
+      "title_mine": "Desde esta opcion puedes editar, eliminar o ver las analiticas de tus patrocinadores",
+      "title_other": "Todos los patrocinadores de esta cuenta",
       "btn": "Opciones",
       "cantEdit": {
         "header": "Ups!",

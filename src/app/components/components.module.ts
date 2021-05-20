@@ -1,4 +1,3 @@
-import { MiniflagComponent } from "./miniflag/miniflag.component";
 import { OpenImgComponent } from "./open-img/open-img.component";
 import { ParteIzquierdaWebComponent } from "./challenge/parte-izquierda-web/parte-izquierda-web.component";
 import { ParteDerechaWebComponent } from "./challenge/parte-derecha-web/parte-derecha-web.component";
@@ -127,7 +126,6 @@ const components = [
   QuestionComponent,
   QuestionNotificationComponent,
   GetMediaComponent,
-  MiniflagComponent,
   NoResults,
   ProfilHeaderC,
   ProfileBodyC,

@@ -17,7 +17,7 @@ export class ProfileSponsorsComponent implements OnInit {
   @Input() user: User;
   constructor(
     private sponsorService: SponsorService,
-    private userService: UserService,
+    public userService: UserService,
     private modalCtrl: ModalController
   ) {}
 

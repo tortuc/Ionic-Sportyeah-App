@@ -14,6 +14,7 @@ import { TranslateModule } from "@ngx-translate/core";
 import { CarrouselComponent } from "./carrousel/carrousel.component";
 import { PostComponetsModule } from "../post-components/post-componets.module";
 import { ComponentsSharedModule } from "../shared-components/components-shared.module";
+import { SponsorsModule } from "../sponsors-components/sponsors.module";
 
 @NgModule({
   imports: [
@@ -26,6 +27,7 @@ import { ComponentsSharedModule } from "../shared-components/components-shared.m
     TranslateModule,
     ComponentsSharedModule,
     PostComponetsModule,
+    SponsorsModule
   ],
   declarations: [UserPage, CarrouselComponent],
 })

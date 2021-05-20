@@ -18,6 +18,7 @@ import { TranslateModule } from "@ngx-translate/core";
 import { IonicModule } from "@ionic/angular";
 import { ViewSponsorMiniComponent } from "./view-sponsors/view-sponsor-mini/view-sponsor-mini.component";
 import { ViewSponsorsComponent } from "./view-sponsors/view-sponsors.component";
+import { ComponentsSharedModule } from "../shared-components/components-shared.module";
 
 const components = [
   ProfileSponsorsComponent,
@@ -45,6 +46,7 @@ const components = [
     PipesModule,
     FormsModule,
     RouterModule,
+    ComponentsSharedModule
   ],
   exports: components,
 })

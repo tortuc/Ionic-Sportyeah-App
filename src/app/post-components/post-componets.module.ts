@@ -32,6 +32,7 @@ import { PostContentComponent } from "../components/post-content/post-content.co
 import { SeeFilesPostContentComponent } from "./see-files-post-content/see-files-post-content.component";
 import { SharePopoverComponent } from "./share-popover/share-popover.component";
 import { ProfilePhotoComponent } from "../shared-components/profile-photo/profile-photo.component";
+import { SponsorsModule } from "../sponsors-components/sponsors.module";
 
 const componets = [
   CommentPostComponent,
@@ -72,6 +73,7 @@ const componets = [
     PickerModule,
     DirectivesModule,
     RouterModule,
+    SponsorsModule
   ],
   declarations: componets,
 

@@ -6,7 +6,12 @@
   ></ion-icon>
   <div style="padding: 15px; text-align: center">
     <h6>
-      {{ "sponsors.allSponsors.title_mine" | translate }}
+      {{
+        (userService.User?._id == user._id
+          ? "sponsors.allSponsors.title_mine"
+          : "sponsors.allSponsors.title_other"
+        ) | translate
+      }}
     </h6>
   </div>
   <ion-row>
@@ -15,8 +20,8 @@
         [info]="sponsor.idSponsor?.sponsor_info || sponsor.customSponsor"
         [sponsor]="sponsor"
       ></view-sponsor-profile>
-      <div style="text-align: center">
-        <ion-button (click)="options($event,sponsor)" class="btn-primary"
+      <div *ngIf="userService.User?._id == user._id" style="text-align: center">
+        <ion-button (click)="options($event, sponsor)" class="btn-primary"
           ><span
             ><ion-icon name="create-outline"></ion-icon>
             {{ "sponsors.allSponsors.btn" | translate }}</span

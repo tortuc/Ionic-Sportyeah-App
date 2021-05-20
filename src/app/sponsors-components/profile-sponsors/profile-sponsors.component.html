@@ -1,5 +1,8 @@
-<ion-card class="sponsors-card">
-  <h5 class="title">{{ "sponsors.private_profile.title" | translate }}</h5>
+<ion-card class="sponsors-card main-border" [ngClass]="{empty:sponsors.length == 0}">
+  <h5 class="title">
+    {{ ((userService.User?._id == user._id)?'sponsors.private_profile.title':'sponsors.public_profile.title')  | translate }}
+  </h5>
+
   <div class="content">
     <img
       *ngIf="sponsors.length == 0"
@@ -7,7 +10,7 @@
       src="assets/logos/imagotipo_azul.png"
       alt=""
     />
-    <div *ngIf="loading" style="text-align: center;padding: 15px;">
+    <div *ngIf="loading" style="text-align: center; padding: 15px">
       <ion-spinner></ion-spinner>
     </div>
     <ion-row>
@@ -20,11 +23,14 @@
     </ion-row>
   </div>
   <div style="text-align: center">
-    <ion-button class="btn-primary" (click)="createSponsor()"
+    <ion-button
+      *ngIf="userService.User?._id == user._id"
+      class="btn-primary"
+      (click)="createSponsor()"
       >{{ "sponsors.private_profile.add" | translate }}</ion-button
     >
     <ion-button
-      *ngIf="sponsors.length > 0" 
+      *ngIf="sponsors.length > 0"
       class="btn-primary"
       (click)="seeAll()"
       >{{ "sponsors.private_profile.all" | translate }}</ion-button
