@@ -132,10 +132,19 @@
             </ion-button>
           </ion-card-header>
 
-          <ion-card-content> </ion-card-content>
-
-         
-
+          <!-- Patrocinadores en mobile -->
+          <custom-sponsor
+            fxShow="false"
+            fxShow.lt-md="true"
+            *ngIf="userService.User.profile_user == 'sponsor'"
+          ></custom-sponsor>
+          <profile-sponsors
+            fxShow="false"
+            fxShow.lt-md="true"
+            *ngIf="userService.User.profile_user !== 'sponsor'"
+            [user]="userService.User"
+          ></profile-sponsors>
+          <!-- Fin patrocinadores movil -->
           <ion-segment
             (ionChange)="segmentChanged($event)"
             style="border: 1px white"
