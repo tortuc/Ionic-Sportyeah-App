@@ -1196,21 +1196,40 @@
   "sponsors": {
     "miniature": "(Miniatura)",
     "profile": "(Perfil)",
-    
+    "private_profile": {
+      "title": "¿Tienes algun patrocinador? Agregalo aqui!",
+      "add": "Agrega un patrocinador",
+      "all": "Ver todos"
+    },
+    "allSponsors": {
+      "title_mine": " Desde esta opcion puedes editar, eliminar o ver las analiticas de tus patrocinadores",
+      "btn": "Opciones",
+      "cantEdit": {
+        "header": "Ups!",
+        "message": "Los patrocinadores con cuenta en sportyeah no pueden ser editados... pongase en contacto con su patrocinador"
+      },
+      "delete": {
+        "header": "Eliminar patrocinador",
+        "message": "Seguro que quieres eliminar este patrocinador?"
+      }
+    },
+    "options": {
+      "edit": "Editar",
+      "delete": "Eliminar",
+      "analytic": "Analiticas"
+    },
     "create": {
       "account": {
         "title": "Busca a tu patrocinador en sportyeah!",
         "hint": "Asi se vera tu patrocinador en las publicaciones (miniatura) y en tu perfil (perfil)"
-        
       },
       "action": {
         "header": "Subir una imagen para el patrocinador",
         "gallery": "Galeria",
         "free": "Añadir imagen gratuita"
       },
-      "save":"Guardar patrocinador",
-      "no_account":"Mi patrocinador no tiene cuenta en sportyeah"
-
+      "save": "Guardar patrocinador",
+      "no_account": "Mi patrocinador no tiene cuenta en sportyeah"
     },
     "custom": {
       "title": "Personaliza tu tarjeta de patrocinio",
@@ -1221,12 +1240,22 @@
       "miniature_hint": "De esta manera le aparecera a tus patrocinados en sus publicaciones",
       "miniature_ratio": "La imagen en miniatura debe tener una relacion de aspecto de 2:1",
       "profile_hint": "De esta manera le aparecera a tus patrocinados en su perfil publico y privado",
-      "profile_ratio": "La imagen en miniatura debe tener una relacion de aspecto de 1:1 ( 500x500 recomendado)",
+      "profile_ratio": "La imagen debe tener una relacion de aspecto de 1:1 ( 500x500 recomendado)",
       "change_btn": "Cambiar imagen",
-      "save":"Guardar Cambios",
-      "header":"Desde esta herramienta puedes personalizar tu tarjeta de patrocinador",
-      "name":"Nombre de tu marca"
+      "save": "Guardar Cambios",
+      "header": "Desde esta herramienta puedes personalizar tu tarjeta de patrocinador",
+      "name": "Nombre de tu marca",
+      "url":"Pagina web de tu patrocinador (URL)",
+      "finish":"Completa la informacion de tu patrocinador",
+      "edit":"Edita la informacion de tu patrocinador",
+      "loading":"Cargando...",
+      "nopreview":"No hay previsualizacion"
+      
     }
   },
-  "no_results": "No hay resultados"
+  "no_results": "No hay resultados",
+  "working": {
+    "header": "Ups!",
+    "message": "Estamos trabajando en esta herramienta"
+  }
 }

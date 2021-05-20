@@ -34,6 +34,7 @@ import { SeeProfileBannerComponent } from "./see-profile-banner/see-profile-bann
 import { ProfilePhotoComponent } from "./profile-photo/profile-photo.component";
 import { ProfilePhotoOptionsComponent } from "./profile-photo-options/profile-photo-options.component";
 import { ProfileUserInfoComponent } from "./profile-user-info/profile-user-info.component";
+import { ViewSponsorMiniComponent } from "./view-sponsors/view-sponsor-mini/view-sponsor-mini.component";
 
 const components = [
   ViewCommentComponent,
@@ -64,7 +65,8 @@ const components = [
   SeeProfileBannerComponent,
   ProfilePhotoComponent,
   ProfilePhotoOptionsComponent,
-  ProfileUserInfoComponent
+  ProfileUserInfoComponent,
+  ViewSponsorMiniComponent
   
 ];
 

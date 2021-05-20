@@ -334,6 +334,7 @@
         <div style="position: sticky; top: -300px; padding-left: 5px">
           <profile-sponsors
             *ngIf="userService.User.profile_user !== 'sponsor'"
+            [user]="userService.User"
           ></profile-sponsors>
           <custom-sponsor
             *ngIf="userService.User.profile_user == 'sponsor'"

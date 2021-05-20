@@ -1,13 +1,13 @@
 import { Component, OnInit, Input, ViewChild, ElementRef } from "@angular/core";
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { FormBuilder } from "@angular/forms";
 import { ActionSheetController, ModalController } from "@ionic/angular";
 import { ISponsor, ISponsorInfo } from "src/app/models/ISponsor";
-import { ImagePickerComponent } from "src/app/shared-components/image-picker/image-picker.component";
 import { TranslateService } from "@ngx-translate/core";
 import { SponsorService } from "src/app/service";
 import { User } from "src/app/models/IUser";
 import { FilesService } from "src/app/service/files.service";
 import { UserService } from "src/app/service/user.service";
+import { WishService } from "src/app/service/wish.service";
 
 @Component({
   selector: "sponsors-create",
@@ -26,7 +26,8 @@ export class SponsorsCreateComponent implements OnInit {
     public fileService: FilesService,
     private sponsorService: SponsorService,
     private readonly translate: TranslateService,
-    private readonly userService: UserService
+    private readonly userService: UserService,
+    private readonly wishService: WishService
   ) {}
 
   /*
@@ -45,7 +46,9 @@ export class SponsorsCreateComponent implements OnInit {
     profile_image: "assets/sponsors/default_profile.jpg",
   };
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.previewUrl();
+  }
 
   /*
    * Crea un patrocinador
@@ -55,15 +58,19 @@ export class SponsorsCreateComponent implements OnInit {
       user: this.userService.User._id,
     };
 
-    sponsor.idSponsor =
-      this.sponsorSelected != null ? this.sponsorSelected._id : null;
+    if (this.noAccount) {
+      sponsor.customSponsor = this.customSponsor;
+    } else {
+      sponsor.idSponsor =
+        this.sponsorSelected != null ? this.sponsorSelected._id : null;
+    }
 
+    console.log(sponsor);
+    
     this.sponsorService.createSponsor(sponsor).subscribe((newSponsor) => {
       this.modalCtrl.dismiss({ new: true, newSponsor });
     });
   }
-
-
 
   sponsorSelected: User = null;
 
@@ -89,5 +96,40 @@ export class SponsorsCreateComponent implements OnInit {
           break;
       }
     });
+  }
+
+  preview = null;
+  previewLoading = false;
+
+  timeout = null;
+  previewUrl() {
+    clearTimeout(this.timeout);
+    this.timeout = setTimeout(() => {
+      try {
+        let string: string = this.customSponsor.url;
+        let match = string.match(
+          /[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?/g
+        );
+
+        if (match) {
+          this.previewLoading = true;
+          this.wishService
+            .pageInfo(match[0])
+            .toPromise()
+            .then((info) => {
+              this.previewLoading = false;
+              this.preview = info;
+            })
+            .catch((err) => {
+              this.previewLoading = false;
+              this.preview = null;
+            });
+        } else {
+          this.preview = null;
+        }
+      } catch (error) {
+        // nothing to do
+      }
+    }, 1000);
   }
 }

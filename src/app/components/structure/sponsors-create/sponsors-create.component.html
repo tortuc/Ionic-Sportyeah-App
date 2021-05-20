@@ -37,7 +37,7 @@
       multiple
       hidden
     />
-    <h5 class="title">Completa la informacion de tu patrocinador</h5>
+    <h5 class="title">{{ "sponsors.customize.finish" | translate }}</h5>
     <ion-item>
       <ion-label position="floating">
         {{ "sponsors.customize.name" | translate }}
@@ -46,15 +46,19 @@
     </ion-item>
     <ion-item>
       <ion-label position="floating">
-        Pagina web de tu patrocinador (URL)
+        {{ "sponsors.customize.url" | translate }}
       </ion-label>
-      <ion-input [(ngModel)]="customSponsor.url"></ion-input>
+      <ion-input
+        [(ngModel)]="customSponsor.url"
+        (ionChange)="previewUrl()"
+      ></ion-input>
     </ion-item>
+    <div>
+      <p *ngIf="previewLoading">{{ "sponsors.customize.edit" | translate }}</p>
+      <p *ngIf="!previewLoading && !preview">{{ "sponsors.customize.nopreview" | translate }}</p>
+      <url-preview *ngIf="preview" [preview]="preview"></url-preview>
+    </div>
     <div class="mini">
-      <p class="hint">
-        <ion-icon name="information-circle-outline"></ion-icon>
-        {{ "sponsors.customize.miniature_hint" | translate }}
-      </p>
       <p class="aspect">
         {{ "sponsors.customize.miniature_ratio" | translate }}
       </p>
@@ -73,10 +77,6 @@
       </div>
     </div>
     <div class="profile">
-      <p class="hint">
-        <ion-icon name="information-circle-outline"></ion-icon>
-        {{ "sponsors.customize.profile_hint" | translate }}
-      </p>
       <p class="aspect">
         {{ "sponsors.customize.profile_ratio" | translate }}
       </p>
@@ -103,7 +103,7 @@
     <ion-button
       class="btn-primary"
       (click)="create()"
-      [disabled]="sponsorSelected == null"
+      [disabled]="!noAccount && sponsorSelected == null"
     >
       <span
         ><ion-icon name="save-outline"></ion-icon>
@@ -111,5 +111,4 @@
       >
     </ion-button>
   </div>
-  
 </ion-content>

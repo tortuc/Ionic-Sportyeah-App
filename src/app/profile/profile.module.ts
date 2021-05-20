@@ -31,6 +31,9 @@ import { SponsorsSearchComponent } from "../components/structure/sponsors-create
 import { ProfileSponsorsComponent } from "./profile-sponsors/profile-sponsors.component";
 import { CustomizeSponsorComponent } from "./custom-sponsor/customize-sponsor/customize-sponsor.component";
 import { ViewSponsorProfileComponent } from "./profile-sponsors/view-sponsor-profile/view-sponsor-profile.component";
+import { AllSponsorsComponent } from "./profile-sponsors/all-sponsors/all-sponsors.component";
+import { SponsorOptionsComponent } from "./profile-sponsors/all-sponsors/sponsor-options/sponsor-options.component";
+import { EditSponsorComponent } from "./profile-sponsors/all-sponsors/edit-sponsor/edit-sponsor.component";
 
 @NgModule({
   imports: [
@@ -68,7 +71,10 @@ import { ViewSponsorProfileComponent } from "./profile-sponsors/view-sponsor-pro
     CustomSponsorComponent,
     PreviewCardsSponsorComponent,
     CustomizeSponsorComponent,
-    ViewSponsorProfileComponent
+    ViewSponsorProfileComponent,
+    AllSponsorsComponent,
+    SponsorOptionsComponent,
+    EditSponsorComponent
   ],
 })
 export class ProfilePageModule {}
