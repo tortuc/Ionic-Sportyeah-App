@@ -1,6 +1,16 @@
-<ion-card class="sponsors-card main-border" [ngClass]="{empty:sponsors.length == 0}">
+<ion-card
+  class="sponsors-card main-border"
+  [ngClass]="{
+    empty: userService.User?._id != user._id && sponsors.length == 0
+  }"
+>
   <h5 class="title">
-    {{ ((userService.User?._id == user._id)?'sponsors.private_profile.title':'sponsors.public_profile.title')  | translate }}
+    {{
+      (userService.User?._id == user._id
+        ? "sponsors.private_profile.title"
+        : "sponsors.public_profile.title"
+      ) | translate
+    }}
   </h5>
 
   <div class="content">
