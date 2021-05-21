@@ -23,7 +23,6 @@
         </div>
         <div *ngSwitchCase="'youtube'">
           <iframe
-            (click)="openSlider()"
             *ngIf="file.url | youtube"
             [src]="file.url | youtube"
             frameborder="0"
