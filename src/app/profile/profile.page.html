@@ -64,7 +64,7 @@
               <ion-row>
                 <ion-col>
                   <ion-button
-                    class="analythics"
+                    class="btn-primary"
                     [routerLink]="'/landing/'+userService.User._id+'/analytics-views'"
                     ><ion-icon
                       name="analytics-outline"
@@ -132,16 +132,19 @@
             </ion-button>
           </ion-card-header>
 
-          <ion-card-content> </ion-card-content>
-
-          <div style="margin-bottom: 5px">
-            <app-sponsor
-              [creator]="creator"
-              [sponsors]="user.sponsors"
-              (action)="changeSponsors($event)"
-            ></app-sponsor>
-          </div>
-
+          <!-- Patrocinadores en mobile -->
+          <custom-sponsor
+            fxShow="false"
+            fxShow.lt-md="true"
+            *ngIf="userService.User.profile_user == 'sponsor'"
+          ></custom-sponsor>
+          <profile-sponsors
+            fxShow="false"
+            fxShow.lt-md="true"
+            *ngIf="userService.User.profile_user !== 'sponsor'"
+            [user]="userService.User"
+          ></profile-sponsors>
+          <!-- Fin patrocinadores movil -->
           <ion-segment
             (ionChange)="segmentChanged($event)"
             style="border: 1px white"
@@ -161,26 +164,12 @@
         </ion-card>
         <div *ngIf="profile">
           <app-carrousel [id]="userService.User?._id"></app-carrousel>
-          <ion-card
-            ngClass.xs="m-p-0"
-            class="mt5"
-            *ngIf="
-              userService.User.profile_user !== 'sponsor' &&
-              userService.User.profile_user !== 'foundation' &&
-              userService.User.profile_user !== 'federation' &&
-              userService.User.profile_user !== 'amateur' &&
-              userService.User.profile_user !== 'club' &&
-              userService.User.profile_user !== 'association'
-            "
-          >
-            <ion-grid style="padding: 0" class="ion-justify-content-center">
-              <ion-row class="ion-justify-content-center">
-                <ion-col ngClass.xs="m-p-0" size-md="12" size-sm="12">
-                  <app-experience [id]="userService.User?._id"></app-experience>
-                </ion-col>
-              </ion-row>
-            </ion-grid>
-          </ion-card>
+
+          <experience
+            *ngIf="['player','scout','press', 'executive','staff'].includes(userService.User.profile_user)"
+            [id]="userService.User?._id"
+            [user]="userService.User"
+          ></experience>
 
           <ion-card
             ngClass.xs="m-p-0"
@@ -201,22 +190,9 @@
           <ion-card
             ngClass.xs="m-p-0"
             class="mt5"
-            *ngIf="
-              userService.User.profile_user !== 'sponsor' &&
-              userService.User.profile_user !== 'federation' &&
-              userService.User.profile_user !== 'foundation' &&
-              userService.User.profile_user !== 'representative' &&
-              userService.User.profile_user !== 'association' &&
-              userService.User.profile_user !== 'club'
-            "
+            *ngIf="!['sponsor','federation','foundation','representative','association','club'].includes(userService.User.profile_user)"
           >
-            <ion-grid style="padding: 0" class="ion-justify-content-center">
-              <ion-row class="ion-justify-content-center">
-                <ion-col ngClass.xs="m-p-0" size-md="12" size-sm="12">
-                  <app-aptitudes [id]="userService.User?._id"></app-aptitudes>
-                </ion-col>
-              </ion-row>
-            </ion-grid>
+            <app-aptitudes [id]="userService.User?._id"></app-aptitudes>
           </ion-card>
         </div>
         <!-- FINISH SEGMENT PROFILE  -->
@@ -257,6 +233,7 @@
         <div style="position: sticky; top: -300px; padding-left: 5px">
           <profile-sponsors
             *ngIf="userService.User.profile_user !== 'sponsor'"
+            [user]="userService.User"
           ></profile-sponsors>
           <custom-sponsor
             *ngIf="userService.User.profile_user == 'sponsor'"

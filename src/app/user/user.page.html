@@ -30,7 +30,7 @@
       *ngIf="user && user != 404"
       class="height-100vh ion-justify-content-center"
     >
-      <ion-col ngClass.xs="m-p-0" size-md="8" size-sm="12">
+      <ion-col ngClass.xs="m-p-0" size-md="7" size-sm="12">
         <ion-card ngClass.xs="m-p-0" class="">
           <ion-card-header
             class="text-center"
@@ -94,13 +94,7 @@
             </div>
           </ion-card-header>
 
-          <div style="margin-bottom: 5px">
-            <app-sponsor
-              [creator]="false"
-              [sponsors]="user?.sponsors"
-              [idUser]="user?._id"
-            ></app-sponsor>
-          </div>
+      
 
           <ion-card-content> </ion-card-content>
           <div class="text-center">
@@ -150,7 +144,7 @@
           ></app-carrousel>
 
           <app-structure
-            [id]="user._id"
+            [ID]="user._id"
             *ngIf="
                   user?.profile_user === 'sponsor' ||
                   user?.profile_user === 'association' ||
@@ -161,26 +155,13 @@
             "
           ></app-structure>
 
-          <ion-card
-            ngClass.xs="m-p-0"
-            class="mt5"
-            *ngIf="
-              user?.profile_user !== 'sponsor' &&
-                  user?.profile_user !== 'association' &&
-                  user?.profile_user !== 'foundation' &&
-                  user?.profile_user !== 'amateur' &&
-                  user?.profile_user !== 'federation' &&
-                  user?.profile_user !== 'club'
-          "
-          >
-            <ion-grid style="padding: 0" class="ion-justify-content-center">
-              <ion-row class="ion-justify-content-center">
-                <ion-col ngClass.xs="m-p-0" size-md="12" size-sm="12">
-                  <app-experience [id]="id_visited"></app-experience>
-                </ion-col>
-              </ion-row>
-            </ion-grid>
-          </ion-card>
+          <experience
+            *ngIf="['player','scout','press', 'executive','staff'].includes(user?.profile_user)"
+            [id]="user?._id"
+            [user]="user"
+          ></experience>
+
+        
 
           <ion-card
             ngClass.xs="m-p-0"
@@ -315,11 +296,15 @@
       </ion-col>
       <ion-col
         *ngIf="userService.User != null"
-        size-lg="4"
+        size-lg="5"
         fxShow.lt-md="false"
         class="ion-justify-content-center ion-align-items-center"
       >
         <div style="position: sticky; top: -300px; padding-left: 5px">
+            <profile-sponsors
+            *ngIf="user.profile_user !== 'sponsor'"
+            [user]="user"
+          ></profile-sponsors>
           <friends-panel-desktop></friends-panel-desktop>
           <add-users-panel-desktop></add-users-panel-desktop>
           <!-- <popular-groups-panel></popular-groups-panel> -->

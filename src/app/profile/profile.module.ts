@@ -23,14 +23,8 @@ import { PostComponetsModule } from "../post-components/post-componets.module";
 import { ComponentsSharedModule } from "../shared-components/components-shared.module";
 import { MsgProfileEditComponent } from "./msg-profile-edit/msg-profile-edit.component";
 import { OptionNewsComponent } from "../news/news/option-news/option-news.component";
-import { SponsorsCreateComponent } from "../components/structure/sponsors-create/sponsors-create.component";
-import { PreviewCardsSponsorComponent } from "./preview-cards-sponsor/preview-cards-sponsor.component";
-import { CustomSponsorComponent } from "./custom-sponsor/custom-sponsor.component";
-import { SponsorUserItemComponent } from "../components/structure/sponsors-create/sponsor-user-item/sponsor-user-item.component";
-import { SponsorsSearchComponent } from "../components/structure/sponsors-create/sponsors-search/sponsors-search.component";
-import { ProfileSponsorsComponent } from "./profile-sponsors/profile-sponsors.component";
-import { CustomizeSponsorComponent } from "./custom-sponsor/customize-sponsor/customize-sponsor.component";
-import { ViewSponsorProfileComponent } from "./profile-sponsors/view-sponsor-profile/view-sponsor-profile.component";
+import { SponsorsModule } from "../sponsors-components/sponsors.module";
+import { ExperiencesModule } from "../experiences/experiences.module";
 
 @NgModule({
   imports: [
@@ -50,6 +44,8 @@ import { ViewSponsorProfileComponent } from "./profile-sponsors/view-sponsor-pro
     IonCustomScrollbarModule,
     ComponentsSharedModule,
     PostComponetsModule,
+    SponsorsModule,
+    ExperiencesModule
   ],
   declarations: [
     ProfilePage,
@@ -60,15 +56,8 @@ import { ViewSponsorProfileComponent } from "./profile-sponsors/view-sponsor-pro
     CarrouselComponent,
     NewNodeComponent,
     MsgProfileEditComponent,
-    OptionNewsComponent,
-    ProfileSponsorsComponent,
-    SponsorsCreateComponent,
-    SponsorsSearchComponent,
-    SponsorUserItemComponent,
-    CustomSponsorComponent,
-    PreviewCardsSponsorComponent,
-    CustomizeSponsorComponent,
-    ViewSponsorProfileComponent
+    OptionNewsComponent
+   
   ],
 })
 export class ProfilePageModule {}

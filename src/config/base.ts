@@ -68,3 +68,73 @@ export const SIDEBAR_ITEMS = [{
     fas: '',
     children: []
   }];
+
+  /**
+   * Deportes disponibles
+   */
+  export const sports = [
+    "soccer",
+    "basketball",
+    "tennis",
+    "baseball",
+    "golf",
+    "running",
+    "volleyball",
+    "swimming",
+    "boxing",
+    "table_tennis",
+    "rugby",
+    "football",
+    "esport",
+    "various",
+  ];
+
+  /**
+   * Tipos de perfiles disponibles
+   */
+
+
+
+   export const profiles = [
+    "club",
+    "player",
+    "staff",
+    "amateur",
+    "representative",
+    "scout",
+    "press",
+    "association",
+    "foundation",
+    "federation",
+    "sponsor",
+    "executive",
+    "administration",
+  ];
+
+  /**
+   * Sub perfiles de administrador
+   */
+
+  export const sub_profiles_administration = [
+    "president",
+    "vice_president",
+    "vocal",
+    "adviser",
+    "area_director",
+    "treasury",
+    "secretary",
+    "administration", 
+  ];
+
+  /**
+   * Sub perfiles de staff
+   */
+
+  export const sub_profiles_staff = [
+    "coach",
+    "physical_trainer",
+    "medicine",
+    "nutritionist",
+    "sports_sychology",
+    "field_delegate",
+  ];

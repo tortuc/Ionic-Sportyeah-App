@@ -1,4 +1,3 @@
-import { SponsorsComponent } from "./sponsors/sponsors.component";
 import { OpenImgComponent } from "src/app/components/open-img/open-img.component";
 import { LoginService } from "./../service/login.service";
 import { take } from "rxjs/operators";

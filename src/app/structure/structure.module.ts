@@ -8,6 +8,7 @@ import { StructurePageRoutingModule } from './structure-routing.module';
 
 import { StructurePage } from './structure.page';
 import { ComponentsModule } from 'src/app/components/components.module'
+import { ExperiencesModule } from '../experiences/experiences.module';
 
 @NgModule({
   imports: [
@@ -17,7 +18,9 @@ import { ComponentsModule } from 'src/app/components/components.module'
     StructurePageRoutingModule,
     ComponentsModule,
     TranslateModule,
-    PipesModule
+    PipesModule,
+    ExperiencesModule
+
   ],
   declarations: [StructurePage]
 })

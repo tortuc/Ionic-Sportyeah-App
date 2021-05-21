@@ -9,7 +9,6 @@ import { LangBtnAppComponent } from "./lang-btn-app/lang-btn-app.component";
 import { FollowButtonComponent } from "../components/follow-button/follow-button.component";
 import { MainCardUserComponent } from "./main-card-user/main-card-user.component";
 import { RouterModule } from "@angular/router";
-import { ViewSponsorsComponent } from "./view-sponsors/view-sponsors.component";
 import { LoadingProgressComponent } from "./loading-progress/loading-progress.component";
 import { AttachLinkPreviewPostComponent } from "../post-components/attach-link-preview-post/attach-link-preview-post.component";
 import { UrlPreviewComponent } from "../components/url-preview/url-preview.component";
@@ -37,6 +36,7 @@ import { ProfileUserInfoComponent } from "./profile-user-info/profile-user-info.
 import { NewPostHeaderComponent } from "../post-components/new-post-header/new-post-header.component";
 import { PostPreviewImagesSliderComponent } from "../post-components/post-preview-images-slider/post-preview-images-slider.component";
 import { PostPreviewImagesComponent } from "../post-components/post-preview-images/post-preview-images.component";
+import { MiniflagComponent } from "../components/miniflag/miniflag.component";
 
 const components = [
   ViewCommentComponent,
@@ -45,7 +45,6 @@ const components = [
   LangButtonComponent,
   LangBtnAppComponent,
   MainCardUserComponent,
-  ViewSponsorsComponent,
   LoadingProgressComponent,
   AttachLinkPreviewPostComponent,
   UrlPreviewComponent,
@@ -68,6 +67,7 @@ const components = [
   ProfilePhotoComponent,
   ProfilePhotoOptionsComponent,
   ProfileUserInfoComponent,
+  MiniflagComponent,
   
 
   NewPostHeaderComponent,

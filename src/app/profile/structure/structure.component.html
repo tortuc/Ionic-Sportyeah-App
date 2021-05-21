@@ -118,17 +118,13 @@
     </div>
 
 
-    <app-sponsor
-      [creator]="creator"
-      [sponsors]="actualNode.sponsors"
-      (action)="sponsorsAction($event)"
-    ></app-sponsor>
+    
 
-    <app-experience 
+    <!-- <experience 
       *ngIf="userNode"
-      [id]="userNode._id"
+      [user]="userNode"
     >
-    </app-experience>
+    </experience> -->
     <app-awards
       *ngIf="userNode"
       [id]="userNode._id"

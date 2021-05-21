@@ -1,0 +1,114 @@
+<ion-content class="content">
+  <ion-icon
+    name="close-outline"
+    (click)="modalCtrl.dismiss()"
+    class="close-modal"
+  ></ion-icon>
+  <loading-progress class="progress"></loading-progress>
+  <div class="sponsor-content" *ngIf="!noAccount">
+    <h4 class="title" *ngIf="sponsorSelected == null">
+      {{ "sponsors.create.account.title" | translate }}
+    </h4>
+    <sponsors-search
+      *ngIf="sponsorSelected == null"
+      (selected)="setSponsor($event)"
+    ></sponsors-search>
+    <div *ngIf="sponsorSelected != null" style="text-align: center">
+      <h3>
+        {{ "sponsors.create.account.hint" | translate }}
+      </h3>
+      <preview-cards-sponsor
+        [info]="sponsorSelected.sponsor_info"
+      ></preview-cards-sponsor>
+      <div>
+        <ion-button class="btn-cancel" (click)="sponsorSelected = null">{{
+          "cancel" | translate
+        }}</ion-button>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="noAccount" class="no-account">
+    <input
+      #openImage
+      type="file"
+      accept="image/*"
+      (change)="uploadFile($event)"
+      multiple
+      hidden
+    />
+    <h5 class="title">{{ "sponsors.customize.finish" | translate }}</h5>
+    <ion-item>
+      <ion-label position="floating">
+        {{ "sponsors.customize.name" | translate }}
+      </ion-label>
+      <ion-input [(ngModel)]="customSponsor.name"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">
+        {{ "sponsors.customize.url" | translate }}
+      </ion-label>
+      <ion-input
+        [(ngModel)]="customSponsor.url"
+        (ionChange)="previewUrl()"
+      ></ion-input>
+    </ion-item>
+    <div>
+      <p *ngIf="previewLoading">{{ "sponsors.customize.edit" | translate }}</p>
+      <p *ngIf="!previewLoading && !preview">{{ "sponsors.customize.nopreview" | translate }}</p>
+      <url-preview *ngIf="preview" [preview]="preview"></url-preview>
+    </div>
+    <div class="mini">
+      <p class="aspect">
+        {{ "sponsors.customize.miniature_ratio" | translate }}
+      </p>
+      <p>{{ customSponsor.name }}</p>
+      <img [src]="customSponsor.miniature" alt="" />
+      <div class="change-btn-content">
+        <ion-button
+          class="btn-primary"
+          (click)="upload_option = 'miniature'"
+          (click)="openImage.click()"
+          ><span
+            ><ion-icon name="cloud-upload-outline"></ion-icon>
+            {{ "sponsors.customize.change_btn" | translate }}</span
+          >
+        </ion-button>
+      </div>
+    </div>
+    <div class="profile">
+      <p class="aspect">
+        {{ "sponsors.customize.profile_ratio" | translate }}
+      </p>
+      <p>{{ customSponsor.name }}</p>
+      <img [src]="customSponsor.profile_image" alt="" />
+      <div class="change-btn-content">
+        <ion-button
+          class="btn-primary"
+          (click)="upload_option = 'profile'"
+          (click)="openImage.click()"
+          ><span
+            ><ion-icon name="cloud-upload-outline"></ion-icon>
+            {{ "sponsors.customize.change_btn" | translate }}</span
+          >
+        </ion-button>
+      </div>
+    </div>
+  </div>
+  <ion-item *ngIf="sponsorSelected == null">
+    <ion-label> {{ "sponsors.create.no_account" | translate }}</ion-label>
+    <ion-checkbox slot="end" [(ngModel)]="noAccount"></ion-checkbox>
+  </ion-item>
+  <div style="padding: 10px; text-align: center">
+    <ion-button
+      class="btn-primary"
+      (click)="create()"
+      [disabled]="!noAccount && sponsorSelected == null"
+    >
+      <span
+        ><ion-icon name="save-outline"></ion-icon>
+        {{ "sponsors.create.save" | translate }}</span
+      >
+    </ion-button>
+  </div>
+</ion-content>

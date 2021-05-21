@@ -1,0 +1,18 @@
+<div class="content">
+  <div *ngFor="let file of files;let i = index" [ngSwitch]="file.format" style="position: relative;">
+    <ion-icon class="delete" name="close-outline" (click)="remove(i)"></ion-icon>
+    <div *ngSwitchCase="'image'">
+      <img [src]="file.url" alt="">
+    </div>
+    <div *ngSwitchCase="'video'">
+      <video controls  [src]="file.url | safeUrl"></video>
+    </div>
+    <div *ngSwitchCase="'youtube'">
+      <iframe
+      *ngIf="file.url | youtube"
+      [src]="file.url | youtube"
+      frameborder="0"
+    ></iframe>
+    </div>
+  </div>
+</div>

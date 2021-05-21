@@ -13,6 +13,10 @@ export interface ISponsor {
    * _id del usuario que creo el sponsor
    */
   user: string;
+/**
+ * id del sponsor
+ */
+  _id?:string;
 }
 
 export interface ISponsorInfo {

@@ -1,4 +1,3 @@
-import { MiniflagComponent } from "./miniflag/miniflag.component";
 import { OpenImgComponent } from "./open-img/open-img.component";
 import { ParteIzquierdaWebComponent } from "./challenge/parte-izquierda-web/parte-izquierda-web.component";
 import { ParteDerechaWebComponent } from "./challenge/parte-derecha-web/parte-derecha-web.component";
@@ -20,7 +19,6 @@ import { CreateAwardChallengeComponent } from "./challenges/create-award-challen
 import { ChallengeReactionsComponent } from "./challenges/challenge-reactions/challenge-reactions.component";
 import { ChallengeCommentsComponent } from "./challenges/challenge-comments/challenge-comments.component";
 import { CreateChallengeComponent } from "./challenges/create/create.component";
-import { SponsorsComponent } from "./../profile/sponsors/sponsors.component";
 import { ImageSeeComponent } from "./image-see/image-see.component";
 import { ErrorComponent } from "./error/error.component";
 import { LinkYoutubeComponent } from "./link-youtube/link-youtube.component";
@@ -52,7 +50,6 @@ import { EmojiModule } from "@ctrl/ngx-emoji-mart/ngx-emoji";
 import { ReactionsPostsComponent } from "./reactions-posts/reactions-posts.component";
 import { ViewProfileComponent } from "./view-profile/view-profile.component";
 import { AwardsPage } from "../profile/awards/awards.page";
-import { ExperiencePage } from "../profile/experience/experience.page";
 import { AptitudesPage } from "../profile/aptitudes/aptitudes.page";
 import { IonicRatingModule } from "ionic4-rating";
 import { StructureComponent } from "src/app/profile/structure/structure.component";
@@ -62,7 +59,6 @@ import { NewsOptionsComponent } from "./news-options/news-options.component";
 import { ChallengesPotsOptionsIndivComponent } from "./challenge/challenges-pots-options-indiv/challenges-pots-options-indiv.component";
 import { NewQuestionComponent } from "./new-question/new-question.component";
 import { ModifyMediaComponent } from "src/app/components/structure/modify-media/modify-media.component";
-import { SponsorsNodeComponent } from "src/app/components/structure/sponsors/sponsors.component";
 import { QuestionComponent } from "./question/question.component";
 import { GetMediaComponent } from "./get-media/get-media.component";
 import { QuestionNotificationComponent } from "./question-notification/question-notification.component";
@@ -85,7 +81,6 @@ const components = [
   UnfollowNotificationComponent,
   LikeNotificationComponent,
   CommentNotificationComponent,
-  SponsorsComponent,
   StructureComponent,
   SharedNotificationComponent,
   ChallengeCommentsComponent,
@@ -99,7 +94,6 @@ const components = [
   ChallengeContentComponent,
   PreviewFilesComponent,
   ViewImageComponent,
-  ExperiencePage,
   AwardsPage,
   LinkYoutubeComponent,
   AptitudesPage,
@@ -127,11 +121,9 @@ const components = [
   ChallengesPotsOptionsIndivComponent,
   NewQuestionComponent,
   ModifyMediaComponent,
-  SponsorsNodeComponent,
   QuestionComponent,
   QuestionNotificationComponent,
   GetMediaComponent,
-  MiniflagComponent,
   NoResults,
   ProfilHeaderC,
   ProfileBodyC,
