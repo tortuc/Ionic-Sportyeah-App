@@ -1,14 +1,14 @@
 <ion-card class="sponsors-card main-border">
   <div class="title">
-    <h5>{{ "sponsors.custom.title" | translate }}</h5>
-    <p>{{ "sponsors.custom.subtitle" | translate }}</p>
+    <h5>{{ Texts.title | translate }}</h5>
+    <p>{{ Texts.subtitle | translate }}</p>
   </div>
   <preview-cards-sponsor
     [info]="userService.User.sponsor_info"
   ></preview-cards-sponsor>
   <div style="text-align: center">
     <ion-button class="btn-primary" (click)="customCard()">{{
-      "sponsors.custom.btn" | translate
+      Texts.btn | translate
     }}</ion-button>
   </div>
 </ion-card>

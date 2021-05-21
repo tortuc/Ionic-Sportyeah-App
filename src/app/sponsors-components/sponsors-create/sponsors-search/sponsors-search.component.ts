@@ -14,7 +14,7 @@ export class SponsorsSearchComponent implements OnInit {
   ngOnInit() {}
 
   public sponsors: User[] = [];
-
+ 
   public searching: boolean = false;
 
   lastQuery = "";

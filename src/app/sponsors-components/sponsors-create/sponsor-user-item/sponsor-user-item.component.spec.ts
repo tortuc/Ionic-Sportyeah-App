@@ -1,19 +1,18 @@
 /* tslint:disable:no-unused-variable */
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { By } from "@angular/platform-browser";
+import { DebugElement } from "@angular/core";
 
-import { SponsorUserItemComponent } from './sponsor-user-item.component';
+import { SponsorUserItemComponent } from "./sponsor-user-item.component";
 
-describe('SponsorUserItemComponent', () => {
+describe("SponsorUserItemComponent", () => {
   let component: SponsorUserItemComponent;
   let fixture: ComponentFixture<SponsorUserItemComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SponsorUserItemComponent ]
-    })
-    .compileComponents();
+      declarations: [SponsorUserItemComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -22,7 +21,7 @@ describe('SponsorUserItemComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

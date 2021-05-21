@@ -8,7 +8,7 @@ import { AllSponsorsComponent } from './all-sponsors.component';
 describe('AllSponsorsComponent', () => {
   let component: AllSponsorsComponent;
   let fixture: ComponentFixture<AllSponsorsComponent>;
-
+ 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ AllSponsorsComponent ]

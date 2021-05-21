@@ -7,8 +7,8 @@
   <h5 class="title">
     {{
       (userService.User?._id == user._id
-        ? "sponsors.private_profile.title"
-        : "sponsors.public_profile.title"
+        ? Texts.privateTitle
+        : Texts.publicTitle
       ) | translate
     }}
   </h5>
@@ -37,13 +37,13 @@
       *ngIf="userService.User?._id == user._id"
       class="btn-primary"
       (click)="createSponsor()"
-      >{{ "sponsors.private_profile.add" | translate }}</ion-button
+      >{{ Texts.btnAdd | translate }}</ion-button
     >
     <ion-button
       *ngIf="sponsors.length > 0"
       class="btn-primary"
       (click)="seeAll()"
-      >{{ "sponsors.private_profile.all" | translate }}</ion-button
+      >{{ Texts.btnAll | translate }}</ion-button
     >
   </div>
 </ion-card>

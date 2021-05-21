@@ -1,10 +1,10 @@
 <ion-content>
   <ion-icon
-  name="close-outline"
-  (click)="modalCtrl.dismiss()"
-  class="close-modal"
-></ion-icon>
-  <div style="text-align: center;padding: 15px;" >
+    name="close-outline"
+    (click)="modalCtrl.dismiss()"
+    class="close-modal"
+  ></ion-icon>
+  <div style="text-align: center; padding: 15px">
     <input
       #openImage
       type="file"
@@ -13,17 +13,16 @@
       multiple
       hidden
     />
-    <h5 class="title">{{ "sponsors.customize.edit" | translate }}</h5>
+    <h5 class="title">{{ Texts.edit | translate }}</h5>
     <ion-item>
       <ion-label position="floating">
-        {{ "sponsors.customize.name" | translate }}
+        {{ Texts.name | translate }}
       </ion-label>
       <ion-input [(ngModel)]="copy_info.name"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label position="floating">
-        {{ "sponsors.customize.url" | translate }}
-      
+        {{ Texts.url | translate }}
       </ion-label>
       <ion-input
         [(ngModel)]="copy_info.url"
@@ -31,42 +30,44 @@
       ></ion-input>
     </ion-item>
     <div>
-      <p *ngIf="previewLoading">{{ "sponsors.customize.edit" | translate }}</p>
-      <p *ngIf="!previewLoading && !preview">{{ "sponsors.customize.nopreview" | translate }}</p>
+      <p *ngIf="previewLoading">{{ Texts.loading | translate }}</p>
+      <p *ngIf="!previewLoading && !preview">
+        {{ Texts.nopreview | translate }}
+      </p>
       <url-preview *ngIf="preview" [preview]="preview"></url-preview>
     </div>
     <div class="mini">
       <p class="aspect">
-        {{ "sponsors.customize.miniature_ratio" | translate }}
+        {{ Texts.miniature_ratio | translate }}
       </p>
       <p>{{ copy_info.name }}</p>
       <img [src]="copy_info.miniature" alt="" />
       <div class="change-btn-content">
         <ion-button
           class="btn-primary"
-          (click)="upload_option = 'miniature'"
+          (click)="upload_option = uploadOptions.miniature"
           (click)="openImage.click()"
           ><span
             ><ion-icon name="cloud-upload-outline"></ion-icon>
-            {{ "sponsors.customize.change_btn" | translate }}</span
+            {{ Texts.change_btn | translate }}</span
           >
         </ion-button>
       </div>
     </div>
     <div class="profile">
       <p class="aspect">
-        {{ "sponsors.customize.profile_ratio" | translate }}
+        {{ Texts.profile_ratio | translate }}
       </p>
       <p>{{ copy_info.name }}</p>
       <img [src]="copy_info.profile_image" alt="" />
       <div class="change-btn-content">
         <ion-button
           class="btn-primary"
-          (click)="upload_option = 'profile'"
+          (click)="upload_option = uploadOptions.profile"
           (click)="openImage.click()"
           ><span
             ><ion-icon name="cloud-upload-outline"></ion-icon>
-            {{ "sponsors.customize.change_btn" | translate }}</span
+            {{ Texts.change_btn | translate }}</span
           >
         </ion-button>
       </div>
@@ -81,7 +82,7 @@
       <ion-button class="btn-primary" (click)="save()"
         ><span
           ><ion-icon name="save-outline"></ion-icon>
-          {{ "sponsors.customize.save" | translate }}
+          {{ Texts.save | translate }}
         </span></ion-button
       >
     </div>

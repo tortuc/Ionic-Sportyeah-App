@@ -2,13 +2,19 @@ import { Component, OnInit } from "@angular/core";
 import { ModalController } from "@ionic/angular";
 import { UserService } from "src/app/service/user.service";
 import { CustomizeSponsorComponent } from "./customize-sponsor/customize-sponsor.component";
-
+enum Texts {
+  title = "sponsors.custom.title",
+  subtitle = "sponsors.custom.subtitle",
+  btn = "sponsors.custom.btn",
+}
 @Component({
   selector: "custom-sponsor",
   templateUrl: "./custom-sponsor.component.html",
   styleUrls: ["./custom-sponsor.component.scss"],
 })
 export class CustomSponsorComponent implements OnInit {
+  public readonly Texts = Texts;
+
   constructor(
     public userService: UserService,
     private readonly modalCtrl: ModalController
@@ -39,9 +45,9 @@ export class CustomSponsorComponent implements OnInit {
    */
   async customCard() {
     let modal = await this.modalCtrl.create({
-      component:CustomizeSponsorComponent,
-      cssClass:"modal-border"
-    })
-    modal.present()
+      component: CustomizeSponsorComponent,
+      cssClass: "modal-border",
+    });
+    modal.present();
   }
 }

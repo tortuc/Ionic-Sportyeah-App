@@ -600,12 +600,13 @@
   },
   "experience": {
     "title": "Experiencias",
+    "title_user": "Trayectoria de {{name}} {{last_name}}",
     "hint": "Aqui puedes indicar en que equipos has jugado o en donde has trabajado para que los demas usuarios de SportYeah conozcan tu historia !",
     "create": "Crear nueva experiencia",
     "create_btn": "Nueva experiencia",
     "edit": "Editar experiencia",
     "subtitle": "Indica el sitio (club, periodico, agencia...) donde has jugado o trabajado y la posicion que ejercias en dicho sitio",
-    "no-info": "Esta cuenta aun no tiene trayectoria",
+    "no_info": "Esta cuenta aun no tiene trayectoria",
     "btn": "Crear experiencia",
     "btn_edit": "Guardar cambios",
     "deleteModal": {
@@ -634,7 +635,7 @@
   "aptitudes": {
     "title": "Aptitudes",
     "create": "Añadir Aptitud",
-    "no-info": "No se encuentra información.",
+    "no_info": "No se encuentra información.",
     "form": {
       "federationTeam": "Medio que otorga premio o reconocimientos.",
       "score": "Nivel de Destreza",
@@ -662,7 +663,7 @@
       "deleted": "Estado"
     },
     "confirm": "Esta seguro que desea eliminar este reconocimiento.",
-    "no-info": "No se encuentra información."
+    "no_info": "No se encuentra información."
   },
   "labels-profile-segment": {
     "profile": "Perfil",

@@ -3,19 +3,17 @@
     *ngIf="user?._id != userService.User?._id"
     style="text-align: center; margin-bottom: 10px"
   >
-    <h5>Trayectoria de {{user.name}} {{user.last_name}}</h5>
+    <h5>{{Texts.titleUser | translate:user}}</h5>
   </div>
   <div
     *ngIf="user?._id == userService.User?._id"
     style="text-align: center; margin-bottom: 10px"
   >
-    <h5 style="color: black; font-weight: bold">
-      {{'experience.title' | translate}}
-    </h5>
-    <p>{{'experience.hint' | translate}}</p>
+    <h5 style="color: black; font-weight: bold">{{Texts.title | translate}}</h5>
+    <p>{{Texts.hint | translate}}</p>
 
     <ion-button class="btn-primary" (click)="newExperience()"
-      >{{'experience.create_btn' | translate}}</ion-button
+      >{{Texts.create_btn | translate}}</ion-button
     >
   </div>
 
@@ -25,9 +23,12 @@
       [experience]="e"
     ></experience-item>
 
-    <div class="text-center mb" *ngIf="experiences.length === 0 && user?._id != userService.User?._id">
+    <div
+      class="text-center mb"
+      *ngIf="experiences.length === 0 && user?._id != userService.User?._id"
+    >
       <img src="assets/logos/imagotipo_azul.png" style="height: 100px" alt="" />
-      <p>{{'experience.no-info' | translate}}</p>
+      <p>{{Texts.no_info | translate}}</p>
     </div>
   </ng-container>
 </ion-card>

@@ -551,7 +551,7 @@
   "experience": {
     "title": "Experience",
     "create": "Add Experience",
-    "no-info": "No information.",
+    "no_info": "No information.",
     "deleteModal": {
       "cancel": "Cancelar",
       "confirm": "Esta seguro que desea eliminar esta experiencia.",
@@ -577,13 +577,13 @@
   "aptitudes": {
     "title": "Aptitudes",
     "create": "Add Aptitude",
-    "no-info": "No information."
+    "no_info": "No information."
   },
   "awards": {
     "title": "Awards",
     "create": "Add Award",
     "confirm": "Esta seguro que desea eliminar este reconocimiento.",
-    "no-info": "No information.",
+    "no_info": "No information.",
     "form": {
       "position": "Nombre del premio",
       "federationTeam": "Federación Encargada",

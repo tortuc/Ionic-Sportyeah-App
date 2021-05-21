@@ -8,12 +8,21 @@ import { UserService } from "src/app/service/user.service";
 import { SponsorsCreateComponent } from "../sponsors-create/sponsors-create.component";
 import { AllSponsorsComponent } from "./all-sponsors/all-sponsors.component";
 
+enum Texts {
+  privateTitle = "sponsors.private_profile.title",
+  publicTitle = "sponsors.public_profile.title",
+  btnAdd = "sponsors.private_profile.add",
+  btnAll = "sponsors.private_profile.all",
+}
+
 @Component({
   selector: "profile-sponsors",
   templateUrl: "./profile-sponsors.component.html",
   styleUrls: ["./profile-sponsors.component.scss"],
 })
 export class ProfileSponsorsComponent implements OnInit {
+  public readonly Texts = Texts;
+
   @Input() user: User;
   constructor(
     private sponsorService: SponsorService,
@@ -32,7 +41,7 @@ export class ProfileSponsorsComponent implements OnInit {
    * Obtiene todos los patrocinadores del usuario
    */
   getSponsors() {
-    this.loading = true
+    this.loading = true;
     this.sponsorService
       .getAllSponsorsUserById(this.user._id)
       .pipe(take(1))
@@ -81,9 +90,9 @@ export class ProfileSponsorsComponent implements OnInit {
       componentProps: { user: this.user },
       cssClass: "modal-border",
     });
-    modal.onDidDismiss().then(()=>{
-      this.getSponsors()
-    })
+    modal.onDidDismiss().then(() => {
+      this.getSponsors();
+    });
     await modal.present();
   }
 }
