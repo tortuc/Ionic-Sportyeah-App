@@ -25,6 +25,7 @@ import { MsgProfileEditComponent } from "./msg-profile-edit/msg-profile-edit.com
 import { OptionNewsComponent } from "../news/news/option-news/option-news.component";
 import { SponsorsModule } from "../sponsors-components/sponsors.module";
 import { ExperiencesModule } from "../experiences/experiences.module";
+import { StructureComponent } from "./structure/structure.component";
 
 @NgModule({
   imports: [
@@ -56,7 +57,8 @@ import { ExperiencesModule } from "../experiences/experiences.module";
     CarrouselComponent,
     NewNodeComponent,
     MsgProfileEditComponent,
-    OptionNewsComponent
+    OptionNewsComponent,
+    StructureComponent
    
   ],
 })
