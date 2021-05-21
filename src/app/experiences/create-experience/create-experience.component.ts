@@ -9,7 +9,7 @@ import {
 import { TranslateService } from "@ngx-translate/core";
 import { LinkYoutubeComponent } from "src/app/components/link-youtube/link-youtube.component";
 import { IExperience } from "src/app/models/IExperience";
-import { IPostFile } from "src/app/models/iPost";
+import { IFile } from "src/app/models/iPost";
 import { ExperienceService } from "src/app/service/experience.service";
 import { FilesService } from "src/app/service/files.service";
 import { UserService } from "src/app/service/user.service";
@@ -78,7 +78,16 @@ export class CreateExperienceComponent implements OnInit {
       },
       { validators: validarFechaDeInicio }
     );
-    this.files = this.experience.files;
+    const { files } = this.experience;
+    this.setFiles(files);
+  }
+
+  /**
+   * Si editamos una experiencia, pasamos los archivos de esta manera, para tener una copia y no el original (para que este no se vea afectado)
+   * @param files
+   */
+  setFiles(files: IFile[]) {
+    this.files = this.files.concat(files);
   }
 
   async alert(header, message, btn) {
@@ -98,7 +107,7 @@ export class CreateExperienceComponent implements OnInit {
     this.content.splice(this.content.indexOf(url), 1);
   }
 
-  files: IPostFile[] = [];
+  files: IFile[] = [];
   async newFile() {
     let action = await this.actionSheetCtrl.create({
       header: "Subir un archivo",
@@ -118,7 +127,7 @@ export class CreateExperienceComponent implements OnInit {
           },
         },
         {
-          icon: "cancel",
+          icon: "close",
           text: "Cancelar",
         },
       ],
@@ -130,10 +139,14 @@ export class CreateExperienceComponent implements OnInit {
     let experience = this.form.value;
     experience.files = this.files;
     this.experience === null
-      ? this.experienceService.create(experience,this.videosToUpload)
-      : this.experienceService.edit(this.experience._id, experience,this.videosToUpload);
+      ? this.experienceService.create(experience, this.videosToUpload)
+      : this.experienceService.edit(
+          this.experience._id,
+          experience,
+          this.videosToUpload
+        );
 
-    this.modalCtrl.dismiss();
+    this.modalCtrl.dismiss(true);
   }
 
   videosToUpload = [];

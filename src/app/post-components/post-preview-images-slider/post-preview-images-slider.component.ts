@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { AlertController, ModalController, Platform } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
-import { IPostFile } from 'src/app/models/iPost';
+import { IFile } from 'src/app/models/iPost';
 import { PostService } from 'src/app/service/post.service';
 
 @Component({
@@ -11,7 +11,7 @@ import { PostService } from 'src/app/service/post.service';
 })
 export class PostPreviewImagesSliderComponent implements OnInit {
 
-  @Input() files:IPostFile[] = [];
+  @Input() files:IFile[] = [];
 
   constructor(
     public modalCtrl:ModalController,

@@ -1,10 +1,17 @@
-import { Component, Input, OnInit } from "@angular/core";
+import {
+  ChangeDetectorRef,
+  Component,
+  Input,
+  OnInit,
+  ViewChild,
+} from "@angular/core";
 import { AlertController, ModalController } from "@ionic/angular";
 import { TranslateService } from "@ngx-translate/core";
 import { IExperience } from "src/app/models/IExperience";
 import { ExperienceService } from "src/app/service/experience.service";
 import { UserService } from "src/app/service/user.service";
 import { CreateExperienceComponent } from "../../create-experience/create-experience.component";
+import { ExperienceItemPreviewFilesComponent } from "./experience-item-preview-files/experience-item-preview-files.component";
 
 @Component({
   selector: "experience-item",
@@ -13,12 +20,14 @@ import { CreateExperienceComponent } from "../../create-experience/create-experi
 })
 export class ExperienceItemComponent implements OnInit {
   @Input() experience: IExperience;
+  @ViewChild("filesPreview") filesPreview: ExperienceItemPreviewFilesComponent;
   constructor(
     private readonly modalCtrl: ModalController,
     public readonly experienceService: ExperienceService,
     public readonly userService: UserService,
     private readonly translate: TranslateService,
-    private readonly alertController: AlertController
+    private readonly alertController: AlertController,
+    private readonly cd: ChangeDetectorRef
   ) {}
 
   ngOnInit() {}
@@ -55,6 +64,12 @@ export class ExperienceItemComponent implements OnInit {
    */
 
   async edit() {
+  
+    this.cd.detectChanges();
+    if (this.filesPreview) {
+      this.filesPreview.interval?.unsubscribe();
+    }
+
     // nos suscribimos a un observable, para escuchar cuando se edite una experiencia
     this.experienceService.editedExperience$
       .asObservable()
@@ -68,6 +83,11 @@ export class ExperienceItemComponent implements OnInit {
       component: CreateExperienceComponent,
       componentProps: { experience: this.experience },
       cssClass: "modal-border",
+    });
+    modal.onDidDismiss().then((response) => {
+      if (this.filesPreview) {
+        this.filesPreview.rotateFiles();
+      }
     });
     return await modal.present();
   }

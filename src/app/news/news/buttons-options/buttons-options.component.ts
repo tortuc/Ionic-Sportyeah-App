@@ -37,7 +37,7 @@ export class ButtonsOptionsComponent implements OnInit {
   @Input() chat: boolean = false;
   @Input() editPost: boolean = false;
   @Input() question = null;
-  // @Input() files: IPostFile[] = [];
+  // @Input() files: IFile[] = [];
   @Input() group:boolean = false;
 
   @Output() videoToUpload = new EventEmitter();

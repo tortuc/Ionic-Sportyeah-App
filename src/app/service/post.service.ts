@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { getToken } from '../helpers/token';
-import { INewPost, IPost, IPostFile } from '../models/iPost';
+import { INewPost, IPost, IFile } from '../models/iPost';
 import {Howl} from 'howler';
 import { Subject } from 'rxjs';
 import { Followings } from '../models/IUser';
@@ -150,13 +150,13 @@ getAllPost(){
 
 
 
-uploadsVideos(videos: any[], files: IPostFile[], i = 0) {
+uploadsVideos(videos: any[], files: IFile[], i = 0) {
   return new Promise(async (resolve) => {
 
     let newFiles = await Promise.all(
       // utilziamos un .map que recorre el array y lo modifica
       files.map(
-        async (file): Promise<IPostFile> => {
+        async (file): Promise<IFile> => {
           // buscamos si hay un video, en el array de video donde la url coincida con la url de este archivo
           let video = await videos.find((x) => x.url == file.url);
           // si existe entonces cargamos el video al servidor

@@ -1,0 +1,35 @@
+<ion-content
+  style="--background: url('assets/logos/logo.png') no-repeat 50%/50% white"
+>
+  <ion-icon
+    name="arrow-back"
+    class="back"
+    (click)="modalCtrl.dismiss()"
+  ></ion-icon>
+
+  <ion-slides
+    class="fade-in"
+    *ngIf="viewEntered"
+    style="height: 100%"
+    pager="true"
+  >
+    <ion-slide *ngFor="let file of files" style="background: black">
+      <div class="content" [ngSwitch]="file.format" style="position: relative">
+        <div *ngSwitchCase="'image'">
+          <img [src]="file.url" alt="" />
+        </div>
+        <div *ngSwitchCase="'video'">
+          <video controls [src]="file.url | safeUrl"></video>
+        </div>
+        <div *ngSwitchCase="'youtube'">
+          <iframe
+            (click)="openSlider()"
+            *ngIf="file.url | youtube"
+            [src]="file.url | youtube"
+            frameborder="0"
+          ></iframe>
+        </div>
+      </div>
+    </ion-slide>
+  </ion-slides>
+</ion-content>

@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
-import { IPostFile } from "src/app/models/iPost";
+import { IFile } from "src/app/models/iPost";
 
 @Component({
   selector: "experiencie-files-preview",
@@ -7,7 +7,7 @@ import { IPostFile } from "src/app/models/iPost";
   styleUrls: ["./experiencie-files-preview.component.scss"],
 })
 export class ExperiencieFilesPreviewComponent implements OnInit {
-  @Input() files: IPostFile[];
+  @Input() files: IFile[];
   @Output() filesChange = new EventEmitter();
 
   constructor() {}

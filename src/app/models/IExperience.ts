@@ -1,4 +1,4 @@
-import { IPostFile } from "./iPost";
+import { IFile } from "./iPost";
 
 export interface IExperience {
   _id: string;
@@ -11,7 +11,7 @@ export interface IExperience {
   finishDate: Date;
   title: string;
   description: string;
-  files: IPostFile[];
+  files: IFile[];
   date: Date;
   deleted: boolean;
 }

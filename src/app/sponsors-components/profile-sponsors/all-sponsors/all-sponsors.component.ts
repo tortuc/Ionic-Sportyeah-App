@@ -13,18 +13,40 @@ import { UserService } from "src/app/service/user.service";
 import { EditSponsorComponent } from "./edit-sponsor/edit-sponsor.component";
 import { SponsorOptionsComponent } from "./sponsor-options/sponsor-options.component";
 
+enum Texts {
+  cantEditHeader = "sponsors.allSponsors.cantEdit.header",
+  cantEditMessage = "sponsors.allSponsors.cantEdit.message",
+  deleteHeader = "sponsors.allSponsors.delete.header",
+  deleteMessage = "sponsors.allSponsors.delete.message",
+  workingHeader = "working.header",
+  workingMessage = "working.message",
+  loading = "loading",
+  cancel = "cancel",
+  accept = "accept",
+  titleMine = "sponsors.allSponsors.title_mine",
+  titleOther = "sponsors.allSponsors.title_other",
+  optionsBtn = "sponsors.allSponsors.btn",
+}
+
+enum options {
+  delete = "delete",
+  analytic = "analytic",
+  edit = "edit",
+}
 @Component({
   selector: "app-all-sponsors",
   templateUrl: "./all-sponsors.component.html",
   styleUrls: ["./all-sponsors.component.scss"],
 })
 export class AllSponsorsComponent implements OnInit {
+  public readonly Texts = Texts;
+
   @Input() user: User;
   sponsors: ISponsor[] = [];
 
   constructor(
     private readonly sponsorService: SponsorService,
-    public userService: UserService,
+    public readonly userService: UserService,
     public readonly modalCtrl: ModalController,
     private readonly popoverCtrl: PopoverController,
     private readonly alertCtrl: AlertController,
@@ -55,15 +77,15 @@ export class AllSponsorsComponent implements OnInit {
     });
     popover.present();
   }
-  handleOptions(data: any, sponsor: ISponsor) {
+  handleOptions(data: options, sponsor: ISponsor) {
     switch (data) {
-      case "delete":
+      case options.delete:
         this.delete(sponsor);
         break;
-      case "analytic":
+      case options.analytic:
         this.analytics(sponsor);
         break;
-      case "edit":
+      case options.edit:
         this.edit(sponsor);
         break;
 
@@ -103,11 +125,11 @@ export class AllSponsorsComponent implements OnInit {
    */
   async cantEdit() {
     let alert = await this.alertCtrl.create({
-      header: this.translate.instant("sponsors.allSponsors.cantEdit.header"),
-      message: this.translate.instant("sponsors.allSponsors.cantEdit.message"),
+      header: this.translate.instant(Texts.cantEditHeader),
+      message: this.translate.instant(Texts.cantEditMessage),
       buttons: [
         {
-          text: this.translate.instant("accept"),
+          text: this.translate.instant(Texts.accept),
         },
       ],
     });
@@ -117,11 +139,11 @@ export class AllSponsorsComponent implements OnInit {
 
   async analytics(sponsor: ISponsor) {
     let alert = await this.alertCtrl.create({
-      header: this.translate.instant("working.header"),
-      message: this.translate.instant("working.message"),
+      header: this.translate.instant(Texts.workingHeader),
+      message: this.translate.instant(Texts.workingMessage),
       buttons: [
         {
-          text: this.translate.instant("accept"),
+          text: this.translate.instant(Texts.accept),
         },
       ],
     });
@@ -131,18 +153,18 @@ export class AllSponsorsComponent implements OnInit {
 
   async delete(sponsor: ISponsor) {
     let alert = await this.alertCtrl.create({
-      header: this.translate.instant("sponsors.allSponsors.delete.header"),
-      message: this.translate.instant("sponsors.allSponsors.delete.message"),
+      header: this.translate.instant(Texts.deleteHeader),
+      message: this.translate.instant(Texts.deleteMessage),
       buttons: [
         {
-          text: this.translate.instant("cancel"),
+          text: this.translate.instant(Texts.cancel),
           role: "cancel",
         },
         {
-          text: this.translate.instant("accept"),
+          text: this.translate.instant(Texts.accept),
           handler: async () => {
             let loading = await this.loadingCtrl.create({
-              message: this.translate.instant("loading"),
+              message: this.translate.instant(Texts.loading),
             });
             loading.present();
             this.sponsorService.deleteSponsor(sponsor._id).subscribe(

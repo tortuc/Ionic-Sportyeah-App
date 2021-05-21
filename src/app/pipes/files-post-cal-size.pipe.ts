@@ -1,11 +1,11 @@
 import { Pipe, PipeTransform } from "@angular/core";
-import { IPostFile } from "../models/iPost";
+import { IFile } from "../models/iPost";
 
 @Pipe({
   name: "filesPostCaclSize",
 })
 export class FilesPostCalSizePipe implements PipeTransform {
-  transform(files: IPostFile[], index: number = 0): unknown {
+  transform(files: IFile[], index: number = 0): unknown {
     switch (true) {
       case files.length == 2:
         return 12;

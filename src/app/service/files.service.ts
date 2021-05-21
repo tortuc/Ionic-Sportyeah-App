@@ -2,7 +2,7 @@ import { HttpClient, HttpEventType } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Camera } from "@ionic-native/camera/ngx";
 import { environment } from "src/environments/environment";
-import { IPostFile } from "../models/iPost";
+import { IFile } from "../models/iPost";
 
 @Injectable({
   providedIn: "root",
@@ -237,7 +237,7 @@ export class FilesService {
     );
   }
 
-  takePhoto(): Promise<IPostFile> {
+  takePhoto(): Promise<IFile> {
     return new Promise((resolve, reject) => {
       this.camera
         .getPicture({
@@ -265,7 +265,7 @@ export class FilesService {
     });
   }
 
-  uploadImageServer(formData: FormData): Promise<IPostFile> {
+  uploadImageServer(formData: FormData): Promise<IFile> {
     return new Promise((resolve, reject) => {
       this.http
         .post(`${environment.URL_IMAGE}/image/upload`, formData)

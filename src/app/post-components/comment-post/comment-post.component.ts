@@ -15,7 +15,7 @@ import {
 } from "@ionic/angular";
 import { TranslateService } from "@ngx-translate/core";
 import { MentionsDirective } from "src/app/directives/mentions.directive";
-import { INew, IPost, IPostFile } from "src/app/models/iPost";
+import { INew, IPost, IFile } from "src/app/models/iPost";
 import { CommentService } from "src/app/service/comment.service";
 import { NewsService } from "src/app/service/news.service";
 import { PostService } from "src/app/service/post.service";
@@ -207,7 +207,7 @@ export class CommentPostComponent implements OnInit {
   }
 
   loading = false;
-  files: IPostFile[] = [];
+  files: IFile[] = [];
 
   //Para hacer cuestionarios en lo comentarios
   question = {

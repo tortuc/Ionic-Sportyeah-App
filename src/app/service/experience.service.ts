@@ -8,7 +8,7 @@ import { TranslateService } from "@ngx-translate/core";
 import { UserService } from "./user.service";
 import { take } from "rxjs/operators";
 import { Subject } from "rxjs";
-import { IPostFile } from "../models/iPost";
+import { IFile } from "../models/iPost";
 import { FilesService } from "./files.service";
 import { Howl } from "howler";
 
@@ -89,13 +89,13 @@ export class ExperienceService {
 
   uploadsVideos(
     videos: any[],
-    files: IPostFile[],
+    files: IFile[],
     i = 0
-  ): Promise<IPostFile[]> {
+  ): Promise<IFile[]> {
     return new Promise(async (resolve) => {
       let newFiles = await Promise.all(
         // utilziamos un .map que recorre el array y lo modifica
-        files.map(async (file): Promise<IPostFile> => {
+        files.map(async (file): Promise<IFile> => {
           // buscamos si hay un video, en el array de video donde la url coincida con la url de este archivo
           let video = await videos.find((x) => x.url == file.url);
           // si existe entonces cargamos el video al servidor

@@ -1,5 +1,6 @@
 .divExperiences {
   border-bottom: 2px solid rgb(243 242 239);
+  display:flex;
 }
 
 .experience-content {
@@ -30,4 +31,12 @@
 .delete{
     visibility: hidden;
     position: absolute;
+}
+
+.preview-content{
+  min-width: 180px;
+  max-width: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

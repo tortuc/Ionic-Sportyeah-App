@@ -10,12 +10,16 @@ import { CreateExperienceComponent } from "./create-experience/create-experience
 import { ExperiencieFilesPreviewComponent } from "./experiencie-files-preview/experiencie-files-preview.component";
 import { ComponentsSharedModule } from "../shared-components/components-shared.module";
 import { ExperienceItemComponent } from "./experience/experience-item/experience-item.component";
+import { ExperienceItemPreviewFilesComponent } from "./experience/experience-item/experience-item-preview-files/experience-item-preview-files.component";
+import { ExperienceFilesSliderComponent } from "./experience/experience-item/experience-files-slider/experience-files-slider.component";
 
 const components = [
   ExperiencePage,
   CreateExperienceComponent,
   ExperiencieFilesPreviewComponent,
-  ExperienceItemComponent
+  ExperienceItemComponent,
+  ExperienceItemPreviewFilesComponent,
+  ExperienceFilesSliderComponent
 ];
 
 @NgModule({

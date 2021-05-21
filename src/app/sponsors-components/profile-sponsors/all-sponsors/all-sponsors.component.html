@@ -7,10 +7,8 @@
   <div style="padding: 15px; text-align: center">
     <h6>
       {{
-        (userService.User?._id == user._id
-          ? "sponsors.allSponsors.title_mine"
-          : "sponsors.allSponsors.title_other"
-        ) | translate
+        (userService.User?._id == user._id ? Texts.titleMine : Texts.titleOther)
+          | translate
       }}
     </h6>
   </div>
@@ -24,7 +22,7 @@
         <ion-button (click)="options($event, sponsor)" class="btn-primary"
           ><span
             ><ion-icon name="create-outline"></ion-icon>
-            {{ "sponsors.allSponsors.btn" | translate }}</span
+            {{ Texts.optionsBtn | translate }}</span
           ></ion-button
         >
       </div>

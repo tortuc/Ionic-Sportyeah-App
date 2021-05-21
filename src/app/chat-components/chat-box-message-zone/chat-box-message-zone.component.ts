@@ -4,7 +4,7 @@ import { Keyboard } from "@ionic-native/keyboard/ngx";
 import { AlertController } from "@ionic/angular";
 import { TranslateService } from "@ngx-translate/core";
 import { IChat } from "src/app/models/IChat";
-import { IPostFile } from "src/app/models/iPost";
+import { IFile } from "src/app/models/iPost";
 import { MessageService } from "src/app/service/message.service";
 import { UserService } from "src/app/service/user.service";
 import { AssetsButtonsComponent } from "src/app/shared-components/assets-buttons/assets-buttons.component";
@@ -57,7 +57,7 @@ export class ChatBoxMessageZoneComponent implements OnInit {
     chat: ["", Validators.required],
   });
 
-  files: IPostFile[] = [];
+  files: IFile[] = [];
 
   caretPosition;
 

@@ -3,7 +3,7 @@ import { FormBuilder, Validators } from "@angular/forms";
 import { LoadingController, ModalController, Platform } from "@ionic/angular";
 import { TranslateService } from "@ngx-translate/core";
 import { MentionsDirective } from "src/app/directives/mentions.directive";
-import { IPost, INew, IPostFile } from "src/app/models/iPost";
+import { IPost, INew, IFile } from "src/app/models/iPost";
 import { FilesService } from "src/app/service/files.service";
 import { PostService } from "src/app/service/post.service";
 import { UserService } from "src/app/service/user.service";
@@ -157,7 +157,7 @@ export class NewPostPage implements OnInit {
     this.question.questionGroup = $event;
   }
 
-  files: IPostFile[] = [];
+  files: IFile[] = [];
   videosToUploads = [];
 
   loading = false;

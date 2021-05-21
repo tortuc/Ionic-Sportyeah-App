@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ModalController, Platform } from '@ionic/angular';
-import { IPostFile } from 'src/app/models/iPost';
+import { IFile } from 'src/app/models/iPost';
 import { PostService } from 'src/app/service/post.service';
 
 @Component({
@@ -11,7 +11,7 @@ import { PostService } from 'src/app/service/post.service';
 export class SeeFilesPostSliderComponent implements OnInit {
 
   
-  @Input() files:IPostFile[] = [];
+  @Input() files:IFile[] = [];
   viewEntered: boolean = false;
 
   constructor(

@@ -17,7 +17,7 @@ import {
 import { TranslateService } from "@ngx-translate/core";
 import { take } from "rxjs/operators";
 import { NewQuestionComponent } from "src/app/components/new-question/new-question.component";
-import { IPostFile } from "src/app/models/iPost";
+import { IFile } from "src/app/models/iPost";
 import { FilesService } from "src/app/service/files.service";
 import { MessageService } from "src/app/service/message.service";
 import { QuestionService } from "src/app/service/question.service";
@@ -36,7 +36,7 @@ export class AssetsButtonsComponent implements OnInit, OnChanges {
   @Input() chat: boolean = false;
   @Input() editPost: boolean = false;
   @Input() question = null;
-  @Input() files: IPostFile[] = [];
+  @Input() files: IFile[] = [];
   @Input() group:boolean = false;
 
   @Output() videoToUpload = new EventEmitter();

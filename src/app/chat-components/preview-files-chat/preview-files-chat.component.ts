@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
-import { IPostFile } from "src/app/models/iPost";
+import { IFile } from "src/app/models/iPost";
 
 @Component({
   selector: "preview-files-chat",
@@ -7,8 +7,8 @@ import { IPostFile } from "src/app/models/iPost";
   styleUrls: ["./preview-files-chat.component.scss"],
 })
 export class PreviewFilesChatComponent implements OnInit {
-  @Input() files: IPostFile[] = [];
-  @Output() filesChange = new EventEmitter<IPostFile[]>();
+  @Input() files: IFile[] = [];
+  @Output() filesChange = new EventEmitter<IFile[]>();
 
   constructor() {}
 

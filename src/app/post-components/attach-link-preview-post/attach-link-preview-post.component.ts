@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from "@angular/core";
-import { IPostFile } from "src/app/models/iPost";
+import { IFile } from "src/app/models/iPost";
 import { WishService } from "src/app/service/wish.service";
 
 @Component({
