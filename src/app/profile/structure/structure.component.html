@@ -120,11 +120,11 @@
 
     
 
-    <app-experience 
+    <experience 
       *ngIf="userNode"
-      [id]="userNode._id"
+      [user]="userNode"
     >
-    </app-experience>
+    </experience>
     <app-awards
       *ngIf="userNode"
       [id]="userNode._id"
