@@ -1,12 +1,35 @@
-<ion-card class="text-center">
-  <h2>{{ 'slider-logic.youtube-input' | translate}}</h2>
-  <ion-item>
-    <ion-label position="floating">Inserte aquí</ion-label>
-    <ion-input [(ngModel)]="link"></ion-input>
-  </ion-item>
-</ion-card>
-<ion-card *ngIf="link" class="text-center">
-  <iframe [src]="link | youtube" frameborder="0"></iframe>
-</ion-card>
-<ion-button color="success" (click)="addContent()"
-    *ngIf="link | youtube">{{'slider-logic.confirm' | translate}}</ion-button>
+<ion-content>
+  <ion-icon
+    name="close-outline"
+    (click)="modalCtrl.dismiss()"
+    class="close-modal"
+  ></ion-icon>
+  <ion-card class="card">
+    <h2>{{ "youtube_modal.title" | translate }}</h2>
+    <ion-item>
+      <ion-label position="floating">{{
+        "youtube_modal.label" | translate
+      }}</ion-label>
+      <ion-input [(ngModel)]="link"></ion-input>
+    </ion-item>
+    <p>{{ "youtube_modal.wait" | translate }}</p>
+  </ion-card>
+  <ion-card style="margin: 0" *ngIf="link" class="text-center">
+    <p *ngIf="!(link | youtube)">
+      {{ "youtube_modal.error" | translate }}
+    </p>
+    <iframe
+      *ngIf="link | youtube"
+      [src]="link | youtube"
+      frameborder="0"
+    ></iframe>
+    <div style="padding: 10px">
+      <ion-button
+        color="success"
+        (click)="addContent()"
+        *ngIf="link | youtube"
+        >{{ "youtube_modal.btn" | translate }}</ion-button
+      >
+    </div>
+  </ion-card>
+</ion-content>

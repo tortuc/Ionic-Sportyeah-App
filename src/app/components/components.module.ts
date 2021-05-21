@@ -50,7 +50,6 @@ import { EmojiModule } from "@ctrl/ngx-emoji-mart/ngx-emoji";
 import { ReactionsPostsComponent } from "./reactions-posts/reactions-posts.component";
 import { ViewProfileComponent } from "./view-profile/view-profile.component";
 import { AwardsPage } from "../profile/awards/awards.page";
-import { ExperiencePage } from "../profile/experience/experience.page";
 import { AptitudesPage } from "../profile/aptitudes/aptitudes.page";
 import { IonicRatingModule } from "ionic4-rating";
 import { StructureComponent } from "src/app/profile/structure/structure.component";
@@ -95,7 +94,6 @@ const components = [
   ChallengeContentComponent,
   PreviewFilesComponent,
   ViewImageComponent,
-  ExperiencePage,
   AwardsPage,
   LinkYoutubeComponent,
   AptitudesPage,

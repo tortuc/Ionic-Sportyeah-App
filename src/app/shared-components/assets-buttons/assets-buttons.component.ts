@@ -46,9 +46,7 @@ export class AssetsButtonsComponent implements OnInit, OnChanges {
     this.emoji.emit(ev);
   }
 
-  uploadFile(event) {
-    this.uploadImages(event.target.files);
-  }
+ 
 
   constructor(
     public platform: Platform,
@@ -139,6 +137,11 @@ export class AssetsButtonsComponent implements OnInit, OnChanges {
     });
 
     alert.present();
+  }
+
+
+  uploadFile(event) {
+    this.uploadImages(event.target.files);
   }
 
   /**

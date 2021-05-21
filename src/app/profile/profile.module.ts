@@ -24,6 +24,7 @@ import { ComponentsSharedModule } from "../shared-components/components-shared.m
 import { MsgProfileEditComponent } from "./msg-profile-edit/msg-profile-edit.component";
 import { OptionNewsComponent } from "../news/news/option-news/option-news.component";
 import { SponsorsModule } from "../sponsors-components/sponsors.module";
+import { ExperiencesModule } from "../experiences/experiences.module";
 
 @NgModule({
   imports: [
@@ -43,7 +44,8 @@ import { SponsorsModule } from "../sponsors-components/sponsors.module";
     IonCustomScrollbarModule,
     ComponentsSharedModule,
     PostComponetsModule,
-    SponsorsModule
+    SponsorsModule,
+    ExperiencesModule
   ],
   declarations: [
     ProfilePage,

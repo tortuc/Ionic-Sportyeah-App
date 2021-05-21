@@ -1,0 +1,132 @@
+<input
+  type="file"
+  #fileChooser
+  accept="image/*,video/*"
+  (change)="uploadFile($event)"
+  hidden
+  multiple
+/>
+
+<ion-content>
+  <loading-progress class="progress"></loading-progress>
+
+  <ion-icon
+    name="close-outline"
+    (click)="modalCtrl.dismiss()"
+    class="close-modal"
+  ></ion-icon>
+  <ion-card style="margin: 0">
+    <div style="padding: 10px; text-align: center">
+      <h4>{{ (edit ? "experience.edit" : "experience.create") | translate }}</h4>
+      <p>
+        {{ "experience.subtitle" | translate }}
+      </p>
+    </div>
+    <form [formGroup]="form">
+      <ion-grid>
+        <ion-row>
+          <ion-col size="12">
+            <ion-item>
+              <ion-label position="stacked">
+                {{ "experience.form.position" | translate }}
+              </ion-label>
+              <ion-input type="text" formControlName="position"></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col size="12">
+            <ion-item>
+              <ion-label position="stacked ">
+                {{ "experience.form.federationTeam" | translate }}</ion-label
+              >
+              <ion-input
+                type="text"
+                formControlName="federationTeam"
+              ></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col size="12">
+            <ion-item>
+              <ion-label position="stacked ">
+                {{ "experience.form.place" | translate }}</ion-label
+              >
+              <ion-input formControlName="place" type="text"></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col size-sm="6" size-xs="12">
+            <ion-item>
+              <ion-label position="stacked ">{{
+                "experience.form.initDate" | translate
+              }}</ion-label>
+              <ion-input formControlName="initDate" type="date"></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col size-sm="6" size-xs="12" *ngIf="form.value.nowIn === false">
+            <ion-item>
+              <ion-label position="stacked ">{{
+                "experience.form.finishDate" | translate
+              }}</ion-label>
+              <ion-input formControlName="finishDate" type="date"></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col size="12" *ngIf="form.errors?.noValido"> </ion-col>
+          <ion-col size-sm="6" size-xs="12">
+            <ion-item>
+              <ion-label position="stacked ">{{
+                "experience.form.nowIn" | translate
+              }}</ion-label>
+              <ion-checkbox
+                slot="end"
+                formControlName="nowIn"
+                (click)="deleteFinishDate()"
+                style="margin-top: 20px"
+              ></ion-checkbox>
+            </ion-item>
+          </ion-col>
+          <ion-col size="12">
+            <ion-item>
+              <ion-label position="stacked ">{{
+                "experience.form.title" | translate
+              }}</ion-label>
+              <ion-input formControlName="title" type="text"></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col size="12">
+            <ion-item>
+              <ion-label position="stacked ">{{
+                "experience.form.description" | translate
+              }}</ion-label>
+              <ion-textarea
+                formControlName="description"
+                type="text"
+              ></ion-textarea>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <hr />
+        <div class="text-center">
+          <h5>
+            {{ "experience.form.files" | translate }}
+          </h5>
+          <experiencie-files-preview
+            [(files)]="files"
+          ></experiencie-files-preview>
+          <span>
+            <ion-button (click)="newFile()">
+              <ion-icon slot="start" name="add-circle"></ion-icon>
+              {{ "experience.form.multimediaContent" | translate }}
+            </ion-button>
+          </span>
+        </div>
+        <div style="text-align: center">
+          <ion-button
+            (click)="save()"
+            [disabled]="form.invalid"
+            class="btn-primary"
+          >
+            {{ (edit ? "experience.btn_edit" : "experience.btn") | translate }}
+          </ion-button>
+        </div>
+      </ion-grid>
+    </form>
+  </ion-card>
+</ion-content>

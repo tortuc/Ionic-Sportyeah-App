@@ -11,10 +11,12 @@ export class LinkYoutubeComponent implements OnInit {
 
   constructor(
     public translate: TranslateModule,
-    private modalCtrl: ModalController,
+    public modalCtrl: ModalController,
   ) { }
   link:string;
+
   ngOnInit() {}
+  
   addContent(){
     this.modalCtrl.dismiss(this.link);
   }

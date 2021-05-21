@@ -155,26 +155,13 @@
             "
           ></app-structure>
 
-          <ion-card
-            ngClass.xs="m-p-0"
-            class="mt5"
-            *ngIf="
-              user?.profile_user !== 'sponsor' &&
-                  user?.profile_user !== 'association' &&
-                  user?.profile_user !== 'foundation' &&
-                  user?.profile_user !== 'amateur' &&
-                  user?.profile_user !== 'federation' &&
-                  user?.profile_user !== 'club'
-          "
-          >
-            <ion-grid style="padding: 0" class="ion-justify-content-center">
-              <ion-row class="ion-justify-content-center">
-                <ion-col ngClass.xs="m-p-0" size-md="12" size-sm="12">
-                  <app-experience [id]="id_visited"></app-experience>
-                </ion-col>
-              </ion-row>
-            </ion-grid>
-          </ion-card>
+          <experience
+            *ngIf="['player','scout','press', 'executive','staff'].includes(user?.profile_user)"
+            [id]="user?._id"
+            [user]="user"
+          ></experience>
+
+        
 
           <ion-card
             ngClass.xs="m-p-0"

@@ -591,33 +591,40 @@
   },
   "slider-logic": {
     "youtube": "Video de Youtube",
-    "youtube-input": "Coloque un link de YouTube",
+    "youtube-input": "Inserte un link de YouTube",
     "confirm": "Agregar contenido"
   },
   "change-slider": {
     "title": "Galeria"
   },
   "experience": {
-    "title": "Experiencia",
-    "create": "Añadir Experiencia",
-    "no-info": "No se encuentra información.",
-    "btn": "Cargar",
+    "title": "Experiencias",
+    "hint": "Aqui puedes indicar en que equipos has jugado o en donde has trabajado para que los demas usuarios de SportYeah conozcan tu historia !",
+    "create": "Crear nueva experiencia",
+    "create_btn": "Nueva experiencia",
+    "edit": "Editar experiencia",
+    "subtitle": "Indica el sitio (club, periodico, agencia...) donde has jugado o trabajado y la posicion que ejercias en dicho sitio",
+    "no-info": "Esta cuenta aun no tiene trayectoria",
+    "btn": "Crear experiencia",
+    "btn_edit": "Guardar cambios",
     "deleteModal": {
       "cancel": "Cancelar",
-      "confirm": "Esta seguro que desea eliminar esta experiencia.",
-      "accept": "Aceptar",
-      "alert": "Alerta"
+      "confirm": "Esta seguro que desea eliminar esta experiencia?",
+      "accept": "Si, Eliminar",
+      "alert": "Eliminar experiencia"
     },
     "form": {
-      "position": "Posición Ejercida",
-      "federationTeam": "Medio que otorga premio o reconocimientos.",
+      "position": "Posicion o cargo ejercido",
+      "federationTeam": "Nombre del club o agencia donde ejerciste el cargo",
       "nowIn": "Hasta la actualidad",
-      "place": "Lugar",
+      "place": "Pais, ciudad o region donde se encuentra dicho club o agencia",
       "initDate": "Fecha de inicio",
       "finishDate": "Fecha de fin",
-      "title": "Titular",
+      "title": "Titulo",
       "description": "Descripción",
-      "multimediaContent": "Contenido Multimedia",
+      "multimediaContent": "Agregar Multimedia",
+      "files": "Puedes subir imagenes, videos y incluso enlaces a youtube para mostrar graficamente tu experiencia",
+
       "add": "Agregar Contenido",
       "date": "Día de creación",
       "deleted": "Estado"
@@ -1251,17 +1258,23 @@
       "save": "Guardar Cambios",
       "header": "Desde esta herramienta puedes personalizar tu tarjeta de patrocinador",
       "name": "Nombre de tu marca",
-      "url":"Pagina web de tu patrocinador (URL)",
-      "finish":"Completa la informacion de tu patrocinador",
-      "edit":"Edita la informacion de tu patrocinador",
-      "loading":"Cargando...",
-      "nopreview":"No hay previsualizacion"
-      
+      "url": "Pagina web de tu patrocinador (URL)",
+      "finish": "Completa la informacion de tu patrocinador",
+      "edit": "Edita la informacion de tu patrocinador",
+      "loading": "Cargando...",
+      "nopreview": "No hay previsualizacion"
     }
   },
   "no_results": "No hay resultados",
   "working": {
     "header": "Ups!",
     "message": "Estamos trabajando en esta herramienta"
+  },
+  "youtube_modal": {
+    "title": "Inserte un link (URL) de YouTube",
+    "label": "Inserte aqui el link (URL) de YouTube",
+    "wait": "Y espere a que cargue para verificar que es el correcto",
+    "error": "La url que ingresaste no es valida o no es de youtube",
+    "btn": "Aceptar"
   }
 }

@@ -1,3 +1,5 @@
+import { IPostFile } from "./iPost";
+
 export interface IExperience {
   _id: string;
   userId: string;
@@ -9,7 +11,7 @@ export interface IExperience {
   finishDate: Date;
   title: string;
   description: string;
-  multimediaContent: string[];
+  files: IPostFile[];
   date: Date;
   deleted: boolean;
 }

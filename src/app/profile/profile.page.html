@@ -172,26 +172,12 @@
         </ion-card>
         <div *ngIf="profile">
           <app-carrousel [id]="userService.User?._id"></app-carrousel>
-          <ion-card
-            ngClass.xs="m-p-0"
-            class="mt5"
-            *ngIf="
-              userService.User.profile_user !== 'sponsor' &&
-              userService.User.profile_user !== 'foundation' &&
-              userService.User.profile_user !== 'federation' &&
-              userService.User.profile_user !== 'amateur' &&
-              userService.User.profile_user !== 'club' &&
-              userService.User.profile_user !== 'association'
-            "
-          >
-            <ion-grid style="padding: 0" class="ion-justify-content-center">
-              <ion-row class="ion-justify-content-center">
-                <ion-col ngClass.xs="m-p-0" size-md="12" size-sm="12">
-                  <app-experience [id]="userService.User?._id"></app-experience>
-                </ion-col>
-              </ion-row>
-            </ion-grid>
-          </ion-card>
+
+          <experience
+            *ngIf="['player','scout','press', 'executive','staff'].includes(userService.User.profile_user)"
+            [id]="userService.User?._id"
+            [user]="userService.User"
+          ></experience>
 
           <ion-card
             ngClass.xs="m-p-0"
@@ -212,22 +198,9 @@
           <ion-card
             ngClass.xs="m-p-0"
             class="mt5"
-            *ngIf="
-              userService.User.profile_user !== 'sponsor' &&
-              userService.User.profile_user !== 'federation' &&
-              userService.User.profile_user !== 'foundation' &&
-              userService.User.profile_user !== 'representative' &&
-              userService.User.profile_user !== 'association' &&
-              userService.User.profile_user !== 'club'
-            "
+            *ngIf="!['sponsor','federation','foundation','representative','association','club'].includes(userService.User.profile_user)"
           >
-            <ion-grid style="padding: 0" class="ion-justify-content-center">
-              <ion-row class="ion-justify-content-center">
-                <ion-col ngClass.xs="m-p-0" size-md="12" size-sm="12">
-                  <app-aptitudes [id]="userService.User?._id"></app-aptitudes>
-                </ion-col>
-              </ion-row>
-            </ion-grid>
+            <app-aptitudes [id]="userService.User?._id"></app-aptitudes>
           </ion-card>
         </div>
         <!-- FINISH SEGMENT PROFILE  -->

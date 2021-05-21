@@ -93,6 +93,8 @@ export const SIDEBAR_ITEMS = [{
    * Tipos de perfiles disponibles
    */
 
+
+
    export const profiles = [
     "club",
     "player",
