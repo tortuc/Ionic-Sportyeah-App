@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar class="toolbar-bg">
+    <ion-title>Powered by GIPHY</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="modalCtrl.dismiss()" style="--color: white"
+        ><ion-icon name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content style="--background:black" [scrollEvents]="true" (ionScrollEnd)="logScrolling($event)">
+  <ion-grid >
+    <ion-row>
+      <ion-col size="6" *ngFor="let gif of gifs" style="padding:2px" >
+        <div class="img-content" (click)="selected(gif.id)">
+          <img
+            loading="lazy"
+            src="https://media.giphy.com/media/{{ gif.id }}/giphy.gif"
+            alt=""
+          />
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12" style="min-height: 50px; text-align: center">
+        <ion-spinner style="color: white;" *ngIf="loading"></ion-spinner>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

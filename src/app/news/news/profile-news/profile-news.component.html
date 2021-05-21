@@ -1,0 +1,62 @@
+<ion-header>
+  <ion-toolbar class="toolbar-bg">
+    <ion-buttons slot="start">
+      <ion-menu-button style="color: white"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>{{ 'news.my-news' | translate}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content class="main-bg">
+  <ion-grid>
+    <ion-row>
+      <ion-col size-md="8" size-sm="12">
+        <show-news></show-news>
+      </ion-col>
+      <ion-col size-md="4" class="panel-desktop">
+        <ion-card style="text-align: center;">
+          <img src="../../../../assets/logos/imagotipo_azul.png" alt="">
+          <ion-button [routerLink]="'/news/create'">{{'news.newNews' | translate}}</ion-button>
+        </ion-card>
+        <ion-card style="text-align: center;">
+          <h4>{{'news.programated_news' | translate}}</h4>
+            <ion-row  *ngFor="let new of news?.slice(0,indexLast )">
+              <ion-col  size="12">
+                <ion-img  *ngIf="new.principalImage"  class="imageMiniCard" [src]="new.principalImage"></ion-img>
+                <div   *ngIf="new.principalVideo" style="position: relative; cursor: pointer;">
+                  <video
+                    controls="controls"
+                    preload="metadata"
+                    autoplay="autoplay"
+                    webkit-playsinline="webkit-playsinline"
+                    class="videoPlayerNews"
+                  >
+                    <source [src]="new.principalVideo | safeUrl" type="video/mp4" />
+                  </video>
+                </div> 
+              </ion-col>
+              
+              <ion-col size="12">
+                <div>
+                  <ion-icon
+                    name="chevron-down"
+                    (click)="openOptions($event,new)"
+                    class="options-down"
+                  ></ion-icon>
+                </div>
+                <h6 class="deporteTitle">{{ 'sport.'+new.sport| translate}}</h6>
+                <h6 style="font-size: 8 !important;color: rgb(58, 58, 58)">{{new.programatedDate | customDisplayDate:true}}</h6>
+                <ion-button (click)="reschedule(new)" style="--border-radius: 25px;">{{'news.reschedule' | translate}}</ion-button><br>
+                <h6  class="newsTitle">{{new.headline}}</h6>
+              </ion-col>   
+              <div style="background: rgb(136, 136, 136); height: 1px;width: 100%;margin-bottom: 10px;"></div>
+            </ion-row>
+            <div style="text-align: center;">
+              <ion-button *ngIf="indexLast < news?.length" class="main-bg"  (click)="seeMore()">{{ 'news.see_more'| translate}}</ion-button>
+            </div>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

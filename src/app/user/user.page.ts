@@ -44,8 +44,6 @@ export class UserPage implements OnInit {
   connected: boolean = null;
   landingButton: boolean = false;
   landingNotActive: boolean = false;
-  public banderaIP: string = null;
-  public ipLoaded: Promise<boolean>;
   estado: any;
   // variable de control para el rango de posts
   skip = 0;
@@ -118,6 +116,7 @@ export class UserPage implements OnInit {
 
           this.id_visited = resp.user._id;
           this.slider = resp.user.slider;
+          
 
           const uP = resp.user.profile_user;
           if (
@@ -190,10 +189,7 @@ export class UserPage implements OnInit {
   visited: any;
   vistasPerfil: any;
   ngOnInit() {
-    this.loginService.getIP().subscribe((geo) => {
-      this.banderaIP = geo.country;
-      this.ipLoaded = Promise.resolve(true);
-    });
+   
   }
 
   goTo(r) {

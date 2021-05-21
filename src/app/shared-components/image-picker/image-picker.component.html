@@ -1,0 +1,61 @@
+<ion-header>
+  <div class="search">
+    <ion-searchbar
+      [placeholder]="'chat.group.new.search' | translate"
+      animated
+      debounce="1000"
+      (ionChange)="search($event)"
+    ></ion-searchbar>
+  </div>
+</ion-header>
+<ion-content style="--background: black" #content>
+ 
+  <div>
+    <div *ngIf="searching" class="loading">
+      <span>
+        <ion-spinner style="color: white; vertical-align: middle"></ion-spinner>
+        Cargando imagenes...</span
+      >
+    </div>
+
+    <div *ngIf="images.length > 0">
+      <ion-grid>
+        <ion-row>
+          <ion-col *ngFor="let image of images" size="6" style="padding: 1px">
+            <div
+              class="image"
+              [ngClass]="{ active: image == selectedImage }"
+              (click)="selectImage(image)"
+            >
+              <img [src]="image.webformatURL" alt="" />
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+
+    <div style="text-align: center" *ngIf="images.length == 0 && !searching">
+      <p style="color: white">{{ "image_picker.empty_results" | translate }}</p>
+    </div>
+  </div>
+</ion-content>
+
+<ion-footer>
+  <div class="stickyBtn">
+    <ion-button
+      class="btn-delete"
+      style="--background: red"
+      (click)="modalCtrl.dismiss()"
+    >
+      {{ "cancel" | translate }}
+    </ion-button>
+    <ion-button
+      class="btn-primary"
+      style="margin-left: 15px"
+      [disabled]="!selectedImage || images.length == 0"
+      (click)="handleImage()"
+    >
+      {{ "image_picker.next" | translate }}
+    </ion-button>
+  </div>
+</ion-footer>

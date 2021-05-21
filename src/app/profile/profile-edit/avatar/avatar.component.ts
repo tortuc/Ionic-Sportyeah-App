@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { AlertController, ModalController } from '@ionic/angular';
+import { AlertController, LoadingController, ModalController } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
-import { JdvimageService } from 'src/app/service/jdvimage.service';
+import { FilesService } from 'src/app/service/files.service';
+import { UserService } from 'src/app/service/user.service';
 
 @Component({
   selector: 'app-avatar',
@@ -12,15 +13,17 @@ export class AvatarComponent implements OnInit {
 
   constructor(
     private modalCtrl:ModalController,
-    private imageService:JdvimageService,
+    private filesServices:FilesService,
     private alertCtrl:AlertController,
-    public translate:TranslateService
+    public translate:TranslateService,
+    public userService:UserService,
+    private loading:LoadingController
   ) { }
 
   avatars = []
 
   ngOnInit() {
-    this.imageService.getAvatars().toPromise()
+    this.filesServices.getAvatars().toPromise()
       .then((avatars:any[])=>{
         this.avatars = avatars
       })
@@ -47,11 +50,20 @@ export class AvatarComponent implements OnInit {
           },
           {
             text:this.translate.instant('agree'),
-            handler:()=>{
-              this.modalCtrl.dismiss({
-                action:"select",
-                url
+            handler:async ()=>{
+              let loading = await this.loading.create({
+                message:this.translate.instant("loading")
               })
+              loading.present()
+              this.userService.update({photo:url}).subscribe(()=>{
+                this.userService.User.photo = url
+                loading.dismiss()
+                this.modalCtrl.dismiss()
+              },()=>{
+                loading.dismiss()
+                this.modalCtrl.dismiss()
+              })
+             
             }
           }
         ]

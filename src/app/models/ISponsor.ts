@@ -1,19 +1,27 @@
+import { User } from "./IUser";
+
 /*
  * El sponsor (patrocinador) es una marca
  */
-export interface ISponsor{
+export interface ISponsor {
+  customSponsor?: ISponsorInfo;
   /*
-   * Url de la pagina del patrocinador
+   * _id del sponsor en sportyeah, o el cuerpo del mismo
    */
-  url: string
+  idSponsor?: User | string;
   /*
-   * Imagen
+   * _id del usuario que creo el sponsor
    */
-  image: string
-    /*
-   * Nombre
-   */
-    name: string
+  user: string;
+/**
+ * id del sponsor
+ */
+  _id?:string;
 }
 
-
+export interface ISponsorInfo {
+  name: string;
+  miniature: string;
+  profile_image: string;
+  url?: string;
+}

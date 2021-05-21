@@ -38,4 +38,39 @@
     width: 80%;
     font-size: 9px;
   }
+
+  .hidden-mobile {
+    visibility: hidden !important;
+    position: absolute;
+  }
+
+
+  .msg-edit-modal .modal-wrapper {
+    height: 350px;
+    width: 90%;
+    top: 25%;
+    position: absolute;
+    display: block;
+    border-radius: 20px;
+  }
+
+  .post-button {
+    font-size: 12px !important;
+    ion-icon {
+      font-size: 18px;
+      vertical-align: middle;
+      color: #3c3a3a;
+    }
+  }
+
+  .banner{
+    height: 250px !important;
+    img{
+      height: 250px !important;
+    }
+  }
+
+  .marginleftforletters {
+    margin-left: 25px !important;
+  }
 }

@@ -1,0 +1,35 @@
+.content {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    .logo {
+      height: 150px;
+    }
+    .mini {
+      flex: auto;
+      img {
+        width: 80px;
+        height: 40px;
+        box-shadow: 0 0 1px 1px black;
+        border-radius: 10px;
+        object-fit: cover;
+      }
+      p {
+        margin: 2px;
+      }
+    }
+    .profile {
+      flex: auto;
+      img {
+        width: 120px;
+        height: 120px;
+        border-radius: 10px;
+        box-shadow: 0 0 2px 2px black;
+        object-fit: cover;
+      }
+      p {
+        margin: 2px;
+      }
+    }
+  }
+  

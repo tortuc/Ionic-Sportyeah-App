@@ -2,11 +2,11 @@ import { ChangeDetectorRef, Component, OnInit, ViewChild } from "@angular/core";
 import { FormBuilder, Validators } from "@angular/forms";
 import { LoadingController, ModalController } from "@ionic/angular";
 import { take } from "rxjs/operators";
-import { JdvimageService } from "src/app/service/jdvimage.service";
 import { UserService } from "src/app/service/user.service";
 import { ChatService } from "src/app/service/chat.service";
 import { Followings } from "src/app/models/IUser";
 import { TranslateService } from "@ngx-translate/core";
+import { FilesService } from "src/app/service/files.service";
 
 @Component({
   selector: "app-chat-new-group",
@@ -18,7 +18,7 @@ export class ChatNewGroupComponent implements OnInit {
     public userService: UserService,
     public modalCtrl: ModalController,
     public fb: FormBuilder,
-    private JDVImage: JdvimageService,
+    private filesServices: FilesService,
     private chatService: ChatService,
     private cd: ChangeDetectorRef,
     private loadingCtrl: LoadingController,
@@ -117,7 +117,7 @@ export class ChatNewGroupComponent implements OnInit {
     loading.present();
     let formData: FormData = new FormData();
     formData.append("image", $event.target.files[0]);
-    this.JDVImage.uploadImage(formData)
+    this.filesServices.uploadImage(formData)
       .pipe(take(1))
       .subscribe(
         (url) => {

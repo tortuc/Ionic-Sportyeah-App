@@ -1,29 +1,60 @@
-import { Component, OnInit, ChangeDetectorRef, Input} from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, Input, OnChanges,ViewChild,ElementRef} from '@angular/core';
 import { TranslateService } from "@ngx-translate/core";
 import * as moment from 'moment';
 import { Chart } from 'chart.js';
 import { ViewsSponsorService } from 'src/app/service/views-sponsor.service';
 import { UserService } from 'src/app/service/user.service';
 import { take } from 'rxjs/operators';
+import { Html2CanvasService } from 'src/app/service/html2-canvas.service';
+import html2canvas from "html2canvas"; 
+import { PdfMakeService } from 'src/app/service/pdf-make.service';
 
 @Component({
   selector: 'day',
   templateUrl: './day.component.html',
   styleUrls: ['./day.component.scss'],
 })
-export class DayComponent implements OnInit {
+export class DayComponent implements OnInit, OnChanges {
 
   @Input() changeHourAdd:number;
   @Input() sponsorLink:any;
   @Input() hourchange:any;
-
+  @Input() sponsorSelect:any;
 
   constructor(
     private translate:TranslateService,
     private cd:ChangeDetectorRef,
     private viewsSponsorService:ViewsSponsorService,
     private userService:UserService,
+    private html2Canvas:Html2CanvasService,
+    private pdfMakeSerice:PdfMakeService
     ) {}
+    imgcreada=false
+    imagenCreada
+    // capture(){
+    //   const element = document.getElementById('html2canvas');
+    //   const targetElement = document.getElementById('linesHourSponsor')
+    //   element.appendChild(targetElement);
+    //   this.html2Canvas.html2canvas(element.firstChild).then( (img) => {
+    //     this.img = img;
+    //     element.firstChild.remove();
+    //    const original = document.getElementById("contenido");
+    //    const nuevoCanvas = document.createElement("canvas")
+    //     nuevoCanvas.style.width = "400px"
+    //     nuevoCanvas.style.height = "400px";
+    //     nuevoCanvas.setAttribute("id","linesHourSponsor")
+    //     original.append(nuevoCanvas)
+        
+    //      this.linesHours()
+    // }).catch((res) => {
+    //     console.log(res);
+    // });
+    // }
+    // img
+
+    pdfDay(){
+      this.pdfMakeSerice.generatePdf(this.sponsorSelect,'day',this.hour )
+    }
 postViews;
 chatViews;
 searchViews;
@@ -34,30 +65,19 @@ rankingViews;
 newsViews;
 
 dia = moment().startOf("days")
-  ngOnInit() {
-  // for(let i = 1 ; i < 25;i++ ) {
-  //   console.log(this.dia.hour());
-  //   console.log(this.dia.format("YYYY-MM-DD-HH"));
-    
-  //   this.dia.add( 1,"hour")
-  // }
-    // this.viewsSponsorService.getVisitsByHour(this.userService.User._id,this.dia,"profile").subscribe((response)=>{
-    //   console.log(response);
-    // })
-    // console.log(moment().hour())
-    this.takeDataDay();
-  }
+date
+  ngOnInit() { }
   ngOnChanges(){
-    // this.getData()
+    this.takeDataDay()
   }
-  changeDay(n) {
+  changeDay(n) { 
     this.hour = moment(this.hour).add(n, "days");
     this.takeDataDay();
   }
   takeDataDay() {
     this.hourShow = moment(this.hour).format("DD-MM-YYYY")
     this.viewsSponsorService
-      .getVisitsByHour(this.userService.User._id, this.hour, "search")
+      .getVisitsByHour(this.userService.User._id, this.hour, "search",this.sponsorSelect)
       .pipe(take(1))
       .subscribe((response: any) => {
         if (response.length == 0) {
@@ -66,13 +86,13 @@ dia = moment().startOf("days")
           this.dataSearch = response;
         }
         this.viewsSponsorService
-          .getVisitsByHour(this.userService.User._id, this.hour, "post")
+          .getVisitsByHour(this.userService.User._id, this.hour, "post",this.sponsorSelect)
           .pipe(take(1))
           .subscribe((response: any) => {
               this.dataPost = response;
 
             this.viewsSponsorService
-              .getVisitsByHour(this.userService.User._id, this.hour, "profile")
+              .getVisitsByHour(this.userService.User._id, this.hour, "profile",this.sponsorSelect)
               .pipe(take(1))
               .subscribe((response: any) => {
               
@@ -81,7 +101,7 @@ dia = moment().startOf("days")
                   .getVisitsByHour(
                     this.userService.User._id,
                     this.hour,
-                    "comment"
+                    "comment",this.sponsorSelect
                   )
                   .pipe(take(1))
                   .subscribe((response: any) => {
@@ -103,9 +123,10 @@ dia = moment().startOf("days")
   labelHours=[];
   hours=[];
   linesHourSponsor;
-  hour = moment(new Date()).startOf("days")
+  hour = moment().startOf("days")
   hourShow
-linesHours(){
+
+  linesHours(){
   this.cd.detectChanges()
   this.labelHours = [];
 
@@ -163,6 +184,7 @@ linesHours(){
       ]
       },
       options: {
+        responsive: true,
         scales: {
           yAxes: [{
             ticks: {
@@ -173,6 +195,7 @@ linesHours(){
         }
       }
     });
-}
 
+
+  }
 }

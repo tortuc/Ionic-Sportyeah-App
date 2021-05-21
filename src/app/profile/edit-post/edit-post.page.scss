@@ -1,14 +1,26 @@
-.buttons{
-    text-align: end;
-    bottom: 10px;
-    padding: 0 20px;
-    margin-top: 10px;
+.buttons {
+  display: flex;
+  justify-content: flex-end;
 }
 
-.icon-remove{
-    position: absolute;
-    font-size: 30px;
-    top: 0px;
-    right:0px;
-    color: #ef5350;
+.icon-remove {
+  position: absolute;
+  font-size: 30px;
+  top: 0px;
+  right: 0px;
+  color: #ef5350;
+}
+
+.emoji-content {
+    ::ng-deep .emoji-mart {
+    width: 100% !important;
+  }
+}
+
+
+.progress {
+  margin-top: 30px;
+  position: fixed;
+  z-index: 1000;
+  width: 100%;
 }

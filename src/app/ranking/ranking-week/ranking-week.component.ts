@@ -45,7 +45,7 @@ export class RankingWeekComponent implements OnInit,OnChanges{
     this.dayEnd = moment(new Date).endOf('week').format('YYYY-MM-DD')
 
     if(this.country){
-      country = this.userService.User?.geo.country
+      country = this.userService.User?.country
     }
     switch (this.segment.toString()) {
       case '0':

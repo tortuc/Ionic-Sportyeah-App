@@ -1,0 +1,10 @@
+<div class="sponsors">
+  <view-sponsor-mini
+    *ngFor="let sponsor of sponsors.slice(0, 3); let i = index"
+    (click)="clickOnSponsor(sponsor)"
+    [info]="sponsor.idSponsor?.sponsor_info || sponsor.customSponsor"
+    [sponsor]="sponsor"
+  ></view-sponsor-mini>
+ 
+</div>
+<!-- TERMINO SPONSORS -->

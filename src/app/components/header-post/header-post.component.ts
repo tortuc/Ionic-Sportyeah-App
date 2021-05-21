@@ -147,21 +147,5 @@ export class HeaderPostComponent implements OnInit {
     }
   }
 
-  goToSponsor(sponsor) {
-    if (this.post.user._id != this.userService.User._id) {
-      this.viewsSponsorService
-        .createSponsorView({
-          user: this.post.user._id,
-          visitor: this.userService.User._id,
-          from: "post",
-          link: `/post/${this.post._id}`,
-          urlSponsor: sponsor.url,
-        })
-        .subscribe((response) => {
-          window.open("//" + sponsor.url, "_blank");
-        });
-    } else {
-      window.open("//" + sponsor.url, "_blank");
-    }
-  }
+  
 }

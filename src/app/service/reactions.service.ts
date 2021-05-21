@@ -15,6 +15,7 @@ export class ReactionsService {
   constructor(private http: HttpClient) {}
 
   routePost = `${environment.URL_API}/post`;
+  routeNews = `${environment.URL_API}/news`;
 
   /**
    * Retorna la cantidad de reacciones por publicacion
@@ -23,6 +24,16 @@ export class ReactionsService {
    */
   reactionsByPost(id) {
     return this.http.get<any[]>(`${this.routePost}/totalReactions/${id}`);
+  }
+
+  
+  /**
+   * Retorna la cantidad de reacciones por news
+   * @param id
+   * @returns
+   */
+   reactionsByNews(id) {
+    return this.http.get<any[]>(`${this.routeNews}/totalReactions/${id}`);
   }
   /**
    * Buscar reacciones de cualquier tipo en un post

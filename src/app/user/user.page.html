@@ -30,55 +30,43 @@
       *ngIf="user && user != 404"
       class="height-100vh ion-justify-content-center"
     >
-      <ion-col ngClass.xs="m-p-0" size-md="8" size-sm="12">
+      <ion-col ngClass.xs="m-p-0" size-md="7" size-sm="12">
         <ion-card ngClass.xs="m-p-0" class="">
           <ion-card-header
             class="text-center"
             style="padding-top: 0; padding-left: 0; padding-right: 0"
           >
-            <ion-card
-              class="banner"
-              (click)="open(user?.photoBanner)"
-              [ngStyle]="{'background-image': 'url(' + user?.photoBanner + ')'}"
-            >
-              <ion-avatar
-                class="big user_photo"
-                (click)="$event.stopPropagation()"
-              >
-                <ion-img
-                  class="img-user"
-                  [src]="user?.photo"
-                  (click)="open(user?.photo)"
-                ></ion-img>
-                <div class="connectedDIV" *ngIf="user?.connected"></div>
-              </ion-avatar>
-            </ion-card>
+            <profile-banner [user]="user"></profile-banner>
+            <div style="margin-top: -80px">
+              <profile-photo [user]="user"></profile-photo>
+            </div>
             <ion-card-title>
-              <app-miniflag [user]="user"></app-miniflag>
+              <miniflag [user]="user"></miniflag>
               {{user?.name}} {{user?.last_name}}
-              <ion-icon
-                style="vertical-align: middle; cursor: pointer"
-                *ngIf="userService.isFollow(user._id)"
-                (click)="createChat(user)"
-                name="chatbubble-ellipses-outline"
-              ></ion-icon>
             </ion-card-title>
-            <ion-button
-              class="follow"
-              *ngIf="!userService.isFollow(user._id)"
-              (click)="userService.follow(user._id)"
-              >{{'search_friends.follow' | translate}}</ion-button
-            >
-            <ion-button
-              class="follow"
-              *ngIf="userService.isFollow(user._id)"
-              (click)="userService.unFollow(user._id)"
-              >{{'search_friends.unfollow' | translate}}</ion-button
-            >
 
             <ion-card-subtitle class="estado">
               {{user?.estado}}
             </ion-card-subtitle>
+            <profile-user-info [user]="user"></profile-user-info>
+            <div>
+              <follow-button
+                [user]="user._id"
+                [username]="user.username"
+              ></follow-button>
+              <ion-button
+                *ngIf="userService.isFollow(user._id)"
+                (click)="createChat(user)"
+                class="btn-chat"
+                ><span>
+                  <ion-icon
+                    style="vertical-align: middle; cursor: pointer"
+                    name="chatbubble-ellipses-outline"
+                  ></ion-icon>
+                  Enviar mensaje</span
+                >
+              </ion-button>
+            </div>
             <ion-grid>
               <ion-row>
                 <ion-col size="4">
@@ -106,13 +94,7 @@
             </div>
           </ion-card-header>
 
-          <div style="margin-bottom: 5px">
-            <app-sponsor
-              [creator]="false"
-              [sponsors]="user?.sponsors"
-              [idUser]="user?._id"
-            ></app-sponsor>
-          </div>
+      
 
           <ion-card-content> </ion-card-content>
           <div class="text-center">
@@ -156,10 +138,13 @@
         <!-- PROFILE SEGMENT -->
 
         <div *ngIf="profile">
-          <app-carrousel [slider]="slider"></app-carrousel>
+          <app-carrousel
+            *ngIf="slider.length > 0"
+            [slider]="slider"
+          ></app-carrousel>
 
           <app-structure
-            [id]="user._id"
+            [ID]="user._id"
             *ngIf="
                   user?.profile_user === 'sponsor' ||
                   user?.profile_user === 'association' ||
@@ -170,26 +155,13 @@
             "
           ></app-structure>
 
-          <ion-card
-            ngClass.xs="m-p-0"
-            class="mt5"
-            *ngIf="
-              user?.profile_user !== 'sponsor' &&
-                  user?.profile_user !== 'association' &&
-                  user?.profile_user !== 'foundation' &&
-                  user?.profile_user !== 'amateur' &&
-                  user?.profile_user !== 'federation' &&
-                  user?.profile_user !== 'club'
-          "
-          >
-            <ion-grid style="padding: 0" class="ion-justify-content-center">
-              <ion-row class="ion-justify-content-center">
-                <ion-col ngClass.xs="m-p-0" size-md="12" size-sm="12">
-                  <app-experience [id]="id_visited"></app-experience>
-                </ion-col>
-              </ion-row>
-            </ion-grid>
-          </ion-card>
+          <experience
+            *ngIf="['player','scout','press', 'executive','staff'].includes(user?.profile_user)"
+            [id]="user?._id"
+            [user]="user"
+          ></experience>
+
+        
 
           <ion-card
             ngClass.xs="m-p-0"
@@ -323,17 +295,21 @@
         <!-- FINISH SEGMENT NEWS -->
       </ion-col>
       <ion-col
-      *ngIf="userService.User != null"
-      size-lg="4"
-      fxShow.lt-md="false"
-      class="ion-justify-content-center ion-align-items-center"
-    >
-      <div style="position: sticky; top: -300px; padding-left: 5px">
-        <friends-panel-desktop></friends-panel-desktop>
-        <add-users-panel-desktop></add-users-panel-desktop>
-        <!-- <popular-groups-panel></popular-groups-panel> -->
-      </div>
-    </ion-col>
+        *ngIf="userService.User != null"
+        size-lg="5"
+        fxShow.lt-md="false"
+        class="ion-justify-content-center ion-align-items-center"
+      >
+        <div style="position: sticky; top: -300px; padding-left: 5px">
+            <profile-sponsors
+            *ngIf="user.profile_user !== 'sponsor'"
+            [user]="user"
+          ></profile-sponsors>
+          <friends-panel-desktop></friends-panel-desktop>
+          <add-users-panel-desktop></add-users-panel-desktop>
+          <!-- <popular-groups-panel></popular-groups-panel> -->
+        </div>
+      </ion-col>
     </ion-row>
     <ion-row *ngIf="user == 404" class="ion-justify-content-center">
       <ion-col class="max-widht-520" size-lg="5" size-md="8" size-sm="12">

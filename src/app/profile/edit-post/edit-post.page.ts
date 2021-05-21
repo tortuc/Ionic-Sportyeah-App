@@ -1,10 +1,10 @@
 import { Component, ElementRef, Input, OnInit, ViewChild } from "@angular/core";
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { FormBuilder, Validators } from "@angular/forms";
 import { LoadingController, ModalController } from "@ionic/angular";
 import { TranslateService } from "@ngx-translate/core";
 import { MentionsDirective } from "src/app/directives/mentions.directive";
-import { IPost } from "src/app/models/iPost";
-import { JdvimageService } from "src/app/service/jdvimage.service";
+import { IPost, IPostFile } from "src/app/models/iPost";
+import { FilesService } from "src/app/service/files.service";
 import { PostService } from "src/app/service/post.service";
 import { UserService } from "src/app/service/user.service";
 
@@ -15,21 +15,32 @@ import { UserService } from "src/app/service/user.service";
 })
 export class EditPostPage implements OnInit {
   @Input() post: IPost;
-  loading: HTMLIonLoadingElement;
+  loading: boolean = false;
   @ViewChild(MentionsDirective) mentions;
-  @ViewChild("FormElementRef") inputNode: ElementRef;
-  @ViewChild("emojisContainer") emojisContainer: ElementRef;
-  @ViewChild("emojiButton") emojiButton: ElementRef;
+  @ViewChild("mainInput") mainInput: ElementRef;
 
   constructor(
     public modalController: ModalController,
     public translate: TranslateService,
     public userService: UserService,
     private fb: FormBuilder,
-    public JDVImage: JdvimageService,
+    public filesServices: FilesService,
     public loadingCtrl: LoadingController,
     private postService: PostService
-  ) {}
+  ) {
+    this.postService.fileRemovedSuscriber().subscribe((url)=>{
+      this.removeFile(url);
+    })
+  }
+
+  removeFile(url) {
+    this.files = this.files.filter((file) => {
+      return file.url != url;
+    });
+    this.videosToUploads = this.videosToUploads.filter((video) => {
+      return video.url != url;
+    });
+  }
 
   setUser(user) {
     this.mentions.setUser(user);
@@ -47,14 +58,10 @@ export class EditPostPage implements OnInit {
   // tslint:disable-next-line: member-ordering
   form = this.fb.group({
     message: ["", [Validators.required]],
-    image: [""],
-    video: [""],
   });
 
   async ngOnInit() {
-    this.loading = await this.loadingCtrl.create({
-      message: this.translate.instant("loading"),
-    });
+ 
     this.setValues();
 
     window.onclick = () => {
@@ -64,43 +71,47 @@ export class EditPostPage implements OnInit {
 
   setValues() {
     this.form.controls.message.setValue(this.post.message);
+    this.files = this.post.files
   }
 
-  async uploadImg($event) {
+  async save() {
     let loading = await this.loadingCtrl.create({
       message: this.translate.instant("loading"),
     });
     loading.present();
+    let post = this.form.value;
+    post.files = this.files;
 
-    let formData: FormData = new FormData();
-    formData.append("image", $event.target.files[0]);
-    this.JDVImage.uploadImage(formData)
-      .toPromise()
-      .then((url) => {
-        loading.dismiss();
-        this.form.controls.image.setValue(url);
-      })
-      .catch((err) => {
-        loading.dismiss();
-      });
-  }
-
-  save() {
-    this.loading.present();
-    this.postService
-      .updateOne(this.post._id, this.form.value)
-      .toPromise()
-      .then((resp) => {
-        this.loading.dismiss();
-        this.modalController.dismiss({
-          dismissed: true,
-          edited: true,
+    post.message = this.mainInput.nativeElement.innerHTML;
+    if (this.videosToUploads.length == 0) {
+      this.postService
+        .updateOne(this.post._id, post)
+        .toPromise()
+        .then((resp) => {
+          loading.dismiss();
+          this.modalController.dismiss({
+            dismissed: true,
+            edited: true,
+          });
+        })
+        .catch((err) => {
+          loading.dismiss();
         });
-      })
-      .catch((err) => {
-        this.loading.dismiss();
+    } else {
+      loading.dismiss();
+      this.postService.editPostVideo(
+        this.post._id,
+        this.form.value,
+        this.videosToUploads,
+        this.files
+      );
+      this.modalController.dismiss({
+        dismissed: true,
+        edited: true,
       });
+    }
   }
+
   dismiss() {
     // using the injected ModalController this page
     // can "dismiss" itself and optionally pass back data
@@ -112,54 +123,26 @@ export class EditPostPage implements OnInit {
   lastCaretPosition = 0;
 
   addEmoji(ev) {
-    this.mentions.usersMetions.forEach((element) => {
-      this.form.controls.message.setValue(
-        this.form.controls.message.value.replaceAll(
-          element.url,
-          element.fullname
-        )
-      );
-    });
-
-    this.lastCaretPosition != 0 && this.lastCaretPosition == this.mentions.pos
-      ? (this.mentions.pos = this.mentions.pos + 2)
-      : null;
-
-    this.lastCaretPosition = this.mentions.pos;
-
-    const newText =
-      this.form.controls.message.value
-        .replace(/&nbsp;/g, " ")
-        .substring(0, this.mentions.pos) +
-      ev.emoji.native +
-      this.form.controls.message.value
-        .replace(/&nbsp;/g, "")
-        .substring(this.mentions.pos);
-    this.form.controls.message.setValue(newText);
-
-    this.mentions.usersMetions.forEach((element) => {
-      this.form.controls.message.setValue(
-        this.form.controls.message.value.replaceAll(
-          element.fullname,
-          element.url
-        )
-      );
-    });
+    this.mentions.setEmoji(ev.emoji.native);
   }
 
   emoji = false;
 
+  stopPropagation(e) {
+    e.stopPropagation();
+  }
   openEmojis() {
     this.emoji = !this.emoji;
+  }
 
-    this.inputNode.nativeElement.onclick = function (e) {
-      e.stopPropagation();
-    };
-    this.emojiButton.nativeElement.onclick = function (e) {
-      e.stopPropagation();
-    };
-    this.emojisContainer.nativeElement.onclick = function (e) {
-      e.stopPropagation();
-    };
+  files: IPostFile[] = [];
+  videosToUploads = [];
+
+  addFile(file) {
+    this.files.push(file);
+  }
+
+  pushVideoToUpload(file) {
+    this.videosToUploads.push(file);
   }
 }

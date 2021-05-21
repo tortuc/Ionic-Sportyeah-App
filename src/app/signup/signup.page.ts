@@ -5,6 +5,12 @@ import { TranslateService } from "@ngx-translate/core";
 import { LoginService } from "../service/login.service";
 import { UserService } from "../service/user.service";
 import { AlertController, LoadingController } from "@ionic/angular";
+import {
+  profiles,
+  sports,
+  sub_profiles_administration,
+  sub_profiles_staff,
+} from "src/config/base";
 
 @Component({
   selector: "app-signup",
@@ -12,6 +18,14 @@ import { AlertController, LoadingController } from "@ionic/angular";
   styleUrls: ["./signup.page.scss"],
 })
 export class SignupPage implements OnInit {
+  public readonly sports = sports;
+
+  public readonly profiles = profiles;
+
+  public readonly sub_profiles_administration = sub_profiles_administration;
+
+  public readonly sub_profiles_staff = sub_profiles_staff;
+
   show = false;
   show1 = false;
   constructor(
@@ -24,12 +38,7 @@ export class SignupPage implements OnInit {
     private loadingCtrl: LoadingController
   ) {}
 
-  ngOnInit() {
-    this.loginService.getIP().subscribe((geo) => {
-      this.geo = geo;
-    });
-  }
-  geo; //para el país
+  ngOnInit() {}
   form = this.fb.group(
     {
       name: [
@@ -65,63 +74,9 @@ export class SignupPage implements OnInit {
       sub_profile: ["", [Validators.required]],
       agree: [false],
       authorize: [true],
-      geo: [""],
     },
     { validator: this.checkPasswords }
   );
-
-  sports = [
-    "soccer",
-    "basketball",
-    "tennis",
-    "baseball",
-    "golf",
-    "running",
-    "volleyball",
-    "swimming",
-    "boxing",
-    "table_tennis",
-    "rugby",
-    "football",
-    "esport",
-    "various",
-  ];
-
-  profiles = [
-    "club",
-    "player",
-    "staff",
-    "amateur",
-    "representative",
-    "scout",
-    "press",
-    "association",
-    "foundation",
-    "federation",
-    "sponsor",
-    "executive",
-    "administration",
-  ];
-
-  sub_profiles_administration = [
-    "president",
-    "vice_president",
-    "vocal",
-    "adviser",
-    "area_director",
-    "treasury",
-    "secretary",
-    "administration", //Hasta aquí los del admiinstration
-  ];
-
-  sub_profiles_staff = [
-    "coach",
-    "physical_trainer",
-    "medicine",
-    "nutritionist",
-    "sports_sychology",
-    "field_delegate",
-  ];
 
   sub_profile: boolean = false;
   have_sub_profile() {
@@ -202,14 +157,28 @@ export class SignupPage implements OnInit {
     this.form.controls.username.setValue(value.replace(/\s/g, ""));
   }
 
+  /**
+   * Intentamos crear el usuario
+   */
   async create() {
-    this.form.value.geo = this.geo;
+    // creamos un loading para bloquear las funcionalidades mientras se crea el usuario
     let loading = await this.loadingCtrl.create({
       message: this.translate.instant("loading"),
     });
+    // presentamos el loading
     loading.present();
+
+    // obtenemos los datos del formulario y ese sera nuestro usuario
+    let user = this.form.value;
+
+    // obtenemos el country code del usuario que se registra y lo guardamos en el campo country
+
+    user.country = await this.loginService.getCountryCode();
+
+    console.log(user);
+
     this.loginService
-      .create(this.form.value)
+      .create(user)
       .toPromise()
       .then(() => {
         loading.dismiss();

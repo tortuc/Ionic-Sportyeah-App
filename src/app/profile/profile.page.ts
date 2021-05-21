@@ -1,4 +1,3 @@
-import { SponsorsComponent } from "./sponsors/sponsors.component";
 import { OpenImgComponent } from "src/app/components/open-img/open-img.component";
 import { LoginService } from "./../service/login.service";
 import { take } from "rxjs/operators";
@@ -14,10 +13,12 @@ import { NewsService } from "../service/news.service";
 import { ModalController } from "@ionic/angular";
 import { GetMediaComponent } from "../components/get-media/get-media.component";
 import { ReusableComponentsIonic } from "../service/ionicHelpers.service";
-import {  User } from "../models/IUser";
+import { User } from "../models/IUser";
 import { ISponsor } from "../models/ISponsor";
 import { IPost } from "../models/iPost";
 import { GroupService } from "../service/group.service";
+import { MsgProfileEditComponent } from "./msg-profile-edit/msg-profile-edit.component";
+import { OptionNewsComponent } from "../news/news/option-news/option-news.component";
 
 @Component({
   selector: "app-profile",
@@ -29,8 +30,6 @@ export class ProfilePage implements OnInit {
 
   @ViewChild("reloadButton", { static: false }) reloadButton: any;
 
-  banderaIP: string = null;
-  ipLoaded: Promise<boolean>;
   profile: boolean = true;
   postsB: boolean = false;
   newsB: boolean = false;
@@ -43,7 +42,7 @@ export class ProfilePage implements OnInit {
     public router: Router,
     public route: ActivatedRoute,
     public userService: UserService,
-    public mc: ModalController,
+    public modalCtrl: ModalController,
     public translate: TranslateService,
     public popoverController: PopoverController,
     private postService: PostService,
@@ -52,9 +51,12 @@ export class ProfilePage implements OnInit {
     private viewsProfileService: ViewsProfileService,
     public newsService: NewsService,
     public reusableCI: ReusableComponentsIonic,
-    public cd:ChangeDetectorRef,
-    private groupService:GroupService
+    public cd: ChangeDetectorRef,
+    private groupService: GroupService
   ) {
+    if (this.userService.User.msgProfile == false) {
+      this.editProfileMsg();
+    }
     this.groupService.groupInvited();
     this.viewsProfileService
       .getProfileView(this.userService.User._id)
@@ -77,6 +79,20 @@ export class ProfilePage implements OnInit {
     else this.landingButton = false;
   }
 
+  async editProfileMsg() {
+    let modal = await this.modalCtrl.create({
+      component: MsgProfileEditComponent,
+      cssClass: "msg-edit-modal",
+      backdropDismiss: false,
+    });
+
+    modal.onDidDismiss().then(() => {
+      this.router.navigate(["/profile/edit"]);
+    });
+
+    modal.present();
+  }
+
   news = [];
   posts: IPost[] = [];
   views: [];
@@ -89,10 +105,6 @@ export class ProfilePage implements OnInit {
         })*/
       });
 
-    this.loginService.getIP().subscribe((geo) => {
-      this.banderaIP = geo.country;
-      this.ipLoaded = Promise.resolve(true);
-    });
     this.getPost();
     this.getCountPost();
     this.postService.newPostObservable().subscribe((id) => {
@@ -104,7 +116,7 @@ export class ProfilePage implements OnInit {
    * Busca una publicacion creada
    * @param id id de la pubublicacion
    */
-   newPost(id) {
+  newPost(id) {
     this.postService
       .getPost(id)
       .toPromise()
@@ -117,15 +129,7 @@ export class ProfilePage implements OnInit {
       });
   }
 
-  OpenNews(id) {
-    this.router.navigate([`news/read/${id}`]);
-  }
-  deleteNew(id) {
-    this.newsService.delete(id);
-  }
-  editNews(idNews) {
-    this.router.navigate([`news/edit/${idNews}`]);
-  }
+
 
   getCountPost() {
     this.viewsProfileService
@@ -189,93 +193,18 @@ export class ProfilePage implements OnInit {
       });
   }
 
-  
-
   segmentChanged(e: CustomEvent) {
     if (e.detail.value === "posts") {
       this.profile = false;
-      this.newsB = false;
       this.postsB = true;
     } else if (e.detail.value === "profile") {
       this.postsB = false;
-      this.newsB = false;
       this.profile = true;
-    } else {
-      this.newsB = true;
-      this.postsB = false;
-      this.profile = false;
-    }
-  }
-
-  public async createSponsor() {
-    const modal = await this.mc.create({
-      component: SponsorsComponent,
-      cssClass: "my-custom-class",
-      backdropDismiss: false,
-    });
-    await modal.present();
-    const { data } = await modal.onWillDismiss();
-    if (data) {
-      const user = this.userService.User;
-      user.sponsors.push(data);
-      this.userService
-        .update(user)
-        .pipe(take(1))
-        .subscribe((u: any) => {
-          this.userService
-            .getUserByUsername(this.userService.User.username)
-            .pipe(take(1))
-            .subscribe((u: any) => {
-              this.userService.User = u.user;
-            });
-        });
-    }
-  }
-
-  public deleteSponsor(i: number) {
-    const user = this.userService.User;
-    user.sponsors.splice(i, 1);
-    this.userService
-      .update(user)
-      .pipe(take(1))
-      .subscribe((u: any) => {
-        this.userService
-          .getUserByUsername(this.userService.User.username)
-          .pipe(take(1))
-          .subscribe((u: any) => {
-            this.userService.User = u.user;
-          });
-      });
-  }
-
-  public async editSponsor(i: number) {
-    const modal = await this.mc.create({
-      component: SponsorsComponent,
-      cssClass: "my-custom-class",
-      componentProps: { data: this.userService.User.sponsors[i] },
-      backdropDismiss: false,
-    });
-    await modal.present();
-    const { data } = await modal.onWillDismiss();
-    if (data) {
-      const user = this.userService.User;
-      user.sponsors[i] = data;
-      this.userService
-        .update(user)
-        .pipe(take(1))
-        .subscribe((u: any) => {
-          this.userService
-            .getUserByUsername(this.userService.User.username)
-            .pipe(take(1))
-            .subscribe((u: any) => {
-              this.userService.User = u.user;
-            });
-        });
-    }
+    } 
   }
 
   async open(img: string) {
-    const modal = await this.mc.create({
+    const modal = await this.modalCtrl.create({
       component: OpenImgComponent,
       componentProps: {
         img,
@@ -319,8 +248,6 @@ export class ProfilePage implements OnInit {
       });
   }
 
-
-
   async logScrolling(ev) {
     let el = await ev.target.getScrollElement();
     this.cd.detectChanges();
@@ -347,5 +274,4 @@ export class ProfilePage implements OnInit {
       this.getPost();
     }
   }
-
 }

@@ -14,7 +14,6 @@
 }
 
 .imageMiniCard{
-    width: 66%;
     margin-left: auto;
     margin-right: auto;
     margin-bottom:10%;
@@ -24,7 +23,7 @@
    font-size: 20px;
     border-radius: 50%;
     color: white;
-    background-color:#1b9211;
+    background-color:#7bbbec;
     cursor: pointer;
     position: relative;
     left: 10px;
@@ -37,7 +36,7 @@
   }
 
 .logoSport {
-    height: 440px;
+    height: 165px;
 }
 .logoSportBig {
     height: 165px;
@@ -69,3 +68,17 @@
     background-color:#d7e6ff ;
     box-shadow: 0px 0px 5px 1px;
 }
+
+
+.buttonDelete{
+    --background: red;
+    --color: white;
+    text-align: center;
+    height: 25px;
+}
+
+
+.slide-in-fwd-center{-webkit-animation:slide-in-fwd-center .4s cubic-bezier(.25,.46,.45,.94) both;animation:slide-in-fwd-center .4s cubic-bezier(.25,.46,.45,.94) both}
+@-webkit-keyframes slide-in-fwd-center{0%{-webkit-transform:translateZ(-1400px);transform:translateZ(-1400px);opacity:0}100%{-webkit-transform:translateZ(0);transform:translateZ(0);opacity:1}}@keyframes slide-in-fwd-center{0%{-webkit-transform:translateZ(-1400px);transform:translateZ(-1400px);opacity:0}100%{-webkit-transform:translateZ(0);transform:translateZ(0);opacity:1}}
+
+

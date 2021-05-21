@@ -1,0 +1,46 @@
+.close{
+    font-size:30px;
+    color: white;
+    cursor: pointer;
+    position: absolute;
+    right: 5px;
+    top: 5px;
+}
+
+.flex-images{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.flex-image-container{
+    position: relative;
+    width: 48%;
+    background-size: cover;
+    background-position: center;
+    margin: 5px;
+    cursor: pointer;
+}
+
+.select-btn.active{
+    --ion-color-base: red !important;
+}
+.flex-image-container.active{
+    border: 5px solid red;
+}
+
+.stickyBtn{
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    z-index: 2;
+}
+video {
+    max-width: 100%;
+}
+@media (max-width: 920px) {
+    .flex-image-container {
+      flex: 1 100%;
+    }
+  }

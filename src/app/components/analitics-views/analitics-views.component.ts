@@ -7,8 +7,8 @@ import * as moment from "moment";
 import { PostService } from "../../service/post.service";
 import { ToastController } from "@ionic/angular";
 import { ViewsSponsorService } from "src/app/service/views-sponsor.service";
-import { response } from "express";
 import { take } from "rxjs/operators";
+
 
 @Component({
   selector: "app-analitics-views",
@@ -50,101 +50,14 @@ export class AnaliticsViewsComponent implements OnInit {
   }
   reactionId = [];
   commentId = [];
-  async introduPost() {
-    //Estas tres separan el link para tomar el id del post
-    for (let elements of this.commentViews) {
-      this.commentId.push(elements.link.split("/")[2]);
-    }
-    for (let elements of this.reactionViews) {
-      this.reactionId.push(elements.link.split("/")[2]);
-    }
-    for (let elements of this.postViews) {
-      this.postId.push(elements.link.split("/")[2]);
-    }
 
-    this.find_duplicate_in_array(this.postId);
-
-    for (let elements of this.sortable) {
-      let post = await this.getPost(elements[0], elements[1]);
-      this.postDeVerdad.push(post);
-    }
-  }
-
-  postDeVerdad = [];
-  //Solicita los post a la db para mostrar
-  async getPost(id, i): Promise<any> {
-    return await new Promise((resolve) => {
-      this.postService.getPost(id).subscribe((post: any) => {
-        post.post.count = i;
-        resolve(post.post);
-      });
-    });
-  }
   //Datos para los post,en seccion de post
   todolosPost = [];
   likes = [];
   comments = [];
   shareds = [];
   interaccionActual = "";
-  actualLikes() {
-    this.interaccionActual = "likes";
-  }
-  actualComments() {
-    this.interaccionActual = "comments";
-  }
-  actualShareds() {
-    this.interaccionActual = "shareds";
-  }
-  sinInteraccionActual() {
-    this.interaccionActual = "";
-  }
-
-  //Encuentra los post repetidos y el que tenga mas repeticiones sera el primero
-  find_duplicate_in_array(array) {
-    const count = {};
-    const result = [];
-    array.forEach((item) => {
-      if (count[item]) {
-        count[item] += 1;
-        return;
-      }
-      count[item] = 1;
-    });
-
-    for (let prop in count) {
-      if (count[prop] >= 1) {
-        result.push(prop);
-      }
-    }
-
-    //Estos dos verifican que comentarios y reacciones sean de un post del usuario
-    this.commentId.forEach((publi) => {
-      for (let key in count) {
-        if (key == publi) {
-          count[key] += 1;
-        }
-      }
-    });
-    this.reactionId.forEach((publi) => {
-      for (let key in count) {
-        if (key == publi) {
-          count[key] += 1;
-        }
-      }
-    });
-
-    //Ordena de mayor a menor
-    for (var idPost in count) {
-      this.sortable.push([idPost, count[idPost]]);
-      this.totalViewsPost += count[idPost];
-    }
-    this.sortable.sort(function (b, a) {
-      return a[1] - b[1];
-    });
-    this.count = count;
-    this.postId = result;
-    return result;
-  }
+  
 
   noData: boolean = false; // es false si no hay datos en la estadistica
   totalViewsPost = 0;
@@ -168,44 +81,16 @@ export class AnaliticsViewsComponent implements OnInit {
       this.indexLast += 5;
     }
   }
+
+  c = document.getElementById('areaPoplar') as HTMLCanvasElement
+
   ngOnInit() {
     this.viewsSponsorService
       .getSponsorView(this.userService.User._id)
       .subscribe((response: any) => {
         this.totalSponsor = response.length;
       });
-    //obtiene todos los post del usuario
-    this.postService
-      .getPostUser(this.userService.User._id)
-      .subscribe((response: any) => {
-        this.todolosPost = response;
-        this.likes = response.filter((post: any) => {
-          return post.likes.length > 0;
-        });
-
-        this.comments = response.filter((post: any) => {
-          return post.comments.length > 0;
-        });
-
-        this.shareds = response.filter((post: any) => {
-          return post.shareds.length > 0;
-        });
-
-        //Ordena de mayor a menor el post con mas reacciones
-        this.likes.sort(function (b, a) {
-          return a.likes.length - b.likes.length;
-        });
-
-        //Ordena de mayor a menor el post con mas comentarios
-        this.comments.sort(function (b, a) {
-          return a.comments.length - b.comments.length;
-        });
-
-        //Ordena de mayor a menor el post con mas veces compartido
-        this.shareds.sort(function (b, a) {
-          return a.shareds.length - b.shareds.length;
-        });
-      });
+    
 
     this.viewsProfileService
       .getProfileView(this.userService.User._id)
@@ -236,23 +121,23 @@ export class AnaliticsViewsComponent implements OnInit {
           });
 
           this.pieData();
-          this.introduPost();
-          this.postUsersViews();
+          // this.introduPost();
+          // this.postUsersViews();
         }
       });
   }
 
   postInfoUser = [];
-  postUserInfo() {
-    this.option = "postInfo";
-  }
-  async postUsersViews() {
-    for (let elements of this.postViews) {
-      let post = await this.getPost(elements.link.split("/")[2], 0);
-      elements.link = post;
-      this.postInfoUser.push(elements);
-    }
-  }
+  // postUserInfo() {
+  //   this.option = "postInfo";
+  // }
+  // async postUsersViews() {
+  //   for (let elements of this.postViews) {
+  //     let post = await this.getPost(elements.link.split("/")[2], 0);
+  //     elements.link = post;
+  //     this.postInfoUser.push(elements);
+  //   }
+  // }
 
   pieData() {
     this.analyticsToShowSponsor = undefined;
@@ -312,6 +197,7 @@ export class AnaliticsViewsComponent implements OnInit {
           ],
         },
         options: {
+          responsive: true,
           scales: {
             yAxes: [
               {
@@ -480,6 +366,7 @@ export class AnaliticsViewsComponent implements OnInit {
         ],
       },
       options: {
+        responsive: true,
         scales: {
           yAxes: [
             {
@@ -518,7 +405,6 @@ export class AnaliticsViewsComponent implements OnInit {
     this.noData = false;
     this.years = [];
     /*  this.dateStart = moment(this.dateStart).add(-1,'years')
-    
     this.dateEnd = moment(this.dateEnd).add(-1,'years') */
     // this.dateStart.set('year',moment().year());
     this.dateStart.set("month", 0);
@@ -710,6 +596,7 @@ export class AnaliticsViewsComponent implements OnInit {
         ],
       },
       options: {
+        responsive: true,
         scales: {
           yAxes: [
             {
@@ -903,6 +790,7 @@ export class AnaliticsViewsComponent implements OnInit {
         ],
       },
       options: {
+        responsive: true,
         scales: {
           yAxes: [
             {
@@ -921,13 +809,15 @@ export class AnaliticsViewsComponent implements OnInit {
     this.day = moment(this.day).add(n, "days");
     this.hourStart = moment(this.hourStart).add(n, "day");
     this.hourEnd = moment(this.hourEnd).add(n, "day");
+    console.log(this.day);
+    
     this.generateDay();
   }
   option: string = "";
-  postLines() {
-    this.option = "post";
-    this.segement = 1;
-  }
+  // postLines() {
+  //   this.option = "post";
+  //   this.segement = 1;
+  // }
 
   months = [];
   month = moment();
@@ -962,14 +852,13 @@ export class AnaliticsViewsComponent implements OnInit {
     this.monthStart = moment(this.monthStart).add(-1, "month");
 
     this.allViews.forEach((visits) => {
-      let date = moment(new Date(visits.Date)).format("YYYY-MM-DD");
+      let date = moment(new Date(visits.date)).format("YYYY-MM-DD");
       for (let key in this.months) {
         if (this.months[key].date == date) {
           this.noData = true;
         }
       }
     });
-
     this.linesDataMonths();
   }
 
@@ -994,7 +883,7 @@ export class AnaliticsViewsComponent implements OnInit {
       this.labelMonths.push(i);
     }
     this.postViews.forEach((visits) => {
-      let date = moment(new Date(visits.Date)).format("YYYY-MM-DD");
+      let date = moment(new Date(visits.date)).format("YYYY-MM-DD");
       for (let key in this.months) {
         if (this.months[key].date == date) {
           this.months[key].post += 1;
@@ -1003,7 +892,7 @@ export class AnaliticsViewsComponent implements OnInit {
       }
     });
     this.chatViews.forEach((visits) => {
-      let date = moment(new Date(visits.Date)).format("YYYY-MM-DD");
+      let date = moment(new Date(visits.date)).format("YYYY-MM-DD");
       for (let key in this.months) {
         if (this.months[key].date == date) {
           this.months[key].chat += 1;
@@ -1013,7 +902,7 @@ export class AnaliticsViewsComponent implements OnInit {
     });
 
     this.searchViews.forEach((visits) => {
-      let date = moment(new Date(visits.Date)).format("YYYY-MM-DD");
+      let date = moment(new Date(visits.date)).format("YYYY-MM-DD");
       for (let key in this.months) {
         if (this.months[key].date == date) {
           this.months[key].search += 1;
@@ -1023,7 +912,7 @@ export class AnaliticsViewsComponent implements OnInit {
     });
 
     this.profileViews.forEach((visits) => {
-      let date = moment(new Date(visits.Date)).format("YYYY-MM-DD");
+      let date = moment(new Date(visits.date)).format("YYYY-MM-DD");
       for (let key in this.months) {
         if (this.months[key].date == date) {
           this.months[key].profile += 1;
@@ -1033,7 +922,7 @@ export class AnaliticsViewsComponent implements OnInit {
     });
 
     this.reactionViews.forEach((visits) => {
-      let date = moment(new Date(visits.Date)).format("YYYY-MM-DD");
+      let date = moment(new Date(visits.date)).format("YYYY-MM-DD");
       for (let key in this.months) {
         if (this.months[key].date == date) {
           this.months[key].reaction += 1;
@@ -1043,7 +932,7 @@ export class AnaliticsViewsComponent implements OnInit {
     });
 
     this.commentViews.forEach((visits) => {
-      let date = moment(new Date(visits.Date)).format("YYYY-MM-DD");
+      let date = moment(new Date(visits.date)).format("YYYY-MM-DD");
       for (let key in this.months) {
         if (this.months[key].date == date) {
           this.months[key].comment += 1;
@@ -1102,6 +991,7 @@ export class AnaliticsViewsComponent implements OnInit {
         ],
       },
       options: {
+        responsive: true,
         scales: {
           yAxes: [
             {
@@ -1125,7 +1015,6 @@ export class AnaliticsViewsComponent implements OnInit {
   }
 
   totalSponsor;
-  sponsorLink;
   analyticsToShowSponsor;
   Sponsor() {
     this.segement = 2;
@@ -1145,4 +1034,9 @@ export class AnaliticsViewsComponent implements OnInit {
   sponsorYear() {
     this.analyticsToShowSponsor = "years";
   }
+
+  
+  
+//  sponsorSelect = this.userService.User.sponsors[0].name
+
 }

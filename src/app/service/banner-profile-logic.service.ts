@@ -11,7 +11,7 @@ import { TranslateService } from "@ngx-translate/core";
 import { UserService } from "src/app/service/user.service";
 import { Plugins, CameraResultType, CameraSource } from "@capacitor/core";
 import { AvatarComponent } from "src/app/profile/profile-edit/avatar/avatar.component";
-import { JdvimageService } from "src/app/service/jdvimage.service";
+import { FilesService } from "./files.service";
 
 const { Camera, Filesystem } = Plugins;
 
@@ -25,7 +25,7 @@ export class BannerLogic {
     private translate: TranslateService,
     private modalCtrl: ModalController,
     private loading: LoadingController,
-    private jdvImage: JdvimageService,
+    private filesServices: FilesService,
     private freeImgService: FreeImgService
   ) {}
 
@@ -155,7 +155,7 @@ export class BannerLogic {
 
         formData.append("image", blob);
 
-        this.jdvImage
+        this.filesServices
           .uploadImage(formData)
           .toPromise()
           .then((url: string) => {

@@ -13,12 +13,14 @@ export class AttachLinkPreviewPostComponent implements OnInit {
   constructor(private wishService: WishService) {}
 
   ngOnInit() {
+
     this.previewUrl();
   }
 
   preview = null;
 
   previewUrl() {
+    
     try {
       let string: string = this.file.url;
       let match = string.match(

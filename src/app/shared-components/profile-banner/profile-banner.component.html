@@ -1,0 +1,12 @@
+<div class="banner">
+  <img (click)="see()" style="cursor: pointer;" [src]="user.photoBanner" alt="" />
+  <ion-icon *ngIf="editable" (click)="options($event)" class="edit" name="camera"></ion-icon>
+</div>
+
+<input
+  #openImage
+  type="file"
+  accept="image/*"
+  (change)="uploadImage($event)"
+  hidden
+/>

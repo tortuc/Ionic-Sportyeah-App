@@ -9,7 +9,6 @@ import { LangBtnAppComponent } from "./lang-btn-app/lang-btn-app.component";
 import { FollowButtonComponent } from "../components/follow-button/follow-button.component";
 import { MainCardUserComponent } from "./main-card-user/main-card-user.component";
 import { RouterModule } from "@angular/router";
-import { ViewSponsorsComponent } from "./view-sponsors/view-sponsors.component";
 import { LoadingProgressComponent } from "./loading-progress/loading-progress.component";
 import { AttachLinkPreviewPostComponent } from "../post-components/attach-link-preview-post/attach-link-preview-post.component";
 import { UrlPreviewComponent } from "../components/url-preview/url-preview.component";
@@ -23,6 +22,21 @@ import { AddUsersPanelDesktopComponent } from "../components/add-users-panel-des
 import { FollowBtn } from "../components/profile-challenges/follow-btn.component";
 import { ViewCommentComponent } from "../post-components/view-comment/view-comment.component";
 import { QuestionCommentComponent } from "../components/question-comment/question-comment.component";
+import { AssetsButtonsComponent } from "./assets-buttons/assets-buttons.component";
+import { GifsModalComponent } from "./gifs-modal/gifs-modal.component";
+import { ImagePickerComponent } from "./image-picker/image-picker.component";
+import { VideoPickerComponent } from "./video-picker/video-picker.component";
+import { EditQuestionComponent } from "../components/edit-question/edit-question.component";
+import { ProfileBannerComponent } from "./profile-banner/profile-banner.component";
+import { ProfileBannerOptionsComponent } from "./profile-banner-options/profile-banner-options.component";
+import { SeeProfileBannerComponent } from "./see-profile-banner/see-profile-banner.component";
+import { ProfilePhotoComponent } from "./profile-photo/profile-photo.component";
+import { ProfilePhotoOptionsComponent } from "./profile-photo-options/profile-photo-options.component";
+import { ProfileUserInfoComponent } from "./profile-user-info/profile-user-info.component";
+import { NewPostHeaderComponent } from "../post-components/new-post-header/new-post-header.component";
+import { PostPreviewImagesSliderComponent } from "../post-components/post-preview-images-slider/post-preview-images-slider.component";
+import { PostPreviewImagesComponent } from "../post-components/post-preview-images/post-preview-images.component";
+import { MiniflagComponent } from "../components/miniflag/miniflag.component";
 
 const components = [
   ViewCommentComponent,
@@ -31,7 +45,6 @@ const components = [
   LangButtonComponent,
   LangBtnAppComponent,
   MainCardUserComponent,
-  ViewSponsorsComponent,
   LoadingProgressComponent,
   AttachLinkPreviewPostComponent,
   UrlPreviewComponent,
@@ -43,6 +56,23 @@ const components = [
   FriendsPanelDesktopComponent,
   AddUsersPanelDesktopComponent,
   FollowBtn,
+  AssetsButtonsComponent,
+  GifsModalComponent,
+  ImagePickerComponent,
+  VideoPickerComponent,
+  EditQuestionComponent,
+  ProfileBannerComponent,
+  ProfileBannerOptionsComponent,
+  SeeProfileBannerComponent,
+  ProfilePhotoComponent,
+  ProfilePhotoOptionsComponent,
+  ProfileUserInfoComponent,
+  MiniflagComponent,
+  
+
+  NewPostHeaderComponent,
+  PostPreviewImagesSliderComponent,
+  PostPreviewImagesComponent,
 ];
 
 @NgModule({

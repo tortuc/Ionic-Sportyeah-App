@@ -58,15 +58,14 @@ export class NewsPage implements OnInit {
             }
           } 
         }
-        if(news.sport == this.userService.User.sport){
+        // if(news.sport == this.userService.User.sport){
           this.newsSportUser.push(news)
-        }
+        // }
         if(news.user._id == this.userService.User._id){
           this.myNews.push(news);
         }
       })
       this.newsFollow.splice(0,3)
-    
     })
   }
   OpenNews(idNews){

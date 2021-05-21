@@ -32,13 +32,7 @@ const routes: Routes = [
     loadChildren: () =>
       import("./follower/follower.module").then((m) => m.FollowerPageModule),
   },
-  {
-    path: "new-experience",
-    loadChildren: () =>
-      import("./experience/new-experience/new-experience.module").then(
-        (m) => m.NewExperiencePageModule
-      ),
-  },
+
   {
     path: "new-awards",
     loadChildren: () =>

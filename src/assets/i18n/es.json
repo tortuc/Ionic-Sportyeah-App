@@ -364,7 +364,8 @@
   "share_with": {
     "title": "Publicación",
     "text": "wow! Debes ver esta publicación en SPORTYEAH",
-    "dialogTitle": "Compartir en ..."
+    "dialogTitle": "Compartir en ...",
+    "text-news":"wow! Debes ver esta noticia en SPORTYEAH"
   },
   "share": {
     "header": "Compartir",
@@ -591,33 +592,40 @@
   },
   "slider-logic": {
     "youtube": "Video de Youtube",
-    "youtube-input": "Coloque un link de YouTube",
+    "youtube-input": "Inserte un link de YouTube",
     "confirm": "Agregar contenido"
   },
   "change-slider": {
     "title": "Galeria"
   },
   "experience": {
-    "title": "Experiencia",
-    "create": "Añadir Experiencia",
-    "no-info": "No se encuentra información.",
-    "btn": "Cargar",
+    "title": "Experiencias",
+    "hint": "Aqui puedes indicar en que equipos has jugado o en donde has trabajado para que los demas usuarios de SportYeah conozcan tu historia !",
+    "create": "Crear nueva experiencia",
+    "create_btn": "Nueva experiencia",
+    "edit": "Editar experiencia",
+    "subtitle": "Indica el sitio (club, periodico, agencia...) donde has jugado o trabajado y la posicion que ejercias en dicho sitio",
+    "no-info": "Esta cuenta aun no tiene trayectoria",
+    "btn": "Crear experiencia",
+    "btn_edit": "Guardar cambios",
     "deleteModal": {
       "cancel": "Cancelar",
-      "confirm": "Esta seguro que desea eliminar esta experiencia.",
-      "accept": "Aceptar",
-      "alert": "Alerta"
+      "confirm": "Esta seguro que desea eliminar esta experiencia?",
+      "accept": "Si, Eliminar",
+      "alert": "Eliminar experiencia"
     },
     "form": {
-      "position": "Posición Ejercida",
-      "federationTeam": "Medio que otorga premio o reconocimientos.",
+      "position": "Posicion o cargo ejercido",
+      "federationTeam": "Nombre del club o agencia donde ejerciste el cargo",
       "nowIn": "Hasta la actualidad",
-      "place": "Lugar",
+      "place": "Pais, ciudad o region donde se encuentra dicho club o agencia",
       "initDate": "Fecha de inicio",
       "finishDate": "Fecha de fin",
-      "title": "Titular",
+      "title": "Titulo",
       "description": "Descripción",
-      "multimediaContent": "Contenido Multimedia",
+      "multimediaContent": "Agregar Multimedia",
+      "files": "Puedes subir imagenes, videos y incluso enlaces a youtube para mostrar graficamente tu experiencia",
+
       "add": "Agregar Contenido",
       "date": "Día de creación",
       "deleted": "Estado"
@@ -845,17 +853,27 @@
 
   "news": {
     "news": "Noticias",
+    "transmit":"Transimitir",
     "notNews": "No se encontraron noticias",
     "newsSport": "Noticias Sportyeah!",
-    "create": "Crear Nuevo Artículo",
+    "new": "Nueva noticia",
+    "write_new":"Redactar noticia",
+    "create_news":"Crear",
+    "program_date_news":"Programar fecha de publicación",
+    "add_program_date_description":"Programa la fecha en la que desees que sea publicada tu noticia",
+    "delete_program":"Eliminar fecha",
+    "programated_news":"Programadas",
+    "reschedule":"Reprogramar",
     "read": "Leer",
     "article": "Artículo",
     "title": "Título",
     "subTitle": "Subtítulo",
     "writeParagraph": "Escribe el párrafo",
     "images": "Imágenes",
+    "image_video":"Imagen/Video principal",
     "add": "Agregar",
     "edit": "Editar",
+    "save": "Guardar cambios",
     "editParagraph": "Editando párrafo",
     "delete": "Eliminar",
     "cancel": "Cancelar",
@@ -866,16 +884,34 @@
     "next": "Siguiente",
     "newNews": "Nueva Noticia",
     "editNews": "Editando Noticia",
+    "rody_post":"Listo para publicar",
     "publish": "Publicar",
     "published": "Artículo publicado con exito!",
     "edited": "Artículo editado con exito!",
+    "date":"Fecha",
+    "addVideo":"Agregar video",
+    "addYoutube":"Agrega un link de Youtube",
+    "intelectual_rights":"Por favor, díganos quien tiene los derechos intelectuales",
+    "intelectual_rights_news":"Por favor, díganos quien tiene los derechos intelectuales de la noticia",
+    "my_property":"De mi propiedad",
+    "of_other":"De otro",
+    "audioNews":"Audio Noticia",
+    "see_more":"Ver mas",
+    "live":"Directo",
+    "last":"Últimas Noticias",
+    "my_news":"Mis noticias",
     "deleteModal": {
       "cancel": "Cancelar",
       "confirm": "Esta seguro que desea eliminar este artículo.",
       "accept": "Aceptar",
       "alert": "Alerta"
     },
-    "streaming": "Transmisión"
+    "restore_modal":"Esta seguro que desea restaurar este artículo.",
+    "streaming": "Transmisión",
+    "my-news":"Mis noticias",
+    "inactive_news":"Inactivas",
+    "active_news":"Activas",
+    "restore":"Restaurar"
   },
   "sponsorDescription": "¡Agrega un patrocinador!",
   "back": "Volver",
@@ -928,7 +964,8 @@
   "attach_link": {
     "header": "Adjuntar un enlace",
     "name": "Nombre del enlace (opcional)",
-    "url": "Pegue un vinculo aqui..."
+    "url": "Pegue un vinculo aqui...",
+    "edit_link": "Editar enlace"
   },
   "remove_file": {
     "header": "Remover archivo",
@@ -1129,7 +1166,135 @@
     "private": "Se ha enviado tu peticion para unirte al grupo {{name}}",
     "err": "No has podido unirte al grupo, intente mas tarde"
   },
-  "new_messages": "Nuevos mensajes"
-
-
+  "new_messages": "Nuevos mensajes",
+  "pdf": {
+    "data_sponsor": "Datos del patrocinador ",
+    "date": "Fecha"
+  },
+  "images_online": {
+    "header": "Subir imagen / video desde la web",
+    "image": "Imagen",
+    "video": "Video"
+  },
+  "image_picker": {
+    "load_more": "Cargar mas",
+    "next": "Continuar",
+    "empty_results": "Sin resultados"
+  },
+  "select": "Seleccionar",
+  "uploading": "Subiendo archivo",
+  "msgProfileEdit": "Bienvenido a SportYeah, por favor, amplie la información de su perfil al máximo, ya que es la manera en la que le verá el resto de la red social, pulsando en la ⚙️ a un lado de tu nombre.",
+  "profile_banner_options": {
+    "see": "Ver imagen",
+    "upload": "Subir imagen",
+    "online": "Imagenes gratis"
+  },
+  "profile_photo_options": {
+    "see": "Ver imagen",
+    "upload": "Subir imagen",
+    "avatar": "Selecciona un avatar",
+    "camera": "Tomar foto"
+  },
+  "followers": "Seguidores",
+  "followings": "Siguiendo",
+  "change_flag": {
+    "title": "Puedes cambiar tu bandera con la bandera de la comunidad autónoma a donde perteneces 😉",
+    "es": "España",
+    "ca": "Cataluña",
+    "eu": "País Vasco",
+    "an": "Andalucía",
+    "ar": "Aragón",
+    "as": "Principado de Asturias",
+    "bl": "Islas Baleares",
+    "can": "Canarias",
+    "cb": "Cantabria",
+    "cm": "Castilla - La mancha",
+    "cl": "Castilla y León",
+    "va": "Comunidad valenciana",
+    "ex": "Extremadura",
+    "gl": "Galicia",
+    "lr": "La Rioja",
+    "ma": "Comunidad de Madrid",
+    "mu": "Región de Murcia",
+    "na": "Comunidad Foral de Navarra"
+  },
+  "update_profile_data": "Modificar datos del perfil",
+  "goToAdmin": "Panel administrador",
+  "sponsors": {
+    "miniature": "(Miniatura)",
+    "profile": "(Perfil)",
+    "private_profile": {
+      "title": "¿Tienes algun patrocinador? Agregalo aqui!",
+      "add": "Agrega un patrocinador",
+      "all": "Ver todos"
+    },
+    "public_profile": {
+      "title": "Patrocinadores de esta cuenta",
+      "add": "Agrega un patrocinador",
+      "all": "Ver todos"
+    },
+    "allSponsors": {
+      "title_mine": "Desde esta opcion puedes editar, eliminar o ver las analiticas de tus patrocinadores",
+      "title_other": "Todos los patrocinadores de esta cuenta",
+      "btn": "Opciones",
+      "cantEdit": {
+        "header": "Ups!",
+        "message": "Los patrocinadores con cuenta en sportyeah no pueden ser editados... pongase en contacto con su patrocinador"
+      },
+      "delete": {
+        "header": "Eliminar patrocinador",
+        "message": "Seguro que quieres eliminar este patrocinador?"
+      }
+    },
+    "options": {
+      "edit": "Editar",
+      "delete": "Eliminar",
+      "analytic": "Analiticas"
+    },
+    "create": {
+      "account": {
+        "title": "Busca a tu patrocinador en sportyeah!",
+        "hint": "Asi se vera tu patrocinador en las publicaciones (miniatura) y en tu perfil (perfil)"
+      },
+      "action": {
+        "header": "Subir una imagen para el patrocinador",
+        "gallery": "Galeria",
+        "free": "Añadir imagen gratuita"
+      },
+      "save": "Guardar patrocinador",
+      "no_account": "Mi patrocinador no tiene cuenta en sportyeah"
+    },
+    "custom": {
+      "title": "Personaliza tu tarjeta de patrocinio",
+      "subtitle": "De esta manera se mostrara tu tarjeta en los perfiles que patrocinas",
+      "btn": "Personalizar"
+    },
+    "customize": {
+      "miniature_hint": "De esta manera le aparecera a tus patrocinados en sus publicaciones",
+      "miniature_ratio": "La imagen en miniatura debe tener una relacion de aspecto de 2:1",
+      "profile_hint": "De esta manera le aparecera a tus patrocinados en su perfil publico y privado",
+      "profile_ratio": "La imagen debe tener una relacion de aspecto de 1:1 ( 500x500 recomendado)",
+      "change_btn": "Cambiar imagen",
+      "save": "Guardar Cambios",
+      "header": "Desde esta herramienta puedes personalizar tu tarjeta de patrocinador",
+      "name": "Nombre de tu marca",
+      "url": "Pagina web de tu patrocinador (URL)",
+      "finish": "Completa la informacion de tu patrocinador",
+      "edit": "Edita la informacion de tu patrocinador",
+      "loading": "Cargando...",
+      "nopreview": "No hay previsualizacion"
+    }
+  },
+  "no_results": "No hay resultados",
+  "working": {
+    "header": "Ups!",
+    "message": "Estamos trabajando en esta herramienta"
+  },
+  "youtube_modal": {
+    "title": "Inserte un link (URL) de YouTube",
+    "label": "Inserte aqui el link (URL) de YouTube",
+    "wait": "Y espere a que cargue para verificar que es el correcto",
+    "error": "La url que ingresaste no es valida o no es de youtube",
+    "btn": "Aceptar"
+  }
 }

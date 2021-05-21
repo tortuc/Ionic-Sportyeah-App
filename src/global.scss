@@ -153,11 +153,20 @@ ion-checkbox {
   --background-checked: var(--color-secondary) !important;
 }
 
+ion-searchbar {
+  --background: white !important;
+
+  --cancel-button-color: black !important;
+  --icon-color: black !important;
+  --color: black !important;
+  color: black !important;
+}
+
 ion-list {
   background: white !important;
 }
 ion-content {
-  --background: white ;
+  --background: white;
 }
 
 ion-card-title {
@@ -166,6 +175,10 @@ ion-card-title {
 
 ion-item {
   --border-color: #dad3d3 !important;
+}
+
+.main-grid {
+  padding: 0;
 }
 .date {
   font-size: 12px;
@@ -215,9 +228,6 @@ ion-item {
   margin: auto !important;
 }
 
-.ilike {
-  --color: #e0245e;
-}
 .icomment {
   --color: blue;
 }
@@ -229,8 +239,14 @@ ion-item {
   margin-top: 10px !important;
 }
 
-.text-right {
-  text-align: right;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  color: black;
 }
 
 a {
@@ -248,7 +264,29 @@ a {
   --background: var(--color-primary);
   --color: white;
   --border-radius: 25px;
+  span {
+    font-size: 12px;
+    ion-icon {
+      vertical-align: sub;
+      font-size: 16px;
+    }
+  }
 }
+
+.btn-cancel {
+  --background: #fa1e0e;
+  --color: white;
+  --border-radius: 20px;
+  span {
+    font-size: 12px;
+    ion-icon {
+      vertical-align: sub;
+      font-size: 16px;
+    }
+  }
+}
+
+
 .btn-delete {
   --background: #d73226;
   --color: white;
@@ -324,28 +362,6 @@ a {
 .img-post {
   width: 70% !important;
   cursor: pointer;
-}
-
-.no-img {
-  color: white;
-  text-align: center;
-  padding: 5px;
-  font-size: 24px;
-  border-radius: 50%;
-  background: #9619b4;
-  width: 50px;
-  height: 50px;
-  position: relative;
-}
-
-.middle {
-  position: absolute;
-  top: 0;
-  padding: 10px;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  margin: auto;
 }
 
 .login-xs {
@@ -451,7 +467,7 @@ a {
   .msg-text {
     color: black;
   }
-  .date{
+  .date {
     color: black;
   }
 }
@@ -462,18 +478,12 @@ a {
   .msg-text {
     color: #fff !important;
   }
-  .date{
+  .date {
     color: white;
   }
 }
 
 // ------------------------------------------------------------------------
-
-.add-button {
-  font-size: 10px;
-  --background: var(--color-primary);
-  height: 30px;
-}
 
 .emoji {
   font-size: 20px !important;
@@ -607,13 +617,6 @@ ion-segment-button {
   color: white;
 }
 
-// Mobile
-@media screen and (min-width: 400px) {
-  .marginleftforletters {
-    margin-left: 25px !important;
-  }
-}
-
 .absoluteFriendsC {
   left: 0;
   right: 0;
@@ -677,6 +680,10 @@ ion-segment-button {
 .btn-outline-blue {
   --border-color: #1586e4;
   --color: #1586e4;
+}
+
+.toolbar-bg {
+  --background: var(--color-primary) !important;
 }
 
 .btn-dismiss {
@@ -750,6 +757,7 @@ ion-segment-button {
   border: solid 2px var(--color-primary);
   width: 100%;
   padding: 15px;
+  background: white;
 }
 
 .reload-btn {
@@ -767,10 +775,9 @@ ion-segment-button {
   top: 60px !important;
 }
 
-
-// .no-padding{
-//   padding: 0;
-// }
+.no-padding {
+  padding: 0;
+}
 
 .main-card-content {
   visibility: visible;
@@ -778,8 +785,8 @@ ion-segment-button {
   margin: auto;
 }
 
-.home-grid{
-  padding: 5px;
+.home-grid {
+  padding: 0px;
   height: 100%;
 }
 .modal-border .modal-wrapper {
@@ -799,7 +806,7 @@ ion-avatar.chat-img {
   height: 18px;
 }
 
-.pending-chip{
+.pending-chip {
   font-size: 12px;
   max-height: 25px;
   border-radius: 50%;
@@ -808,15 +815,19 @@ ion-avatar.chat-img {
   background: var(--color-secondary);
 }
 
-.alert-wrapper{
-  --background:white  !important;
+.alert-wrapper {
+  --background: white !important;
+  .alert-head {
+    .alert-title {
+      color: black;
+    }
+  }
 }
 
 .notification {
   font-size: 13px;
   display: flex;
   cursor: pointer;
-  border-bottom: 1px solid #f08f97;
   padding: 10px;
   position: relative;
   &:hover {
@@ -840,14 +851,50 @@ ion-avatar.chat-img {
       min-width: 40px;
       min-height: 40px;
       border-radius: 40%;
-      box-shadow: 0 0 10px 1px #f08f97;
+      box-shadow: 0 0 10px 1px #2a4c78;
       object-fit: cover;
     }
-    .icon{
+    .icon {
       font-size: 21px;
       position: absolute;
       bottom: -5px;
       right: -10px;
     }
   }
+}
+
+.divChart {
+  display: block;
+  max-width: 400px;
+  max-height: 400px;
+}
+
+.msg-edit-modal .modal-wrapper {
+  height: 270px;
+  width: 500px;
+  top: 35%;
+  position: absolute;
+  display: block;
+  border-radius: 20px;
+}
+
+.progress {
+  margin-top: 30px;
+  position: fixed;
+  z-index: 1000;
+  width: 100%;
+}
+
+
+
+.close-modal {
+  color: white;
+  background: #00000075;
+  border-radius: 50%;
+  right: 5px;
+  top: 5px;
+  position: absolute;
+  font-size: 30px;
+  z-index: 10;
+  cursor: pointer;
 }

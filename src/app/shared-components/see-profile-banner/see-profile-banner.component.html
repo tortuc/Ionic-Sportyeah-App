@@ -1,0 +1,17 @@
+<ion-content style="background-color: black">
+  <div class="user" (click)="visitUser()">
+    <ion-avatar>
+      <img [src]="user.photo" class="img-user" />
+    </ion-avatar>
+    <p class="username">{{ user.name }} {{ user.last_name }}</p>
+  </div>
+  <ion-icon
+    name="close-outline"
+    (click)="modalCtrl.dismiss()"
+    class="close"
+  ></ion-icon>
+
+  <div class="img-content">
+    <img [src]="photo" class="img" alt="" style="width: 100%" />
+  </div>
+</ion-content>

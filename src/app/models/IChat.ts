@@ -23,6 +23,7 @@ export interface IMessage {
     message:string
     read:boolean
     audio:string
+    question:string
     deleted:boolean
     information:any
     files:IPostFile[]

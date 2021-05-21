@@ -1,56 +1,8 @@
-.buttons{
-    text-align: end;
-    bottom: 10px;
-    padding: 0 20px;
-    margin-top: 10px;
+.buttons {
+  display: flex;
+  justify-content: flex-end;
 }
 
-.icon-remove{
-    position: absolute;
-    font-size: 30px;
-    top: 0px;
-    right:0px;
-    color: #ef5350;
-}
-[contentEditable=true]:empty:not(:focus):before{
-    content:attr(data-placeholder) }
-
-
-
-.close-video{
-    position: absolute;
-    font-size: 24px;
-    border-radius: 50%;
-    background: #e0d5e4d1;
-    cursor: pointer;
-    z-index: 100;
-    left: 5px;
-    top: 5px;
-}
-
-.answer{
-    position: relative;
-    padding: 0px 20px;
-    margin-right: auto;
-    color: white;
-    height: 53px;
-    margin-left: auto;
-    margin-bottom: 10px;
-    width: 90%;
-    background-color:#ffffff61 ;
-    border:solid white 1px;
-    border-radius: 25px;
-
-
-}
-
-.questionDiv{
-    border-radius: 15px;
-    margin-bottom: 10px;
-    width: 90%;
-    margin-left: auto;
-    margin-right: auto;
-    background: linear-gradient(
-        90deg
-        ,rgb(16 42 82),rgb(131 197 247))!important;
+[contentEditable="true"]:empty:not(:focus):before {
+  content: attr(data-placeholder);
 }

@@ -1,0 +1,14 @@
+<div class="photo-content">
+  <div class="photo-cover" >
+    <img (click)="see()" class="photo-user" [src]="user.photo" alt="" />
+    <ion-icon *ngIf="editable" (click)="options($event)" class="photo-edit" name="camera"></ion-icon>
+  </div>
+</div>
+
+<input
+  #openImage
+  type="file"
+  accept="image/*"
+  (change)="uploadImage($event)"
+  hidden
+/>

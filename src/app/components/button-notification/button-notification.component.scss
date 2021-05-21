@@ -1,11 +1,18 @@
-.icon-notifications{
-    font-size: 28px;
-    color:white;
-    margin-right: 3px;
+.icon-notifications {
+  font-size: 28px;
+  color: white;
+  margin-right: 3px;
 }
 
-.notification{
-    position: relative;
-    margin-right: 10px;
-    cursor: pointer;
+.notification-btn {
+  position: relative;
+  margin-right: 10px;
+  cursor: pointer;
+}
+.badge {
+  bottom: 0;
+  position: absolute;
+  background: white;
+  color: black;
+  right: 0;
 }

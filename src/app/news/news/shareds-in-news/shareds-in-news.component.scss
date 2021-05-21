@@ -1,0 +1,19 @@
+.btn-text {
+  
+    font-size: 12px;
+  }
+  
+  .btn-icon {
+    margin-right: 2px;
+    vertical-align: bottom;
+  }
+  .total {
+    
+    font-size: 14px;
+    margin: 0;
+    cursor: pointer;
+    &:hover {
+      color: var(--color-secondary);
+    }
+  }
+  

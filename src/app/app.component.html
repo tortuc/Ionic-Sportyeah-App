@@ -7,44 +7,35 @@
       type="overlay"
     >
       <ion-content
+        style="--background: white !important"
         [scrollbar]="reusableCI.scrollbarStyle"
         allowAllScreens="true"
       >
-        <ion-list style="padding-bottom: 0px;padding-top: 0px;" id="inbox-list">
-          <div style="display: flex; align-items: center;justify-content: center;margin-bottom: 15px;">
-            <ion-img style="width: 40px; margin-right: 10px;" src="https://i.ibb.co/g6TFj6G/Logo-TRANSPARENTE.png" ></ion-img> 
-            <h1 style="margin:0px;font-weight: 600;color: #2a4c78;">
-              SportYeah!
-            </h1> 
+        <ion-list
+          *ngIf="userService.User"
+          style="padding-bottom: 0px; padding-top: 0px"
+          id="inbox-list"
+        >
+          <div style="text-align: center">
+            <img style="width: 150px" src="assets/logos/imagotipo_azul.png" />
           </div>
 
-          <new-profile-photo *ngIf="userService.User"></new-profile-photo>
+          <profile-photo [user]="userService.User" [editable]="true" ></profile-photo>
 
-          <ion-list-header style="color: black; margin-top: 10px" (click)="goTo('/profile/edit')">
-            <span style="margin: auto;font-size: 18px;color: #2a4c78;">
+
+          <ion-list-header
+            style="color: black; margin-top: 10px"
+            (click)="goTo('/profile/edit')"
+          >
+            <span style="margin: auto; font-size: 18px; color: #2a4c78">
               <!-- ENCUENTRA LA BANDERA DEPENDIENDO DE LA IP DEL USUARIO API https://www.countryflags.io/ -->
-              <app-miniflag [user]="userService.User" *ngIf="userService.User"></app-miniflag>
+              <miniflag [user]="userService.User"></miniflag>
               {{ userService.User?.name || "" }}
               {{ userService.User?.last_name || "" }}
             </span>
           </ion-list-header>
-
-          <div class="ion-justify-content-center ion-margin-vertical" style="display: flex;" (click)="goTo('/profile/edit')">
-            <ion-badge color="secondary ion-margin-end">{{ "sport." + userService.User?.sport | translate }}</ion-badge>
-            <ion-badge color="secondary">
-              <span>
-                <span *ngIf="userService.User?.profile_user === 'player'">{{
-                  "profile_user." +
-                    userService.User?.profile_user +
-                    "." +
-                    userService.User?.sport | translate
-                }}</span>
-                <span *ngIf="userService.User?.profile_user !== 'player'">{{
-                  "profile_user." + userService.User?.profile_user | translate
-                }}</span>
-              </span>
-            </ion-badge>
-          </div>
+          <profile-user-info routerLink="/profile/edit" [user]="userService.User"></profile-user-info>
+       
 
           <ion-list-header style="color: rgb(75, 72, 72)">
             <span style="margin: auto; font-size: 14px">
@@ -63,51 +54,112 @@
               <!-- <span><ion-icon name="create-outline" class="editOutline"></ion-icon></span> -->
             </p>
           </ion-list-header>
+          <ion-menu-toggle
+            *ngIf="userService.User?.role == 'admin'"
+            auto-hide="false"
+          >
+            <ion-item
+              (click)="admin()"
+              style="cursor: pointer"
+              lines="none"
+              detail="false"
+            >
+              <ion-icon
+                slot="start"
+                ios="settings-outline"
+                md="settings-outline"
+              ></ion-icon>
+              <ion-label>{{ "goToAdmin" | translate }}</ion-label>
+            </ion-item>
+          </ion-menu-toggle>
 
-		  <div *ngFor="let item of appPages" >
-			<ion-menu-toggle auto-hide="false" *ngIf="item.url">
-				<ion-item [routerLink]="item.url" routerDirection="root" routerLinkActive="active" lines="none">
-					<ion-icon [name]="item.icon" slot="start"></ion-icon>
-					<ion-label>
-						{{ item.title | translate }}
-					</ion-label>
-          <ion-badge *ngIf="item.url == '/chat' && chatService.allUnread" style="--background: var(--color-primary)">
-            {{ chatService.allUnread }}
-          </ion-badge>
-				</ion-item>
-			</ion-menu-toggle>
+          <div *ngFor="let item of appPages">
+            <ion-menu-toggle auto-hide="false" *ngIf="item.url">
+              <ion-item
+                [routerLink]="item.url"
+                routerDirection="root"
+                routerLinkActive="active"
+                lines="none"
+              >
+                <ion-icon [name]="item.icon" slot="start"></ion-icon>
+                <ion-label>
+                  {{ item.title | translate }}
+                </ion-label>
+                <ion-badge
+                  *ngIf="item.url == '/chat' && chatService.allUnread"
+                  style="--background: var(--color-primary)"
+                >
+                  {{ chatService.allUnread }}
+                </ion-badge>
+              </ion-item>
+            </ion-menu-toggle>
 
-			<ion-item button *ngIf="item.children?.length > 0" (click)="item.open = !item.open"
-				[class.active-parent]="item.open" detail="false" lines="none">
-				<ion-icon [name]="item.icon" slot="start"></ion-icon>
-				<ion-label>
-					{{ item.title | translate }}
-				</ion-label>
-				<ion-icon slot="end" name="chevron-forward" *ngIf="!item.open"></ion-icon>
-				<ion-icon slot="end" name="chevron-down" *ngIf="item.open"></ion-icon>
-			</ion-item>
+            <ion-item
+              button
+              *ngIf="item.children?.length > 0"
+              (click)="item.open = !item.open"
+              [class.active-parent]="item.open"
+              detail="false"
+              lines="none"
+            >
+              <ion-icon [name]="item.icon" slot="start"></ion-icon>
+              <ion-label>
+                {{ item.title | translate }}
+              </ion-label>
+              <ion-icon
+                slot="end"
+                name="chevron-forward"
+                *ngIf="!item.open"
+              ></ion-icon>
+              <ion-icon
+                slot="end"
+                name="chevron-down"
+                *ngIf="item.open"
+              ></ion-icon>
+            </ion-item>
 
-			<ion-list *ngIf="item.open">
-				<ion-menu-toggle auto-hide="false">
-					<ion-item class="sub-item" *ngFor="let sub of item.children" [routerLink]="sub.url" 
-					routerDirection="root" routerLinkActive="active" lines="none">
-						<ion-icon [name]="sub.icon" slot="start" *ngIf="sub.icon !== ''"></ion-icon>
-            <span [innerHTML]="sub.fas" *ngIf="sub.icon === ''" style="margin-right: 15px;font-size: 20px;"></span>
-						<ion-label>
-							{{ sub.title | translate }}
-						</ion-label>
-					</ion-item>
-				</ion-menu-toggle>
-      
-			</ion-list>
-     
-		  </div>
-      <ion-menu-toggle auto-hide="false">
-        <ion-item (click)="logout()" routerLink="/" lines="none" detail="false">
-          <ion-icon slot="start" ios="exit-outline" md="exit-outline"></ion-icon>
-          <ion-label>{{ "sidebar.logout" | translate }}</ion-label>
-        </ion-item>
-      </ion-menu-toggle>
+            <ion-list *ngIf="item.open">
+              <ion-menu-toggle auto-hide="false">
+                <ion-item
+                  class="sub-item"
+                  *ngFor="let sub of item.children"
+                  [routerLink]="sub.url"
+                  routerDirection="root"
+                  routerLinkActive="active"
+                  lines="none"
+                >
+                  <ion-icon
+                    [name]="sub.icon"
+                    slot="start"
+                    *ngIf="sub.icon !== ''"
+                  ></ion-icon>
+                  <span
+                    [innerHTML]="sub.fas"
+                    *ngIf="sub.icon === ''"
+                    style="margin-right: 15px; font-size: 20px"
+                  ></span>
+                  <ion-label>
+                    {{ sub.title | translate }}
+                  </ion-label>
+                </ion-item>
+              </ion-menu-toggle>
+            </ion-list>
+          </div>
+          <ion-menu-toggle auto-hide="false">
+            <ion-item
+              (click)="logout()"
+              routerLink="/"
+              lines="none"
+              detail="false"
+            >
+              <ion-icon
+                slot="start"
+                ios="exit-outline"
+                md="exit-outline"
+              ></ion-icon>
+              <ion-label>{{ "sidebar.logout" | translate }}</ion-label>
+            </ion-item>
+          </ion-menu-toggle>
           <!--<ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
             <ion-item
               (click)="selectedIndex = i"
@@ -131,15 +183,14 @@
               <ion-label>{{ "sidebar.logout" | translate }}</ion-label>
             </ion-item>
           </ion-menu-toggle>-->
-
         </ion-list>
       </ion-content>
     </ion-menu>
     <ion-router-outlet id="main-content">
       <loading-progress
-      *ngIf="fileService.isUploadingPage"
-      class="progress"
-    ></loading-progress>
+        *ngIf="fileService.isUploadingPage"
+        class="progress"
+      ></loading-progress>
     </ion-router-outlet>
   </ion-split-pane>
 </ion-app>

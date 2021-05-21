@@ -8,7 +8,7 @@ import {
 } from "src/app/service/challenge.service";
 import { UserService } from "src/app/service/user.service";
 import { IUserDataResponse } from "src/app/models/IUserDataResponse";
-import { IUser, User } from "src/app/models/IUser";
+import { User } from "src/app/models/IUser";
 import { ReusableComponentsIonic } from "src/app/service/ionicHelpers.service";
 
 @Component({

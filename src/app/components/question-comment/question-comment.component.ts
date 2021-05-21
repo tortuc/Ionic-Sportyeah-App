@@ -14,7 +14,8 @@ export class QuestionCommentComponent implements OnInit {
     public questionService: QuestionService
   ) {}
 
-  ngOnInit() {
+  ngOnInit() { 
+  
     this.questionService
       .findById(this.questionId)
       .subscribe((response: any) => {

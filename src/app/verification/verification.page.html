@@ -6,7 +6,12 @@
       <ion-col class="main-col" size-lg="5" size-md="8" size-sm="12">
         <ion-card ngClass.xs="login-xs" class="main-card">
           <ion-card-header *ngIf="valid" class="text-center">
-            <img src="assets/logos/logo.png" alt="SportYeah" width="150px" />
+            <img
+              src="assets/logos/imagotipo_azul.png"
+              alt="SportYeah"
+              width="200px"
+              style="vertical-align: middle !important"
+            />
             <ion-card-title
               >{{'verification.valid.title' | translate}}
               <ion-icon name="shield-checkmark-outline"></ion-icon
@@ -15,13 +20,18 @@
               >{{'verification.valid.subtitle' | translate}}</ion-card-subtitle
             >
             <div class="max-widht-300 center margin-top-10 text-center">
-              <a routerLink="/dashboard"
+              <a routerLink="/login"
                 >{{'verification.valid.back'| translate}}</a
               >
             </div>
           </ion-card-header>
           <ion-card-header *ngIf="valid == false" class="text-center">
-            <img src="assets/logos/logo.png" alt="SportYeah" width="150px" />
+            <img
+              src="assets/logos/imagotipo_azul.png"
+              alt="SportYeah"
+              width="200px"
+              style="vertical-align: middle !important"
+            />
             <ion-card-title
               >{{'verification.invalid.title' | translate}}</ion-card-title
             >

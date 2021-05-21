@@ -41,10 +41,8 @@ export class PostPage implements OnInit {
       .getPost(id)
       .toPromise() //agregamos el id del usuario actual
       .then((post: IPost) => {
-        
         this.post = post;
-        console.log(this.post);
-        
+        console.log(this.post)
         this.getComments();
       })
       .catch((err) => {
@@ -103,25 +101,24 @@ export class PostPage implements OnInit {
   
 
 
-  goToSponsorComment(sponsor,id,post_id){
-    if(id != this.userService.User._id){
+  // goToSponsorComment(sponsor,id,post_id){
+  //   if(id != this.userService.User._id){
      
-          this.viewsSponsorService
-          .createSponsorView(
-            {
-             user:id,
-             visitor:this.userService.User._id,
-             from:"comment",
-             link:`/post/${post_id}`,
-             urlSponsor:sponsor
-           }
-           )
-            .subscribe((response) => {
-              window.location.replace(sponsor);
-            });
-
-      }
-  }
+  //         this.viewsSponsorService
+  //         .createSponsorView(
+  //           {
+  //            user:id,
+  //            visitor:this.userService.User._id,
+  //            from:"comment",
+  //            link:`/post/${post_id}`,
+  //            nameSponsor:sponsor
+  //          }
+  //          )
+  //           .subscribe((response) => {
+  //             window.location.replace(sponsor);
+  //           });
+  //     }
+  // }
 
  
 

@@ -1,0 +1,44 @@
+.stickyBtn {
+  background: black;
+  text-align: center;
+  padding: 10px;
+}
+
+.search {
+  background: var(--color-secondary);
+}
+
+.active {
+  border: solid 4px var(--color-secondary);
+}
+
+.image {
+  position: relative;
+  padding-top: 100%;
+  background: #101010;
+  img {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    max-height: 100%;
+    max-width: 100%;
+    margin: auto;
+  }
+}
+
+.loading {
+  color: white !important;
+  text-align: center;
+  position: fixed;
+  width: 300px;
+  z-index: 100;
+  margin: auto;
+  left: 0;
+  right: 0;
+  background: #000000bf;
+  top: 80px;
+  font-size: 20px;
+  border-radius: 20px;
+}

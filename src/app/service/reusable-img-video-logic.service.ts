@@ -18,8 +18,7 @@ import {
 import { TranslateService } from "@ngx-translate/core";
 import { UserService } from "src/app/service/user.service";
 import { Plugins, CameraResultType, CameraSource } from "@capacitor/core";
-import { AvatarComponent } from "src/app/profile/profile-edit/avatar/avatar.component";
-import { JdvimageService } from "src/app/service/jdvimage.service";
+import { FilesService } from "./files.service";
 
 const { Camera, Filesystem } = Plugins;
 
@@ -30,12 +29,11 @@ export class ImgVideoUpload {
   constructor(
     public userService: UserService,
     private actionSheetCtrl: ActionSheetController,
-    private imageAPI: JdvimageService,
+    private filesServices: FilesService,
     private translate: TranslateService,
     public mediaCapture: MediaCapture,
     private modalCtrl: ModalController,
     private loading: LoadingController,
-    private jdvImage: JdvimageService,
     private freeImgService: FreeImgService
   ) {}
 
@@ -204,7 +202,7 @@ export class ImgVideoUpload {
    */
 
   uploadVideo(formData: FormData, loading?) {
-    this.imageAPI
+    this.filesServices
       .uploadVideo(formData)
       .then((url) => {
         if (loading) loading.dismiss();
@@ -221,7 +219,7 @@ export class ImgVideoUpload {
    * @param formData
    */
   uploadImage(formData: FormData, loading?) {
-    this.imageAPI
+    this.filesServices
       .uploadImage(formData)
       .toPromise()
       .then((url) => {
@@ -262,7 +260,7 @@ export class ImgVideoUpload {
 
         formData.append("image", blob);
 
-        this.jdvImage
+        this.filesServices
           .uploadImage(formData)
           .toPromise()
           .then((url: string) => {

@@ -1,25 +1,18 @@
 import {
   Component,
   OnInit,
-  Sanitizer,
   ViewChild,
   ElementRef,
 } from '@angular/core';
 import { Router } from '@angular/router';
-import { JdvimageService } from 'src/app/service/jdvimage.service';
-import { DomSanitizer } from '@angular/platform-browser';
 import {
-  ActionSheetController,
-  AlertController,
-  LoadingController,
-  ModalController,
+  AlertController
 } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ImgVideoUpload } from '../../../service/reusable-img-video-logic.service';
 import { AwardService } from 'src/app/service/awards.service';
 import { UserService } from 'src/app/service/user.service';
-import * as moment from 'moment';
 
 @Component({
   selector: 'app-new-awards',
@@ -37,7 +30,6 @@ export class NewAwardsPage implements OnInit {
     private fb: FormBuilder,
     private alertController: AlertController,
     public imgVideoUpload: ImgVideoUpload,
-    private loadingController: LoadingController,
     public awardService: AwardService,
     public userService: UserService,
     public router: Router

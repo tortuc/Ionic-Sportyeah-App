@@ -1,7 +1,3 @@
-import {
-  MiniflagComponent,
-  ModalMiniFlagComponent,
-} from "./miniflag/miniflag.component";
 import { OpenImgComponent } from "./open-img/open-img.component";
 import { ParteIzquierdaWebComponent } from "./challenge/parte-izquierda-web/parte-izquierda-web.component";
 import { ParteDerechaWebComponent } from "./challenge/parte-derecha-web/parte-derecha-web.component";
@@ -23,7 +19,6 @@ import { CreateAwardChallengeComponent } from "./challenges/create-award-challen
 import { ChallengeReactionsComponent } from "./challenges/challenge-reactions/challenge-reactions.component";
 import { ChallengeCommentsComponent } from "./challenges/challenge-comments/challenge-comments.component";
 import { CreateChallengeComponent } from "./challenges/create/create.component";
-import { SponsorsComponent } from "./../profile/sponsors/sponsors.component";
 import { ImageSeeComponent } from "./image-see/image-see.component";
 import { ErrorComponent } from "./error/error.component";
 import { LinkYoutubeComponent } from "./link-youtube/link-youtube.component";
@@ -35,7 +30,6 @@ import { FlexLayoutModule } from "@angular/flex-layout";
 import { TranslateModule } from "@ngx-translate/core";
 import { PostPageRoutingModule } from "../post/post-routing.module";
 import { IonicModule } from "@ionic/angular";
-import { FriendsMobileComponent } from "./friends-mobile/friends-mobile.component";
 import { ContenteditableValueAccessorModule } from "@tinkoff/angular-contenteditable-accessor";
 import { DirectivesModule } from "../directives/directive.module";
 import { PickerModule } from "@ctrl/ngx-emoji-mart";
@@ -50,14 +44,12 @@ import { MentionNotificationComponent } from "./mention-notification/mention-not
 import { ButtonNotificationComponent } from "./button-notification/button-notification.component";
 import { ButtonSearchFriendComponent } from "./button-search-friend/button-search-friend.component";
 import { PreviewFilesComponent } from "./preview-files/preview-files.component";
-import { OptionsWishComponent } from "./options-wish/options-wish.component";
 import { ViewFilesComponent } from "./view-files/view-files.component";
 import { ViewImageComponent } from "./view-image/view-image.component";
 import { EmojiModule } from "@ctrl/ngx-emoji-mart/ngx-emoji";
 import { ReactionsPostsComponent } from "./reactions-posts/reactions-posts.component";
 import { ViewProfileComponent } from "./view-profile/view-profile.component";
 import { AwardsPage } from "../profile/awards/awards.page";
-import { ExperiencePage } from "../profile/experience/experience.page";
 import { AptitudesPage } from "../profile/aptitudes/aptitudes.page";
 import { IonicRatingModule } from "ionic4-rating";
 import { StructureComponent } from "src/app/profile/structure/structure.component";
@@ -67,8 +59,6 @@ import { NewsOptionsComponent } from "./news-options/news-options.component";
 import { ChallengesPotsOptionsIndivComponent } from "./challenge/challenges-pots-options-indiv/challenges-pots-options-indiv.component";
 import { NewQuestionComponent } from "./new-question/new-question.component";
 import { ModifyMediaComponent } from "src/app/components/structure/modify-media/modify-media.component";
-import { SponsorsNodeComponent } from "src/app/components/structure/sponsors/sponsors.component";
-import { SponsorsCreateComponent } from "src/app/components/structure/sponsors-create/sponsors-create.component";
 import { QuestionComponent } from "./question/question.component";
 import { GetMediaComponent } from "./get-media/get-media.component";
 import { QuestionNotificationComponent } from "./question-notification/question-notification.component";
@@ -91,7 +81,6 @@ const components = [
   UnfollowNotificationComponent,
   LikeNotificationComponent,
   CommentNotificationComponent,
-  SponsorsComponent,
   StructureComponent,
   SharedNotificationComponent,
   ChallengeCommentsComponent,
@@ -104,9 +93,7 @@ const components = [
   ChallengesPostHeaderComponent,
   ChallengeContentComponent,
   PreviewFilesComponent,
-  OptionsWishComponent,
   ViewImageComponent,
-  ExperiencePage,
   AwardsPage,
   LinkYoutubeComponent,
   AptitudesPage,
@@ -134,13 +121,9 @@ const components = [
   ChallengesPotsOptionsIndivComponent,
   NewQuestionComponent,
   ModifyMediaComponent,
-  SponsorsNodeComponent,
-  SponsorsCreateComponent,
   QuestionComponent,
   QuestionNotificationComponent,
   GetMediaComponent,
-  MiniflagComponent,
-  ModalMiniFlagComponent,
   NoResults,
   ProfilHeaderC,
   ProfileBodyC,
@@ -148,9 +131,8 @@ const components = [
   DayComponent,
   MonthComponent,
   WeekComponent,
-  YearComponent
-  
-]
+  YearComponent,
+];
 @NgModule({
   imports: [
     CommonModule,
@@ -166,9 +148,9 @@ const components = [
     DirectivesModule,
     PickerModule,
     EmojiModule,
-    ComponentsSharedModule
+    ComponentsSharedModule,
   ],
-  declarations:  components,
-  exports: components ,
+  declarations: components,
+  exports: components,
 })
 export class ComponentsModule {}

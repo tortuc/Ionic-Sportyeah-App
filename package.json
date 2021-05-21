@@ -1,7 +1,7 @@
 {
   "name": "sportyeah-front",
   "version": "0.0.1",
-  "author": "JDV company",
+  "author": "Retail Servicios Externos SL",
   "homepage": "https://ionicframework.com/",
   "scripts": {
     "ng": "ng",
@@ -15,7 +15,8 @@
     "build:ssr": "ng build --prod && ng run app:server:production",
     "prerender": "ng run app:prerender",
     "prod": "ng build --prod && ng run app:server:production && pm2 start dist/app/server/main.js",
-    "dev": "ionic serve"
+    "dev": "ionic serve",
+    "build-android": "ionic build --prod && npx cap copy android && cordova-res android --skip-config --copy && npx cap open android"
   },
   "private": true,
   "dependencies": {
@@ -30,9 +31,11 @@
     "@angular/platform-server": "~10.0.0",
     "@angular/router": "~10.0.0",
     "@angular/service-worker": "~10.0.0",
+    "@capacitor/android": "^2.4.6",
     "@capacitor/core": "2.4.6",
     "@ctrl/ngx-emoji-mart": "^4.1.1",
     "@fortawesome/fontawesome-free": "^5.15.3",
+    "@giphy/js-fetch-api": "^3.0.0",
     "@ionic-native/camera": "^5.31.1",
     "@ionic-native/core": "^5.0.0",
     "@ionic-native/keyboard": "^5.32.1",
@@ -53,11 +56,14 @@
     "agora-rtc-sdk-ng": "^4.3.0",
     "chart.js": "^2.9.4",
     "cordova-plugin-camera": "^5.0.1",
+    "cordova-plugin-file": "^6.0.2",
     "cordova-plugin-ionic-keyboard": "^2.2.0",
     "cordova-plugin-x-socialsharing": "^6.0.3",
+    "es6-promise-plugin": "^4.2.2",
     "express": "^4.15.2",
     "get-blob-duration": "^1.1.2",
     "howler": "^2.2.1",
+    "html2canvas": "^1.0.0-rc.7",
     "ion-custom-scrollbar": "^1.1.1",
     "ionic4-rating": "^1.0.9",
     "localstorage-polyfill": "^1.0.1",
@@ -65,6 +71,7 @@
     "moment-timezone": "^0.5.33",
     "ngx-cookie-service": "^11.0.2",
     "ngx-wig": "^11.0.0",
+    "pdfmake": "^0.1.71",
     "rxjs": "~6.5.5",
     "sessionstorage": "^0.1.0",
     "socket.io-client": "^3.1.0",

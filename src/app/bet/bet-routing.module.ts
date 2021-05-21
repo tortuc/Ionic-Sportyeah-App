@@ -8,14 +8,14 @@ const routes: Routes = [
     path: '',
     component: BetPage
   },
-  {
-    path: 'billy',
-    loadChildren: () => import('./billy/billy.module').then( m => m.BillyPageModule)
-  },
-  {
-    path: 'tourney',
-    loadChildren: () => import('./tourney/tourney.module').then( m => m.TourneyPageModule)
-  }
+  // {
+  //   path: 'billy',
+  //   loadChildren: () => import('./billy/billy.module').then( m => m.BillyPageModule)
+  // },
+  // {
+  //   path: 'tourney',
+  //   loadChildren: () => import('./tourney/tourney.module').then( m => m.TourneyPageModule)
+  // }
 ];
 
 @NgModule({  

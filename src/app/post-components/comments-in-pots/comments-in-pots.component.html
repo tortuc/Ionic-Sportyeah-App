@@ -2,6 +2,7 @@
   fill="clean"
   [ngClass]="commented ? 'icomment' : ''"
   (click)="comment(post)"
+  class="post-button"
 >
   <ion-icon class="btn-icon" name="chatbox-outline"></ion-icon>
   <span class="btn-text">{{ "post.comment" | translate }}</span>

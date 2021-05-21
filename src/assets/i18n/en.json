@@ -205,11 +205,7 @@
     "profile": "My Profile",
     "friends": "Search Friends",
     "chat": "Chat",
-    "calendar": "Calendar",
-    "logout": "Logout",
-    "wishes": "Wish list",
-    "event": "Create events",
-    "eventlist": "Event list"
+    "logout": "Logout"
   },
   "profile": {
     "title": "Profile",
@@ -687,12 +683,12 @@
   "sponsorText": "See this profiles",
   "challenges": "Challenges",
   "challenge": {
-    "foryou":"For You",
-    "following":"Following",
-    "recomended":"Recommended",
-    "norecomended":"No content",
-    "nocontent":"No content",
-    "upload":"Upload your challenge"
+    "foryou": "For You",
+    "following": "Following",
+    "recomended": "Recommended",
+    "norecomended": "No content",
+    "nocontent": "No content",
+    "upload": "Upload your challenge"
   },
-  "sponsorDescription":"Here you can create sponsors."
+  "sponsorDescription": "Here you can create sponsors."
 }

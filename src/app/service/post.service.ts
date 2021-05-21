@@ -3,13 +3,13 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { getToken } from '../helpers/token';
 import { INewPost, IPost, IPostFile } from '../models/iPost';
-import { UserService } from './user.service';
-import {Howl, Howler} from 'howler';
-import { JdvimageService } from './jdvimage.service';
+import {Howl} from 'howler';
 import { Subject } from 'rxjs';
 import { Followings } from '../models/IUser';
 import { TranslateService } from '@ngx-translate/core';
 import { AlertController } from '@ionic/angular';
+import { Router } from '@angular/router';
+import { FilesService } from './files.service';
 
 export interface idFriends {
   friends_id: Followings[];
@@ -24,9 +24,10 @@ export class PostService {
 
 constructor(
   private http:HttpClient,
-  private imageService:JdvimageService,
+  private filesServices:FilesService,
   private translate:TranslateService,
   private alertCtrl:AlertController,
+  private router:Router
 ) { }
 audio = new Howl({
   src:['assets/sounds/comment.mp3']
@@ -163,7 +164,7 @@ uploadsVideos(videos: any[], files: IPostFile[], i = 0) {
             let form = new FormData();
             form.append("video", video.file);
             // esperamos la url
-            file.url = (await this.imageService.uploadVideo(
+            file.url = (await this.filesServices.uploadVideo(
               form,
               true
             )) as string;
@@ -282,5 +283,47 @@ fileRemovedSuscriber() {
      return this.newPost$.asObservable();
    }
  
+
+
+   public async editPostVideo(id, post, videos, files) {
+    post.files = await this.uploadsVideos(videos, files);
+    let alert = await this.alertCtrl.create({
+      header: this.translate.instant("edit_post.video.saving.header"),
+      message: this.translate.instant("edit_post.video.saving.message"),
+      buttons: [{ text: this.translate.instant("accept") }],
+    });
+    alert.present();
+    this.updateOne(id, post)
+      .toPromise()
+      .then(
+        async (post: IPost) => {
+          alert.dismiss();
+          let alert2 = await this.alertCtrl.create({
+            header: this.translate.instant("edit_post.video.saved.header"),
+            message: this.translate.instant("edit_post.video.saved.message"),
+            buttons: [
+              { text: this.translate.instant("cancel") },
+              {
+                text: this.translate.instant("edit_post.video.saved.see"),
+                handler: () => {
+                  this.router.navigate([`/post/${post._id}`]);
+                },
+              },
+            ],
+          });
+          alert2.present();
+        },
+        async () => {
+          alert.dismiss();
+          let alert3 = await this.alertCtrl.create({
+            header: this.translate.instant("edit_post.video.error.header"),
+            message: this.translate.instant("edit_post.video.error.message"),
+            buttons: [{ text: this.translate.instant("accept") }],
+          });
+          alert3.present();
+        }
+      );
+  }
+
 
 }

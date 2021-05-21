@@ -1,0 +1,33 @@
+<ion-card class="main-border" style="padding: 10px; margin: 0">
+  <div
+    *ngIf="user?._id != userService.User?._id"
+    style="text-align: center; margin-bottom: 10px"
+  >
+    <h5>Trayectoria de {{user.name}} {{user.last_name}}</h5>
+  </div>
+  <div
+    *ngIf="user?._id == userService.User?._id"
+    style="text-align: center; margin-bottom: 10px"
+  >
+    <h5 style="color: black; font-weight: bold">
+      {{'experience.title' | translate}}
+    </h5>
+    <p>{{'experience.hint' | translate}}</p>
+
+    <ion-button class="btn-primary" (click)="newExperience()"
+      >{{'experience.create_btn' | translate}}</ion-button
+    >
+  </div>
+
+  <ng-container>
+    <experience-item
+      *ngFor="let e of experiences"
+      [experience]="e"
+    ></experience-item>
+
+    <div class="text-center mb" *ngIf="experiences.length === 0 && user?._id != userService.User?._id">
+      <img src="assets/logos/imagotipo_azul.png" style="height: 100px" alt="" />
+      <p>{{'experience.no-info' | translate}}</p>
+    </div>
+  </ng-container>
+</ion-card>

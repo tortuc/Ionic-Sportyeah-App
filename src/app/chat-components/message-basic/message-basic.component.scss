@@ -26,6 +26,23 @@
   vertical-align: middle;
 }
 
-.full-width{
+.full-width {
   width: 100%;
+}
+
+.my-msg {
+  ::ng-deep a {
+    color: white !important;
+  }
+
+  ::ng-deep .link {
+    .link-text {
+      .name {
+        color: white !important;
+      }
+      .desc {
+        color: white;
+      }
+    }
+  }
 }

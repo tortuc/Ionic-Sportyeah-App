@@ -1,10 +1,9 @@
-import { Component, OnInit, HostListener } from "@angular/core";
-import { ModalController } from "@ionic/angular";
+import { Component, OnInit, HostListener, ViewChildren, QueryList } from "@angular/core";
+import { IonRouterOutlet, ModalController } from "@ionic/angular";
 import { Platform } from "@ionic/angular";
 import { SplashScreen } from "@ionic-native/splash-screen/ngx";
 import { StatusBar } from "@ionic-native/status-bar/ngx";
 import { TranslateService } from "@ngx-translate/core";
-import { LoginService } from "./service/login.service";
 import { UserService } from "./service/user.service";
 import { Router } from "@angular/router";
 import { ChatService } from "./service/chat.service";
@@ -13,7 +12,9 @@ import { ReusableComponentsIonic } from "./service/ionicHelpers.service";
 import { CookieService } from "ngx-cookie-service";
 import { Meta } from "@angular/platform-browser";
 import { SIDEBAR_ITEMS } from "src/config/base";
-import { JdvimageService } from "./service/jdvimage.service";
+import { getToken } from "./helpers/token";
+import { Location } from "@angular/common";
+import { FilesService } from "./service/files.service";
 
 @Component({
   selector: "app-root",
@@ -21,13 +22,8 @@ import { JdvimageService } from "./service/jdvimage.service";
   styleUrls: ["app.component.scss"],
 })
 export class AppComponent implements OnInit {
-  @HostListener("document:ionBackButton", ["$event"])
-  private async overrideHardwareBackAction($event: any) {
-    await this.modalController.dismiss();
-  }
 
-  public banderaIP: string = null;
-  public ipLoaded: Promise<boolean>;
+
   public selectedIndex = 0;
 
   // Contiene los items del sidebar menu
@@ -37,7 +33,6 @@ export class AppComponent implements OnInit {
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
-    private loginService: LoginService,
     public userService: UserService,
     private router: Router,
     public modalController: ModalController,
@@ -47,7 +42,8 @@ export class AppComponent implements OnInit {
     public reusableCI: ReusableComponentsIonic,
     private cookieService: CookieService,
     private meta: Meta,
-    public fileService:JdvimageService
+    public fileService: FilesService,
+    public location: Location
   ) {
     this.initializeApp();
 
@@ -60,6 +56,7 @@ export class AppComponent implements OnInit {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+      this.backButtonEvent()
     });
   }
 
@@ -71,12 +68,7 @@ export class AppComponent implements OnInit {
     this.router.navigate([r]);
   }
 
-  ngOnInit() {
-    this.loginService.getIP().subscribe((geo) => {
-      this.banderaIP = geo.country;
-      this.ipLoaded = Promise.resolve(true);
-    });
-  }
+  ngOnInit() {}
 
   langSettings() {
     this.translate.addLangs([
@@ -134,4 +126,48 @@ export class AppComponent implements OnInit {
       true
     );
   }
+
+  
+  admin() {
+    window.location.replace(
+      "https://admin.sportyeah.com/#/login?token=" + getToken()
+    );
+  }
+
+  @ViewChildren(IonRouterOutlet) routerOutlets: QueryList<IonRouterOutlet>;
+
+  lastTimeBackPress = 0;
+  timePeriodToExit = 2000;
+
+  backButtonEvent() {
+
+    this.platform.backButton.subscribe(() => {
+      console.log(this.routerOutlets, this.router.url);
+
+      this.modalController
+        .dismiss()
+        .then(() => {
+        })
+        .catch(() => {
+          if (!this.cookieService.check("chat")) {
+            this.routerOutlets.forEach((outlet: IonRouterOutlet) => {
+              if (this.router.url != "/dashboard") {
+                // await this.router.navigate(['/']);
+                this.location.back();
+              } else if (this.router.url === "/dashboard") {
+                if (
+                  new Date().getTime() - this.lastTimeBackPress >=
+                  this.timePeriodToExit
+                ) {
+                  this.lastTimeBackPress = new Date().getTime();
+                } else {
+                  navigator["app"].exitApp();
+                }
+              }
+            });
+          }
+        });
+    });
+  }
+
 }

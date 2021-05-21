@@ -1,0 +1,26 @@
+<div style="width: 100%; text-align: center; padding: 15px">
+  <p style="font-size: 16px; color: black">
+    {{ "change_flag.title" | translate }}
+  </p>
+  <div class="main-content-flags">
+    <div
+      *ngFor="let flag of flags"
+      (click)="change(flag.name)"
+      class="flag-content"
+    >
+      <ion-icon
+        *ngIf="userService.User.flag == flag.name"
+        name="checkmark-outline"
+      ></ion-icon>
+
+      <img
+        [src]="flag.src"
+        alt=""
+        [ngClass]="{ selected: userService.User.flag == flag.name }"
+      />
+      <p>{{ flag.translate | translate }}</p>
+    </div>
+
+   
+  </div>
+</div>

@@ -1,5 +1,4 @@
-import { Component, OnInit, ViewChild } from "@angular/core";
-//import { FormBuilder, FormControl,FormGroup} from '@angular/forms';
+import { Component, OnChanges, OnInit, ViewChild } from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
 import { UserService } from "../../../service/user.service";
 import {
@@ -14,8 +13,8 @@ import {
   ActionSheetController,
   LoadingController,
   ModalController,
+  PopoverController,
 } from "@ionic/angular";
-import { JdvimageService } from "src/app/service/jdvimage.service";
 import { NewsService } from "../../../service/news.service";
 import { ToastController } from "@ionic/angular";
 import { Router } from "@angular/router";
@@ -23,19 +22,33 @@ import { ElementRef } from "@angular/core";
 import { QuestionService } from "src/app/service/question.service";
 import { NewQuestionComponent } from "src/app/components/new-question/new-question.component";
 import { EditQuestionComponent } from "src/app/components/edit-question/edit-question.component";
+import { ButtonsOptionsComponent } from "../buttons-options/buttons-options.component";
+import { FilesService } from "src/app/service/files.service";
+import { ModalProgramNewsComponent } from "../modal-program-news/modal-program-news.component";
 
-const { Camera, Filesystem } = Plugins;
+const { Camera } = Plugins;
 
 @Component({
   selector: "app-create",
   templateUrl: "./create.component.html",
   styleUrls: ["./create.component.scss"],
 })
-export class CreateComponent implements OnInit {
+export class CreateComponent implements OnInit,OnChanges {
   @ViewChild("openVideo") openVideo: any;
   @ViewChild("openVideoParrafo") openVideoParrafo: any;
   @ViewChild("sportyeah") sportyeah: any;
   @ViewChild("editQuestionHash") editQuestionComponent: EditQuestionComponent;
+  @ViewChild("optionsBtn") optionsBtn: ButtonsOptionsComponent;
+
+  
+  @ViewChild("mainInputEdit") mainInputEdit: ElementRef;
+
+  @ViewChild("mainInput") mainInput: ElementRef;
+
+ngOnChanges(){
+//  this.urlYu  = this.mainInput.nativeElement.innerHTML
+}
+urlYu
 
   constructor(
     private fb: FormBuilder,
@@ -43,29 +56,26 @@ export class CreateComponent implements OnInit {
     public translate: TranslateService,
     private modalCtrl: ModalController,
     private loading: LoadingController,
-    private jdvImage: JdvimageService,
+    private filesServices: FilesService,
     private actionSheetCtrl: ActionSheetController,
     public newsService: NewsService,
     public toastController: ToastController,
     private router: Router,
     public questionService: QuestionService,
     public modalController: ModalController,
-    public loadingCtrl: LoadingController
+    public loadingCtrl: LoadingController,
+    private popover: PopoverController,
   ) {}
 
   form = this.fb.group({
     user: ["", [Validators.required]],
-    question: [null, [Validators.required]],
     headline: ["", [Validators.required]],
-    content: ["", [Validators.required]],
     principalSubtitle: ["", [Validators.required]],
-    principalImage: ["", [Validators.required]],
-    principalVideo: ["", [Validators.required]],
-    origin: ["", [Validators.required]],
-    originPrincipaMedia: ["", [Validators.required]],
     sport: ["", [Validators.required]],
-    stream: ["", [Validators.required]],
+    stream: [false, [Validators.required]],
     postStream: ["", [Validators.required]],
+    date: ["", [Validators.required]],
+    programated: [null, [Validators.required]],
   });
 
   async presentToastWithOptions() {
@@ -83,36 +93,31 @@ export class CreateComponent implements OnInit {
       message: this.translate.instant("loading"),
     });
     loading.present();
-    this.form.value.principalVideo = this.videoSelected;
-    this.form.value.principalImage = this.imagenSelected;
-    this.form.value.user = this.userService.User._id;
-    this.form.value.headline = this.titulo1;
-    this.form.value.principalSubtitle = this.subTitle;
-    this.form.value.content = this.parrafos;
-    /* if(this.miNoticia){
-      this.form.value.origin = 'De mi propiedad'
-    }else{ */
-    this.form.value.origin = this.origen;
-    /*  }
-    if(this.MiprincipalMedia){
-      this.form.value.originPrincipaMedia = 'De mi propiedad'
-   } }else{ */
-    this.form.value.originPrincipaMedia = this.originPrincipaMedia;
-
-    //this.form.value.originPrincipaMedia = this.originPrincipaMedia
-    this.form.value.stream = false;
-    this.form.value.postStream = null;
-
-    this.form.value.sport = this.deporte;
-    if (this.question.questionGroup.length > 0) {
-      this.createNewsAndQuestion(loading);
-    } else {
-      this.newsService.create(this.form.value).subscribe((response) => {
+    let news = this.form.value
+    news.principalVideo = this.videoSelected;
+    news.principalImage = this.imagenSelected;
+    news.user = this.userService.User._id;
+    news.headline = this.titulo1;
+    news.principalSubtitle = this.subTitle;
+    news.content = await this.questionService.parrafoFilter(this.parrafos);
+    news.date = this.date;
+    news.origin = this.origen;
+    news.originPrincipaMedia = this.originPrincipaMedia;
+    news.audioNews = this.audioNews;
+    news.programatedDate = this.programedDate;
+    if(this.programedDate != undefined){
+      news.programated = true;
+    }else{
+      news.programated = false;
+    }
+    news.sport = this.deporte;
+   console.log(news)
+  
+      this.newsService.create(news).subscribe((response) => {
         this.presentToastWithOptions();
+        loading.dismiss();
         this.router.navigate(["news"]);
       });
-      loading.dismiss();
-    }
   }
   fecha =
     new Date().getDate() +
@@ -127,7 +132,7 @@ export class CreateComponent implements OnInit {
   parrafoAntesEdicion;
   parrafos = [];
 
-  text1 = `Escribe el párrafo # ${this.parrafos.length + 1} `;
+  text1 = ``;
   titulo1 = null;
   deporte = null;
   subTitle = null;
@@ -147,7 +152,7 @@ export class CreateComponent implements OnInit {
     "esport",
     "various",
   ];
-
+  date;
   slideOpts = {
     initialSlide: 0,
     speed: 400,
@@ -175,8 +180,12 @@ export class CreateComponent implements OnInit {
       image: null,
       video: null,
       originMedia: null,
+      online:undefined,
+      url:undefined,
+      link:undefined,
+      format:'text'
     }); //title:this.titulo1,subtitle:this.deporte
-    this.text1 = `Escribe el párrafo # ${this.parrafos.length + 1} `;
+    this.text1 = ``;
 
     /* this.titulo1= `Escribe el Titulo # ${this.parrafos.length+1} `;
   this.deporte= `Escribe el Subtitulo # ${this.parrafos.length+1} `; */
@@ -207,7 +216,7 @@ export class CreateComponent implements OnInit {
     // this.parrafos[this.positionEditactual].subtitle = this.deporte;
     this.positionEditactual = null;
     this.editando = false;
-    this.text1 = `Escribe el párrafo # ${this.parrafos.length + 1} `;
+    this.text1 = ``;
     /*   this.titulo1= `Escribe el Título # ${this.parrafos.length+1} `;
   this.deporte= `Escribe el Subtítulo # ${this.parrafos.length+1} `; */
     this.agregandoParrafo = false;
@@ -223,10 +232,11 @@ export class CreateComponent implements OnInit {
       this.number -= 1;
     }
 
-    this.text1 = `Escribe el párrafo # ${this.parrafos.length + 1} `;
+    this.text1 = ``;
     /*   this.titulo1= `Escribe el Título # ${this.parrafos.length+1} `;
   this.deporte= `Escribe el Subtítulo # ${this.parrafos.length+1} `; */
     this.agregandoParrafo = false;
+    console.log(this.parrafos)
   }
   numberPositionSelect(number) {
     this.number += number;
@@ -235,7 +245,7 @@ export class CreateComponent implements OnInit {
     this.positionEditactual = null;
     this.parrafoAntesEdicion = null;
     this.editando = false;
-    this.text1 = `Escribe el párrafo # ${this.parrafos.length + 1} `;
+    this.text1 = ``;
     /*  this.titulo1= `Escribe el Título # ${this.parrafos.length+1} `;
   this.deporte= `Escribe el Subtítulo # ${this.parrafos.length+1} `; */
     this.agregandoParrafo = false;
@@ -323,12 +333,14 @@ export class CreateComponent implements OnInit {
         loading.present();
         let blob = this.DataURIToBlob(image.dataUrl);
         formData.append("image", blob);
-        this.jdvImage
+        this.filesServices
           .uploadImage(formData)
           .toPromise()
           .then((url: string) => {
             loading.dismiss();
             this.parrafos[i].image = url;
+            console.log(url);
+            
             this.openArray = false;
           })
           .catch((err) => {
@@ -355,7 +367,7 @@ export class CreateComponent implements OnInit {
         loading.present();
         let blob = this.DataURIToBlob(image.dataUrl);
         formData.append("image", blob);
-        this.jdvImage
+        this.filesServices
           .uploadImage(formData)
           .toPromise()
           .then((url: string) => {
@@ -430,7 +442,7 @@ export class CreateComponent implements OnInit {
     this.imagenACambiar = undefined;
   }
 
-  deleteImage(i) {
+  deleteImage(i) { /////////////////////////////7
     this.parrafos[i].image = "";
     this.openArray = false;
   }
@@ -448,7 +460,7 @@ export class CreateComponent implements OnInit {
     this.originPrincipaMedia = null;
     this.agregandoOrigenPrincipaMedia = false;
   }
-  closeVideoNotPrincipal(i) {
+  closeVideoNotPrincipal(i) {//////////////////////
     this.parrafos[i].video = null;
   }
   async uploadVideo($event, type: string, i) {
@@ -471,7 +483,7 @@ export class CreateComponent implements OnInit {
   }
 
   uploadVideoPrincipal(video) {
-    this.jdvImage
+    this.filesServices
       .uploadVideo(video)
       .then((url) => {
         this.videoSelected = url;
@@ -480,7 +492,7 @@ export class CreateComponent implements OnInit {
       .catch((err) => {});
   }
   uploadVideoNotPrincipal(video, i) {
-    this.jdvImage
+    this.filesServices
       .uploadVideo(video)
 
       .then((url) => {
@@ -545,6 +557,8 @@ export class CreateComponent implements OnInit {
   listoPublicar: boolean = false;
   listoParaPublicar() {
     this.listoPublicar = !this.listoPublicar;
+    // this.sportyeah.nativeElement.classList.remove("logoSport");
+    //   this.sportyeah.nativeElement.classList.add("logoSportBig");
   }
 
   //Origen de la noticia
@@ -609,8 +623,8 @@ export class CreateComponent implements OnInit {
     this.parrafos[i].originMedia = null;
   }
   todoConOrigen() {
-    this.whitTime = this.editQuestionComponent.whitTime;
-    this.endDate = this.editQuestionComponent.endDate;
+    // this.whitTime = this.editQuestionComponent.whitTime;
+    // this.endDate = this.editQuestionComponent.endDate;
     this.todosParrafosConOrigen = false;
     for (let parrafo of this.parrafos) {
       if ((parrafo.video || parrafo.image) && parrafo.originMedia == null) {
@@ -731,7 +745,7 @@ export class CreateComponent implements OnInit {
   }
   redactarArticulo: boolean = false;
   redactar() {
-    this.animateSportyeah();
+    
     this.redactarArticulo = true;
   }
 
@@ -760,21 +774,10 @@ export class CreateComponent implements OnInit {
         this.router.navigate(["news"]);
       });
     });
-    loading.dismiss();
+    loading.dismiss(); 
   }
   createNewsAndQuestion(loading) {
-    if (this.whitTime && new Date(this.endDate) >= new Date()) {
-      this.question.finishVotes = new Date(this.endDate);
-      this.badDate = false;
       this.createdNews(loading);
-    } else {
-      this.badDate = true;
-      loading.dismiss();
-    }
-    if (!this.whitTime) {
-      this.badDate = false;
-      this.createdNews(loading);
-    }
   }
   whitTime: boolean;
   endDate;
@@ -794,32 +797,201 @@ export class CreateComponent implements OnInit {
       .then((data) => {
         if (data.data.question != undefined) {
           this.question.questionGroup.push(data.data.question); //Las preguntas creadas se introducen en el grupo de preguntas
+          console.log(this.question);
+          
         }
       })
       .catch((err) => {});
     return await modal.present();
   }
-  async editQuestion(i) {
-    const modalEdit = await this.modalController.create({
-      component: NewQuestionComponent,
-      cssClass: "my-custom-class",
-      backdropDismiss: false,
-      componentProps: {
-        question: this.question.questionGroup[i],
-        edit: true,
-      },
-    });
-    modalEdit
-      .onDidDismiss()
-      .then((data) => {
-        if (data.data.question != undefined) {
-          this.question.questionGroup.splice(i, 1, data.data.question);
-        }
-      })
-      .catch((err) => {});
-    return await modalEdit.present();
-  }
+  
   deleteQuestion(i) {
     this.question.questionGroup.splice(i, 1);
+  }
+
+  addFile(file) {
+    this.parrafos.push({
+      subtitle: null,
+      parrafo: undefined,
+      position: this.parrafos.length,
+      image: (file.format =='image' || file.format == 'imageGif')?file.url:null,
+      video: file.format =='video'?file.url:null,
+      originMedia: null,
+      online:undefined,
+      url:undefined,
+      link:file.format =='link'?file.url:null,
+      format:file.format
+    });
+    console.log(this.parrafos);
+  }
+  editFile(format,i){
+    this.optionsBtn.editFile(format,i)
+  }
+  editedFile(file){
+    console.log(this.parrafos[file.position]);
+    console.log(file);
+
+    this.parrafos[file.position] = {
+      subtitle: null,
+      parrafo: undefined,
+      position: file.position,
+      image: (file.format =='image' || file.format == 'imageGif')?file.url:null,
+      video: file.format =='video'?file.url:null,
+      originMedia: null,
+      online:undefined,
+      url:undefined,
+      link:file.format =='link'?file.url:null,
+      format:file.format
+    }
+
+  }
+  editLink(i){
+    this.optionsBtn.editedLink(i);
+  }
+  editedLink(file){
+    this.parrafos[file.position] = {
+      subtitle: null,
+      parrafo: undefined,
+      position: file.position,
+      image: null,
+      video: null,
+      originMedia: null,
+      online:undefined,
+      url:undefined,
+      link:file.url,
+
+    }
+  }
+  videosToUploads = []
+  pushVideoToUpload(file) {
+    this.videosToUploads.push(file);
+  }
+
+  addYoutube(){
+    if(this.mainInput.nativeElement.innerHTML){
+      this.parrafos.push({
+        subtitle: null,
+        parrafo: undefined,
+        position: this.parrafos.length,
+        image: null,
+        video: null,
+        originMedia: 'Youtube.com ' + this.mainInput.nativeElement.innerHTML ,
+        url:this.mainInput.nativeElement.innerHTML,
+        link:undefined,
+        format:'youtube'
+      });
+    }
+this.agregandoYoutube = false
+  }
+  saveEditYoutube(i){
+    if(this.mainInputEdit.nativeElement.innerHTML){
+      this.parrafos[i] = {
+        subtitle: null,
+        parrafo: undefined,
+        position: i,
+        image: null,
+        video: null,
+        originMedia: 'Youtube.com ' + this.mainInputEdit.nativeElement.innerHTML ,
+        url:this.mainInputEdit.nativeElement.innerHTML,
+        link:undefined,
+        format:'youtube'
+      };
+    }
+this.editYoutube = false
+  }
+  editYoutube:boolean = false;
+  agregandoYoutube:boolean = false;
+  
+  newQuestion($event) {
+   let question = {
+      user: this.userService.User._id,
+      questionGroup:$event,
+      finishVotes: undefined,
+    };
+    this.question.questionGroup.push($event) ;
+    this.parrafos.push({
+      subtitle: null,
+      parrafo: undefined,
+      position: this.parrafos.length,
+      image: null,
+      video: null,
+      originMedia: undefined ,
+      online:undefined,
+      url:undefined,
+      link:undefined,
+      question,
+      format:'question'
+    }) 
+    console.log(this.parrafos);
+  }
+  questionEdited($event) {
+    let question = {
+       user: this.userService.User._id,
+       questionGroup:$event.question,
+       finishVotes: undefined,
+     };
+     this.parrafos[$event.position] = {
+       subtitle: null,
+       parrafo: undefined,
+       position: $event.position,
+       image: null,
+       video: null,
+       originMedia: undefined ,
+       online:undefined,
+       url:undefined,
+       link:undefined,
+       question
+     }
+   }
+   async editQuestion(question,i) {
+    this.optionsBtn.editQuestion(question.questionGroup,i);
+  }
+
+
+   audioNews
+
+   /**
+   * Envia un audio por el chat
+   * @param url url del audio
+   */
+  msgAudio(url) {
+    this.audioNews = url;
+    this.newsAudio = true;
+    console.log( this.audioNews)
+  }
+  deleteAudio(){
+    this.audioNews = null;
+    this.newsAudio = false;
+    console.log( this.audioNews)
+  }
+ 
+  newsAudio:boolean=false
+
+  popoverOpen
+  programedDate 
+  async porgramDate(){
+    // if (this.isPost) {
+      if (!this.popoverOpen) {
+
+        let popover = await this.popover.create({
+          component: ModalProgramNewsComponent,
+          componentProps: {
+            date:moment(this.programedDate).format("YYYY-MM-DD"),
+          },
+        });
+        popover.onDidDismiss().then((data) => {
+          try{
+            if(data.data != undefined && data.data.option == 'accept' ){
+              this.programedDate = data.data.date
+            }else if(data.data.date == undefined && data.data.option !='cancel' ){
+              this.programedDate = undefined
+            }
+            this.popoverOpen = false;
+        }catch(err){}
+
+        });
+
+        return popover.present();
+      }
   }
 }

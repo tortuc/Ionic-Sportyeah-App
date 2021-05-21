@@ -1,6 +1,6 @@
 import { Component, OnInit, ElementRef, ViewChild } from "@angular/core";
 import { UserService } from "src/app/service/user.service";
-import { AlertController, LoadingController } from "@ionic/angular";
+import { AlertController, LoadingController, Platform } from "@ionic/angular";
 import { TranslateService } from "@ngx-translate/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import * as moment from "moment";
@@ -20,7 +20,8 @@ export class ProfileEditPage implements OnInit {
     public translate: TranslateService,
     private fb: FormBuilder,
     private alertController: AlertController,
-    private loadingController: LoadingController
+    private loadingController: LoadingController,
+    public platform:Platform
   ) {}
   emojis: boolean = false;
   ngOnInit() {

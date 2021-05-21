@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, Validators } from "@angular/forms";
-import { Router } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { AlertController, LoadingController } from "@ionic/angular";
 import { TranslateService } from "@ngx-translate/core";
 import { LoginService } from "../service/login.service";
@@ -20,8 +20,18 @@ export class LoginPage implements OnInit {
     public translate: TranslateService,
     public userService: UserService,
     private router: Router,
-    private loadingCtrl: LoadingController
-  ) {}
+    private loadingCtrl: LoadingController,
+    private route: ActivatedRoute,
+
+  ) {
+     // Esto es para loguear directamente con un token
+    route.queryParams.subscribe((data) => {
+      if (data?.token) {
+        localStorage.setItem("token", data?.token);
+        this.router.navigate(["/dashboard"]);
+      }
+    });
+  }
 
   ngOnInit() {}
 
@@ -45,7 +55,7 @@ export class LoginPage implements OnInit {
         } else {
           localStorage.setItem("token", token);
         }
-        this.router.navigate(["/profile"], {
+        this.router.navigate(["/dashboard"], {
           preserveFragment: false,
           replaceUrl: true,
         });

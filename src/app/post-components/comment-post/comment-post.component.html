@@ -61,37 +61,21 @@
     </ion-col>
 
     <ion-col class="buttons" size="12">
-      <input
-        #openImage
-        type="file"
-        accept="image/*,video/*"
-        (change)="uploadFile($event)"
-        hidden
-      />
-      <span (click)="stopPropagation($event)">
-        <ion-button class="btn-rounded-options" (click)="openEmojis()">
-          <ion-icon name="happy"></ion-icon>
-        </ion-button>
-      </span>
-      <ion-button [disabled]="question.questionGroup" class="btn-rounded-options" (click)="imageActionSheet()">
-        <ion-icon name="image"></ion-icon>
-      </ion-button>
-      <ion-button [disabled]="question.questionGroup" class="btn-rounded-options" (click)="videoActionSheet()">
-        <ion-icon name="videocam"></ion-icon>
-      </ion-button>
-      <ion-button [disabled]="question.questionGroup"  class="btn-rounded-options" (click)="link()">
-        <ion-icon name="link"></ion-icon>
-      </ion-button>
-      <ion-button [disabled]="files.length > 0 || question.questionGroup" (click)="createQuestion()">
-        <ion-icon name="help-outline"></ion-icon>
-      </ion-button>
+      <assets-buttons
+        #assetsBtn
+        (videoToUpload)="pushVideoToUpload($event)"
+        (newQuestion)="newQuestion($event)"
+        (newFile)="addFile($event)"
+        (emoji)="openEmojis()"
+        (emoji)="stopPropagation($event)"
+        [question]="question.questionGroup"
+        [files]="files"
+      ></assets-buttons>
 
       <ion-button
         class="btn-green"
         [disabled]="
-          form.invalid &&
-          files.length == 0 &&
-          !question.questionGroup
+          form.invalid && files.length == 0 && !question.questionGroup || creating
         "
         (click)="send()"
       >

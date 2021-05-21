@@ -1,14 +1,15 @@
 .follow {
   max-height: 30px;
-  
+
   font-size: 12px;
   font-weight: 700;
   &.rounded {
     --border-radius: 20px;
+    overflow: unset !important;
   }
   &.primary {
-    --color: black;
-    --background: #9ae6c0;
+    --color: white;
+    --background: var(--color-secondary);
   }
   &.secondary {
     --color: black;

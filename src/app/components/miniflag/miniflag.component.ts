@@ -1,80 +1,49 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
-import { ReusableComponentsIonic } from 'src/app/service/ionicHelpers.service';
-import { UserService } from 'src/app/service/user.service';
+import { Component, Input, OnInit } from "@angular/core";
+import { ModalController } from "@ionic/angular";
+import { User } from "src/app/models/IUser";
+import { LoginService } from "src/app/service/login.service";
+import { UserService } from "src/app/service/user.service";
 
 @Component({
-  selector: 'app-miniflag',
-  templateUrl: './miniflag.component.html',
-  styleUrls: ['./miniflag.component.scss'],
+  selector: "miniflag",
+  templateUrl: "./miniflag.component.html",
+  styleUrls: ["./miniflag.component.scss"],
 })
 export class MiniflagComponent implements OnInit {
-  @Input() user: any
-  @Input() edit?: boolean
+  @Input() user: User;
+  @Input() edit?: boolean;
 
   constructor(
     public mc: ModalController,
-    public userService: UserService
-  ) { }
+    public userService: UserService,
+    public loginService: LoginService
+  ) {}
 
-  ngOnInit() {}
-
-  async editM() {
-    // if(this.user.geo.country === 'Spain'){
-      const modal = await this.mc.create({
-        component:ModalMiniFlagComponent,
-      })
-      await modal.present()
-      const {data} = await modal.onDidDismiss()
-      if(data){
-        this.user.geo.flag = data
-        this.userService.update(this.user).subscribe((r)=>{})
-      }
-    // }
+  ngOnInit() {
+    this.verifyCountryUser();
   }
-}
 
-@Component({
-  selector: 'app-modal-miniflag',
-  template: `
-    <ion-content style="background:black;" scroll-y="false" fullscreen >
-      <div style="width:100%; height:100%; text-align:center; background:black;" *ngIf="!slides">
-        <ion-spinner  
-          style="
-            margin:auto;
-            color:white;
-            height: 93%;
-            width: 8%;
-          "></ion-spinner>
-      </div>
-      <ion-slides pager="true" [options]="slideOpts" *ngIf="slides"
-        style="width:100%; height:100%; background black"
-      >
-        <ion-slide *ngFor="let bandera of banderas" style="background:black;display:grid;">
-          <h1 style="color:white">{{bandera.country}}</h1>
-          <img [src]="bandera.img" style="width: 200px; margin:auto" (click)="mc.dismiss(bandera.img)"/>
-          <p style="color:white">Pulsa en la bandera para cambiarla</p>
-        </ion-slide>
-      </ion-slides>
-    <ion-content>
-  `,
-})
-export class ModalMiniFlagComponent implements OnInit {
-  banderas: any[] = [
-    {country:`País Vasco y Navarra`,img:`https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Flag_of_the_Basque_Country.svg/200px-Flag_of_the_Basque_Country.svg.png`},
-    {country:`Cataluña`,img:`https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Estelada_blava.svg/270px-Estelada_blava.svg.png`},
-    {country:`España`,img:`https://upload.wikimedia.org/wikipedia/commons/c/c3/Bandera_de_Espa%C3%B1a_%28nuevo_dise%C3%B1o%29.svg`}
-  ]
-
-  slideOpts = this.ih.slideOpts
-  slides: boolean = false
-
-  constructor(
-    public mc: ModalController,
-    public ih: ReusableComponentsIonic
-  ){}
-
-  ngOnInit(){
-    setTimeout(()=> this.slides = true,300)
+  /**
+   * Esta funcion verifica que el usuario tenga un pais y si no lo tiene, le asigna uno mediante su ip
+   */
+  async verifyCountryUser() {
+    // primero evaluamos que el usuario que esta mostrando la bandera, es el mismo usuario que inicio sesion ( o sea yo mismo )
+    if (this.user._id == this.userService.User._id) {
+      // si es el mismo usuario entonces evaluamos si no  tiene pais
+      if (this.user.country == null) {
+        // si es nulo entonces consultamos al login service cual es el countryCode del usuario y lo guardamos en la base de datos
+        let country = await this.loginService.getCountryCode();
+        this.userService.update({ country }).subscribe(() => {
+          // una vez en la base de datos lo guardamos localmente para poder mostrar la bandera
+          this.userService.User.country = country;
+          this.user.country = country;
+        });
+      } else {
+        // si tiene pais no hacemos nada
+      }
+    } else {
+      // si el usuario no es el mismo, significa que esta visitando otro perfil,
+      // por lo tanto no hacemos nada para no modificar datos de otro usuario
+    }
   }
 }

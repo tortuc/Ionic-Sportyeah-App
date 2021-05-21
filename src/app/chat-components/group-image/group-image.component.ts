@@ -10,8 +10,8 @@ import { TranslateService } from "@ngx-translate/core";
 import { take } from "rxjs/operators";
 import { IChat } from "src/app/models/IChat";
 import { ChatService } from "src/app/service/chat.service";
-import { JdvimageService } from "src/app/service/jdvimage.service";
 import { Plugins, CameraResultType, CameraSource } from "@capacitor/core";
+import { FilesService } from "src/app/service/files.service";
 
 const { Camera } = Plugins;
 
@@ -31,7 +31,7 @@ export class GroupImageComponent implements OnInit {
     private platform: Platform,
     private actionSheetCtrl: ActionSheetController,
     private translate: TranslateService,
-    private JDVImage: JdvimageService,
+    private filesServices: FilesService,
     private chatService: ChatService,
     private loading: LoadingController,
     private alertCtrl: AlertController
@@ -91,11 +91,11 @@ export class GroupImageComponent implements OnInit {
           message: this.translate.instant("loading"),
         });
         loading.present();
-        let blob = this.JDVImage.DataURIToBlob(image.dataUrl);
+        let blob = this.filesServices.DataURIToBlob(image.dataUrl);
 
         formData.append("image", blob);
 
-        this.JDVImage
+        this.filesServices
           .uploadImage(formData)
           .pipe(take(1))
           .subscribe(
@@ -145,7 +145,7 @@ export class GroupImageComponent implements OnInit {
     loading.present();
     let formData: FormData = new FormData();
     formData.append("image", $event.target.files[0]);
-    this.JDVImage.uploadImage(formData)
+    this.filesServices.uploadImage(formData)
       .pipe(take(1))
       .subscribe(
         (url) => {
