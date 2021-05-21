@@ -35,6 +35,8 @@ export class ProfileSponsorsComponent implements OnInit {
       .subscribe(
         (sponsors) => {
           this.sponsors = sponsors;
+        
+          
         },
         (error) => {
           // handle error
@@ -50,6 +52,11 @@ export class ProfileSponsorsComponent implements OnInit {
       component: SponsorsCreateComponent,
       cssClass: "modal-border",
     });
+    modal.onDidDismiss().then((data)=>{
+      if(data.data?.new){
+        this.sponsors.push(data.data.newSponsor)
+      }
+    })
     return await modal.present();
   }
 }

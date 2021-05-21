@@ -1,11 +1,12 @@
-import { Injectable } from "@angular/core";
+import { Injectable,PLATFORM_ID ,Inject} from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
 import pdfMake from "pdfmake/build/pdfmake";
 import pdfFonts from "pdfmake/build/vfs_fonts";
 import { UserService } from "./user.service";
 import { ViewsSponsorService } from "./views-sponsor.service";
 import * as moment from "moment";
-pdfMake.vfs = pdfFonts.pdfMake.vfs;
+import { isPlatformBrowser } from '@angular/common';
+
 @Injectable({
   providedIn: "root",
 })
@@ -13,8 +14,15 @@ export class PdfMakeService {
   constructor(
     public userService: UserService,
     public viewsSponsorService: ViewsSponsorService,
-    private translate: TranslateService
-  ) {}
+    private translate: TranslateService,
+    @Inject(PLATFORM_ID) private platformId: Object,
+
+  ) {
+    if(isPlatformBrowser(this.platformId)) {
+      
+      pdfMake.vfs = pdfFonts.pdfMake.vfs;
+    } 
+  }
 
   dayPdf = [];
   weekPdf = [];

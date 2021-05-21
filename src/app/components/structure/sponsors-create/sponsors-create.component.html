@@ -28,70 +28,88 @@
     </div>
   </div>
 
-  <div *ngIf="noAccount">
-    <form [formGroup]="form">
-      <div class="text" style="text-align: center">
-        Sube una imagen de tu patrocinador
+  <div *ngIf="noAccount" class="no-account">
+    <input
+      #openImage
+      type="file"
+      accept="image/*"
+      (change)="uploadFile($event)"
+      multiple
+      hidden
+    />
+    <h5 class="title">Completa la informacion de tu patrocinador</h5>
+    <ion-item>
+      <ion-label position="floating">
+        {{ "sponsors.customize.name" | translate }}
+      </ion-label>
+      <ion-input [(ngModel)]="customSponsor.name"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">
+        Pagina web de tu patrocinador (URL)
+      </ion-label>
+      <ion-input [(ngModel)]="customSponsor.url"></ion-input>
+    </ion-item>
+    <div class="mini">
+      <p class="hint">
+        <ion-icon name="information-circle-outline"></ion-icon>
+        {{ "sponsors.customize.miniature_hint" | translate }}
+      </p>
+      <p class="aspect">
+        {{ "sponsors.customize.miniature_ratio" | translate }}
+      </p>
+      <p>{{ customSponsor.name }}</p>
+      <img [src]="customSponsor.miniature" alt="" />
+      <div class="change-btn-content">
+        <ion-button
+          class="btn-primary"
+          (click)="upload_option = 'miniature'"
+          (click)="openImage.click()"
+          ><span
+            ><ion-icon name="cloud-upload-outline"></ion-icon>
+            {{ "sponsors.customize.change_btn" | translate }}</span
+          >
+        </ion-button>
       </div>
-      <div class="image-container">
-        <img class="img" [src]="form.value.image" (click)="add()" />
+    </div>
+    <div class="profile">
+      <p class="hint">
+        <ion-icon name="information-circle-outline"></ion-icon>
+        {{ "sponsors.customize.profile_hint" | translate }}
+      </p>
+      <p class="aspect">
+        {{ "sponsors.customize.profile_ratio" | translate }}
+      </p>
+      <p>{{ customSponsor.name }}</p>
+      <img [src]="customSponsor.profile_image" alt="" />
+      <div class="change-btn-content">
+        <ion-button
+          class="btn-primary"
+          (click)="upload_option = 'profile'"
+          (click)="openImage.click()"
+          ><span
+            ><ion-icon name="cloud-upload-outline"></ion-icon>
+            {{ "sponsors.customize.change_btn" | translate }}</span
+          >
+        </ion-button>
       </div>
-      <ion-list>
-        <ion-item>
-          <ion-label position="stacked"> Nombre del patrocinador </ion-label>
-          <ion-input
-            placeholder="SportYeah!"
-            type="text"
-            formControlName="name"
-          ></ion-input>
-        </ion-item>
-        <p
-          class="errormsj"
-          *ngIf="
-            (form.get('name').dirty || form.get('name').touched) &&
-            form.get('name').status !== 'VALID'
-          "
-        >
-          Introduce el nombre del patrocinador
-        </p>
-        <ion-item>
-          <ion-label position="stacked"> Pagina del patrocinador </ion-label>
-          <ion-input
-            placeholder="https://app.sportyeah.com/"
-            type="text"
-            formControlName="url"
-          ></ion-input>
-        </ion-item>
-        <p
-          class="errormsj"
-          *ngIf="
-            (form.get('url').dirty || form.get('url').touched) &&
-            form.get('url').status !== 'VALID'
-          "
-        >
-          No corresponde con una URL
-        </p>
-      </ion-list>
-    </form>
+    </div>
   </div>
-  <ion-item>
-    <ion-label>Mi patrocinador no tiene cuenta en sportyeah</ion-label>
+  <ion-item *ngIf="sponsorSelected == null">
+    <ion-label> {{ "sponsors.create.no_account" | translate }}</ion-label>
     <ion-checkbox slot="end" [(ngModel)]="noAccount"></ion-checkbox>
   </ion-item>
   <div style="padding: 10px; text-align: center">
     <ion-button
-      fill="outline"
+      class="btn-primary"
       (click)="create()"
-      [disabled]="form.status !== 'VALID'"
+      [disabled]="sponsorSelected == null"
     >
-      Guardar patrocinador
+      <span
+        ><ion-icon name="save-outline"></ion-icon>
+        {{ "sponsors.create.save" | translate }}</span
+      >
     </ion-button>
   </div>
-  <input
-    #openImage
-    type="file"
-    accept="image/*"
-    (change)="uploadImage($event)"
-    hidden
-  />
+  
 </ion-content>

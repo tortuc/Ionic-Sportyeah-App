@@ -30,6 +30,7 @@ import { SponsorUserItemComponent } from "../components/structure/sponsors-creat
 import { SponsorsSearchComponent } from "../components/structure/sponsors-create/sponsors-search/sponsors-search.component";
 import { ProfileSponsorsComponent } from "./profile-sponsors/profile-sponsors.component";
 import { CustomizeSponsorComponent } from "./custom-sponsor/customize-sponsor/customize-sponsor.component";
+import { ViewSponsorProfileComponent } from "./profile-sponsors/view-sponsor-profile/view-sponsor-profile.component";
 
 @NgModule({
   imports: [
@@ -66,7 +67,8 @@ import { CustomizeSponsorComponent } from "./custom-sponsor/customize-sponsor/cu
     SponsorUserItemComponent,
     CustomSponsorComponent,
     PreviewCardsSponsorComponent,
-    CustomizeSponsorComponent
+    CustomizeSponsorComponent,
+    ViewSponsorProfileComponent
   ],
 })
 export class ProfilePageModule {}

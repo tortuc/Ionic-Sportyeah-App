@@ -1037,6 +1037,6 @@ export class AnaliticsViewsComponent implements OnInit {
 
   
   
- sponsorSelect = this.userService.User.sponsors[0].name
+//  sponsorSelect = this.userService.User.sponsors[0].name
 
 }

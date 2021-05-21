@@ -16,11 +16,11 @@
       <span>{{ comment.date | customDisplayDate }}</span>
     </div> 
   </div>
-  <view-sponsors
+  <!-- <view-sponsors
   *ngIf="comment.user.sponsors.length > 0"
   [sponsors]="comment.user.sponsors"
   (onSelect)="goToSponsor($event)"
-></view-sponsors> 
+></view-sponsors>  -->
 
   <div style="padding: 13px">
     <span *ngIf="comment.message" [innerHTML]="comment.message | links"></span>
