@@ -29,13 +29,13 @@ import { ReactToNewsComponent } from './react-to-news/react-to-news.component';
 import { CommentsInNewsComponent } from './comments-in-news/comments-in-news.component';
 import { SharedsInNewsComponent } from './shareds-in-news/shareds-in-news.component';
 import { CommentNewsComponent } from './comment-news/comment-news.component';
-import { NewPostHeaderComponent } from 'src/app/post-components/new-post-header/new-post-header.component';
 import { ContenteditableValueAccessorModule } from '@tinkoff/angular-contenteditable-accessor';
-import { PostPreviewImagesSliderComponent } from 'src/app/post-components/post-preview-images-slider/post-preview-images-slider.component';
-import { PostPreviewImagesComponent } from 'src/app/post-components/post-preview-images/post-preview-images.component';
 import { EmojiModule } from '@ctrl/ngx-emoji-mart/ngx-emoji';
 import { PickerModule } from '@ctrl/ngx-emoji-mart';
 import { DirectivesModule } from 'src/app/directives/directive.module';
+import { ProfileNewsComponent } from './profile-news/profile-news.component';
+import { ShowNewsComponent } from './profile-news/show-news/show-news.component';
+import { ModalProgramNewsComponent } from './modal-program-news/modal-program-news.component';
 
 @NgModule({
   imports: [
@@ -53,8 +53,9 @@ import { DirectivesModule } from 'src/app/directives/directive.module';
     ContenteditableValueAccessorModule,
     EmojiModule,
     PickerModule,
-    DirectivesModule
+    DirectivesModule,
   ],
+  exports:[ModalProgramNewsComponent],
   declarations: [
     NewsPage,
     CreateComponent,
@@ -62,8 +63,7 @@ import { DirectivesModule } from 'src/app/directives/directive.module';
     ReadComponent,
     StreamComponent,
     CreateStreamComponent,
-    ButtonsOptionsComponent,
-    AttachLinkPreviewNewsComponent,
+    ButtonsOptionsComponent, 
     RecordAudioNewsComponent,
     MsgAudioNewsComponent,
     NewsOptionPostComponent,
@@ -71,9 +71,10 @@ import { DirectivesModule } from 'src/app/directives/directive.module';
     CommentsInNewsComponent,
     CommentNewsComponent,
     SharedsInNewsComponent,
-    NewPostHeaderComponent,
-    PostPreviewImagesSliderComponent,
-    PostPreviewImagesComponent
+    ProfileNewsComponent,
+    ShowNewsComponent,
+    AttachLinkPreviewNewsComponent,
+    ModalProgramNewsComponent
   ],
  
   schemas:[CUSTOM_ELEMENTS_SCHEMA]

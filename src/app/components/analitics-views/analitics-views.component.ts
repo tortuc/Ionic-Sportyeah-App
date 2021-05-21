@@ -50,101 +50,14 @@ export class AnaliticsViewsComponent implements OnInit {
   }
   reactionId = [];
   commentId = [];
-  // async introduPost() {
-  //   //Estas tres separan el link para tomar el id del post
-  //   for (let elements of this.commentViews) {
-  //     this.commentId.push(elements.link.split("/")[2]);
-  //   }
-  //   for (let elements of this.reactionViews) {
-  //     this.reactionId.push(elements.link.split("/")[2]);
-  //   }
-  //   for (let elements of this.postViews) {
-  //     this.postId.push(elements.link.split("/")[2]);
-  //   }
 
-  //   this.find_duplicate_in_array(this.postId);
-
-  //   for (let elements of this.sortable) {
-  //     let post = await this.getPost(elements[0], elements[1]);
-  //     this.postDeVerdad.push(post);
-  //   }
-  // }
-
-  // postDeVerdad = [];
-  // //Solicita los post a la db para mostrar
-  // async getPost(id, i): Promise<any> {
-  //   return await new Promise((resolve) => {
-  //     this.postService.getPost(id).subscribe((post: any) => {
-  //       post.post.count = i;
-  //       resolve(post.post);
-  //     });
-  //   });
-  // }
   //Datos para los post,en seccion de post
   todolosPost = [];
   likes = [];
   comments = [];
   shareds = [];
   interaccionActual = "";
-  // actualLikes() {
-  //   this.interaccionActual = "likes";
-  // }
-  // actualComments() {
-  //   this.interaccionActual = "comments";
-  // }
-  // actualShareds() {
-  //   this.interaccionActual = "shareds";
-  // }
-  // sinInteraccionActual() {
-  //   this.interaccionActual = "";
-  // }
-
-  //Encuentra los post repetidos y el que tenga mas repeticiones sera el primero
-  // find_duplicate_in_array(array) {
-  //   const count = {};
-  //   const result = [];
-  //   array.forEach((item) => {
-  //     if (count[item]) {
-  //       count[item] += 1;
-  //       return;
-  //     }
-  //     count[item] = 1;
-  //   });
-
-  //   for (let prop in count) {
-  //     if (count[prop] >= 1) {
-  //       result.push(prop);
-  //     }
-  //   }
-
-  //   //Estos dos verifican que comentarios y reacciones sean de un post del usuario
-  //   this.commentId.forEach((publi) => {
-  //     for (let key in count) {
-  //       if (key == publi) {
-  //         count[key] += 1;
-  //       }
-  //     }
-  //   });
-  //   this.reactionId.forEach((publi) => {
-  //     for (let key in count) {
-  //       if (key == publi) {
-  //         count[key] += 1;
-  //       }
-  //     }
-  //   });
-
-  //   //Ordena de mayor a menor
-  //   for (var idPost in count) {
-  //     this.sortable.push([idPost, count[idPost]]);
-  //     this.totalViewsPost += count[idPost];
-  //   }
-  //   this.sortable.sort(function (b, a) {
-  //     return a[1] - b[1];
-  //   });
-  //   this.count = count;
-  //   this.postId = result;
-  //   return result;
-  // }
+  
 
   noData: boolean = false; // es false si no hay datos en la estadistica
   totalViewsPost = 0;
@@ -177,38 +90,7 @@ export class AnaliticsViewsComponent implements OnInit {
       .subscribe((response: any) => {
         this.totalSponsor = response.length;
       });
-    //obtiene todos los post del usuario
-    // this.postService
-    //   .getPostUser(this.userService.User._id)
-    //   .subscribe((response: any) => {
-    //     this.todolosPost = response;
-    //     this.likes = response.filter((post: any) => {
-    //       return post.likes.length > 0;
-    //     });
-
-    //     this.comments = response.filter((post: any) => {
-    //       return post.comments.length > 0;
-    //     });
-
-    //     this.shareds = response.filter((post: any) => {
-    //       return post.shareds.length > 0;
-    //     });
-
-    //     //Ordena de mayor a menor el post con mas reacciones
-    //     this.likes.sort(function (b, a) {
-    //       return a.likes.length - b.likes.length;
-    //     });
-
-    //     //Ordena de mayor a menor el post con mas comentarios
-    //     this.comments.sort(function (b, a) {
-    //       return a.comments.length - b.comments.length;
-    //     });
-
-    //     //Ordena de mayor a menor el post con mas veces compartido
-    //     this.shareds.sort(function (b, a) {
-    //       return a.shareds.length - b.shareds.length;
-    //     });
-    //   });
+    
 
     this.viewsProfileService
       .getProfileView(this.userService.User._id)

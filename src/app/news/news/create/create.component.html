@@ -6,7 +6,7 @@
     <ion-buttons slot="end">
       <ion-icon style="color: white;font-size:30px;cursor: pointer;" name="person-outline" [routerLink]="'/profile'"></ion-icon>
     </ion-buttons>
-    <ion-title style="--color: white">{{ 'news.create'| translate}}</ion-title>
+    <ion-title style="--color: white">{{ 'news.newNews'| translate}}</ion-title>
     
   </ion-toolbar>
 </ion-header>
@@ -14,7 +14,7 @@
 <ion-content class="main-bg">
 
          <!--  Este muestra el contenido para crear la noticia -->
-          <ion-content *ngIf="!listoPublicar" style="background: white;">
+          <ion-content *ngIf="!listoPublicar"  class="slide-in-fwd-center" style="background: white;">
             <ion-grid>
               <ion-row>
                 <ion-col style="text-align: center;color:white" size="12">
@@ -22,7 +22,7 @@
                     <img class="logoSport" src="assets/logos/imagotipo_azul.png" alt="logoSportyeah!" >
                     <h1 style="color: black;">{{ 'news.newNews' | translate }}</h1>
                   </div>
-                  <ion-button *ngIf="!redactarArticulo" (click)="redactar()">{{ 'news.article _write' | translate }}</ion-button>
+                  <ion-button *ngIf="!redactarArticulo" (click)="redactar()">{{ 'news.write_new' | translate }}</ion-button>
                   <ion-button *ngIf="!redactarArticulo" (click)="createStream()">{{ 'news.transmit' | translate }}</ion-button>
                 </ion-col>
                
@@ -384,7 +384,9 @@
             <ion-col style="text-align: center;" size="12">
               <ion-button *ngIf="redactarArticulo" (click)="todoConOrigen()" [disabled]="(titulo1 != null && titulo1 != '') && (deporte != null && deporte != '') && ((urlVideo != null && urlVideo != '') || (parrafos.length > 0)) && ((origen != null && origen != '')) ?false:true"  >{{ 'news.rody_post' | translate}}</ion-button>
             </ion-col>
-           
+            <ion-col size="12" style="text-align: center;">
+              <ion-button (click)="porgramDate()">{{ 'news.program_date_news' | translate}}</ion-button>
+            </ion-col> 
              </ion-row>
            </ion-grid>
          
@@ -394,46 +396,48 @@
           </ion-content>
 
          <!--  Listo para publicar -->
-          <ion-content *ngIf="listoPublicar">
+          <ion-content class="slide-in-fwd-center" *ngIf="listoPublicar">
             <ion-grid>
               <ion-row>
-                <ion-col size="12" tyle="text-align: center;">
-                  <ion-text  color="dark">
-                    <span (click)="listoParaPublicar()"><ion-icon style="font-size: 41px;" name="arrow-back-circle-outline"></ion-icon></span><h3 style="text-align: center;color:black"><ion-button (click)="publicar()">{{ 'news.publish' | translate}}</ion-button></h3>
-                  </ion-text>       
-                  
-          <ion-card style="width: 45%;margin: auto;height: 82%;">
-            <ion-card-header>
-              <ion-card-subtitle style="text-align: center;" *ngIf="deporte">{{ 'sport.'+deporte| translate}}</ion-card-subtitle>
-              <ion-card-title style="text-align: center;">{{titulo1}}</ion-card-title>
-              <ion-item style="transform: scale(0.9);margin-bottom: -3%;">
-                <ion-label>
-                  <ion-text color="black">
-                    <h1 style="font-size:14px">{{userService.User?.name}} {{userService.User?.last_name}} </h1>
-                  </ion-text>
-                </ion-label>
-                <ion-text color="black">
-                  <h2 style="font-size:14px" >{{fecha}}</h2>
-                </ion-text>   
-              </ion-item>
-            </ion-card-header>
-            <ion-img *ngIf="imagenSelected"   class="imageMiniCard" [src]="imagenSelected"></ion-img>
-            <!-- Video Principal -->
-            <div *ngIf="urlVideo" style="position: relative">
-              <video
-                controls="controls"
-                preload="metadata"
-                autoplay="autoplay"
-                webkit-playsinline="webkit-playsinline"
-                class="videoPlayerNews"
-              >
-                <source [src]="urlVideo | safeUrl" type="video/mp4" />
-              </video>
-            </div> 
-          </ion-card>
-        </ion-col>
-        </ion-row>
-        </ion-grid>
+              <ion-col size="12">
+                <ion-icon (click)="listoParaPublicar()" style="font-size: 41px;" name="arrow-back-circle-outline"></ion-icon>
+              </ion-col>   
+              <ion-col size="12" style="text-align: center;">
+                <ion-button (click)="publicar()">{{ 'news.publish' | translate}}</ion-button>
+              </ion-col>     
+              <ion-col size="12" style="text-align: center;">   
+                <ion-card style="width: 45%;margin: auto;height: 82%;">
+                  <ion-card-header>
+                    <ion-card-subtitle style="text-align: center;" *ngIf="deporte">{{ 'sport.'+deporte| translate}}</ion-card-subtitle>
+                    <ion-card-title style="text-align: center;">{{titulo1}}</ion-card-title>
+                    <ion-item style="transform: scale(0.9);margin-bottom: -3%;">
+                      <ion-label>
+                        <ion-text color="black">
+                          <h1 style="font-size:14px">{{userService.User?.name}} {{userService.User?.last_name}} </h1>
+                        </ion-text>
+                      </ion-label>
+                      <ion-text color="black">
+                        <h2 style="font-size:14px" >{{fecha}}</h2>
+                      </ion-text>   
+                    </ion-item>
+                  </ion-card-header>
+                  <ion-img *ngIf="imagenSelected"   class="imageMiniCard" [src]="imagenSelected"></ion-img>
+                  <!-- Video Principal -->
+                  <div *ngIf="urlVideo" style="position: relative">
+                    <video
+                      controls="controls"
+                      preload="metadata"
+                      autoplay="autoplay"
+                      webkit-playsinline="webkit-playsinline"
+                      class="videoPlayerNews"
+                    >
+                      <source [src]="urlVideo | safeUrl" type="video/mp4" />
+                    </video>
+                  </div> 
+                </ion-card>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
           </ion-content>
        
   </ion-content>

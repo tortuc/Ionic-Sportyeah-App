@@ -1,18 +1,20 @@
 import { Component, OnInit,ViewChild } from '@angular/core';
 import { NewsService } from '../../../service/news.service';
-import { ToastController } from '@ionic/angular';
+import { PopoverController, ToastController } from '@ionic/angular';
 import { UserService } from "../../../service/user.service";
 import { FormBuilder, FormGroup, FormControl, Validators} from '@angular/forms';
 import { Plugins, CameraResultType, CameraSource } from '@capacitor/core';
 import { ActionSheetController ,LoadingController, ModalController   } from '@ionic/angular';
 import { TranslateService } from "@ngx-translate/core";
-import { JdvimageService } from 'src/app/service/jdvimage.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import {  ElementRef } from "@angular/core";
 import { NewQuestionComponent } from "src/app/components/new-question/new-question.component"
 import { QuestionService } from 'src/app/service/question.service';
 import { EditQuestionComponent } from 'src/app/components/edit-question/edit-question.component'
+import { FilesService } from 'src/app/service/files.service';
 import { ButtonsOptionsComponent } from '../buttons-options/buttons-options.component';
+import { ModalProgramNewsComponent } from '../modal-program-news/modal-program-news.component';
+import * as moment from 'moment';
 
 const { Camera ,Filesystem} = Plugins;
 
@@ -40,12 +42,13 @@ export class EditComponent implements OnInit {
     private fb:FormBuilder,
     public translate: TranslateService,
     private actionSheetCtrl:ActionSheetController,
-    private jdvImage:JdvimageService,
+    private filesServices:FilesService,
     private loading:LoadingController,
     private route:ActivatedRoute,
     public questionService:QuestionService,
     public modalController: ModalController,
-    public loadingCtrl: LoadingController
+    public loadingCtrl: LoadingController,
+    private popover: PopoverController,
 
   ) {
 this.idNews = route.snapshot.paramMap.get('id')
@@ -77,11 +80,8 @@ form = this.fb.group({
 
   ngOnInit() {
     this.newsService.findById(this.idNews).subscribe((response:any)=>{
-      let oldDate = new Date(response.news.date)
-      console.log(this.newDate);
+      console.log(response.news);
       
-      this.newDate = oldDate.getFullYear()+'-'+(oldDate.getMonth() + 1)+'-'+oldDate.getDate()
-      console.log(this.newDate);
 
       this.news = response.news
      
@@ -95,6 +95,7 @@ form = this.fb.group({
       this.originPrincipaMedia = response.news.originPrincipaMedia;
       this.date = response.news.date;
       this.audioNews = response.news.audioNews;
+      this.programedDate = response.news.programatedDate
       if(response.news.principalSubtitle){
         this.subTitlebool = true;
       }
@@ -121,18 +122,27 @@ async editar(){
   news.headline = this.titulo1;
   news.principalSubtitle = this.subTitle;
   news.content = await this.questionService.parrafoFilter(this.parrafos);
-  news.date = this.date;
+  if(  this.newDate != undefined){
+    news.date = this.newDate
+  }else{
+    news.date = this.date;
+  }
   news.origin = this.origen;
   news.originPrincipaMedia = this.originPrincipaMedia;
   news.audioNews = this.audioNews;
-
+  news.programatedDate = this.programedDate
+  if(this.programedDate != undefined){
+    news.programated = true;
+  }else{
+    news.programated = false;
+  }
   news.sport = this.deporte;
     this.newsService.updateNews(news).subscribe((response) => {
       this.presentToastWithOptions();
       this.router.navigate(["news"]);
     });
     loading.dismiss();
-    
+
 }
 
 fecha = new Date().getDate() + '/'+ (new Date().getMonth()+1) + '/' + new Date().getFullYear()
@@ -323,7 +333,7 @@ async takePictures(source,i) {
     loading.present()
     let blob = this.DataURIToBlob(image.dataUrl);
     formData.append('image', blob)
-    this.jdvImage.uploadImage(formData).toPromise()
+    this.filesServices.uploadImage(formData).toPromise()
     .then((url:string)=>{
       loading.dismiss()
       this.parrafos[i].image= url;
@@ -357,7 +367,7 @@ async takePrincipal(source) {
     loading.present()
     let blob = this.DataURIToBlob(image.dataUrl);
     formData.append('image', blob)
-    this.jdvImage.uploadImage(formData).toPromise()
+    this.filesServices.uploadImage(formData).toPromise()
     .then((url:string)=>{
       loading.dismiss() 
       this.imagenSelected = url 
@@ -466,7 +476,7 @@ async uploadVideo($event,type:string,i){
 }
 
 uploadVideoPrincipal(video){
-  this.jdvImage.uploadVideo(video)
+  this.filesServices.uploadVideo(video)
   .then((url)=>{
     this.videoSelected = url
   })
@@ -474,7 +484,7 @@ uploadVideoPrincipal(video){
   })
 }
 uploadVideoNotPrincipal(video,i){
-  this.jdvImage.uploadVideo(video)
+  this.filesServices.uploadVideo(video)
   .then((url)=>{
     this.parrafos[i].video = url
   })
@@ -951,15 +961,40 @@ questionEdited($event) {
 msgAudio(url) {
   this.audioNews = url;
   this.newsAudio = true;
-  console.log( this.audioNews)
 }
 deleteAudio(){
   this.audioNews = null;
   this.newsAudio = false;
-  console.log( this.audioNews)
 }
 
 newsAudio:boolean=false
 
+popoverOpen
+programedDate 
+async porgramDate(){
+  // if (this.isPost) {
+    if (!this.popoverOpen) {
 
+      let popover = await this.popover.create({
+        component: ModalProgramNewsComponent,
+        componentProps: {
+          date:moment(this.programedDate).format("YYYY-MM-DD"),
+          edited:true,
+        },
+      });
+      popover.onDidDismiss().then((data) => {
+        try{
+
+            if(data.data != undefined && data.data.option == 'accept' ){
+              this.programedDate = data.data.date
+            }else if(data.data.date == undefined && data.data.option !='cancel' ){
+              this.programedDate = undefined
+            }
+            this.popoverOpen = false;
+        }catch(err){}
+
+      });
+      return popover.present();
+    }
+}
 }

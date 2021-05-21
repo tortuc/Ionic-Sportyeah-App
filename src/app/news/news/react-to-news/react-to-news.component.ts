@@ -5,9 +5,9 @@ import { TranslateService } from "@ngx-translate/core";
 import { take } from "rxjs/operators";
 import { ILike, IPost } from "src/app/models/iPost";
 import { LikedNewsPipe } from "src/app/pipes/liked-news.pipe";
-import { LikesPostComponent } from "src/app/post-components/likes-post/likes-post.component";
 import { NewsService } from "src/app/service/news.service";
 import { UserService } from "src/app/service/user.service";
+import { LikesNewsComponent } from "../likes-news/likes-news.component";
 
 @Component({
   selector: 'react-to-news',
@@ -424,27 +424,27 @@ export class ReactToNewsComponent implements OnInit {
 
   modalOpen = false;
 
-  // async seeLikes() {
-  //   if (this.isPost) {
-  //     if (!this.modalOpen) {
-  //       this.modalOpen = true;
+  async seeLikes() {
+    // if (this.isPost) {
+      if (!this.modalOpen) {
+        this.modalOpen = true;
 
-  //       let modal = await this.modalController.create({
-  //         component: LikesPostComponent,
-  //         componentProps: {
-  //           post: this.post._id,
-  //         },
-  //       });
-  //       modal.onDidDismiss().then(() => {
-  //         this.modalOpen = false;
-  //       });
+        let modal = await this.modalController.create({
+          component: LikesNewsComponent,
+          componentProps: {
+            post: this.news._id,
+          },
+        });
+        modal.onDidDismiss().then(() => {
+          this.modalOpen = false;
+        });
 
-  //       return modal.present();
-  //     }
-  //   } else {
-  //     this.goToPost(this.post._id);
-  //   }
-  // }
+        return modal.present();
+      }
+    // } else {
+    //   this.goToPost(this.post._id);
+    // }
+  }
 
   goToNews(id) {
     this.router.navigate([`news/read/${id}`]);

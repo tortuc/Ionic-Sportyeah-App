@@ -34,6 +34,9 @@ import { SeeProfileBannerComponent } from "./see-profile-banner/see-profile-bann
 import { ProfilePhotoComponent } from "./profile-photo/profile-photo.component";
 import { ProfilePhotoOptionsComponent } from "./profile-photo-options/profile-photo-options.component";
 import { ProfileUserInfoComponent } from "./profile-user-info/profile-user-info.component";
+import { NewPostHeaderComponent } from "../post-components/new-post-header/new-post-header.component";
+import { PostPreviewImagesSliderComponent } from "../post-components/post-preview-images-slider/post-preview-images-slider.component";
+import { PostPreviewImagesComponent } from "../post-components/post-preview-images/post-preview-images.component";
 
 const components = [
   ViewCommentComponent,
@@ -64,8 +67,12 @@ const components = [
   SeeProfileBannerComponent,
   ProfilePhotoComponent,
   ProfilePhotoOptionsComponent,
-  ProfileUserInfoComponent
+  ProfileUserInfoComponent,
   
+
+  NewPostHeaderComponent,
+  PostPreviewImagesSliderComponent,
+  PostPreviewImagesComponent,
 ];
 
 @NgModule({

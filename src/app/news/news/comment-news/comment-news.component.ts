@@ -22,7 +22,6 @@ import { NewQuestionComponent } from "src/app/components/new-question/new-questi
 import { MentionsDirective } from "src/app/directives/mentions.directive";
 import { INew, IPost, IPostFile } from "src/app/models/iPost";
 import { CommentService } from "src/app/service/comment.service";
-import { JdvimageService } from "src/app/service/jdvimage.service";
 import { NewsService } from "src/app/service/news.service";
 import { PostService } from "src/app/service/post.service";
 import { QuestionService } from "src/app/service/question.service";

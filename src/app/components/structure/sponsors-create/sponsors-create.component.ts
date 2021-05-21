@@ -1,28 +1,30 @@
 import { Component, OnInit, Input, ViewChild, ElementRef } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { ReusableComponentsIonic } from "src/app/service/ionicHelpers.service";
-import { ImgVideoUpload } from "src/app/service/reusable-img-video-logic.service";
 import { ActionSheetController, ModalController } from "@ionic/angular";
 import { ISponsor } from "src/app/models/ISponsor";
 import { ImagePickerComponent } from "src/app/shared-components/image-picker/image-picker.component";
-import { JdvimageService } from "src/app/service/jdvimage.service";
+import { TranslateService } from "@ngx-translate/core";
+import { SponsorService } from "src/app/service";
+import { User } from "src/app/models/IUser";
+import { FilesService } from "src/app/service/files.service";
 
 @Component({
-  selector: "app-sponsors-create",
+  selector: "sponsors-create",
   templateUrl: "./sponsors-create.component.html",
   styleUrls: ["./sponsors-create.component.scss"],
 })
 export class SponsorsCreateComponent implements OnInit {
   @Input() edit: ISponsor;
+
   @ViewChild("openImage") openImage: ElementRef;
 
   constructor(
     public fb: FormBuilder,
-    public reusableCI: ReusableComponentsIonic,
-    public reusableIMG: ImgVideoUpload,
     public modalCtrl: ModalController,
     public actionSheetCtrl: ActionSheetController,
-    public fileService: JdvimageService
+    public fileService: FilesService,
+    private sponsorService: SponsorService,
+    private readonly translate: TranslateService
   ) {}
 
   /*
@@ -32,6 +34,8 @@ export class SponsorsCreateComponent implements OnInit {
    */
   reg: string = "(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?";
 
+  public noAccount = false;
+
   form: FormGroup = this.fb.group({
     url: ["", [Validators.required, Validators.pattern(this.reg)]],
     name: ["", [Validators.required]],
@@ -39,61 +43,54 @@ export class SponsorsCreateComponent implements OnInit {
   });
 
   ngOnInit() {
-    console.log(this.modalCtrl);
-    
     this.form.controls.url.setValue(this.edit.url);
     this.form.controls.image.setValue(this.edit.image);
     this.form.controls.name.setValue(this.edit.name);
   }
 
   /*
-   * Add image
+   * Agrega o sube una imagen para el patrocinador que se esta creando
    */
   async add() {
+    // creamos un actionSheetController
     let action = await this.actionSheetCtrl.create({
-      header: "Subir una imagen para el patrocinador",
+      header: this.translate.instant("sponsors.create.action.header"),
       buttons: [
         {
-          text: "Galeria",
+          text: this.translate.instant("sponsors.create.action.gallery"),
           icon: "images",
           handler: () => {
             this.openImage.nativeElement.click();
           },
         },
         {
-          text: "AÑADIR IMAGEN GRATUITA",
+          text: this.translate.instant("sponsors.create.action.free"),
           icon: "globe",
           handler: () => {
             this.freeImage();
           },
         },
         {
-          text: "cancelar",
+          text: this.translate.instant("cancel"),
           role: "cancel",
         },
       ],
     });
-
+    // presentamos el actionSheet
     action.present();
-    // this.reusableIMG.takeOnlyPhoto();
-    // this.reusableIMG.content
-    //   .pipe(take(1))
-    //   .subscribe((r: string) => this.form.controls.image.setValue(r));
   }
 
   /*
-   * Envia el nuevo patrocinador
+   * Crea un patrocinador
    */
-  send() {
-    
+  create() {
     this.modalCtrl.dismiss(this.form.value);
-    this.reusableCI.toast(`Patrocinador creado con éxito`);
   }
 
   async freeImage() {
     let modal = await this.modalCtrl.create({
-      component:ImagePickerComponent
-    })
+      component: ImagePickerComponent,
+    });
     modal.onDidDismiss().then((data: any) => {
       if (data.data != undefined && "image" in data.data) {
         this.fileService
@@ -113,5 +110,11 @@ export class SponsorsCreateComponent implements OnInit {
     this.fileService.uploadImageProgress(formData).then((url: string) => {
       this.form.controls.image.setValue(url);
     });
+  }
+
+  sponsorSelected: User = null;
+
+  setSponsor(sponsor: User) {
+    this.sponsorSelected = sponsor;
   }
 }

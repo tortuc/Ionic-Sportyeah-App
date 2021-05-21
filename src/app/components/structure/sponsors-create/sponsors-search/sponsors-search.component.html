@@ -1,0 +1,24 @@
+<div>
+  <ion-searchbar
+    animated="true"
+    placeholder="{{ 'search' | translate }}"
+    (ionChange)="filter($event)"
+    autocomplete="on"
+  ></ion-searchbar>
+  <div style="text-align: center; margin-top: 0.5em">
+    <ion-spinner *ngIf="searching"></ion-spinner>
+  </div>
+  <div
+    *ngIf="lastQuery != '' && sponsors.length == 0 && !searching"
+    style="text-align: center"
+  >
+    <p>{{ "no_results" | translate }}</p>
+  </div>
+  <div *ngIf="sponsors.length > 0">
+    <ion-row>
+      <ion-col size="6" *ngFor="let sponsor of sponsors">
+        <sponsor-user-item (click)="select(sponsor)" [user]="sponsor"></sponsor-user-item>
+      </ion-col>
+    </ion-row>
+  </div>
+</div>

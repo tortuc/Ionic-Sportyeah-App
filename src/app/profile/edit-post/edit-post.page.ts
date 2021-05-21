@@ -1,10 +1,10 @@
 import { Component, ElementRef, Input, OnInit, ViewChild } from "@angular/core";
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { FormBuilder, Validators } from "@angular/forms";
 import { LoadingController, ModalController } from "@ionic/angular";
 import { TranslateService } from "@ngx-translate/core";
 import { MentionsDirective } from "src/app/directives/mentions.directive";
 import { IPost, IPostFile } from "src/app/models/iPost";
-import { JdvimageService } from "src/app/service/jdvimage.service";
+import { FilesService } from "src/app/service/files.service";
 import { PostService } from "src/app/service/post.service";
 import { UserService } from "src/app/service/user.service";
 
@@ -24,7 +24,7 @@ export class EditPostPage implements OnInit {
     public translate: TranslateService,
     public userService: UserService,
     private fb: FormBuilder,
-    public JDVImage: JdvimageService,
+    public filesServices: FilesService,
     public loadingCtrl: LoadingController,
     private postService: PostService
   ) {

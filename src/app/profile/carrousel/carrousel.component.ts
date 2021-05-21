@@ -16,14 +16,14 @@ export class CarrouselComponent implements OnInit {
     // public bannerLogic: BannerLogic,
     public router             : Router,
     public userService        : UserService,
-    public mc                 : ModalController,
+    public modalCtrl                 : ModalController,
     public reusableCI         : ReusableComponentsIonic
   ) {}
   goTo(ruta: string) {
     this.router.navigate([ruta]);
   }
   async open(img: string) {
-    const modal = await this.mc.create({
+    const modal = await this.modalCtrl.create({
       component: OpenImgComponent,
       componentProps: {
         img,

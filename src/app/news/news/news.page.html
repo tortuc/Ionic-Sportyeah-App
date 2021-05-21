@@ -122,7 +122,7 @@
             </ion-col>
             
             <ion-col size-xs="12" size-lg="9">
-              <h5 class="deporteTitle">{{ 'sport.'+new.sport| translate}}<span style="font-size: 8 !important;color: rgb(58, 58, 58);margin-left:15px">{{new.date | customDisplayDate}}</span>
+              <h5 class="deporteTitle">{{ 'sport.'+new.sport| translate}}<span style="font-size: 8 !important;color: rgb(58, 58, 58);margin-left:15px">{{new.date | customDisplayDate:true}}</span>
                 <div style="float: right;">
                 <ion-avatar style="width: 25px;height: 25px;margin-left: auto; margin-right: auto;" (click)="userService.goToProfile(new.user.username,new.user._id,'news',undefined)" >
                   <img class="user-img-shadow" [src]="new.user.photo" />
@@ -226,7 +226,7 @@
           </ion-col>
           <br>
           <ion-col>
-            <h5 class="deporteTitle">{{ 'sport.'+new.sport| translate}}<span style="font-size: 8 !important;color: rgb(58, 58, 58);margin-left:15px">{{new.date | customDisplayDate}}</span>
+            <h5 class="deporteTitle">{{ 'sport.'+new.sport| translate}}<span style="font-size: 8 !important;color: rgb(58, 58, 58);margin-left:15px">{{new.date | customDisplayDate:true}}</span>
               <span  style="font-size: 8 !important;margin-left:8px !important;color: rgb(0, 0, 0)" (click)="userService.goToProfile(new.user.username,new.user._id,'news',undefined)">{{new.user.name}} {{new.user.last_name}}</span>
             </h5><br>
             <h3 (click)="goToStream(new.postStream,new._id)" class="newsTitle">{{new.headline}}</h3>
@@ -280,7 +280,7 @@
           </ion-col>
           
           <ion-col size-xs="12" size-lg="9">
-            <h5 class="deporteTitle">{{ 'sport.'+new.sport| translate}}<span style="font-size: 8 !important;color: rgb(58, 58, 58);margin-left:15px">{{new.date | customDisplayDate}}</span>
+            <h5 class="deporteTitle">{{ 'sport.'+new.sport| translate}}<span style="font-size: 8 !important;color: rgb(58, 58, 58);margin-left:15px">{{new.date | customDisplayDate:true}}</span>
               <div style="float: right;">
               <ion-avatar style="width: 25px;height: 25px;margin-left: auto; margin-right: auto;" (click)="userService.goToProfile(new.user.username,new.user._id,'news',undefined)" >  <!-- (click)="userService.goToProfile(new.user.username,news.user._id,'news',undefined)" -->
                 <img class="user-img-shadow" [src]="new.user.photo" />

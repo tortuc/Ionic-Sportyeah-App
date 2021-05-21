@@ -12,9 +12,9 @@ import { ReusableComponentsIonic } from "./service/ionicHelpers.service";
 import { CookieService } from "ngx-cookie-service";
 import { Meta } from "@angular/platform-browser";
 import { SIDEBAR_ITEMS } from "src/config/base";
-import { JdvimageService } from "./service/jdvimage.service";
 import { getToken } from "./helpers/token";
 import { Location } from "@angular/common";
+import { FilesService } from "./service/files.service";
 
 @Component({
   selector: "app-root",
@@ -22,10 +22,7 @@ import { Location } from "@angular/common";
   styleUrls: ["app.component.scss"],
 })
 export class AppComponent implements OnInit {
-  @HostListener("document:ionBackButton", ["$event"])
-  private async overrideHardwareBackAction($event: any) {
-    await this.modalController.dismiss();
-  }
+
 
   public selectedIndex = 0;
 
@@ -45,7 +42,7 @@ export class AppComponent implements OnInit {
     public reusableCI: ReusableComponentsIonic,
     private cookieService: CookieService,
     private meta: Meta,
-    public fileService: JdvimageService,
+    public fileService: FilesService,
     public location: Location
   ) {
     this.initializeApp();

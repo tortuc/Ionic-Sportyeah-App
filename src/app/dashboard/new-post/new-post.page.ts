@@ -4,7 +4,7 @@ import { LoadingController, ModalController, Platform } from "@ionic/angular";
 import { TranslateService } from "@ngx-translate/core";
 import { MentionsDirective } from "src/app/directives/mentions.directive";
 import { IPost, INew, IPostFile } from "src/app/models/iPost";
-import { JdvimageService } from "src/app/service/jdvimage.service";
+import { FilesService } from "src/app/service/files.service";
 import { PostService } from "src/app/service/post.service";
 import { UserService } from "src/app/service/user.service";
 import { AssetsButtonsComponent } from "src/app/shared-components/assets-buttons/assets-buttons.component";
@@ -27,7 +27,7 @@ export class NewPostPage implements OnInit {
     public translate: TranslateService,
     public userService: UserService,
     private fb: FormBuilder,
-    public JDVImage: JdvimageService,
+    public filesServices: FilesService,
     public loadingCtrl: LoadingController,
     private postService: PostService,
     private platform: Platform

@@ -1,5 +1,4 @@
 import { Component, OnChanges, OnInit, ViewChild } from "@angular/core";
-//import { FormBuilder, FormControl,FormGroup} from '@angular/forms';
 import { TranslateService } from "@ngx-translate/core";
 import { UserService } from "../../../service/user.service";
 import {
@@ -14,8 +13,8 @@ import {
   ActionSheetController,
   LoadingController,
   ModalController,
+  PopoverController,
 } from "@ionic/angular";
-import { JdvimageService } from "src/app/service/jdvimage.service";
 import { NewsService } from "../../../service/news.service";
 import { ToastController } from "@ionic/angular";
 import { Router } from "@angular/router";
@@ -24,9 +23,10 @@ import { QuestionService } from "src/app/service/question.service";
 import { NewQuestionComponent } from "src/app/components/new-question/new-question.component";
 import { EditQuestionComponent } from "src/app/components/edit-question/edit-question.component";
 import { ButtonsOptionsComponent } from "../buttons-options/buttons-options.component";
-import { format } from "path";
+import { FilesService } from "src/app/service/files.service";
+import { ModalProgramNewsComponent } from "../modal-program-news/modal-program-news.component";
 
-const { Camera, Filesystem } = Plugins;
+const { Camera } = Plugins;
 
 @Component({
   selector: "app-create",
@@ -56,25 +56,26 @@ urlYu
     public translate: TranslateService,
     private modalCtrl: ModalController,
     private loading: LoadingController,
-    private jdvImage: JdvimageService,
+    private filesServices: FilesService,
     private actionSheetCtrl: ActionSheetController,
     public newsService: NewsService,
     public toastController: ToastController,
     private router: Router,
     public questionService: QuestionService,
     public modalController: ModalController,
-    public loadingCtrl: LoadingController
+    public loadingCtrl: LoadingController,
+    private popover: PopoverController,
   ) {}
 
   form = this.fb.group({
     user: ["", [Validators.required]],
-    question: [null, [Validators.required]],
     headline: ["", [Validators.required]],
     principalSubtitle: ["", [Validators.required]],
     sport: ["", [Validators.required]],
     stream: [false, [Validators.required]],
     postStream: ["", [Validators.required]],
     date: ["", [Validators.required]],
+    programated: [null, [Validators.required]],
   });
 
   async presentToastWithOptions() {
@@ -103,18 +104,20 @@ urlYu
     news.origin = this.origen;
     news.originPrincipaMedia = this.originPrincipaMedia;
     news.audioNews = this.audioNews;
-
+    news.programatedDate = this.programedDate;
+    if(this.programedDate != undefined){
+      news.programated = true;
+    }else{
+      news.programated = false;
+    }
     news.sport = this.deporte;
    console.log(news)
-    // if (this.question.questionGroup.length > 0) {
-    //   this.createNewsAndQuestion(loading);
-    // } else {
+  
       this.newsService.create(news).subscribe((response) => {
         this.presentToastWithOptions();
+        loading.dismiss();
         this.router.navigate(["news"]);
       });
-      loading.dismiss();
-    // }
   }
   fecha =
     new Date().getDate() +
@@ -188,7 +191,6 @@ urlYu
   this.deporte= `Escribe el Subtitulo # ${this.parrafos.length+1} `; */
     this.agregandoParrafo = false;
     this.subTitleParrafo = null;
-    console.log(this.parrafos)
   }
   selectParrafo() {
     this.text1 = this.parrafos[this.number].parrafo;
@@ -331,7 +333,7 @@ urlYu
         loading.present();
         let blob = this.DataURIToBlob(image.dataUrl);
         formData.append("image", blob);
-        this.jdvImage
+        this.filesServices
           .uploadImage(formData)
           .toPromise()
           .then((url: string) => {
@@ -365,7 +367,7 @@ urlYu
         loading.present();
         let blob = this.DataURIToBlob(image.dataUrl);
         formData.append("image", blob);
-        this.jdvImage
+        this.filesServices
           .uploadImage(formData)
           .toPromise()
           .then((url: string) => {
@@ -481,7 +483,7 @@ urlYu
   }
 
   uploadVideoPrincipal(video) {
-    this.jdvImage
+    this.filesServices
       .uploadVideo(video)
       .then((url) => {
         this.videoSelected = url;
@@ -490,7 +492,7 @@ urlYu
       .catch((err) => {});
   }
   uploadVideoNotPrincipal(video, i) {
-    this.jdvImage
+    this.filesServices
       .uploadVideo(video)
 
       .then((url) => {
@@ -555,8 +557,8 @@ urlYu
   listoPublicar: boolean = false;
   listoParaPublicar() {
     this.listoPublicar = !this.listoPublicar;
-    this.sportyeah.nativeElement.classList.remove("logoSport");
-      this.sportyeah.nativeElement.classList.add("logoSportBig");
+    // this.sportyeah.nativeElement.classList.remove("logoSport");
+    //   this.sportyeah.nativeElement.classList.add("logoSportBig");
   }
 
   //Origen de la noticia
@@ -775,18 +777,7 @@ urlYu
     loading.dismiss(); 
   }
   createNewsAndQuestion(loading) {
-    // if (this.whitTime && new Date(this.endDate) >= new Date()) {
-    //   this.question.finishVotes = new Date(this.endDate);
-      // this.badDate = false;
       this.createdNews(loading);
-    // } else {
-    //   this.badDate = true;
-    //   loading.dismiss();
-    // }
-    // if (!this.whitTime) {
-    //   this.badDate = false;
-    //   this.createdNews(loading);
-    // }
   }
   whitTime: boolean;
   endDate;
@@ -813,26 +804,7 @@ urlYu
       .catch((err) => {});
     return await modal.present();
   }
-  // async editQuestion(i) {
-  //   const modalEdit = await this.modalController.create({
-  //     component: NewQuestionComponent,
-  //     cssClass: "my-custom-class",
-  //     backdropDismiss: false,
-  //     componentProps: {
-  //       question: this.question.questionGroup[i],
-  //       edit: true,
-  //     },
-  //   });
-  //   modalEdit
-  //     .onDidDismiss()
-  //     .then((data) => {
-  //       if (data.data.question != undefined) {
-  //         this.question.questionGroup.splice(i, 1, data.data.question);
-  //       }
-  //     })
-  //     .catch((err) => {});
-  //   return await modalEdit.present();
-  // }
+  
   deleteQuestion(i) {
     this.question.questionGroup.splice(i, 1);
   }
@@ -995,4 +967,31 @@ this.editYoutube = false
  
   newsAudio:boolean=false
 
+  popoverOpen
+  programedDate 
+  async porgramDate(){
+    // if (this.isPost) {
+      if (!this.popoverOpen) {
+
+        let popover = await this.popover.create({
+          component: ModalProgramNewsComponent,
+          componentProps: {
+            date:moment(this.programedDate).format("YYYY-MM-DD"),
+          },
+        });
+        popover.onDidDismiss().then((data) => {
+          try{
+            if(data.data != undefined && data.data.option == 'accept' ){
+              this.programedDate = data.data.date
+            }else if(data.data.date == undefined && data.data.option !='cancel' ){
+              this.programedDate = undefined
+            }
+            this.popoverOpen = false;
+        }catch(err){}
+
+        });
+
+        return popover.present();
+      }
+  }
 }

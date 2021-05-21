@@ -7,6 +7,7 @@ import { EditComponent } from './edit/edit.component';
 import { StreamComponent } from './stream/stream.component';
 import { CreateStreamComponent } from './create-stream/create-stream.component';
 import { LandingGuard } from 'src/app/guards/landing-guard.service';
+import { ProfileNewsComponent } from './profile-news/profile-news.component';
 
 const routes: Routes = [
   {
@@ -32,6 +33,10 @@ const routes: Routes = [
   {
     path: 'createStream/:id',
     component: CreateStreamComponent
+  },
+  {
+    path: 'profileNews',
+    component: ProfileNewsComponent
   },
 ];
 

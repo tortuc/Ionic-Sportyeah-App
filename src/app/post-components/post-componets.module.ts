@@ -11,9 +11,6 @@ import { DirectivesModule } from "src/app/directives/directive.module";
 import { RouterModule } from "@angular/router";
 import { ComponentsSharedModule } from "../shared-components/components-shared.module";
 import { CommentPostComponent } from "./comment-post/comment-post.component";
-import { NewPostHeaderComponent } from "./new-post-header/new-post-header.component";
-import { PostPreviewImagesComponent } from "./post-preview-images/post-preview-images.component";
-import { PostPreviewImagesSliderComponent } from "./post-preview-images-slider/post-preview-images-slider.component";
 import { SeeFilesPostSliderComponent } from "./see-files-post-slider/see-files-post-slider.component";
 import { ReactToPostsComponent } from "./react-to-posts/react-to-posts.component";
 import { LikesPostComponent } from "./likes-post/likes-post.component";
@@ -32,12 +29,9 @@ import { PostContentComponent } from "../components/post-content/post-content.co
 import { SeeFilesPostContentComponent } from "./see-files-post-content/see-files-post-content.component";
 import { SharePopoverComponent } from "./share-popover/share-popover.component";
 import { ProfilePhotoComponent } from "../shared-components/profile-photo/profile-photo.component";
-
+  
 const componets = [
   CommentPostComponent,
-  NewPostHeaderComponent,
-  PostPreviewImagesComponent,
-  PostPreviewImagesSliderComponent,
   SeeFilesPostSliderComponent,
   ReactToPostsComponent,
   LikesPostComponent,

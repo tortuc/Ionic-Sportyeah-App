@@ -7,6 +7,8 @@ import { getToken } from "../helpers/token";
 import { UserService } from "./user.service";
 import {Howl, Howler} from 'howler';
 import { Subject } from "rxjs";
+import { async } from '@angular/core/testing';
+import { resolve } from 'dns';
 
 @Injectable({
   providedIn: 'root'
@@ -33,8 +35,6 @@ export class NewsService {
 
 
   create(body){
-    console.log("CREATE DESDE EK SERVIs");
-    
     return this.http.post(`${environment.URL_API}/news/create`,body)
   }
 
@@ -54,9 +54,15 @@ export class NewsService {
     return this.http.get(`${environment.URL_API}/news/own/${user}`)
   }
 
+  findUserDeletedNews(user){
+    return this.http.get(`${environment.URL_API}/news/deleted/${user}`)
+  }
+
+  findUserProgramatedNews(user){
+    return this.http.get(`${environment.URL_API}/news/programated/${user}`)
+  }
+
   updateNews(news:any){
-      console.log("estoy");
-      
     return this.http.put(`${environment.URL_API}/news/update/${news._id}`,news)
   }
   
@@ -65,6 +71,9 @@ export class NewsService {
   }
 
   async delete(id:string){
+    return new Promise(async(resolve,reject)=>{
+
+  
     const alert = await this.alertController.create({
       cssClass: "my-custom-class",
       header: this.translate.instant("news.deleteModal.alert"),
@@ -75,6 +84,7 @@ export class NewsService {
           role: "cancel",
           cssClass: "secondary",
           handler: (blah) => {
+            resolve(false)
           },
         },
         {
@@ -85,13 +95,47 @@ export class NewsService {
               {
                 headers: new HttpHeaders({ "access-token": getToken() }),
               }
-            ).subscribe(()=>{ true })
+            ).subscribe(()=>{ resolve(true) })
           },
         },
       ],
     });
 
     await alert.present();
+  })
+  }
+
+  async restore(id:string){
+    return new Promise(async(resolve,reject)=>{
+    const alert = await this.alertController.create({
+      cssClass: "my-custom-class",
+      header: this.translate.instant("news.deleteModal.alert"),
+      message: this.translate.instant("news.restore_modal"),
+      buttons: [
+        {
+          text: this.translate.instant("news.deleteModal.cancel"),
+          role: "cancel",
+          cssClass: "secondary",
+          handler: (blah) => {
+            resolve(false)
+          },
+        },
+        {
+          text: this.translate.instant("news.deleteModal.accept"),
+          handler: () => {
+            this.http.put(
+              `${environment.URL_API}/news/restore/${id}`,
+              {
+                headers: new HttpHeaders({ "access-token": getToken() }),
+              }
+            ).subscribe(() =>{ resolve(true) })
+          },
+        },
+      ],
+    });
+    
+    await alert.present();
+  })
   }
 
   likeNews(id,reaction){
@@ -187,6 +231,11 @@ export class NewsService {
 
     userReactToNews(id, user) {
       return this.http.get(`${environment.URL_API}/news/reacted/${id}/${user}`);
+    }
+
+
+    rescheduleNews(id,date){
+      return this.http.put(`${environment.URL_API}/news/rescheduleNews/${id}`,date)
     }
 
 }

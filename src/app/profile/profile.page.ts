@@ -83,13 +83,13 @@ export class ProfilePage implements OnInit {
   async editProfileMsg() {
     let modal = await this.modalCtrl.create({
       component: MsgProfileEditComponent,
-      cssClass:'msg-edit-modal',
-      backdropDismiss:false
+      cssClass: "msg-edit-modal",
+      backdropDismiss: false,
     });
 
-    modal.onDidDismiss().then(()=>{
-      this.router.navigate(["/profile/edit"])
-    })
+    modal.onDidDismiss().then(() => {
+      this.router.navigate(["/profile/edit"]);
+    });
 
     modal.present();
   }
@@ -106,7 +106,6 @@ export class ProfilePage implements OnInit {
         })*/
       });
 
-    
     this.getPost();
     this.getCountPost();
     this.postService.newPostObservable().subscribe((id) => {
@@ -131,42 +130,7 @@ export class ProfilePage implements OnInit {
       });
   }
 
-  OpenNews(id) {
-    this.router.navigate([`news/read/${id}`]);
-  }
-  deleteNew(id) {
-    this.newsService.delete(id);
-  }
-  editNews(idNews) {
-    this.router.navigate([`news/edit/${idNews}`]);
-  }
 
-  options(data) {
-    switch (data?.action) {
-      case "delete":
-        this.deleteNew(data.news);
-        break;
-      case "edit":
-        this.editNews(data.news);
-        break;
-
-      default:
-        break;
-    }
-  }
-  async openOptions(ev: any,news) {
-    const popover = await this.popoverController.create({
-      component: OptionNewsComponent,
-      cssClass: "my-custom-class",
-      event: ev,
-      translucent: true,
-      componentProps: { news },
-    });
-    popover.onDidDismiss().then((data) => {
-      this.options(data.data);
-    });
-    return await popover.present();
-  }
 
   getCountPost() {
     this.viewsProfileService
@@ -233,84 +197,11 @@ export class ProfilePage implements OnInit {
   segmentChanged(e: CustomEvent) {
     if (e.detail.value === "posts") {
       this.profile = false;
-      this.newsB = false;
       this.postsB = true;
     } else if (e.detail.value === "profile") {
       this.postsB = false;
-      this.newsB = false;
       this.profile = true;
-    } else {
-      this.newsB = true;
-      this.postsB = false;
-      this.profile = false;
-    }
-  }
-
-  public async createSponsor() {
-    const modal = await this.modalCtrl.create({
-      component: SponsorsComponent,
-      cssClass: "my-custom-class",
-      backdropDismiss: false,
-    });
-    await modal.present();
-    const { data } = await modal.onWillDismiss();
-    if (data) {
-      const user = this.userService.User;
-      user.sponsors.push(data);
-      this.userService
-        .update(user)
-        .pipe(take(1))
-        .subscribe((u: any) => {
-          this.userService
-            .getUserByUsername(this.userService.User.username)
-            .pipe(take(1))
-            .subscribe((u: any) => {
-              this.userService.User = u.user;
-            });
-        });
-    }
-  }
-
-  public deleteSponsor(i: number) {
-    const user = this.userService.User;
-    user.sponsors.splice(i, 1);
-    this.userService
-      .update(user)
-      .pipe(take(1))
-      .subscribe((u: any) => {
-        this.userService
-          .getUserByUsername(this.userService.User.username)
-          .pipe(take(1))
-          .subscribe((u: any) => {
-            this.userService.User = u.user;
-          });
-      });
-  }
-
-  public async editSponsor(i: number) {
-    const modal = await this.modalCtrl.create({
-      component: SponsorsComponent,
-      cssClass: "my-custom-class",
-      componentProps: { data: this.userService.User.sponsors[i] },
-      backdropDismiss: false,
-    });
-    await modal.present();
-    const { data } = await modal.onWillDismiss();
-    if (data) {
-      const user = this.userService.User;
-      user.sponsors[i] = data;
-      this.userService
-        .update(user)
-        .pipe(take(1))
-        .subscribe((u: any) => {
-          this.userService
-            .getUserByUsername(this.userService.User.username)
-            .pipe(take(1))
-            .subscribe((u: any) => {
-              this.userService.User = u.user;
-            });
-        });
-    }
+    } 
   }
 
   async open(img: string) {

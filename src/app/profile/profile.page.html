@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar class="main-bg">
+  <ion-toolbar class="toolbar-bg">
     <ion-buttons slot="start">
       <ion-menu-button style="color: white"></ion-menu-button>
     </ion-buttons>
@@ -31,7 +31,7 @@
 
   <ion-grid style="padding: 0" class="height-100vh">
     <ion-row class="height-100vh ion-justify-content-center">
-      <ion-col ngClass.xs="m-p-0" size-md="8" size-sm="12">
+      <ion-col ngClass.xs="m-p-0" size-md="7" size-sm="12">
         <ion-card style="margin: 0; padding: 0">
           <ion-card-header
             class="text-center"
@@ -42,14 +42,19 @@
               [editable]="true"
             ></profile-banner>
             <div style="margin-top: -80px">
-              <profile-photo [user]="userService.User"
-              [editable]="true" ></profile-photo>
+              <profile-photo
+                [user]="userService.User"
+                [editable]="true"
+              ></profile-photo>
             </div>
             <ion-card-title (click)="goTo('/profile/edit')">
               <miniflag [user]="userService.User"></miniflag>
               {{userService.User?.name}} {{userService.User?.last_name}}
               <ion-icon class="edit" name="settings-outline"></ion-icon>
             </ion-card-title>
+            <ion-card-subtitle class="estado">
+              {{userService.User?.estado}}
+            </ion-card-subtitle>
             <profile-user-info
               routerLink="/profile/edit"
               [user]="userService.User"
@@ -69,20 +74,17 @@
                   >
                 </ion-col>
                 <ion-col *ngIf="userService.User?.profile_user == 'press'">
-                  <ion-button [routerLink]="'/news/create'"
+                  <ion-button [routerLink]="'/news/profileNews'"
                     ><ion-icon
                       style="margin-right: 8px"
                       name="newspaper-outline"
                     ></ion-icon>
-                    {{'news.article' | translate}}</ion-button
+                    {{'news.news' | translate}}</ion-button
                   >
                 </ion-col>
               </ion-row>
             </ion-grid>
 
-            <ion-card-subtitle class="estado">
-              {{userService.User?.estado}}
-            </ion-card-subtitle>
             <ion-grid>
               <ion-row>
                 <ion-col size="4">
@@ -154,15 +156,7 @@
                 >{{'labels-profile-segment.posts' | translate}}</ion-label
               >
             </ion-segment-button>
-            <ion-segment-button
-              *ngIf="userService.User?.profile_user == 'press'"
-              value="news"
-              style="background-color: white"
-            >
-              <ion-label
-                >{{'labels-profile-segment.articles' | translate}}</ion-label
-              >
-            </ion-segment-button>
+           
           </ion-segment>
         </ion-card>
         <div *ngIf="profile">
@@ -252,90 +246,21 @@
           </ion-grid>
         </div>
         <!-- FINISH SEGMENT POSTS -->
-        <!-- SEGMENT NEWS -->
-        <div *ngIf="newsB">
-          <ion-grid ngClass.xs="m-p-0">
-            <ion-row *ngFor="let item of news" >
-              <ion-card
-                style="
-                  width: 100%;
-                  margin: auto;
-                  height: 100%;
-                  margin-bottom: 3%;
-                "
-              >
-              <div style="height:40px;margin-top: 8px;">
-                <ion-icon
-                name="chevron-down"
-                (click)="openOptions($event,item)"
-                class="options-down"
-              ></ion-icon>
-              </div>
-                <ion-card-header
-                  (click)="OpenNews(item?._id)"
-                  style="cursor: pointer"
-                >
-                  <ion-card-subtitle
-                    style="text-align: center"
-                    *ngIf="item?.sport"
-                    >{{ 'sport.'+item?.sport| translate}}</ion-card-subtitle
-                  >
-                  <ion-card-title style="text-align: center"
-                    >{{item?.headline}}</ion-card-title
-                  >
-                  <ion-item style="transform: scale(0.9); margin-bottom: -3%">
-                    <ion-label>
-                      <ion-text color="black">
-                        <h1 style="font-size: 14px">
-                          {{item?.user.name}} {{item?.user.last_name}}
-                        </h1>
-                      </ion-text>
-                    </ion-label>
-                    <ion-text color="black">
-                      <h2 style="font-size: 14px">
-                        {{item?.date | customDisplayDate}}
-                      </h2>
-                    </ion-text>
-                  </ion-item>
-                </ion-card-header>
-                <ion-img
-                  *ngIf="item?.principalImage"
-                  class="imageMiniCard"
-                  [src]="item?.principalImage"
-                ></ion-img>
-                <div *ngIf="item?.principalVideo" style="position: relative">
-                  <video
-                    controls="controls"
-                    preload="metadata"
-                    autoplay="autoplay"
-                    webkit-playsinline="webkit-playsinline"
-                    class="videoPlayer"
-                  >
-                    <source
-                      [src]="item?.principalVideo | safeUrl"
-                      type="video/mp4"
-                    />
-                  </video>
-                </div>
-              </ion-card>
-            </ion-row>
-          </ion-grid>
-        </div>
-        <!-- FINISH SEGMENT NEWS -->
+      
       </ion-col>
-      <!-- <ion-col
-        size-lg="4"
-        fxShow.lt-md="false"
-        class="ion-justify-content-center ion-align-items-center"
-      >
-        <friends-panel-desktop></friends-panel-desktop>
-      </ion-col> -->
+
       <ion-col
-        size-lg="4"
+        size-lg="5"
         fxShow.lt-md="false"
         class="ion-justify-content-center ion-align-items-center"
       >
         <div style="position: sticky; top: -300px; padding-left: 5px">
+          <profile-sponsors
+            *ngIf="userService.User.profile_user !== 'sponsor'"
+          ></profile-sponsors>
+          <custom-sponsor
+            *ngIf="userService.User.profile_user == 'sponsor'"
+          ></custom-sponsor>
           <friends-panel-desktop></friends-panel-desktop>
           <add-users-panel-desktop></add-users-panel-desktop>
           <!-- <popular-groups-panel></popular-groups-panel> -->

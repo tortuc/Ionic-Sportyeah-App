@@ -41,19 +41,17 @@ export class SearchPage implements OnInit {
       this.type = "users";
     }
     this.query = data?.query || "";
-    
+
     this.filter(null);
   }
-
-  
 
   ngOnInit() {}
 
   timeOut;
 
   filter(ev) {
-    this.query = ev?.detail.value || ''
-    
+    this.query = ev?.detail.value || "";
+
     this.usersSkip = 0;
 
     clearTimeout(this.timeOut);
@@ -62,55 +60,57 @@ export class SearchPage implements OnInit {
         this.usersQuery(this.query);
       }
     }, 300);
-    
   }
-
 
   usersSkip = 0;
   allUsers = false;
   loading = false;
   usersQuery(query) {
-    this.users = []
+    this.users = [];
     if (this.query == "") {
       this.mostPopular();
     } else {
-    this.loading = true
-    this.userService
+      this.loading = true;
+      this.userService
         .queryUsersSkip(this.query, this.usersSkip)
         .pipe(take(1))
-        .subscribe((users: User[]) => {
-          
-          this.loading = false
+        .subscribe(
+          (users: User[]) => {
+            this.loading = false;
 
-          if (users.length < 15) {
-            this.allUsers = true;
-          } else {
-            this.allUsers = false;
+            if (users.length < 15) {
+              this.allUsers = true;
+            } else {
+              this.allUsers = false;
+            }
+            if (this.usersSkip > 0) {
+              this.users = this.users.concat(users);
+            } else {
+              this.users = users;
+            }
+            this.usersSkip += 15;
+          },
+          () => {
+            this.loading = false;
           }
-          if (this.usersSkip > 0) {
-            this.users = this.users.concat(users);
-          } else {
-            this.users = users;
-          }
-          this.usersSkip += 15;
-        },()=>{
-          this.loading = false
-        });
+        );
     }
   }
 
   mostPopular() {
-    this.loading = true
+    this.loading = true;
     this.userService
       .mostPopulateUsers()
       .pipe(take(1))
-      .subscribe((users: User[]) => {
-        this.loading = false
-        this.users = users;
-      },
-      ()=>{
-        this.loading = false;
-      });
+      .subscribe(
+        (users: User[]) => {
+          this.loading = false;
+          this.users = users;
+        },
+        () => {
+          this.loading = false;
+        }
+      );
   }
 
   whatsapp() {

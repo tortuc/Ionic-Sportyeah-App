@@ -6,11 +6,7 @@
     ></ion-icon>
   </div>
   <div style="height: 400px; z-index: -100000000000 !important">
-    <ion-slides
-      pager="true"
-      [options]="slideOpts"
-      class="slide-container slideroption"
-    >
+    <ion-slides pager="true" class="slide-container slideroption">
       <ion-slide *ngFor="let img of userService.User.slider" class="slidezoom">
         <img
           [src]="img"
@@ -40,13 +36,9 @@
 
       <ion-slide *ngIf="userService.User.slider.length === 0">
         <img
-          src="https://trello-attachments.s3.amazonaws.com/5ff9d47572424648014190dc/700x422/29f3e5ed0cea0a6b7439bfb986a090cd/original.jpg"
+          src="assets/logos/banner.jpg"
           class="img"
-          (click)="
-            open(
-              'https://trello-attachments.s3.amazonaws.com/5ff9d47572424648014190dc/700x422/29f3e5ed0cea0a6b7439bfb986a090cd/original.jpg'
-            )
-          "
+          (click)="open('assets/logos/banner.jpg')"
         />
       </ion-slide>
     </ion-slides>

@@ -3,7 +3,7 @@ import { take } from "rxjs/operators";
 import { Subject } from "rxjs";
 import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 import { ImgVideoUpload } from "src/app/service/reusable-img-video-logic.service";
-import { JdvimageService } from "./../../../service/jdvimage.service";
+import { FilesService } from "src/app/service/files.service";
 declare var MediaRecorder: any;
 @Component({
   selector: "app-camara-browser",
@@ -25,7 +25,7 @@ export class CamaraBrowserComponent implements OnInit {
   public paused: boolean = false;
 
   constructor(
-    public jdvService: JdvimageService,
+    public filesServices: FilesService,
     public img: ImgVideoUpload,
     public loading: LoadingController
   ) {}
@@ -95,7 +95,7 @@ export class CamaraBrowserComponent implements OnInit {
       if (data.data.size > 0) {
         const blobnew = new Blob([data.data], { type: "video/mp4" });
         form.append("video", blobnew);
-        this.jdvService
+        this.filesServices
           .uploadVideo(form)
           .then((r)=>{
             this.media.emit({r,loading});

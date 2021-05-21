@@ -76,7 +76,7 @@ export class LivescoreComponent implements OnInit {
 
   private listenTabChanges(): void {
     this.tabChange$.subscribe((tab: Tabs): void => {
-      this.currentTab = tab;
+      this.currentTab = tab
       switch (tab) {
         case Tabs.LIVE: {
           this.items = this.scores;

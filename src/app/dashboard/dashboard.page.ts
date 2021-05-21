@@ -24,7 +24,6 @@ import { NewPostPage } from "./new-post/new-post.page";
 import { ReusableComponentsIonic } from "../service/ionicHelpers.service";
 import { take } from "rxjs/operators";
 
-
 @Component({
   selector: "app-dashboard",
   templateUrl: "./dashboard.page.html",
@@ -48,12 +47,11 @@ export class DashboardPage implements OnInit, AfterViewInit {
     public cd: ChangeDetectorRef,
     private loginService: LoginService
   ) {
-    this.loginService.connections().subscribe((connections:any[])=>{
-      if(connections.length < 2 && this.userService.User.msgProfile == false){
-        this.router.navigate(["/profile"])
+    this.loginService.connections().subscribe((connections: any[]) => {
+      if (connections.length < 2 && this.userService.User.msgProfile == false) {
+        this.router.navigate(["/profile"]);
       }
-      
-    })
+    });
   }
 
   @ViewChild("content", { static: false }) content: IonContent;

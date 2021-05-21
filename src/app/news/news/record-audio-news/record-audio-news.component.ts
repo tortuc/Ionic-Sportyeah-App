@@ -1,26 +1,21 @@
-import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
+import { Component, EventEmitter, OnInit, Output } from "@angular/core";
 import getBlobDuration from "get-blob-duration";
 import { take } from "rxjs/operators";
-import { JdvimageService } from "src/app/service/jdvimage.service";
+import { FilesService } from "src/app/service/files.service";
 
 declare var MediaRecorder: any;
 
 @Component({
-  selector: 'record-audio-news',
-  templateUrl: './record-audio-news.component.html',
-  styleUrls: ['./record-audio-news.component.scss'],
+  selector: "record-audio-news",
+  templateUrl: "./record-audio-news.component.html",
+  styleUrls: ["./record-audio-news.component.scss"],
 })
 export class RecordAudioNewsComponent implements OnInit {
-  constructor(
-    public JDVImage:JdvimageService
-  ) {}
+  constructor(public filesServices: FilesService) {}
 
-  @Output() newAudio = new EventEmitter<string>()
+  @Output() newAudio = new EventEmitter<string>();
 
-
-  ngOnInit() {
-    
-  }
+  ngOnInit() {}
 
   /**
    * Funciones para grabar audio
@@ -59,10 +54,11 @@ export class RecordAudioNewsComponent implements OnInit {
    * @param formData
    */
   uploadAudio(formData: FormData) {
-    this.JDVImage.uploadAudio(formData)
+    this.filesServices
+      .uploadAudio(formData)
       .pipe(take(1))
-      .subscribe((url:string) => {
-        this.newAudio.emit(url)
+      .subscribe((url: string) => {
+        this.newAudio.emit(url);
       });
   }
 

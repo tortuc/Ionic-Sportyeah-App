@@ -17,8 +17,7 @@ import {
 import { TranslateService } from "@ngx-translate/core";
 import { take } from "rxjs/operators";
 import { NewQuestionComponent } from "src/app/components/new-question/new-question.component";
-import { IPostFile } from "src/app/models/iPost";
-import { JdvimageService } from "src/app/service/jdvimage.service";
+import { FilesService } from "src/app/service/files.service";
 import { MessageService } from "src/app/service/message.service";
 import { QuestionService } from "src/app/service/question.service";
 import { GifsModalComponent } from "src/app/shared-components/gifs-modal/gifs-modal.component";
@@ -63,7 +62,7 @@ export class ButtonsOptionsComponent implements OnInit {
 
   constructor(
     public platform: Platform,
-    private fileService: JdvimageService,
+    private fileService: FilesService,
     private translate: TranslateService,
     private alertCtrl: AlertController,
     private actionSheetController: ActionSheetController,

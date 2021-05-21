@@ -846,11 +846,17 @@
 
   "news": {
     "news": "Noticias",
-    "article _write":"Redactar noticia",
     "transmit":"Transimitir",
     "notNews": "No se encontraron noticias",
     "newsSport": "Noticias Sportyeah!",
-    "create": "Crear Nuevo Artículo",
+    "new": "Nueva noticia",
+    "write_new":"Redactar noticia",
+    "create_news":"Crear",
+    "program_date_news":"Programar fecha de publicación",
+    "add_program_date_description":"Programa la fecha en la que desees que sea publicada tu noticia",
+    "delete_program":"Eliminar fecha",
+    "programated_news":"Programadas",
+    "reschedule":"Reprogramar",
     "read": "Leer",
     "article": "Artículo",
     "title": "Título",
@@ -860,7 +866,7 @@
     "image_video":"Imagen/Video principal",
     "add": "Agregar",
     "edit": "Editar",
-    "save":"Guardar cambios",
+    "save": "Guardar cambios",
     "editParagraph": "Editando párrafo",
     "delete": "Eliminar",
     "cancel": "Cancelar",
@@ -893,7 +899,12 @@
       "accept": "Aceptar",
       "alert": "Alerta"
     },
-    "streaming": "Transmisión"
+    "restore_modal":"Esta seguro que desea restaurar este artículo.",
+    "streaming": "Transmisión",
+    "my-news":"Mis noticias",
+    "inactive_news":"Inactivas",
+    "active_news":"Activas",
+    "restore":"Restaurar"
   },
   "sponsorDescription": "¡Agrega un patrocinador!",
   "back": "Volver",
@@ -947,7 +958,7 @@
     "header": "Adjuntar un enlace",
     "name": "Nombre del enlace (opcional)",
     "url": "Pegue un vinculo aqui...",
-    "edit_link":"Editar enlace"
+    "edit_link": "Editar enlace"
   },
   "remove_file": {
     "header": "Remover archivo",
@@ -1151,7 +1162,7 @@
   "new_messages": "Nuevos mensajes",
   "pdf": {
     "data_sponsor": "Datos del patrocinador ",
-    "date":"Fecha"
+    "date": "Fecha"
   },
   "images_online": {
     "header": "Subir imagen / video desde la web",
@@ -1177,28 +1188,52 @@
     "avatar": "Selecciona un avatar",
     "camera": "Tomar foto"
   },
-  "change_flag":{
-    "title":"Puedes cambiar tu bandera con la bandera de la comunidad autónoma a donde perteneces 😉",
-    "es":"España",
-    "ca":"Cataluña",
-    "eu":"País Vasco",
-    "an":"Andalucía",
-    "ar":"Aragón",
-    "as":"Principado de Asturias",
-    "bl":"Islas Baleares",
-    "can":"Canarias",
-    "cb":"Cantabria",
-    "cm":"Castilla - La mancha",
-    "cl":"Castilla y León",
-    "va":"Comunidad valenciana",
-    "ex":"Extremadura",
-    "gl":"Galicia",
-    "lr":"La Rioja",
-    "ma":"Comunidad de Madrid",
-    "mu":"Región de Murcia",
-    "na":"Comunidad Foral de Navarra"
+  "followers": "Seguidores",
+  "followings": "Siguiendo",
+  "change_flag": {
+    "title": "Puedes cambiar tu bandera con la bandera de la comunidad autónoma a donde perteneces 😉",
+    "es": "España",
+    "ca": "Cataluña",
+    "eu": "País Vasco",
+    "an": "Andalucía",
+    "ar": "Aragón",
+    "as": "Principado de Asturias",
+    "bl": "Islas Baleares",
+    "can": "Canarias",
+    "cb": "Cantabria",
+    "cm": "Castilla - La mancha",
+    "cl": "Castilla y León",
+    "va": "Comunidad valenciana",
+    "ex": "Extremadura",
+    "gl": "Galicia",
+    "lr": "La Rioja",
+    "ma": "Comunidad de Madrid",
+    "mu": "Región de Murcia",
+    "na": "Comunidad Foral de Navarra"
   },
-  "update_profile_data":"Modificar datos del perfil",
-  "goToAdmin": "Panel administrador"
-
+  "update_profile_data": "Modificar datos del perfil",
+  "goToAdmin": "Panel administrador",
+  "sponsors": {
+    "miniature": "(Miniatura)",
+    "miniature_hint": "De esta manera le aparecera a tus patrocinados en sus publicaciones",
+    "profile": "(Perfil)",
+    "change_btn":"Cambiar imagen",
+    "create": {
+      "account": {
+        "title": "Ingresa el nombre de usuario de tu patrocinador en sportyeah!",
+        "hint": "Asi se vera tu patrocinador en las publicaciones (miniatura) y en tu perfil (perfil)"
+      },
+      "action": {
+        "header": "Subir una imagen para el patrocinador",
+        "gallery": "Galeria",
+        "free": "Añadir imagen gratuita"
+      }
+    },
+    "custom": {
+      "title": "Personaliza tu tarjeta de patrocinio",
+      "subtitle": "De esta manera se mostrara tu tarjeta en los perfiles que patrocinas",
+      "btn": "Personalizar"
+    }
+  },
+  "no_results": "No hay resultados"
 }

@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 import getBlobDuration from "get-blob-duration";
 import { take } from "rxjs/operators";
-import { JdvimageService } from "src/app/service/jdvimage.service";
+import { FilesService } from "src/app/service/files.service";
 
 declare var MediaRecorder: any;
 
@@ -12,7 +12,7 @@ declare var MediaRecorder: any;
 })
 export class RecordAudioComponent implements OnInit {
   constructor(
-    public JDVImage:JdvimageService
+    public filesServices:FilesService
   ) {}
 
   @Output() newAudio = new EventEmitter<string>()
@@ -59,7 +59,7 @@ export class RecordAudioComponent implements OnInit {
    * @param formData
    */
   uploadAudio(formData: FormData) {
-    this.JDVImage.uploadAudio(formData)
+    this.filesServices.uploadAudio(formData)
       .pipe(take(1))
       .subscribe((url:string) => {
         this.newAudio.emit(url)

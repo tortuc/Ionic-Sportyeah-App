@@ -12,12 +12,20 @@ export class OptionNewsComponent implements OnInit {
     private popover:PopoverController
   ) { }
 
-  ngOnInit() {    
+  ngOnInit() {
+   
   }
 
   delete(){
     this.popover.dismiss({
       action:"delete",
+      news:this.news._id
+    })
+  }
+
+  restore(){
+    this.popover.dismiss({
+      action:"restore",
       news:this.news._id
     })
   }
