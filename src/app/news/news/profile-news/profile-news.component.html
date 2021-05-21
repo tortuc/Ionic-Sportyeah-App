@@ -23,8 +23,8 @@
           <h4>{{'news.programated_news' | translate}}</h4>
             <ion-row  *ngFor="let new of news?.slice(0,indexLast )">
               <ion-col  size="12">
-                <ion-img (click)="OpenNews(new._id)" *ngIf="new.principalImage"  class="imageMiniCard" [src]="new.principalImage"></ion-img>
-                <div (click)="OpenNews(new._id)"  *ngIf="new.principalVideo" style="position: relative; cursor: pointer;">
+                <ion-img  *ngIf="new.principalImage"  class="imageMiniCard" [src]="new.principalImage"></ion-img>
+                <div   *ngIf="new.principalVideo" style="position: relative; cursor: pointer;">
                   <video
                     controls="controls"
                     preload="metadata"
@@ -48,10 +48,13 @@
                 <h6 class="deporteTitle">{{ 'sport.'+new.sport| translate}}</h6>
                 <h6 style="font-size: 8 !important;color: rgb(58, 58, 58)">{{new.programatedDate | customDisplayDate:true}}</h6>
                 <ion-button (click)="reschedule(new)" style="--border-radius: 25px;">{{'news.reschedule' | translate}}</ion-button><br>
-                <h6 (click)="OpenNews(new._id)" class="newsTitle">{{new.headline}}</h6>
+                <h6  class="newsTitle">{{new.headline}}</h6>
               </ion-col>   
               <div style="background: rgb(136, 136, 136); height: 1px;width: 100%;margin-bottom: 10px;"></div>
             </ion-row>
+            <div style="text-align: center;">
+              <ion-button *ngIf="indexLast < news?.length" class="main-bg"  (click)="seeMore()">{{ 'news.see_more'| translate}}</ion-button>
+            </div>
         </ion-card>
       </ion-col>
     </ion-row>

@@ -24,13 +24,14 @@ export class ProfileNewsComponent implements OnInit {
 news
   ngOnInit() {
 this.newsService.findUserProgramatedNews(this.userService.User._id).subscribe((response)=>{
-  console.log(response);
-  
   this.news = response
 })
   }
 
-
+  indexLast = 3;
+  seeMore(){
+   this.indexLast += 3 
+  }
 
 
   editNews(idNews) {
