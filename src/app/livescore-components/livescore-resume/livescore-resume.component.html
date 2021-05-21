@@ -1,0 +1,145 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="end">
+      <ion-button>
+        <ion-button (click)="onClose()">
+          <ion-icon 
+            slot="icon-only"
+            name="close">    
+          </ion-icon>
+        </ion-button>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Resumen</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-segment 
+    [value]="currentTab" 
+    [scrollable]="false"
+    (ionChange)="onSegmentChange($event)">
+    <ion-segment-button [value]="Tabs.HOME">
+      {{ Tabs.HOME }}
+    </ion-segment-button>
+    <ion-segment-button [value]="Tabs.AWAY">
+      {{ Tabs.AWAY }}
+    </ion-segment-button>
+  </ion-segment>
+  <ion-list *ngIf="matchEvents && matchEvents.length > 0; else emptyState">
+    <ion-list-header>
+      {{ currentTab == Tabs.HOME ? homeName : awayName }}
+    </ion-list-header>
+    <ion-item *ngFor="let matchEvent of matchEvents">
+      <ng-container [ngSwitch]="matchEvent.event">
+        <ng-container *ngSwitchCase="MatchEventType.SUBSTITUTION">
+          <ion-row>
+            <ion-col size="2">
+              {{ "'"+matchEvent.time }}
+            </ion-col>
+            <ion-col size="1">
+              <ion-icon 
+                name="arrow-down" 
+                size="small" 
+                style="color: red">
+              </ion-icon>
+            </ion-col>
+            <ion-col size="4">
+              {{ matchEvent.player }}
+            </ion-col>
+            <ion-col size="1">
+              <ion-icon 
+                name="arrow-up" 
+                size="small" 
+                style="color: green">
+              </ion-icon>
+            </ion-col>
+            <ion-col size="4">
+              {{ matchEvent.info }}
+            </ion-col>
+          </ion-row>
+        </ng-container>
+        <ng-container *ngSwitchCase="MatchEventType.GOAL">
+          <ion-row>
+            <ion-col size="2">
+              {{ "'"+matchEvent.time }}
+            </ion-col>
+            <ion-col size="1">
+              <ion-icon 
+                name="football" 
+                size="small">
+              </ion-icon>
+            </ion-col>
+            <ion-col size="9">
+              {{ matchEvent.player }}
+            </ion-col>
+          </ion-row>
+        </ng-container>
+        <ng-container *ngSwitchCase="MatchEventType.YELLOW_CARD">
+          <ion-col size="2">
+            {{ "'"+matchEvent.time }}
+          </ion-col>
+          <ion-col size="1">
+            <ion-icon 
+              name="square" 
+              size="small"
+              style="color: yellow !important">
+            </ion-icon>
+          </ion-col>
+          <ion-col size="9">
+            {{ matchEvent.player }}
+          </ion-col>
+        </ng-container>
+        <ng-container *ngSwitchCase="MatchEventType.RED_CARD">
+          <ion-col size="2">
+            {{ "'"+matchEvent.time }}
+          </ion-col>
+          <ion-col size="1">
+            <ion-icon 
+              name="square" 
+              size="small"
+              style="color: red !important">
+            </ion-icon>
+          </ion-col>
+          <ion-col size="9">
+            {{ matchEvent.player }}
+          </ion-col>
+        </ng-container>
+        <ng-container *ngSwitchCase="MatchEventType.OWN_GOAL">
+          <ion-col size="2">
+            {{ "'"+matchEvent.time }}
+          </ion-col>
+          <ion-col size="1">
+            <ion-icon 
+              name="football" 
+              size="small">
+            </ion-icon>
+          </ion-col>
+          <ion-col size="9">
+            {{ matchEvent.player }}
+          </ion-col>
+        </ng-container>
+        <ng-container *ngSwitchCase="MatchEventType.GOAL_PENALTY">
+          <ion-col size="2">
+            {{ "'"+matchEvent.time }}
+          </ion-col>
+          <ion-col size="1">
+            <ion-icon 
+              name="football" 
+              size="small">
+            </ion-icon>
+          </ion-col>
+          <ion-col size="9">
+            {{ matchEvent.player }}
+          </ion-col>
+        </ng-container>
+      </ng-container>
+    </ion-item>
+  </ion-list>
+</ion-content>
+<ng-template #emptyState>
+  <ion-list lines="none">
+    <ion-item class="ion-text-center">
+      No hay información para mostrar
+    </ion-item>
+  </ion-list>
+</ng-template>

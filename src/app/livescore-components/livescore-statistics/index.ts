@@ -1,0 +1,1 @@
+export { LivescoreStatisticsComponent } from './livescore-statistics.component';

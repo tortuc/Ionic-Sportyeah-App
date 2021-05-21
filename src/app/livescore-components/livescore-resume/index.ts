@@ -1,0 +1,1 @@
+export { LivescoreResumeComponent } from './livescore-resume.component';

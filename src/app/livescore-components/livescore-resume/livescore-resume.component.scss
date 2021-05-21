@@ -1,0 +1,11 @@
+ion-item {
+  font-size: 8pt;
+}
+
+ion-item ion-row {
+  width: 100%;
+  align-items: center;
+  ion-col {
+    display: flex;
+  }
+}

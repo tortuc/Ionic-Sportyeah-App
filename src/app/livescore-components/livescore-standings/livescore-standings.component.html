@@ -1,0 +1,68 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="end">
+      <ion-button>
+        <ion-button (click)="onClose()">
+          <ion-icon 
+            slot="icon-only"
+            name="close">    
+          </ion-icon>
+        </ion-button>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Clasificación</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-list lines="full">
+    <ion-item>
+      <ion-label>
+        <ion-row>
+          <ion-col size="8">
+            <h3>{{ competition ? competition.name : competitionName }}</h3>
+          </ion-col>
+          <ion-col size="4" class="details">
+            <ion-row>
+              <ion-col size="2">PJ</ion-col>
+              <ion-col size="2">PG</ion-col>
+              <ion-col size="2">PE</ion-col>
+              <ion-col size="2">PP</ion-col>
+              <ion-col size="2">G</ion-col>
+              <ion-col size="2">PTS</ion-col>
+            </ion-row>
+          </ion-col>
+        </ion-row>
+      </ion-label>
+    </ion-item>
+    <ion-item *ngFor="let standing of standings">
+      <ion-label>
+        <ion-row>
+          <ion-col size="8">
+            <ion-row>
+              <ion-col 
+                size="1" 
+                class="rank" 
+                [ngClass]="{ 'team': standing.name == homeName || standing.name == awayName }">
+                {{ standing.rank }}
+              </ion-col>
+              <ion-col size="1"></ion-col>
+              <ion-col size="10">
+                {{ standing.name }}
+              </ion-col>
+            </ion-row>
+          </ion-col>
+          <ion-col size="4" class="details">
+            <ion-row>
+              <ion-col size="2">{{ standing.matches }}</ion-col>
+              <ion-col size="2">{{ standing.won }}</ion-col>
+              <ion-col size="2">{{ standing.drawn }}</ion-col>
+              <ion-col size="2">{{ standing.lost }}</ion-col>
+              <ion-col size="2">{{ standing.goalsScored }}</ion-col>
+              <ion-col size="2">{{ standing.points }}</ion-col>
+            </ion-row>
+          </ion-col>
+        </ion-row>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

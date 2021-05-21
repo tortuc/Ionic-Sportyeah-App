@@ -7,7 +7,13 @@ import {
   PastMatch, 
   PastMatchAdapter, 
   Fixture, 
-  FixtureAdapter 
+  FixtureAdapter,
+  MatchEvent,
+  MatchEventAdapter,
+  Standing,
+  StandingAdapter,
+  MatchStatistic,
+  MatchStatisticAdapter,
 } from '../models';
 import { Observable, forkJoin } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -16,6 +22,9 @@ enum Endpoints {
   SCORES = 'scores',
   PAST_MATCHES = 'past-matches',
   FIXTURES = 'fixtures',
+  EVENTS = 'events',
+  STANDINGS = 'standings',
+  STATISTIC = 'statistic',
 }
 
 @Injectable({
@@ -51,6 +60,36 @@ export class LivescoreService {
     .pipe(
       map((data: any): Fixture[] => data.data.fixtures.map((fixture: any): Fixture => {
         return new FixtureAdapter().deserialize(fixture);
+      }))
+    );
+  }
+
+  public getMatchEvents(matchId: number): Observable<MatchEvent[]> {
+    return this.http
+    .get<MatchEvent[]>(`${ env.URL_API }/livescore/${ Endpoints.EVENTS }/${ matchId }`)
+    .pipe(
+      map((data: any): MatchEvent[] => data.data.event.map((matchEvent: any): MatchEvent => {
+        return new MatchEventAdapter().deserialize(matchEvent);
+      }))
+    );
+  }
+
+  public getMatchStatistic(matchId: number): Observable<MatchStatistic> {
+    return this.http
+    .get<MatchStatistic[]>(`${ env.URL_API }/livescore/${ Endpoints.STATISTIC }/${ matchId }`)
+    .pipe(
+      map((data: any): MatchStatistic => {
+        return new MatchStatisticAdapter().deserialize(data.data);
+      })
+    );
+  }
+
+  public getCompetitionStandings(competitionId: number): Observable<Standing[]> {
+    return this.http
+    .get<Standing[]>(`${ env.URL_API }/livescore/${ Endpoints.STANDINGS }/competition/${ competitionId }`)
+    .pipe(
+      map((data: any): Standing[] => data.data.table.map((standing: any): Standing => {
+        return new StandingAdapter().deserialize(standing);
       }))
     );
   }
