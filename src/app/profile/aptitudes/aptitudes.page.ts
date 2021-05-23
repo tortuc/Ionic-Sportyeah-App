@@ -4,7 +4,7 @@ import { AptitudesService } from 'src/app/service/aptitudes.service';
 import { UserService } from 'src/app/service/user.service';
 
 @Component({
-  selector: 'app-aptitudes',
+  selector: 'aptitudes',
   templateUrl: './aptitudes.page.html',
   styleUrls: ['./aptitudes.page.scss'],
 })

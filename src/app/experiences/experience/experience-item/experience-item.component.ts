@@ -13,6 +13,13 @@ import { UserService } from "src/app/service/user.service";
 import { CreateExperienceComponent } from "../../create-experience/create-experience.component";
 import { ExperienceItemPreviewFilesComponent } from "./experience-item-preview-files/experience-item-preview-files.component";
 
+enum Texts  {
+  deleteHeader = "experience.deleteModal.alert",
+  deleteMessage = "experience.deleteModal.confirm",
+  deleteCancel = "experience.deleteModal.cancel",
+  deleteAccept = "experience.deleteModal.accept",
+}
+
 @Component({
   selector: "experience-item",
   templateUrl: "./experience-item.component.html",
@@ -35,17 +42,17 @@ export class ExperienceItemComponent implements OnInit {
   async delete() {
     const alert = await this.alertController.create({
       cssClass: "my-custom-class",
-      header: this.translate.instant("experience.deleteModal.alert"),
-      message: this.translate.instant("experience.deleteModal.confirm"),
+      header: this.translate.instant(Texts.deleteHeader),
+      message: this.translate.instant(Texts.deleteMessage),
       buttons: [
         {
-          text: this.translate.instant("experience.deleteModal.cancel"),
+          text: this.translate.instant(Texts.deleteCancel),
           role: "cancel",
           cssClass: "secondary",
           handler: (blah) => {},
         },
         {
-          text: this.translate.instant("experience.deleteModal.accept"),
+          text: this.translate.instant(Texts.deleteAccept),
           handler: () => {
             this.experienceService.delete(this.experience._id).subscribe(() => {
               this.experience.deleted = true;

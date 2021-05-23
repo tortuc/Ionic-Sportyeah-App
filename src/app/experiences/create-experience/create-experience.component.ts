@@ -7,6 +7,7 @@ import {
   ModalController,
 } from "@ionic/angular";
 import { TranslateService } from "@ngx-translate/core";
+import * as moment from "moment";
 import { LinkYoutubeComponent } from "src/app/components/link-youtube/link-youtube.component";
 import { IExperience } from "src/app/models/IExperience";
 import { IFile } from "src/app/models/iPost";
@@ -14,6 +15,12 @@ import { ExperienceService } from "src/app/service/experience.service";
 import { FilesService } from "src/app/service/files.service";
 import { UserService } from "src/app/service/user.service";
 import { validarFechaDeInicio } from "src/app/validators/twoDates.validator";
+
+enum Texts {
+  fileHeader = "profile_tools.multimedia.header",
+  fileImages = "profile_tools.multimedia.images",
+  fileYoutube = "profile_tools.multimedia.youtube",
+}
 
 @Component({
   selector: "app-create-experience",
@@ -71,8 +78,11 @@ export class CreateExperienceComponent implements OnInit {
         federationTeam: [this.experience.federationTeam, [Validators.required]],
         nowIn: [this.experience.nowIn],
         place: [this.experience.place, [Validators.required]],
-        initDate: [this.experience.initDate, [Validators.required]],
-        finishDate: [this.experience.finishDate],
+        initDate: [
+          moment(this.experience.initDate).format("YYYY-MM-DD"),
+          [Validators.required],
+        ],
+        finishDate: [moment(this.experience.finishDate).format("YYYY-MM-DD")],
         title: [this.experience.title, [Validators.required]],
         description: [this.experience.description, [Validators.required]],
       },
@@ -103,32 +113,28 @@ export class CreateExperienceComponent implements OnInit {
     this.form.controls.finishDate.setValue(new Date());
   }
 
-  deleteContent(url: string) {
-    this.content.splice(this.content.indexOf(url), 1);
-  }
-
   files: IFile[] = [];
   async newFile() {
     let action = await this.actionSheetCtrl.create({
-      header: "Subir un archivo",
+      header: this.translate.instant(Texts.fileHeader),
       buttons: [
         {
           icon: "images",
-          text: "Imagen/video",
+          text: this.translate.instant(Texts.fileImages),
           handler: () => {
             this.fileChooser.nativeElement.click();
           },
         },
         {
           icon: "logo-youtube",
-          text: "Video de youtube",
+          text: this.translate.instant(Texts.fileYoutube),
           handler: () => {
             this.youtubeVideo();
           },
         },
         {
           icon: "close",
-          text: "Cancelar",
+          text: this.translate.instant("cancel"),
         },
       ],
     });

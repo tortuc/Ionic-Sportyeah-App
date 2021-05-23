@@ -1,8 +1,5 @@
-<ion-card class="main-border" style="padding: 10px; margin: 0">
-  <div
-    *ngIf="user?._id != userService.User?._id"
-    style="text-align: center; margin-bottom: 10px"
-  >
+<ion-card class="main-border" style="padding: 10px; margin: 0;margin-top: 10px;">
+  <div *ngIf="user?._id != userService.User?._id" class="public_title">
     <h5>{{Texts.titleUser | translate:user}}</h5>
   </div>
   <div

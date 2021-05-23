@@ -31,8 +31,8 @@
       *ngIf="user && user != 404"
       class="height-100vh ion-justify-content-center"
     >
-      <ion-col class="profile-col"  size-md="7" size-sm="12">
-        <ion-card ngClass.xs="m-p-0" style="margin: 0;">
+      <ion-col class="profile-col" size-md="7" size-sm="12">
+        <ion-card ngClass.xs="m-p-0" style="margin: 0">
           <ion-card-header
             class="text-center"
             style="padding-top: 0; padding-left: 0; padding-right: 0"
@@ -159,25 +159,13 @@
 
             <experience
               *ngIf="['player','scout','press', 'executive','staff'].includes(user?.profile_user)"
-              [id]="user?._id"
               [user]="user"
             ></experience>
 
-            <ion-card
-              ngClass.xs="m-p-0"
-              class="mt5"
-              *ngIf="
-                user?.profile_user !== 'representative'
-              "
-            >
-              <ion-grid style="padding: 0" class="ion-justify-content-center">
-                <ion-row class="ion-justify-content-center">
-                  <ion-col ngClass.xs="m-p-0" size-md="12" size-sm="12">
-                    <app-awards [id]="id_visited"></app-awards>
-                  </ion-col>
-                </ion-row>
-              </ion-grid>
-            </ion-card>
+            <awards
+              *ngIf="['player','scout','press', 'executive','staff'].includes(user?.profile_user)"
+              [user]="user"
+            ></awards>
 
             <ion-card
               ngClass.xs="m-p-0"
@@ -194,7 +182,7 @@
               <ion-grid style="padding: 0" class="ion-justify-content-center">
                 <ion-row class="ion-justify-content-center">
                   <ion-col ngClass.xs="m-p-0" size-md="12" size-sm="12">
-                    <app-aptitudes [id]="id_visited"></app-aptitudes>
+                    <aptitudes [id]="id_visited"></aptitudes>
                   </ion-col>
                 </ion-row>
               </ion-grid>
@@ -205,7 +193,7 @@
           <!-- POST SEGMENT -->
 
           <div *ngSwitchCase="segmentOptions.posts">
-            <ion-grid style="padding: 0;">
+            <ion-grid style="padding: 0">
               <ion-row style="justify-content: center">
                 <ion-button
                   class="reload-btn"
@@ -222,7 +210,7 @@
                 >
               </ion-row>
               <ion-row *ngFor="let post of posts" class="">
-                <ion-col style="padding: 0;" size="12">
+                <ion-col style="padding: 0" size="12">
                   <view-post [post]="post"></view-post>
                 </ion-col>
               </ion-row>

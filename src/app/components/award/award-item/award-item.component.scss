@@ -1,9 +1,9 @@
-.divExperiences {
+.divawards {
   border-bottom: 2px solid rgb(243 242 239);
-  display:flex;
+  display: flex;
 }
 
-.experience-content {
+.award-content {
   margin-bottom: 10px;
   box-shadow: 0 0 2px 2px var(--color-primary);
   border-radius: 12px;
@@ -28,12 +28,12 @@
   }
 }
 
-.delete{
-    visibility: hidden;
-    position: absolute;
+.delete {
+  visibility: hidden;
+  position: absolute;
 }
 
-.preview-content{
+.preview-content {
   min-width: 180px;
   max-width: 200px;
   display: flex;

@@ -49,7 +49,7 @@ export class ExperienceItemPreviewFilesComponent implements OnInit, OnDestroy {
   }
 
   async openSlider() {
-    this.interval.unsubscribe();
+    this.interval?.unsubscribe();
     let modal = await this.modalCtrl.create({
       component: ExperienceFilesSliderComponent,
       componentProps: { files: this.files },

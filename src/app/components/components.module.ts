@@ -6,16 +6,12 @@ import { ModalCreatedComponent } from "./challenges/modal-created/modal-created.
 import { CamaraBrowserComponent } from "./challenges/camara-browser/camara-browser.component";
 import { CreateChallengeFormComponent } from "./challenges/create-challenge-form/create-challenge-form.component";
 import { VideosCComponent } from "./challenges/videos-c/videos-c.component";
-import { AwardsAccordionComponent } from "./challenges/awards-accordion/awards-accordion.component";
-import { AwardsListComponent } from "./challenges/awards-list/awards-list.component";
-import { ShowAwardsComponent } from "./challenges/show-awards/show-awards.component";
 import { FriendsMobileCComponent } from "./challenges/friends-mobile-c/friends-mobile-c.component";
 import { ButtonSharedComponent } from "./challenges/button-shared/button-shared.component";
 import { ButtonCommentsComponent } from "./challenges/button-comments/button-comments.component";
 import { ChallengeContentComponent } from "./challenges/challenge-content/challenge-content.component";
 import { ChallengesPostHeaderComponent } from "./challenges/challenges-post-header/challenges-post-header.component";
 import { ChallengesPostComponent } from "./challenges/challenges-post/challenges-post.component";
-import { CreateAwardChallengeComponent } from "./challenges/create-award-challenge/create-award-challenge.component";
 import { ChallengeReactionsComponent } from "./challenges/challenge-reactions/challenge-reactions.component";
 import { ChallengeCommentsComponent } from "./challenges/challenge-comments/challenge-comments.component";
 import { CreateChallengeComponent } from "./challenges/create/create.component";
@@ -49,7 +45,6 @@ import { ViewImageComponent } from "./view-image/view-image.component";
 import { EmojiModule } from "@ctrl/ngx-emoji-mart/ngx-emoji";
 import { ReactionsPostsComponent } from "./reactions-posts/reactions-posts.component";
 import { ViewProfileComponent } from "./view-profile/view-profile.component";
-import { AwardsPage } from "../profile/awards/awards.page";
 import { AptitudesPage } from "../profile/aptitudes/aptitudes.page";
 import { IonicRatingModule } from "ionic4-rating";
 import { StructureComponent } from "src/app/profile/structure/structure.component";
@@ -89,12 +84,10 @@ const components = [
   ButtonNotificationComponent,
   ButtonSearchFriendComponent,
   ViewFilesComponent,
-  CreateAwardChallengeComponent,
   ChallengesPostHeaderComponent,
   ChallengeContentComponent,
   PreviewFilesComponent,
   ViewImageComponent,
-  AwardsPage,
   LinkYoutubeComponent,
   AptitudesPage,
   ReactionsPostsComponent,
@@ -105,9 +98,6 @@ const components = [
   ButtonCommentsComponent,
   ButtonSharedComponent,
   FriendsMobileCComponent,
-  ShowAwardsComponent,
-  AwardsListComponent,
-  AwardsAccordionComponent,
   CreateChallengeFormComponent,
   VideosCComponent,
   CamaraBrowserComponent,

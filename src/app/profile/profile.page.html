@@ -159,7 +159,6 @@
                 >{{'labels-profile-segment.posts' | translate}}</ion-label
               >
             </ion-segment-button>
-           
           </ion-segment>
         </ion-card>
         <div *ngIf="profile">
@@ -171,28 +170,17 @@
             [user]="userService.User"
           ></experience>
 
-          <ion-card
-            ngClass.xs="m-p-0"
-            class="mt5"
-            *ngIf="
-              userService.User.profile_user !== 'representative'
-            "
-          >
-            <ion-grid style="padding: 0" class="ion-justify-content-center">
-              <ion-row class="ion-justify-content-center">
-                <ion-col ngClass.xs="m-p-0" size-md="12" size-sm="12">
-                  <app-awards [id]="userService.User?._id"></app-awards>
-                </ion-col>
-              </ion-row>
-            </ion-grid>
-          </ion-card>
+          <awards
+            *ngIf="['player','scout','press','executive','staff'].includes(userService.User?.profile_user)"
+            [user]="userService.User"
+          ></awards>
 
           <ion-card
             ngClass.xs="m-p-0"
             class="mt5"
             *ngIf="!['sponsor','federation','foundation','representative','association','club'].includes(userService.User.profile_user)"
           >
-            <app-aptitudes [id]="userService.User?._id"></app-aptitudes>
+            <aptitudes [id]="userService.User?._id"></aptitudes>
           </ion-card>
         </div>
         <!-- FINISH SEGMENT PROFILE  -->
@@ -222,7 +210,6 @@
           </ion-grid>
         </div>
         <!-- FINISH SEGMENT POSTS -->
-      
       </ion-col>
 
       <ion-col

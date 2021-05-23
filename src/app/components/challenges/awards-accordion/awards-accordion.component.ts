@@ -2,7 +2,7 @@ import { IAward } from './../../../service/challenge.service';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
-  selector: 'app-awards-accordion',
+  selector: 'awards-accordion',
   templateUrl: './awards-accordion.component.html',
   styleUrls: ['./awards-accordion.component.scss'],
 })

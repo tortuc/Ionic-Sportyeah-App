@@ -7,19 +7,15 @@ import { PipesModule } from "../pipes/pipes.module";
 import { RouterModule } from "@angular/router";
 import { ExperiencePage } from "./experience/experience.page";
 import { CreateExperienceComponent } from "./create-experience/create-experience.component";
-import { ExperiencieFilesPreviewComponent } from "./experiencie-files-preview/experiencie-files-preview.component";
 import { ComponentsSharedModule } from "../shared-components/components-shared.module";
 import { ExperienceItemComponent } from "./experience/experience-item/experience-item.component";
-import { ExperienceItemPreviewFilesComponent } from "./experience/experience-item/experience-item-preview-files/experience-item-preview-files.component";
-import { ExperienceFilesSliderComponent } from "./experience/experience-item/experience-files-slider/experience-files-slider.component";
+import { ProfileSharedComponentsModule } from "../profile/profile-shared-components/profile-shared-components.module";
 
 const components = [
   ExperiencePage,
   CreateExperienceComponent,
-  ExperiencieFilesPreviewComponent,
-  ExperienceItemComponent,
-  ExperienceItemPreviewFilesComponent,
-  ExperienceFilesSliderComponent
+  ExperienceItemComponent
+ 
 ];
 
 @NgModule({
@@ -33,6 +29,7 @@ const components = [
     PipesModule,
     ReactiveFormsModule,
     ComponentsSharedModule,
+    ProfileSharedComponentsModule
   ],
   exports: components,
 })

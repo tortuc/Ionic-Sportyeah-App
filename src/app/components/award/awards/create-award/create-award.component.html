@@ -1,0 +1,102 @@
+<input
+  type="file"
+  #fileChooser
+  accept="image/*,video/*"
+  (change)="uploadFile($event)"
+  hidden
+  multiple
+/>
+
+<ion-content>
+  <loading-progress class="progress"></loading-progress>
+
+  <ion-icon
+    name="close-outline"
+    (click)="modalCtrl.dismiss()"
+    class="close-modal"
+  ></ion-icon>
+  <div class="header">
+    <h4>{{ Texts.title | translate }}</h4>
+  </div>
+
+  <form [formGroup]="form">
+    <ion-grid>
+      <ion-row>
+        <ion-col size-sm="12" size-xs="12">
+          <ion-item>
+            <ion-label position="stacked">{{
+              "awards.form.position" | translate
+            }}</ion-label>
+            <ion-input type="text" formControlName="position"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col size-sm="12" size-xs="12">
+          <ion-item>
+            <ion-label position="stacked ">{{
+              "awards.form.federationTeam" | translate
+            }}</ion-label>
+            <ion-input type="text" formControlName="federationTeam"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col size-sm="12" size-xs="12">
+          <ion-item>
+            <ion-label position="stacked ">{{
+              "awards.form.place" | translate
+            }}</ion-label>
+            <ion-input formControlName="place" type="text"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col size-sm="12" size-xs="12">
+          <ion-item>
+            <ion-label position="stacked ">{{
+              "awards.form.eventDate" | translate
+            }}</ion-label>
+            <ion-input formControlName="eventDate" type="date"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col size-sm="12" size-xs="12">
+          <ion-item>
+            <ion-label position="stacked ">{{
+              "awards.form.title" | translate
+            }}</ion-label>
+            <ion-input formControlName="title" type="text"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col size-sm="12" size-xs="12">
+          <ion-item>
+            <ion-label position="stacked ">{{
+              "awards.form.description" | translate
+            }}</ion-label>
+            <ion-textarea
+              formControlName="description"
+              type="text"
+            ></ion-textarea>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <div class="text-center">
+        <h5>
+          {{ "awards.form.files" | translate }}
+        </h5>
+        <experiencie-files-preview
+          [(files)]="files"
+        ></experiencie-files-preview>
+
+        <ion-button class="btn-primary" (click)="newFile()">
+          <ion-icon slot="start" name="add-circle"></ion-icon>
+          {{ "awards.form.multimediaContent" | translate }}
+        </ion-button>
+      </div>
+      <div style="text-align: center; padding: 10px">
+        <ion-button
+          (click)="save()"
+          [disabled]="form.invalid"
+          class="btn-primary"
+        >
+          {{ "awards.btn" | translate }}
+        </ion-button>
+      </div>
+    </ion-grid>
+  </form>
+</ion-content>

@@ -1,21 +1,23 @@
 /* tslint:disable:no-unused-variable */
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
+import { DebugElement } from '@angular/core';
 
-import { ExperienceItemComponent } from './experience-item.component';
+import { AwardItemComponent } from './award-item.component';
 
-describe('ExperienceItemComponent', () => {
-  let component: ExperienceItemComponent;
-  let fixture: ComponentFixture<ExperienceItemComponent>;
+describe('AwardItemComponent', () => {
+  let component: AwardItemComponent;
+  let fixture: ComponentFixture<AwardItemComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ExperienceItemComponent ]
+      declarations: [ AwardItemComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ExperienceItemComponent);
+    fixture = TestBed.createComponent(AwardItemComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
