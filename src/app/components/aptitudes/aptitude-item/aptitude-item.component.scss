@@ -1,0 +1,26 @@
+.options-btn {
+  position: absolute;
+  position: absolute;
+  top: 5px;
+  right: 10px;
+}
+
+.content {
+  margin-bottom: 10px;
+  box-shadow: 0 0 2px 2px var(--color-primary);
+  border-radius: 12px;
+  padding: 10px;
+  position: relative;
+}
+
+.delete {
+  visibility: hidden;
+  position: absolute;
+}
+
+@media screen and (max-width: 600px) {
+  .options-btn {
+    bottom: 10px;
+    top: unset !important;
+  }
+}

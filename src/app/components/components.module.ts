@@ -45,7 +45,6 @@ import { ViewImageComponent } from "./view-image/view-image.component";
 import { EmojiModule } from "@ctrl/ngx-emoji-mart/ngx-emoji";
 import { ReactionsPostsComponent } from "./reactions-posts/reactions-posts.component";
 import { ViewProfileComponent } from "./view-profile/view-profile.component";
-import { AptitudesPage } from "../profile/aptitudes/aptitudes.page";
 import { IonicRatingModule } from "ionic4-rating";
 import { StructureComponent } from "src/app/profile/structure/structure.component";
 import { ChallengesPostOptionsComponent } from "./challenges/challenges-post-options/challenges-post-options.component";
@@ -89,7 +88,6 @@ const components = [
   PreviewFilesComponent,
   ViewImageComponent,
   LinkYoutubeComponent,
-  AptitudesPage,
   ReactionsPostsComponent,
   ViewProfileComponent,
   CreateChallengeComponent,

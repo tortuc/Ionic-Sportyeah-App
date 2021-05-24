@@ -17,6 +17,7 @@ import { ComponentsSharedModule } from "../shared-components/components-shared.m
 import { SponsorsModule } from "../sponsors-components/sponsors.module";
 import { ExperiencesModule } from "../experiences/experiences.module";
 import { AwardModule } from "../components/award/award.module";
+import { AptitudesModule } from "../components/aptitudes/aptitudes.module";
 
 @NgModule({
   imports: [
@@ -31,7 +32,8 @@ import { AwardModule } from "../components/award/award.module";
     PostComponetsModule,
     SponsorsModule,
     ExperiencesModule,
-    AwardModule
+    AwardModule,
+    AptitudesModule
   ],
   declarations: [UserPage, CarrouselComponent],
 })

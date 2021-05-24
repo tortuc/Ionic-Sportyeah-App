@@ -5,8 +5,11 @@ import { getToken } from "../helpers/token";
 import { AlertController } from "@ionic/angular";
 import { TranslateService } from "@ngx-translate/core";
 import { UserService } from "./user.service";
+import { Howl } from "howler";
+import { take } from "rxjs/operators";
+import { Subject } from "rxjs";
 
-interface Aptitudes {
+export interface Aptitude {
   _id: string;
   userId: string;
   score: string;
@@ -26,77 +29,70 @@ export class AptitudesService {
     private userService: UserService
   ) {}
   private route: string = "aptitude";
-  public noAptitudes: boolean = true;
-  public aptitudes: Aptitudes[] = [];
-  public aptitudeSelected: Aptitudes = null;
+
+  audio = new Howl({
+    src: ["assets/sounds/comment.mp3"],
+  });
+
+  public commentAudio() {
+    this.audio.load();
+    this.audio.play();
+  }
 
   getByUser(userId: string) {
-    this.http
-      .get(`${environment.URL_API}/${this.route}/${userId}`, {
+    return this.http
+      .get<Aptitude[]>(`${environment.URL_API}/${this.route}/${userId}`, {
         headers: new HttpHeaders({ "access-token": getToken() }),
       })
-      .subscribe((res: any) => {
-        this.aptitudes = res;
-        this.noAptitudes = true;
-        this.aptitudes.map((e, i) =>
-          e.deleted !== false ? null : (this.noAptitudes = false)
-        ); 
+      .pipe(take(1));
+  }
+
+  async create(item: Aptitude) {
+    return this.http
+      .post(`${environment.URL_API}/${this.route}/create`, item, {
+        headers: new HttpHeaders({ "access-token": getToken() }),
+      })
+      .subscribe((item: Aptitude) => {
+        this.itemCreated(item);
       });
   }
 
-  create(aptitude: Aptitudes) {
-    return this.http.post(
-      `${environment.URL_API}/${this.route}/create`,
-      aptitude,
-      {
+
+
+  
+  delete(id: string) {
+    return this.http
+      .delete<Aptitude>(`${environment.URL_API}/${this.route}/delete/${id}`, {
         headers: new HttpHeaders({ "access-token": getToken() }),
-      }
-    );
+      })
+      .pipe(take(1));
   }
 
-  async delete(id:string){
-    const alert = await this.alertController.create({
-      cssClass: "my-custom-class",
-      header: this.translate.instant("experience.deleteModal.alert"),
-      message: this.translate.instant("aptitudes.confirm"),
-      buttons: [
-        {
-          text: this.translate.instant("experience.deleteModal.cancel"),
-          role: "cancel",
-          cssClass: "secondary",
-          handler: (blah) => {
-          },
-        },
-        {
-          text: this.translate.instant("experience.deleteModal.accept"),
-          handler: () => {
-            this.http.delete(
-              `${environment.URL_API}/${this.route}/delete/${id}`,
-              {
-                headers: new HttpHeaders({ "access-token": getToken() }),
-              }
-            ).subscribe(()=>this.getByUser(this.userService.User._id));
-          },
-        },
-      ],
-    });
+ 
+  async edit(id, item: Aptitude) {
 
-    await alert.present();
-  }
-
-  edit(aptitude: Aptitudes) {
-    const id = aptitude._id
-    delete aptitude._id
-    return this.http.put(
-      `${environment.URL_API}/${this.route}/edit/${id}`,
-      aptitude,
-      {
+    return this.http
+      .put(`${environment.URL_API}/${this.route}/edit/${id}`, item, {
         headers: new HttpHeaders({ "access-token": getToken() }),
-      }
-    ).subscribe(()=>this.getByUser(this.userService.User._id),err=>{});
+      })
+      .pipe(take(1))
+      .subscribe((item: Aptitude) => {
+        this.commentAudio();
+        this.editedItem$.next(item);
+      });
   }
 
-  changeSelected(aptitude: Aptitudes){
-    this.aptitudeSelected = aptitude;
+
+
+  // observable para cuando se edite el item
+  public editedItem$ = new Subject<Aptitude>();
+
+  // observable para cuando hay un nuevo item
+  public newItem$ = new Subject<Aptitude>();
+
+  // manda un evento para todos los observables suscritos
+  itemCreated(Item) {
+    this.newItem$.next(Item);
+    this.commentAudio();
   }
 }

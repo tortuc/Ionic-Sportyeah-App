@@ -45,7 +45,7 @@ export class ExperienceItemPreviewFilesComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.interval.unsubscribe();
+    this.interval?.unsubscribe();
   }
 
   async openSlider() {

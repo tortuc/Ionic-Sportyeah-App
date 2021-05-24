@@ -1,0 +1,27 @@
+<ion-card style="padding: 10px; margin: 0; margin-top: 5px" class="main-border">
+  <div style="text-align: center; padding: 10px">
+    <h4 style="color: black; font-weight: bold">
+      {{(user._id == userService.User?._id? Texts.title: Texts.publicTitle) |
+      translate:user}}
+    </h4>
+
+    <div *ngIf="user._id == userService.User?._id">
+      <p>{{Texts.hint | translate}}</p>
+      <ion-button class="btn-primary" (click)="new()"
+        >{{Texts.createBtn | translate}}</ion-button
+      >
+    </div>
+  </div>
+
+  <div *ngFor="let e of aptitudes" style="margin-bottom: 10px">
+    <aptitude-item [aptitude]="e"></aptitude-item>
+  </div>
+  <div
+      class="text-center"
+      *ngIf="aptitudes.length === 0 && user?._id != userService.User?._id"
+    >
+      <img src="assets/logos/imagotipo_azul.png" style="height: 100px" alt="" />
+      <p>{{Texts.no_info | translate}}</p>
+    </div>
+  
+</ion-card>

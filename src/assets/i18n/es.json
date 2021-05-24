@@ -633,9 +633,13 @@
     }
   },
   "aptitudes": {
-    "title": "Aptitudes",
+    "title": "Aptitudes y destrezas",
+    "publicTitle": "Aptitudes y destrezas de {{name}} {{last_name}}",
     "create": "Añadir Aptitud",
-    "no_info": "No se encuentra información.",
+    "edit": "Editar Aptitud",
+    "hint":"Aqui puedes indicar tus aptitudes y destrezas",
+    "createBtn": "Añadir Aptitud",
+    "no_info": "Este perfil no tiene aptitudes.",
     "form": {
       "federationTeam": "Medio que otorga premio o reconocimientos.",
       "score": "Nivel de Destreza",
@@ -643,7 +647,8 @@
       "date": "Día de creación",
       "deleted": "Estado"
     },
-    "btn": "Cargar",
+    "btn": "Guardar",
+    "btnEdit": "Guardar cambios",
     "confirm": "Esta seguro que desea eliminar este reconocimiento."
   },
   "profile_tools": {

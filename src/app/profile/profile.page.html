@@ -175,13 +175,8 @@
             [user]="userService.User"
           ></awards>
 
-          <ion-card
-            ngClass.xs="m-p-0"
-            class="mt5"
-            *ngIf="!['sponsor','federation','foundation','representative','association','club'].includes(userService.User.profile_user)"
-          >
-            <aptitudes [id]="userService.User?._id"></aptitudes>
-          </ion-card>
+          <aptitudes   *ngIf="['player','scout','press','executive','staff'].includes(userService.User?.profile_user)" [user]="userService.User"></aptitudes>
+
         </div>
         <!-- FINISH SEGMENT PROFILE  -->
         <!-- SEGMENT POSTST -->

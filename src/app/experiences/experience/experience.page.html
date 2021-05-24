@@ -1,12 +1,12 @@
 <ion-card class="main-border" style="padding: 10px; margin: 0;margin-top: 10px;">
   <div *ngIf="user?._id != userService.User?._id" class="public_title">
-    <h5>{{Texts.titleUser | translate:user}}</h5>
+    <h4>{{Texts.titleUser | translate:user}}</h4>
   </div>
   <div
     *ngIf="user?._id == userService.User?._id"
     style="text-align: center; margin-bottom: 10px"
   >
-    <h5 style="color: black; font-weight: bold">{{Texts.title | translate}}</h5>
+    <h4 style="color: black; font-weight: bold">{{Texts.title | translate}}</h4>
     <p>{{Texts.hint | translate}}</p>
 
     <ion-button class="btn-primary" (click)="newExperience()"
