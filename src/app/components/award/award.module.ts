@@ -5,22 +5,16 @@ import { IonicModule } from "@ionic/angular";
 import { TranslateModule } from "@ngx-translate/core";
 import { PipesModule } from "src/app/pipes/pipes.module";
 import { AwardsPage } from "./awards/awards.page";
-import { AwardsListComponent } from "../challenges/awards-list/awards-list.component";
-import { AwardsAccordionComponent } from "../challenges/awards-accordion/awards-accordion.component";
-import { ShowAwardsComponent } from "../challenges/show-awards/show-awards.component";
-import { CreateAwardChallengeComponent } from "../challenges/create-award-challenge/create-award-challenge.component";
 import { CreateAwardComponent } from "./awards/create-award/create-award.component";
 import { ProfileSharedComponentsModule } from "src/app/profile/profile-shared-components/profile-shared-components.module";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { ComponentsSharedModule } from "src/app/shared-components/components-shared.module";
 import { AwardItemComponent } from "./award-item/award-item.component";
+import { EmojiModule } from "@ctrl/ngx-emoji-mart/ngx-emoji";
+import { PickerModule } from "@ctrl/ngx-emoji-mart";
 
 const components = [
   AwardsPage,
-  AwardsListComponent,
-  AwardsAccordionComponent,
-  ShowAwardsComponent,
-  CreateAwardChallengeComponent,
   CreateAwardComponent,
   AwardItemComponent
 ];
@@ -36,7 +30,9 @@ const components = [
     FormsModule,
     ReactiveFormsModule,
     ProfileSharedComponentsModule,
-    ComponentsSharedModule
+    ComponentsSharedModule,
+    EmojiModule,
+    PickerModule
   ],
   exports: components,
 })

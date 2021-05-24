@@ -65,6 +65,10 @@ import { MonthComponent } from "./analitics-views/month/month.component";
 import { WeekComponent } from "./analitics-views/week/week.component";
 import { YearComponent } from "./analitics-views/year/year.component";
 import { ComponentsSharedModule } from "../shared-components/components-shared.module";
+import { AwardsListComponent } from "./challenges/awards-list/awards-list.component";
+import { CreateAwardChallengeComponent } from "./challenges/create-award-challenge/create-award-challenge.component";
+import { ShowAwardsComponent } from "./challenges/show-awards/show-awards.component";
+import { AwardsAccordionComponent } from "./challenges/awards-accordion/awards-accordion.component";
 
 const components = [
   NewProfilePhotoComponent,
@@ -120,7 +124,14 @@ const components = [
   MonthComponent,
   WeekComponent,
   YearComponent,
+  ShowAwardsComponent,
+  AwardsListComponent,
+  AwardsAccordionComponent,
+  CreateAwardChallengeComponent,
+
+
 ];
+
 @NgModule({
   imports: [
     CommonModule,
@@ -136,7 +147,7 @@ const components = [
     DirectivesModule,
     PickerModule,
     EmojiModule,
-    ComponentsSharedModule,
+    ComponentsSharedModule
   ],
   declarations: components,
   exports: components,
