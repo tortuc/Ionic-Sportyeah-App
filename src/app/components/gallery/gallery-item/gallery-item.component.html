@@ -1,6 +1,6 @@
 <ng-container  [ngSwitch]="file.format">
   <div style="position: relative">
-    <ion-icon (click)="options($event)" class="options" name="ellipsis-vertical-circle"></ion-icon>
+    <ion-icon *ngIf="showOptions" (click)="options($event)" class="options" name="ellipsis-vertical-circle"></ion-icon>
     <div class="content" *ngSwitchCase="'video'">
       <video #video class="video-gallery" [src]="file.url | safeUrl" controls></video>
     </div>

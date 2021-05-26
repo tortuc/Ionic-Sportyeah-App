@@ -1,0 +1,29 @@
+.gallery-grid {
+  max-width: 1000px;
+  padding: 0;
+}
+
+.col-content {
+  padding: 10px;
+}
+
+.delete {
+  position: absolute;
+  visibility: hidden !important;
+}
+
+@media screen and (max-width: 600px) {
+  .col-content {
+    padding: 1px;
+  }
+
+  .gallery-grid {
+    padding: 0;
+  }
+}
+
+.estado {
+  padding: 5px;
+  color: #696666;
+  font-size: 13px;
+}

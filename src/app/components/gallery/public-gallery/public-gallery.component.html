@@ -1,0 +1,65 @@
+<ion-header>
+  <ion-toolbar class="toolbar-bg">
+    <ion-buttons slot="start">
+      <ion-back-button style="--color: white"></ion-back-button>
+    </ion-buttons>
+    <ion-title style="--color: white">{{
+      "change-slider.title" | translate
+    }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [scrollEvents]="true" (ionScrollEnd)="logScrolling($event)">
+ <div *ngIf="!loadingUser">
+  <div  style=" text-align: center;max-width: 1000px;margin:auto">
+    <profile-banner [user]="user"></profile-banner>
+    <div style="margin-top: -80px">
+      <profile-photo [user]="user"></profile-photo>
+    </div>
+    <div style="padding: 5px;">
+      <miniflag [user]="user"></miniflag>
+      {{user?.name}} {{user?.last_name}}
+    </div>
+    <div  class="estado">
+      {{user?.estado}}
+    </div>
+    <h4>{{ Texts.title | translate:user }}</h4>
+  </div>
+  <ion-grid class="gallery-grid">
+    <ion-row>
+     
+      <ion-col
+        *ngFor="let file of gallery; let i = index"
+        size-lg="4"
+        size-md="6"
+        size-xs="4"
+        class="col-content"
+        [ngClass]="{ delete: file.deleted }"
+      >
+        <gallery-item
+          (see)="seeFiles($event)"
+          [file]="file"
+          [index]="i"
+          [showOptions]="false"
+        ></gallery-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col *ngIf="loadingFiles" size="12">
+        <div style="text-align: center; padding: 10px">
+          <p>
+            <ion-spinner style="vertical-align: middle"></ion-spinner>
+            {{ Texts.loading | translate }}
+          </p>
+        </div>
+      </ion-col>
+      <ion-col *ngIf="allContent" size="12" >
+        <div style="text-align: center; padding: 10px;min-height: 100px;">
+          <p>{{ Texts.allContent | translate }}</p>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+ </div>
+ 
+</ion-content>

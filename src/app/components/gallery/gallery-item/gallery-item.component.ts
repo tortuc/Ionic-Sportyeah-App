@@ -43,6 +43,7 @@ enum Texts {
 export class GalleryItemComponent implements OnInit {
   @Input() file: IGalleryFile;
   @Input() index: number;
+  @Input() showOptions:boolean = true;
 
   constructor(
     private readonly popoverCtrl: PopoverController,

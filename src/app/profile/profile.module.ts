@@ -1,4 +1,3 @@
-import { CarrouselComponent } from "./carrousel/carrousel.component";
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
@@ -59,7 +58,6 @@ import { GalleryModule } from "../components/gallery/gallery.module";
     EditPostPage,
     FollowingPage,
     FollowerPage,
-    CarrouselComponent,
     NewNodeComponent,
     MsgProfileEditComponent,
     OptionNewsComponent,

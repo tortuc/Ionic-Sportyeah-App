@@ -1339,6 +1339,11 @@
     "add":"¡Agrega una imagen a tu galeria!",
     "title":"Mi historia en imagen",
     "allContent":"No hay mas contenido",
-    "loading":"Cargando contenido..."
+    "loading":"Cargando contenido...",
+    "public":{
+      "title":"Galeria de {{name}} {{last_name}}",
+      "preview_title":"Historia de {{name}} {{last_name}} en imagen",
+      "preview_btn":"Ver todo"
+    }
   }
 }

@@ -59,7 +59,6 @@ export class UserPage implements OnInit {
   loadingPost: any = false;
 
   id_visited: string;
-  slider: any; //Para el carrousel
   constructor(
     public mc: ModalController,
     public userService: UserService,

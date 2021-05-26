@@ -11,13 +11,13 @@ import { PipesModule } from "../pipes/pipes.module";
 import { ComponentsModule } from "../components/components.module";
 import { TranslateModule } from "@ngx-translate/core";
 
-import { CarrouselComponent } from "./carrousel/carrousel.component";
 import { PostComponetsModule } from "../post-components/post-componets.module";
 import { ComponentsSharedModule } from "../shared-components/components-shared.module";
 import { SponsorsModule } from "../sponsors-components/sponsors.module";
 import { ExperiencesModule } from "../experiences/experiences.module";
 import { AwardModule } from "../components/award/award.module";
 import { AptitudesModule } from "../components/aptitudes/aptitudes.module";
+import { GalleryModule } from "../components/gallery/gallery.module";
 
 @NgModule({
   imports: [
@@ -33,8 +33,9 @@ import { AptitudesModule } from "../components/aptitudes/aptitudes.module";
     SponsorsModule,
     ExperiencesModule,
     AwardModule,
-    AptitudesModule
+    AptitudesModule,
+    GalleryModule
   ],
-  declarations: [UserPage, CarrouselComponent],
+  declarations: [UserPage],
 })
 export class UserPageModule {}

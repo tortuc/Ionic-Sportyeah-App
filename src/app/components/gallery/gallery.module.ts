@@ -11,13 +11,17 @@ import { GalleryOptionsComponent } from "./gallery-options/gallery-options.compo
 import { GalleryItemComponent } from "./gallery-item/gallery-item.component";
 import { GallerySliderComponent } from "./gallery-slider/gallery-slider.component";
 import { PrivateGalleryPreviewComponent } from "./private-gallery-preview/private-gallery-preview.component";
+import { PublicGalleryPreviewComponent } from "./public-gallery-preview/public-gallery-preview.component";
+import { PublicGalleryComponent } from "./public-gallery/public-gallery.component";
 
 const components = [
   GalleryComponent,
   GalleryOptionsComponent,
   GalleryItemComponent,
   GallerySliderComponent,
-  PrivateGalleryPreviewComponent
+  PrivateGalleryPreviewComponent,
+  PublicGalleryPreviewComponent,
+  PublicGalleryComponent
 ];
 
 @NgModule({

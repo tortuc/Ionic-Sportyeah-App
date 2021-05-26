@@ -140,7 +140,7 @@
         <!-- PROFILE SEGMENT -->
         <div [ngSwitch]="segment">
           <div *ngSwitchCase="segmentOptions.profile">
-         
+            <public-gallery-preview [user]="user"></public-gallery-preview>
 
             <app-structure
               [ID]="user._id"
