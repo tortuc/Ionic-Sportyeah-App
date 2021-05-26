@@ -53,6 +53,7 @@ export class PrivateGalleryPreviewComponent implements OnInit, AfterViewInit {
           this.gallery.push({
             url: "https://files.sportyeah.com/v1/image/get/1620692250035.jpeg",
             format: "image",
+            user:this.userService.User
           });
         } else {
           this.cd.detectChanges();

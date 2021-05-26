@@ -128,21 +128,18 @@ export class GalleryComponent implements OnInit {
             this.uploadImages(files, ++i);
           })
           .catch(() => {
-            this.uploadImages(files, ++i);
+            this.uploadImages(files, ++i); 
           });
       } else if (name == "image") {
         formData.append("image", files[i]);
         this.fileService
-          .uploadImageProgress(formData)
+          .uploadImageProgress(formData, true)
           .then((url: string) => {
             this.galleryService.create({ url, format: "image" });
-            console.log(url);
 
             this.uploadImages(files, ++i);
           })
           .catch((e) => {
-            console.log(e);
-
             this.uploadImages(files, ++i);
           });
       } else {
