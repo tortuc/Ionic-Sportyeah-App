@@ -1,4 +1,10 @@
-import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
+import {
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  OnInit,
+  ViewChild,
+} from "@angular/core";
 import { ActionSheetController, ModalController } from "@ionic/angular";
 import { TranslateService } from "@ngx-translate/core";
 import { FilesService } from "src/app/service/files.service";
@@ -8,11 +14,14 @@ import { LinkYoutubeComponent } from "../../link-youtube/link-youtube.component"
 import { GallerySliderComponent } from "../gallery-slider/gallery-slider.component";
 
 enum Texts {
-  add = "¡Agrega una imagen a tu galeria!",
+  add = "gallery.add",
+  actionHeader = "gallery.content.header",
+  actionGallery = "gallery.content.gallery",
+  actionYoutube = "gallery.content.youtube",
+  title = "gallery.title",
+  allContent = "gallery.allContent",
+  loading = "gallery.loading",
   cancel = "cancel",
-  actionHeader = "Subir una imagen/video",
-  actionGallery = "Galeria",
-  actionYoutube = "Enlace de youtube",
 }
 
 @Component({
@@ -22,6 +31,8 @@ enum Texts {
 })
 export class GalleryComponent implements OnInit {
   @ViewChild("fileChooser") fileChooser: ElementRef;
+  loadingFiles: boolean = false;
+  allContent: boolean = false;
 
   constructor(
     private readonly galleryService: GalleryService,
@@ -29,7 +40,8 @@ export class GalleryComponent implements OnInit {
     private readonly actionSheetCtrl: ActionSheetController,
     private readonly translate: TranslateService,
     private readonly fileService: FilesService,
-    private readonly modalCtrl: ModalController
+    private readonly modalCtrl: ModalController,
+    private cd: ChangeDetectorRef
   ) {}
 
   public readonly Texts = Texts;
@@ -41,12 +53,24 @@ export class GalleryComponent implements OnInit {
   }
 
   public gallery: IGalleryFile[] = [];
+  private skip: number = 0;
   getGallery() {
+    this.loadingFiles = true;
     this.galleryService
-      .getById(this.userService.User?._id)
-      .subscribe((gallery) => {
-        this.gallery = gallery;
-      });
+      .getById(this.userService.User?._id, this.skip)
+      .subscribe(
+        (gallery) => {
+          this.skip += 20;
+          this.gallery = this.gallery.concat(gallery);
+          this.loadingFiles = false;
+          if (gallery.length < 20) {
+            this.allContent = true;
+          }
+        },
+        () => {
+          this.loadingFiles = false;
+        }
+      );
   }
 
   async addContent() {
@@ -142,12 +166,26 @@ export class GalleryComponent implements OnInit {
   }
 
   async seeFiles(index) {
-    console.log(index);
-    
     let modal = await this.modalCtrl.create({
       component: GallerySliderComponent,
       componentProps: { files: this.gallery, index },
     });
     modal.present();
+  }
+
+  /**
+   * Esta funcion se llama cuando el usuario baja el scroll, y si llega muy abajo, entonces se llaman mas posts automaticamente
+   * @param ev
+   */
+  async logScrolling(ev) {
+    let el = await ev.target.getScrollElement();
+    this.cd.detectChanges();
+
+    if (
+      el.scrollHeight - el.scrollTop < el.clientHeight + 400 &&
+      !this.loadingFiles
+    ) {
+      this.getGallery();
+    }
   }
 }

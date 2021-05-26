@@ -10,12 +10,14 @@ import { ComponentsSharedModule } from "src/app/shared-components/components-sha
 import { GalleryOptionsComponent } from "./gallery-options/gallery-options.component";
 import { GalleryItemComponent } from "./gallery-item/gallery-item.component";
 import { GallerySliderComponent } from "./gallery-slider/gallery-slider.component";
+import { PrivateGalleryPreviewComponent } from "./private-gallery-preview/private-gallery-preview.component";
 
 const components = [
   GalleryComponent,
   GalleryOptionsComponent,
   GalleryItemComponent,
-  GallerySliderComponent
+  GallerySliderComponent,
+  PrivateGalleryPreviewComponent
 ];
 
 @NgModule({

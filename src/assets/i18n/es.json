@@ -637,7 +637,7 @@
     "publicTitle": "Aptitudes y destrezas de {{name}} {{last_name}}",
     "create": "Añadir Aptitud",
     "edit": "Editar Aptitud",
-    "hint":"Aqui puedes indicar tus aptitudes y destrezas",
+    "hint": "Aqui puedes indicar tus aptitudes y destrezas",
     "createBtn": "Añadir Aptitud",
     "no_info": "Este perfil no tiene aptitudes.",
     "form": {
@@ -1319,12 +1319,26 @@
     "error": "La url que ingresaste no es valida o no es de youtube",
     "btn": "Aceptar"
   },
-  "gallery":{
-    "options":{
-      "see":"Ver",
-      "delete":"Eliminar archivo",
-      "profile":"Elegir como foto de perfil",
-      "banner":"Elegir como portada"
-    }
+  "gallery": {
+    "options": {
+      "see": "Ver",
+      "delete": "Eliminar archivo",
+      "profile": "Elegir como foto de perfil",
+      "banner": "Elegir como portada"
+    },
+    "private": {
+      "title": "Mi historia en imagen",
+      "btn": "Subir imagen",
+      "more": "Ver más..."
+    },
+    "content":{
+      "header":"Subir una imagen/video",
+      "gallery":"Galeria",
+      "youtube":"Enlace de youtube"
+    },
+    "add":"¡Agrega una imagen a tu galeria!",
+    "title":"Mi historia en imagen",
+    "allContent":"No hay mas contenido",
+    "loading":"Cargando contenido..."
   }
 }

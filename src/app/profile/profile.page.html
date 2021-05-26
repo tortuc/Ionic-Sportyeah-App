@@ -20,7 +20,7 @@
 >
   <ion-refresher
     slot="fixed"
-    (ionRefresh)="getPost($event,true)"
+    (ionRefresh)="reload($event)"
     pullFactor="0.5"
     pullMin="100"
     pullMax="200"
@@ -164,8 +164,7 @@
           </ion-segment>
         </ion-card>
         <div *ngIf="segment == segmentOptions.profile">
-     
-          <carrousel [id]="userService.User?._id"></carrousel>
+          <private-gallery-preview #gallery></private-gallery-preview>
 
           <experience
             *ngIf="['player','scout','press', 'executive','staff'].includes(userService.User.profile_user)"

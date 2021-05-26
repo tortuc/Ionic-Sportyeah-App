@@ -12,6 +12,7 @@ import { User } from "../models/IUser";
 import { IPost } from "../models/iPost";
 import { MsgProfileEditComponent } from "./msg-profile-edit/msg-profile-edit.component";
 import { ReusableComponentsIonic } from "../service/ionicHelpers.service";
+import { PrivateGalleryPreviewComponent } from "../components/gallery/private-gallery-preview/private-gallery-preview.component";
 
 enum segmentOptions {
   profile = "profile",
@@ -25,6 +26,8 @@ enum segmentOptions {
 })
 export class ProfilePage implements OnInit {
   @ViewChild("reloadButton", { static: false }) reloadButton: any;
+  @ViewChild("gallery", { static: false })
+  gallery: PrivateGalleryPreviewComponent;
 
   public readonly segmentOptions = segmentOptions;
 
@@ -124,6 +127,14 @@ export class ProfilePage implements OnInit {
       .catch((err) => {
         // handle err
       });
+  }
+
+  reload(event) {
+    this.cd.detectChanges();
+    this.getPost(event, true);
+    this.gallery.reload();
+    this.getCountPost()
+  
   }
 
   getCountPost() {

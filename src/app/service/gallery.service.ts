@@ -60,9 +60,9 @@ export class GalleryService {
    * @param id Id del usuario
    */
 
-  getById(id) {
+  getById(id,skip) {
     return this.http
-      .get<IGalleryFile[]>(`${this.route}/byuser/${id}`)
+      .get<IGalleryFile[]>(`${this.route}/byuser/${id}/${skip}`)
       .pipe(take(1));
   }
 }
