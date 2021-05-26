@@ -27,6 +27,7 @@ import { SponsorsModule } from "../sponsors-components/sponsors.module";
 import { ExperiencesModule } from "../experiences/experiences.module";
 import { AwardModule } from "../components/award/award.module";
 import { AptitudesModule } from "../components/aptitudes/aptitudes.module";
+import { GalleryModule } from "../components/gallery/gallery.module";
 
 @NgModule({
   imports: [
@@ -49,7 +50,8 @@ import { AptitudesModule } from "../components/aptitudes/aptitudes.module";
     SponsorsModule,
     ExperiencesModule,
     AwardModule,
-    AptitudesModule
+    AptitudesModule,
+    GalleryModule
   ],
   declarations: [
     ProfilePage,

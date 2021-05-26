@@ -140,10 +140,10 @@
         <!-- PROFILE SEGMENT -->
         <div [ngSwitch]="segment">
           <div *ngSwitchCase="segmentOptions.profile">
-            <app-carrousel
+            <carrousel
               *ngIf="slider.length > 0"
               [slider]="slider"
-            ></app-carrousel>
+            ></carrousel>
 
             <app-structure
               [ID]="user._id"

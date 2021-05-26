@@ -384,6 +384,7 @@ a {
 [contenteditable] {
   padding: 12px;
   background: #fbfbfb;
+  overflow: auto;
 }
 [contenteditable]:focus {
   outline: 0px solid transparent;

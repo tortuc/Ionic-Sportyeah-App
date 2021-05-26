@@ -1318,5 +1318,13 @@
     "wait": "Y espere a que cargue para verificar que es el correcto",
     "error": "La url que ingresaste no es valida o no es de youtube",
     "btn": "Aceptar"
+  },
+  "gallery":{
+    "options":{
+      "see":"Ver",
+      "delete":"Eliminar archivo",
+      "profile":"Elegir como foto de perfil",
+      "banner":"Elegir como portada"
+    }
   }
 }

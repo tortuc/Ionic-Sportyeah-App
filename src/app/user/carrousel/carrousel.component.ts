@@ -7,7 +7,7 @@ import { ReusableComponentsIonic } from "src/app/service/ionicHelpers.service";
 // import { BannerLogic } from "./../../service/banner-profile-logic.service";
 
 @Component({
-  selector: "app-carrousel",
+  selector: "carrousel",
   templateUrl: "./carrousel.component.html",
   styleUrls: ["./carrousel.component.scss"],
 })
@@ -24,7 +24,7 @@ export class CarrouselComponent implements OnInit {
     this.router.navigate([ruta]);
   }
   async open(img: string) {
-    if(this.slider.length < 1) this.slider.push("https://trello-attachments.s3.amazonaws.com/5ff9d47572424648014190dc/700x422/29f3e5ed0cea0a6b7439bfb986a090cd/original.jpg")
+    if(this.slider.length < 1) this.slider.push("https://files.sportyeah.com/v1/image/get/1620692250035.jpeg")
     const modal = await this.mc.create({
       component: OpenImgComponent,
       componentProps: {

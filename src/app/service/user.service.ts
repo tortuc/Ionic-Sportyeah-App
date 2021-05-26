@@ -13,6 +13,7 @@ import { Followers, Followings, User } from "../models/IUser";
 import { TranslateService } from "@ngx-translate/core";
 import { CookieService } from "ngx-cookie-service";
 import { Subject } from "rxjs";
+import { ModalController } from "@ionic/angular";
 
 // import { FcmService } from "./fcm.service";
 
@@ -29,7 +30,8 @@ export class UserService {
     private loginService: LoginService,
     private translate: TranslateService,
     // private fcmService: FcmService,
-    private cookieService: CookieService
+    private cookieService: CookieService,
+    private readonly modalCtrl:ModalController
   ) {}
 
   /**
@@ -258,6 +260,10 @@ export class UserService {
     } else {
       this.router.navigate(["/profile"]);
     }
+
+    this.modalCtrl.dismiss().catch((e)=>{
+      // no pasa nada, no lo borren 
+    })
   }
 
   audio = new Howl({

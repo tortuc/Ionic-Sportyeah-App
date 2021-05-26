@@ -12,7 +12,6 @@
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
-<app-get-media></app-get-media>
 <ion-content
   [scrollbar]="reusableCI.scrollbarStyle"
   class="main-bg"
@@ -145,24 +144,28 @@
             [user]="userService.User"
           ></profile-sponsors>
           <!-- Fin patrocinadores movil -->
-          <ion-segment
-            (ionChange)="segmentChanged($event)"
-            style="border: 1px white"
-          >
-            <ion-segment-button value="profile" style="background-color: white">
+          <ion-segment [(ngModel)]="segment" style="border: 1px white">
+            <ion-segment-button
+              [value]="segmentOptions.profile"
+              style="background-color: white"
+            >
               <ion-label
                 >{{'labels-profile-segment.profile' | translate}}</ion-label
               >
             </ion-segment-button>
-            <ion-segment-button value="posts" style="background-color: white">
+            <ion-segment-button
+              [value]="segmentOptions.posts"
+              style="background-color: white"
+            >
               <ion-label
                 >{{'labels-profile-segment.posts' | translate}}</ion-label
               >
             </ion-segment-button>
           </ion-segment>
         </ion-card>
-        <div *ngIf="profile">
-          <app-carrousel [id]="userService.User?._id"></app-carrousel>
+        <div *ngIf="segment == segmentOptions.profile">
+     
+          <carrousel [id]="userService.User?._id"></carrousel>
 
           <experience
             *ngIf="['player','scout','press', 'executive','staff'].includes(userService.User.profile_user)"
@@ -175,12 +178,14 @@
             [user]="userService.User"
           ></awards>
 
-          <aptitudes   *ngIf="['player','scout','press','executive','staff'].includes(userService.User?.profile_user)" [user]="userService.User"></aptitudes>
-
+          <aptitudes
+            *ngIf="['player','scout','press','executive','staff'].includes(userService.User?.profile_user)"
+            [user]="userService.User"
+          ></aptitudes>
         </div>
         <!-- FINISH SEGMENT PROFILE  -->
         <!-- SEGMENT POSTST -->
-        <div *ngIf="postsB">
+        <div *ngIf="segment == segmentOptions.posts">
           <ion-grid ngClass.xs="m-p-0">
             <ion-row style="justify-content: center">
               <ion-button
@@ -222,7 +227,6 @@
           ></custom-sponsor>
           <friends-panel-desktop></friends-panel-desktop>
           <add-users-panel-desktop></add-users-panel-desktop>
-          <!-- <popular-groups-panel></popular-groups-panel> -->
         </div>
       </ion-col>
     </ion-row>

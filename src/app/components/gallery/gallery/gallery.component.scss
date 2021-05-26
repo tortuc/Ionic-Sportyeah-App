@@ -1,0 +1,53 @@
+.add {
+  width: 100%;
+  cursor: pointer;
+  text-align: center;
+  padding: 5px;
+  border-radius: 10px;
+  &:hover {
+    background: #00000029;
+  }
+  p {
+    margin: 0;
+  }
+  ion-icon {
+    height: 150px;
+    width: 150px;
+    color: black;
+  }
+}
+
+.gallery-grid {
+  max-width: 1000px;
+}
+
+.col-content {
+  padding: 10px;
+}
+
+.delete {
+  position: absolute;
+  visibility: hidden !important;
+}
+
+.new-fab {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  --ion-color-base: var(--color-primary) !important;
+  visibility: hidden;
+}
+
+@media screen and (max-width: 600px) {
+  .col-content {
+    padding: 1px;
+  }
+
+  .new-fab {
+    visibility: visible;
+  }
+
+  .gallery-grid {
+    padding: 0;
+  }
+}

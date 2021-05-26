@@ -1,0 +1,59 @@
+<ion-header>
+  <ion-toolbar class="toolbar-bg">
+    <ion-buttons slot="start">
+      <ion-back-button style="--color: white"></ion-back-button>
+    </ion-buttons>
+    <ion-title style="--color: white">{{
+      "change-slider.title" | translate
+    }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <input
+    type="file"
+    #fileChooser
+    accept="image/*,video/*"
+    (change)="uploadFile($event)"
+    hidden
+    multiple
+  />
+  <div style="padding: 10px; text-align: center">
+    <profile-photo [user]="userService.User"></profile-photo>
+    <h4>Mi historia en imagen</h4>
+  </div>
+  <ion-grid class="gallery-grid">
+    <ion-row>
+      <ion-col
+        fxShow="true"
+        fxShow.xs="false"
+        style="align-self: center"
+        size-lg="4"
+        size-md="6"
+        size-xs="12"
+      >
+        <div (click)="addContent()" class="add">
+          <ion-icon slot="start" name="add-circle-outline"></ion-icon>
+          <p style="color: black">{{ Texts.add | translate }}</p>
+        </div></ion-col
+      >
+      <ion-col
+        *ngFor="let file of gallery; let i = index"
+        size-lg="4"
+        size-md="6"
+        size-xs="4"
+        class="col-content"
+        [ngClass]="{ delete: file.deleted }"
+      >
+        <gallery-item
+          (see)="seeFiles($event)"
+          [file]="file"
+          [index]="i"
+        ></gallery-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-fab-button color="secondary" (click)="addContent()" class="new-fab"
+    ><ion-icon name="add"></ion-icon
+  ></ion-fab-button>
+</ion-content>

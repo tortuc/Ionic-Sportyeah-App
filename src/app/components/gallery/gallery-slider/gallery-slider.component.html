@@ -1,0 +1,47 @@
+<ion-content
+  style="--background: url('assets/logos/logo.png') no-repeat 50%/50% white"
+>
+  <ion-icon
+    name="close-outline"
+    (click)="modalCtrl.dismiss()"
+    class="close-modal"
+  ></ion-icon>
+
+  <ion-slides
+    class="fade-in"
+    *ngIf="viewEntered"
+    #slider
+    style="height: 100%"
+    pager="true"
+  >
+    <ion-slide *ngFor="let file of files" style="background: black">
+      <div class="header">
+        <div (click)="userService.goToProfile(file.user.username,file.user._id,'gallery')">
+          <img [src]="file.user.photo" class="user-photo" alt="" />
+        </div>
+        <div
+          (click)="userService.goToProfile(file.user.username,file.user._id,'gallery')"
+          class="name-content"
+        >
+          <p class="name">{{ file.user.name }} {{ file.user.last_name }}</p>
+          <p class="date">{{ file.date | customDisplayDate }}</p>
+        </div>
+      </div>
+      <div class="content" [ngSwitch]="file.format" style="position: relative">
+        <div *ngSwitchCase="'image'">
+          <img [src]="file.url" alt="" />
+        </div>
+        <div *ngSwitchCase="'video'">
+          <video controls [src]="file.url | safeUrl"></video>
+        </div>
+        <div *ngSwitchCase="'youtube'">
+          <iframe
+            *ngIf="file.url | youtube"
+            [src]="file.url | youtube"
+            frameborder="0"
+          ></iframe>
+        </div>
+      </div>
+    </ion-slide>
+  </ion-slides>
+</ion-content>

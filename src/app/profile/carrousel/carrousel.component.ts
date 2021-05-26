@@ -7,7 +7,7 @@ import { ReusableComponentsIonic } from "src/app/service/ionicHelpers.service";
 // import { BannerLogic } from "./../../service/banner-profile-logic.service";
 
 @Component({
-  selector: "app-carrousel",
+  selector: "carrousel",
   templateUrl: "./carrousel.component.html",
   styleUrls: ["./carrousel.component.scss"],
 })
@@ -34,5 +34,4 @@ export class CarrouselComponent implements OnInit {
     modal.present();
   }
   ngOnInit() {}
-  slideOpts = this.reusableCI.slideOpts
 }

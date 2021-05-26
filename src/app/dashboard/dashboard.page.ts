@@ -23,6 +23,7 @@ import { UserService } from "../service/user.service";
 import { NewPostPage } from "./new-post/new-post.page";
 import { ReusableComponentsIonic } from "../service/ionicHelpers.service";
 import { take } from "rxjs/operators";
+import { GroupService } from "../service/group.service";
 
 @Component({
   selector: "app-dashboard",
@@ -45,8 +46,11 @@ export class DashboardPage implements OnInit, AfterViewInit {
     public el: ElementRef,
     public reusableCI: ReusableComponentsIonic,
     public cd: ChangeDetectorRef,
-    private loginService: LoginService
+    private loginService: LoginService,
+    private readonly groupService:GroupService
   ) {
+
+    this.groupService.groupInvited();
     this.loginService.connections().subscribe((connections: any[]) => {
       if (connections.length < 2 && this.userService.User.msgProfile == false) {
         this.router.navigate(["/profile"]);

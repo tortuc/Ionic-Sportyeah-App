@@ -3,6 +3,7 @@ import { Routes, RouterModule } from "@angular/router";
 
 import { ProfilePage } from "./profile.page";
 import { ViewProfileComponent } from "../components/view-profile/view-profile.component";
+import { GalleryComponent } from "../components/gallery/gallery/gallery.component";
 const routes: Routes = [
   {
     path: "",
@@ -16,11 +17,8 @@ const routes: Routes = [
       ),
   },
   {
-    path: "slider",
-    loadChildren: () =>
-      import("./change-slider/change-slider.module").then(
-        (m) => m.ChangeSliderPageModule
-      ),
+    path: "gallery",
+    component:GalleryComponent
   },
   {
     path: "following",

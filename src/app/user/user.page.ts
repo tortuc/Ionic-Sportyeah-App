@@ -124,7 +124,6 @@ export class UserPage implements OnInit {
           // this.visited = resp.user._id
 
           this.id_visited = resp.user._id;
-          this.slider = resp.user.slider;
 
           const uP = resp.user.profile_user;
           if (
