@@ -6,13 +6,18 @@
   </div>
   <div style="display: flex; padding: 10px; justify-content: center">
     <div class="social-content" *ngFor="let social of socialNetworks">
-      <ion-icon
+      <div
         *ngIf="social.username"
-        class="social-icon"
-        [name]="social.icon"
-        [ngClass]="social.name"
         (click)="redirectTo(social.name, social.username)"
-      ></ion-icon>
+        style="cursor: pointer"
+      >
+        <ion-icon
+          class="social-icon"
+          [name]="social.icon"
+          [ngClass]="social.name"
+        ></ion-icon>
+        <p>@{{ social.username }}</p>
+      </div>
     </div>
   </div>
 </ion-card>
