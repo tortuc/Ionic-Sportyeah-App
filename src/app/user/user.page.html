@@ -176,7 +176,7 @@
             ></awards>
 
             <aptitudes
-              *ngIf="['player','scout','press', 'executive','staff'].includes(user?.profile_user)"
+              *ngIf="['player','scout', 'executive','staff'].includes(user?.profile_user)"
               [user]="user"
             ></aptitudes>
           </div>

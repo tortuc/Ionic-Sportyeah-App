@@ -26,8 +26,8 @@
     </div>
     <user-item-panel *ngFor="let user of users" [user]="user"></user-item-panel>
 
-    <div style="text-align: center;padding: 5px;">
-      <ion-button class="see-more" (click)="seeAll()">{{
+    <div style="text-align: center; padding: 5px">
+      <ion-button class="btn-primary" (click)="seeAll()">{{
         "panel.seeAll" | translate
       }}</ion-button>
     </div>
