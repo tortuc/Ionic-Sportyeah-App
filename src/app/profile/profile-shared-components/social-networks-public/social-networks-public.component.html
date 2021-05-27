@@ -1,0 +1,18 @@
+<ion-card class="social-card main-border" *ngIf="socialNetworks.length > 0">
+  <div style="text-align: center">
+    <h6 style="margin: 0; margin-top: 5px">
+      {{ "socialNetworks.public.title" | translate: user }}
+    </h6>
+  </div>
+  <div style="display: flex; padding: 10px; justify-content: center">
+    <div class="social-content" *ngFor="let social of socialNetworks">
+      <ion-icon
+        *ngIf="social.username"
+        class="social-icon"
+        [name]="social.icon"
+        [ngClass]="social.name"
+        (click)="redirectTo(social.name, social.username)"
+      ></ion-icon>
+    </div>
+  </div>
+</ion-card>

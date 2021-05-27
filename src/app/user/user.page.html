@@ -95,7 +95,6 @@
             </div>
           </ion-card-header>
 
-          <ion-card-content> </ion-card-content>
           <div class="text-center">
             <ion-button
               color="primary"
@@ -107,6 +106,19 @@
               {{'golandingPublic' | translate}}
             </ion-button>
           </div>
+
+          <social-networks-public
+            fxShow="false"
+            fxShow.xs="true"
+            [user]="user"
+          ></social-networks-public>
+
+          <profile-sponsors
+            fxShow="false"
+            fxShow.xs="true"
+            *ngIf="user.profile_user !== 'sponsor'"
+            [user]="user"
+          ></profile-sponsors>
 
           <ion-segment [(ngModel)]="segment" style="border: 1px white">
             <ion-segment-button
@@ -144,8 +156,7 @@
 
             <app-structure
               [ID]="user._id"
-              *ngIf="
-                    user?.profile_user === 'sponsor' ||
+              *ngIf="   
                     user?.profile_user === 'association' ||
                     user?.profile_user === 'foundation' ||
                     user?.profile_user === 'representative' ||
@@ -168,7 +179,6 @@
               *ngIf="['player','scout','press', 'executive','staff'].includes(user?.profile_user)"
               [user]="user"
             ></aptitudes>
-
           </div>
 
           <!-- PROFILE SEGMENT FINISH -->
@@ -276,9 +286,9 @@
             *ngIf="user.profile_user !== 'sponsor'"
             [user]="user"
           ></profile-sponsors>
-          <friends-panel-desktop></friends-panel-desktop>
           <add-users-panel-desktop></add-users-panel-desktop>
           <!-- <popular-groups-panel></popular-groups-panel> -->
+          <social-networks-public [user]="user"></social-networks-public>
         </div>
       </ion-col>
     </ion-row>

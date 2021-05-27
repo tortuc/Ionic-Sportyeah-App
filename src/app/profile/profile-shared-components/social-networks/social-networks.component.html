@@ -1,0 +1,21 @@
+<ion-card class="social-card main-border">
+  <div style="padding: 5px; text-align: center">
+    <h5 style="margin: 0">{{ Texts.title | translate }}</h5>
+  </div>
+
+  <div style="display: flex; padding: 10px; justify-content: center">
+    <div class="social-content" *ngFor="let social of socialNetworks">
+      <ion-icon
+        class="social-icon"
+        [name]="social.icon"
+        [ngClass]="social.name"
+        (click)="redirectTo(social.name, social.username)"
+      ></ion-icon>
+    </div>
+  </div>
+  <div style="text-align: center">
+    <ion-button class="btn-primary" (click)="edit()">{{
+      Texts.edit | translate
+    }}</ion-button>
+  </div>
+</ion-card>

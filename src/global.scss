@@ -903,3 +903,23 @@ ion-avatar.chat-img {
 .profile-col{
   padding: 5px;
 }
+
+.social-icon {
+  font-size: 40px;
+  cursor: pointer;
+  &.tiktok {
+    color: black;
+  }
+  &.twitter {
+    color: #1da1f2;
+  }
+  &.facebook {
+    color: #0b84ee;
+  }
+  &.linkedin {
+    color: #0a66c2;
+  }
+  &.instagram {
+    color: black;
+  }
+}

@@ -6,6 +6,7 @@ import { LoginService } from "../service/login.service";
 import { UserService } from "../service/user.service";
 import { AlertController, LoadingController } from "@ionic/angular";
 import {
+  languajes,
   profiles,
   sports,
   sub_profiles_administration,
@@ -19,6 +20,8 @@ import {
 })
 export class SignupPage implements OnInit {
   public readonly sports = sports;
+
+  public readonly langs = languajes;
 
   public readonly profiles = profiles;
 
@@ -57,6 +60,7 @@ export class SignupPage implements OnInit {
         ],
       ],
       username: ["", [Validators.required]],
+      lang: [this.translate.currentLang, [Validators.required]],
       password: [
         "",
         [
@@ -225,5 +229,9 @@ export class SignupPage implements OnInit {
     });
 
     await alert.present();
+  }
+
+  setLang(ev){
+    this.translate.use(ev.detail.value)
   }
 }

@@ -37,11 +37,11 @@
             >{{'dashboard.new_post_placeholder' | translate}}</span
           >
           <div
-            #mainInput 
+            #mainInput
             style="max-height: 200px; color: #222121"
             formControlName="message"
             contenteditable
-            class="custom-textarea"  
+            class="custom-textarea"
             Mentions
             (usersRender)="usersChange($event)"
             (mention)="newValue($event)"
@@ -101,7 +101,11 @@
           [question]="post.question"
         ></assets-buttons>
 
-        <ion-button [disabled]="form.invalid" (click)="save()">
+        <ion-button
+          class="btn-primary"
+          [disabled]="form.invalid"
+          (click)="save()"
+        >
           {{'edit_post.btn' | translate}}
         </ion-button>
       </ion-col>

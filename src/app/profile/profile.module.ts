@@ -27,6 +27,7 @@ import { ExperiencesModule } from "../experiences/experiences.module";
 import { AwardModule } from "../components/award/award.module";
 import { AptitudesModule } from "../components/aptitudes/aptitudes.module";
 import { GalleryModule } from "../components/gallery/gallery.module";
+import { ProfileSharedComponentsModule } from "./profile-shared-components/profile-shared-components.module";
 
 @NgModule({
   imports: [
@@ -50,7 +51,8 @@ import { GalleryModule } from "../components/gallery/gallery.module";
     ExperiencesModule,
     AwardModule,
     AptitudesModule,
-    GalleryModule
+    GalleryModule,
+    ProfileSharedComponentsModule
   ],
   declarations: [
     ProfilePage,

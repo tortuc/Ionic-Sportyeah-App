@@ -1,4 +1,10 @@
-import { Component, OnInit, HostListener, ViewChildren, QueryList } from "@angular/core";
+import {
+  Component,
+  OnInit,
+  HostListener,
+  ViewChildren,
+  QueryList,
+} from "@angular/core";
 import { IonRouterOutlet, ModalController } from "@ionic/angular";
 import { Platform } from "@ionic/angular";
 import { SplashScreen } from "@ionic-native/splash-screen/ngx";
@@ -11,7 +17,7 @@ import { NotificationService } from "./service/notification.service";
 import { ReusableComponentsIonic } from "./service/ionicHelpers.service";
 import { CookieService } from "ngx-cookie-service";
 import { Meta } from "@angular/platform-browser";
-import { SIDEBAR_ITEMS } from "src/config/base";
+import { languajes, SIDEBAR_ITEMS } from "src/config/base";
 import { getToken } from "./helpers/token";
 import { Location } from "@angular/common";
 import { FilesService } from "./service/files.service";
@@ -22,12 +28,12 @@ import { FilesService } from "./service/files.service";
   styleUrls: ["app.component.scss"],
 })
 export class AppComponent implements OnInit {
-
-
   public selectedIndex = 0;
 
   // Contiene los items del sidebar menu
   public appPages = SIDEBAR_ITEMS;
+
+  public langs = languajes;
 
   constructor(
     private platform: Platform,
@@ -56,7 +62,7 @@ export class AppComponent implements OnInit {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
-      this.backButtonEvent()
+      this.backButtonEvent();
     });
   }
 
@@ -71,22 +77,7 @@ export class AppComponent implements OnInit {
   ngOnInit() {}
 
   langSettings() {
-    this.translate.addLangs([
-      "es", // espaniol
-      "en", // ingles
-      "ca", // catalan
-      "gl", // gallego
-      "eu", // euskera
-      "fr", // frances
-      "de", // aleman
-      "it", // italiano
-      "pt", // portugues
-      "ru", // ruso
-      "zh", // chino
-      "ja", // japones
-      "ar", // arabe
-      "hi", // hindu
-    ]);
+    this.translate.addLangs(this.langs);
     this.translate.setDefaultLang("es");
 
     if (!this.cookieService.check("lang")) {
@@ -127,7 +118,6 @@ export class AppComponent implements OnInit {
     );
   }
 
-  
   admin() {
     window.location.replace(
       "https://admin.sportyeah.com/#/login?token=" + getToken()
@@ -140,14 +130,12 @@ export class AppComponent implements OnInit {
   timePeriodToExit = 2000;
 
   backButtonEvent() {
-
     this.platform.backButton.subscribe(() => {
       console.log(this.routerOutlets, this.router.url);
 
       this.modalController
         .dismiss()
-        .then(() => {
-        })
+        .then(() => {})
         .catch(() => {
           if (!this.cookieService.check("chat")) {
             this.routerOutlets.forEach((outlet: IonRouterOutlet) => {
@@ -169,5 +157,4 @@ export class AppComponent implements OnInit {
         });
     });
   }
-
 }

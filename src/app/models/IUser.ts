@@ -1,6 +1,14 @@
 import { INode } from "./INode";
 import { ISponsor, ISponsorInfo } from "./ISponsor";
 
+export interface ISocialNetworks{
+  facebook?:string;
+  twitter?:string;
+  instagram?:string;
+  linkedin?:string;
+  tiktok?:string;
+}
+
 export interface User {
   name: string;
   last_name: string;
@@ -26,6 +34,7 @@ export interface User {
   msgProfile: boolean;
   flag: string;
   sponsor_info: ISponsorInfo;
+  socialNetworks:ISocialNetworks;
 }
 
 export interface Followers {

@@ -131,6 +131,10 @@
             </ion-button>
           </ion-card-header>
 
+          <!-- Redes sociales en mobile -->
+
+          <social-networks fxShow="false" fxShow.lt-md="true"></social-networks>
+
           <!-- Patrocinadores en mobile -->
           <custom-sponsor
             fxShow="false"
@@ -144,6 +148,7 @@
             [user]="userService.User"
           ></profile-sponsors>
           <!-- Fin patrocinadores movil -->
+
           <ion-segment [(ngModel)]="segment" style="border: 1px white">
             <ion-segment-button
               [value]="segmentOptions.profile"
@@ -224,8 +229,10 @@
           <custom-sponsor
             *ngIf="userService.User.profile_user == 'sponsor'"
           ></custom-sponsor>
+
           <friends-panel-desktop></friends-panel-desktop>
           <add-users-panel-desktop></add-users-panel-desktop>
+          <social-networks></social-networks>
         </div>
       </ion-col>
     </ion-row>

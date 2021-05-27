@@ -18,6 +18,8 @@ import { ExperiencesModule } from "../experiences/experiences.module";
 import { AwardModule } from "../components/award/award.module";
 import { AptitudesModule } from "../components/aptitudes/aptitudes.module";
 import { GalleryModule } from "../components/gallery/gallery.module";
+import { ProfileSharedComponentsModule } from "../profile/profile-shared-components/profile-shared-components.module";
+import { FlexLayoutModule } from "@angular/flex-layout";
 
 @NgModule({
   imports: [
@@ -34,7 +36,9 @@ import { GalleryModule } from "../components/gallery/gallery.module";
     ExperiencesModule,
     AwardModule,
     AptitudesModule,
-    GalleryModule
+    GalleryModule,
+    ProfileSharedComponentsModule,
+    FlexLayoutModule
   ],
   declarations: [UserPage],
 })

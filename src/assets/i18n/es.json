@@ -1,4 +1,18 @@
 {
+  "es": "Español",
+  "en": "English",
+  "ca": "català",
+  "gl": "Gallego",
+  "eu": "Euskera",
+  "fr": "Français",
+  "de": "Deutsch",
+  "it": "Italiano",
+  "pt": "Português",
+  "ru": "Русский",
+  "zh": "简体中文",
+  "ja": "日本語",
+  "ar": "العربية",
+  "hi": "हिंदूs",
   "loading": "Cargando...",
   "cancel": "Cancelar",
   "agree": "Aceptar",
@@ -69,6 +83,7 @@
       "placeholder": "Usuario",
       "required": "Ingrese un nombre de usuario"
     },
+    "lang": "Idioma",
     "email": {
       "placeholder": "Correo electrónico",
       "required": "Ingrese su Correo electrónico",
@@ -1331,19 +1346,32 @@
       "btn": "Subir imagen",
       "more": "Ver más..."
     },
-    "content":{
-      "header":"Subir una imagen/video",
-      "gallery":"Galeria",
-      "youtube":"Enlace de youtube"
+    "content": {
+      "header": "Subir una imagen/video",
+      "gallery": "Galeria",
+      "youtube": "Enlace de youtube"
     },
-    "add":"¡Agrega una imagen a tu galeria!",
-    "title":"Mi historia en imagen",
-    "allContent":"No hay mas contenido",
-    "loading":"Cargando contenido...",
-    "public":{
-      "title":"Galeria de {{name}} {{last_name}}",
-      "preview_title":"Historia de {{name}} {{last_name}} en imagen",
-      "preview_btn":"Ver todo"
+    "add": "¡Agrega una imagen a tu galeria!",
+    "title": "Mi historia en imagen",
+    "allContent": "No hay mas contenido",
+    "loading": "Cargando contenido...",
+    "public": {
+      "title": "Galeria de {{name}} {{last_name}}",
+      "preview_title": "Historia de {{name}} {{last_name}} en imagen",
+      "preview_btn": "Ver todo"
+    }
+  },
+  "socialNetworks": {
+    "private": {
+      "title": "Tus redes sociales",
+      "edit": "Editar enlaces"
+    },
+    "edit": {
+      "title": "Indicale a sportyeah cuales son tus redes sociales!",
+      "save": "Guardar Cambios"
+    },
+    "public": {
+      "title": "Redes sociales de {{name}} {{last_name}}"
     }
   }
 }

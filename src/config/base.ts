@@ -138,3 +138,20 @@ export const SIDEBAR_ITEMS = [{
     "sports_sychology",
     "field_delegate",
   ];
+
+  export const languajes = [
+    "es", // espaniol
+    "en", // ingles
+    "ca", // catalan
+    "gl", // gallego
+    "eu", // euskera
+    "fr", // frances
+    "de", // aleman
+    "it", // italiano
+    "pt", // portugues
+    "ru", // ruso
+    "zh", // chino
+    "ja", // japones
+    "ar", // arabe
+    "hi", // hindu
+  ]
