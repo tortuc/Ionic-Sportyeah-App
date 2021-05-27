@@ -22,33 +22,41 @@ export class SocialNetworksPublicComponent implements OnInit {
 
   setSocialNetworks() {
     let { socialNetworks } = this.user;
-    this.socialNetworks = [
-      {
-        icon: "logo-tiktok",
-        name: SocialNetworks.tiktok,
-        username: socialNetworks.tiktok,
-      },
-      {
-        icon: "logo-twitter",
-        name: SocialNetworks.twitter,
-        username: socialNetworks.twitter,
-      },
-      {
+    if (socialNetworks.facebook) {
+      this.socialNetworks.push({
         icon: "logo-facebook",
         name: SocialNetworks.facebook,
         username: socialNetworks.facebook,
-      },
-      {
+      });
+    }
+    if (socialNetworks.twitter) {
+      this.socialNetworks.push({
+        icon: "logo-twitter",
+        name: SocialNetworks.twitter,
+        username: socialNetworks.twitter,
+      });
+    }
+    if (socialNetworks.tiktok) {
+      this.socialNetworks.push({
+        icon: "logo-tiktok",
+        name: SocialNetworks.tiktok,
+        username: socialNetworks.tiktok,
+      });
+    }
+    if (socialNetworks.instagram) {
+      this.socialNetworks.push({
         icon: "logo-instagram",
         name: SocialNetworks.instagram,
         username: socialNetworks.instagram,
-      },
-      {
+      });
+    }
+    if (socialNetworks.linkedin) {
+      this.socialNetworks.push({
         icon: "logo-linkedin",
         name: SocialNetworks.linkedin,
         username: socialNetworks.linkedin,
-      },
-    ];
+      });
+    }
   }
 
   ngOnInit() {
