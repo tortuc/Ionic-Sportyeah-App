@@ -63,13 +63,13 @@ export class ProfilePage implements OnInit {
         this.views = views.visits;
       });
     const uP = this.userService.User.profile_user;
+    console.log(uP)
     if (
       uP === "club" ||
       uP === "representative" ||
       uP === "association" ||
       uP === "foundation" ||
       uP === "federation" ||
-      uP === "brand" ||
       uP === "sponsor"
     )
       this.landingButton = true;

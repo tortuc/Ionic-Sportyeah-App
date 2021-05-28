@@ -4,6 +4,8 @@ import { Routes, RouterModule } from "@angular/router";
 import { ProfilePage } from "./profile.page";
 import { ViewProfileComponent } from "../components/view-profile/view-profile.component";
 import { GalleryComponent } from "../components/gallery/gallery/gallery.component";
+import { PrivateStructureComponent } from "../components/structure/private-structure/private-structure.component";
+import { StructureGuardService } from "../guards/structure-guard.service";
 const routes: Routes = [
   {
     path: "",
@@ -18,7 +20,12 @@ const routes: Routes = [
   },
   {
     path: "gallery",
-    component:GalleryComponent
+    component: GalleryComponent,
+  },
+  {
+    path: "structure",
+    component: PrivateStructureComponent,
+    canActivate: [StructureGuardService],
   },
   {
     path: "following",
@@ -30,7 +37,7 @@ const routes: Routes = [
     loadChildren: () =>
       import("./follower/follower.module").then((m) => m.FollowerPageModule),
   },
- 
+
   {
     path: "view-profile",
     component: ViewProfileComponent,

@@ -1,0 +1,68 @@
+<ion-header>
+  <ion-toolbar class="main-bg">
+    <ion-buttons slot="start">
+      <ion-back-button style="color: white"></ion-back-button>
+    </ion-buttons>
+    <ion-title style="--color: white">{{
+      "structure.title.text" | translate
+    }}</ion-title>
+    <ion-buttons slot="end">
+      <button-search-friend></button-search-friend>
+      <button-notification></button-notification>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div *ngIf="structure">
+    <div style="background-color: black; height: 100%">
+      <ion-slides pager="true" style="background-color: black; height: 300px">
+        <ion-slide
+          class="slide"
+          style="width: 100%"
+          *ngFor="let file of structure.files"
+        >
+          <img
+            *ngIf="file.format == 'image'"
+            [src]="file.url"
+            class="img"
+            alt=""
+            style="width: 100%"
+          />
+        </ion-slide>
+      </ion-slides>
+    </div>
+    <div class="header">
+      <h1 class="title">{{ structure.name | translate }}</h1>
+      <h6>
+        {{ structure.title }}
+      </h6>
+      <p class="desc">{{ structure.description }}</p>
+      <p class="sdate">Fundacion - {{ structure.date | customDisplayDate }}</p>
+
+      <div class="row align-items-center">
+        <ion-icon
+          class="icons social-icon facebook"
+          name="logo-facebook"
+        ></ion-icon>
+        <ion-icon
+          class="icons social-icon twitter"
+          name="logo-twitter"
+        ></ion-icon>
+        <ion-icon
+          class="icons social-icon tiktok"
+          name="logo-tiktok"
+        ></ion-icon>
+
+        <ion-icon
+          class="icons social-icon instagram"
+          name="logo-instagram"
+        ></ion-icon>
+        <ion-icon
+          class="icons social-icon linkedin"
+          name="logo-linkedin"
+        ></ion-icon>
+      </div>
+    </div>
+  </div>
+</ion-content>
