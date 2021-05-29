@@ -135,6 +135,12 @@
 
           <social-networks fxShow="false" fxShow.lt-md="true"></social-networks>
 
+          <private-structure-preview
+            fxShow="false"
+            fxShow.lt-md="true"
+            *ngIf="['club'].includes(userService.User.profile_user)"
+          ></private-structure-preview>
+
           <!-- Patrocinadores en mobile -->
           <custom-sponsor
             fxShow="false"
@@ -229,6 +235,9 @@
           <custom-sponsor
             *ngIf="userService.User.profile_user == 'sponsor'"
           ></custom-sponsor>
+          <private-structure-preview
+            *ngIf="['club'].includes(userService.User.profile_user)"
+          ></private-structure-preview>
 
           <friends-panel-desktop></friends-panel-desktop>
           <add-users-panel-desktop></add-users-panel-desktop>

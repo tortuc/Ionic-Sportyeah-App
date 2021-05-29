@@ -1373,5 +1373,15 @@
     "public": {
       "title": "Redes sociales de {{name}} {{last_name}}"
     }
+  },
+  "private_structure": {
+    "preview":{
+      "title":"Estructura del club",
+      "edit":"Editar estructura"
+    },
+    "edit": "Editar información",
+    "init": "Fundación",
+    "structureClub": "Estructura del club",
+    "organizationChart": "Organigrama"
   }
 }

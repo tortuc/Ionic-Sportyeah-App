@@ -7,8 +7,18 @@ import { PipesModule } from "src/app/pipes/pipes.module";
 import { RouterModule } from "@angular/router";
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { EditStructureInfoComponent } from "./private-structure/edit-structure-info/edit-structure-info.component";
+import { PrivateStructurePreviewComponent } from "./private-structure/private-structure-preview/private-structure-preview.component";
+import { ComponentsSharedModule } from "src/app/shared-components/components-shared.module";
+import { PrivateOrganizationChartComponent } from "./private-organization-chart/private-organization-chart.component";
+import { ComponentsModule } from "../components.module";
 
-const components = [PrivateStructureComponent];
+const components = [
+  PrivateStructureComponent,
+  EditStructureInfoComponent,
+  PrivateStructurePreviewComponent,
+  PrivateOrganizationChartComponent
+];
 
 @NgModule({
   declarations: components,
@@ -21,6 +31,8 @@ const components = [PrivateStructureComponent];
     FlexLayoutModule,
     ReactiveFormsModule,
     FormsModule,
+    ComponentsSharedModule,
+    ComponentsModule
   ],
   exports: components,
 })

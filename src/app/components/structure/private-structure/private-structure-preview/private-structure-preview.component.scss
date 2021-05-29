@@ -1,0 +1,39 @@
+.structure-card {
+  margin: 0;
+  margin-bottom: 10px;
+  text-align: center;
+  position: relative;
+  background: black;
+  min-height: 220px;
+  height: 220px;
+}
+
+.name {
+  font-weight: bold;
+  font-size: 2rem;
+  margin-bottom: 3px;
+}
+.content {
+  cursor: pointer;
+  padding: 5px;
+  z-index: 10;
+  position: relative;
+  height: 100%;
+  background: #0000005c;
+  &:hover {
+    background: #000000c2;
+  }
+}
+.bg-img {
+  position: absolute;
+  width: 100%;
+  right: 0;
+  height: 100%;
+  top: 0;
+  z-index: 0;
+}
+
+.text {
+  color: white;
+  text-shadow: 0 0 10px black;
+}

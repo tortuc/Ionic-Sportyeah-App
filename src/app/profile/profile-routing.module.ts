@@ -6,6 +6,7 @@ import { ViewProfileComponent } from "../components/view-profile/view-profile.co
 import { GalleryComponent } from "../components/gallery/gallery/gallery.component";
 import { PrivateStructureComponent } from "../components/structure/private-structure/private-structure.component";
 import { StructureGuardService } from "../guards/structure-guard.service";
+import { PrivateOrganizationChartComponent } from "../components/structure/private-organization-chart/private-organization-chart.component";
 const routes: Routes = [
   {
     path: "",
@@ -25,6 +26,11 @@ const routes: Routes = [
   {
     path: "structure",
     component: PrivateStructureComponent,
+    canActivate: [StructureGuardService],
+  },
+  {
+    path: "structure/organization",
+    component: PrivateOrganizationChartComponent,
     canActivate: [StructureGuardService],
   },
   {

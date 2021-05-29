@@ -15,53 +15,50 @@
 
 <ion-content>
   <div *ngIf="structure">
-    <div style="background-color: black; height: 100%">
-      <ion-slides pager="true" style="background-color: black; height: 300px">
-        <ion-slide
-          class="slide"
-          style="width: 100%"
-          *ngFor="let file of structure.files"
-        >
-          <img
-            *ngIf="file.format == 'image'"
-            [src]="file.url"
-            class="img"
-            alt=""
-            style="width: 100%"
-          />
-        </ion-slide>
-      </ion-slides>
-    </div>
+    
     <div class="header">
       <h1 class="title">{{ structure.name | translate }}</h1>
       <h6>
-        {{ structure.title }}
+        {{ structure.description }}
       </h6>
-      <p class="desc">{{ structure.description }}</p>
-      <p class="sdate">Fundacion - {{ structure.date | customDisplayDate }}</p>
 
-      <div class="row align-items-center">
-        <ion-icon
-          class="icons social-icon facebook"
-          name="logo-facebook"
-        ></ion-icon>
-        <ion-icon
-          class="icons social-icon twitter"
-          name="logo-twitter"
-        ></ion-icon>
-        <ion-icon
-          class="icons social-icon tiktok"
-          name="logo-tiktok"
-        ></ion-icon>
-
-        <ion-icon
-          class="icons social-icon instagram"
-          name="logo-instagram"
-        ></ion-icon>
-        <ion-icon
-          class="icons social-icon linkedin"
-          name="logo-linkedin"
-        ></ion-icon>
+      <p class="sdate">
+        {{ Texts.init | translate }} -
+        {{ structure.date | customDisplayDate: true }}
+      </p>
+      <ion-button (click)="edit()" class="btn-primary">{{
+        Texts.edit | translate
+      }}</ion-button>
+    </div>
+    <div class="content">
+      <div class="section" routerLink="organization">
+        <div class="text-content">
+          <h2 class="text">{{ Texts.organizationChart | translate }}</h2>
+          <img src="assets/structure/orgChart.jpeg" alt="" />
+        </div>
+      </div>
+      <div class="section">
+        <div class="text-content">
+          <h2 class="text">{{ Texts.structureClub | translate }}</h2>
+          <img src="assets/structure/stadium.jpg" alt="" />
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="text-align: center">
+    <div style="display: flex; padding: 10px; justify-content: center">
+      <div class="social-content" *ngFor="let social of socialNetworks">
+        <div
+          style="cursor: pointer"
+          (click)="redirectTo(social.name, social.username)"
+        >
+          <ion-icon
+            class="icons social-icon"
+            [name]="social.icon"
+            [ngClass]="social.name"
+          ></ion-icon>
+          <p *ngIf="social.username">@{{ social.username }}</p>
+        </div>
       </div>
     </div>
   </div>
