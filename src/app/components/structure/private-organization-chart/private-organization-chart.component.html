@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar class="main-bg">
+  <ion-toolbar class="toolbar-bg">
     <ion-buttons slot="start">
       <ion-back-button style="color: white"></ion-back-button>
     </ion-buttons>
@@ -16,7 +16,7 @@
 <ion-content>
   <div>
     <div class="header">
-      <h1 class="name">{{structure.name}}</h1>
+      <h1 class="name">{{ structure.name }}</h1>
       <h1 class="title">{{ Texts.title | translate }}</h1>
       <h6>
         {{ Texts.description | translate }}
@@ -26,26 +26,24 @@
   <div class="content">
     <ion-grid>
       <ion-row>
-        <ion-col size="3">
-          <div class="section">
+        <ion-col size-md="4" size-lg="3" size-xs="12">
+          <div class="section" (click)="create()">
             <div class="text-content">
-              <h2 class="text">Crear perfil</h2>
+              <h2 class="text">{{ Texts.create | translate }}</h2>
               <img src="assets/structure/create-executive.jpg" alt="" />
             </div>
           </div>
         </ion-col>
-        <ion-col *ngFor="let profile of testprofiles" size="3">
-          <ion-card class="exe-item">
-            <ion-card-header class="exe-header">
-              <img class="exe-img" [src]="profile.photo" alt="" />
-            </ion-card-header>
-            <ion-card-content class="exe-info">
-              <h2 class="name">{{ profile.name }}</h2>
-              <h3 class="position">{{ profile.position }}</h3>
-              <p>{{ profile.description }}</p>
-              <p>Desde - {{ profile.date | customDisplayDate: true }}</p>
-            </ion-card-content>
-          </ion-card>
+
+        <ion-col
+          size-md="4"
+          size-lg="3"
+          size-xs="12"
+          *ngFor="let profile of profiles"
+          [ngClass]="{ deleted: profile.deleted }"
+          size="3"
+        >
+          <executive-card [profile]="profile"></executive-card>
         </ion-col>
       </ion-row>
     </ion-grid>

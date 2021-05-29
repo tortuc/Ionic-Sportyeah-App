@@ -31,7 +31,7 @@ export class UserService {
     private translate: TranslateService,
     // private fcmService: FcmService,
     private cookieService: CookieService,
-    private readonly modalCtrl:ModalController
+    private readonly modalCtrl: ModalController
   ) {}
 
   /**
@@ -261,9 +261,9 @@ export class UserService {
       this.router.navigate(["/profile"]);
     }
 
-    this.modalCtrl.dismiss().catch((e)=>{
-      // no pasa nada, no lo borren 
-    })
+    this.modalCtrl.dismiss().catch((e) => {
+      // no pasa nada, no lo borren
+    });
   }
 
   audio = new Howl({
@@ -296,10 +296,12 @@ export class UserService {
   }
 
   queryUsers(query) {
-    return this.http.get(`${environment.URL_API}/friend/query/${query}`);
+    return this.http.get<User[]>(
+      `${environment.URL_API}/friend/query/${query}`
+    );
   }
   queryUsersSkip(query, skip) {
-    return this.http.get(
+    return this.http.get<User[]>(
       `${environment.URL_API}/friend/query/${query}/${skip}`
     );
   }

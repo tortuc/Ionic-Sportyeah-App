@@ -1375,13 +1375,46 @@
     }
   },
   "private_structure": {
-    "preview":{
-      "title":"Estructura del club",
-      "edit":"Editar estructura"
+    "preview": {
+      "title": "Estructura del club",
+      "edit": "Editar estructura"
     },
     "edit": "Editar información",
     "init": "Fundación",
     "structureClub": "Estructura del club",
-    "organizationChart": "Organigrama"
+    "organizationChart": "Organigrama",
+    "editmodal": {
+      "title": "Edita la informacion de tu club",
+      "name": "Nombre de tu club",
+      "description": "Descripcion de tu club",
+      "date": "Fecha en que se fundo tu club",
+      "socialNetworks": "Enlaces a tus redes sociales",
+      "save": "Guardar cambios"
+    }
+  },
+  "organizationChart": {
+    "title": "Organigrama",
+    "description": "Junta directiva del club encargada de...",
+    "createBtn": "Crear perfil",
+    "create": {
+      "title": " Crear un perfil para el organigrama del club",
+      "edit": " Editar perfil",
+      "changeImg": " Cambiar foto",
+      "name": " Nombre y apellido",
+      "position": " Cargo que ejerce",
+      "description": " Descripcion del cargo",
+      "date": " Fecha de inicio",
+      "history": " Historia (Historial del perfil en la empresa)",
+      "create": " Crear perfil",
+      "save": " Guardar cambios",
+      "user": " Tiene cuenta en sportyeah? Puedes buscarlo aqui y marcar su cuenta para vincularla",
+      "cancelUser": " Descartar usuario"
+    }
+  },
+  "executive_card":{
+    "from":"Desde",
+    "deleteHeader":"Eliminar perfil ",
+    "deleteMessage":"Seguro que deseas eliminar este perfil?",
+    "accept":"Si, Eliminar"
   }
 }

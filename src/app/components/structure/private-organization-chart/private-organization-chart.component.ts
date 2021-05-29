@@ -1,9 +1,17 @@
 import { Component, OnInit } from "@angular/core";
-import { IStructure, StructureService } from "src/app/service/structure.service";
+import { ModalController } from "@ionic/angular";
+import {
+  IOrganization,
+  IStructure,
+  StructureService,
+} from "src/app/service/structure.service";
+import { CreateProfileOrgComponent } from "./create-profile-org/create-profile-org.component";
 
 enum Texts {
-  title = "Organigrama",
-  description = "Junta directiva del club encargada de...",
+  title = "organizationChart.title",
+  description = "organizationChart.description",
+  create = "organizationChart.createBtn",
+  from = "Desde",
 }
 
 @Component({
@@ -13,34 +21,39 @@ enum Texts {
 })
 export class PrivateOrganizationChartComponent implements OnInit {
   public readonly Texts = Texts;
-  constructor(private readonly structureService: StructureService) {}
+  constructor(
+    private readonly structureService: StructureService,
+    private readonly modalCtrl: ModalController
+  ) {}
 
+  public structure: IStructure = this.structureService.myStructure;
 
-  public structure:IStructure = this.structureService.myStructure
+  ngOnInit() {
+    this.structureService.newProfileOrganization$.subscribe((profile) => {
+      this.profiles.push(profile);
+    });
 
-  testprofiles = [
-    {
-      photo: "assets/structure/president.jpg",
-      name: "Pepe escamilla",
-      position: "Presidente",
-      description: "Presidente del club",
-      date: new Date(),
-    },
-    {
-      photo: "assets/structure/vicepresident.jpg",
-      name: "Maria infante",
-      position: "Vicepresidenta",
-      description: "Vicepresidenta del club",
-      date: new Date(),
-    },
-    {
-      photo: "assets/structure/director.jpg",
-      name: "Pablo Valderrama",
-      position: "Director de area",
-      description: "Director de area del club",
-      date: new Date(),
-    },
-  ];
+    this.getProfiles();
+  }
 
-  ngOnInit() {}
+  public profiles: IOrganization[] = [];
+
+  getProfiles() {
+    this.structureService
+      .getOrganizationByStructure(this.structure._id)
+      .subscribe((profiles) => {
+        console.log(profiles);
+
+        this.profiles = profiles;
+      });
+  }
+
+  async create() {
+    const modal = await this.modalCtrl.create({
+      component: CreateProfileOrgComponent,
+      cssClass: "modal-border",
+    });
+
+    return await modal.present();
+  }
 }

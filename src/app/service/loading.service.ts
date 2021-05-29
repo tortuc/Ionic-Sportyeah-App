@@ -11,17 +11,12 @@ export class LoadingService {
   constructor(
     private readonly loadingCtrl: LoadingController,
     private readonly translate: TranslateService
-  ) {
-    this.initLoading();
-  }
+  ) {}
 
-  private async initLoading() {
+  public async present() {
     this.loading = await this.loadingCtrl.create({
       message: this.translate.instant("loading"),
     });
-  }
-
-  public present() {
     this.loading.present();
   }
 

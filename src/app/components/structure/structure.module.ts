@@ -12,12 +12,16 @@ import { PrivateStructurePreviewComponent } from "./private-structure/private-st
 import { ComponentsSharedModule } from "src/app/shared-components/components-shared.module";
 import { PrivateOrganizationChartComponent } from "./private-organization-chart/private-organization-chart.component";
 import { ComponentsModule } from "../components.module";
+import { CreateProfileOrgComponent } from "./private-organization-chart/create-profile-org/create-profile-org.component";
+import { ExecutiveCardComponent } from "./private-organization-chart/executive-card/executive-card.component";
 
 const components = [
   PrivateStructureComponent,
   EditStructureInfoComponent,
   PrivateStructurePreviewComponent,
-  PrivateOrganizationChartComponent
+  PrivateOrganizationChartComponent,
+  CreateProfileOrgComponent,
+  ExecutiveCardComponent
 ];
 
 @NgModule({

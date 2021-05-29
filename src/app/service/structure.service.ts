@@ -24,8 +24,9 @@ export interface IOrganization {
   photo: string;
   structure: string | IStructure;
   history: string;
-  date: Date;
-  deleted: boolean;
+  position: string;
+  date?: Date;
+  deleted?: boolean;
 }
 
 @Injectable({

@@ -6,12 +6,12 @@ import * as moment from "moment";
 import { StructureService } from "src/app/service/structure.service";
 
 enum Texts {
-  title = "Edita la informacion de tu club",
-  name = "Nombre de tu club",
-  description = "Descripcion de tu club",
-  date = "Fecha en que se fundo tu club",
-  socialNetworks = "Enlaces a tus redes sociales",
-  save = "Guardar cambios",
+  title = "private_structure.editmodal.title",
+  name = "private_structure.editmodal.name",
+  description = "private_structure.editmodal.description",
+  date = "private_structure.editmodal.date",
+  socialNetworks = "private_structure.editmodal.socialNetworks",
+  save = "private_structure.editmodal.save",
 }
 
 @Component({

@@ -37,6 +37,7 @@ import { NewPostHeaderComponent } from "../post-components/new-post-header/new-p
 import { PostPreviewImagesSliderComponent } from "../post-components/post-preview-images-slider/post-preview-images-slider.component";
 import { PostPreviewImagesComponent } from "../post-components/post-preview-images/post-preview-images.component";
 import { MiniflagComponent } from "../components/miniflag/miniflag.component";
+import { UserItemPreviewComponent } from "../components/user-item-preview/user-item-preview.component";
 
 const components = [
   ViewCommentComponent,
@@ -53,6 +54,7 @@ const components = [
   ChatUserItemComponent,
   UserItemComponent,
   UserItemPanelComponent,
+  UserItemPreviewComponent,
   FriendsPanelDesktopComponent,
   AddUsersPanelDesktopComponent,
   FollowBtn,
