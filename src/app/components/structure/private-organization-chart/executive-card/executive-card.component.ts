@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
 import { AlertController, ModalController } from "@ionic/angular";
 import { TranslateService } from "@ngx-translate/core";
 import { LoadingService } from "src/app/service/loading.service";
@@ -28,10 +29,17 @@ export class ExecutiveCardComponent implements OnInit {
     private readonly structureService: StructureService,
     private readonly alertCtrl: AlertController,
     private readonly translate: TranslateService,
-    private readonly loadingService: LoadingService
+    private readonly loadingService: LoadingService,
+    private readonly router: Router
   ) {}
 
   ngOnInit() {}
+
+  public visit() {
+    this.router.navigate([
+      `/profile/structure/organization/profile/${this.profile._id}`,
+    ]);
+  }
 
   async edit() {
     this.structureService.updateProfileOrganization$.subscribe((profile) => {

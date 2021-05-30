@@ -5,13 +5,20 @@
   position: relative;
   background: black;
   min-height: 220px;
-  height: 220px;
+}
+
+.logo {
+  img {
+    width: 100px;
+    height: 100px;
+  }
 }
 
 .name {
   font-weight: bold;
   font-size: 2rem;
   margin-bottom: 3px;
+  margin-top: 0;
 }
 .content {
   cursor: pointer;

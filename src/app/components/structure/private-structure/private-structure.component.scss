@@ -1,12 +1,21 @@
 .header {
   text-align: center;
   padding: 10px;
+  
+}
+
+.logo{
+  img{
+    width: 100px;
+    height: 100px;
+  }
 }
 
 .title {
   font-size: 2.4em;
   color: black;
   font-weight: bold;
+  margin: 0;
 }
 
 .desc {

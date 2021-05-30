@@ -1,4 +1,14 @@
 <ion-content>
+  <loading-progress class="progress"></loading-progress>
+
+  <input
+    type="file"
+    #fileChooser
+    accept="image/*"
+    (change)="uploadFile($event)"
+    hidden
+  />
+
   <ion-icon
     name="close-outline"
     (click)="modalCtrl.dismiss()"
@@ -6,12 +16,25 @@
   ></ion-icon>
   <div style="text-align: center; padding: 10px">
     <h4>{{ Texts.title | translate }}</h4>
+    <div class="logo">
+      <p class="hint">{{ Texts.hintlogo | translate }}</p>
+      <img
+        (click)="fileChooser.click()"
+        [src]="form.controls.logo.value"
+        alt=""
+      />
+      <div>
+        <ion-button (click)="fileChooser.click()" class="btn-primary">{{
+          Texts.editlogo | translate
+        }}</ion-button>
+      </div>
+    </div>
     <form [formGroup]="form">
       <ion-item>
         <ion-label position="floating">{{ Texts.name | translate }}</ion-label>
         <ion-input formControlName="name"></ion-input>
       </ion-item>
-    
+
       <ion-item>
         <ion-label position="floating">{{
           Texts.description | translate
@@ -120,9 +143,12 @@
       </div>
     </form>
     <div style="padding: 10px; text-align: center">
-      <ion-button [disabled]="form.invalid" class="btn-primary" (click)="save()">{{
-        Texts.save | translate
-      }}</ion-button>
+      <ion-button
+        [disabled]="form.invalid"
+        class="btn-primary"
+        (click)="save()"
+        >{{ Texts.save | translate }}</ion-button
+      >
     </div>
   </div>
 </ion-content>

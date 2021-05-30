@@ -1,0 +1,80 @@
+.header {
+  text-align: center;
+  padding: 20px;
+  .position {
+    font-weight: bold;
+    font-size: 2.3rem;
+  }
+  .club {
+    margin: 0;
+  }
+  .photo-content {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    .photo {
+      img {
+        max-height: 300px;
+        height: 210px;
+        width: 400px;
+        box-shadow: 0 0 10px black;
+        border-radius: 15px;
+      }
+    }
+    .name {
+      .text {
+        font-weight: bold;
+      }
+    }
+  }
+}
+
+.content {
+  max-width: 1000px;
+  padding: 15px;
+  margin: auto;
+}
+.logo {
+  img {
+    width: 100px;
+    height: 100px;
+  }
+}
+
+.preview-desktop {
+  ::ng-deep .user-item {
+    max-width: 800px;
+    margin: auto;
+    .header {
+      .image {
+        .banner-img {
+          height: 250px !important;
+        }
+        .img {
+          width: 120px !important;
+          height: 120px !important;
+
+          margin-top: -75px !important;
+        }
+      }
+      .name-content{
+          .name{
+              font-size: 20px;
+          }
+      }
+    }
+  }
+}
+
+@media screen and (max-width:600px) {
+    
+.header{
+    .position{
+        font-size: 2rem;
+    }
+    .photo-content{
+        display: block;
+    }
+
+}
+}

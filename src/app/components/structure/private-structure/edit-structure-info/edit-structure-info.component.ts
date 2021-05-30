@@ -3,6 +3,7 @@ import { FormBuilder, Validators } from "@angular/forms";
 import { LoadingController, ModalController } from "@ionic/angular";
 import { TranslateService } from "@ngx-translate/core";
 import * as moment from "moment";
+import { FilesService } from "src/app/service/files.service";
 import { StructureService } from "src/app/service/structure.service";
 
 enum Texts {
@@ -12,6 +13,8 @@ enum Texts {
   date = "private_structure.editmodal.date",
   socialNetworks = "private_structure.editmodal.socialNetworks",
   save = "private_structure.editmodal.save",
+  editlogo = "private_structure.editmodal.editlogo",
+  hintlogo = "private_structure.editmodal.hintlogo",
 }
 
 @Component({
@@ -26,13 +29,15 @@ export class EditStructureInfoComponent implements OnInit {
     private fb: FormBuilder,
     private readonly structureService: StructureService,
     private readonly loadingCtrl: LoadingController,
-    private readonly translate: TranslateService
+    private readonly translate: TranslateService,
+    private readonly fileService:FilesService
   ) {}
 
   private readonly myStructure = this.structureService.myStructure;
 
   form = this.fb.group({
     name: [this.myStructure.name, [Validators.required]],
+    logo: [this.myStructure.logo, [Validators.required]],
     description: [this.myStructure.description, [Validators.required]],
     date: [
       moment(this.myStructure.date).format("YYYY-MM-DD"),
@@ -67,5 +72,14 @@ export class EditStructureInfoComponent implements OnInit {
       .catch(() => {
         loading.dismiss();
       });
+  }
+
+  
+  uploadFile(event) {
+    let formdata = new FormData();
+    formdata.append("image", event.target.files[0]);
+    this.fileService.uploadImageProgress(formdata).then((url) => {
+      this.form.controls.logo.setValue(url);
+    });
   }
 }

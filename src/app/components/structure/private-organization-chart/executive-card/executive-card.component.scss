@@ -1,6 +1,7 @@
 .exe-item {
   box-shadow: 0 0 10px 0px black;
   .exe-header {
+    cursor: pointer;
     margin: 0;
     padding: 0;
     .exe-img {
@@ -10,6 +11,7 @@
     }
   }
   .exe-info {
+    cursor: pointer;
     .name {
       color: black;
       font-weight: bold;

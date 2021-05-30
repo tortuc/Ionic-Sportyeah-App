@@ -7,6 +7,9 @@
       *ngIf="structure == null"
     ></ion-spinner>
     <div style="position: relative" *ngIf="structure != null">
+      <div class="logo">
+        <img [src]="structure.logo" alt="" />
+      </div>
       <h3 class="text name">{{ structure.name }}</h3>
       <h6 class="text" style="margin: 0; margin-bottom: 5px">
         {{ structure.description }}

@@ -17,3 +17,15 @@
     flex: auto;
   }
 }
+
+.logo {
+  text-align: center;
+  .hint{
+    font-size: 12px;
+  }
+  img {
+    height: 100px;
+    width: 100px;
+    cursor: pointer;
+  }
+}

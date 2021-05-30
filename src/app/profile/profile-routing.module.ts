@@ -7,6 +7,8 @@ import { GalleryComponent } from "../components/gallery/gallery/gallery.componen
 import { PrivateStructureComponent } from "../components/structure/private-structure/private-structure.component";
 import { StructureGuardService } from "../guards/structure-guard.service";
 import { PrivateOrganizationChartComponent } from "../components/structure/private-organization-chart/private-organization-chart.component";
+import { ExecutiveProfileComponent } from "../components/structure/private-organization-chart/executive-profile/executive-profile.component";
+import { LandingGuard } from "../guards/landing-guard.service";
 const routes: Routes = [
   {
     path: "",
@@ -32,6 +34,11 @@ const routes: Routes = [
     path: "structure/organization",
     component: PrivateOrganizationChartComponent,
     canActivate: [StructureGuardService],
+  },
+  {
+    path: "structure/organization/profile/:id",
+    component: ExecutiveProfileComponent,
+    canActivate:[LandingGuard]
   },
   {
     path: "following",

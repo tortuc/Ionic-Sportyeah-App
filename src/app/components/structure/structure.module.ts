@@ -14,6 +14,7 @@ import { PrivateOrganizationChartComponent } from "./private-organization-chart/
 import { ComponentsModule } from "../components.module";
 import { CreateProfileOrgComponent } from "./private-organization-chart/create-profile-org/create-profile-org.component";
 import { ExecutiveCardComponent } from "./private-organization-chart/executive-card/executive-card.component";
+import { ExecutiveProfileComponent } from "./private-organization-chart/executive-profile/executive-profile.component";
 
 const components = [
   PrivateStructureComponent,
@@ -21,7 +22,8 @@ const components = [
   PrivateStructurePreviewComponent,
   PrivateOrganizationChartComponent,
   CreateProfileOrgComponent,
-  ExecutiveCardComponent
+  ExecutiveCardComponent,
+  ExecutiveProfileComponent
 ];
 
 @NgModule({

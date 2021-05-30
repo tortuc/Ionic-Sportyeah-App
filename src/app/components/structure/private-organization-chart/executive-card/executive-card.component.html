@@ -1,8 +1,8 @@
 <ion-card class="exe-item">
-  <ion-card-header class="exe-header">
+  <ion-card-header  (click)="visit()" class="exe-header">
     <img class="exe-img" [src]="profile.photo" alt="" />
   </ion-card-header>
-  <ion-card-content class="exe-info">
+  <ion-card-content (click)="visit()" class="exe-info">
     <h2 class="name">{{ profile.name }}</h2>
     <h3 class="position">{{ profile.position }}</h3>
     <p>{{ profile.description }}</p>

@@ -14,6 +14,7 @@ export interface IStructure {
   date: Date;
   socialNetworks: ISocialNetworks;
   _id: string;
+  logo:string;
 }
 
 export interface IOrganization {
@@ -27,6 +28,7 @@ export interface IOrganization {
   position: string;
   date?: Date;
   deleted?: boolean;
+
 }
 
 @Injectable({

@@ -1389,7 +1389,9 @@
       "description": "Descripcion de tu club",
       "date": "Fecha en que se fundo tu club",
       "socialNetworks": "Enlaces a tus redes sociales",
-      "save": "Guardar cambios"
+      "save": "Guardar cambios",
+      "editlogo":"Cambiar logo",
+      "hintlogo":"Cambia la imagen de tu logo (recomendado 500x500 y fondo transparente)"
     }
   },
   "organizationChart": {
