@@ -23,7 +23,7 @@ export interface IOrganization {
   user?: User;
   description: string;
   photo: string;
-  structure: string | IStructure;
+  structure: IStructure;
   history: string;
   position: string;
   date?: Date;
