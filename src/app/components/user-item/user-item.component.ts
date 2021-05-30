@@ -9,7 +9,7 @@ import { UserService } from "src/app/service/user.service";
   styleUrls: ["./user-item.component.scss"],
 })
 export class UserItemComponent implements OnInit {
-  @Input() user: User;
+  @Input() public user: User;
 
   constructor(
     public userService: UserService,
@@ -17,6 +17,8 @@ export class UserItemComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    console.log(this.user);
+    
     this.getFollows();
   }
 
@@ -33,4 +35,6 @@ export class UserItemComponent implements OnInit {
       this.followings = data.followings;
     }
   }
+
+  
 }

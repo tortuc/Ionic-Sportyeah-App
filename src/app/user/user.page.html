@@ -90,8 +90,9 @@
                 </ion-col>
               </ion-row>
             </ion-grid>
-            <div style="margin-top: 20px" *ngIf="!connected">
-              Conectado por ultima vez {{lastConection | customDisplayDate}}.
+            <div style="margin-top: 20px" *ngIf="!user.connected">
+              Conectado por ultima vez {{user.lastConection |
+              customDisplayDate}}.
             </div>
           </ion-card-header>
 
@@ -112,6 +113,13 @@
             fxShow.xs="true"
             [user]="user"
           ></social-networks-public>
+
+          <public-structure-preview
+            fxShow="false"
+            fxShow.xs="true"
+            *ngIf="['club'].includes(user.profile_user)"
+            [user]="user"
+          ></public-structure-preview>
 
           <profile-sponsors
             fxShow="false"
@@ -153,17 +161,6 @@
         <div [ngSwitch]="segment">
           <div *ngSwitchCase="segmentOptions.profile">
             <public-gallery-preview [user]="user"></public-gallery-preview>
-
-            <app-structure
-              [ID]="user._id"
-              *ngIf="   
-                    user?.profile_user === 'association' ||
-                    user?.profile_user === 'foundation' ||
-                    user?.profile_user === 'representative' ||
-                    user?.profile_user === 'federation' ||
-                    user?.profile_user === 'club'
-              "
-            ></app-structure>
 
             <experience
               *ngIf="['player','scout','press', 'executive','staff'].includes(user?.profile_user)"
@@ -276,7 +273,7 @@
         </div>
       </ion-col>
       <ion-col
-        *ngIf="userService.User != null"
+        *ngIf="showPanel"
         size-lg="5"
         fxShow.lt-md="false"
         class="ion-justify-content-center ion-align-items-center"
@@ -286,7 +283,13 @@
             *ngIf="user.profile_user !== 'sponsor'"
             [user]="user"
           ></profile-sponsors>
-          <add-users-panel-desktop></add-users-panel-desktop>
+          <public-structure-preview
+            *ngIf="['club'].includes(user.profile_user)"
+            [user]="user"
+          ></public-structure-preview>
+          <add-users-panel-desktop
+            *ngIf="userService.User != null"
+          ></add-users-panel-desktop>
           <!-- <popular-groups-panel></popular-groups-panel> -->
           <social-networks-public [user]="user"></social-networks-public>
         </div>

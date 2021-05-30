@@ -49,16 +49,12 @@ export class UserPage implements OnInit {
   friends: any = null;
   postsCount = 0;
   posts: IPost[] = [];
-  lastConection: Date;
-  connected: boolean = null;
   landingButton: boolean = false;
   landingNotActive: boolean = false;
-  estado: any;
   // variable de control para el rango de posts
   skip = 0;
   loadingPost: any = false;
 
-  id_visited: string;
   constructor(
     public mc: ModalController,
     public userService: UserService,
@@ -71,6 +67,8 @@ export class UserPage implements OnInit {
     private ls: LandingService,
     public newsService: NewsService
   ) {}
+
+  public showPanel = true;
 
   ionViewWillEnter() {
     this.ls
@@ -107,22 +105,11 @@ export class UserPage implements OnInit {
           this.postsCount = resp.posts;
           // Obtenemos sus post
           this.getPosts(resp.user._id);
-          // Vemos si esta conectado
-          this.connected = resp.user.connected;
-          // Obtenemos su ultima desconexion
-          this.lastConection = resp.user.lastConection;
-          // Obtenemos su estado
-          this.estado = resp.user.estado;
 
           // Si es prensa obtenemos sus articulos
           if (resp.user.profile_user == "press") {
             this.getArticle(resp.user._id);
           }
-
-          //Llamamos a la getviews
-          // this.visited = resp.user._id
-
-          this.id_visited = resp.user._id;
 
           const uP = resp.user.profile_user;
           if (
@@ -136,6 +123,16 @@ export class UserPage implements OnInit {
           )
             this.landingButton = true;
           else this.landingButton = false;
+
+          /**
+           * Esto es mientras no tenemos todas las herramientas listas
+           * TODO REMOVE
+           */
+          if (!this.userService.User && ["press", "sponsor"].includes(uP)) {
+            this.showPanel = false;
+          } else {
+            this.showPanel = true;
+          }
         },
         (err) => {
           // si hubo un error, lo mas probable es que sea porque el usuario no existe
@@ -191,9 +188,6 @@ export class UserPage implements OnInit {
     this.router.navigate([`news/read/${id}`]);
   }
 
-  //Contendra el _id del viewProfile al que se visita
-  visited: any;
-  vistasPerfil: any;
   ngOnInit() {}
 
   goTo(r) {

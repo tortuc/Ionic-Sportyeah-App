@@ -20,10 +20,10 @@
 
   <div *ngIf="profile">
     <div class="header">
-      <div class="logo">
+      <div (click)="goToStructure()" class="logo">
         <img [src]="profile.structure.logo" alt="" />
       </div>
-      <h1 class="club">{{ profile.structure.name }}</h1>
+      <h1 class="club" (click)="goToStructure()">{{ profile.structure.name }}</h1>
       <h2 class="position">{{ profile.position }}</h2>
       <div class="photo-content">
         <div class="photo">

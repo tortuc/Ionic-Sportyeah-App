@@ -7,6 +7,7 @@
   }
   .club {
     margin: 0;
+    cursor: pointer;
   }
   .photo-content {
     display: flex;
@@ -35,6 +36,8 @@
   margin: auto;
 }
 .logo {
+  cursor: pointer;
+
   img {
     width: 100px;
     height: 100px;
@@ -57,24 +60,22 @@
           margin-top: -75px !important;
         }
       }
-      .name-content{
-          .name{
-              font-size: 20px;
-          }
+      .name-content {
+        .name {
+          font-size: 20px;
+        }
       }
     }
   }
 }
 
-@media screen and (max-width:600px) {
-    
-.header{
-    .position{
-        font-size: 2rem;
+@media screen and (max-width: 600px) {
+  .header {
+    .position {
+      font-size: 2rem;
     }
-    .photo-content{
-        display: block;
+    .photo-content {
+      display: block;
     }
-
-}
+  }
 }

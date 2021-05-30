@@ -14,6 +14,7 @@ import { TranslateService } from "@ngx-translate/core";
 import { CookieService } from "ngx-cookie-service";
 import { Subject } from "rxjs";
 import { ModalController } from "@ionic/angular";
+import { take } from "rxjs/operators";
 
 // import { FcmService } from "./fcm.service";
 
@@ -241,22 +242,19 @@ export class UserService {
   }
 
   public goToProfile(username, idUser, from, link = null) {
-    if (username != this.User.username) {
-      // this.getUserByUsername(username)
-      // .subscribe(
-      // (resp:any)=>{
-      this.viewsProfileService
-        .createProfileView({
-          user: idUser,
-          visitor: this.User._id,
-          from: from,
-          link: link,
-        })
-        .subscribe(() => {
-          this.router.navigate([`/user/${username}`]);
-        });
-      // }
-      // )
+    if (username != this.User?.username) {
+      if (this.User) {
+        this.viewsProfileService
+          .createProfileView({
+            user: idUser,
+            visitor: this.User._id,
+            from: from,
+            link: link,
+          })
+          .pipe(take(1))
+          .subscribe();
+      }
+      this.router.navigate([`/user/${username}`]);
     } else {
       this.router.navigate(["/profile"]);
     }

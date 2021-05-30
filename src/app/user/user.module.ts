@@ -20,6 +20,7 @@ import { AptitudesModule } from "../components/aptitudes/aptitudes.module";
 import { GalleryModule } from "../components/gallery/gallery.module";
 import { ProfileSharedComponentsModule } from "../profile/profile-shared-components/profile-shared-components.module";
 import { FlexLayoutModule } from "@angular/flex-layout";
+import { StructureModule } from "../components/structure/structure.module";
 
 @NgModule({
   imports: [
@@ -38,7 +39,8 @@ import { FlexLayoutModule } from "@angular/flex-layout";
     AptitudesModule,
     GalleryModule,
     ProfileSharedComponentsModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    StructureModule
   ],
   declarations: [UserPage],
 })

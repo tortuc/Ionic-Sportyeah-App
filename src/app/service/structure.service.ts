@@ -8,13 +8,13 @@ import { LoadingService } from "./loading.service";
 import { UserService } from "./user.service";
 
 export interface IStructure {
-  user: string;
+  user: string | User;
   name: string;
   description: string;
   date: Date;
   socialNetworks: ISocialNetworks;
   _id: string;
-  logo:string;
+  logo: string;
 }
 
 export interface IOrganization {
@@ -28,7 +28,6 @@ export interface IOrganization {
   position: string;
   date?: Date;
   deleted?: boolean;
-
 }
 
 @Injectable({
@@ -81,6 +80,14 @@ export class StructureService {
   getStructureByUser(id) {
     return this.http
       .get<IStructure>(`${this.route}/getbyuser/${id}`)
+      .pipe(take(1));
+  }
+  /**
+   * Obtiene la estructura de un usuario, por el username del usuario
+   */
+  getStructureByUsername(username) {
+    return this.http
+      .get<IStructure>(`${this.route}/getbyusername/${username}`)
       .pipe(take(1));
   }
 
@@ -143,6 +150,16 @@ export class StructureService {
       .get<IOrganization[]>(
         `${this.routeOrganization}/bystructure/${structureId}`
       )
+      .pipe(take(1));
+  }
+  /**
+   * Obtiene todos los perfiles del organigrama de una estructura mediante el username del usuario a quien pertenece
+   * @param username username del User
+   * @returns
+   */
+  getOrganizationByUsername(username: string) {
+    return this.http
+      .get<IOrganization[]>(`${this.routeOrganization}/byusername/${username}`)
       .pipe(take(1));
   }
 
