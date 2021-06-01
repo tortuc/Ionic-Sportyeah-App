@@ -14,7 +14,7 @@
 </ion-header>
 
 <ion-content>
-  <div *ngIf="structure">
+  <div>
     <div class="header">
       <div class="logo">
         <img [src]="structure.logo" alt="" />
@@ -29,17 +29,25 @@
   <div class="content">
     <ion-grid>
       <ion-row>
+        <ion-col size-md="6" size-lg="4" size-xs="12">
+          <div class="section-create" (click)="create()">
+            <div class="text-content">
+              <h2 class="text">{{ Texts.create | translate }}</h2>
+              <img src="assets/structure/sports.jpg" alt="" />
+            </div>
+          </div>
+        </ion-col>
+
         <ion-col
-          size-md="4"
-          size-lg="3"
+          size-md="6"
+          size-lg="4"
           size-xs="12"
-          *ngFor="let profile of profiles"
-          [ngClass]="{ deleted: profile.deleted }"
-          size="3"
+          *ngFor="let division of divisions"
+          [ngClass]="{ deleted: division.deleted }"
         >
-          <executive-card [profile]="profile"></executive-card>
+          <division-card [division]="division"> </division-card>
         </ion-col>
       </ion-row>
-    </ion-grid>  
-  </div>    
-</ion-content> 
+    </ion-grid>
+  </div>
+</ion-content>

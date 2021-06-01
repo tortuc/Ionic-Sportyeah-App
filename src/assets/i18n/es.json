@@ -1391,8 +1391,8 @@
       "date": "Fecha en que se fundo tu club",
       "socialNetworks": "Enlaces a tus redes sociales",
       "save": "Guardar cambios",
-      "editlogo":"Cambiar logo",
-      "hintlogo":"Cambia la imagen de tu logo (recomendado 500x500 y fondo transparente)"
+      "editlogo": "Cambiar logo",
+      "hintlogo": "Cambia la imagen de tu logo (recomendado 500x500 y fondo transparente)"
     }
   },
   "organizationChart": {
@@ -1457,10 +1457,30 @@
     "take_events":"Elije un evento y toma un boleto"
   },
 
-  "executive_card":{
-    "from":"Desde",
-    "deleteHeader":"Eliminar perfil ",
-    "deleteMessage":"Seguro que deseas eliminar este perfil?",
-    "accept":"Si, Eliminar"
+  
+  "executive_card": {
+    "from": "Desde",
+    "deleteHeader": "Eliminar perfil ",
+    "deleteMessage": "Seguro que deseas eliminar este perfil?",
+    "accept": "Si, Eliminar"
+  },
+  "divisions": {
+    "title": "Estructura del club",
+    "description": "Divisiones",
+    "create": "Crear division"
+  },
+  "delete_division": {
+    "header": "Eliminar division",
+    "message": "Seguro que deseas eliminar esta division? se perderan categorias, equipos, jugadores y staff asociadas a esta!",
+    "accept": "Si, eliminar"
+  },
+  "create_division": {
+    "title": "Crear division",
+    "edit": "Editar division",
+    "btnCreate": "Crear division",
+    "save": "Guardar cambios",
+    "name": "Nombre de la division",
+    "description": "Breve descripcion",
+    "image": "Cambiar fondo de la tarjeta"
   }
 }

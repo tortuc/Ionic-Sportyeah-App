@@ -1,0 +1,15 @@
+<div class="options">
+  <div *ngFor="let item of options" class="item" (click)="option(item.action)">
+    <span>
+      <ion-icon [name]="item.icon"></ion-icon>
+      {{ item.text | translate }}
+    </span>
+  </div>
+
+  <div class="item" (click)="option('cancel')">
+    <span>
+      <ion-icon name="close-circle-outline"></ion-icon>
+      {{ Texts.cancel | translate }}
+    </span>
+  </div>
+</div>

@@ -3,32 +3,13 @@ import { Injectable } from "@angular/core";
 import { Subject } from "rxjs";
 import { take } from "rxjs/operators";
 import { environment } from "src/environments/environment";
-import { ISocialNetworks, User } from "../models/IUser";
+import {
+  IDivision,
+  IOrganization,
+  IStructure,
+} from "../models/structure.model";
 import { LoadingService } from "./loading.service";
 import { UserService } from "./user.service";
-
-export interface IStructure {
-  user: string | User;
-  name: string;
-  description: string;
-  date: Date;
-  socialNetworks: ISocialNetworks;
-  _id: string;
-  logo: string;
-}
-
-export interface IOrganization {
-  name: string;
-  _id?: string;
-  user?: User;
-  description: string;
-  photo: string;
-  structure: string | IStructure;
-  history: string;
-  position: string;
-  date?: Date;
-  deleted?: boolean;
-}
 
 @Injectable({
   providedIn: "root",
@@ -73,6 +54,10 @@ export class StructureService {
 
   private readonly route = `${environment.URL_API}/structure`;
   private readonly routeOrganization = `${environment.URL_API}/structure/organization`;
+  private readonly routeDivision = `${environment.URL_API}/structure/division`;
+  private readonly routeCategory = `${environment.URL_API}/structure/category`;
+  private readonly routeTeam = `${environment.URL_API}/structure/team`;
+  private readonly routePlayer = `${environment.URL_API}/structure/player`;
 
   /**
    * Obtiene la estructura de un usuario, por el id del usuario
@@ -214,6 +199,92 @@ export class StructureService {
   /**
    * -------------------------------------------------------
    * ------------ FIN CRUD ORGANIGRAMA ---------------------
+   * -------------------------------------------------------
+   */
+
+  /**
+   * -------------------------------------------------------
+   * ----------------------- CRUD DIVISION -----------------
+   * -------------------------------------------------------
+   */
+
+  public newDivision$ = new Subject<IDivision>();
+
+  createDivision(division) {
+    this.loadingService.present();
+    this.http
+      .post<IDivision>(`${this.routeDivision}/create`, division)
+      .pipe(take(1))
+      .subscribe(
+        (division) => {
+          this.loadingService.dismiss();
+          this.newDivision$.next(division);
+        },
+        () => {
+          this.loadingService.dismiss();
+        }
+      );
+  }
+
+  getAllDivisionsByStructure(id) {
+    return this.http
+      .get<IDivision[]>(`${this.routeDivision}/bystructure/${id}`)
+      .pipe(take(1));
+  }
+
+  getDivisionById(id) {
+    return this.http
+      .get<IDivision>(`${this.routeDivision}/byid/${id}`)
+      .pipe(take(1));
+  }
+
+  public updatedDivision$ = new Subject<IDivision>();
+
+  updateDivisionById(id, newData) {
+    this.loadingService.present();
+    this.http
+      .put<IDivision>(`${this.routeDivision}/update/${id}`, newData)
+      .pipe(take(1))
+      .subscribe(
+        (division) => {
+          this.loadingService.dismiss();
+          this.updatedDivision$.next(division);
+        },
+        () => {
+          this.loadingService.dismiss();
+        }
+      );
+  }
+
+  deleteDivisionById(id) {
+    return this.http.delete(`${this.routeDivision}/delete/${id}`);
+  }
+
+  /**
+   * -------------------------------------------------------
+   * ------------------ FIN CRUD DIVISION ------------------
+   * -------------------------------------------------------
+   */
+
+  /**
+   * -------------------------------------------------------
+   * -------------------- CRUD CATEGORIA ------------------
+   * -------------------------------------------------------
+   */
+
+  /**
+   * Crear una categoria
+   * @param category
+   */
+  createCategory(category) {}
+  getAllCategoryByDivision() {}
+  getCategory() {}
+  updateCategory() {}
+  deleteCategory() {}
+
+  /**
+   * -------------------------------------------------------
+   * ------------------ FIN CRUD CATEGORIA ------------------
    * -------------------------------------------------------
    */
 }
