@@ -1,0 +1,16 @@
+.circle {
+    img {
+      vertical-align: middle;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+    }
+  }
+  
+  ion-segment {
+    position: sticky;
+    top: 0;
+    background: white;
+    z-index: 100;
+  }
+  

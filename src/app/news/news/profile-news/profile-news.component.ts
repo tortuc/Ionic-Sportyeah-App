@@ -37,12 +37,38 @@ this.newsService.findUserProgramatedNews(this.userService.User._id).subscribe((r
   editNews(idNews) {
     this.router.navigate([`news/edit/${idNews}`]);
   }
+  async deleteNew(id) {
+    let result = await  this.newsService.delete(id)
+  
+    if(result){
+      this.newsService.findUserProgramatedNews(this.userService.User._id).subscribe((response)=>{
+        this.news = response
+      })
+    }
+    }
+  
+    async restoreNew(id) {
+      let result = await  this.newsService.restore(id)
+      
+      if(result){
+        this.newsService.findUserProgramatedNews(this.userService.User._id).subscribe((response)=>{
+          this.news = response
+        })
+    }
+    }
 
   options(data) {
     switch (data?.action) {
+      case "delete":
+        this.deleteNew(data.news);
+        break;
       case "edit":
         this.editNews(data.news);
         break;
+      case "restore":
+        this.restoreNew(data.news);
+        break;
+
       default:
         break;
     }

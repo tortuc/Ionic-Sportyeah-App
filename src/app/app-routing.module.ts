@@ -184,10 +184,24 @@ const routes: Routes = [
     canActivate: [LandingGuard],
   },
   {
+    path: 'streaming',
+    loadChildren: () => import('./stream-user/stream-user.module').then( m => m.StreamUserPageModule),
+    canActivate: [AuthGuardService],
+  },
+  {
+    path: 'event',
+    loadChildren: () => import('./event/event.module').then( m => m.EventPageModule),
+    canActivate: [AuthGuardService],
+  },
+  {
     path: "**",
     loadChildren: () =>
       import("./not-found/not-found.module").then((m) => m.NotFoundPageModule),
   },
+ 
+ 
+
+
 ];
 @NgModule({
   imports: [

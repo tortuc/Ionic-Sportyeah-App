@@ -1,0 +1,27 @@
+<ion-card style="margin: 0 ; padding: 0; margin-bottom: 10px;text-align: center;">
+  <h3>Vista previa</h3>
+  <div *ngIf="file.format == 'image'" [ngStyle]="{'background-image': 'url(' + file.url + ')'}" style="height:270px;background-size: cover;  background-position: center;">
+    <img style="height: 90px;" src="assets/logos/imagotipo_azul.png" alt="">
+    <ion-card-header>
+      <ion-card-title [ngStyle]="{'color':colorTitle}">{{title}}</ion-card-title>
+      <ion-card-subtitle [ngStyle]="{'color':colorDescription}" style="--color: black;">{{description}}</ion-card-subtitle>
+    </ion-card-header>
+  </div>
+  <!-- <div *ngIf="file.format == 'video'">
+    <ion-card-header>
+      <ion-card-title [ngStyle]="{'color':colorTitle}">{{title}}</ion-card-title>
+      <ion-card-subtitle [ngStyle]="{'color':colorDescription}">{{description}}</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+              <video
+                style="width: 100%; background-color: black;height: 270px;"
+                controls="controls"
+                preload="metadata"
+                webkit-playsinline="webkit-playsinline"
+                [ngClass]="file.length > 1 ? 'multi' : ''"
+              >
+                <source [src]="file.url | safeUrl" type="video/mp4" />
+              </video>
+    </ion-card-content>
+  </div> -->
+</ion-card>

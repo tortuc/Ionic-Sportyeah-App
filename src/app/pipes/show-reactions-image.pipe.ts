@@ -11,7 +11,7 @@ export class ShowReactionsImagePipe implements PipeTransform {
         return "/assets/images/like.png";
 
       case 2:
-        return "assets/images/lovely.png";
+        return "assets/images/crush.png";
 
       case 3:
         return "assets/images/haha.png";
@@ -26,63 +26,59 @@ export class ShowReactionsImagePipe implements PipeTransform {
         return "assets/images/angry.png";
 
       case 7:
-        // return "assets/images/level1.png";
-        return "assets/images/crush.png";
-        
-      case 8:
         return "assets/images/level2.png";
       
-      case 9:
+      case 8:
         return "assets/images/level3.png";
 
-      case 10:
+      case 9:
         // return "assets/images/level4.png";
         return "assets/images/legion.png";
 
-      case 11:
+      case 10:
         // return "assets/images/level5.png";
         return "assets/images/lol.png";
 
-      case 12:
+      case 11:
         return "assets/images/me_sirve.png";
 
-      case 13:
+      case 12:
         return "assets/images/bro.png";
 
-      case 14:
+      case 13:
         return "assets/images/fachero.png";
 
-      case 15:
+      case 14:
         return "assets/images/ban.png";
 
-      case 16:
+      case 15:
         return "assets/images/troll.png";
     
-      case 17:
+      case 16:
         return "assets/images/chill.png";
 
-      case 18:
+      case 17:
         return "assets/images/cringe.png";
       
-      case 19:
+      case 18:
         return "assets/images/admin.png";
           
-      case 20:
+      case 19:
         return "assets/images/hype.png";
         
-      case 21:
+      case 20:
         return "assets/images/random.png";
         
-      case 22:
+      case 21:
         return "assets/images/meh.png";
             
-      case 23:
+      case 22:
         return "assets/images/wtf.png";
            
-      case 24:
+      case 23:
         return "assets/images/idk.png";
          
-      case 25:
+      case 24:
         return "assets/images/omg.png";
          
         default:

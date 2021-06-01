@@ -218,7 +218,7 @@
     "calendar": "Calendario",
     "logout": "Cerrar sesión",
     "wishes": "Lista de deseos",
-    "event": "Crear eventos",
+    "event": "Eventos",
     "eventlist": "Lista de eventos"
   },
   "profile": {
@@ -895,7 +895,7 @@
     "my_news":"Mis noticias",
     "deleteModal": {
       "cancel": "Cancelar",
-      "confirm": "Esta seguro que desea eliminar este artículo.",
+      "confirm": "¿Esta seguro que desea eliminar este artículo?",
       "accept": "Aceptar",
       "alert": "Alerta"
     },
@@ -904,7 +904,8 @@
     "my-news":"Mis noticias",
     "inactive_news":"Inactivas",
     "active_news":"Activas",
-    "restore":"Restaurar"
+    "restore":"Restaurar",
+    "news_shared":"Noticia compartida"
   },
   "sponsorDescription": "¡Agrega un patrocinador!",
   "back": "Volver",
@@ -1248,5 +1249,48 @@
       "name":"Nombre de tu marca"
     }
   },
-  "no_results": "No hay resultados"
+  "no_results": "No hay resultados",
+  "streaming":{
+    "stream":"Transmitir"
+  },
+  "event":{
+    "create_event":"Crear evento",
+    "edit_event":"Editar evento",
+    "edit":"Editar",
+    "delete":"Eliminar",
+    "deleteModal": {
+      "confirm": "¿Esta seguro que desea eliminar este evento?",
+      "confirm_ticket":"¿Esta seguro que desea eliminar este ticket?"
+    },
+    "title":"Título",
+    "description":"Descripción",
+    "currency":"Divisa",
+    "select_currency":"Selecciona una divisa",
+    "invite":"Invitar a participar",
+    "buy_condition":"Condiciones de compra",
+    "devolution_condition":"Condiciones de devolución",
+    "modality":"Modalidad",
+    "amount":"Define el costo de registro",
+    "date_programated":"Fecha del evento",
+    "create":"Crear",
+    "event_created":"¡Evento creado!",
+    "type_event":"Tipo de evento",
+    "open":"Abierto",
+    "register":"Registro",
+    "add_image":"Agregar imagen",
+    "event_open":"Evento Abierto",
+    "event_register":"Registro previo",
+    "ticket":"Boleto",
+    "return_ticket":"Devolver boleto",
+    "have_ticket":"Ya tienes el boleto",
+    "devolutionModal": {
+      "confirm_ticket":"¿Esta seguro que desea devolver el boleto?"
+    },
+    "get_ticket":"¡Ahora tienes un boleto para este evento!",
+    "youll_go":"Eventos a los que asistiras",
+    "not_have_go":"No asistiras a ningun evento aún",
+    "is_your_event":"Este es tu evento",
+    "take_events":"Elije un evento y toma un boleto"
+  }
+
 }

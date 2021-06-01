@@ -1,0 +1,15 @@
+<div  *ngFor="let event of events">
+  <!-- <ion-icon
+    *ngIf="event.user._id == userService.User?._id && displayOptions"
+    name="chevron-down"
+    (click)="openOptions($event)"
+    class="options-down"
+  ></ion-icon> -->
+  <div class="scale-in-hor-center event" (click)="seeEvent(event)" [ngStyle]="{'background-image': 'url(' + event.principalImage + ')'}" >
+    <img style="height: 90px;" src="assets/logos/imagotipo_azul.png" alt="">
+    <ion-card-header>
+      <ion-card-title [ngStyle]="{'color':event.colorTitle}">{{event.title}}</ion-card-title>
+      <ion-card-subtitle [ngStyle]="{'color':event.colorDescription}" style="--color: black;">{{event.description}}</ion-card-subtitle>
+    </ion-card-header>
+  </div>
+</div>

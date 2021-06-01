@@ -1,0 +1,149 @@
+<ion-header>
+  <ion-toolbar class="toolbar-bg">
+    <ion-buttons slot="start">
+      <ion-menu-button style="color: white"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>{{ 'event.edit_event'| translate}}</ion-title>
+    <ion-buttons slot="end">
+      <ion-back-button style="color: white"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content class="main-bg" >
+  <ion-grid style="padding: 0" class="height-100vh">
+    <ion-row class="height-100vh ion-justify-content-center">
+      <ion-col size-md="7" size-sm="12">
+        <ion-card style="margin: 0; padding: 0">
+          <div  (click)="fileChoose()" style="cursor: pointer;height:270px;text-align: center;max-height: 270px;z-index: 99999;">
+          <p *ngIf="files.format == ''">{{'event.add_image' | translate}}</p>
+            <img *ngIf="files.format == 'image'" style="width: 100%;height: 270px;" [src]="files.url" >
+            <video
+                
+                *ngIf="files.format == 'video'"
+                style="width: 100%; background-color: black;height: 270px;"
+                controls="controls"
+                preload="metadata"
+                webkit-playsinline="webkit-playsinline"
+                [ngClass]="files.length > 1 ? 'multi' : ''"
+              >
+                <source [src]="files.url | safeUrl" type="video/mp4" />
+              </video>
+          </div>
+        <!-- Hace el degradado -->
+          <div  (click)="fileChoose()" *ngIf="files.format == 'image'" class="gradientback"></div>
+        
+          <ion-row>
+              <ion-col style="text-align: center;" size="12">
+                <ion-item >
+                  <ion-label position="floating">{{'event.title' | translate}}</ion-label>
+                  <ion-input  style=" color: black;"  [(ngModel)]="title"></ion-input>
+                </ion-item>
+                <input class="scale-in-center" *ngIf="files.format == 'image'" style="float: right;" type="color" [(ngModel)]="colorTitle">
+
+              </ion-col>
+              <ion-col style="text-align: center;" size="12">
+                <ion-item >
+                  <ion-label position="floating">{{'event.description' | translate}}</ion-label>
+                  <ion-input  style=" color: black;"  [(ngModel)]="description"></ion-input>
+                </ion-item>
+                <input class="scale-in-center" *ngIf="files.format == 'image'" style="float: right;" type="color" [(ngModel)]="colorDescription">
+              </ion-col>
+              <ion-col style="text-align: center;" size="12">
+                <ion-item style="margin-bottom: 10px;">
+                  <ion-label position="floating">{{'event.modality' | translate}}</ion-label>
+                  <ion-input  style=" color: black;"  [(ngModel)]="modality"></ion-input>
+                </ion-item>
+              </ion-col>
+              <ion-col  size="12">
+                <span style="font-size: 12px">
+                  {{ "event.date_programated" | translate }}
+                </span>
+                <form [formGroup]="form">
+                <ion-item  style="margin-bottom: 10px;">
+                  <input formControlName="programatedDate" [min]="today" max="9999-12-31T00:00" type="datetime-local" >
+                </ion-item>
+                </form>
+              </ion-col>
+              
+              <ion-col class="slide-top" *ngIf="state == 'register'" >
+                <div style="text-align: center;">
+                  <h5>{{'event.ticket' | translate}}</h5>
+                  <div>
+                    {{budgetDesc.currency}} {{budgetDesc.amount}}
+                  </div>
+                </div>
+                <!-- <ion-item>
+                  <img
+                  [src]="link"
+                  style="height: 30px; width: 30px; border-radius: 50%;cursor: pointer;"
+                  (click)="openCurrencyType()"
+                />
+                  <div
+                    style="max-height: 200px; color: #222121"
+                    contenteditable
+                    class="custom-textarea"
+                    Currency
+                    (value)="newPrice($event)"
+                  >
+                  </div>
+                </ion-item> -->
+                <ion-item style="margin-bottom: 10px;">
+                  <ion-label position="floating">{{'event.buy_condition' | translate}}</ion-label>
+                  <ion-textarea  style=" color: black;"   [(ngModel)]="buyCondition"></ion-textarea>
+                </ion-item>
+                <ion-item style="margin-bottom: 10px;">
+                  <ion-label position="floating">{{'event.devolution_condition' | translate}}</ion-label>
+                  <ion-textarea  style=" color: black;"   [(ngModel)]="devolutionCondition"></ion-textarea>
+                </ion-item>
+                
+              </ion-col>
+              <ion-col style="text-align: center;" size="12">
+                
+                <ion-radio-group [(ngModel)]="state"  >
+                  <ion-list-header>
+                    <ion-label>{{'event.type_event' | translate}}</ion-label>
+                  </ion-list-header>
+                  <ion-row>
+                    <ion-col>
+                      <div>
+                        <!-- <img src="assets/images/others/team_celebration.jpg" style="width: 100px;height: 100px;" alt=""> -->
+                        <ion-label>{{'event.open' | translate}}</ion-label>
+                        <ion-radio slot="start" value="open"></ion-radio>
+                      </div>
+                        
+                    </ion-col>
+                    <ion-col>
+                      <div style="border-radius: 25px;box-shadow: black;">
+                        <ion-label>{{'event.register' | translate}}</ion-label>
+                        <ion-radio slot="start" value="register"></ion-radio>
+                      </div>
+                    </ion-col>
+                  </ion-row>
+              </ion-radio-group>
+              </ion-col>
+              <ion-col style="text-align: center;">
+                <ion-button (click)="save()">{{ 'event.edit' | translate}}</ion-button>
+              </ion-col>
+          </ion-row>
+        </ion-card>
+      </ion-col>
+      <ion-col  size-md="5" class="panel-desktop" >
+        <preview-card [file]="files" [title]="title" [colorTitle]="colorTitle" [description]="description" [colorDescription]="colorDescription"  ></preview-card>
+        <invite-event ></invite-event>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+
+
+
+<input
+  #openImage
+  type="file"
+  accept="image/*"
+  (change)="uploadFile($event)"
+  multiple
+  hidden
+/> <!-- ,video/* -->

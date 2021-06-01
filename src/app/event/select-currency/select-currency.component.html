@@ -1,0 +1,34 @@
+<div class="main-border">
+  <ion-grid >
+    <ion-row style="justify-content: center">
+      <!-- <ion-col size="12">
+        <p >
+          {{ "budget.bypersonhint" | translate }}
+        </p>
+      </ion-col> -->
+    <ion-col size="12" style="text-align: center;">
+      <img  style="height: 50px;" src="assets/logos/imagotipo_azul.png" alt="">
+
+      <h1 >{{ "event.currency" | translate }}</h1>
+    </ion-col>
+    <ion-col size="12" style="text-align: center;">
+      <h4 >{{ "event.select_currency" | translate }}</h4>
+      <img
+          (click)="selectCurrency(currency.currency,currency.link)"
+          src="assets/images/currency.png"
+          style="height: 55px;"
+        />
+    </ion-col>
+      <ion-col *ngFor="let currency of  currencys">
+        <div style="margin-left: 5px;">
+          <img
+          [src]="currency.link"
+          [alt]="currency"
+          (click)="selectCurrency(currency.currency,currency.link)"
+          class="imageCurrency"
+        />
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</div>

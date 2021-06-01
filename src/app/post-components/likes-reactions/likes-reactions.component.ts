@@ -45,7 +45,10 @@ export class LikesReactionsComponent implements OnInit, OnChanges {
     public userService: UserService
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    console.log(this.post);
+    
+  }
 
   ngOnChanges() {
     this.skip = 0;
@@ -81,7 +84,6 @@ export class LikesReactionsComponent implements OnInit, OnChanges {
            * Concatenamos las reacciones
            */
           this.reactions = this.reactions.concat(reactions);
-
           this.skip = +15;
           this.loading = false;
         },

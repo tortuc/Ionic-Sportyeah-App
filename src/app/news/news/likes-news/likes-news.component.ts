@@ -30,7 +30,7 @@ export class LikesNewsComponent implements OnInit {
     private modalCtrl: ModalController,
     private reactionService: ReactionsService,
     private cd: ChangeDetectorRef
-  ) { }
+  ) {}
 
   data = [];
 

@@ -5,7 +5,6 @@
     cursor: pointer;
 }
 .imageMiniCard{
-    width: 160px;
     margin-left: auto;
     margin-right: auto;
     cursor: pointer;
@@ -77,6 +76,21 @@
         top: 50%;
         position: absolute;
       }
+
+      .avatar{
+        width: 18px;
+        height: 18px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .nameUser{
+        font-size: 12px !important;
+        color: rgb(0, 0, 0);
+      }
+      .divAvatar{
+        text-align: center;margin-top: 40px;cursor: pointer;
+      }
+
   }
 
   .threeNews{
@@ -96,4 +110,16 @@
   .addNews{
     --background: black;
 
+  }
+
+  .avatar{
+    width: 37px;
+    height: 37px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .nameUser{
+    font-size: 8 !important;
+    color: rgb(0, 0, 0);
+    text-align: center;
   }

@@ -83,10 +83,10 @@ export class ReactToNewsComponent implements OnInit {
     },
     {
       option: 2,
-      url: "assets/images/lovely.png",
-      name: "post.love",
+      url: "assets/images/crush.png",
+      name: "post.crush",
       style: {
-        color: "#fd5f7a",
+        color: "#e9651e",
       },
     },
     {
@@ -123,14 +123,6 @@ export class ReactToNewsComponent implements OnInit {
     },
     {
       option: 7,
-      url: "assets/images/crush.png",
-      name: "post.crush",
-      style: {
-        color: "#e9651e",
-      },
-    },
-    {
-      option: 8,
       url: "assets/images/level2.png",
       name: "post.level2",
       style: {
@@ -138,7 +130,7 @@ export class ReactToNewsComponent implements OnInit {
       },
     },
     {
-      option: 9,
+      option: 8,
       url: "assets/images/level3.png",
       name: "post.level3",
       style: {
@@ -146,7 +138,7 @@ export class ReactToNewsComponent implements OnInit {
       },
     },
     {
-      option: 10,
+      option: 9,
       url: "assets/images/legion.png",
       name: "post.legion",
       style: {
@@ -154,7 +146,7 @@ export class ReactToNewsComponent implements OnInit {
       },
     },
     {
-      option: 11,
+      option: 10,
       url: "assets/images/lol.png",
       name: "post.lol",
       style: {
@@ -162,7 +154,7 @@ export class ReactToNewsComponent implements OnInit {
       },
     },
     {
-      option: 12,
+      option: 11,
       url: "assets/images/me_sirve.png",
       name: "post.me_sirve",
       style: {
@@ -170,7 +162,7 @@ export class ReactToNewsComponent implements OnInit {
       },
     },
     {
-      option: 13,
+      option: 12,
       url: "assets/images/bro.png",
       name: "post.bro",
       style: {
@@ -178,7 +170,7 @@ export class ReactToNewsComponent implements OnInit {
       },
     },
     {
-      option: 14,
+      option: 13,
       url: "assets/images/fachero.png",
       name: "post.fachero",
       style: {
@@ -186,7 +178,7 @@ export class ReactToNewsComponent implements OnInit {
       },
     },
     {
-      option: 15,
+      option: 14,
       url: "assets/images/ban.png",
       name: "post.ban",
       style: {
@@ -194,7 +186,7 @@ export class ReactToNewsComponent implements OnInit {
       },
     },
     {
-      option: 16,
+      option: 15,
       url: "assets/images/troll.png",
       name: "post.troll",
       style: {
@@ -202,7 +194,7 @@ export class ReactToNewsComponent implements OnInit {
       },
     },
     {
-      option: 17,
+      option: 16,
       url: "assets/images/chill.png",
       name: "post.chill",
       style: {
@@ -210,7 +202,7 @@ export class ReactToNewsComponent implements OnInit {
       },
     },
     {
-      option: 18,
+      option: 17,
       url: "assets/images/cringe.png",
       name: "post.cringe",
       style: {
@@ -218,7 +210,7 @@ export class ReactToNewsComponent implements OnInit {
       },
     },
     {
-      option: 19,
+      option: 18,
       url: "assets/images/admin.png",
       name: "post.admin",
       style: {
@@ -226,7 +218,7 @@ export class ReactToNewsComponent implements OnInit {
       },
     },
     {
-      option: 20,
+      option: 19,
       url: "assets/images/hype.png",
       name: "post.hype",
       style: {
@@ -234,7 +226,7 @@ export class ReactToNewsComponent implements OnInit {
       },
     },
     {
-      option: 21,
+      option: 20,
       url: "assets/images/random.png",
       name: "post.random",
       style: {
@@ -242,7 +234,7 @@ export class ReactToNewsComponent implements OnInit {
       },
     },
     {
-      option: 22,
+      option: 21,
       url: "assets/images/meh.png",
       name: "post.meh",
       style: {
@@ -250,7 +242,7 @@ export class ReactToNewsComponent implements OnInit {
       },
     },
     {
-      option: 23,
+      option: 22,
       url: "assets/images/wtf.png",
       name: "post.wtf",
       style: {
@@ -258,7 +250,7 @@ export class ReactToNewsComponent implements OnInit {
       },
     },
     {
-      option: 24,
+      option: 23,
       url: "assets/images/idk.png",
       name: "post.idk",
       style: {
@@ -266,7 +258,7 @@ export class ReactToNewsComponent implements OnInit {
       },
     },
     {
-      option: 25,
+      option: 24,
       url: "assets/images/omg.png",
       name: "post.omg",
       style: {
@@ -322,8 +314,8 @@ export class ReactToNewsComponent implements OnInit {
   loading = false;
 
   /**
-   * Reaccionar a una publicacion
-   * @param id _id del post
+   * Reaccionar a una noticia
+   * @param id _id del news
    * @param reaction tipo de reaccion
    * @param only si presiono el boton en vez de alguna reaccion
    */
@@ -340,7 +332,7 @@ export class ReactToNewsComponent implements OnInit {
       this.dislike(liked._id);
     } else if (!liked) {
       // si no hay reaccion, entonces se reacciona
-      this.likePost(id, reaction);
+      this.likeNews(id, reaction);
     } else {
       // si ya hay reaccion, y presiono una reaccion entonces se actualiza a la que presiono
       this.changeReaction(liked._id, reaction);
@@ -368,13 +360,13 @@ export class ReactToNewsComponent implements OnInit {
   }
 
   /**
-   * Reacciona a una publicacion
-   * @param post _id del post
+   * Reacciona a una noticia
+   * @param news _id del news
    * @param reaction tipo de reaccion
    */
-  likePost(post, reaction) {
+  likeNews(news, reaction) {
     this.newsService
-      .likeNews(post, reaction)
+      .likeNews(news, reaction)
       .pipe(take(1))
       .subscribe(
         (resp: { like: ILike; likes: number }) => {
@@ -388,13 +380,13 @@ export class ReactToNewsComponent implements OnInit {
   }
 
   /**
-   * Quitar la reaccion de una publicacion
+   * Quitar la reaccion de una noticia
    * @param like _id de la reaccion
    */
   dislike(like) {
     // le decimos al backend que marque la reaccion como eliminada
     this.newsService
-      .dislikePost(like)
+      .dislikeNews(like)
       .pipe(take(1))
       .subscribe(
         (likes: number) => {
@@ -411,7 +403,7 @@ export class ReactToNewsComponent implements OnInit {
   /**
    * Actualiza las reacciones
    * @param reaction cuerpo de la reaccion o null
-   * @param likes cantidad de reacciones a este post
+   * @param likes cantidad de reacciones a este news
    */
   uptadeReactions(reaction, likes) {
     // actualizamos el cuerpo de la reaccion
@@ -425,14 +417,14 @@ export class ReactToNewsComponent implements OnInit {
   modalOpen = false;
 
   async seeLikes() {
-    // if (this.isPost) {
+    // if (this.isNews) {
       if (!this.modalOpen) {
         this.modalOpen = true;
 
         let modal = await this.modalController.create({
           component: LikesNewsComponent,
           componentProps: {
-            post: this.news._id,
+            news: this.news._id,
           },
         });
         modal.onDidDismiss().then(() => {
@@ -442,7 +434,7 @@ export class ReactToNewsComponent implements OnInit {
         return modal.present();
       }
     // } else {
-    //   this.goToPost(this.post._id);
+    //   this.goToNews(this.news._id);
     // }
   }
 

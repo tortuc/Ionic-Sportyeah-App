@@ -17,7 +17,6 @@ export class NewsOptionPostComponent implements OnInit {
   constructor(
   ) {}
   ngOnInit() {
-    
   }
 
 }

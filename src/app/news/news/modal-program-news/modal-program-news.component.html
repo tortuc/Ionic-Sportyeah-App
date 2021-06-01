@@ -1,7 +1,7 @@
 <div  style="text-align: center;">
   <img src="../../../../assets/logos/imagotipo_azul.png" alt="">
   <h5>{{'news.add_program_date_description' | translate}}</h5>
-  <input [min]="today" max="9999-12-31" type="date" [(ngModel)]="date"><br>
+  <input [min]="today" max="9999-12-31T00:00" type="datetime-local" [(ngModel)]="date"><br>
   <ion-button (click)="accept()">{{ 'news.deleteModal.accept' | translate}}</ion-button>
   <ion-button (click)="cancel()" style="--background: rgb(255, 125, 125);">{{ 'news.deleteModal.cancel' | translate}}</ion-button>
   <ion-button *ngIf="edited" (click)="deleteProgramed()" style="--background: red;">{{ 'news.delete_program' | translate}}</ion-button>

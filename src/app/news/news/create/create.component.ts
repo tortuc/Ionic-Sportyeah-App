@@ -111,7 +111,6 @@ urlYu
       news.programated = false;
     }
     news.sport = this.deporte;
-   console.log(news)
   
       this.newsService.create(news).subscribe((response) => {
         this.presentToastWithOptions();

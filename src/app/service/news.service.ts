@@ -148,7 +148,7 @@ export class NewsService {
   }
 
 
-  dislikePost(id){
+  dislikeNews(id){
     return this.http.put(
       `${environment.URL_API}/news/dislike/${id}`,
       null,

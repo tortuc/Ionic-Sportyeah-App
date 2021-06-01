@@ -67,4 +67,11 @@ export const SIDEBAR_ITEMS = [{
     icon: "football",
     fas: '',
     children: []
-  }];
+  },  
+  {
+    title: "sidebar.event",
+    url: "/event",
+    icon: "megaphone",
+    fas: '',
+    children: []
+  }]
