@@ -18,6 +18,12 @@ import { ExecutiveProfileComponent } from "./private-organization-chart/executiv
 import { PublicStructureComponent } from "./public-structure/public-structure.component";
 import { PublicStructurePreviewComponent } from "./public-structure/public-structure-preview/public-structure-preview.component";
 import { PublicOrganizationChartComponent } from "./public-organization-chart/public-organization-chart.component";
+import { PrivateStructureClubComponent } from "./private-structure-club/private-structure-club.component";
+import { CreateDivisionComponent } from "./private-structure-club/create-division/create-division.component";
+import { DivisionCardComponent } from "./private-structure-club/division-card/division-card.component";
+import { DivisionOptionsComponent } from "./private-structure-club/division-card/division-options/division-options.component";
+import { DivisionComponent } from "./division/division.component";
+import { CategoryCardComponent } from "./division/category-card/category-card.component";
 
 const components = [
   PrivateStructureComponent,
@@ -29,8 +35,13 @@ const components = [
   ExecutiveProfileComponent,
   PublicStructureComponent,
   PublicStructurePreviewComponent,
-  PublicOrganizationChartComponent
-  
+  PublicOrganizationChartComponent,
+  PrivateStructureClubComponent,
+  CreateDivisionComponent,
+  DivisionCardComponent,
+  DivisionOptionsComponent,
+  DivisionComponent,
+  CategoryCardComponent,
 ];
 
 @NgModule({
@@ -45,7 +56,7 @@ const components = [
     ReactiveFormsModule,
     FormsModule,
     ComponentsSharedModule,
-    ComponentsModule
+    ComponentsModule,
   ],
   exports: components,
 })

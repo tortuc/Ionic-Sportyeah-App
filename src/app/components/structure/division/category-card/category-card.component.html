@@ -1,0 +1,12 @@
+<div class="section">
+  <ion-icon
+    (click)="options($event)"
+    name="ellipsis-vertical-circle-outline"
+    class="options-btn"
+  ></ion-icon>
+
+  <div class="text-content" (click)="goto()">
+    <h2 class="text">{{ category.name }}</h2>
+    <img [src]="category.image" alt="" />
+  </div>
+</div>

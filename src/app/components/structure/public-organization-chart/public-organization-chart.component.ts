@@ -1,9 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import { ModalController } from "@ionic/angular";
+import { IOrganization, IStructure } from "src/app/models/structure.model";
 import {
-  IOrganization,
-  IStructure,
   StructureService,
 } from "src/app/service/structure.service";
 enum Texts {

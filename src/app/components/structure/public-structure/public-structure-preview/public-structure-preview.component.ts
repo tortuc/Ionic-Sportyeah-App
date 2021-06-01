@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { User } from "src/app/models/IUser";
+import { IStructure } from "src/app/models/structure.model";
 import {
-  IStructure,
   StructureService,
 } from "src/app/service/structure.service";
 

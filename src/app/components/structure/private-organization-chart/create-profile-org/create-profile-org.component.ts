@@ -4,11 +4,9 @@ import { ModalController } from "@ionic/angular";
 import { TranslateService } from "@ngx-translate/core";
 import * as moment from "moment";
 import { User } from "src/app/models/IUser";
+import { IOrganization } from "src/app/models/structure.model";
 import { FilesService } from "src/app/service/files.service";
-import {
-  IOrganization,
-  StructureService,
-} from "src/app/service/structure.service";
+import { StructureService } from "src/app/service/structure.service";
 import { UserService } from "src/app/service/user.service";
 
 enum Texts {

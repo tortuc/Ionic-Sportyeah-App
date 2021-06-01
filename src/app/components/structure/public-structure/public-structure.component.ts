@@ -1,8 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { ModalController } from "@ionic/angular";
+import { IStructure } from "src/app/models/structure.model";
 import {
-  IStructure,
   StructureService,
 } from "src/app/service/structure.service";
 import { UserService } from "src/app/service/user.service";
