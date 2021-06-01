@@ -1,0 +1,25 @@
+.content {
+  img {
+    max-width: 170px;
+    width: 170px;
+    max-height: 170px;
+    height: 170px;
+
+    border: solid 2px black;
+    border-radius: 15px;
+  }
+  video {
+    max-width: 170px;
+    height: 160px;
+    border: solid 2px black;
+    border-radius: 15px;
+    background: black;
+  }
+
+  iframe {
+    height: 170px;
+    width: 170px;
+    border-radius: 15px;
+    background: black;
+  }
+}

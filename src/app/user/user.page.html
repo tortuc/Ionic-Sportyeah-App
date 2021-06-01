@@ -1,5 +1,5 @@
 <ion-header *ngIf="!loadingInit">
-  <ion-toolbar class="main-bg">
+  <ion-toolbar class="toolbar-bg">
     <ion-buttons slot="start">
       <ion-back-button style="color: white"></ion-back-button>
     </ion-buttons>
@@ -10,6 +10,7 @@
 </ion-header>
 
 <ion-content
+  #content
   class="main-bg"
   [scrollEvents]="true"
   (ionScrollEnd)="logScrolling($event)"
@@ -30,8 +31,8 @@
       *ngIf="user && user != 404"
       class="height-100vh ion-justify-content-center"
     >
-      <ion-col ngClass.xs="m-p-0" size-md="8" size-sm="12">
-        <ion-card ngClass.xs="m-p-0" class="">
+      <ion-col class="profile-col" size-md="7" size-sm="12">
+        <ion-card ngClass.xs="m-p-0" style="margin: 0">
           <ion-card-header
             class="text-center"
             style="padding-top: 0; padding-left: 0; padding-right: 0"
@@ -81,7 +82,7 @@
                     >{{'profile.followings' | translate}}</span
                   >
                 </ion-col>
-                <ion-col size="4">
+                <ion-col size="4" style="cursor: pointer" (click)="seePosts()">
                   <strong>{{postsCount}}</strong><br />
                   <span class="color-primary"
                     >{{'profile.posts' | translate}}</span
@@ -89,20 +90,12 @@
                 </ion-col>
               </ion-row>
             </ion-grid>
-            <div style="margin-top: 20px" *ngIf="!connected">
-              Conectado por ultima vez {{lastConection | customDisplayDate}}.
+            <div style="margin-top: 20px" *ngIf="!user.connected">
+              Conectado por ultima vez {{user.lastConection |
+              customDisplayDate}}.
             </div>
           </ion-card-header>
 
-          <div style="margin-bottom: 5px">
-            <app-sponsor
-              [creator]="false"
-              [sponsors]="user?.sponsors"
-              [idUser]="user?._id"
-            ></app-sponsor>
-          </div>
-
-          <ion-card-content> </ion-card-content>
           <div class="text-center">
             <ion-button
               color="primary"
@@ -115,23 +108,46 @@
             </ion-button>
           </div>
 
-          <ion-segment
-            (ionChange)="segmentChanged($event)"
-            style="border: 1px white"
-          >
-            <ion-segment-button value="profile" style="background-color: white">
+          <social-networks-public
+            fxShow="false"
+            fxShow.xs="true"
+            [user]="user"
+          ></social-networks-public>
+
+          <public-structure-preview
+            fxShow="false"
+            fxShow.xs="true"
+            *ngIf="['club'].includes(user.profile_user)"
+            [user]="user"
+          ></public-structure-preview>
+
+          <profile-sponsors
+            fxShow="false"
+            fxShow.xs="true"
+            *ngIf="user.profile_user !== 'sponsor'"
+            [user]="user"
+          ></profile-sponsors>
+
+          <ion-segment [(ngModel)]="segment" style="border: 1px white">
+            <ion-segment-button
+              [value]="segmentOptions.profile"
+              style="background-color: white"
+            >
               <ion-label
                 >{{'labels-profile-segment.profile' | translate}}</ion-label
               >
             </ion-segment-button>
-            <ion-segment-button value="posts" style="background-color: white">
+            <ion-segment-button
+              [value]="segmentOptions.posts"
+              style="background-color: white"
+            >
               <ion-label
                 >{{'labels-profile-segment.posts' | translate}}</ion-label
               >
             </ion-segment-button>
             <ion-segment-button
               *ngIf="user?.profile_user == 'press'"
-              value="news"
+              [value]="segmentOptions.news"
               style="background-color: white"
             >
               <ion-label
@@ -142,187 +158,140 @@
         </ion-card>
 
         <!-- PROFILE SEGMENT -->
+        <div [ngSwitch]="segment">
+          <div *ngSwitchCase="segmentOptions.profile">
+            <public-gallery-preview [user]="user"></public-gallery-preview>
 
-        <div *ngIf="profile">
-          <app-carrousel
-            *ngIf="slider.length > 0"
-            [slider]="slider"
-          ></app-carrousel>
+            <experience
+              *ngIf="['player','scout','press', 'executive','staff'].includes(user?.profile_user)"
+              [user]="user"
+            ></experience>
 
-          <app-structure
-            [id]="user._id"
-            *ngIf="
-                  user?.profile_user === 'sponsor' ||
-                  user?.profile_user === 'association' ||
-                  user?.profile_user === 'foundation' ||
-                  user?.profile_user === 'representative' ||
-                  user?.profile_user === 'federation' ||
-                  user?.profile_user === 'club'
-            "
-          ></app-structure>
+            <awards
+              *ngIf="['player','scout','press', 'executive','staff'].includes(user?.profile_user)"
+              [user]="user"
+            ></awards>
 
-          <ion-card
-            ngClass.xs="m-p-0"
-            class="mt5"
-            *ngIf="
-              user?.profile_user !== 'sponsor' &&
-                  user?.profile_user !== 'association' &&
-                  user?.profile_user !== 'foundation' &&
-                  user?.profile_user !== 'amateur' &&
-                  user?.profile_user !== 'federation' &&
-                  user?.profile_user !== 'club'
-          "
-          >
-            <ion-grid style="padding: 0" class="ion-justify-content-center">
-              <ion-row class="ion-justify-content-center">
-                <ion-col ngClass.xs="m-p-0" size-md="12" size-sm="12">
-                  <app-experience [id]="id_visited"></app-experience>
+            <aptitudes
+              *ngIf="['player','scout', 'executive','staff'].includes(user?.profile_user)"
+              [user]="user"
+            ></aptitudes>
+          </div>
+
+          <!-- PROFILE SEGMENT FINISH -->
+          <!-- POST SEGMENT -->
+
+          <div *ngSwitchCase="segmentOptions.posts">
+            <ion-grid style="padding: 0">
+              <ion-row style="justify-content: center">
+                <ion-button
+                  class="reload-btn"
+                  *ngIf="posts.length > 0"
+                  #reloadButton
+                  style="z-index: 10"
+                  shape="round"
+                  (click)="getPosts(user._id,null,true)"
+                >
+                  <span>
+                    <ion-icon name="reload"></ion-icon> {{'reload' |
+                    translate}}</span
+                  ></ion-button
+                >
+              </ion-row>
+              <ion-row *ngFor="let post of posts" class="">
+                <ion-col style="padding: 0" size="12">
+                  <view-post [post]="post"></view-post>
                 </ion-col>
               </ion-row>
             </ion-grid>
-          </ion-card>
+          </div>
 
-          <ion-card
-            ngClass.xs="m-p-0"
-            class="mt5"
-            *ngIf="
-              user?.profile_user !== 'representative'
-            "
-          >
-            <ion-grid style="padding: 0" class="ion-justify-content-center">
-              <ion-row class="ion-justify-content-center">
-                <ion-col ngClass.xs="m-p-0" size-md="12" size-sm="12">
-                  <app-awards [id]="id_visited"></app-awards>
-                </ion-col>
-              </ion-row>
-            </ion-grid>
-          </ion-card>
+          <!-- SEGMENT POSTS FINISH -->
 
-          <ion-card
-            ngClass.xs="m-p-0"
-            class="mt5"
-            *ngIf="
-              user?.profile_user !== 'sponsor' &&
-              user?.profile_user !== 'association' &&
-              user?.profile_user !== 'foundation' &&
-              user?.profile_user !== 'representative' &&
-              user?.profile_user !== 'federation' &&
-              user?.profile_user !== 'club' 
-          "
-          >
-            <ion-grid style="padding: 0" class="ion-justify-content-center">
-              <ion-row class="ion-justify-content-center">
-                <ion-col ngClass.xs="m-p-0" size-md="12" size-sm="12">
-                  <app-aptitudes [id]="id_visited"></app-aptitudes>
-                </ion-col>
-              </ion-row>
-            </ion-grid>
-          </ion-card>
-        </div>
-
-        <!-- PROFILE SEGMENT FINISH -->
-        <!-- POST SEGMENT -->
-
-        <div *ngIf="postsB">
-          <ion-grid ngClass.xs="m-p-0">
-            <ion-row style="justify-content: center">
-              <ion-button
-                class="reload-btn"
-                *ngIf="posts.length > 0"
-                #reloadButton
-                style="z-index: 10"
-                shape="round"
-                (click)="getPosts(user._id,null,true)"
-              >
-                <span>
-                  <ion-icon name="reload"></ion-icon> {{'reload' |
-                  translate}}</span
-                ></ion-button
-              >
-            </ion-row>
-            <ion-row *ngFor="let post of posts" class="">
-              <ion-col size="12">
-                <view-post [post]="post"></view-post>
-              </ion-col>
-            </ion-row>
-          </ion-grid>
-        </div>
-
-        <!-- SEGMENT POSTS FINISH -->
-
-        <!-- SEGMENT NEWS -->
-        <div *ngIf="newsB">
-          <ion-grid ngClass.xs="m-p-0">
-            <ion-row *ngFor="let item of news" class="">
-              <ion-card
-                style="
-                  width: 100%;
-                  margin: auto;
-                  height: 100%;
-                  margin-bottom: 3%;
-                  cursor: pointer;
-                "
-                (click)="OpenNews(item?._id)"
-              >
-                <ion-card-header>
-                  <ion-card-subtitle
-                    style="text-align: center"
-                    *ngIf="item?.sport"
-                    >{{ 'sport.'+item?.sport| translate}}</ion-card-subtitle
-                  >
-                  <ion-card-title style="text-align: center"
-                    >{{item?.headline}}</ion-card-title
-                  >
-                  <ion-item style="transform: scale(0.9); margin-bottom: -3%">
-                    <ion-label>
+          <!-- SEGMENT NEWS -->
+          <div *ngSwitchCase="segmentOptions.news">
+            <ion-grid ngClass.xs="m-p-0">
+              <ion-row *ngFor="let item of news" class="">
+                <ion-card
+                  style="
+                    width: 100%;
+                    margin: auto;
+                    height: 100%;
+                    margin-bottom: 3%;
+                    cursor: pointer;
+                  "
+                  (click)="OpenNews(item?._id)"
+                >
+                  <ion-card-header>
+                    <ion-card-subtitle
+                      style="text-align: center"
+                      *ngIf="item?.sport"
+                      >{{ 'sport.'+item?.sport| translate}}</ion-card-subtitle
+                    >
+                    <ion-card-title style="text-align: center"
+                      >{{item?.headline}}</ion-card-title
+                    >
+                    <ion-item style="transform: scale(0.9); margin-bottom: -3%">
+                      <ion-label>
+                        <ion-text color="black">
+                          <h1 style="font-size: 14px">
+                            {{item?.user.name}} {{item?.user.last_name}}
+                          </h1>
+                        </ion-text>
+                      </ion-label>
                       <ion-text color="black">
-                        <h1 style="font-size: 14px">
-                          {{item?.user.name}} {{item?.user.last_name}}
-                        </h1>
+                        <h2 style="font-size: 14px">
+                          {{item?.date | customDisplayDate}}
+                        </h2>
                       </ion-text>
-                    </ion-label>
-                    <ion-text color="black">
-                      <h2 style="font-size: 14px">
-                        {{item?.date | customDisplayDate}}
-                      </h2>
-                    </ion-text>
-                  </ion-item>
-                </ion-card-header>
-                <ion-img
-                  *ngIf="item?.principalImage"
-                  class="imageMiniCard"
-                  [src]="item?.principalImage"
-                ></ion-img>
-                <div *ngIf="item?.principalVideo" style="position: relative">
-                  <video
-                    controls="controls"
-                    preload="metadata"
-                    autoplay="autoplay"
-                    webkit-playsinline="webkit-playsinline"
-                    class="videoPlayer"
-                  >
-                    <source
-                      [src]="item?.principalVideo | safeUrl"
-                      type="video/mp4"
-                    />
-                  </video>
-                </div>
-              </ion-card>
-            </ion-row>
-          </ion-grid>
+                    </ion-item>
+                  </ion-card-header>
+                  <ion-img
+                    *ngIf="item?.principalImage"
+                    class="imageMiniCard"
+                    [src]="item?.principalImage"
+                  ></ion-img>
+                  <div *ngIf="item?.principalVideo" style="position: relative">
+                    <video
+                      controls="controls"
+                      preload="metadata"
+                      autoplay="autoplay"
+                      webkit-playsinline="webkit-playsinline"
+                      class="videoPlayer"
+                    >
+                      <source
+                        [src]="item?.principalVideo | safeUrl"
+                        type="video/mp4"
+                      />
+                    </video>
+                  </div>
+                </ion-card>
+              </ion-row>
+            </ion-grid>
+          </div>
+          <!-- FINISH SEGMENT NEWS -->
         </div>
-        <!-- FINISH SEGMENT NEWS -->
       </ion-col>
       <ion-col
-        *ngIf="userService.User != null"
-        size-lg="4"
+        *ngIf="showPanel"
+        size-lg="5"
         fxShow.lt-md="false"
         class="ion-justify-content-center ion-align-items-center"
       >
         <div style="position: sticky; top: -300px; padding-left: 5px">
-          <friends-panel-desktop></friends-panel-desktop>
-          <add-users-panel-desktop></add-users-panel-desktop>
+          <profile-sponsors
+            *ngIf="user.profile_user !== 'sponsor'"
+            [user]="user"
+          ></profile-sponsors>
+          <public-structure-preview
+            *ngIf="['club'].includes(user.profile_user)"
+            [user]="user"
+          ></public-structure-preview>
+          <add-users-panel-desktop
+            *ngIf="userService.User != null"
+          ></add-users-panel-desktop>
           <!-- <popular-groups-panel></popular-groups-panel> -->
+          <social-networks-public [user]="user"></social-networks-public>
         </div>
       </ion-col>
     </ion-row>

@@ -1,0 +1,19 @@
+<ng-container  [ngSwitch]="file.format">
+  <div style="position: relative">
+    <ion-icon *ngIf="showOptions" (click)="options($event)" class="options" name="ellipsis-vertical-circle"></ion-icon>
+    <div class="content" *ngSwitchCase="'video'">
+      <video #video class="video-gallery" [src]="file.url | safeUrl" controls></video>
+    </div>
+    <div class="content" *ngSwitchCase="'image'">
+      <img (click)="seeFile()" class="img-gallery" [src]="file.url" alt="" />
+    </div>
+    <div class="content" *ngSwitchCase="'youtube'">
+      <iframe
+        style="height: unset; width: 100%"
+        *ngIf="file.url | youtube"
+        [src]="file.url | youtube"
+        frameborder="0"
+      ></iframe>
+    </div>
+  </div>
+</ng-container>

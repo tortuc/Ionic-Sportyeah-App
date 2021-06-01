@@ -1,0 +1,10 @@
+ion-item {
+  font-size: 8pt;
+}
+
+ion-progress-bar {
+  --background: var(--ion-color-tertiary);
+  &.empty {
+    --background: var(--ion-color-medium);
+  }
+}

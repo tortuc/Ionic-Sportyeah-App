@@ -11,6 +11,11 @@ ion-card-header {
   padding: 4px;
 }
 
+ion-item:last-child {
+  --border-width: 0;
+  --border-color: transparent !important;
+}
+
 .league {
   height: 48px;
   display: flex;
@@ -24,8 +29,7 @@ ion-card-header {
 
 .date-time {
   width: 100%;
-  position: absolute;
-  top: 8px;
+  margin-bottom: 8px;
   font-size: 8pt;
   .time {
     background: var(--ion-color-success);
@@ -43,7 +47,7 @@ ion-card-header {
 }
 
 ion-card-content {
-  padding: 32px 0px 16px 0px;
+  padding: 10px 0px 10px 0px;
 }
 
 .score-teams {
@@ -60,6 +64,10 @@ ion-card-content {
   ion-col {
     padding: 0;
   } 
+}
+
+.team {
+  white-space: normal;
 }
 
 .team-shield {

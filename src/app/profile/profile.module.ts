@@ -1,4 +1,3 @@
-import { CarrouselComponent } from "./carrousel/carrousel.component";
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
@@ -23,14 +22,13 @@ import { PostComponetsModule } from "../post-components/post-componets.module";
 import { ComponentsSharedModule } from "../shared-components/components-shared.module";
 import { MsgProfileEditComponent } from "./msg-profile-edit/msg-profile-edit.component";
 import { OptionNewsComponent } from "../news/news/option-news/option-news.component";
-import { SponsorsCreateComponent } from "../components/structure/sponsors-create/sponsors-create.component";
-import { PreviewCardsSponsorComponent } from "./preview-cards-sponsor/preview-cards-sponsor.component";
-import { CustomSponsorComponent } from "./custom-sponsor/custom-sponsor.component";
-import { SponsorUserItemComponent } from "../components/structure/sponsors-create/sponsor-user-item/sponsor-user-item.component";
-import { SponsorsSearchComponent } from "../components/structure/sponsors-create/sponsors-search/sponsors-search.component";
-import { ProfileSponsorsComponent } from "./profile-sponsors/profile-sponsors.component";
-import { CustomizeSponsorComponent } from "./custom-sponsor/customize-sponsor/customize-sponsor.component";
-import { ViewSponsorProfileComponent } from "./profile-sponsors/view-sponsor-profile/view-sponsor-profile.component";
+import { SponsorsModule } from "../sponsors-components/sponsors.module";
+import { ExperiencesModule } from "../experiences/experiences.module";
+import { AwardModule } from "../components/award/award.module";
+import { AptitudesModule } from "../components/aptitudes/aptitudes.module";
+import { GalleryModule } from "../components/gallery/gallery.module";
+import { ProfileSharedComponentsModule } from "./profile-shared-components/profile-shared-components.module";
+import { StructureModule } from "../components/structure/structure.module";
 
 @NgModule({
   imports: [
@@ -50,6 +48,13 @@ import { ViewSponsorProfileComponent } from "./profile-sponsors/view-sponsor-pro
     IonCustomScrollbarModule,
     ComponentsSharedModule,
     PostComponetsModule,
+    SponsorsModule,
+    ExperiencesModule,
+    AwardModule,
+    AptitudesModule,
+    GalleryModule,
+    ProfileSharedComponentsModule,
+    StructureModule
   ],
   declarations: [
     ProfilePage,
@@ -57,18 +62,9 @@ import { ViewSponsorProfileComponent } from "./profile-sponsors/view-sponsor-pro
     EditPostPage,
     FollowingPage,
     FollowerPage,
-    CarrouselComponent,
     NewNodeComponent,
     MsgProfileEditComponent,
     OptionNewsComponent,
-    ProfileSponsorsComponent,
-    SponsorsCreateComponent,
-    SponsorsSearchComponent,
-    SponsorUserItemComponent,
-    CustomSponsorComponent,
-    PreviewCardsSponsorComponent,
-    CustomizeSponsorComponent,
-    ViewSponsorProfileComponent
   ],
 })
 export class ProfilePageModule {}

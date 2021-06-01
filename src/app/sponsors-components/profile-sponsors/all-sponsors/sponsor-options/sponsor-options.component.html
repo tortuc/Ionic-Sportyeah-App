@@ -1,0 +1,28 @@
+<div class="options">
+  <div class="item" (click)="option('edit')">
+    <span>
+      <ion-icon name="create-outline"></ion-icon>
+      {{ "sponsors.options.edit" | translate }}
+    </span>
+  </div>
+  <div class="item" (click)="option('analytic')">
+    <span>
+      <ion-icon name="analytics-outline"></ion-icon>
+      {{ "sponsors.options.analytic" | translate }}
+    </span>
+  </div>
+  <div class="item" (click)="option('delete')">
+    <span>
+      <ion-icon name="trash-outline"></ion-icon>
+      {{ "sponsors.options.delete" | translate }}
+    </span>
+  </div>
+
+  <div class="item" (click)="option('cancel')">
+    <span>
+      <ion-icon name="close-circle-outline"></ion-icon>
+      {{ "cancel" | translate }}
+    </span>
+  </div>
+</div>
+ 

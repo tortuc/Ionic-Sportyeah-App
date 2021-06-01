@@ -1,10 +1,6 @@
-import { SponsorsComponent } from "./sponsors/sponsors.component";
-import { OpenImgComponent } from "src/app/components/open-img/open-img.component";
-import { LoginService } from "./../service/login.service";
 import { take } from "rxjs/operators";
 import { ChangeDetectorRef, Component, OnInit, ViewChild } from "@angular/core";
 import { Router, ActivatedRoute } from "@angular/router";
-import { PopoverController } from "@ionic/angular";
 import { TranslateService } from "@ngx-translate/core";
 import { PostService } from "../service/post.service";
 import { UserService } from "../service/user.service";
@@ -12,14 +8,16 @@ import { ProfileService } from "../service/profile.service";
 import { ViewsProfileService } from "../service/views-profile.service";
 import { NewsService } from "../service/news.service";
 import { ModalController } from "@ionic/angular";
-import { GetMediaComponent } from "../components/get-media/get-media.component";
-import { ReusableComponentsIonic } from "../service/ionicHelpers.service";
 import { User } from "../models/IUser";
-import { ISponsor } from "../models/ISponsor";
 import { IPost } from "../models/iPost";
-import { GroupService } from "../service/group.service";
 import { MsgProfileEditComponent } from "./msg-profile-edit/msg-profile-edit.component";
-import { OptionNewsComponent } from "../news/news/option-news/option-news.component";
+import { ReusableComponentsIonic } from "../service/ionicHelpers.service";
+import { PrivateGalleryPreviewComponent } from "../components/gallery/private-gallery-preview/private-gallery-preview.component";
+
+enum segmentOptions {
+  profile = "profile",
+  posts = "posts",
+}
 
 @Component({
   selector: "app-profile",
@@ -27,13 +25,14 @@ import { OptionNewsComponent } from "../news/news/option-news/option-news.compon
   styleUrls: ["./profile.page.scss"],
 })
 export class ProfilePage implements OnInit {
-  @ViewChild(GetMediaComponent) getMedia: GetMediaComponent;
-
   @ViewChild("reloadButton", { static: false }) reloadButton: any;
+  @ViewChild("gallery", { static: false })
+  gallery: PrivateGalleryPreviewComponent;
 
-  profile: boolean = true;
-  postsB: boolean = false;
-  newsB: boolean = false;
+  public readonly segmentOptions = segmentOptions;
+
+  segment: segmentOptions = segmentOptions.profile;
+
   landingButton: boolean = false;
   loadingPost: boolean;
   countPost = 0;
@@ -45,20 +44,17 @@ export class ProfilePage implements OnInit {
     public userService: UserService,
     public modalCtrl: ModalController,
     public translate: TranslateService,
-    public popoverController: PopoverController,
     private postService: PostService,
     public profileService: ProfileService,
-    public loginService: LoginService,
     private viewsProfileService: ViewsProfileService,
     public newsService: NewsService,
-    public reusableCI: ReusableComponentsIonic,
     public cd: ChangeDetectorRef,
-    private groupService: GroupService
+    public readonly reusableCI: ReusableComponentsIonic
   ) {
     if (this.userService.User.msgProfile == false) {
       this.editProfileMsg();
     }
-    this.groupService.groupInvited();
+
     this.viewsProfileService
       .getProfileView(this.userService.User._id)
       .pipe(take(1))
@@ -67,19 +63,22 @@ export class ProfilePage implements OnInit {
         this.views = views.visits;
       });
     const uP = this.userService.User.profile_user;
+    console.log(uP)
     if (
       uP === "club" ||
       uP === "representative" ||
       uP === "association" ||
       uP === "foundation" ||
       uP === "federation" ||
-      uP === "brand" ||
       uP === "sponsor"
     )
       this.landingButton = true;
     else this.landingButton = false;
   }
 
+  /**
+   * Este es la modal que aparece cuando el usuario se loguea por primera vez
+   */
   async editProfileMsg() {
     let modal = await this.modalCtrl.create({
       component: MsgProfileEditComponent,
@@ -130,7 +129,13 @@ export class ProfilePage implements OnInit {
       });
   }
 
-
+  reload(event) {
+    this.cd.detectChanges();
+    this.getPost(event, true);
+    this.gallery.reload();
+    this.getCountPost()
+  
+  }
 
   getCountPost() {
     this.viewsProfileService
@@ -140,18 +145,23 @@ export class ProfilePage implements OnInit {
         if (!views) return false;
         this.views = views.visits;
       });
+
     const uP = this.userService.User.profile_user;
+
     if (
-      uP === "club" ||
-      uP === "representative" ||
-      uP === "association" ||
-      uP === "foundation" ||
-      uP === "federation" ||
-      uP === "brand" ||
-      uP === "sponsor"
+      [
+        "club",
+        "representative",
+        "association",
+        "foundation",
+        "federation",
+        "brand",
+        "sponsor",
+      ].includes(uP)
     )
       this.landingButton = true;
     else this.landingButton = false;
+
     this.profileService
       .getCountPostByUser(this.userService.User._id)
       .then((count: number) => {
@@ -194,61 +204,9 @@ export class ProfilePage implements OnInit {
       });
   }
 
-  segmentChanged(e: CustomEvent) {
-    if (e.detail.value === "posts") {
-      this.profile = false;
-      this.postsB = true;
-    } else if (e.detail.value === "profile") {
-      this.postsB = false;
-      this.profile = true;
-    } 
-  }
-
-  async open(img: string) {
-    const modal = await this.modalCtrl.create({
-      component: OpenImgComponent,
-      componentProps: {
-        img,
-        idUser: this.userService.User.username,
-        delete: false,
-      },
-    });
-    modal.present();
-  }
-
-  /*
-   * CAMBIAR EL BANNER
-   */
-  changeBanner() {
-    this.getMedia.content$.pipe(take(1)).subscribe((media: string) => {
-      if (media !== null) {
-        this.userService.User.photoBanner = media;
-        this.userService
-          .update(this.userService.User)
-          .pipe(take(1))
-          .subscribe((r: any) => {
-            this.reusableCI.toast("Banner actualizado con éxito");
-          });
-      }
-    });
-    this.getMedia.getMedia(true, false, false, false, true, true);
-  }
-
   /**
-   * LOGICA PARA MODIFICAR SPONSORS
+   * Funcion que detecta cuando se bajo el scroll y consulta nuevos datos
    */
-  changeSponsors(sponsors: ISponsor[]) {
-    this.userService.User.sponsors = sponsors;
-    this.userService
-      .update(this.userService.User)
-      .pipe(take(1))
-      .subscribe((r: any) => {
-        this.reusableCI.toast(
-          this.translate.instant("success.sponsors-updated")
-        );
-      });
-  }
-
   async logScrolling(ev) {
     let el = await ev.target.getScrollElement();
     this.cd.detectChanges();

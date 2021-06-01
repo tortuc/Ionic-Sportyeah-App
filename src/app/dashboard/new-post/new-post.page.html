@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar class="main-bg">
+  <ion-toolbar class="toolbar-bg">
     <ion-title style="--color: white"
       >{{'new_post.title' | translate}}</ion-title
     >
@@ -33,7 +33,7 @@
             contenteditable
             class="custom-textarea"
             Mentions
-            (usersRender)="usersChange($event)" 
+            (usersRender)="usersChange($event)"
             (mention)="newValue($event)"
             (click)="stopPropagation($event)"
           ></div>
@@ -95,6 +95,7 @@
         ></assets-buttons>
 
         <ion-button
+          class="btn-primary"
           [disabled]="form.invalid && files.length == 0"
           (click)="save()"
         >

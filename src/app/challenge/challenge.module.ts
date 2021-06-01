@@ -8,6 +8,8 @@ import { ChallengePageRoutingModule } from "./challenge-routing.module";
 import { ChallengePage } from "./challenge.page";
 import { ComponentsModule } from "../components/components.module";
 import { IonCustomScrollbarModule } from 'ion-custom-scrollbar';
+import { AwardModule } from "../components/award/award.module";
+
 
 @NgModule({
   imports: [
@@ -18,7 +20,7 @@ import { IonCustomScrollbarModule } from 'ion-custom-scrollbar';
     TranslateModule,
     ComponentsModule,
     PipesModule,
-    IonCustomScrollbarModule
+    IonCustomScrollbarModule,
   ],
   declarations: [
     ChallengePage

@@ -1,0 +1,25 @@
+<ion-card class="main-border structure-card">
+  <img class="bg-img" src="assets/structure/structure.jpg" alt="" />
+  <div class="content" routerLink="structure">
+    <h4 class="text">{{ Texts.title | translate }}</h4>
+    <ion-spinner
+      style="color: white; height: 40px; width: 40px"
+      *ngIf="structure == null"
+    ></ion-spinner>
+    <div style="position: relative" *ngIf="structure != null">
+      <div class="logo">
+        <img [src]="structure.logo" alt="" />
+      </div>
+      <h3 class="text name">{{ structure.name }}</h3>
+      <h6 class="text" style="margin: 0; margin-bottom: 5px">
+        {{ structure.description }}
+      </h6>
+      <ion-button
+        class="btn-primary"
+        style="margin-top: 20px"
+        routerLink="structure"
+        >{{ Texts.edit | translate }}</ion-button
+      >
+    </div>
+  </div>
+</ion-card>

@@ -1,0 +1,49 @@
+.divawards {
+  border-bottom: 2px solid rgb(243 242 239);
+  display: flex;
+}
+
+.award-content {
+  margin-bottom: 10px;
+  box-shadow: 0 0 2px 2px var(--color-primary);
+  border-radius: 12px;
+  padding: 10px;
+  position: relative;
+  .position {
+    margin: 0;
+    color: var(--color-primary);
+    font-weight: 600;
+  }
+
+  .place {
+    font-size: 13px;
+    color: black;
+    margin: 0;
+  }
+  .options-btn {
+    position: absolute;
+    position: absolute;
+    top: 5px;
+    right: 10px;
+  }
+}
+
+.delete {
+  visibility: hidden;
+  position: absolute;
+}
+
+.preview-content {
+  min-width: 180px;
+  max-width: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media screen and (max-width:600px) {
+  .options-btn {
+    bottom: 10px;
+    top: unset !important;
+  }
+}

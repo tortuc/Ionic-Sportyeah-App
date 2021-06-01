@@ -1,0 +1,57 @@
+.mb {
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.addPlus {
+  float: right;
+  font-size: 30px;
+  margin-top: 12px;
+  cursor: pointer;
+  color: rgba(35, 112, 61, 0.993);
+}
+
+.pv-entity__summary-info {
+  flex: 1 0;
+}
+
+.slide {
+  width: 100%;
+}
+
+.divExperiences {
+  border-bottom: 2px solid rgb(243 242 239);
+}
+
+.experience-content {
+  margin-bottom: 10px;
+  box-shadow: 0 0 2px 2px var(--color-primary);
+  border-radius: 12px;
+  padding: 10px;
+  position: relative;
+  .position {
+    margin: 0;
+    color: var(--color-primary);
+    font-weight: 600;
+  }
+
+  .place {
+    font-size: 13px;
+    color: black;
+    margin: 0;
+  }
+  .options-btn {
+    position: absolute;
+    position: absolute;
+    bottom: 5px;
+    right: 10px;
+  }
+}
+
+.public_title {
+  text-align: center;
+  margin-bottom: 10px;
+  h5 {
+    font-weight: bold;
+  }
+}

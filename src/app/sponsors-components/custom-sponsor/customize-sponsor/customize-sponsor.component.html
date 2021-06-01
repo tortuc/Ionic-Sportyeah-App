@@ -1,0 +1,90 @@
+<ion-content>
+  <loading-progress class="progress"></loading-progress>
+
+  <ion-icon
+    name="close-outline"
+    (click)="modalCtrl.dismiss()"
+    class="close-modal"
+  ></ion-icon>
+  <div class="content">
+    <h4 class="title">
+      {{ "sponsors.customize.header" | translate }}
+    </h4>
+ 
+    <div *ngIf="copy_info != null">
+      <ion-item>
+        <ion-label position="floating">
+          {{ "sponsors.customize.name" | translate }}
+        </ion-label>
+        <ion-input [(ngModel)]="copy_info.name"></ion-input>
+      </ion-item>
+      <div class="mini">
+        <p class="hint">
+          <ion-icon name="information-circle-outline"></ion-icon>
+          {{ "sponsors.customize.miniature_hint" | translate }}
+        </p>
+        <p class="aspect">
+          {{ "sponsors.customize.miniature_ratio" | translate }}
+        </p>
+        <p>{{ copy_info.name }}</p>
+        <img [src]="copy_info.miniature" alt="" />
+        <div class="change-btn-content">
+          <ion-button
+            class="btn-primary"
+            (click)="upload_option = 'miniature'"
+            (click)="openImage.click()"
+            ><span
+              ><ion-icon name="cloud-upload-outline"></ion-icon>
+              {{ "sponsors.customize.change_btn" | translate }}</span
+            >
+          </ion-button>
+        </div>
+      </div>
+      <div class="profile">
+        <p class="hint">
+          <ion-icon name="information-circle-outline"></ion-icon>
+          {{ "sponsors.customize.profile_hint" | translate }}
+        </p>
+        <p class="aspect">
+          {{ "sponsors.customize.profile_ratio" | translate }}
+        </p>
+        <p>{{ copy_info.name }}</p>
+        <img [src]="copy_info.profile_image" alt="" />
+        <div class="change-btn-content">
+          <ion-button
+            class="btn-primary"
+            (click)="upload_option = 'profile'"
+            (click)="openImage.click()"
+            ><span
+              ><ion-icon name="cloud-upload-outline"></ion-icon>
+              {{ "sponsors.customize.change_btn" | translate }}</span
+            >
+          </ion-button>
+        </div>
+      </div>
+      <div style="margin: 8px; text-align: center">
+        <ion-button class="btn-cancel" (click)="modalCtrl.dismiss()"
+          ><span
+            ><ion-icon name="close-circle-outline"></ion-icon>
+            {{ "cancel" | translate }}</span
+          ></ion-button
+        >
+        <ion-button class="btn-primary" (click)="save()"
+          ><span
+            ><ion-icon name="save-outline"></ion-icon>
+            {{ "sponsors.customize.save" | translate }}
+          </span></ion-button
+        >
+      </div>
+    </div>
+  </div>
+
+  <input
+    #openImage
+    type="file"
+    accept="image/*"
+    (change)="uploadFile($event)"
+    multiple
+    hidden
+  />
+</ion-content>

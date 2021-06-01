@@ -2,11 +2,13 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { environment } from "src/environments/environment";
 import { getToken } from "../helpers/token";
-import { AlertController } from "@ionic/angular";
-import { TranslateService } from "@ngx-translate/core";
-import { UserService } from "./user.service";
+import { IFile } from "../models/iPost";
+import { take } from "rxjs/operators";
+import { FilesService } from "./files.service";
+import { Howl } from "howler";
+import { Subject } from "rxjs";
 
-interface Awards {
+export interface Awards {
   _id: string;
   userId: string;
   position: string;
@@ -15,7 +17,7 @@ interface Awards {
   eventDate: Date;
   title: string;
   description: string;
-  multimediaContent: string[];
+  files: IFile[];
   date: Date;
   deleted: boolean;
 }
@@ -26,82 +28,69 @@ interface Awards {
 export class AwardService {
   constructor(
     private http: HttpClient,
-    public alertController: AlertController,
-    private translate: TranslateService,
-    private userService: UserService
+    private readonly filesService: FilesService
   ) {}
   private route: string = "award";
-  public noAwards: boolean = true;
-  public awards: Awards[] = [];
-  public awardSelected: Awards = null;
 
   getByUser(userId: string) {
-    this.http
-      .get(`${environment.URL_API}/${this.route}/${userId}`, {
+    return this.http
+      .get<Awards[]>(`${environment.URL_API}/${this.route}/${userId}`, {
         headers: new HttpHeaders({ "access-token": getToken() }),
       })
-      .subscribe((res: any) => {
-        this.awards = res;
-        this.noAwards = true;
-        this.awards.map((e, i) =>
-          e.deleted !== false ? null : (this.noAwards = false)
-        );
+      .pipe(take(1));
+  }
+
+  async create(item: Awards, videos: any[]) {
+    item.files = await this.filesService.uploadsVideos(videos, item.files);
+    return this.http
+      .post(`${environment.URL_API}/${this.route}/create`, item, {
+        headers: new HttpHeaders({ "access-token": getToken() }),
+      })
+      .subscribe((item: Awards) => {
+        this.itemCreated(item);
       });
   }
 
-  create(award: Awards) {
-    return this.http.post(
-      `${environment.URL_API}/${this.route}/create`,
-      award,
-      {
-        headers: new HttpHeaders({ "access-token": getToken() }),
-      }
-    );
-  }
-
-  async delete(id: string) {
-    const alert = await this.alertController.create({
-      cssClass: "my-custom-class",
-      header: this.translate.instant("experience.deleteModal.alert"),
-      message: this.translate.instant("awards.confirm"),
-      buttons: [
-        {
-          text: this.translate.instant("experience.deleteModal.cancel"),
-          role: "cancel",
-          cssClass: "secondary",
-          handler: (blah) => {
-          },
-        },
-        {
-          text: this.translate.instant("experience.deleteModal.accept"),
-          handler: () => {
-            this.http
-              .delete(`${environment.URL_API}/${this.route}/delete/${id}`, {
-                headers: new HttpHeaders({ "access-token": getToken() }),
-              })
-              .subscribe(() => this.getByUser(this.userService.User._id));
-          },
-        },
-      ],
-    });
-
-    await alert.present();
-  }
-
-  edit(award: Awards) {
-    const id = award._id;
-    delete award._id;
+  delete(id: string) {
     return this.http
-      .put(`${environment.URL_API}/${this.route}/edit/${id}`, award, {
+      .delete<Awards>(`${environment.URL_API}/${this.route}/delete/${id}`, {
         headers: new HttpHeaders({ "access-token": getToken() }),
       })
-      .subscribe(
-        () => this.getByUser(this.userService.User._id),
-        (err) => {}
-      );
+      .pipe(take(1));
   }
 
-  changeSelected(award: Awards) {
-    this.awardSelected = award;
+  audio = new Howl({
+    src: ["assets/sounds/comment.mp3"],
+  });
+
+  public commentAudio() {
+    this.audio.load();
+    this.audio.play();
+  }
+
+  async edit(id, item: Awards, videos: any[]) {
+    item.files = await this.filesService.uploadsVideos(videos, item.files);
+
+    return this.http
+      .put(`${environment.URL_API}/${this.route}/edit/${id}`, item, {
+        headers: new HttpHeaders({ "access-token": getToken() }),
+      })
+      .pipe(take(1))
+      .subscribe((item: Awards) => {
+        this.commentAudio();
+        this.editedItem$.next(item);
+      });
+  }
+
+  // observable para cuando se edite el item
+  public editedItem$ = new Subject<Awards>();
+
+  // observable para cuando hay un nuevo item
+  public newItem$ = new Subject<Awards>();
+
+  // manda un evento para todos los observables suscritos
+  itemCreated(Item) {
+    this.newItem$.next(Item);
+    this.commentAudio();
   }
 }

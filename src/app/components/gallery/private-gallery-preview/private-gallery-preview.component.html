@@ -1,0 +1,39 @@
+<ion-card class="main-border" style="margin: 0; margin-top: 10px">
+  <div style="text-align: center; padding: 5px">
+    <h4 style="font-weight: bold">{{ Texts.title | translate }}</h4>
+    <ion-button class="btn-primary" routerLink="/profile/gallery">{{
+      Texts.btn | translate
+    }}</ion-button>
+  </div>
+  <ion-slides class="fade-in slider" *ngIf="viewEntered" #slider pager="true">
+    <ion-slide
+      *ngFor="let file of gallery; let i = index"
+      style="background: black"
+    >
+      <div class="content" [ngSwitch]="file.format" style="position: relative">
+        <img
+          (click)="open(i)"
+          style="cursor: pointer"
+          *ngSwitchCase="'image'"
+          [src]="file.url"
+          alt=""
+        />
+        <video
+          *ngSwitchCase="'video'"
+          controls
+          [src]="file.url | safeUrl"
+        ></video>
+        <iframe
+          *ngSwitchCase="'youtube'"
+          [src]="file.url | youtube"
+          frameborder="0"
+        ></iframe>
+      </div>
+    </ion-slide>
+    <ion-slide style="cursor: pointer" routerLink="/profile/gallery">
+      <div>
+        <p>{{ Texts.more | translate }}</p>
+      </div>
+    </ion-slide>
+  </ion-slides>
+</ion-card>

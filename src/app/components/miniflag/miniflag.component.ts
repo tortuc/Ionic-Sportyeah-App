@@ -28,7 +28,7 @@ export class MiniflagComponent implements OnInit {
    */
   async verifyCountryUser() {
     // primero evaluamos que el usuario que esta mostrando la bandera, es el mismo usuario que inicio sesion ( o sea yo mismo )
-    if (this.user._id == this.userService.User._id) {
+    if (this.user._id == this.userService.User?._id) {
       // si es el mismo usuario entonces evaluamos si no  tiene pais
       if (this.user.country == null) {
         // si es nulo entonces consultamos al login service cual es el countryCode del usuario y lo guardamos en la base de datos

@@ -5,7 +5,7 @@ import { Subject } from "rxjs";
 import { getToken } from "../helpers/token";
 import { take } from "rxjs/operators";
 import { Howl } from "howler";
-import { IPostFile } from "../models/iPost";
+import { IFile } from "../models/iPost";
 import { FilesService } from "./files.service";
 
 @Injectable({
@@ -94,13 +94,13 @@ export class MessageService {
    * @param files array con los archivos del mensaje
    * @param videos array con los videos a cargar
    */
-  public filesToUploads(files: IPostFile[], videos: any[]): Promise<IPostFile[]> {
+  public filesToUploads(files: IFile[], videos: any[]): Promise<IFile[]> {
     return new Promise(async (resolve) => {
       // hacemos un promise.all para poder utilizar el async await correctamente en el .map
       let newFiles = await Promise.all(
         // utilziamos un .map que recorre el array y lo modifica
         files.map(
-          async (file): Promise<IPostFile> => {
+          async (file): Promise<IFile> => {
             // buscamos si hay un video, en el array de video donde la url coincida con la url de este archivo
             let video = await videos.find((x) => x.url == file.url);
             // si existe entonces cargamos el video al servidor

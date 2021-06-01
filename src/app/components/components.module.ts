@@ -1,4 +1,3 @@
-import { MiniflagComponent } from "./miniflag/miniflag.component";
 import { OpenImgComponent } from "./open-img/open-img.component";
 import { ParteIzquierdaWebComponent } from "./challenge/parte-izquierda-web/parte-izquierda-web.component";
 import { ParteDerechaWebComponent } from "./challenge/parte-derecha-web/parte-derecha-web.component";
@@ -7,20 +6,15 @@ import { ModalCreatedComponent } from "./challenges/modal-created/modal-created.
 import { CamaraBrowserComponent } from "./challenges/camara-browser/camara-browser.component";
 import { CreateChallengeFormComponent } from "./challenges/create-challenge-form/create-challenge-form.component";
 import { VideosCComponent } from "./challenges/videos-c/videos-c.component";
-import { AwardsAccordionComponent } from "./challenges/awards-accordion/awards-accordion.component";
-import { AwardsListComponent } from "./challenges/awards-list/awards-list.component";
-import { ShowAwardsComponent } from "./challenges/show-awards/show-awards.component";
 import { FriendsMobileCComponent } from "./challenges/friends-mobile-c/friends-mobile-c.component";
 import { ButtonSharedComponent } from "./challenges/button-shared/button-shared.component";
 import { ButtonCommentsComponent } from "./challenges/button-comments/button-comments.component";
 import { ChallengeContentComponent } from "./challenges/challenge-content/challenge-content.component";
 import { ChallengesPostHeaderComponent } from "./challenges/challenges-post-header/challenges-post-header.component";
 import { ChallengesPostComponent } from "./challenges/challenges-post/challenges-post.component";
-import { CreateAwardChallengeComponent } from "./challenges/create-award-challenge/create-award-challenge.component";
 import { ChallengeReactionsComponent } from "./challenges/challenge-reactions/challenge-reactions.component";
 import { ChallengeCommentsComponent } from "./challenges/challenge-comments/challenge-comments.component";
 import { CreateChallengeComponent } from "./challenges/create/create.component";
-import { SponsorsComponent } from "./../profile/sponsors/sponsors.component";
 import { ImageSeeComponent } from "./image-see/image-see.component";
 import { ErrorComponent } from "./error/error.component";
 import { LinkYoutubeComponent } from "./link-youtube/link-youtube.component";
@@ -51,9 +45,6 @@ import { ViewImageComponent } from "./view-image/view-image.component";
 import { EmojiModule } from "@ctrl/ngx-emoji-mart/ngx-emoji";
 import { ReactionsPostsComponent } from "./reactions-posts/reactions-posts.component";
 import { ViewProfileComponent } from "./view-profile/view-profile.component";
-import { AwardsPage } from "../profile/awards/awards.page";
-import { ExperiencePage } from "../profile/experience/experience.page";
-import { AptitudesPage } from "../profile/aptitudes/aptitudes.page";
 import { IonicRatingModule } from "ionic4-rating";
 import { StructureComponent } from "src/app/profile/structure/structure.component";
 import { ChallengesPostOptionsComponent } from "./challenges/challenges-post-options/challenges-post-options.component";
@@ -62,7 +53,6 @@ import { NewsOptionsComponent } from "./news-options/news-options.component";
 import { ChallengesPotsOptionsIndivComponent } from "./challenge/challenges-pots-options-indiv/challenges-pots-options-indiv.component";
 import { NewQuestionComponent } from "./new-question/new-question.component";
 import { ModifyMediaComponent } from "src/app/components/structure/modify-media/modify-media.component";
-import { SponsorsNodeComponent } from "src/app/components/structure/sponsors/sponsors.component";
 import { QuestionComponent } from "./question/question.component";
 import { GetMediaComponent } from "./get-media/get-media.component";
 import { QuestionNotificationComponent } from "./question-notification/question-notification.component";
@@ -75,6 +65,10 @@ import { MonthComponent } from "./analitics-views/month/month.component";
 import { WeekComponent } from "./analitics-views/week/week.component";
 import { YearComponent } from "./analitics-views/year/year.component";
 import { ComponentsSharedModule } from "../shared-components/components-shared.module";
+import { AwardsListComponent } from "./challenges/awards-list/awards-list.component";
+import { CreateAwardChallengeComponent } from "./challenges/create-award-challenge/create-award-challenge.component";
+import { ShowAwardsComponent } from "./challenges/show-awards/show-awards.component";
+import { AwardsAccordionComponent } from "./challenges/awards-accordion/awards-accordion.component";
 
 const components = [
   NewProfilePhotoComponent,
@@ -85,7 +79,6 @@ const components = [
   UnfollowNotificationComponent,
   LikeNotificationComponent,
   CommentNotificationComponent,
-  SponsorsComponent,
   StructureComponent,
   SharedNotificationComponent,
   ChallengeCommentsComponent,
@@ -94,15 +87,11 @@ const components = [
   ButtonNotificationComponent,
   ButtonSearchFriendComponent,
   ViewFilesComponent,
-  CreateAwardChallengeComponent,
   ChallengesPostHeaderComponent,
   ChallengeContentComponent,
   PreviewFilesComponent,
   ViewImageComponent,
-  ExperiencePage,
-  AwardsPage,
   LinkYoutubeComponent,
-  AptitudesPage,
   ReactionsPostsComponent,
   ViewProfileComponent,
   CreateChallengeComponent,
@@ -111,9 +100,6 @@ const components = [
   ButtonCommentsComponent,
   ButtonSharedComponent,
   FriendsMobileCComponent,
-  ShowAwardsComponent,
-  AwardsListComponent,
-  AwardsAccordionComponent,
   CreateChallengeFormComponent,
   VideosCComponent,
   CamaraBrowserComponent,
@@ -127,11 +113,9 @@ const components = [
   ChallengesPotsOptionsIndivComponent,
   NewQuestionComponent,
   ModifyMediaComponent,
-  SponsorsNodeComponent,
   QuestionComponent,
   QuestionNotificationComponent,
   GetMediaComponent,
-  MiniflagComponent,
   NoResults,
   ProfilHeaderC,
   ProfileBodyC,
@@ -140,7 +124,14 @@ const components = [
   MonthComponent,
   WeekComponent,
   YearComponent,
+  ShowAwardsComponent,
+  AwardsListComponent,
+  AwardsAccordionComponent,
+  CreateAwardChallengeComponent,
+
+
 ];
+
 @NgModule({
   imports: [
     CommonModule,
@@ -156,7 +147,7 @@ const components = [
     DirectivesModule,
     PickerModule,
     EmojiModule,
-    ComponentsSharedModule,
+    ComponentsSharedModule
   ],
   declarations: components,
   exports: components,

@@ -1,33 +1,24 @@
 <div
   ngClass.xs="m-p-0"
-  style="margin: 0 !important; border:0"
+  style="margin: 0 !important; border: 0"
   *ngIf="structure"
   class="text-center"
 >
-<div
-    *ngIf="actualNode.media" 
-    style="background-color: black; height: 100%"
-  >
-   <ion-slides
+  <div *ngIf="actualNode.media" style="background-color: black; height: 100%">
+    <ion-slides
       *ngIf="showSlides"
       pager="true"
-      [options]="slideOpts"
       style="background-color: black; height: 300px"
     >
-      <ion-slide 
-        class="slide" 
+      <ion-slide
+        class="slide"
         style="width: 100%"
         *ngFor="let url of actualNode.media"
       >
-        <img 
-          [src]="url" 
-          class="img" 
-          alt="" 
-          style="width: 100%" 
-        />
-      <div class="overlay2">
+        <img [src]="url" class="img" alt="" style="width: 100%" />
+        <div class="overlay2">
           <div class="icon-div2">
-            <ion-icon 
+            <ion-icon
               class="icon2"
               name="create-outline"
               color="warning"
@@ -41,32 +32,16 @@
   </div>
   <ion-card-header>
     <div style="text-align: right">
-      <ion-button 
+      <ion-button
         *ngIf="actualNode !== structure"
         (click)="goBack(actualNode.id)"
         fill="outline"
       >
-        <ion-icon name="arrow-back-outline" style="margin-right:5px"></ion-icon>
-        Volver
-      </ion-button>
-      <ion-button 
-        *ngIf="creator && actualNode === structure"
-        (click)="restart()" 
-        fill="outline"
-      >
-        Reiniciar Ejemplo
-        <ion-icon name="reload-outline" style="margin-left:5px"></ion-icon>
-      </ion-button>
-      <ion-button 
-        *ngIf="creator && actualNode === structure"
-        (click)="empty()"
-        fill="outline"
-      >
-        Vaciar
-        <ion-icon 
-          name="trash-outline" 
-          style="margin-left:5px"
+        <ion-icon
+          name="arrow-back-outline"
+          style="margin-right: 5px"
         ></ion-icon>
+        Volver
       </ion-button>
 
       <ion-button
@@ -75,15 +50,14 @@
         (click)="editNodes(actualNode)"
       >
         {{ "structure.start" | translate }}
-        <ion-icon name="create-outline" style="margin-left: 5px">
-        </ion-icon>
+        <ion-icon name="create-outline" style="margin-left: 5px"> </ion-icon>
       </ion-button>
     </div>
 
     <ion-card-title class="title">
       {{ actualNode.title | translate }}
-      <ion-button 
-        *ngIf="creator && actualNode.title !== 'Organigrama'" 
+      <ion-button
+        *ngIf="creator && actualNode.title !== 'Organigrama'"
         fill="clear"
         (click)="editNodes(actualNode)"
       >
@@ -91,79 +65,87 @@
       </ion-button>
     </ion-card-title>
 
-    <ion-card-subtitle 
-      class="subtitle"
-      style="margin-bottom:20px"
-    >
-      <h6 >
+    <ion-card-subtitle class="subtitle" style="margin-bottom: 20px">
+      <h6>
         {{ actualNode.subtitle }}
       </h6>
       {{ actualNode.text }}
     </ion-card-subtitle>
 
-     <ion-card-subtitle 
+    <ion-card-subtitle
       class="subtitle"
-      style="margin-bottom:20px"
+      style="margin-bottom: 20px"
       *ngIf="actualNode.initDate"
     >
-      Inicio - {{actualNode.initDate | customDisplayDate}}
+      Inicio - {{ actualNode.initDate | customDisplayDate }}
     </ion-card-subtitle>
 
     <div class="row align-items-center">
-      <a *ngIf="actualNode.facebook" [href]="actualNode.facebook" target="_blank"><ion-icon class="icons" name="logo-facebook"></ion-icon></a>
-      <a *ngIf="actualNode.twitter" [href]="actualNode.twitter" target="_blank"><ion-icon class="icons" name="logo-twitter"></ion-icon></a>
-      <a *ngIf="actualNode.webPage" [href]="actualNode.webPage" target="_blank"><ion-icon class="icons" name="cloud-outline"></ion-icon></a>
-      <a *ngIf="actualNode.instagram" [href]="actualNode.instagram" target="_blank"><ion-icon class="icons" name="logo-instagram"></ion-icon></a>
-      <a *ngIf="actualNode.linkedin" [href]="actualNode.linkedin" target="_blank"><ion-icon class="icons" name="logo-linkedin"></ion-icon></a>
+      <a
+        *ngIf="actualNode.facebook"
+        [href]="actualNode.facebook"
+        target="_blank"
+        ><ion-icon class="icons" name="logo-facebook"></ion-icon
+      ></a>
+      <a *ngIf="actualNode.twitter" [href]="actualNode.twitter" target="_blank"
+        ><ion-icon class="icons" name="logo-twitter"></ion-icon
+      ></a>
+      <a *ngIf="actualNode.webPage" [href]="actualNode.webPage" target="_blank"
+        ><ion-icon class="icons" name="cloud-outline"></ion-icon
+      ></a>
+      <a
+        *ngIf="actualNode.instagram"
+        [href]="actualNode.instagram"
+        target="_blank"
+        ><ion-icon class="icons" name="logo-instagram"></ion-icon
+      ></a>
+      <a
+        *ngIf="actualNode.linkedin"
+        [href]="actualNode.linkedin"
+        target="_blank"
+        ><ion-icon class="icons" name="logo-linkedin"></ion-icon
+      ></a>
     </div>
 
-
-    <app-sponsor
-      [creator]="creator"
-      [sponsors]="actualNode.sponsors"
-      (action)="sponsorsAction($event)"
-    ></app-sponsor>
-
-    <app-experience 
+    <!-- <experience 
       *ngIf="userNode"
-      [id]="userNode._id"
+      [user]="userNode"
     >
-    </app-experience>
-    <app-awards
+    </experience> -->
+    <!-- <awards
       *ngIf="userNode"
-      [id]="userNode._id"
+      [user]="userNode"
     >
-    </app-awards>
-    <app-aptitudes
+    </awards>
+    <aptitudes
       *ngIf="userNode"
-      [id]="userNode._id"
+      [user]="userNode"
     >
-    </app-aptitudes>
+    </aptitudes> -->
   </ion-card-header>
 
   <ion-grid>
     <ion-row>
-      <ion-col 
+      <ion-col
         size-xs="6"
         size-sm="6"
-        size-md="4" 
+        size-md="4"
         size-lg="3"
         (click)="createNode()"
-        style="cursor:pointer"
+        style="cursor: pointer"
         *ngIf="creator && userNode === null"
       >
         <ion-card class="node">
-          <div 
-            class="node-img" 
+          <div
+            class="node-img"
             [ngStyle]="{
-              'background'
-              : 'url('+defaultImg+') no-repeat center center'
+              background: 'url(' + defaultImg + ') no-repeat center center'
             }"
           >
             <div class="overlay">
               <div class="buttons">
                 <div class="icon-div">
-                  <ion-icon 
+                  <ion-icon
                     class="icon"
                     name="add-circle-outline"
                     color="primary"
@@ -172,21 +154,15 @@
               </div>
             </div>
           </div>
-          <h1 
-            class="node-title"
-          >
-            Crear
-          </h1>
-          <p style="text-align:center">
-            ¡Crear nuevo!
-          </p>
+          <h1 class="node-title">Crear</h1>
+          <p style="text-align: center">¡Crear nuevo!</p>
         </ion-card>
       </ion-col>
 
-      <ion-col 
+      <ion-col
         size-xs="6"
         size-sm="6"
-        size-md="4" 
+        size-md="4"
         size-lg="3"
         *ngFor="let i of actualNode.childs"
       >
@@ -197,44 +173,39 @@
             [options]="slideOpts"
             style="background-color: black; height: 150px"
           >
-            <ion-slide 
-              class="slide" 
+            <ion-slide
+              class="slide"
               style="width: 100%"
               *ngFor="let url of i.media"
             >
-              <img 
-                [src]="url" 
-                class="img" 
-                alt="" 
-                style="width: 100%" 
-              />
+              <img [src]="url" class="img" alt="" style="width: 100%" />
               <div class="overlay2">
-                  <div class="icon-div2">
-                    <ion-icon 
-                      name="eye-outline"
-                      class="icon2"
-                      color="primary"
-                      (click)="openImg(i)"
-                    ></ion-icon>
-                  </div>
-                  <div class="icon-div2">
-                    <ion-icon 
-                      class="icon2"
-                      name="create-outline"
-                      color="warning"
-                      *ngIf="creator && i.title !== 'Organigrama'"
-                      (click)="editNodes(i)"
-                    ></ion-icon>
-                  </div>
-                  <div class="icon-div2">
-                    <ion-icon 
-                      class="icon2"
-                      name="trash-outline"
-                      color="danger"
-                      *ngIf="creator && i.title !== 'Organigrama'"
-                      (click)="eliminar(i)"
-                    ></ion-icon>
-                  </div>
+                <div class="icon-div2">
+                  <ion-icon
+                    name="eye-outline"
+                    class="icon2"
+                    color="primary"
+                    (click)="openImg(i)"
+                  ></ion-icon>
+                </div>
+                <div class="icon-div2">
+                  <ion-icon
+                    class="icon2"
+                    name="create-outline"
+                    color="warning"
+                    *ngIf="creator && i.title !== 'Organigrama'"
+                    (click)="editNodes(i)"
+                  ></ion-icon>
+                </div>
+                <div class="icon-div2">
+                  <ion-icon
+                    class="icon2"
+                    name="trash-outline"
+                    color="danger"
+                    *ngIf="creator && i.title !== 'Organigrama'"
+                    (click)="eliminar(i)"
+                  ></ion-icon>
+                </div>
               </div>
             </ion-slide>
           </ion-slides>
@@ -242,11 +213,11 @@
             <h1 class="node-title" (click)="setActualNode(i)">
               {{ i.title }}
             </h1>
-            <h6  (click)="setActualNode(i)">
+            <h6 (click)="setActualNode(i)">
               {{ i.subtitle }}
             </h6>
-            <p 
-              class="entradas" 
+            <p
+              class="entradas"
               (click)="setActualNode(i)"
               *ngIf="i.childs.length > 0"
             >

@@ -1,0 +1,1 @@
+export { LivescoreStandingsComponent } from './livescore-standings.component';

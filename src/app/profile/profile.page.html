@@ -12,7 +12,6 @@
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
-<app-get-media></app-get-media>
 <ion-content
   [scrollbar]="reusableCI.scrollbarStyle"
   class="main-bg"
@@ -21,7 +20,7 @@
 >
   <ion-refresher
     slot="fixed"
-    (ionRefresh)="getPost($event,true)"
+    (ionRefresh)="reload($event)"
     pullFactor="0.5"
     pullMin="100"
     pullMax="200"
@@ -64,7 +63,7 @@
               <ion-row>
                 <ion-col>
                   <ion-button
-                    class="analythics"
+                    class="btn-primary"
                     [routerLink]="'/landing/'+userService.User._id+'/analytics-views'"
                     ><ion-icon
                       name="analytics-outline"
@@ -132,96 +131,71 @@
             </ion-button>
           </ion-card-header>
 
-          <ion-card-content> </ion-card-content>
+          <!-- Redes sociales en mobile -->
 
-          <div style="margin-bottom: 5px">
-            <app-sponsor
-              [creator]="creator"
-              [sponsors]="user.sponsors"
-              (action)="changeSponsors($event)"
-            ></app-sponsor>
-          </div>
+          <social-networks fxShow="false" fxShow.lt-md="true"></social-networks>
 
-          <ion-segment
-            (ionChange)="segmentChanged($event)"
-            style="border: 1px white"
-          >
-            <ion-segment-button value="profile" style="background-color: white">
+          <private-structure-preview
+            fxShow="false"
+            fxShow.lt-md="true"
+            *ngIf="['club'].includes(userService.User.profile_user)"
+          ></private-structure-preview>
+
+          <!-- Patrocinadores en mobile -->
+          <custom-sponsor
+            fxShow="false"
+            fxShow.lt-md="true"
+            *ngIf="userService.User.profile_user == 'sponsor'"
+          ></custom-sponsor>
+          <profile-sponsors
+            fxShow="false"
+            fxShow.lt-md="true"
+            *ngIf="userService.User.profile_user !== 'sponsor'"
+            [user]="userService.User"
+          ></profile-sponsors>
+          <!-- Fin patrocinadores movil -->
+
+          <ion-segment [(ngModel)]="segment" style="border: 1px white">
+            <ion-segment-button
+              [value]="segmentOptions.profile"
+              style="background-color: white"
+            >
               <ion-label
                 >{{'labels-profile-segment.profile' | translate}}</ion-label
               >
             </ion-segment-button>
-            <ion-segment-button value="posts" style="background-color: white">
+            <ion-segment-button
+              [value]="segmentOptions.posts"
+              style="background-color: white"
+            >
               <ion-label
                 >{{'labels-profile-segment.posts' | translate}}</ion-label
               >
             </ion-segment-button>
-           
           </ion-segment>
         </ion-card>
-        <div *ngIf="profile">
-          <app-carrousel [id]="userService.User?._id"></app-carrousel>
-          <ion-card
-            ngClass.xs="m-p-0"
-            class="mt5"
-            *ngIf="
-              userService.User.profile_user !== 'sponsor' &&
-              userService.User.profile_user !== 'foundation' &&
-              userService.User.profile_user !== 'federation' &&
-              userService.User.profile_user !== 'amateur' &&
-              userService.User.profile_user !== 'club' &&
-              userService.User.profile_user !== 'association'
-            "
-          >
-            <ion-grid style="padding: 0" class="ion-justify-content-center">
-              <ion-row class="ion-justify-content-center">
-                <ion-col ngClass.xs="m-p-0" size-md="12" size-sm="12">
-                  <app-experience [id]="userService.User?._id"></app-experience>
-                </ion-col>
-              </ion-row>
-            </ion-grid>
-          </ion-card>
+        <div *ngIf="segment == segmentOptions.profile">
+          <private-gallery-preview #gallery></private-gallery-preview>
 
-          <ion-card
-            ngClass.xs="m-p-0"
-            class="mt5"
-            *ngIf="
-              userService.User.profile_user !== 'representative'
-            "
-          >
-            <ion-grid style="padding: 0" class="ion-justify-content-center">
-              <ion-row class="ion-justify-content-center">
-                <ion-col ngClass.xs="m-p-0" size-md="12" size-sm="12">
-                  <app-awards [id]="userService.User?._id"></app-awards>
-                </ion-col>
-              </ion-row>
-            </ion-grid>
-          </ion-card>
+          <experience
+            *ngIf="['player','scout','press', 'executive','staff'].includes(userService.User.profile_user)"
+            [id]="userService.User?._id"
+            [user]="userService.User"
+          ></experience>
 
-          <ion-card
-            ngClass.xs="m-p-0"
-            class="mt5"
-            *ngIf="
-              userService.User.profile_user !== 'sponsor' &&
-              userService.User.profile_user !== 'federation' &&
-              userService.User.profile_user !== 'foundation' &&
-              userService.User.profile_user !== 'representative' &&
-              userService.User.profile_user !== 'association' &&
-              userService.User.profile_user !== 'club'
-            "
-          >
-            <ion-grid style="padding: 0" class="ion-justify-content-center">
-              <ion-row class="ion-justify-content-center">
-                <ion-col ngClass.xs="m-p-0" size-md="12" size-sm="12">
-                  <app-aptitudes [id]="userService.User?._id"></app-aptitudes>
-                </ion-col>
-              </ion-row>
-            </ion-grid>
-          </ion-card>
+          <awards
+            *ngIf="['player','scout','press','executive','staff'].includes(userService.User?.profile_user)"
+            [user]="userService.User"
+          ></awards>
+
+          <aptitudes
+            *ngIf="['player','scout','executive','staff'].includes(userService.User?.profile_user)"
+            [user]="userService.User"
+          ></aptitudes>
         </div>
         <!-- FINISH SEGMENT PROFILE  -->
         <!-- SEGMENT POSTST -->
-        <div *ngIf="postsB">
+        <div *ngIf="segment == segmentOptions.posts">
           <ion-grid ngClass.xs="m-p-0">
             <ion-row style="justify-content: center">
               <ion-button
@@ -246,7 +220,6 @@
           </ion-grid>
         </div>
         <!-- FINISH SEGMENT POSTS -->
-      
       </ion-col>
 
       <ion-col
@@ -257,13 +230,18 @@
         <div style="position: sticky; top: -300px; padding-left: 5px">
           <profile-sponsors
             *ngIf="userService.User.profile_user !== 'sponsor'"
+            [user]="userService.User"
           ></profile-sponsors>
           <custom-sponsor
             *ngIf="userService.User.profile_user == 'sponsor'"
           ></custom-sponsor>
+          <private-structure-preview
+            *ngIf="['club'].includes(userService.User.profile_user)"
+          ></private-structure-preview>
+
           <friends-panel-desktop></friends-panel-desktop>
           <add-users-panel-desktop></add-users-panel-desktop>
-          <!-- <popular-groups-panel></popular-groups-panel> -->
+          <social-networks></social-networks>
         </div>
       </ion-col>
     </ion-row>

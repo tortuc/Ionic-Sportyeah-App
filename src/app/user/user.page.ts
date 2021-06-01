@@ -2,16 +2,21 @@ import { ChangeDetectorRef, Component, OnInit, ViewChild } from "@angular/core";
 import { OpenImgComponent } from "src/app/components/open-img/open-img.component";
 import { LandingService } from "src/app/service/landingService";
 import { ActivatedRoute, Router } from "@angular/router";
-import { IPost, IPostC } from "../models/iPost";
+import { IPost } from "../models/iPost";
 import { PostService } from "../service/post.service";
 import { UserService } from "../service/user.service";
 import { ChatService } from "../service/chat.service";
 import { LoginService } from "./../service/login.service";
-import { ModalController } from "@ionic/angular";
+import { IonContent, ModalController } from "@ionic/angular";
 import { take } from "rxjs/operators";
 import { NewsService } from "../service/news.service";
 import { User } from "../models/IUser";
 
+enum segmentOptions {
+  profile = "profile",
+  posts = "posts",
+  news = "news",
+}
 interface UserData {
   user: User;
   friends: {
@@ -29,28 +34,27 @@ interface UserData {
 export class UserPage implements OnInit {
   @ViewChild("reloadButton", { static: false }) reloadButton: any;
 
+  @ViewChild("content") content: IonContent;
+
+  public readonly segmentOptions = segmentOptions;
+
+  public segment: string = segmentOptions.profile;
+
   /**
    * Usuario que estamos visitando
    */
-  public profile: boolean = true;
-  public postsB: boolean = false;
-  public newsB: boolean = false;
+
   public loadingInit: boolean = true;
   user: any = null;
   friends: any = null;
   postsCount = 0;
   posts: IPost[] = [];
-  lastConection: Date;
-  connected: boolean = null;
   landingButton: boolean = false;
   landingNotActive: boolean = false;
-  estado: any;
   // variable de control para el rango de posts
   skip = 0;
   loadingPost: any = false;
 
-  id_visited: string;
-  slider: any; //Para el carrousel
   constructor(
     public mc: ModalController,
     public userService: UserService,
@@ -63,6 +67,8 @@ export class UserPage implements OnInit {
     private ls: LandingService,
     public newsService: NewsService
   ) {}
+
+  public showPanel = true;
 
   ionViewWillEnter() {
     this.ls
@@ -99,24 +105,11 @@ export class UserPage implements OnInit {
           this.postsCount = resp.posts;
           // Obtenemos sus post
           this.getPosts(resp.user._id);
-          // Vemos si esta conectado
-          this.connected = resp.user.connected;
-          // Obtenemos su ultima desconexion
-          this.lastConection = resp.user.lastConection;
-          // Obtenemos su estado
-          this.estado = resp.user.estado;
 
           // Si es prensa obtenemos sus articulos
           if (resp.user.profile_user == "press") {
             this.getArticle(resp.user._id);
           }
-
-          //Llamamos a la getviews
-          // this.visited = resp.user._id
-
-          this.id_visited = resp.user._id;
-          this.slider = resp.user.slider;
-          
 
           const uP = resp.user.profile_user;
           if (
@@ -130,6 +123,16 @@ export class UserPage implements OnInit {
           )
             this.landingButton = true;
           else this.landingButton = false;
+
+          /**
+           * Esto es mientras no tenemos todas las herramientas listas
+           * TODO REMOVE
+           */
+          if (!this.userService.User && ["press", "sponsor"].includes(uP)) {
+            this.showPanel = false;
+          } else {
+            this.showPanel = true;
+          }
         },
         (err) => {
           // si hubo un error, lo mas probable es que sea porque el usuario no existe
@@ -185,12 +188,7 @@ export class UserPage implements OnInit {
     this.router.navigate([`news/read/${id}`]);
   }
 
-  //Contendra el _id del viewProfile al que se visita
-  visited: any;
-  vistasPerfil: any;
-  ngOnInit() {
-   
-  }
+  ngOnInit() {}
 
   goTo(r) {
     this.router.navigate([`/user/${this.user.username}/${r}`]);
@@ -204,7 +202,7 @@ export class UserPage implements OnInit {
     this.chatService
       .create(user._id)
       .pipe(take(1))
-      .subscribe((resp:any) => {
+      .subscribe((resp: any) => {
         sessionStorage.setItem("chat", resp._id);
         this.router.navigate(["/chat"]);
       });
@@ -236,21 +234,6 @@ export class UserPage implements OnInit {
       this.getPosts(this.user._id);
     }
   }
-  segmentChanged(e: CustomEvent) {
-    if (e.detail.value === "posts") {
-      this.profile = false;
-      this.newsB = false;
-      this.postsB = true;
-    } else if (e.detail.value === "profile") {
-      this.postsB = false;
-      this.newsB = false;
-      this.profile = true;
-    } else {
-      this.newsB = true;
-      this.postsB = false;
-      this.profile = false;
-    }
-  }
 
   async open(img: string) {
     const modal = await this.mc.create({
@@ -262,5 +245,11 @@ export class UserPage implements OnInit {
       },
     });
     modal.present();
+  }
+
+  seePosts() {
+    this.cd.detectChanges();
+    this.segment = segmentOptions.posts;
+    this.content.scrollByPoint(0, 600, 1000);
   }
 }

@@ -160,6 +160,7 @@ ion-searchbar {
   --icon-color: black !important;
   --color: black !important;
   color: black !important;
+  text-align:left !important;
 }
 
 ion-list {
@@ -384,6 +385,7 @@ a {
 [contenteditable] {
   padding: 12px;
   background: #fbfbfb;
+  overflow: auto;
 }
 [contenteditable]:focus {
   outline: 0px solid transparent;
@@ -897,4 +899,28 @@ ion-avatar.chat-img {
   font-size: 30px;
   z-index: 10;
   cursor: pointer;
+}
+
+.profile-col{
+  padding: 5px;
+}
+
+.social-icon {
+  font-size: 40px;
+  cursor: pointer;
+  &.tiktok {
+    color: black;
+  }
+  &.twitter {
+    color: #1da1f2;
+  }
+  &.facebook {
+    color: #0b84ee;
+  }
+  &.linkedin {
+    color: #0a66c2;
+  }
+  &.instagram {
+    color: black;
+  }
 }

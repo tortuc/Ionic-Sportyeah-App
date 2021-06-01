@@ -20,7 +20,7 @@ import { TranslateService } from "@ngx-translate/core";
 import { take } from "rxjs/operators";
 import { NewQuestionComponent } from "src/app/components/new-question/new-question.component";
 import { MentionsDirective } from "src/app/directives/mentions.directive";
-import { INew, IPost, IPostFile } from "src/app/models/iPost";
+import { INew, IPost, IFile } from "src/app/models/iPost";
 import { CommentService } from "src/app/service/comment.service";
 import { NewsService } from "src/app/service/news.service";
 import { PostService } from "src/app/service/post.service";
@@ -196,7 +196,7 @@ export class CommentNewsComponent implements OnInit {
   }
 
   loading = false;
-  files: IPostFile[] = [];
+  files: IFile[] = [];
 
   //Para hacer cuestionarios en lo comentarios
   question = {

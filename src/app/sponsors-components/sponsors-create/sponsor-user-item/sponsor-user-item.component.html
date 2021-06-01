@@ -1,0 +1,14 @@
+<div class="user-item">
+  <div class="header">
+    <div class="image">
+      <img class="banner-img" [src]="user.photoBanner" alt="" />
+      <img class="img" [src]="user.photo" />
+    </div>
+    <div class="name-content">
+      <p class="name">
+        <miniflag [user]="user"></miniflag> {{ user.name }} {{ user.last_name }}
+      </p>
+      <p class="username">@{{ user.username }}</p>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,87 @@
+<ion-content>
+  <ion-icon
+    name="close-outline"
+    (click)="modalCtrl.dismiss()"
+    class="close-modal"
+  ></ion-icon>
+
+  <div class="header">
+    <h5>{{ Texts.title | translate }}</h5>
+  </div>
+
+  <form [formGroup]="form">
+    <div style="text-align: center">
+      <ion-icon
+        class="social-icon tiktok"
+        style="cursor: none"
+        name="logo-tiktok"
+      ></ion-icon>
+      <h6 style="margin: 0">TIKTOK</h6>
+    </div>
+    <ion-item>
+      <ion-label style="max-width: unset !important">
+        https://www.tiktok.com/@
+      </ion-label>
+      <ion-input class="social-input" formControlName="tiktok"></ion-input>
+    </ion-item>
+    <div style="text-align: center; margin-top: 10px">
+      <ion-icon
+        class="social-icon facebook"
+        style="cursor: none"
+        name="logo-facebook"
+      ></ion-icon>
+      <h6 style="margin: 0">Facebook</h6>
+    </div>
+    <ion-item>
+      <ion-label style="max-width: unset !important">
+        https://www.facebook.com/
+      </ion-label>
+      <ion-input class="social-input" formControlName="facebook"></ion-input>
+    </ion-item>
+    <div style="text-align: center; margin-top: 10px">
+      <ion-icon
+        class="social-icon twitter"
+        style="cursor: none"
+        name="logo-twitter"
+      ></ion-icon>
+      <h6 style="margin: 0">Twitter</h6>
+    </div>
+    <ion-item>
+      <ion-label style="max-width: unset !important">
+        https://www.twitter.com/
+      </ion-label>
+      <ion-input class="social-input" formControlName="twitter"></ion-input>
+    </ion-item>
+    <div style="text-align: center; margin-top: 10px">
+      <ion-icon
+        class="social-icon linkedin"
+        style="cursor: none"
+        name="logo-linkedin"
+      ></ion-icon>
+      <h6 style="margin: 0">Linkedin</h6>
+    </div>
+    <ion-item>
+      <ion-label style="max-width: unset !important">
+        https://www.linkedin.com/in/
+      </ion-label>
+      <ion-input class="social-input" formControlName="linkedin"></ion-input>
+    </ion-item>
+    <div style="text-align: center; margin-top: 10px">
+      <ion-icon
+        class="social-icon instagram"
+        style="cursor: none"
+        name="logo-instagram"
+      ></ion-icon>
+      <h6 style="margin: 0">Instagram</h6>
+    </div>
+    <ion-item>
+      <ion-label style="max-width: unset !important">
+        https://www.instagram.com/
+      </ion-label>
+      <ion-input class="social-input" formControlName="instagram"></ion-input>
+    </ion-item>
+  </form>
+  <div style="text-align: center; padding: 10px">
+    <ion-button class="btn-primary" (click)="save()">{{Texts.save | translate}}</ion-button>
+  </div>
+</ion-content>

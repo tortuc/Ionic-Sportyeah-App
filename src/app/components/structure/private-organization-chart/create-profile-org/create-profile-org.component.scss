@@ -1,0 +1,46 @@
+.header {
+  padding: 10px;
+  text-align: center;
+}
+
+.profile-photo {
+  border-radius: 15px;
+  box-shadow: 0 0 5px 0px black;
+  width: 280px;
+  max-height: 180px;
+  height: 200px;
+}
+
+.photo-cover {
+  cursor: pointer;
+  display: inline-flex;
+  position: relative;
+  .photo-change {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    display: flex;
+    border-radius: 15px;
+    align-items: center;
+    justify-content: center;
+    &:hover {
+      background: #00000038;
+      .text {
+        visibility: visible;
+      }
+    }
+    .text {
+      visibility: hidden;
+      color: white;
+      font-weight: bold;
+      text-shadow: 0 0 10px black;
+    }
+  }
+}
+
+.user-selected {
+  ::ng-deep .user-item {
+    max-width: 300px;
+    margin: auto;
+  }
+}

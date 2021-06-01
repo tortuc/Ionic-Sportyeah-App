@@ -11,9 +11,16 @@ import { PipesModule } from "../pipes/pipes.module";
 import { ComponentsModule } from "../components/components.module";
 import { TranslateModule } from "@ngx-translate/core";
 
-import { CarrouselComponent } from "./carrousel/carrousel.component";
 import { PostComponetsModule } from "../post-components/post-componets.module";
 import { ComponentsSharedModule } from "../shared-components/components-shared.module";
+import { SponsorsModule } from "../sponsors-components/sponsors.module";
+import { ExperiencesModule } from "../experiences/experiences.module";
+import { AwardModule } from "../components/award/award.module";
+import { AptitudesModule } from "../components/aptitudes/aptitudes.module";
+import { GalleryModule } from "../components/gallery/gallery.module";
+import { ProfileSharedComponentsModule } from "../profile/profile-shared-components/profile-shared-components.module";
+import { FlexLayoutModule } from "@angular/flex-layout";
+import { StructureModule } from "../components/structure/structure.module";
 
 @NgModule({
   imports: [
@@ -26,7 +33,15 @@ import { ComponentsSharedModule } from "../shared-components/components-shared.m
     TranslateModule,
     ComponentsSharedModule,
     PostComponetsModule,
+    SponsorsModule,
+    ExperiencesModule,
+    AwardModule,
+    AptitudesModule,
+    GalleryModule,
+    ProfileSharedComponentsModule,
+    FlexLayoutModule,
+    StructureModule
   ],
-  declarations: [UserPage, CarrouselComponent],
+  declarations: [UserPage],
 })
 export class UserPageModule {}

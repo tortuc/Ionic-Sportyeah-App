@@ -1,0 +1,90 @@
+<ion-content>
+  <ion-icon
+    name="close-outline"
+    (click)="modalCtrl.dismiss()"
+    class="close-modal"
+  ></ion-icon>
+  <div style="text-align: center; padding: 15px">
+    <input
+      #openImage
+      type="file"
+      accept="image/*"
+      (change)="uploadFile($event)"
+      multiple
+      hidden
+    />
+    <h5 class="title">{{ Texts.edit | translate }}</h5>
+    <ion-item>
+      <ion-label position="floating">
+        {{ Texts.name | translate }}
+      </ion-label>
+      <ion-input [(ngModel)]="copy_info.name"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">
+        {{ Texts.url | translate }}
+      </ion-label>
+      <ion-input
+        [(ngModel)]="copy_info.url"
+        (ionChange)="previewUrl()"
+      ></ion-input>
+    </ion-item>
+    <div>
+      <p *ngIf="previewLoading">{{ Texts.loading | translate }}</p>
+      <p *ngIf="!previewLoading && !preview">
+        {{ Texts.nopreview | translate }}
+      </p>
+      <url-preview *ngIf="preview" [preview]="preview"></url-preview>
+    </div>
+    <div class="mini">
+      <p class="aspect">
+        {{ Texts.miniature_ratio | translate }}
+      </p>
+      <p>{{ copy_info.name }}</p>
+      <img [src]="copy_info.miniature" alt="" />
+      <div class="change-btn-content">
+        <ion-button
+          class="btn-primary"
+          (click)="upload_option = uploadOptions.miniature"
+          (click)="openImage.click()"
+          ><span
+            ><ion-icon name="cloud-upload-outline"></ion-icon>
+            {{ Texts.change_btn | translate }}</span
+          >
+        </ion-button>
+      </div>
+    </div>
+    <div class="profile">
+      <p class="aspect">
+        {{ Texts.profile_ratio | translate }}
+      </p>
+      <p>{{ copy_info.name }}</p>
+      <img [src]="copy_info.profile_image" alt="" />
+      <div class="change-btn-content">
+        <ion-button
+          class="btn-primary"
+          (click)="upload_option = uploadOptions.profile"
+          (click)="openImage.click()"
+          ><span
+            ><ion-icon name="cloud-upload-outline"></ion-icon>
+            {{ Texts.change_btn | translate }}</span
+          >
+        </ion-button>
+      </div>
+    </div>
+    <div style="margin: 8px; text-align: center">
+      <ion-button class="btn-cancel" (click)="modalCtrl.dismiss()"
+        ><span
+          ><ion-icon name="close-circle-outline"></ion-icon>
+          {{ "cancel" | translate }}</span
+        ></ion-button
+      >
+      <ion-button class="btn-primary" (click)="save()"
+        ><span
+          ><ion-icon name="save-outline"></ion-icon>
+          {{ Texts.save | translate }}
+        </span></ion-button
+      >
+    </div>
+  </div>
+</ion-content>

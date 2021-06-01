@@ -1,0 +1,31 @@
+.social-input {
+  ::ng-deep .native-input {
+    padding: unset !important;
+  }
+}
+
+.social-content {
+  display: flex;
+  align-items: center;
+  margin: 20px 0px;
+  .logo-content {
+    padding: 0px 10px;
+    text-align: center;
+    min-width: 100px;
+  }
+  .input-content {
+    flex: auto;
+  }
+}
+
+.logo {
+  text-align: center;
+  .hint{
+    font-size: 12px;
+  }
+  img {
+    height: 100px;
+    width: 100px;
+    cursor: pointer;
+  }
+}

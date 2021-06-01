@@ -9,7 +9,6 @@ import { LangBtnAppComponent } from "./lang-btn-app/lang-btn-app.component";
 import { FollowButtonComponent } from "../components/follow-button/follow-button.component";
 import { MainCardUserComponent } from "./main-card-user/main-card-user.component";
 import { RouterModule } from "@angular/router";
-import { ViewSponsorsComponent } from "./view-sponsors/view-sponsors.component";
 import { LoadingProgressComponent } from "./loading-progress/loading-progress.component";
 import { AttachLinkPreviewPostComponent } from "../post-components/attach-link-preview-post/attach-link-preview-post.component";
 import { UrlPreviewComponent } from "../components/url-preview/url-preview.component";
@@ -38,6 +37,8 @@ import { NewPostHeaderComponent } from "../post-components/new-post-header/new-p
 import { PostPreviewImagesSliderComponent } from "../post-components/post-preview-images-slider/post-preview-images-slider.component";
 import { PostPreviewImagesComponent } from "../post-components/post-preview-images/post-preview-images.component";
 import { UserItemReactionsComponent } from "../post-components/user-item-reactions/user-item-reactions.component";
+import { MiniflagComponent } from "../components/miniflag/miniflag.component";
+import { UserItemPreviewComponent } from "../components/user-item-preview/user-item-preview.component";
 
 const components = [
   ViewCommentComponent,
@@ -46,7 +47,6 @@ const components = [
   LangButtonComponent,
   LangBtnAppComponent,
   MainCardUserComponent,
-  ViewSponsorsComponent,
   LoadingProgressComponent,
   AttachLinkPreviewPostComponent,
   UrlPreviewComponent,
@@ -55,6 +55,7 @@ const components = [
   ChatUserItemComponent,
   UserItemComponent,
   UserItemPanelComponent,
+  UserItemPreviewComponent,
   FriendsPanelDesktopComponent,
   AddUsersPanelDesktopComponent,
   FollowBtn,
@@ -70,6 +71,8 @@ const components = [
   ProfilePhotoOptionsComponent,
   ProfileUserInfoComponent,
   UserItemReactionsComponent,
+  MiniflagComponent,
+  
 
   NewPostHeaderComponent,
   PostPreviewImagesSliderComponent,

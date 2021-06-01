@@ -1,4 +1,4 @@
-import { IPostFile } from './iPost';
+import { IFile } from './iPost';
 import { User } from './IUser';
 
 export interface IChat {
@@ -26,7 +26,7 @@ export interface IMessage {
     question:string
     deleted:boolean
     information:any
-    files:IPostFile[]
+    files:IFile[]
 }
 
 export interface IChatList {

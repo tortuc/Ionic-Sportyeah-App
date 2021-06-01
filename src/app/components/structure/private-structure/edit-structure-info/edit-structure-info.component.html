@@ -1,0 +1,154 @@
+<ion-content>
+  <loading-progress class="progress"></loading-progress>
+
+  <input
+    type="file"
+    #fileChooser
+    accept="image/*"
+    (change)="uploadFile($event)"
+    hidden
+  />
+
+  <ion-icon
+    name="close-outline"
+    (click)="modalCtrl.dismiss()"
+    class="close-modal"
+  ></ion-icon>
+  <div style="text-align: center; padding: 10px">
+    <h4>{{ Texts.title | translate }}</h4>
+    <div class="logo">
+      <p class="hint">{{ Texts.hintlogo | translate }}</p>
+      <img
+        (click)="fileChooser.click()"
+        [src]="form.controls.logo.value"
+        alt=""
+      />
+      <div>
+        <ion-button (click)="fileChooser.click()" class="btn-primary">{{
+          Texts.editlogo | translate
+        }}</ion-button>
+      </div>
+    </div>
+    <form [formGroup]="form">
+      <ion-item>
+        <ion-label position="floating">{{ Texts.name | translate }}</ion-label>
+        <ion-input formControlName="name"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">{{
+          Texts.description | translate
+        }}</ion-label>
+        <ion-input formControlName="description"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">{{ Texts.date | translate }}</ion-label>
+        <ion-input type="date" formControlName="date"></ion-input>
+      </ion-item>
+    </form>
+    <form [formGroup]="formSocialNetworks">
+      <div style="text-align: center; padding: 10px">
+        <h4>{{ Texts.socialNetworks | translate }}</h4>
+      </div>
+      <div class="social-content">
+        <div class="logo-content">
+          <ion-icon
+            class="social-icon tiktok"
+            style="cursor: none"
+            name="logo-tiktok"
+          ></ion-icon>
+          <h6 style="margin: 0">TIKTOK</h6>
+        </div>
+        <ion-item class="input-content">
+          <ion-label style="max-width: unset !important">
+            www.tiktok.com/@
+          </ion-label>
+          <ion-input class="social-input" formControlName="tiktok"></ion-input>
+        </ion-item>
+      </div>
+
+      <div class="social-content">
+        <div class="logo-content">
+          <ion-icon
+            class="social-icon facebook"
+            style="cursor: none"
+            name="logo-facebook"
+          ></ion-icon>
+          <h6 style="margin: 0">Facebook</h6>
+        </div>
+        <ion-item class="input-content">
+          <ion-label style="max-width: unset !important">
+            www.facebook.com/
+          </ion-label>
+          <ion-input
+            class="social-input"
+            formControlName="facebook"
+          ></ion-input>
+        </ion-item>
+      </div>
+
+      <div class="social-content">
+        <div class="logo-content">
+          <ion-icon
+            class="social-icon twitter"
+            style="cursor: none"
+            name="logo-twitter"
+          ></ion-icon>
+          <h6 style="margin: 0">Twitter</h6>
+        </div>
+        <ion-item class="input-content">
+          <ion-label style="max-width: unset !important">
+            www.twitter.com/
+          </ion-label>
+          <ion-input class="social-input" formControlName="twitter"></ion-input>
+        </ion-item>
+      </div>
+      <div class="social-content">
+        <div class="logo-content">
+          <ion-icon
+            class="social-icon linkedin"
+            style="cursor: none"
+            name="logo-linkedin"
+          ></ion-icon>
+          <h6 style="margin: 0">Linkedin</h6>
+        </div>
+        <ion-item class="input-content">
+          <ion-label style="max-width: unset !important">
+            www.linkedin.com/in/
+          </ion-label>
+          <ion-input
+            class="social-input"
+            formControlName="linkedin"
+          ></ion-input>
+        </ion-item>
+      </div>
+      <div class="social-content">
+        <div class="logo-content">
+          <ion-icon
+            class="social-icon instagram"
+            style="cursor: none"
+            name="logo-instagram"
+          ></ion-icon>
+          <h6 style="margin: 0">Instagram</h6>
+        </div>
+        <ion-item class="input-content">
+          <ion-label style="max-width: unset !important">
+            www.instagram.com/
+          </ion-label>
+          <ion-input
+            class="social-input"
+            formControlName="instagram"
+          ></ion-input>
+        </ion-item>
+      </div>
+    </form>
+    <div style="padding: 10px; text-align: center">
+      <ion-button
+        [disabled]="form.invalid"
+        class="btn-primary"
+        (click)="save()"
+        >{{ Texts.save | translate }}</ion-button
+      >
+    </div>
+  </div>
+</ion-content>

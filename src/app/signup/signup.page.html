@@ -11,12 +11,12 @@
               style="cursor: pointer"
               (click)="userService.goLanding()"
             >
-            <img
-            src="assets/logos/imagotipo_azul.png"
-            alt="SportYeah"
-            width="200px"
-            style="vertical-align: middle !important"
-          />
+              <img
+                src="assets/logos/imagotipo_azul.png"
+                alt="SportYeah"
+                width="200px"
+                style="vertical-align: middle !important"
+              />
             </div>
             <ion-card-title>{{'sign_up.sign_up' | translate}}</ion-card-title>
           </ion-card-header>
@@ -82,7 +82,7 @@
                             </span>
                           </div>
                         </ion-col>
-                        <ion-col size="5" size-xs="12">
+                        <ion-col size-xs="12" size-md="6">
                           <ion-item>
                             <ion-label position="floating"
                               >{{'sign_up.username.placeholder' |
@@ -103,7 +103,21 @@
                             </span>
                           </div>
                         </ion-col>
-                        <ion-col size="7" size-xs="12">
+                        <ion-col size-xs="12" size-md="6">
+                          <ion-item>
+                            <ion-label position="floating"
+                              >{{'sign_up.lang' | translate}}</ion-label
+                            >
+                            <ion-select formControlName="lang" (ionChange)="setLang($event)">
+                              <ion-select-option
+                                *ngFor="let lang of langs"
+                                [value]="lang"
+                                >{{ lang | translate}}</ion-select-option
+                              >
+                            </ion-select>
+                          </ion-item>
+                        </ion-col>
+                        <ion-col size="12">
                           <ion-item>
                             <ion-label position="floating"
                               >{{'sign_up.email.placeholder' |

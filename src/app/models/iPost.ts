@@ -5,7 +5,7 @@ export interface IPost {
   user: User;
   post: IPost | null;
   message: string;
-  files: IPostFile[];
+  files: IFile[];
   question:any;
   date: Date;
   edited: Date;
@@ -17,7 +17,7 @@ export interface INewPost {
   user: string;
   post?: string;
   message?: string;
-  files?: IPostFile[];
+  files?: IFile[];
 }
 
 //Noticia
@@ -70,7 +70,7 @@ export interface INewC {
   shareds: INew[];
 }
 
-export interface IPostFile {
+export interface IFile {
   format?: string;
   url: string;
   name?: string;

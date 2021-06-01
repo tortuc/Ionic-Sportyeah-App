@@ -2,7 +2,7 @@ import { HttpClient, HttpEventType } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Camera } from "@ionic-native/camera/ngx";
 import { environment } from "src/environments/environment";
-import { IPostFile } from "../models/iPost";
+import { IFile } from "../models/iPost";
 
 @Injectable({
   providedIn: "root",
@@ -237,7 +237,7 @@ export class FilesService {
     );
   }
 
-  takePhoto(): Promise<IPostFile> {
+  takePhoto(): Promise<IFile> {
     return new Promise((resolve, reject) => {
       this.camera
         .getPicture({
@@ -265,7 +265,7 @@ export class FilesService {
     });
   }
 
-  uploadImageServer(formData: FormData): Promise<IPostFile> {
+  uploadImageServer(formData: FormData): Promise<IFile> {
     return new Promise((resolve, reject) => {
       this.http
         .post(`${environment.URL_IMAGE}/image/upload`, formData)
@@ -280,6 +280,39 @@ export class FilesService {
         .catch((err) => {
           reject(err);
         });
+    });
+  }
+
+  uploadsVideos(
+    videos: any[],
+    files: IFile[]
+  ): Promise<IFile[]> {
+    return new Promise(async (resolve) => {
+      let newFiles = await Promise.all(
+        // utilziamos un .map que recorre el array y lo modifica
+        files.map(async (file): Promise<IFile> => {
+          // buscamos si hay un video, en el array de video donde la url coincida con la url de este archivo
+          let video = await videos.find((x) => x.url == file.url);
+          // si existe entonces cargamos el video al servidor
+          if (video) {
+            let form = new FormData();
+            form.append("video", video.file);
+            // esperamos la url
+            file.url = (await this.uploadVideo(
+              form,
+              true
+            )) as string;
+            // modificamos el archivo
+            return file;
+          } else {
+            // no existe video, no modificamos el archivo
+            return file;
+          }
+        })
+      );
+      // devolvemos la data correctamente
+
+      resolve(newFiles);
     });
   }
 }

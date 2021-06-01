@@ -6,12 +6,12 @@
   </div>
   <ion-list class="text-center">
     <ng-container *ngFor="let a of awards; let i = index">
-      <app-awards-accordion
+      <awards-accordion
         [a]="a"
         [creator]="creator"
         [i]="i"
         (delete)="delete($event)"
-      ></app-awards-accordion>
+      ></awards-accordion>
     </ng-container>
     <ion-button
       fill="outline"

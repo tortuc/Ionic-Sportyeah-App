@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 import { IAward } from "src/app/service/challenge.service";
 
 @Component({
-  selector: "app-awards-list",
+  selector: "awards-list",
   templateUrl: "./awards-list.component.html",
   styleUrls: ["./awards-list.component.scss"],
 })

@@ -1,0 +1,19 @@
+<div *ngIf="files[0] as file" #content class="content" (click)="openSlider()">
+  <div [ngSwitch]="file.format" style="position: relative">
+    <div *ngSwitchCase="'image'">
+      <img [src]="file.url" alt="" />
+    </div>
+    <div *ngSwitchCase="'video'">
+      <video autoplay [muted]="true" [src]="file.url | safeUrl"></video>
+    </div>
+    <div *ngSwitchCase="'youtube'">
+      <iframe
+        style="pointer-events: none"
+        (click)="openSlider()"
+        *ngIf="file.url | youtube"
+        [src]="file.url | youtube"
+        frameborder="0"
+      ></iframe>
+    </div>
+  </div>
+</div>

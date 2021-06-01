@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 import { AlertController, ModalController } from "@ionic/angular";
 import { TranslateService } from "@ngx-translate/core";
-import { IPostFile } from "src/app/models/iPost";
+import { IFile } from "src/app/models/iPost";
 import { PostPreviewImagesSliderComponent } from "../post-preview-images-slider/post-preview-images-slider.component";
 
 @Component({
@@ -18,7 +18,7 @@ export class PostPreviewImagesComponent implements OnInit {
     private translate: TranslateService
   ) {}
 
-  @Input() files: IPostFile[];
+  @Input() files: IFile[];
   @Output() filesChange = new EventEmitter();
 
   async removeFile(url) {

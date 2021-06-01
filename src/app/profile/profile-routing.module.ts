@@ -3,6 +3,12 @@ import { Routes, RouterModule } from "@angular/router";
 
 import { ProfilePage } from "./profile.page";
 import { ViewProfileComponent } from "../components/view-profile/view-profile.component";
+import { GalleryComponent } from "../components/gallery/gallery/gallery.component";
+import { PrivateStructureComponent } from "../components/structure/private-structure/private-structure.component";
+import { StructureGuardService } from "../guards/structure-guard.service";
+import { PrivateOrganizationChartComponent } from "../components/structure/private-organization-chart/private-organization-chart.component";
+import { ExecutiveProfileComponent } from "../components/structure/private-organization-chart/executive-profile/executive-profile.component";
+import { LandingGuard } from "../guards/landing-guard.service";
 const routes: Routes = [
   {
     path: "",
@@ -16,11 +22,23 @@ const routes: Routes = [
       ),
   },
   {
-    path: "slider",
-    loadChildren: () =>
-      import("./change-slider/change-slider.module").then(
-        (m) => m.ChangeSliderPageModule
-      ),
+    path: "gallery",
+    component: GalleryComponent,
+  },
+  {
+    path: "structure",
+    component: PrivateStructureComponent,
+    canActivate: [StructureGuardService],
+  },
+  {
+    path: "structure/organization",
+    component: PrivateOrganizationChartComponent,
+    canActivate: [StructureGuardService],
+  },
+  {
+    path: "structure/organization/profile/:id",
+    component: ExecutiveProfileComponent,
+    canActivate:[LandingGuard]
   },
   {
     path: "following",
@@ -32,27 +50,7 @@ const routes: Routes = [
     loadChildren: () =>
       import("./follower/follower.module").then((m) => m.FollowerPageModule),
   },
-  {
-    path: "new-experience",
-    loadChildren: () =>
-      import("./experience/new-experience/new-experience.module").then(
-        (m) => m.NewExperiencePageModule
-      ),
-  },
-  {
-    path: "new-awards",
-    loadChildren: () =>
-      import("./awards/new-awards/new-awards.module").then(
-        (m) => m.NewAwardsPageModule
-      ),
-  },
-  {
-    path: "new-aptitudes",
-    loadChildren: () =>
-      import("./aptitudes/new-aptitudes/new-aptitudes.module").then(
-        (m) => m.NewAptitudesPageModule
-      ),
-  },
+
   {
     path: "view-profile",
     component: ViewProfileComponent,

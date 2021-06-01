@@ -1,37 +1,60 @@
-<div [ngClass]="{chat:chat}" >
+<div [ngClass]="{ chat: chat }">
+  <ion-button class="btn-primary hidden-mobile" (click)="clickEmoji($event)">
+    <ion-icon name="happy"></ion-icon>
+  </ion-button>
+
   <ion-button
-  class="btn-rounded-options hidden-mobile"
-  (click)="clickEmoji($event)"
->
-  <ion-icon name="happy"></ion-icon>
-</ion-button>
+    [disabled]="question"
+    class="btn-primary"
+    (click)="assetsOptions('galery')"
+  >
+    <ion-icon name="image"></ion-icon>
+  </ion-button>
+  <ion-button
+    [disabled]="question"
+    class="btn-primary"
+    (click)="assetsOptions('link')" 
+  >
+    <ion-icon name="link"></ion-icon>
+  </ion-button>
+  <ion-button
+    [disabled]="question"
+    *ngIf="chat"
+    class="btn-primary"
+    (click)="openDocument.click()"
+  >
+    <ion-icon name="document"></ion-icon
+  ></ion-button>
+  <ion-button
+    [disabled]="question"
+    class="btn-primary"
+    (click)="assetsOptions('online')"
+  >
+    <ion-icon name="globe-outline"></ion-icon>
+  </ion-button>
+  <ion-button
+    [disabled]="question"
+    class="btn-primary"
+    (click)="assetsOptions('gif')"
+  >
+    GIF
+  </ion-button>
+  <ion-button
+  class="btn-primary"
+    [disabled]="files.length > 0"
+    *ngIf="canCreateQuestion"
+    (click)="createQuestion()"
+  >
+    <ion-icon name="help-outline"></ion-icon>
+  </ion-button>
 
-<ion-button [disabled]="question" class="btn-rounded-options" (click)="assetsOptions('galery')">
-  <ion-icon name="image"></ion-icon>
-</ion-button>
-<ion-button [disabled]="question" class="btn-rounded-options" (click)="assetsOptions('link')">
-  <ion-icon name="link"></ion-icon>
-</ion-button>
-<ion-button [disabled]="question" *ngIf="chat" class="btn-rounded-options" (click)="openDocument.click()">
-  <ion-icon name="document"></ion-icon
-></ion-button>
-<ion-button [disabled]="question" class="btn-rounded-options" (click)="assetsOptions('online')">
-  <ion-icon name="globe-outline"></ion-icon>
-</ion-button>
-<ion-button [disabled]="question" class="btn-rounded-options" (click)="assetsOptions('gif')">
-  GIF
-</ion-button>
-<ion-button [disabled]="files.length > 0" *ngIf="canCreateQuestion"  (click)="createQuestion()">
-  <ion-icon name="help-outline"></ion-icon>
-</ion-button>
-
-<ion-button
-  *ngIf="platform.is('mobile')"
-  class="btn-rounded-options"
-  (click)="assetsOptions('camera')"
->
-  <ion-icon name="camera-outline"></ion-icon>
-</ion-button>
+  <ion-button
+    *ngIf="platform.is('mobile')"
+    class="btn-primary"
+    (click)="assetsOptions('camera')"
+  >
+    <ion-icon name="camera-outline"></ion-icon>
+  </ion-button>
 </div>
 <input
   #openImage
@@ -43,10 +66,10 @@
 />
 
 <input
-#openDocument
-type="file"
-accept="application/*"
-(change)="uploadDocumet($event)"
-multiple
-hidden
+  #openDocument
+  type="file"
+  accept="application/*"
+  (change)="uploadDocumet($event)"
+  multiple
+  hidden
 />

@@ -5,6 +5,13 @@ import { TranslateService } from "@ngx-translate/core";
 import { LoginService } from "../service/login.service";
 import { UserService } from "../service/user.service";
 import { AlertController, LoadingController } from "@ionic/angular";
+import {
+  languajes,
+  profiles,
+  sports,
+  sub_profiles_administration,
+  sub_profiles_staff,
+} from "src/config/base";
 
 @Component({
   selector: "app-signup",
@@ -12,6 +19,16 @@ import { AlertController, LoadingController } from "@ionic/angular";
   styleUrls: ["./signup.page.scss"],
 })
 export class SignupPage implements OnInit {
+  public readonly sports = sports;
+
+  public readonly langs = languajes;
+
+  public readonly profiles = profiles;
+
+  public readonly sub_profiles_administration = sub_profiles_administration;
+
+  public readonly sub_profiles_staff = sub_profiles_staff;
+
   show = false;
   show1 = false;
   constructor(
@@ -43,6 +60,7 @@ export class SignupPage implements OnInit {
         ],
       ],
       username: ["", [Validators.required]],
+      lang: [this.translate.currentLang, [Validators.required]],
       password: [
         "",
         [
@@ -59,63 +77,10 @@ export class SignupPage implements OnInit {
       profile_user: ["", [Validators.required]],
       sub_profile: ["", [Validators.required]],
       agree: [false],
-      authorize: [true]
+      authorize: [true],
     },
     { validator: this.checkPasswords }
   );
-
-  sports = [
-    "soccer",
-    "basketball",
-    "tennis",
-    "baseball",
-    "golf",
-    "running",
-    "volleyball",
-    "swimming",
-    "boxing",
-    "table_tennis",
-    "rugby",
-    "football",
-    "esport",
-    "various",
-  ];
-
-  profiles = [
-    "club",
-    "player",
-    "staff",
-    "amateur",
-    "representative",
-    "scout",
-    "press",
-    "association",
-    "foundation",
-    "federation",
-    "sponsor",
-    "executive",
-    "administration",
-  ];
-
-  sub_profiles_administration = [
-    "president",
-    "vice_president",
-    "vocal",
-    "adviser",
-    "area_director",
-    "treasury",
-    "secretary",
-    "administration", //Hasta aquí los del admiinstration
-  ];
-
-  sub_profiles_staff = [
-    "coach",
-    "physical_trainer",
-    "medicine",
-    "nutritionist",
-    "sports_sychology",
-    "field_delegate",
-  ];
 
   sub_profile: boolean = false;
   have_sub_profile() {
@@ -214,9 +179,8 @@ export class SignupPage implements OnInit {
 
     user.country = await this.loginService.getCountryCode();
 
-
     console.log(user);
-    
+
     this.loginService
       .create(user)
       .toPromise()
@@ -265,5 +229,9 @@ export class SignupPage implements OnInit {
     });
 
     await alert.present();
+  }
+
+  setLang(ev){
+    this.translate.use(ev.detail.value)
   }
 }

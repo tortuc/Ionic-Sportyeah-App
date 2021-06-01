@@ -1,0 +1,15 @@
+<div class="content" [ngClass]="{ delete: aptitude.deleted }">
+  <div style="text-align: center">
+    <h5 style="font-weight: bold; margin: 2px">{{ aptitude.title }}</h5>
+    <rating [rate]="aptitude.score" readonly="true" size="default"> </rating>
+  </div>
+
+  <div class="options-btn" *ngIf="aptitude.userId == userService.User?._id">
+    <ion-button class="btn-cancel" (click)="delete()">
+      <ion-icon name="trash-outline"></ion-icon>
+    </ion-button>
+    <ion-button class="btn-primary" (click)="edit()">
+      <ion-icon name="create-outline"></ion-icon>
+    </ion-button>
+  </div>
+</div>

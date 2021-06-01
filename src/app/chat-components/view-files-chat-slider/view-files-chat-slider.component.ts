@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { ModalController, Platform } from "@ionic/angular";
-import { IPostFile } from "src/app/models/iPost";
+import { IFile } from "src/app/models/iPost";
 
 @Component({
   selector: "app-view-files-chat-slider",
@@ -8,7 +8,7 @@ import { IPostFile } from "src/app/models/iPost";
   styleUrls: ["./view-files-chat-slider.component.scss"],
 })
 export class ViewFilesChatSliderComponent implements OnInit {
-  @Input() files: IPostFile[] = [];
+  @Input() files: IFile[] = [];
   viewEntered: boolean = false;
 
   constructor(public modalCtrl: ModalController, public platform: Platform) {

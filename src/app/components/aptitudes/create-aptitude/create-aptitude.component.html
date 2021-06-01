@@ -1,0 +1,38 @@
+<ion-content>
+  <ion-card style="margin: 0; height: 100%">
+    <div style="text-align: center; padding: 10px">
+      <h4>{{ (aptitude ? Texts.edit : Texts.title) | translate }}</h4>
+    </div>
+    <form [formGroup]="form">
+      <ion-grid>
+        <ion-row>
+          <ion-col size="12">
+            <ion-item>
+              <ion-label position="stacked">{{
+                "aptitudes.form.title" | translate
+              }}</ion-label>
+              <ion-input type="text" formControlName="title"></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col size="12" class="text-center">
+            <ion-label position="stacked">{{
+              "aptitudes.form.score" | translate
+            }}</ion-label>
+            <rating formControlName="score" readonly="false" size="default">
+            </rating>
+          </ion-col>
+        </ion-row>
+
+        <div style="text-align: center; padding: 5px">
+          <ion-button
+            (click)="save()"
+            [disabled]="form.invalid"
+            class="btn-primary"
+          >
+            {{ (aptitude ? Texts.btnEdit : Texts.btn) | translate }}
+          </ion-button>
+        </div>
+      </ion-grid>
+    </form>
+  </ion-card>
+</ion-content>

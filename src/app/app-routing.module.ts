@@ -1,9 +1,10 @@
 import { NgModule } from "@angular/core";
 import { PreloadAllModules, RouterModule, Routes } from "@angular/router";
+import { ExecutiveProfileComponent } from "./components/structure/private-organization-chart/executive-profile/executive-profile.component";
 import { AuthGuardService } from "./guards/auth-guard.service";
 import { LandingGuard } from "./guards/landing-guard.service";
 import { SessionGuardService } from "./guards/session-guard.service";
-import { LivescoreModule } from './livescore';
+import { LivescoreModule } from "./livescore";
 
 const routes: Routes = [
   {
@@ -12,10 +13,9 @@ const routes: Routes = [
     pathMatch: "full",
   },
   {
-    path: 'livescore',
-    loadChildren: (): Promise<LivescoreModule> => (
-      import('./livescore').then(m => m.LivescoreModule)
-    ),
+    path: "livescore",
+    loadChildren: (): Promise<LivescoreModule> =>
+      import("./livescore").then((m) => m.LivescoreModule),
   },
   {
     path: "login",
@@ -68,12 +68,7 @@ const routes: Routes = [
       ),
     canActivate: [AuthGuardService],
   },
-  {
-    path: "structure/:username",
-    loadChildren: () =>
-      import("./structure/structure.module").then((m) => m.StructurePageModule),
-    canActivate: [LandingGuard],
-  },
+
   {
     path: "challenges/:username",
     loadChildren: () =>
@@ -112,7 +107,7 @@ const routes: Routes = [
     path: "user/:username",
     loadChildren: () =>
       import("./user/user.module").then((m) => m.UserPageModule),
-    canActivate: [AuthGuardService],
+    canActivate: [LandingGuard],
   },
   {
     path: "notifications",
@@ -154,10 +149,7 @@ const routes: Routes = [
       import("./ranking/ranking.module").then((m) => m.RankingPageModule),
     canActivate: [AuthGuardService],
   },
-  // {
-  //   path: "bet",
-  //   loadChildren: () => import("./bet/bet.module").then((m) => m.BetPageModule),
-  // },
+
   {
     path: "search",
     loadChildren: () =>
@@ -170,11 +162,7 @@ const routes: Routes = [
     loadChildren: () =>
       import("./challenge/challenge.module").then((m) => m.ChallengePageModule),
   },
-  {
-    path: "structure",
-    loadChildren: () =>
-      import("./structure/structure.module").then((m) => m.StructurePageModule),
-  },
+
   {
     path: "group/:id",
     loadChildren: () =>
@@ -192,6 +180,11 @@ const routes: Routes = [
     path: 'event',
     loadChildren: () => import('./event/event.module').then( m => m.EventPageModule),
     canActivate: [AuthGuardService],
+  },
+  {
+    path: "structure/organization/profile/:id",
+    component: ExecutiveProfileComponent,
+    canActivate: [LandingGuard],
   },
   {
     path: "**",

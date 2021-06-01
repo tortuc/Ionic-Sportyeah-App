@@ -103,12 +103,12 @@
 
   </div>
 
-  <app-awards-list
+  <awards-list
     *ngIf="step1"
     [awards]="awards"
     [creator]="true"
     (next)="nextAward($event)"
-  ></app-awards-list>
+  ></awards-list>
 
   <div class="text-center">
     <ion-button

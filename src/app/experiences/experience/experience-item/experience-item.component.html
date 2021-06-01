@@ -1,0 +1,36 @@
+<div [ngClass]="{ delete: experience.deleted }" class="experience-content">
+  <div class="divExperiences">
+    <div class="preview-content"  *ngIf="experience.files.length > 0">
+      <experience-item-preview-files #filesPreview [files]="experience.files"></experience-item-preview-files>
+    </div>
+    <div style="padding: 5px;">
+      <h2 class="position">{{ experience.position }}</h2>
+      <p class="place">
+        {{ experience.federationTeam }} - {{ experience.place }}
+      </p>
+      <p class="visually-hidden" style="font-size: 12px; color: black">
+        {{ "experience.form.initDate" | translate }}
+        {{ experience.initDate | customDisplayDate: true }} -
+        <span *ngIf="experience.nowIn === false"
+          >{{ "experience.form.finishDate" | translate }}
+          {{ experience.finishDate | customDisplayDate: true }}</span
+        >
+
+        <span *ngIf="experience.nowIn">{{
+          "experience.form.nowIn" | translate
+        }}</span>
+      </p>
+      <h6>{{ experience.title }}</h6>
+      <p class="visually-hidden">{{ experience.description }}</p>
+    </div>
+
+    <div class="options-btn" *ngIf="experience.userId == userService.User?._id">
+      <ion-button class="btn-cancel" (click)="delete()">
+        <ion-icon name="trash-outline"></ion-icon>
+      </ion-button>
+      <ion-button class="btn-primary" (click)="edit()">
+        <ion-icon name="create-outline"></ion-icon>
+      </ion-button>
+    </div>
+  </div>
+</div>
