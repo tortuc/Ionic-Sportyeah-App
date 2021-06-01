@@ -18,12 +18,12 @@ export class ReadEventComponent implements OnInit {
   @Output() backEvent = new EventEmitter
   @Output() ticketChange = new EventEmitter
   constructor(
-    private ticketService :TicketEventService,
-    private userService :UserService,
+    public ticketService :TicketEventService,
+    public userService :UserService,
     public toastController: ToastController,
     public translate: TranslateService,
     public eventService:EventService,
-    private router: Router,
+    public router: Router,
   ) { }
 
   ngOnInit() {

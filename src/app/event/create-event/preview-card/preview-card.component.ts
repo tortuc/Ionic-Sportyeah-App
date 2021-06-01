@@ -7,7 +7,7 @@ import { Component, OnInit, Input} from '@angular/core';
 })
 export class PreviewCardComponent implements OnInit {
 
-  @Input() file:string;
+  @Input() file;
   @Input() title:string;
   @Input() description:string;
   @Input() colorTitle:string;
@@ -16,7 +16,5 @@ export class PreviewCardComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {}
-  log(){
-    console.log(this.file)
-  }
+  
 }

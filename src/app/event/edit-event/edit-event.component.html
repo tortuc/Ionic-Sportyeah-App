@@ -19,17 +19,6 @@
           <div  (click)="fileChoose()" style="cursor: pointer;height:270px;text-align: center;max-height: 270px;z-index: 99999;">
           <p *ngIf="files.format == ''">{{'event.add_image' | translate}}</p>
             <img *ngIf="files.format == 'image'" style="width: 100%;height: 270px;" [src]="files.url" >
-            <video
-                
-                *ngIf="files.format == 'video'"
-                style="width: 100%; background-color: black;height: 270px;"
-                controls="controls"
-                preload="metadata"
-                webkit-playsinline="webkit-playsinline"
-                [ngClass]="files.length > 1 ? 'multi' : ''"
-              >
-                <source [src]="files.url | safeUrl" type="video/mp4" />
-              </video>
           </div>
         <!-- Hace el degradado -->
           <div  (click)="fileChoose()" *ngIf="files.format == 'image'" class="gradientback"></div>
