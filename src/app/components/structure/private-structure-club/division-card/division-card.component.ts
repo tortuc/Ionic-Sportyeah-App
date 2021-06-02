@@ -8,7 +8,7 @@ import {
 import { TranslateService } from "@ngx-translate/core";
 import { IDivision } from "src/app/models/structure.model";
 import { LoadingService } from "src/app/service/loading.service";
-import {  StructureService } from "src/app/service/structure.service";
+import { StructureService } from "src/app/service/structure.service";
 import { CreateDivisionComponent } from "../create-division/create-division.component";
 import { DivisionOptionsComponent } from "./division-options/division-options.component";
 
@@ -31,6 +31,7 @@ enum Texts {
 })
 export class DivisionCardComponent implements OnInit {
   @Input() division: IDivision;
+  @Input() private: boolean = false;
 
   constructor(
     private readonly popoverCtrl: PopoverController,
@@ -119,6 +120,12 @@ export class DivisionCardComponent implements OnInit {
   }
 
   goto() {
-    this.router.navigate([`profile/structure/divisions/${this.division._id}`]);
+    if (this.private) {
+      this.router.navigate([
+        `profile/structure/divisions/${this.division._id}`,
+      ]);
+    } else {
+      this.router.navigate([`/structure/division/${this.division._id}`]);
+    }
   }
 }

@@ -2,6 +2,9 @@ import { NgModule } from "@angular/core";
 import { PreloadAllModules, RouterModule, Routes } from "@angular/router";
 import { PlayerComponent } from "./components/structure/player/player.component";
 import { ExecutiveProfileComponent } from "./components/structure/private-organization-chart/executive-profile/executive-profile.component";
+import { PublicCategoryComponent } from "./components/structure/public-category/public-category.component";
+import { PublicDivisionComponent } from "./components/structure/public-division/public-division.component";
+import { PublicTeamComponent } from "./components/structure/public-team/public-team.component";
 import { AuthGuardService } from "./guards/auth-guard.service";
 import { LandingGuard } from "./guards/landing-guard.service";
 import { SessionGuardService } from "./guards/session-guard.service";
@@ -185,6 +188,21 @@ const routes: Routes = [
   {
     path: "structure/organization/profile/:id",
     component: ExecutiveProfileComponent,
+    canActivate: [LandingGuard],
+  },
+  {
+    path: "structure/division/:id",
+    component: PublicDivisionComponent,
+    canActivate: [LandingGuard],
+  },
+  {
+    path: "structure/category/:id",
+    component: PublicCategoryComponent,
+    canActivate: [LandingGuard],
+  },
+  {
+    path: "structure/team/:id",
+    component: PublicTeamComponent,
     canActivate: [LandingGuard],
   },
   {

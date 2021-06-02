@@ -33,6 +33,10 @@ import { TeamComponent } from "./team/team.component";
 import { PlayerCardComponent } from "./team/player-card/player-card.component";
 import { CreatePlayerComponent } from "./team/player-card/create-player/create-player.component";
 import { PlayerComponent } from "./player/player.component";
+import { PublicStructureClubComponent } from "./public-structure-club/public-structure-club.component";
+import { PublicDivisionComponent } from "./public-division/public-division.component";
+import { PublicCategoryComponent } from "./public-category/public-category.component";
+import { PublicTeamComponent } from "./public-team/public-team.component";
 
 const components = [
   PrivateStructureComponent,
@@ -59,7 +63,11 @@ const components = [
   TeamComponent,
   PlayerCardComponent,
   CreatePlayerComponent,
-  PlayerComponent
+  PlayerComponent,
+  PublicStructureClubComponent,
+  PublicDivisionComponent,
+  PublicCategoryComponent,
+  PublicTeamComponent
 ];
 
 @NgModule({

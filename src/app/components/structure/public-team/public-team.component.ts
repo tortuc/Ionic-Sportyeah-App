@@ -8,21 +8,20 @@ import {
   PlayerRole,
 } from "src/app/models/structure.model";
 import { StructureService } from "src/app/service/structure.service";
-import { CreatePlayerComponent } from "./player-card/create-player/create-player.component";
 enum Texts {
   title = "organizationChart.title",
   description = "organizationChart.description",
   create = "organizationChart.createBtn",
   from = "Desde",
   players = "Jugadores",
-  staff = "Cuerpo tecnico"
+  staff = "Cuerpo tecnico",
 }
 @Component({
-  selector: "app-team",
-  templateUrl: "./team.component.html",
-  styleUrls: ["./team.component.scss"],
+  selector: "app-public-team",
+  templateUrl: "./public-team.component.html",
+  styleUrls: ["./public-team.component.scss"],
 })
-export class TeamComponent implements OnInit {
+export class PublicTeamComponent implements OnInit {
   public readonly Texts = Texts;
   constructor(
     private readonly structureService: StructureService,
@@ -31,21 +30,14 @@ export class TeamComponent implements OnInit {
     private readonly router: Router
   ) {}
 
-  public structure: IStructure = this.structureService.myStructure;
-
+  public structure: IStructure = null;
   public team: ITeam = null;
   ngOnInit() {
     this.structureService
       .getTeam(this.route.snapshot.paramMap.get("id"))
       .subscribe(
         (team) => {
-          this.structureService.newPlayer$.subscribe((player) => {
-            if (player.role == PlayerRole.player) {
-              this.players.unshift(player);
-            } else {
-              this.staff.unshift(player);
-            }
-          });
+          this.structure = team.category.division.structure;
           this.team = team;
           this.gePlayers();
         },
@@ -72,14 +64,4 @@ export class TeamComponent implements OnInit {
 
   public players: IPlayer[] = [];
   public staff: IPlayer[] = [];
-
-  async create(role) {
-    const modal = await this.modalCtrl.create({
-      component: CreatePlayerComponent,
-      componentProps: { team: this.team, role },
-      cssClass: "modal-border",
-    });
-
-    return await modal.present();
-  }
 }

@@ -14,7 +14,10 @@
 </ion-header>
 
 <ion-content>
-  <div>
+  <div *ngIf="!structure" style="text-align: center; padding: 20px">
+    <ion-spinner></ion-spinner>
+  </div>
+  <div *ngIf="structure">
     <div class="header">
       <div class="logo">
         <img [src]="structure.logo" alt="" />
@@ -29,15 +32,6 @@
   <div class="content">
     <ion-grid>
       <ion-row>
-        <ion-col size-md="6" size-lg="4" size-xs="12">
-          <div class="section-create" (click)="create()">
-            <div class="text-content">
-              <h2 class="text">{{ Texts.create | translate }}</h2>
-              <img src="assets/structure/sports.jpg" alt="" />
-            </div>
-          </div>
-        </ion-col>
-
         <ion-col
           size-md="6"
           size-lg="4"
@@ -45,7 +39,7 @@
           *ngFor="let division of divisions"
           [ngClass]="{ deleted: division.deleted }"
         >
-          <division-card [private]="true" [division]="division"> </division-card>
+          <division-card  [division]="division"> </division-card>
         </ion-col>
       </ion-row>
     </ion-grid>

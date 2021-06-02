@@ -47,7 +47,7 @@
           *ngFor="let team of teams"
           [ngClass]="{ deleted: team.deleted }"
         >
-        <team-card [team]="team"></team-card>
+        <team-card [private]="true" [team]="team"></team-card>
         </ion-col>
       </ion-row>
     </ion-grid>

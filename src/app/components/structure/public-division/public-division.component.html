@@ -16,10 +16,12 @@
 <ion-content>
   <div>
     <div class="header">
-      <div class="logo">
-        <img [src]="structure.logo" alt="" />
-      </div>
-      <h1 class="name">{{ structure.name }}</h1>
+      <ng-container *ngIf="structure">
+        <div class="logo">
+          <img [src]="structure.logo" alt="" />
+        </div>
+        <h1 class="name">{{ structure.name }}</h1>
+      </ng-container>
       <div *ngIf="division">
         <h1 class="title">{{ division.name }}</h1>
         <h6>
@@ -31,14 +33,7 @@
   <div class="content">
     <ion-grid>
       <ion-row>
-        <ion-col size-md="6" size-lg="4" size-xs="12">
-          <div class="section-create" (click)="create()">
-            <div class="text-content">
-              <h2 class="text">{{ Texts.create | translate }}</h2>
-              <img src="assets/structure/category.jpg" alt="" />
-            </div>
-          </div>
-        </ion-col>
+        
 
         <ion-col
           size-md="6"
@@ -47,7 +42,7 @@
           *ngFor="let category of categories"
           [ngClass]="{ deleted: category.deleted }"
         >
-        <category-card [private]="true" [category]="category"></category-card>
+        <category-card [category]="category"></category-card>
         </ion-col>
       </ion-row>
     </ion-grid>

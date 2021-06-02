@@ -234,6 +234,11 @@ export class StructureService {
       .get<IDivision[]>(`${this.routeDivision}/bystructure/${id}`)
       .pipe(take(1));
   }
+  getAllDivisionsByUsername(username) {
+    return this.http
+      .get<IDivision[]>(`${this.routeDivision}/byusername/${username}`)
+      .pipe(take(1));
+  }
 
   getDivisionById(id) {
     return this.http

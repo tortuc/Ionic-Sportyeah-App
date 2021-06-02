@@ -49,7 +49,7 @@ enum options {
 })
 export class TeamCardComponent implements OnInit {
   @Input() team;
-
+  @Input() private: boolean = false;
   constructor(
     private readonly popoverCtrl: PopoverController,
     private readonly alertCtrl: AlertController,
@@ -136,6 +136,10 @@ export class TeamCardComponent implements OnInit {
   }
 
   goto() {
-    this.router.navigate([`profile/structure/team/${this.team._id}`]);
+    if (this.private) {
+      this.router.navigate([`profile/structure/team/${this.team._id}`]);
+    } else {
+      this.router.navigate([`structure/team/${this.team._id}`]);
+    }
   }
 }

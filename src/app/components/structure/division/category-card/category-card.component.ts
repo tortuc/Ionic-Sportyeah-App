@@ -50,6 +50,7 @@ enum options {
 })
 export class CategoryCardComponent implements OnInit {
   @Input() category;
+  @Input() private: boolean = false;
 
   constructor(
     private readonly popoverCtrl: PopoverController,
@@ -138,6 +139,10 @@ export class CategoryCardComponent implements OnInit {
   }
 
   goto() {
-    this.router.navigate([`profile/structure/category/${this.category._id}`]);
+    if (this.private) {
+      this.router.navigate([`profile/structure/category/${this.category._id}`]);
+    } else {
+      this.router.navigate([`structure/category/${this.category._id}`]);
+    }
   }
 }
