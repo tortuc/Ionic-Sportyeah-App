@@ -2,10 +2,10 @@ import { Component, Input, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { AlertController, ModalController } from "@ionic/angular";
 import { TranslateService } from "@ngx-translate/core";
-import { IOrganization } from "src/app/models/structure.model";
+import { IOrganization, IPlayer } from "src/app/models/structure.model";
 import { LoadingService } from "src/app/service/loading.service";
 import { StructureService } from "src/app/service/structure.service";
-import { CreateProfileOrgComponent } from "../create-profile-org/create-profile-org.component";
+import { CreatePlayerComponent } from "./create-player/create-player.component";
 
 enum Texts {
   from = "executive_card.from",
@@ -14,13 +14,13 @@ enum Texts {
   accept = "executive_card.accept",
 }
 @Component({
-  selector: "executive-card",
-  templateUrl: "./executive-card.component.html",
-  styleUrls: ["./executive-card.component.scss"],
+  selector: "player-card",
+  templateUrl: "./player-card.component.html",
+  styleUrls: ["./player-card.component.scss"],
 })
-export class ExecutiveCardComponent implements OnInit {
+export class PlayerCardComponent implements OnInit {
   public readonly Texts = Texts;
-  @Input() profile: IOrganization;
+  @Input() profile: IPlayer;
   @Input() private: boolean = false;
 
   constructor(
@@ -35,18 +35,16 @@ export class ExecutiveCardComponent implements OnInit {
   ngOnInit() {}
 
   public visit() {
-    this.router.navigate([
-      `/structure/organization/profile/${this.profile._id}`,
-    ]);
+    this.router.navigate([`/structure/player/${this.profile._id}`]);
   }
 
   async edit() {
-    this.structureService.updateProfileOrganization$.subscribe((profile) => {
+    this.structureService.playerUpdated$.subscribe((profile) => {
       this.profile = this.profile._id == profile._id ? profile : this.profile;
     });
     const modal = await this.modalCtrl.create({
-      component: CreateProfileOrgComponent,
-      componentProps: { profile: this.profile },
+      component: CreatePlayerComponent,
+      componentProps: { player: this.profile },
       cssClass: "modal-border",
     });
 
@@ -66,17 +64,15 @@ export class ExecutiveCardComponent implements OnInit {
           text: this.translate.instant(Texts.accept),
           handler: () => {
             this.loadingService.present();
-            this.structureService
-              .deleteProfileOrganizationById(this.profile._id)
-              .subscribe(
-                () => {
-                  this.loadingService.dismiss();
-                  this.profile.deleted = true;
-                },
-                () => {
-                  this.loadingService.dismiss();
-                }
-              );
+            this.structureService.deletePlayer(this.profile._id).subscribe(
+              () => {
+                this.loadingService.dismiss();
+                this.profile.deleted = true;
+              },
+              () => {
+                this.loadingService.dismiss();
+              }
+            );
           },
         },
       ],

@@ -4,9 +4,12 @@ import { Subject } from "rxjs";
 import { take } from "rxjs/operators";
 import { environment } from "src/environments/environment";
 import {
+  ICategory,
   IDivision,
   IOrganization,
+  IPlayer,
   IStructure,
+  ITeam,
 } from "../models/structure.model";
 import { LoadingService } from "./loading.service";
 import { UserService } from "./user.service";
@@ -272,19 +275,231 @@ export class StructureService {
    * -------------------------------------------------------
    */
 
+  public newCategory$ = new Subject<ICategory>();
   /**
    * Crear una categoria
    * @param category
    */
-  createCategory(category) {}
-  getAllCategoryByDivision() {}
-  getCategory() {}
-  updateCategory() {}
-  deleteCategory() {}
+
+  createCategory(category) {
+    this.loadingService.present();
+    this.http
+      .post<ICategory>(`${this.routeCategory}/create`, category)
+      .pipe(take(1))
+      .subscribe(
+        (newCategory) => {
+          this.newCategory$.next(newCategory);
+          this.loadingService.dismiss();
+        },
+        () => {
+          this.loadingService.dismiss();
+        }
+      );
+  }
+
+  /**
+   * Obtiene todas las categorias por el id de la division
+   * @param divisionId
+   * @returns
+   */
+
+  getAllCategoryByDivision(divisionId: string) {
+    return this.http
+      .get<ICategory[]>(`${this.routeCategory}/bydivision/${divisionId}`)
+      .pipe(take(1));
+  }
+
+  /**
+   * Obtiene la informacion de una categoria, por su id
+   */
+  getCategory(id) {
+    return this.http
+      .get<ICategory>(`${this.routeCategory}/byid/${id}`)
+      .pipe(take(1));
+  }
+
+  public categoryUpdated$ = new Subject<ICategory>();
+
+  updateCategory(id, newData) {
+    this.loadingService.present();
+    this.http
+      .put<ICategory>(`${this.routeCategory}/update/${id}`, newData)
+      .pipe(take(1))
+      .subscribe(
+        (category) => {
+          this.categoryUpdated$.next(category);
+          this.loadingService.dismiss();
+        },
+        () => {
+          this.loadingService.dismiss();
+        }
+      );
+  }
+
+  deleteCategory(id) {
+    return this.http
+      .delete<ICategory>(`${this.routeCategory}/delete/${id}`)
+      .pipe(take(1));
+  }
 
   /**
    * -------------------------------------------------------
    * ------------------ FIN CRUD CATEGORIA ------------------
+   * -------------------------------------------------------
+   */
+
+  /**
+   * -------------------------------------------------------
+   * -------------------- CRUD EQUIPO ------------------
+   * -------------------------------------------------------
+   */
+
+  public newTeam$ = new Subject<ITeam>();
+  /**
+   * Crear un EQUIPO
+   * @param team
+   */
+
+  createTeam(team) {
+    this.loadingService.present();
+    this.http
+      .post<ITeam>(`${this.routeTeam}/create`, team)
+      .pipe(take(1))
+      .subscribe(
+        (newTeam) => {
+          this.newTeam$.next(newTeam);
+          this.loadingService.dismiss();
+        },
+        () => {
+          this.loadingService.dismiss();
+        }
+      );
+  }
+
+  /**
+   * Obtiene todas las categorias por el id de la division
+   * @param teamId
+   * @returns
+   */
+
+  getAllTeamsByCategory(teamId: string) {
+    return this.http
+      .get<ITeam[]>(`${this.routeTeam}/bycategory/${teamId}`)
+      .pipe(take(1));
+  }
+
+  /**
+   * Obtiene la informacion de un equipo, por su id
+   */
+  getTeam(id) {
+    return this.http.get<ITeam>(`${this.routeTeam}/byid/${id}`).pipe(take(1));
+  }
+
+  public teamUpdated$ = new Subject<ITeam>();
+
+  updateTeam(id, newData) {
+    this.loadingService.present();
+    this.http
+      .put<ITeam>(`${this.routeTeam}/update/${id}`, newData)
+      .pipe(take(1))
+      .subscribe(
+        (team) => {
+          this.teamUpdated$.next(team);
+          this.loadingService.dismiss();
+        },
+        () => {
+          this.loadingService.dismiss();
+        }
+      );
+  }
+
+  deleteTeam(id) {
+    return this.http
+      .delete<ITeam>(`${this.routeTeam}/delete/${id}`)
+      .pipe(take(1));
+  }
+
+  /**
+   * -------------------------------------------------------
+   * ------------------ FIN CRUD EQUIPO ------------------
+   * -------------------------------------------------------
+   */
+  /**
+   * -------------------------------------------------------
+   * -------------------- CRUD JUGADOR/STAFF ------------------
+   * -------------------------------------------------------
+   */
+
+  public newPlayer$ = new Subject<IPlayer>();
+  /**
+   * Crear un jugador
+   * @param team
+   */
+
+  createPlayer(team) {
+    this.loadingService.present();
+    this.http
+      .post<IPlayer>(`${this.routePlayer}/create`, team)
+      .pipe(take(1))
+      .subscribe(
+        (newPlayer) => {
+          this.newPlayer$.next(newPlayer);
+          this.loadingService.dismiss();
+        },
+        () => {
+          this.loadingService.dismiss();
+        }
+      );
+  }
+
+  /**
+   * Obtiene todas los jugadores de un equipo
+   * @param teamId
+   * @returns
+   */
+
+  getAllPlayersByTeam(teamId: string, role = "player") {
+    return this.http
+      .get<IPlayer[]>(`${this.routePlayer}/byteam/${teamId}/${role}`)
+      .pipe(take(1));
+  }
+
+  /**
+   * Obtiene la informacion de jugador/staff por su id
+   */
+  getPlayer(id) {
+    return this.http
+      .get<IPlayer>(`${this.routePlayer}/byid/${id}`)
+      .pipe(take(1));
+  }
+
+  public playerUpdated$ = new Subject<IPlayer>();
+
+  updatePlayer(id, newData) {
+    this.loadingService.present();
+    this.http
+      .put<IPlayer>(`${this.routePlayer}/update/${id}`, newData)
+      .pipe(take(1))
+      .subscribe(
+        (player) => {
+          this.playerUpdated$.next(player);
+          this.loadingService.dismiss();
+        },
+        () => {
+          this.loadingService.dismiss();
+        }
+      );
+  }
+
+  deletePlayer(id) {
+    return this.http
+      .delete<IPlayer>(`${this.routePlayer}/delete/${id}`)
+      .pipe(take(1));
+  }
+
+  /**
+   * -------------------------------------------------------
+   * ------------------ FIN CRUD EQUIPO ------------------
    * -------------------------------------------------------
    */
 }

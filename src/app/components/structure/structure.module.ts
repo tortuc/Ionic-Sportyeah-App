@@ -24,6 +24,15 @@ import { DivisionCardComponent } from "./private-structure-club/division-card/di
 import { DivisionOptionsComponent } from "./private-structure-club/division-card/division-options/division-options.component";
 import { DivisionComponent } from "./division/division.component";
 import { CategoryCardComponent } from "./division/category-card/category-card.component";
+import { CreateCategoryComponent } from "./division/create-category/create-category.component";
+import { PopoverOptionsComponent } from "./popover-options/popover-options.component";
+import { TeamCardComponent } from "./category/team-card/team-card.component";
+import { CategoryComponent } from "./category/category.component";
+import { CreateTeamComponent } from "./category/create-team/create-team.component";
+import { TeamComponent } from "./team/team.component";
+import { PlayerCardComponent } from "./team/player-card/player-card.component";
+import { CreatePlayerComponent } from "./team/player-card/create-player/create-player.component";
+import { PlayerComponent } from "./player/player.component";
 
 const components = [
   PrivateStructureComponent,
@@ -42,6 +51,15 @@ const components = [
   DivisionOptionsComponent,
   DivisionComponent,
   CategoryCardComponent,
+  CreateCategoryComponent,
+  PopoverOptionsComponent,
+  TeamCardComponent,
+  CategoryComponent,
+  CreateTeamComponent,
+  TeamComponent,
+  PlayerCardComponent,
+  CreatePlayerComponent,
+  PlayerComponent
 ];
 
 @NgModule({

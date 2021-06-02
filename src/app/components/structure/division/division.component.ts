@@ -1,11 +1,13 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { ModalController } from "@ionic/angular";
-import { IDivision, IStructure } from "src/app/models/structure.model";
 import {
-  StructureService,
-} from "src/app/service/structure.service";
-import { CreateDivisionComponent } from "../private-structure-club/create-division/create-division.component";
+  ICategory,
+  IDivision,
+  IStructure,
+} from "src/app/models/structure.model";
+import { StructureService } from "src/app/service/structure.service";
+import { CreateCategoryComponent } from "./create-category/create-category.component";
 enum Texts {
   title = "divisions.title",
   description = "divisions.description",
@@ -37,7 +39,11 @@ export class DivisionComponent implements OnInit {
       .getDivisionById(this.route.snapshot.paramMap.get("id"))
       .subscribe(
         (division) => {
+          this.structureService.newCategory$.subscribe((category) => {
+            this.categories.push(category);
+          });
           this.division = division;
+          this.getCategories();
         },
         () => {
           this.router.navigate(["/404"]);
@@ -45,19 +51,20 @@ export class DivisionComponent implements OnInit {
       );
   }
 
-  public categories = [
-    {
-      name: "Categoria infantil",
-      image: "assets/structure/categorychild.jpg",
-      description: "Equipos infantiles",
-      division: null,
-      deleted:false
-    },
-  ];
+  getCategories() {
+    this.structureService
+      .getAllCategoryByDivision(this.division._id)
+      .subscribe((categories) => {
+        this.categories = categories;
+      });
+  }
+
+  public categories: ICategory[] = [];
 
   async create() {
     const modal = await this.modalCtrl.create({
-      component: CreateDivisionComponent,
+      component: CreateCategoryComponent,
+      componentProps: { division: this.division },
       cssClass: "modal-border",
     });
     return await modal.present();

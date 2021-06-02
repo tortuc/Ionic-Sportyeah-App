@@ -9,14 +9,14 @@ import { TranslateService } from "@ngx-translate/core";
 import { LoadingService } from "src/app/service/loading.service";
 import { StructureService } from "src/app/service/structure.service";
 import { PopoverOptionsComponent } from "../../popover-options/popover-options.component";
-import { CreateCategoryComponent } from "../create-category/create-category.component";
+import { CreateTeamComponent } from "../create-team/create-team.component";
 
 enum Texts {
-  see = "Ver categoria",
+  see = "Ver Equpo",
   edit = "Editar",
   delete = "Eliminar",
-  header = "Eliminar categoria",
-  message = "Seguro deseas eliminar esta categoria? se perderan los equipos y jugadores asociados a esta categoria!",
+  header = "Eliminar equipo",
+  message = "Seguro deseas eliminar este equipo? se perderan los jugadores y cuerpo tecnico asociados!",
   accept = "Si, eliminar",
 }
 
@@ -42,14 +42,13 @@ enum options {
   delete = "delete",
   see = "see",
 }
-
 @Component({
-  selector: "category-card",
-  templateUrl: "./category-card.component.html",
-  styleUrls: ["./category-card.component.scss"],
+  selector: "team-card",
+  templateUrl: "./team-card.component.html",
+  styleUrls: ["./team-card.component.scss"],
 })
-export class CategoryCardComponent implements OnInit {
-  @Input() category;
+export class TeamCardComponent implements OnInit {
+  @Input() team;
 
   constructor(
     private readonly popoverCtrl: PopoverController,
@@ -108,10 +107,10 @@ export class CategoryCardComponent implements OnInit {
           text: this.translate.instant(Texts.accept),
           handler: () => {
             this.loading.present();
-            this.structureService.deleteCategory(this.category._id).subscribe(
+            this.structureService.deleteTeam(this.team._id).subscribe(
               () => {
                 this.loading.dismiss();
-                this.category.deleted = true;
+                this.team.deleted = true;
               },
               () => {
                 this.loading.dismiss();
@@ -125,19 +124,18 @@ export class CategoryCardComponent implements OnInit {
   }
 
   async edit() {
-    this.structureService.categoryUpdated$.subscribe((category) => {
-      this.category =
-        this.category._id == category._id ? category : this.category;
+    this.structureService.teamUpdated$.subscribe((team) => {
+      this.team = this.team._id == team._id ? team : this.team;
     });
     const modal = await this.modalCtrl.create({
-      component: CreateCategoryComponent,
-      componentProps: { category: this.category },
+      component: CreateTeamComponent,
+      componentProps: { team: this.team },
       cssClass: "modal-border",
     });
     return await modal.present();
   }
 
   goto() {
-    this.router.navigate([`profile/structure/category/${this.category._id}`]);
+    this.router.navigate([`profile/structure/team/${this.team._id}`]);
   }
 }

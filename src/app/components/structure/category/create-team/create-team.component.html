@@ -1,0 +1,58 @@
+<input
+  type="file"
+  #fileChooser
+  accept="image/*"
+  (change)="uploadFile($event)"
+  hidden
+/>
+
+<ion-content>
+  <loading-progress class="progress"></loading-progress>
+
+  <ion-icon
+    name="close-outline"
+    (click)="modalCtrl.dismiss()"
+    class="close-modal"
+  ></ion-icon>
+
+  <div class="header">
+    <h4>{{ (team ? Texts.edit : Texts.title) | translate }}</h4>
+  </div>
+  <div style="text-align: center">
+    <div class="photo-cover">
+      <div (click)="fileChooser.click()" class="photo-change">
+        <h4 class="text">{{ Texts.image | translate }}</h4>
+      </div>
+      <img class="profile-photo" [src]="form.controls.image.value" alt="" />
+    </div>
+    <div style="padding: 5px; text-align: center">
+      <ion-button (click)="fileChooser.click()" class="btn-primary">{{
+        Texts.image | translate
+      }}</ion-button>
+    </div>
+  </div>
+  <div style="padding: 0px 10px">
+    <form [formGroup]="form">
+      <ion-item>
+        <ion-label position="floating">{{ Texts.name | translate }}</ion-label>
+        <ion-input formControlName="name"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">{{
+          Texts.description | translate
+        }}</ion-label>
+        <ion-input formControlName="description"></ion-input>
+      </ion-item>
+    </form>
+
+    <div style="padding: 5px; text-align: center">
+      <ion-button
+        (click)="save()"
+        [disabled]="form.invalid"
+        class="btn-primary"
+        >{{ (team ? Texts.save : Texts.btnCreate) | translate }}</ion-button
+      >
+    </div>
+  </div>
+</ion-content>

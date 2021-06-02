@@ -32,3 +32,42 @@ export interface IDivision {
   deleted?: boolean;
   image: string;
 }
+
+export interface ICategory {
+  division: IDivision;
+  _id?: string;
+  name: string;
+  description?: string;
+  date?: Date;
+  deleted?: boolean;
+  image: string;
+}
+export interface ITeam {
+  category: ICategory;
+  _id?: string;
+  name: string;
+  description?: string;
+  date?: Date;
+  deleted?: boolean;
+  image: string;
+}
+
+export enum PlayerRole {
+  staff = "staff",
+  player = "player",
+}
+
+export interface IPlayer {
+  name: string;
+  position: string;
+  birthday: Date;
+  place: string;
+  height?: string;
+  photo: string;
+  role: PlayerRole;
+  _id?: string;
+  team: ITeam;
+  history: string;
+  user?: User;
+  deleted:boolean;
+}

@@ -1,5 +1,6 @@
 import { NgModule } from "@angular/core";
 import { PreloadAllModules, RouterModule, Routes } from "@angular/router";
+import { PlayerComponent } from "./components/structure/player/player.component";
 import { ExecutiveProfileComponent } from "./components/structure/private-organization-chart/executive-profile/executive-profile.component";
 import { AuthGuardService } from "./guards/auth-guard.service";
 import { LandingGuard } from "./guards/landing-guard.service";
@@ -174,6 +175,11 @@ const routes: Routes = [
   {
     path: "structure/organization/profile/:id",
     component: ExecutiveProfileComponent,
+    canActivate: [LandingGuard],
+  },
+  {
+    path: "structure/player/:id",
+    component: PlayerComponent,
     canActivate: [LandingGuard],
   },
   {

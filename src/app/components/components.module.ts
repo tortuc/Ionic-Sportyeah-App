@@ -69,6 +69,7 @@ import { AwardsListComponent } from "./challenges/awards-list/awards-list.compon
 import { CreateAwardChallengeComponent } from "./challenges/create-award-challenge/create-award-challenge.component";
 import { ShowAwardsComponent } from "./challenges/show-awards/show-awards.component";
 import { AwardsAccordionComponent } from "./challenges/awards-accordion/awards-accordion.component";
+import { CategoryComponent } from "./structure/category/category.component";
 
 const components = [
   NewProfilePhotoComponent,
@@ -127,7 +128,7 @@ const components = [
   ShowAwardsComponent,
   AwardsListComponent,
   AwardsAccordionComponent,
-  CreateAwardChallengeComponent,
+  CreateAwardChallengeComponent
 
 
 ];
