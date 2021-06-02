@@ -139,7 +139,7 @@ rea
 
   dislike2(like) {
     this.newsService
-      .dislikePost(like)
+      .dislikeNews(like)
       .toPromise() ///CAmbiar
       .then((likes: ILike[]) => {
         this.news.likes = likes;

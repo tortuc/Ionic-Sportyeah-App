@@ -12,8 +12,6 @@ import {NgxWigModule} from 'ngx-wig';
 import{ CreateComponent } from './create/create.component'
 import { EditComponent } from './edit/edit.component';
 import { ReadComponent } from './read/read.component';
-import { StreamComponent } from './stream/stream.component';
-import { CreateStreamComponent } from './create-stream/create-stream.component';
 
 import { HttpClientModule} from '@angular/common/http';
 import { TranslateModule } from '@ngx-translate/core';
@@ -36,6 +34,11 @@ import { DirectivesModule } from 'src/app/directives/directive.module';
 import { ProfileNewsComponent } from './profile-news/profile-news.component';
 import { ShowNewsComponent } from './profile-news/show-news/show-news.component';
 import { ModalProgramNewsComponent } from './modal-program-news/modal-program-news.component';
+import { LikesNewsComponent } from './likes-news/likes-news.component';
+import { AllReactionsNewsComponent } from './all-reactions-news/all-reactions-news.component';
+import { LikesReactionsNewsComponent } from './likes-reactions-news/likes-reactions-news.component';
+import { CreateStreamNewsComponent } from './create-stream-news/create-stream-news.component';
+import { StreamNewsComponent } from './stream-news/stream-news.component';
 
 @NgModule({
   imports: [
@@ -61,8 +64,8 @@ import { ModalProgramNewsComponent } from './modal-program-news/modal-program-ne
     CreateComponent,
     EditComponent, 
     ReadComponent,
-    StreamComponent,
-    CreateStreamComponent,
+    StreamNewsComponent,
+    CreateStreamNewsComponent,
     ButtonsOptionsComponent, 
     RecordAudioNewsComponent,
     MsgAudioNewsComponent,
@@ -74,7 +77,10 @@ import { ModalProgramNewsComponent } from './modal-program-news/modal-program-ne
     ProfileNewsComponent,
     ShowNewsComponent,
     AttachLinkPreviewNewsComponent,
-    ModalProgramNewsComponent
+    ModalProgramNewsComponent,
+    LikesNewsComponent,
+    AllReactionsNewsComponent,
+    LikesReactionsNewsComponent
   ],
  
   schemas:[CUSTOM_ELEMENTS_SCHEMA]

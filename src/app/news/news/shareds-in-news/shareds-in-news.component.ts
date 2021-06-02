@@ -6,6 +6,7 @@ import {
   ModalController,
   Platform,
   PopoverController,
+  ToastController,
 } from "@ionic/angular";
 import { TranslateService } from "@ngx-translate/core";
 import { IPost } from "src/app/models/iPost";
@@ -41,6 +42,7 @@ export class SharedsInNewsComponent implements OnInit {
     private socialShare: SocialSharing,
     private shareService: ShareService,
     private popover: PopoverController,
+    public toastController: ToastController,
   ) { }
 
   
@@ -58,6 +60,16 @@ export class SharedsInNewsComponent implements OnInit {
      this.getTotalShared();
    }
  
+   async presentToastWithOptions() {
+    const toast = await this.toastController.create({
+      message: this.translate.instant("news.news_shared"),
+      position: "bottom",
+      color: "dark",
+      duration: 3000,
+    });
+    toast.present();
+  }
+
    modalOpen = false;
  
    totalShared = 0;
@@ -146,6 +158,8 @@ export class SharedsInNewsComponent implements OnInit {
          null,
          `https://app.sportyeah.com/news/read/${this.news._id}`
        );
+       this.getTotalShared()
+       this.presentToastWithOptions()
      } else {
        this.sharedWeb();
      }
@@ -174,7 +188,7 @@ export class SharedsInNewsComponent implements OnInit {
      popover.present();
    }
  
-   shareRigthNow() {//////////Revisar esta CAGADA
+   shareRigthNow() {
      let post = {
        user: this.userService.User._id,
        news: this.news._id
@@ -184,6 +198,8 @@ export class SharedsInNewsComponent implements OnInit {
        .toPromise()
        .then((post: IPost) => {
          this.postService.newPost(post._id);
+         this.getTotalShared()
+         this.presentToastWithOptions()
        })
        .catch((err) => {});
    }
@@ -193,7 +209,7 @@ export class SharedsInNewsComponent implements OnInit {
     * @param post cuerpo de la publicacion
     * @returns
     */
-   async shareNow() {//////////Revisar esta CAGADA
+   async shareNow() {
      let  news =  this.news.post ? this.news.post : this.news
      if (!this.modalOpen) {
        this.modalOpen = true;
@@ -203,10 +219,11 @@ export class SharedsInNewsComponent implements OnInit {
          backdropDismiss: false,
        });
        modal.onDidDismiss().then((data) => {
-         this.getTotalShared();
- 
          this.modalOpen = false;
+         this.getTotalShared()
+         this.presentToastWithOptions()
        });
+
        return await modal.present();
      }
    }

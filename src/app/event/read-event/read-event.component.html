@@ -1,0 +1,62 @@
+<ion-button *ngIf="event.user._id == userService.User?._id" (click)="goEdit()" style="--border-radius: 25px;">
+  {{'event.edit' | translate}}
+</ion-button>
+<ion-button *ngIf="event.user._id == userService.User?._id" (click)="delete()" style="--border-radius: 25px;">
+  {{'event.delete' | translate}}
+</ion-button>
+<ion-button  (click)="backToEvents()" style="--border-radius: 25px;">
+  <ion-icon name="arrow-back-outline"></ion-icon>
+</ion-button>
+<ion-card class="scale-in-center" style="margin: 0; padding: 0">
+  <div  style="cursor: pointer;height:270px;text-align: center;max-height: 270px;z-index: 99999;">
+    <img *ngIf="event.principalImage" style="width: 100%;height: 270px;" [src]="event.principalImage" >
+  </div>
+<!-- Hace el degradado -->
+  <div  *ngIf="event.principalImage" class="gradientback"></div>
+
+  <ion-row>
+      <ion-col style="text-align: center;" size="12">
+       <h1>{{event.title}}</h1>
+      </ion-col>
+      <ion-col style="text-align: center;" size="12">
+        <h3>{{event.description}}</h3>
+      </ion-col>
+      <ion-col style="text-align: center;" size="12">
+        <h3>{{event.modality}}</h3>
+      </ion-col>
+      <ion-col  size="12">
+        <h5>{{event.programatedDate | customDisplayDate}}</h5>
+      </ion-col>
+      
+      <ion-col class="slide-top" *ngIf="event.register == true" >
+        
+        <h4>{{'event.buy_condition' | translate}}</h4>
+        <div>
+          {{event.buyCondition}}
+        </div>
+
+        <h4>{{'event.devolution_condition' | translate}}</h4>
+        <div>
+          {{event.devolutionCondition}}
+        </div>
+
+        <h4>{{'event.ticket' | translate}}</h4>
+        <div>
+          {{event.currency}} {{event.importPrice}}
+        </div>
+        
+      </ion-col>
+      <ion-col style="text-align: center;" size="12">
+        <ion-button *ngIf="(userService.User?._id != event.user._id) && !haveTicket" (click)="takeTicket()" style="--border-radius: 25px;">{{(event.register == true?'event.event_register':'event.event_open') | translate }}</ion-button>
+        <p *ngIf="(userService.User?._id != event.user._id) && haveTicket && !haveTicket.devolution">{{ 'event.have_ticket' | translate}}</p>
+        <ion-button *ngIf="(userService.User?._id != event.user._id) && haveTicket && !haveTicket.devolution" (click)="returnTicket()" style="--border-radius: 25px;">{{ 'event.return_ticket' | translate}}</ion-button>
+        <ion-button *ngIf="(userService.User?._id != event.user._id) && haveTicket && haveTicket.devolution" (click)="devolutionFalse()" style="--border-radius: 25px;">{{(event.register == true?'event.event_register':'event.event_open') | translate }}</ion-button>
+
+        <p *ngIf="userService.User?._id == event.user._id">{{ 'event.is_your_event' | translate}}</p>
+      </ion-col>
+      <ion-col>
+        <ion-button (click)="goToEvent()" style="--border-radius: 25px;" *ngIf="date">{{'event.go_to_event' | translate}}</ion-button>
+      </ion-col>
+      
+  </ion-row>
+</ion-card>

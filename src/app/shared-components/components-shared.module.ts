@@ -36,6 +36,7 @@ import { ProfileUserInfoComponent } from "./profile-user-info/profile-user-info.
 import { NewPostHeaderComponent } from "../post-components/new-post-header/new-post-header.component";
 import { PostPreviewImagesSliderComponent } from "../post-components/post-preview-images-slider/post-preview-images-slider.component";
 import { PostPreviewImagesComponent } from "../post-components/post-preview-images/post-preview-images.component";
+import { UserItemReactionsComponent } from "../post-components/user-item-reactions/user-item-reactions.component";
 import { MiniflagComponent } from "../components/miniflag/miniflag.component";
 import { UserItemPreviewComponent } from "../components/user-item-preview/user-item-preview.component";
 
@@ -69,6 +70,7 @@ const components = [
   ProfilePhotoComponent,
   ProfilePhotoOptionsComponent,
   ProfileUserInfoComponent,
+  UserItemReactionsComponent,
   MiniflagComponent,
   
 

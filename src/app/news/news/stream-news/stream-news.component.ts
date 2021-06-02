@@ -10,13 +10,13 @@ import { Hash } from 'crypto';
 import { keyframes } from '@angular/animations';
 import { Console } from 'console';
 const client: IAgoraRTCClient = AgoraRTC.createClient({ mode: "live", codec: "vp8" });
-
+ 
 @Component({
-  selector: 'app-stream',
-  templateUrl: './stream.component.html',
-  styleUrls: ['./stream.component.scss'],
+  selector: 'app-stream-news',
+  templateUrl: './stream-news.component.html',
+  styleUrls: ['./stream-news.component.scss'],
 })
-export class StreamComponent implements OnInit {
+export class StreamNewsComponent implements OnInit {
   @ViewChild("liveReactionsLike") liveReactionsLike: ElementRef;
   @ViewChild("liveReactionsLove") liveReactionsLove: ElementRef;
   @ViewChild("liveReactionsHaha") liveReactionsHaha: ElementRef;

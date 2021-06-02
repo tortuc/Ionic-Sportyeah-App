@@ -82,10 +82,10 @@ export class ReactToPostsComponent implements OnInit {
     },
     {
       option: 2,
-      url: "assets/images/lovely.png",
-      name: "post.love",
+      url: "assets/images/crush.png",
+      name: "post.crush",
       style: {
-        color: "#fd5f7a",
+        color: "#e9651e",
       },
     },
     {
@@ -122,14 +122,6 @@ export class ReactToPostsComponent implements OnInit {
     },
     {
       option: 7,
-      url: "assets/images/crush.png",
-      name: "post.crush",
-      style: {
-        color: "#e9651e",
-      },
-    },
-    {
-      option: 8,
       url: "assets/images/level2.png",
       name: "post.level2",
       style: {
@@ -137,7 +129,7 @@ export class ReactToPostsComponent implements OnInit {
       },
     },
     {
-      option: 9,
+      option: 8,
       url: "assets/images/level3.png",
       name: "post.level3",
       style: {
@@ -145,7 +137,7 @@ export class ReactToPostsComponent implements OnInit {
       },
     },
     {
-      option: 10,
+      option: 9,
       url: "assets/images/legion.png",
       name: "post.legion",
       style: {
@@ -153,7 +145,7 @@ export class ReactToPostsComponent implements OnInit {
       },
     },
     {
-      option: 11,
+      option: 10,
       url: "assets/images/lol.png",
       name: "post.lol",
       style: {
@@ -161,7 +153,7 @@ export class ReactToPostsComponent implements OnInit {
       },
     },
     {
-      option: 12,
+      option: 11,
       url: "assets/images/me_sirve.png",
       name: "post.me_sirve",
       style: {
@@ -169,7 +161,7 @@ export class ReactToPostsComponent implements OnInit {
       },
     },
     {
-      option: 13,
+      option: 12,
       url: "assets/images/bro.png",
       name: "post.bro",
       style: {
@@ -177,7 +169,7 @@ export class ReactToPostsComponent implements OnInit {
       },
     },
     {
-      option: 14,
+      option: 13,
       url: "assets/images/fachero.png",
       name: "post.fachero",
       style: {
@@ -185,7 +177,7 @@ export class ReactToPostsComponent implements OnInit {
       },
     },
     {
-      option: 15,
+      option: 14,
       url: "assets/images/ban.png",
       name: "post.ban",
       style: {
@@ -193,7 +185,7 @@ export class ReactToPostsComponent implements OnInit {
       },
     },
     {
-      option: 16,
+      option: 15,
       url: "assets/images/troll.png",
       name: "post.troll",
       style: {
@@ -201,7 +193,7 @@ export class ReactToPostsComponent implements OnInit {
       },
     },
     {
-      option: 17,
+      option: 16,
       url: "assets/images/chill.png",
       name: "post.chill",
       style: {
@@ -209,7 +201,7 @@ export class ReactToPostsComponent implements OnInit {
       },
     },
     {
-      option: 18,
+      option: 17,
       url: "assets/images/cringe.png",
       name: "post.cringe",
       style: {
@@ -217,7 +209,7 @@ export class ReactToPostsComponent implements OnInit {
       },
     },
     {
-      option: 19,
+      option: 18,
       url: "assets/images/admin.png",
       name: "post.admin",
       style: {
@@ -225,7 +217,7 @@ export class ReactToPostsComponent implements OnInit {
       },
     },
     {
-      option: 20,
+      option: 19,
       url: "assets/images/hype.png",
       name: "post.hype",
       style: {
@@ -233,7 +225,7 @@ export class ReactToPostsComponent implements OnInit {
       },
     },
     {
-      option: 21,
+      option: 20,
       url: "assets/images/random.png",
       name: "post.random",
       style: {
@@ -241,7 +233,7 @@ export class ReactToPostsComponent implements OnInit {
       },
     },
     {
-      option: 22,
+      option: 21,
       url: "assets/images/meh.png",
       name: "post.meh",
       style: {
@@ -249,7 +241,7 @@ export class ReactToPostsComponent implements OnInit {
       },
     },
     {
-      option: 23,
+      option: 22,
       url: "assets/images/wtf.png",
       name: "post.wtf",
       style: {
@@ -257,7 +249,7 @@ export class ReactToPostsComponent implements OnInit {
       },
     },
     {
-      option: 24,
+      option: 23,
       url: "assets/images/idk.png",
       name: "post.idk",
       style: {
@@ -265,7 +257,7 @@ export class ReactToPostsComponent implements OnInit {
       },
     },
     {
-      option: 25,
+      option: 24,
       url: "assets/images/omg.png",
       name: "post.omg",
       style: {

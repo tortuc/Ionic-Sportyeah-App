@@ -80,7 +80,6 @@ form = this.fb.group({
 
   ngOnInit() {
     this.newsService.findById(this.idNews).subscribe((response:any)=>{
-      console.log(response.news);
       
 
       this.news = response.news
@@ -93,7 +92,8 @@ form = this.fb.group({
       this.deporte = response.news.sport;
       this.origen = response.news.origin;
       this.originPrincipaMedia = response.news.originPrincipaMedia;
-      this.date = response.news.date;
+      // this.date = response.news.date;
+      this.form.controls.date.setValue(moment(new Date(response.news.date)).format('YYYY-MM-DD'))
       this.audioNews = response.news.audioNews;
       this.programedDate = response.news.programatedDate
       if(response.news.principalSubtitle){
@@ -109,24 +109,20 @@ form = this.fb.group({
       this.agregandoOrigen = true;
     })
   }
-  newDate
 async editar(){
   let loading = await this.loadingCtrl.create({
     message: this.translate.instant("loading"),
   });
   loading.present();
   let news = this.form.value
+  
   news.principalVideo = this.videoSelected;
   news.principalImage = this.imagenSelected;
   news.user = this.userService.User._id;
   news.headline = this.titulo1;
   news.principalSubtitle = this.subTitle;
   news.content = await this.questionService.parrafoFilter(this.parrafos);
-  if(  this.newDate != undefined){
-    news.date = this.newDate
-  }else{
-    news.date = this.date;
-  }
+  
   news.origin = this.origen;
   news.originPrincipaMedia = this.originPrincipaMedia;
   news.audioNews = this.audioNews;
@@ -137,7 +133,9 @@ async editar(){
     news.programated = false;
   }
   news.sport = this.deporte;
-    this.newsService.updateNews(news).subscribe((response) => {
+  news.id = this.idNews;
+   
+  this.newsService.updateNews(news).subscribe((response) => {
       this.presentToastWithOptions();
       this.router.navigate(["news"]);
     });
@@ -826,14 +824,11 @@ addFile(file) {
     link:file.format =='link'?file.url:null,
     format:file.format
   });
-  console.log(this.parrafos);
 }
 editFile(format,i){
   this.optionsBtn.editFile(format,i)
 }
 editedFile(file){
-  console.log(this.parrafos[file.position]);
-  console.log(file);
 
   this.parrafos[file.position] = {
     subtitle: null,
@@ -926,7 +921,6 @@ newQuestion($event) {
     question,
     format:'question'
   }) 
-  console.log(this.parrafos);
 }
 questionEdited($event) {
   let question = {
