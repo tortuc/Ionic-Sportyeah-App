@@ -30,6 +30,20 @@ export class ViewCommentComponent implements OnInit {
     modal.present();
   }
 
+  async openOptions(ev: any) {
+    const popover = await this.popoverController.create({
+      component: OptionsPostPage,
+      cssClass: "my-custom-class",
+      event: ev,
+      translucent: true,
+      componentProps: { post: this.post },
+    });
+    popover.onDidDismiss().then((data) => {
+      this.options(data.data);
+    });
+    return await popover.present();
+  }
+
   goToSponsor(sponsor) {
   
     if (this.comment.user._id != this.userService.User._id) {
