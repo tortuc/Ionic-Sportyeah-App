@@ -6,8 +6,8 @@ import { StructureService } from "src/app/service/structure.service";
 import { UserService } from "src/app/service/user.service";
 
 enum Texts {
-  toolbar = "Perfil de organigrama",
-  from = "Desde",
+  toolbar = "executive_profile.toolbar",
+  from = "from",
 }
 
 @Component({

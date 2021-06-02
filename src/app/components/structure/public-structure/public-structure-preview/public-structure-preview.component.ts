@@ -1,9 +1,7 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { User } from "src/app/models/IUser";
 import { IStructure } from "src/app/models/structure.model";
-import {
-  StructureService,
-} from "src/app/service/structure.service";
+import { StructureService } from "src/app/service/structure.service";
 
 enum Texts {
   title = "private_structure.preview.title",

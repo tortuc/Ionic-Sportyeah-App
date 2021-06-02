@@ -11,13 +11,14 @@ import { StructureService } from "src/app/service/structure.service";
 import { PopoverOptionsComponent } from "../../popover-options/popover-options.component";
 import { CreateCategoryComponent } from "../create-category/create-category.component";
 
+
 enum Texts {
-  see = "Ver categoria",
-  edit = "Editar",
-  delete = "Eliminar",
-  header = "Eliminar categoria",
-  message = "Seguro deseas eliminar esta categoria? se perderan los equipos y jugadores asociados a esta categoria!",
-  accept = "Si, eliminar",
+  see = "category_card.see",
+  edit = "category_card.edit",
+  delete = "category_card.delete",
+  header = "category_card.header",
+  message = "category_card.message",
+  accept = "category_card.accept",
 }
 
 const popoverOtions = [

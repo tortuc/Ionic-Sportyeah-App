@@ -11,7 +11,7 @@ import { CreateCategoryComponent } from "./create-category/create-category.compo
 enum Texts {
   title = "divisions.title",
   description = "divisions.description",
-  create = "Crear categoria",
+  create = "divisions.category",
 }
 @Component({
   selector: "app-division",

@@ -4,25 +4,25 @@ import { ModalController } from "@ionic/angular";
 import { TranslateService } from "@ngx-translate/core";
 import * as moment from "moment";
 import { User } from "src/app/models/IUser";
-import { IOrganization, IPlayer, ITeam } from "src/app/models/structure.model";
+import { IPlayer, ITeam } from "src/app/models/structure.model";
 import { FilesService } from "src/app/service/files.service";
 import { StructureService } from "src/app/service/structure.service";
 import { UserService } from "src/app/service/user.service";
 
 enum Texts {
-  title = "Crear jugador/cuerpo tecnico",
-  edit = "Editar jugador/cuerpo tecnico",
-  changeImg = "Cambiar imagen",
-  name = "Nombre del Jugador/Staff",
-  position = "Posicion del jugador/Staff",
-  date = "Fecha de nacimiento",
-  place = "Lugar de nacimiento o pais de origen",
-  height = "Estatura",
-  history = "Biografia del jugador /staff",
-  create = "Crear jugador",
-  save = "Guardar cambios",
-  user = "Cuenta de sportyeah relacionada",
-  cancelUser = "Descartar usuario",
+  title = "create_player.title",
+  edit = "create_player.edit",
+  changeImg = "create_player.changeImg",
+  name = "create_player.name",
+  position = "create_player.position",
+  date = "create_player.date",
+  place = "create_player.place",
+  height = "create_player.height",
+  history = "create_player.history",
+  create = "create_player.create",
+  save = "create_player.save",
+  user = "create_player.user",
+  cancelUser = "create_player.cancelUser",
 }
 
 @Component({
@@ -40,7 +40,6 @@ export class CreatePlayerComponent implements OnInit {
     private readonly structureService: StructureService,
     private readonly userService: UserService,
     private readonly fb: FormBuilder,
-    private readonly translate: TranslateService,
     private readonly fileService: FilesService
   ) {}
 
@@ -57,8 +56,6 @@ export class CreatePlayerComponent implements OnInit {
   });
 
   ngOnInit() {
-    console.log(this.team, this.role);
-
     if (this.player) {
       this.setValues();
     }

@@ -9,12 +9,8 @@ import {
 } from "src/app/models/structure.model";
 import { StructureService } from "src/app/service/structure.service";
 enum Texts {
-  title = "organizationChart.title",
-  description = "organizationChart.description",
-  create = "organizationChart.createBtn",
-  from = "Desde",
-  players = "Jugadores",
-  staff = "Cuerpo tecnico",
+  players = "players.players",
+  staff = "players.staff",
 }
 @Component({
   selector: "app-public-team",

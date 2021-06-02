@@ -4,14 +4,15 @@ import { ModalController } from "@ionic/angular";
 import { ICategory, IDivision } from "src/app/models/structure.model";
 import { FilesService } from "src/app/service/files.service";
 import { StructureService } from "src/app/service/structure.service";
+
 enum Texts {
-  title = "Crear categoria",
-  edit = "Editar categoria",
-  btnCreate = "Crear categoria",
-  save = "Guardar cambios",
-  name = "Nombre de la categoria",
-  description = "Breve descripcion de la categoria",
-  image = "Cambiar imagen de la categoria",
+  title = "create_category.title",
+  edit = "create_category.edit",
+  btnCreate = "create_category.btnCreate",
+  save = "create_category.save",
+  name = "create_category.name",
+  description = "create_category.description",
+  image = "create_category.image",
 }
 @Component({
   selector: "app-create-category",
@@ -61,7 +62,7 @@ export class CreateCategoryComponent implements OnInit {
     this.form = this.fb.group({
       image: [this.category.image, [Validators.required]],
       name: [this.category.name, [Validators.required]],
-      description: [this.category.description]
+      description: [this.category.description],
     });
   }
 

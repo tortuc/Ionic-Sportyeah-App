@@ -12,12 +12,12 @@ import { PopoverOptionsComponent } from "../../popover-options/popover-options.c
 import { CreateTeamComponent } from "../create-team/create-team.component";
 
 enum Texts {
-  see = "Ver Equpo",
-  edit = "Editar",
-  delete = "Eliminar",
-  header = "Eliminar equipo",
-  message = "Seguro deseas eliminar este equipo? se perderan los jugadores y cuerpo tecnico asociados!",
-  accept = "Si, eliminar",
+  see = "team_card.see",
+  edit = "team_card.edit",
+  delete = "team_card.delete",
+  header = "team_card.header",
+  message = "team_card.message",
+  accept = "team_card.accept",
 }
 
 const popoverOtions = [

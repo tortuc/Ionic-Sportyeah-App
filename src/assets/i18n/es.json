@@ -945,11 +945,11 @@
     },
     "restore_modal": "Esta seguro que desea restaurar este artículo.",
     "streaming": "Transmisión",
-    "my-news":"Mis noticias",
-    "inactive_news":"Inactivas",
-    "active_news":"Activas",
-    "restore":"Restaurar",
-    "news_shared":"Noticia compartida"
+    "my-news": "Mis noticias",
+    "inactive_news": "Inactivas",
+    "active_news": "Activas",
+    "restore": "Restaurar",
+    "news_shared": "Noticia compartida"
   },
   "sponsorDescription": "¡Agrega un patrocinador!",
   "back": "Volver",
@@ -1035,10 +1035,10 @@
     "year": "Año",
     "sinceEver": "Desde siempre",
     "slide": "Desliza para filtrar",
-    "first_place":"Lugar. Felicidades, eres el mejor. ¡Continua interactuando para mantener tu posición!",
-    "second_third_place":"Lugar. Felicidades, es una buena posición. ¡Continua interactuando para subir tu posición en el ranking!",
-    "under_third":"Lugar. Interactua más para subir tu posición en el ranking",
-    "without_position":"No tienes una posicion en el ranking. ¡Interactua más para estar en el rankig!"
+    "first_place": "Lugar. Felicidades, eres el mejor. ¡Continua interactuando para mantener tu posición!",
+    "second_third_place": "Lugar. Felicidades, es una buena posición. ¡Continua interactuando para subir tu posición en el ranking!",
+    "under_third": "Lugar. Interactua más para subir tu posición en el ranking",
+    "without_position": "No tienes una posicion en el ranking. ¡Interactua más para estar en el rankig!"
   },
   "gostructure": "Ver la estructura",
   "error": {
@@ -1418,51 +1418,50 @@
       "cancelUser": " Descartar usuario"
     }
   },
-  "streaming":{
-    "stream":"Transmitir"
+  "streaming": {
+    "stream": "Transmitir"
   },
-  "event":{
-    "create_event":"Crear evento",
-    "edit_event":"Editar evento",
-    "edit":"Editar",
-    "delete":"Eliminar",
+  "event": {
+    "create_event": "Crear evento",
+    "edit_event": "Editar evento",
+    "edit": "Editar",
+    "delete": "Eliminar",
     "deleteModal": {
       "confirm": "¿Esta seguro que desea eliminar este evento?",
-      "confirm_ticket":"¿Esta seguro que desea eliminar este ticket?"
+      "confirm_ticket": "¿Esta seguro que desea eliminar este ticket?"
     },
-    "title":"Título",
-    "description":"Descripción",
-    "currency":"Divisa",
-    "select_currency":"Selecciona una divisa",
-    "invite":"Invitar a participar",
-    "buy_condition":"Condiciones de compra",
-    "devolution_condition":"Condiciones de devolución",
-    "modality":"Modalidad",
-    "amount":"Define el costo de registro",
-    "date_programated":"Fecha del evento",
-    "create":"Crear",
-    "event_created":"¡Evento creado!",
-    "type_event":"Tipo de evento",
-    "open":"Abierto",
-    "register":"Registro",
-    "add_image":"Agregar imagen",
-    "event_open":"Evento Abierto",
-    "event_register":"Registro previo",
-    "ticket":"Boleto",
-    "return_ticket":"Devolver boleto",
-    "have_ticket":"Ya tienes el boleto",
+    "title": "Título",
+    "description": "Descripción",
+    "currency": "Divisa",
+    "select_currency": "Selecciona una divisa",
+    "invite": "Invitar a participar",
+    "buy_condition": "Condiciones de compra",
+    "devolution_condition": "Condiciones de devolución",
+    "modality": "Modalidad",
+    "amount": "Define el costo de registro",
+    "date_programated": "Fecha del evento",
+    "create": "Crear",
+    "event_created": "¡Evento creado!",
+    "type_event": "Tipo de evento",
+    "open": "Abierto",
+    "register": "Registro",
+    "add_image": "Agregar imagen",
+    "event_open": "Evento Abierto",
+    "event_register": "Registro previo",
+    "ticket": "Boleto",
+    "return_ticket": "Devolver boleto",
+    "have_ticket": "Ya tienes el boleto",
     "devolutionModal": {
-      "confirm_ticket":"¿Esta seguro que desea devolver el boleto?"
+      "confirm_ticket": "¿Esta seguro que desea devolver el boleto?"
     },
-    "get_ticket":"¡Ahora tienes un boleto para este evento!",
-    "youll_go":"Eventos a los que asistiras",
-    "not_have_go":"No asistiras a ningun evento aún",
-    "is_your_event":"Este es tu evento",
-    "take_events":"Elije un evento y toma un boleto",
-    "go_to_event":"Ir al evento"
+    "get_ticket": "¡Ahora tienes un boleto para este evento!",
+    "youll_go": "Eventos a los que asistiras",
+    "not_have_go": "No asistiras a ningun evento aún",
+    "is_your_event": "Este es tu evento",
+    "take_events": "Elije un evento y toma un boleto",
+    "go_to_event": "Ir al evento"
   },
 
-  
   "executive_card": {
     "from": "Desde",
     "deleteHeader": "Eliminar perfil ",
@@ -1472,7 +1471,8 @@
   "divisions": {
     "title": "Estructura del club",
     "description": "Divisiones",
-    "create": "Crear division"
+    "create": "Crear division",
+    "category": "Crear categoria"
   },
   "delete_division": {
     "header": "Eliminar division",
@@ -1487,5 +1487,84 @@
     "name": "Nombre de la division",
     "description": "Breve descripcion",
     "image": "Cambiar fondo de la tarjeta"
+  },
+  "from": "Desde",
+  "executive_profile": {
+    "toolbar": "Perfil de organigrama"
+  },
+  "division_options": {
+    "see": "Ver division",
+    "edit": "Editar",
+    "delete": "Eliminar"
+  },
+  "category_card": {
+    "see": "Ver categoria",
+    "edit": "Editar",
+    "delete": "Eliminar",
+    "header": "Eliminar categoria",
+    "message": "Seguro deseas eliminar esta categoria? se perderan los equipos y jugadores asociados a esta categoria!",
+    "accept": "Si, eliminar"
+  },
+  "create_category": {
+    "title": "Crear categoria",
+    "edit": "Editar categoria",
+    "btnCreate": "Crear categoria",
+    "save": "Guardar cambios",
+    "name": "Nombre de la categoria",
+    "description": "Breve descripcion de la categoria",
+    "image": "Cambiar imagen de la categoria"
+  },
+  "team_card": {
+    "see": "Ver Equipo",
+    "edit": "Editar",
+    "delete": "Eliminar",
+    "header": "Eliminar equipo",
+    "message": "Seguro deseas eliminar este equipo? se perderan los jugadores y cuerpo tecnico asociados!",
+    "accept": "Si, eliminar"
+  },
+  "category": {
+    "create": "Crear equipo",
+    "header": "Categoria"
+  },
+  "create_team": {
+    "title": "Crear equipo",
+    "edit": "Editar equipo",
+    "btnCreate": "Crear equipo",
+    "save": "Guardar cambios",
+    "name": "Nombre del equipo",
+    "description": "Breve descripcion del equipo",
+    "image": "Cambiar imagen del equipo"
+  },
+  "team": {
+    "from": "Desde",
+    "players": "Jugadores",
+    "staff": "Cuerpo tecnico"
+  },
+  "create_player": {
+    "title": "Crear jugador/cuerpo tecnico",
+    "edit": "Editar jugador/cuerpo tecnico",
+    "changeImg": "Cambiar imagen",
+    "name": "Nombre del Jugador/Staff",
+    "position": "Posicion del jugador/Staff",
+    "date": "Fecha de nacimiento",
+    "place": "Lugar de nacimiento o pais de origen",
+    "height": "Estatura",
+    "history": "Biografia del jugador /staff",
+    "create": "Crear jugador",
+    "save": "Guardar cambios",
+    "user": "Cuenta de sportyeah relacionada",
+    "cancelUser": "Descartar usuario"
+  },
+  "player": {
+    "toolbar": "Perfil de organigrama",
+    "from": "Desde",
+    "birth": "Fecha de nacimiento",
+    "position": "Posicion",
+    "place": "Lugar de nacimiento",
+    "name": "Nombre",
+    "height": "Estatura",
+    "bio": "Biografia",
+    "players": "Jugadores",
+    "staff": "Cuerpo tecnico"
   }
 }

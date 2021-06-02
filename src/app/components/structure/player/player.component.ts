@@ -5,14 +5,14 @@ import { IPlayer, IStructure } from "src/app/models/structure.model";
 import { StructureService } from "src/app/service/structure.service";
 import { UserService } from "src/app/service/user.service";
 enum Texts {
-  toolbar = "Perfil de organigrama",
-  from = "Desde",
-  birth = "Fecha de nacimiento",
-  position = "Posicion",
-  place = "Lugar de nacimiento",
-  name = "Nombre",
-  height = "Estatura",
-  bio = "Biografia",
+  toolbar = "player.toolbar",
+  from = "player.from",
+  birth = "player.birth",
+  position = "player.position",
+  place = "player.place",
+  name = "player.name",
+  height = "player.height",
+  bio = "player.bio",
 }
 
 @Component({
@@ -40,8 +40,6 @@ export class PlayerComponent implements OnInit {
     if (id) {
       this.structureService.getPlayer(id).subscribe(
         (profile) => {
-          console.log(profile);
-
           this.profile = profile;
         },
         () => {

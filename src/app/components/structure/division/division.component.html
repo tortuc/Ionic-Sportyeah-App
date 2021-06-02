@@ -47,7 +47,7 @@
           *ngFor="let category of categories"
           [ngClass]="{ deleted: category.deleted }"
         >
-        <category-card [private]="true" [category]="category"></category-card>
+          <category-card [private]="true" [category]="category"></category-card>
         </ion-col>
       </ion-row>
     </ion-grid>

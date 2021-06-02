@@ -5,8 +5,7 @@ import { StructureService } from "src/app/service/structure.service";
 enum Texts {
   title = "divisions.title",
   description = "divisions.description",
-  create = "Crear equipo",
-  header = "Categoria",
+  header = "category.header",
 }
 
 @Component({

@@ -10,13 +10,12 @@ import {
 import { StructureService } from "src/app/service/structure.service";
 import { CreatePlayerComponent } from "./player-card/create-player/create-player.component";
 enum Texts {
-  title = "organizationChart.title",
-  description = "organizationChart.description",
-  create = "organizationChart.createBtn",
-  from = "Desde",
-  players = "Jugadores",
-  staff = "Cuerpo tecnico"
+ 
+  from = "team.from",
+  players = "team.players",
+  staff = "team.staff",
 }
+
 @Component({
   selector: "app-team",
   templateUrl: "./team.component.html",

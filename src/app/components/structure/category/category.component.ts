@@ -5,10 +5,8 @@ import { ICategory, IStructure, ITeam } from "src/app/models/structure.model";
 import { StructureService } from "src/app/service/structure.service";
 import { CreateTeamComponent } from "./create-team/create-team.component";
 enum Texts {
-  title = "divisions.title",
-  description = "divisions.description",
-  create = "Crear equipo",
-  header = "Categoria",
+  create = "category.create",
+  header = "category.header",
 }
 @Component({
   selector: "app-category",
@@ -32,7 +30,6 @@ export class CategoryComponent implements OnInit {
 
   public teams: ITeam[] = [];
 
-  
   public category: ICategory = null;
   getCategory() {
     this.structureService

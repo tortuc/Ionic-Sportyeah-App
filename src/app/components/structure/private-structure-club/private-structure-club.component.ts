@@ -1,9 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { ModalController } from "@ionic/angular";
 import { IDivision, IStructure } from "src/app/models/structure.model";
-import {
-  StructureService,
-} from "src/app/service/structure.service";
+import { StructureService } from "src/app/service/structure.service";
 import { CreateDivisionComponent } from "./create-division/create-division.component";
 enum Texts {
   title = "divisions.title",

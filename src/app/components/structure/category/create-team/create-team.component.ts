@@ -5,14 +5,15 @@ import { ICategory, ITeam } from "src/app/models/structure.model";
 import { FilesService } from "src/app/service/files.service";
 import { StructureService } from "src/app/service/structure.service";
 enum Texts {
-  title = "Crear equipo",
-  edit = "Editar equipo",
-  btnCreate = "Crear equipo",
-  save = "Guardar cambios",
-  name = "Nombre del equipo",
-  description = "Breve descripcion del equipo",
-  image = "Cambiar imagen del equipo",
+  title = "create_team.title",
+  edit = "create_team.edit",
+  btnCreate = "create_team.btnCreate",
+  save = "create_team.save",
+  name = "create_team.name",
+  description = "create_team.description",
+  image = "create_team.image",
 }
+
 @Component({
   selector: "app-create-team",
   templateUrl: "./create-team.component.html",

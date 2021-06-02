@@ -45,7 +45,8 @@
           *ngFor="let division of divisions"
           [ngClass]="{ deleted: division.deleted }"
         >
-          <division-card [private]="true" [division]="division"> </division-card>
+          <division-card [private]="true" [division]="division">
+          </division-card>
         </ion-col>
       </ion-row>
     </ion-grid>

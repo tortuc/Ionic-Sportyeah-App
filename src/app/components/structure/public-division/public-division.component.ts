@@ -1,7 +1,5 @@
-
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
-import { ModalController } from "@ionic/angular";
 import {
   ICategory,
   IDivision,
@@ -11,17 +9,14 @@ import { StructureService } from "src/app/service/structure.service";
 enum Texts {
   title = "divisions.title",
   description = "divisions.description",
-  create = "Crear categoria",
 }
 
-
 @Component({
-  selector: 'app-public-division',
-  templateUrl: './public-division.component.html',
-  styleUrls: ['./public-division.component.scss']
+  selector: "app-public-division",
+  templateUrl: "./public-division.component.html",
+  styleUrls: ["./public-division.component.scss"],
 })
 export class PublicDivisionComponent implements OnInit {
-
   public readonly Texts = Texts;
   constructor(
     private readonly structureService: StructureService,
@@ -60,8 +55,4 @@ export class PublicDivisionComponent implements OnInit {
   }
 
   public categories: ICategory[] = [];
-
- 
-
 }
-

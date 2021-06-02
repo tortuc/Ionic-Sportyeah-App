@@ -2,9 +2,9 @@ import { Component, OnInit } from "@angular/core";
 import { PopoverController } from "@ionic/angular";
 
 enum Texts {
-  see = "Ver division",
-  edit = "Editar",
-  delete = "Eliminar",
+  see = "division_options.see",
+  edit = "division_options.edit",
+  delete = "division_options.delete",
   cancel = "cancel",
 }
 

@@ -1,6 +1,5 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
-import { ModalController } from "@ionic/angular";
 import { IDivision, IStructure } from "src/app/models/structure.model";
 import { StructureService } from "src/app/service/structure.service";
 enum Texts {
