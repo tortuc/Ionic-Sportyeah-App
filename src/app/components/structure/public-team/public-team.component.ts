@@ -9,8 +9,8 @@ import {
 } from "src/app/models/structure.model";
 import { StructureService } from "src/app/service/structure.service";
 enum Texts {
-  players = "players.players",
-  staff = "players.staff",
+  players = "team.players",
+  staff = "team.staff",
 }
 @Component({
   selector: "app-public-team",
