@@ -27,8 +27,6 @@ export class WillEventAttendComponent implements OnInit, OnChanges {
 takeTicketEvent(){
   this.ticketEvent.findUserTicketEvent(this.userService.User._id).subscribe((response)=>{
     this.willAttend = response
-    console.log(response);
-    
   })
 }
 

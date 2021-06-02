@@ -54,6 +54,9 @@
 
         <p *ngIf="userService.User?._id == event.user._id">{{ 'event.is_your_event' | translate}}</p>
       </ion-col>
+      <ion-col>
+        <ion-button (click)="goToEvent()" style="--border-radius: 25px;" *ngIf="date">{{'event.go_to_event' | translate}}</ion-button>
+      </ion-col>
       
   </ion-row>
 </ion-card>

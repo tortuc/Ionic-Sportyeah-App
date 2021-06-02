@@ -1034,7 +1034,11 @@
     "month": "Mes",
     "year": "Año",
     "sinceEver": "Desde siempre",
-    "slide": "Desliza para filtrar"
+    "slide": "Desliza para filtrar",
+    "first_place":"Lugar. Felicidades, eres el mejor. ¡Continua interactuando para mantener tu posición!",
+    "second_third_place":"Lugar. Felicidades, es una buena posición. ¡Continua interactuando para subir tu posición en el ranking!",
+    "under_third":"Lugar. Interactua más para subir tu posición en el ranking",
+    "without_position":"No tienes una posicion en el ranking. ¡Interactua más para estar en el rankig!"
   },
   "gostructure": "Ver la estructura",
   "error": {
@@ -1454,7 +1458,8 @@
     "youll_go":"Eventos a los que asistiras",
     "not_have_go":"No asistiras a ningun evento aún",
     "is_your_event":"Este es tu evento",
-    "take_events":"Elije un evento y toma un boleto"
+    "take_events":"Elije un evento y toma un boleto",
+    "go_to_event":"Ir al evento"
   },
 
   

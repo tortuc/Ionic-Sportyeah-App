@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
 import { response } from 'express';
+import * as moment from 'moment';
 import { EventService } from 'src/app/service/event.service';
 import { TicketEventService } from 'src/app/service/ticket-event.service';
 import { UserService } from 'src/app/service/user.service';
@@ -26,12 +27,29 @@ export class ReadEventComponent implements OnInit {
     public router: Router,
   ) { }
 
-  ngOnInit() {
+
+  ngOnInit() {console.log(this.event);
+  
+    let today = moment();
     this.ticketService.findByUserInEvent(this.event._id,this.userService.User._id).subscribe((response)=>{
       this.haveTicket = response;
+      if((this.haveTicket ||this.userService.User._id == this.event.user._id ) && moment(this.event.programatedDate).format("YYYY-MM-DD HH:mm") <= today.format("YYYY-MM-DD HH:mm")){
+        this.date = true;
+      }
     })
+    
   }
   haveTicket
+  date:boolean = false;
+  goToEvent(){
+    if(this.event.user._id == this.userService.User._id){
+      this.router.navigate([`/streaming/host/${this.event._id}`]); 
+    }else{
+      this.router.navigate([`/streaming/client/${this.event._id}`]);
+    }
+    
+  }
+
   backToEvents(){
     this.backEvent.emit(true)
   }
