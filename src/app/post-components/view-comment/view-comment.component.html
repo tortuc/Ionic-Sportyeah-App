@@ -15,6 +15,12 @@
       ><br />
       <span>{{ comment.date | customDisplayDate }}</span>
     </div> 
+    <ion-icon
+    
+    name="chevron-down"
+    (click)="openOptions($event)"
+    class="options-down"
+  ></ion-icon>
   </div>
   <!-- <view-sponsors
   *ngIf="comment.user.sponsors.length > 0"
