@@ -10,6 +10,7 @@ import { SignupPage } from './signup.page';
 import { TranslateModule } from '@ngx-translate/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ComponentsSharedModule } from '../shared-components/components-shared.module';
+import { SportSelectComponent } from './sport-select/sport-select.component';
 
 @NgModule({
   imports: [
@@ -23,6 +24,6 @@ import { ComponentsSharedModule } from '../shared-components/components-shared.m
     ComponentsSharedModule
     
   ],
-  declarations: [SignupPage]
+  declarations: [SignupPage,SportSelectComponent]
 })
 export class SignupPageModule {}

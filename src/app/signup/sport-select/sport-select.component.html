@@ -1,0 +1,13 @@
+<ion-content>
+  <h2 style="text-align: center">{{ "select_sport" | translate }}</h2>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="4" *ngFor="let sport of sports" (click)="option(sport)">
+        <div class="content">
+          <img src="assets/sports/{{ sport }}.png" alt="" />
+          <h4>{{ "sport." + sport | translate }}</h4>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

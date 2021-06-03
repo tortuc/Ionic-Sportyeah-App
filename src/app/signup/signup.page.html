@@ -106,9 +106,12 @@
                         <ion-col size-xs="12" size-md="6">
                           <ion-item>
                             <ion-label position="stacked"
-                              >{{'sign_up.lang' | translate}}</ion-label 
+                              >{{'sign_up.lang' | translate}}</ion-label
                             >
-                            <ion-select formControlName="lang" (ionChange)="setLang($event)">
+                            <ion-select
+                              formControlName="lang"
+                              (ionChange)="setLang($event)"
+                            >
                               <ion-select-option
                                 *ngFor="let lang of langs"
                                 [value]="lang"
@@ -144,18 +147,11 @@
                           </div>
                         </ion-col>
                         <ion-col size-sm="6" size-xs="12">
-                          <ion-item>
+                          <ion-item (click)="selectSport()">
                             <ion-label position="floating"
                               >{{'sport.sport' | translate}}</ion-label
                             >
-                            <ion-select formControlName="sport">
-                              <ion-select-option
-                                *ngFor="let sport of sports"
-                                [value]="sport"
-                                >{{ 'sport.'+sport|
-                                translate}}</ion-select-option
-                              >
-                            </ion-select>
+                            <ion-input readonly formControlName="sport"></ion-input>
                           </ion-item>
                         </ion-col>
 

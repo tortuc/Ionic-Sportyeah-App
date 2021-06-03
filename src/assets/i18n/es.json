@@ -540,6 +540,7 @@
       }
     }
   },
+  "select_sport":"Selecciona un deporte",
   "sport": {
     "sport": "Deporte",
     "soccer": "Fútbol",
