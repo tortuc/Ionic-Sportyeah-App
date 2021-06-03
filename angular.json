@@ -46,7 +46,6 @@
               {
                 "input": "src/global_mobile.scss"
               }
-             
             ],
             "scripts": [
               "node_modules/@fortawesome/fontawesome-free/js/all.min.js"
@@ -72,7 +71,7 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "2mb", 
+                  "maximumWarning": "2mb",
                   "maximumError": "7mb"
                 }
               ],
@@ -142,7 +141,9 @@
               "tsconfig.spec.json",
               "e2e/tsconfig.json"
             ],
-            "exclude": ["**/node_modules/**"]
+            "exclude": [
+              "**/node_modules/**"
+            ]
           }
         },
         "e2e": {
@@ -235,7 +236,8 @@
     }
   },
   "cli": {
-    "defaultCollection": "@ionic/angular-toolkit"
+    "defaultCollection": "@ionic/angular-toolkit",
+    "analytics": false
   },
   "schematics": {
     "@ionic/angular-toolkit:component": {

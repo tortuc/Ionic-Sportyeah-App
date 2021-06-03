@@ -8,6 +8,7 @@ import { TranslateModule } from "@ngx-translate/core";
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { OptionsPostPage } from "./options-post/options-post.page";
 import { EditPostPage } from "./edit-post/edit-post.page";
+import { EditCommentPage } from "./edit-comment/edit-comment.page";
 import { PipesModule } from "../pipes/pipes.module";
 import { FollowingPage } from "./following/following.page";
 import { FollowerPage } from "./follower/follower.page";
@@ -60,6 +61,7 @@ import { StructureModule } from "../components/structure/structure.module";
     ProfilePage,
     OptionsPostPage,
     EditPostPage,
+    EditCommentPage,
     FollowingPage,
     FollowerPage,
     NewNodeComponent,

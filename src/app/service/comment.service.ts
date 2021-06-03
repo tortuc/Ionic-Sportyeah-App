@@ -58,6 +58,16 @@ export class CommentService {
   }
 
 
+  deleteOne(id){
+    return this.http.delete(`${environment.URL_API}/post/comment/${id}`)
+  }
+  
+
+  updateOne(id:string,newValues:IComment){
+      return this.http.put(`${environment.URL_API}/post/comment/update/${id}`,newValues)
+  }
+  
+
 
   /**
    * Obtiene comentarios de una noticia, dependiendo de la paginacion
