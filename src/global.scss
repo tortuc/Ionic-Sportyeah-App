@@ -160,7 +160,7 @@ ion-searchbar {
   --icon-color: black !important;
   --color: black !important;
   color: black !important;
-  text-align:left !important;
+  text-align: left !important;
 }
 
 ion-list {
@@ -286,7 +286,6 @@ a {
     }
   }
 }
-
 
 .btn-delete {
   --background: #d73226;
@@ -887,8 +886,6 @@ ion-avatar.chat-img {
   width: 100%;
 }
 
-
-
 .close-modal {
   color: white;
   background: #00000075;
@@ -901,7 +898,7 @@ ion-avatar.chat-img {
   cursor: pointer;
 }
 
-.profile-col{
+.profile-col {
   padding: 5px;
 }
 
@@ -923,4 +920,8 @@ ion-avatar.chat-img {
   &.instagram {
     color: black;
   }
+}
+
+.big-selet .alert-wrapper {
+  --min-width: 300px !important;
 }

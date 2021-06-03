@@ -1,31 +1,32 @@
-export const SIDEBAR_ITEMS = [{
+export const SIDEBAR_ITEMS = [
+  {
     title: "sidebar.profile",
     url: "/profile",
     icon: "person",
-    fas: '',
-    children: []
+    fas: "",
+    children: [],
   },
- 
+
   {
     title: "sidebar.home",
     url: "/dashboard",
     icon: "home",
-    fas: '',
-    children: []
+    fas: "",
+    children: [],
   },
   {
     title: "sidebar.chat",
     url: "/chat",
     icon: "chatbox-ellipses",
-    fas: '',
-    children: []
+    fas: "",
+    children: [],
   },
   // {
   //   title: "sidebar.bet",
   //   url: "",
   //   icon: "diamond",
   //   fas: '',
-  //   children: [ 
+  //   children: [
   //     {
   //       title: "sidebar.tournament",
   //       url: "/bet/tourney",
@@ -44,121 +45,127 @@ export const SIDEBAR_ITEMS = [{
     title: "challenges",
     url: "/challenges",
     icon: "medal",
-    fas: '',
-    children: []
+    fas: "",
+    children: [],
   },
   {
     title: "sidebar.news",
     url: "/news",
     icon: "newspaper",
-    fas: '',
-    children: []
+    fas: "",
+    children: [],
   },
   {
     title: "sidebar.ranking",
     url: "/ranking",
     icon: "ribbon",
-    fas: '',
-    children: []
+    fas: "",
+    children: [],
   },
   {
     title: "livescore",
     url: "/livescore",
     icon: "football",
-    fas: '',
-    children: []
-  },  
+    fas: "",
+    children: [],
+  },
   {
     title: "sidebar.event",
     url: "/event",
     icon: "megaphone",
-    fas: '',
-    children: []
-  }]
+    fas: "",
+    children: [],
+  },
+];
 
-  /**
-   * Deportes disponibles
-   */
-  export const sports = [
-    "soccer", //i
-    "basketball", //i
-    "tennis", //i
-    "baseball", //i
-    "golf", //i
-    "running", //i
-    "volleyball", //i
-    "swimming", //i
-    "boxing", //i
-    "table_tennis", //i
-    "rugby", //i
-    "football", //i
-    "esport", //i
-    "various", //i
-  ];
+/**
+ * Deportes disponibles
+ */
+export const sports = [
+  "soccer", //i
+  "basketball", //i
+  "tennis", //i
+  "baseball", //i
+  "golf", //i
+  "running", //i
+  "volleyball", //i
+  "swimming", //i
+  "boxing", //i
+  "table_tennis", //i
+  "rugby", //i
+  "football", //i
+  "esport", //i
+  "various", //i
+];
 
-  /**
-   * Tipos de perfiles disponibles
-   */
+/**
+ * Tipos de perfiles disponibles
+ */
 
+export const profiles = [
+  "club",
+  "player",
+  "staff",
+  "amateur",
+  "representative",
+  "scout",
+  "press",
+  "association",
+  "foundation",
+  "federation",
+  "sponsor",
+  "executive",
+  "administration",
+];
 
+/**
+ * Sub perfiles de administrador
+ */
 
-   export const profiles = [
-    "club",
-    "player",
-    "staff",
-    "amateur",
-    "representative",
-    "scout",
-    "press",
-    "association",
-    "foundation",
-    "federation",
-    "sponsor",
-    "executive",
-    "administration",
-  ];
+export const sub_profiles_administration = [
+  "president",
+  "vice_president",
+  "adviser",
+  "shareholder",
+  "secretary",
+  "area_director",
+  "area_finance",
+  "area_marketing",
+  "area_commercial",
+  "area_purchasing",
+  "hhrr",
+  "area_scouting",
+  "area_trainig",
+  "area_admin",
+];
 
-  /**
-   * Sub perfiles de administrador
-   */
+/**
+ * Sub perfiles de staff
+ */
 
-  export const sub_profiles_administration = [
-    "president",
-    "vice_president",
-    "vocal",
-    "adviser",
-    "area_director",
-    "treasury",
-    "secretary",
-    "administration", 
-  ];
+export const sub_profiles_staff = [
+  "firstcoach",
+  "secondcoach",
+  "staffmember",
+  "delegate",
+  "medicine",
+  "nutritionist",
+  "sports_sychology",
+];
 
-  /**
-   * Sub perfiles de staff
-   */
-
-  export const sub_profiles_staff = [
-    "coach",
-    "physical_trainer",
-    "medicine",
-    "nutritionist",
-    "sports_sychology",
-    "field_delegate",
-  ];
-
-  export const languajes = [
-    "es", // espaniol
-    "en", // ingles
-    "ca", // catalan
-    "gl", // gallego
-    "eu", // euskera
-    "fr", // frances
-    "de", // aleman
-    "it", // italiano
-    "pt", // portugues
-    "ru", // ruso
-    "zh", // chino
-    "ja", // japones
-    "ar", // arabe
-    "hi", // hindu
-  ]
+export const languajes = [
+  "es", // espaniol
+  "en", // ingles
+  "ca", // catalan
+  "gl", // gallego
+  "eu", // euskera
+  "fr", // frances
+  "de", // aleman
+  "it", // italiano
+  "pt", // portugues
+  "ru", // ruso
+  "zh", // chino
+  "ja", // japones
+  "ar", // arabe
+  "hi", // hindu
+];
