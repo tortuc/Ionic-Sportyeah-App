@@ -28,8 +28,7 @@ export class ReadEventComponent implements OnInit {
   ) { }
 
 
-  ngOnInit() {console.log(this.event);
-  
+  ngOnInit() {
     let today = moment();
     this.ticketService.findByUserInEvent(this.event._id,this.userService.User._id).subscribe((response)=>{
       this.haveTicket = response;

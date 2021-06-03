@@ -1419,7 +1419,8 @@
     }
   },
   "streaming":{
-    "stream":"Transmitir"
+    "stream":"Transmitir",
+    "transmission":"Transmisión"
   },
   "event":{
     "create_event":"Crear evento",
