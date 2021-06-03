@@ -76,7 +76,7 @@ export class EditCommentPage implements OnInit {
     
     console.log(this.comment)
 
-    this.form.controls.message.setValue(this.comment);
+    this.form.controls.message.setValue(this.comment.message);
     this.files = this.comment.files
   }
 
@@ -85,13 +85,14 @@ export class EditCommentPage implements OnInit {
       message: this.translate.instant("loading"),
     });
     loading.present();
-    let post = this.form.value;
-    post.files = this.files;
+    let comment = this.form.value;
+    comment.files = this.files;
+   
+    comment.message = this.mainInput.nativeElement.innerHTML;
 
-    post.message = this.mainInput.nativeElement.innerHTML;
     if (this.videosToUploads.length == 0) {
       this.commentService
-        .updateOne(this.comment._id, post)
+        .updateOne(this.comment._id, comment)
         .toPromise()
         .then((resp) => {
           loading.dismiss();
@@ -99,6 +100,9 @@ export class EditCommentPage implements OnInit {
             dismissed: true,
             edited: true,
           });
+
+          this.comment.message = comment.message
+          
         })
         .catch((err) => {
           loading.dismiss();
