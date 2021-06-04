@@ -16,11 +16,7 @@ const routes: Routes = [
     redirectTo: "login",
     pathMatch: "full",
   },
-  {
-    path: "livescore",
-    loadChildren: (): Promise<LivescoreModule> =>
-      import("./livescore").then((m) => m.LivescoreModule),
-  },
+ 
   {
     path: "login",
     loadChildren: () =>
@@ -209,6 +205,11 @@ const routes: Routes = [
     path: "structure/player/:id",
     component: PlayerComponent,
     canActivate: [LandingGuard],
+  },
+  {
+    path: "livescore",
+    loadChildren: (): Promise<LivescoreModule> =>
+      import("./livescore").then((m) => m.LivescoreModule),
   },
   {
     path: "**",

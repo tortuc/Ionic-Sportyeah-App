@@ -4,7 +4,11 @@ import { Router } from "@angular/router";
 import { TranslateService } from "@ngx-translate/core";
 import { LoginService } from "../service/login.service";
 import { UserService } from "../service/user.service";
-import { AlertController, IonSelectOption, ModalController } from "@ionic/angular";
+import {
+  AlertController,
+  IonSelectOption,
+  ModalController,
+} from "@ionic/angular";
 import {
   languajes,
   profiles,
@@ -16,6 +20,7 @@ import { LoadingService } from "../service/loading.service";
 import { SportSelectComponent } from "./sport-select/sport-select.component";
 import { response } from "express";
 import { AlertOptions } from "@capacitor/core";
+import { myBrowser } from "../helpers/browser";
 
 enum Texts {
   emailErrorTitle = "sign_up.wrong.email.title",
@@ -45,9 +50,9 @@ export class SignupPage implements OnInit {
 
   public readonly sub_profiles_staff = sub_profiles_staff;
 
-  public customAlertOptions:any = {
-    cssClass: 'big-selet',
-  }
+  public customAlertOptions: any = {
+    cssClass: "big-selet",
+  };
 
   show = false;
   show1 = false;
@@ -99,7 +104,8 @@ export class SignupPage implements OnInit {
       sub_profile: ["", [Validators.required]],
       agree: [false],
       authorize: [true],
-    },
+      browser: [myBrowser()],
+    }, 
     { validator: this.checkPasswords }
   );
 

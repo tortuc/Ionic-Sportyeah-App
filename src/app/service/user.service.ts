@@ -15,6 +15,7 @@ import { CookieService } from "ngx-cookie-service";
 import { Subject } from "rxjs";
 import { ModalController } from "@ionic/angular";
 import { take } from "rxjs/operators";
+import { myBrowser } from "../helpers/browser";
 
 // import { FcmService } from "./fcm.service";
 
@@ -58,6 +59,7 @@ export class UserService {
     this.translate.use(user.lang);
     this.cookieService.set("lang", user.lang);
     this.User = user;
+    // this.update({ browser: myBrowser() }).subscribe()
   }
 
   getUser() {
@@ -195,6 +197,8 @@ export class UserService {
   }
 
   async verifyToken(): Promise<Boolean> {
+    console.log("aja que pasa xd");
+    
     return await new Promise((resolve, reject) => {
       if (this.User == null) {
         if (getToken() != null) {

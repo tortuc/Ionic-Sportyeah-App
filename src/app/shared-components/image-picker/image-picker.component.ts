@@ -57,7 +57,7 @@ export class ImagePickerComponent implements OnInit {
     this.selectedImage = image;
   }
 
-  page = 1;
+  page = 1; 
   lastQuery = "";
   loadMore() {
     this.searching = true;

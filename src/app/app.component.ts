@@ -1,7 +1,6 @@
 import {
   Component,
   OnInit,
-  HostListener,
   ViewChildren,
   QueryList,
 } from "@angular/core";
@@ -51,6 +50,8 @@ export class AppComponent implements OnInit {
     public fileService: FilesService,
     public location: Location
   ) {
+    console.log("iniciando app");
+    
     this.initializeApp();
 
     this.langSettings();
@@ -77,7 +78,9 @@ export class AppComponent implements OnInit {
     this.router.navigate([r]);
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    
+  }
 
   langSettings() {
     this.translate.addLangs(this.langs);

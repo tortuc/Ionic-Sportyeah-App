@@ -96,6 +96,9 @@ export const sports = [
   "football", //i
   "esport", //i
   "various", //i
+  "archery",//i
+  "athletics",//i
+  "badminton",//i
 ];
 
 /**

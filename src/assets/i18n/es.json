@@ -556,7 +556,10 @@
     "rugby": "Rugby",
     "football": "Fútbol americano",
     "esport": "eSport",
-    "various": "Varios"
+    "various": "Varios",
+    "archery":"Tiro con arco",
+    "athletics":"Atletismo",
+    "badminton":"Badminton"
   },
   "profile_user": {
     "profile_user": "Tipo de usuario",
@@ -566,16 +569,19 @@
       "basketball": "Basquetbolista",
       "tennis": "Tenista",
       "baseball": "Béisbolista",
-      "running": "Correrdor",
+      "running": "Correrdor/a",
       "volleyball": "Voleibolibolista",
-      "swimming": "Nadador",
-      "boxing": "Boxeador",
-      "table_tennis": "Jugador",
+      "swimming": "Nadador/a",
+      "boxing": "Boxeador/a",
+      "table_tennis": "Jugador/a",
       "golf": "Golfista",
       "rugby": "Rugbista",
-      "football": "Jugador",
+      "football": "Jugador/a",
       "esport": "Gamer",
-      "various": "Jugador"
+      "various": "Jugador/a",
+      "archery":"Arquero/a",
+      "athletics":"Atleta",
+      "badminton":"Badminton"
     },
     "staff": "Staff del club",
     "amateur": "Aficionado",
