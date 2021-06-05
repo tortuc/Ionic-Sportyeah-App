@@ -117,7 +117,9 @@
           <public-structure-preview
             fxShow="false"
             fxShow.xs="true"
-            *ngIf="['club'].includes(user.profile_user)"
+            *ngIf="['club', 'association',
+            'foundation',
+            'federation'].includes(user.profile_user)"
             [user]="user"
           ></public-structure-preview>
 
@@ -163,17 +165,17 @@
             <public-gallery-preview [user]="user"></public-gallery-preview>
 
             <experience
-              *ngIf="['player','scout','press', 'executive','staff'].includes(user?.profile_user)"
+              *ngIf="['player','referee','scout','press', 'executive','staff'].includes(user?.profile_user)"
               [user]="user"
             ></experience>
 
             <awards
-              *ngIf="['player','scout','press', 'executive','staff'].includes(user?.profile_user)"
+              *ngIf="['player','referee','scout','press', 'executive','staff'].includes(user?.profile_user)"
               [user]="user"
             ></awards>
 
             <aptitudes
-              *ngIf="['player','scout', 'executive','staff'].includes(user?.profile_user)"
+              *ngIf="['player','referee','scout', 'executive','staff'].includes(user?.profile_user)"
               [user]="user"
             ></aptitudes>
           </div>
@@ -284,7 +286,9 @@
             [user]="user"
           ></profile-sponsors>
           <public-structure-preview
-            *ngIf="['club'].includes(user.profile_user)"
+            *ngIf="['club', 'association',
+            'foundation',
+            'federation'].includes(user.profile_user)"
             [user]="user"
           ></public-structure-preview>
           <add-users-panel-desktop

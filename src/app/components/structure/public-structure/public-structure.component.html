@@ -39,7 +39,7 @@
           <img src="assets/structure/orgchart.jpeg" alt="" />
         </div>
       </div>
-      <div class="section" routerLink="club">
+      <div *ngIf="['club'].includes(structure.user.profile_user)" class="section" routerLink="club">
         <div class="text-content">
           <h2 class="text">{{ Texts.structureClub | translate }}</h2>
           <img src="assets/structure/stadium.jpg" alt="" />

@@ -36,7 +36,11 @@ export class StructureService {
   verifyMyStructure(): Promise<boolean> {
     return new Promise((resolve, reject) => {
       if (this.myStructure == null) {
-        if (["club"].includes(this.userService.User.profile_user)) {
+        if (
+          ["club", "association", "foundation", "federation"].includes(
+            this.userService.User.profile_user
+          )
+        ) {
           this.getStructureByUser(this.userService.User._id).subscribe(
             (structure) => {
               this.myStructure = structure;

@@ -128,6 +128,7 @@ export const profiles = [
   "sponsor",
   "executive",
   "administration",
+  "referee"
 ];
 
 /**

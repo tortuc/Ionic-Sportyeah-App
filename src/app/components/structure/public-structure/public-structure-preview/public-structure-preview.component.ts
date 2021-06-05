@@ -22,6 +22,7 @@ export class PublicStructurePreviewComponent implements OnInit {
     this.structureService.getStructureByUser(this.user._id).subscribe(
       (structure) => {
         this.structure = structure;
+        console.log(structure);
       },
       () => {
         this.structure = null;
