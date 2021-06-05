@@ -1,15 +1,13 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
-import { ModalController } from "@ionic/angular";
 import { PostService } from "../service/post.service";
 import { UserService } from "../service/user.service";
 import { ViewsProfileService } from "src/app/service/views-profile.service";
 import { CommentService } from "../service/comment.service";
 import { take } from "rxjs/operators";
-import { ViewsSponsorService } from "../service/views-sponsor.service";
 import { IPost } from "../models/iPost";
-
-
+import { Meta } from "@angular/platform-browser";
+import { TranslateService } from "@ngx-translate/core";
 
 @Component({
   selector: "app-post",
@@ -24,11 +22,10 @@ export class PostPage implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private postService: PostService,
-    private modalController: ModalController,
-    private modalCtrl: ModalController,
     private viewsProfileService: ViewsProfileService,
     public commentService: CommentService,
-    private viewsSponsorService:ViewsSponsorService
+    private translate: TranslateService,
+    private readonly metaService: Meta
   ) {
     this.getPost(route.snapshot.paramMap.get("id"));
   }
@@ -42,8 +39,8 @@ export class PostPage implements OnInit {
       .toPromise() //agregamos el id del usuario actual
       .then((post: IPost) => {
         this.post = post;
-        console.log(this.post)
         this.getComments();
+        this.seo(post);
       })
       .catch((err) => {
         // handle err
@@ -76,7 +73,6 @@ export class PostPage implements OnInit {
     this.router.navigate([`/post/${id}`]);
   }
 
-  
   goToProfile(id, username) {
     if (id == this.userService.User?._id) {
       this.router.navigate(["/profile"]);
@@ -93,43 +89,44 @@ export class PostPage implements OnInit {
           .subscribe((response) => {
             this.router.navigate([`/user/${username}`]);
           });
-        })
-      }}
+      });
+    }
+  }
 
+  async seo(post) {
+    let reactions = await this.postService
+      .countReactionsByPost(post._id)
+      .toPromise();
 
-   
-  
+    let comments = await this.commentService
+      .getCountsOfComments(post._id)
+      .toPromise();
 
+    let image = post.files.find((x) => x.format == "image");
 
-  // goToSponsorComment(sponsor,id,post_id){
-  //   if(id != this.userService.User._id){
-     
-  //         this.viewsSponsorService
-  //         .createSponsorView(
-  //           {
-  //            user:id,
-  //            visitor:this.userService.User._id,
-  //            from:"comment",
-  //            link:`/post/${post_id}`,
-  //            nameSponsor:sponsor
-  //          }
-  //          )
-  //           .subscribe((response) => {
-  //             window.location.replace(sponsor);
-  //           });
-  //     }
-  // }
+    let title = this.translate.instant("seopost.title", post);
+    let img = image ? image.url : post.user.photo;
+    let description = this.translate.instant("seopost.description", {
+      reactions,
+      comments,
+      title,
+    });
 
- 
+    this.metaService.updateTag({
+      property: "og:description",
+      content: description,
+    });
+    this.metaService.updateTag({ property: "og:title", content: title });
+    this.metaService.updateTag({ property: "og:image", content: img });
+    this.metaService.updateTag({
+      property: "og:url",
+      content: `https://app.sportyeah.com/post/${post._id}`,
+    });
+  }
 
   goToMyProfile() {
     this.router.navigate(["/profile"]);
   }
-
-
-  // comments($event) {
-  //   this.item.comments = $event;
-  // }
 
   voted(voted: boolean) {
     if (voted) {

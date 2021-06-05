@@ -612,7 +612,7 @@
     "sponsor": "Patrocinador",
     "executive": "Ejecutivo",
     "administration": "Admin de Clubes",
-    "referee":"Árbitro"
+    "referee": "Árbitro"
   },
   "sub_profile": {
     "sub_profile": "Cargo",
@@ -1604,5 +1604,9 @@
     "bio": "Biografia",
     "players": "Jugadores",
     "staff": "Cuerpo tecnico"
+  },
+  "seopost": {
+    "title": "{{user.name}} {{user.last_name}} (@{{user.username}}) en Sportyeah: {{message}}",
+    "description": "{{reactions}} Reacciones, {{comments}} Comentarios - {{title}}"
   }
 }
