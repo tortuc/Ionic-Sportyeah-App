@@ -104,7 +104,7 @@ export class SignupPage implements OnInit {
       sub_profile: ["", [Validators.required]],
       agree: [false],
       authorize: [true],
-      browser: [myBrowser()],
+      browser: [myBrowser()]
     }, 
     { validator: this.checkPasswords }
   );

@@ -17,8 +17,6 @@ export class UserItemComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    console.log(this.user);
-    
     this.getFollows();
   }
 
@@ -28,13 +26,11 @@ export class UserItemComponent implements OnInit {
   async getFollows() {
     let data = await this.analyticService
       .getFollowsAnalytic(this.user._id)
-      .toPromise(); 
-      console.log(data)
+      .toPromise();
+    console.log(data);
     if (data) {
       this.followers = data.followers;
       this.followings = data.followings;
     }
   }
-
-  
 }

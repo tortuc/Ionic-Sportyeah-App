@@ -1,4 +1,6 @@
 export function myBrowser() {
+  console.log("por lo menos leo esto?");
+  
   if (
     (navigator.userAgent.indexOf("Opera") ||
       navigator.userAgent.indexOf("OPR")) != -1

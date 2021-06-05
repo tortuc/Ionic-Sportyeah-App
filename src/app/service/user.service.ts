@@ -197,8 +197,6 @@ export class UserService {
   }
 
   async verifyToken(): Promise<Boolean> {
-    console.log("aja que pasa xd");
-    
     return await new Promise((resolve, reject) => {
       if (this.User == null) {
         if (getToken() != null) {

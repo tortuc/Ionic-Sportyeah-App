@@ -82,23 +82,25 @@ export const SIDEBAR_ITEMS = [
  * Deportes disponibles
  */
 export const sports = [
-  "soccer", //i
-  "basketball", //i
-  "tennis", //i
-  "baseball", //i
-  "golf", //i
-  "running", //i
-  "volleyball", //i
-  "swimming", //i
-  "boxing", //i
-  "table_tennis", //i
-  "rugby", //i
-  "football", //i
-  "esport", //i
-  "various", //i
-  "archery",//i
-  "athletics",//i
-  "badminton",//i
+  "soccer", 
+  "basketball", 
+  "tennis", 
+  "baseball", 
+  "golf", 
+  "running", 
+  "volleyball", 
+  "swimming", 
+  "boxing", 
+  "table_tennis", 
+  "rugby", 
+  "football", 
+  "esport", 
+  "various", 
+  "archery", 
+  "athletics", 
+  "badminton", 
+  "rafting",
+  "climbing"
 ];
 
 /**

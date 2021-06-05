@@ -15,12 +15,8 @@ export class SessionGuardService {
   constructor(private UserService: UserService, private router: Router) {}
 
   async canActivate(route: ActivatedRouteSnapshot) {
-    console.log("Verificando");
-
     return this.UserService.verifyToken()
       .then((resp) => {
-        console.log("Verificado");
-
         if (route.queryParams?.ref != undefined) {
           this.router.navigate([`/dashboard`], {
             queryParams: route.queryParams,

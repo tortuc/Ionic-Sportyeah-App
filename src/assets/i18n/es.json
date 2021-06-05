@@ -559,7 +559,9 @@
     "various": "Varios",
     "archery":"Tiro con arco",
     "athletics":"Atletismo",
-    "badminton":"Badminton"
+    "badminton":"Badminton",
+    "rafting":"Canotaje",
+    "climbing":"Escalada"
   },
   "profile_user": {
     "profile_user": "Tipo de usuario",
@@ -581,7 +583,9 @@
       "various": "Jugador/a",
       "archery":"Arquero/a",
       "athletics":"Atleta",
-      "badminton":"Badminton"
+      "badminton":"Badminton",
+      "rafting":"Canotaje",
+      "climbing":"Escalador"
     },
     "staff": "Staff del club",
     "amateur": "Aficionado",
