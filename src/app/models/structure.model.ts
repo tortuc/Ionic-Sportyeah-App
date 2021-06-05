@@ -1,7 +1,7 @@
 import { ISocialNetworks, User } from "./IUser";
 
 export interface IStructure {
-  user: string | User;
+  user: User;
   name: string;
   description: string;
   date: Date;
@@ -69,5 +69,5 @@ export interface IPlayer {
   team: ITeam;
   history: string;
   user?: User;
-  deleted:boolean;
+  deleted: boolean;
 }

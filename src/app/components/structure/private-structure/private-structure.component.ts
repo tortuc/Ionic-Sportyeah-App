@@ -32,7 +32,7 @@ export class PrivateStructureComponent implements OnInit {
   public readonly Texts = Texts;
   constructor(
     private readonly structureService: StructureService,
-    private readonly userService: UserService,
+    public readonly userService: UserService,
     private readonly router: Router,
     private readonly modalCtrl: ModalController
   ) {}
