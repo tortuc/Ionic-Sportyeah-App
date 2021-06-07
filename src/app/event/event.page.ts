@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { tick } from '@angular/core/testing';
-import { Router } from '@angular/router';
+import {Router} from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import { EventService } from '../service/event.service';
 import { CreateEventComponent } from './create-event/create-event.component';
@@ -27,17 +27,20 @@ export class EventPage implements OnInit{
     this.router.navigate([`event/create`])
   }
 
-  eventRead;
+  // eventRead;
    readEvent(event){
-    this.eventRead = event
+    this.router.navigate([`event/read/${event._id}`])
   }
-  backToEvents(){
-    this.eventRead = undefined;
-    this.ticketChange()
-  }
+  // backToEvents(){
+  //   this.eventRead = undefined;
+  //   this.ticketChange()
+  // }
 
-  ticket:boolean
-  ticketChange(){
-    this.ticket = !this.ticket
-  }
+  // ticket:boolean
+  // ticketChange(){
+  //   this.ticket = !this.ticket
+  // }
+
+
+  
 }

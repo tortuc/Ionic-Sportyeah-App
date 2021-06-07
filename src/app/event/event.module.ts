@@ -25,6 +25,9 @@ import { ReadEventComponent } from './read-event/read-event.component';
 import { WillEventAttendComponent } from './will-event-attend/will-event-attend.component';
 import { OptionEventComponent } from './option-event/option-event.component';
 import { EditEventComponent } from './edit-event/edit-event.component';
+import { EventAddUserComponent } from './create-event/event-add-user/event-add-user.component';
+import { UsersEventItemComponent } from './create-event/users-event-item/users-event-item.component';
+import { SeeAllUsersLandingComponent } from './create-event/see-all-users-landing/see-all-users-landing.component';
 
 @NgModule({
   imports: [
@@ -53,7 +56,10 @@ import { EditEventComponent } from './edit-event/edit-event.component';
     ReadEventComponent,
     WillEventAttendComponent,
     OptionEventComponent,
-    EditEventComponent
+    EditEventComponent,
+    EventAddUserComponent,
+    UsersEventItemComponent,
+    SeeAllUsersLandingComponent
   ],
   schemas:[CUSTOM_ELEMENTS_SCHEMA]
 

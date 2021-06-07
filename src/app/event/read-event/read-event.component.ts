@@ -1,5 +1,5 @@
 import { Component, OnInit ,Input, Output,EventEmitter} from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
 import { response } from 'express';
@@ -15,7 +15,6 @@ import { UserService } from 'src/app/service/user.service';
 })
 export class ReadEventComponent implements OnInit {
 
-  @Input() event;
   @Output() backEvent = new EventEmitter
   @Output() ticketChange = new EventEmitter
   constructor(
@@ -25,23 +24,32 @@ export class ReadEventComponent implements OnInit {
     public translate: TranslateService,
     public eventService:EventService,
     public router: Router,
-  ) { }
-
+    private route:ActivatedRoute,
+  ) { 
+   this.idEvent = route.snapshot.paramMap.get('id')
+  }
+  event;
+  idEvent
 
   ngOnInit() {
-    let today = moment();
-    this.ticketService.findByUserInEvent(this.event._id,this.userService.User._id).subscribe((response)=>{
-      this.haveTicket = response;
-      if((this.haveTicket ||this.userService.User._id == this.event.user._id ) && moment(this.event.programatedDate).format("YYYY-MM-DD HH:mm") <= today.format("YYYY-MM-DD HH:mm")){
-        this.date = true;
-      }
+    this.eventService.findOne(this.idEvent).subscribe((response)=>{
+      this.event = response
+      let today = moment();
+      this.ticketService.findByUserInEvent(this.event._id,this.userService.User._id).subscribe((response)=>{
+        this.haveTicket = response;
+        if((this.haveTicket ||this.userService.User._id == this.event.user._id ) && moment(this.event.programatedDate).format("YYYY-MM-DD HH:mm") <= today.format("YYYY-MM-DD HH:mm")){
+          this.date = true;
+        }
+      })
+
     })
+    
     
   }
   haveTicket
   date:boolean = false;
   goToEvent(){
-    if(this.event.user._id == this.userService.User._id){
+    if(this.event.user._id == this.userService.User._id || this.haveTicket.accepted){
       this.router.navigate([`/streaming/host/${this.event._id}`]); 
     }else{
       this.router.navigate([`/streaming/client/${this.event._id}`]);
@@ -50,7 +58,7 @@ export class ReadEventComponent implements OnInit {
   }
 
   backToEvents(){
-    this.backEvent.emit(true)
+    this.router.navigate([`event`])
   }
 
   takeTicket(){
@@ -106,6 +114,18 @@ export class ReadEventComponent implements OnInit {
 
   async delete(){
     let result = await this.eventService.delete(this.event._id)
-    if(result) this.backEvent.emit(true)
+    if(result){
+      this.router.navigate([`event`])
+      this.eventService.eventEdited$.next(this.event)
+    } 
   }
+
+async acceptInvitation(){
+  let result = await this.ticketService.acceptInvitation(this.haveTicket._id)
+  if(result) this.ngOnInit()
+}
+async deniesInvitation(){
+  let result = await this.ticketService.deniesInvitation(this.haveTicket._id)
+  if(result) this.ngOnInit()
+}
 }

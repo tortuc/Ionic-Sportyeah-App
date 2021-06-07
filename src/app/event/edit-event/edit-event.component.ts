@@ -2,7 +2,7 @@ import { ThrowStmt } from '@angular/compiler';
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { LoadingController, Platform, PopoverController, ToastController } from '@ionic/angular';
+import { LoadingController, ModalController, Platform, PopoverController, ToastController } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
 import { response } from 'express';
 import * as moment from 'moment';
@@ -10,6 +10,8 @@ import { EventService } from 'src/app/service/event.service';
 import { FilesService } from 'src/app/service/files.service';
 import { TicketEventService } from 'src/app/service/ticket-event.service';
 import { UserService } from 'src/app/service/user.service';
+import { EventAddUserComponent } from '../create-event/event-add-user/event-add-user.component';
+import { SeeAllUsersLandingComponent } from '../create-event/see-all-users-landing/see-all-users-landing.component';
 import { SelectCurrencyComponent } from '../select-currency/select-currency.component';
 
 @Component({
@@ -35,7 +37,17 @@ export class EditEventComponent implements OnInit {
     public toastController: ToastController,
     private route:ActivatedRoute,
     private router:Router,
-  ) {    this.idEvent = route.snapshot.paramMap.get('id')}
+    public ticketEventService:TicketEventService,
+    public modalController: ModalController,
+  ) {
+        this.idEvent = route.snapshot.paramMap.get('id')
+        this.ticketEventService.findTicketInvitedUsers(this.idEvent).subscribe((response)=>{
+          this.invited = response 
+          for(let invi of this.invited ){
+            this.userInvited.push(invi.user)
+          }
+        })
+}
   idEvent
   ngOnInit() {
     this.eventService.findOne(this.idEvent).subscribe((response:any)=>{
@@ -81,6 +93,14 @@ export class EditEventComponent implements OnInit {
 
     })
   }
+
+  userInvited = []
+  invitedUsers(users){
+    this.userInvited = users
+    console.log(users);
+    
+  }
+  invited//Invited users
   currencyType="EUR";
   link = "assets/images/EUR.png";
   async openCurrencyType() {
@@ -185,6 +205,7 @@ newPrice($event){
       loading.present();
       this.eventService.updateEvent(event).subscribe((response)=>{
         loading.dismiss();
+        this.eventService.eventEdited$.next(event)
         this.router.navigate([`event`])
       })
       // this.eventService
@@ -245,4 +266,37 @@ newPrice($event){
     });
     toast.present();
   }
+  ///////////////////////////////////////////////////////////////////
+  event
+  async addFriendsModal(){
+    let modal = await this.modalController.create({
+      component:EventAddUserComponent,
+      componentProps:{usersSelect:[]}
+    })
+    modal.onDidDismiss().then((data)=>{
+      if(data.data?.action == 'add'){//REVISA ESTO
+        // this.landingService.inviteKecukiusers(data.data.users,this.event._id,this.userService.User._id).toPromise()
+        this.invitedUsers(data.data.users)
+      }
+      
+    })
+    modal.present()
+  }
+
+  async seeAllusers(){
+    let modal = await this.modalController.create({
+      component:SeeAllUsersLandingComponent,
+      componentProps:{
+        users:this.userInvited,
+        // event:this.event,
+        // blockeds:this.event.blockeds
+      }
+    })
+    modal.onDidDismiss().then(()=>{
+      // this.reload.emit(true)
+    })
+    modal.present()
+  }
+
+
 }

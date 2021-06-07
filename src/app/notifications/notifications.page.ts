@@ -41,7 +41,7 @@ export class NotificationsPage implements OnInit {
         })
     })
   }
-
+ 
   notifications:INotification[] = []
   
   async logScrolling(ev){

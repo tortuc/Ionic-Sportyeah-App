@@ -10,15 +10,15 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content >
+<ion-content class="main-bg" >
   <ion-grid style="padding: 0" class="height-100vh">
     <ion-row class="height-100vh ion-justify-content-center">
         <ion-col style="text-align: center;" size-md="7" size-sm="12">
           <ion-button *ngIf="!eventRead"  (click)="createEvent()" style="--border-radius: 25px;">
             {{'event.create_event' | translate}}
           </ion-button>
-          <show-events *ngIf="!eventRead" (readEvent)="readEvent($event)"></show-events>
-          <read-event *ngIf="eventRead" (backEvent)="backToEvents()" (ticketChange)="ticketChange()" [event]="eventRead"></read-event>
+          <show-events (readEvent)="readEvent($event)"></show-events>
+          <!-- <read-event *ngIf="eventRead" (backEvent)="backToEvents()" (ticketChange)="ticketChange()" [event]="eventRead"></read-event> -->
         </ion-col>
      
       <ion-col size-md="5" class="panel-desktop">
