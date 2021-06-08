@@ -5,6 +5,8 @@ import { TranslateService } from '@ngx-translate/core';
 import { AlertController } from '@ionic/angular';
 import { getToken } from "../helpers/token";
 import { async } from '@angular/core/testing';
+import { Subject } from 'rxjs';
+import { ITicket } from '../models/IEvent';
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +18,8 @@ export class TicketEventService {
     private translate: TranslateService,
     public alertController: AlertController,
   ) { }
+
+  public ticketChange$ = new Subject<ITicket>();
 
   create(body){
     return this.http.post(`${environment.URL_API}/ticketevent/create`,body)
@@ -82,7 +86,6 @@ export class TicketEventService {
 
  
   async devolution(id:string,devolution){
-    console.log(id,devolution)
     return new Promise(async(resolve,reject)=>{
   
     const alert = await this.alertController.create({

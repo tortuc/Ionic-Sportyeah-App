@@ -36,10 +36,10 @@ export class EventPage implements OnInit{
   //   this.ticketChange()
   // }
 
-  // ticket:boolean
-  // ticketChange(){
-  //   this.ticket = !this.ticket
-  // }
+  ticket:boolean
+  ticketChange(){
+    this.ticket = !this.ticket
+  }
 
 
   

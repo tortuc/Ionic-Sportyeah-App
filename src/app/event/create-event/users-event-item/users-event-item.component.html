@@ -1,12 +1,12 @@
 <ion-item class="item-user">
   <ion-thumbnail slot="start">
-    <ion-avatar class="mini" (click)="userService.goToProfile(user.username)">
+    <ion-avatar class="mini" (click)="userService.goToProfile(user.username,user._id,'profile',null)">
       <img [src]="user.photo" />
     </ion-avatar>
   </ion-thumbnail>
   <ion-label
     class="profile-name"
-    (click)="userService.goToProfile(user.username)"
+    (click)="userService.goToProfile(user.username,user._id,'profile',null)"
   >
     <p>{{ user.name }} {{ user.last_name }} </p>
 

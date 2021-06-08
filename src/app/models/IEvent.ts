@@ -26,3 +26,19 @@ export interface IEvent {
     edited  : Date
     views  : []
   }
+
+  export interface ITicket {
+    user    : string | User,
+    event: string | IEvent,
+    open    : boolean,
+    register    : boolean,
+    importPrice:string,
+    devolution : boolean,
+    invited : boolean,
+    accepted : boolean,
+    decision : boolean,
+    date        : Date,
+    deleted : boolean,
+    edited  : Date,
+    views  :[]
+  }
