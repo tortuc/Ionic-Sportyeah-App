@@ -5,6 +5,8 @@ import { TranslateService } from '@ngx-translate/core';
 import { AlertController } from '@ionic/angular';
 import { getToken } from "../helpers/token";
 import { FilesService } from './files.service';
+import { Subject } from 'rxjs';
+import { IEvent } from '../models/IEvent';
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +20,8 @@ export class EventService {
     private filesServices:FilesService,
     private alertCtrl:AlertController,
   ) { }
+
+  public eventEdited$ = new Subject<IEvent>();
 
   create(body){
     return this.http.post(`${environment.URL_API}/event/create`,body)

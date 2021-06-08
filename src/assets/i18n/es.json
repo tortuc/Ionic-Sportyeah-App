@@ -457,6 +457,9 @@
     "finish_question": {
       "text": "finializo la votación de tu cuestionario"
     },
+    "invited_event": {
+      "text": "te ha invitado a participar en su evento"
+    },
     "readall": "Marcar todas como leidas"
   },
   "edit": "Editar",
@@ -1456,8 +1459,9 @@
       "cancelUser": " Descartar usuario"
     }
   },
-  "streaming": {
-    "stream": "Transmitir"
+  "streaming":{
+    "stream":"Transmitir",
+    "transmission":"Transmisión"
   },
   "event": {
     "create_event": "Crear evento",
@@ -1466,38 +1470,53 @@
     "delete": "Eliminar",
     "deleteModal": {
       "confirm": "¿Esta seguro que desea eliminar este evento?",
-      "confirm_ticket": "¿Esta seguro que desea eliminar este ticket?"
+      "confirm_ticket":"¿Esta seguro que desea eliminar este ticket?"
     },
-    "title": "Título",
-    "description": "Descripción",
-    "currency": "Divisa",
-    "select_currency": "Selecciona una divisa",
-    "invite": "Invitar a participar",
-    "buy_condition": "Condiciones de compra",
-    "devolution_condition": "Condiciones de devolución",
-    "modality": "Modalidad",
-    "amount": "Define el costo de registro",
-    "date_programated": "Fecha del evento",
-    "create": "Crear",
-    "event_created": "¡Evento creado!",
-    "type_event": "Tipo de evento",
-    "open": "Abierto",
-    "register": "Registro",
-    "add_image": "Agregar imagen",
-    "event_open": "Evento Abierto",
-    "event_register": "Registro previo",
-    "ticket": "Boleto",
-    "return_ticket": "Devolver boleto",
-    "have_ticket": "Ya tienes el boleto",
+    "title":"Título",
+    "description":"Descripción",
+    "currency":"Divisa",
+    "select_currency":"Selecciona una divisa",
+    "invite":"Invitar a participar",
+    "buy_condition":"Condiciones de compra",
+    "devolution_condition":"Condiciones de devolución",
+    "modality":"Modalidad",
+    "amount":"Define el costo de registro",
+    "date_programated":"Fecha del evento",
+    "create":"Crear",
+    "event_created":"¡Evento creado!",
+    "type_event":"Tipo de evento",
+    "open":"Abierto",
+    "register":"Registro",
+    "add_image":"Agregar imagen",
+    "event_open":"Evento Abierto",
+    "event_register":"Registro previo",
+    "event_info":"Información del evento",
+    "ticket":"Boleto",
+    "return_ticket":"Devolver boleto",
+    "have_ticket":"Ya tienes el boleto",
     "devolutionModal": {
       "confirm_ticket": "¿Esta seguro que desea devolver el boleto?"
     },
-    "get_ticket": "¡Ahora tienes un boleto para este evento!",
-    "youll_go": "Eventos a los que asistiras",
-    "not_have_go": "No asistiras a ningun evento aún",
-    "is_your_event": "Este es tu evento",
-    "take_events": "Elije un evento y toma un boleto",
-    "go_to_event": "Ir al evento"
+    "get_ticket":"¡Ahora tienes un boleto para este evento!",
+    "youll_go":"Eventos a los que asistiras",
+    "not_have_go":"No asistiras a ningun evento aún",
+    "is_your_event":"Este es tu evento",
+    "take_events":"Elije un evento y toma un boleto",
+    "go_to_event":"Ir al evento",
+    "invitationModal": {
+      "accept_invitation":"¿Esta seguro que desea aceptar la invitación de participar en este evento?",
+      "denies_invitation":"¿Esta seguro que desea rechazar la invitación de participar en este evento?"
+    },
+    "accept_invitation":"Aceptar invitación",
+    "denies_invitation":"Rechazar invitación",
+    "invite_friends":"Invita colaboradores",
+    "see_all":"Ver todos",
+    "invite_collaborator":"Invitar como colaborador",
+    "invite_from_friends":"Aun no hay colaboradores en este evento, invita colaboradores de tu lista de amigos",
+    "add_users":"Agregar colaboradores",
+    "add_button":"Agregar",
+    "participing":"Participando",
+    "seeAll_search":"Buscar participante"
   },
 
   "executive_card": {

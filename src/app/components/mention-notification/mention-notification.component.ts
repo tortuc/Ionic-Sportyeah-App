@@ -13,11 +13,7 @@ export class MentionNotificationComponent implements OnInit {
   
   constructor(
     private notificationService:NotificationService
-  ) { 
-
-  
-
-  }
+  ) {}
 
 
 

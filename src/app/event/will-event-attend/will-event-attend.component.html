@@ -1,6 +1,6 @@
 <div *ngIf="willAttend?.length > 0">
-  <div style="text-align: center;"><h3>{{'event.youll_go' | translate}}</h3></div>
-  <ion-card style="margin:0px;padding:0px;">
+  <div style="text-align: center;margin:0px;padding:0px;"><h3 style="color: white;margin:0px;padding:0px;margin-top: 8px;">{{'event.youll_go' | translate}}</h3></div>
+  <!-- <ion-card style="margin:0px;padding:0px;"> -->
     <ion-slides  pager="true" [options]="slideOpts">
       <ion-slide style="text-align: center;"  *ngFor="let willAtt of willAttend">
           <div class="scale-in-hor-center event" (click)="seeEvent(willAtt.event)" [ngStyle]="{'background-image': 'url(' + willAtt.event.principalImage + ')'}" >
@@ -11,7 +11,7 @@
           </div>
       </ion-slide>
     </ion-slides>
-  </ion-card>
+  <!-- </ion-card> -->
 </div>
 
 <div *ngIf="willAttend?.length == 0" style="text-align: center;">
