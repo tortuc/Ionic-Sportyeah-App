@@ -29,18 +29,42 @@ export class TicketEventService {
     return this.http.get(`${environment.URL_API}/ticketevent`)
   }
 
+  /**
+     * Encuentra los ticketEvento por evento
+     * 
+     * 
+     * @method post
+     */
   findTicketInvitedUsers(id){
     return this.http.get(`${environment.URL_API}/ticketevent/invited/${id}`)
   }
 
+   /**
+     * Encuentra un ticketEvento
+     * 
+     * 
+     * @method post
+     */
   findOne(id){
     return this.http.get(`${environment.URL_API}/ticketevent/one/${id}`)
   }
 
+/**
+ * Encuentra todos los ticketEvento de un usuario
+ * 
+ * 
+ * @method get
+ */
   findUserTicketEvent(user){
     return this.http.get(`${environment.URL_API}/ticketevent/my/${user}`)
   }
 
+/**
+ * Encuentra los ticketEvento de un usuario en cierto evento
+ * 
+ * 
+ * @method get
+ */
   findByUserInEvent(event,user){
     return this.http.get(`${environment.URL_API}/ticketevent/ticket/${event}/${user}`)
   }

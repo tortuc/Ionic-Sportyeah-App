@@ -42,7 +42,6 @@ export class PostPage implements OnInit {
       .toPromise() //agregamos el id del usuario actual
       .then((post: IPost) => {
         this.post = post;
-        console.log(this.post)
         this.getComments();
       })
       .catch((err) => {

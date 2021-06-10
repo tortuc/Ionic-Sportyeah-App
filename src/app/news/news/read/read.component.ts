@@ -6,6 +6,9 @@ import { UserService } from "src/app/service/user.service";
 import { ViewsSponsorService } from "src/app/service/views-sponsor.service";
 import { take } from "rxjs/operators";
 import { CommentService } from "src/app/service/comment.service";
+import { SponsorService } from "src/app/service";
+import { ISponsor } from "src/app/models/ISponsor";
+import { User } from "src/app/models/IUser";
 
 @Component({
   selector: "app-read",
@@ -20,6 +23,8 @@ export class ReadComponent implements OnInit {
     public userService: UserService,
     private viewsSponsorService: ViewsSponsorService,
     public commentService: CommentService,
+    private sponsorService: SponsorService,
+    private router: Router
 
   ) {
     this.idNews = route.snapshot.paramMap.get("id");
@@ -30,9 +35,12 @@ export class ReadComponent implements OnInit {
     await this.newsService
       .findById(id)
       .toPromise()
-      .then((response: any) => {
+      .then( (response: any) => {
         this.news = response;
-        this.getComments();
+        console.log(response);
+        
+         this.getComments();
+         this.getSponsors(response.news.user._id)
       })
       .catch((err) => {
         this.news = 404;
@@ -49,6 +57,40 @@ export class ReadComponent implements OnInit {
   comments = [];
   loading = false;
   skip = 0;
+  sponsors: ISponsor[] = [];
+   getSponsors(id) {
+    this.sponsorService
+      .getAllSponsorsUserById(id)
+      .subscribe((sponsors) => {
+        this.sponsors = sponsors;
+        if (sponsors.length > 6) {
+          this.rotateSponsors();
+        }
+      });
+  }
+  rotateSponsors() {
+    setInterval(() => {
+      let last = this.sponsors.pop();
+      this.sponsors.unshift(last);
+    }, 3000);
+  }
+
+  clickOnSponsor(sponsor: ISponsor) {
+    let profile = sponsor.idSponsor as User;
+    if (profile) {
+      this.router.navigate([`/user/${profile.username}`]);
+      /**
+       * Se usa por si se clickeo al sponsor desde una ventana modal
+       */
+    } else if (sponsor.customSponsor.url) {
+      let url = sponsor.customSponsor.url
+        .split("https://")
+        .join("")
+        .split("http://")
+        .join("");
+      window.open("//" + url, "_blank");
+    }
+  }
 
   getComments() {
     this.loading = true;
