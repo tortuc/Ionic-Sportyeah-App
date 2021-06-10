@@ -39,7 +39,7 @@ import { AllReactionsNewsComponent } from './all-reactions-news/all-reactions-ne
 import { LikesReactionsNewsComponent } from './likes-reactions-news/likes-reactions-news.component';
 import { CreateStreamNewsComponent } from './create-stream-news/create-stream-news.component';
 import { StreamNewsComponent } from './stream-news/stream-news.component';
-import { ViewSponsorMiniComponent } from 'src/app/sponsors-components/view-sponsors/view-sponsor-mini/view-sponsor-mini.component';
+import { SponsorsModule } from 'src/app/sponsors-components/sponsors.module';
 
 @NgModule({
   imports: [
@@ -58,6 +58,7 @@ import { ViewSponsorMiniComponent } from 'src/app/sponsors-components/view-spons
     EmojiModule,
     PickerModule,
     DirectivesModule,
+    SponsorsModule
   ],
   exports:[ModalProgramNewsComponent],
   declarations: [
@@ -81,8 +82,7 @@ import { ViewSponsorMiniComponent } from 'src/app/sponsors-components/view-spons
     ModalProgramNewsComponent,
     LikesNewsComponent,
     AllReactionsNewsComponent,
-    LikesReactionsNewsComponent,
-    ViewSponsorMiniComponent
+    LikesReactionsNewsComponent
   ],
  
   schemas:[CUSTOM_ELEMENTS_SCHEMA]
