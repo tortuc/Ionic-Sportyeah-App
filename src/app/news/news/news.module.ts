@@ -39,6 +39,7 @@ import { AllReactionsNewsComponent } from './all-reactions-news/all-reactions-ne
 import { LikesReactionsNewsComponent } from './likes-reactions-news/likes-reactions-news.component';
 import { CreateStreamNewsComponent } from './create-stream-news/create-stream-news.component';
 import { StreamNewsComponent } from './stream-news/stream-news.component';
+import { SponsorsModule } from 'src/app/sponsors-components/sponsors.module';
 
 @NgModule({
   imports: [
@@ -57,6 +58,7 @@ import { StreamNewsComponent } from './stream-news/stream-news.component';
     EmojiModule,
     PickerModule,
     DirectivesModule,
+    SponsorsModule
   ],
   exports:[ModalProgramNewsComponent],
   declarations: [

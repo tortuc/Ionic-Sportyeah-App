@@ -75,6 +75,7 @@
               <ion-col >
                 <ion-button *ngIf="date && haveTicket && !haveTicket.invited" (click)="goToEvent()" style="--border-radius: 25px;">{{'event.go_to_event' | translate}}</ion-button>
                 <ion-button *ngIf="date && haveTicket && haveTicket.accepted" (click)="goToEvent()" style="--border-radius: 25px;" >{{'event.go_to_event' | translate}}</ion-button>
+                <ion-button *ngIf="date && userService.User?._id == event.user._id" (click)="goToEvent()" style="--border-radius: 25px;" >{{'event.go_to_event' | translate}}</ion-button>
               </ion-col>
               
           </ion-row>

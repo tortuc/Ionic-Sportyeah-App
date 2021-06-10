@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import AgoraRTC from 'agora-rtc-sdk-ng';
+import { element } from 'protractor';
 import { EventService } from 'src/app/service/event.service';
+import { TicketEventService } from 'src/app/service/ticket-event.service';
 import { UserService } from 'src/app/service/user.service';
 
 @Component({
@@ -14,7 +16,8 @@ export class StreamHostComponent implements OnInit {
   constructor(
     private route:ActivatedRoute,
     public userService:UserService,
-    public eventService:EventService
+    public eventService:EventService,
+    public ticketEventService:TicketEventService
   ) {
     this.idEvent = route.snapshot.paramMap.get('id')
     //Set chanel 
@@ -22,9 +25,18 @@ export class StreamHostComponent implements OnInit {
 
     this.eventService.findOne(route.snapshot.paramMap.get('id')).subscribe((response)=>{
       this.event = response
+      this.ticketEventService.findTicketInvitedUsers(route.snapshot.paramMap.get('id')).subscribe((tickets:any)=>{
+        this.invitedUsers = tickets.filter((ticket)=>{
+          return ticket.invited && ticket.accepted 
+        })
+        // let exist = resp.find(element => element.invited == true)
+         if(this.invitedUsers.length != 0) this.haveGuest = true;
+      })
     })
-  } 
-  
+  }
+
+  invitedUsers = [];
+  haveGuest:boolean = false;
   idEvent:string;
   event
    
@@ -98,9 +110,56 @@ export class StreamHostComponent implements OnInit {
     await this.rtc.client.publish([this.rtc.localAudioTrack, this.rtc.localVideoTrack]);
     console.log("publish success!");
 
+    if(this.haveGuest && this.event.user._id == this.userService.User._id  ){
+    var channelMediaConfig =  AgoraRTC.createChannelMediaRelayConfiguration();
 
-   
+    // Set the source channel information.
+    // Note that yourScrToken is different from the token used for joining the source channel. You need to generate yourScrToken with the source channel name and a uid of 0.
+    channelMediaConfig.setSrcChannelInfo({
+     channelName: this.idEvent,
+     uid: 1,
+     token: null,
+    })
+
+    // Set the destination channel information. 
+    await this.chanelDestinationInformation(channelMediaConfig)
+
+    
+    }
+
   }
+
+startChannelMediaRelay(channelMediaConfig){
+  this.rtc.client.startChannelMediaRelay(channelMediaConfig, (e) =>{
+    if(e) {
+      console.log("START ERROR ================================================");
+      console.log(e);
+    } else {
+      console.log("START OK ++++++++++++++++++++++++++++++++++++++++++++++++++++");
+    }
+  });
+}
+
+chanelDestinationInformation(channelMediaConfig){
+  console.log("Estoy en: ",channelMediaConfig);
+  let number = 1;
+  for(let invited of this.invitedUsers){
+      // You can set a maximum of four detination channels.
+      console.log({ channelName: invited.user.username, token: this.event.user._id, uid: number });
+      channelMediaConfig.addDestChannelInfo({ channelName: invited.user.username, token: null, uid: number, appId:"73cf40b7571b42b4a6d85473006ae348"})
+  }
+}
+
+stopMeduaRelay(){
+  this.rtc.client.stopChannelMediaRelay(function(e) {
+      if(e) {
+        console.log(e);
+      } else {
+        console.log(`stopChannelMediaRelay success`);
+      }
+    });
+}
+
 
   async subcribeToRemoteUser(){
     this.rtc.client.on("user-published", async (user, mediaType) => {

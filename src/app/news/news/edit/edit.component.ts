@@ -562,7 +562,7 @@ origenSelect = [
 {value:0,origenSelect:"Mío"},
 {value:1,origenSelect:"Otra fuente"}
 ]
-miNoticia = undefined;
+miNoticia = undefined;f
 origenListoMio(){
   if(this.miNoticia == 0){
     this.origen = 'De mi propiedad'
@@ -737,7 +737,6 @@ question = {
 editNewsQuestion(news,loading){
   this.questionService.create(this.question).subscribe((response:any)=>{//Crea el cuestionario y agrega el id al news
     news.question = response._id  
-   
     this.newsService.updateNews(this.form.value).subscribe((response)=>{
       this.presentToastWithOptions()
       this.router.navigate([`news/read/${this.news._id}`])
@@ -765,26 +764,24 @@ endDate;
 badDate:boolean=false;
 
 //Crea una modal donde se pueden crear preguntas 
-async createQuestion(){
-const modal = await this.modalController.create({
-  component: NewQuestionComponent,
-  cssClass: 'my-custom-class',
-  backdropDismiss:false
-  ,
-  componentProps: {
-  
-    edit:false
-  }
-});
-modal.onDidDismiss().then((data)=>{
-  if(data.data.question != undefined){
-    this.question.questionGroup.push(data.data.question) //Las preguntas creadas se introducen en el grupo de preguntas
-  }
-})
-.catch((err) => {
-});
-
-return await modal.present();
+async createQuestion() {
+  const modal = await this.modalController.create({
+    component: NewQuestionComponent,
+    cssClass: "my-custom-class",
+    backdropDismiss: false,
+    componentProps: {
+      edit: false,
+    },
+  });
+  modal
+    .onDidDismiss()
+    .then((data) => {
+      if (data.data.question != undefined) {
+        this.question.questionGroup.push(data.data.question); //Las preguntas creadas se introducen en el grupo de preguntas
+      }
+    })
+    .catch((err) => {});
+  return await modal.present();
 }
 // async editQuestion(i){
 // const modalEdit = await this.modalController.create({

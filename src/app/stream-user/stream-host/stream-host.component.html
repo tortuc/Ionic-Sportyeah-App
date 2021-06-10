@@ -11,17 +11,26 @@
 </ion-header>
 
 <ion-content>
-  <div style="margin-left: auto;margin-right: auto; width: 100%;"> 
-    <h1>ESTE ES EL STREAM</h1>
-    <div  id="localPlayer" class="player">
-  <!-- <ion-button (click)="stopMicro()" *ngIf="micro" [disabled]="(titulo1 != null && titulo1 != '')?false:true"  float-right ion-button ><ion-icon name="mic-off-outline"></ion-icon></ion-button>
-  <ion-button (click)="startMicro()" *ngIf="!micro" [disabled]="(titulo1 != null && titulo1 != '')?false:true"  float-right ion-button ><ion-icon name="mic-outline"></ion-icon></ion-button>
-  <ion-button (click)="stopCamera()" *ngIf="camera && !screen" [disabled]="(titulo1 != null && titulo1 != '')?false:true"  float-right ion-button ><ion-icon name="videocam-off-outline"></ion-icon></ion-button>
-  <ion-button (click)="startCamera()" *ngIf="!camera && !screen" [disabled]="(titulo1 != null && titulo1 != '')?false:true"  float-right ion-button ><ion-icon name="videocam-outline"></ion-icon></ion-button>
-  <ion-button (click)="startScreen()" *ngIf="!screen && !camera" [disabled]="(titulo1 != null && titulo1 != '')?false:true"  float-right ion-button ><ion-icon name="desktop-outline"></ion-icon></ion-button>
-  <ion-button (click)="stopScreen()" *ngIf="screen && !camera" [disabled]="(titulo1 != null && titulo1 != '')?false:true"  float-right ion-button ><ion-icon name="desktop-outline"></ion-icon><div class="line1"></div></ion-button> -->
+
   
-    </div>          
-    <div class="w-100"></div>
-  </div>
+    <ion-grid>
+      <ion-row>
+        <ion-col style="text-align: center; position: relative" size-xl="8" size-xs="12">
+          <div style="margin-left: auto;margin-right: auto; width: 100%;"> 
+            <h1>ESTE ES EL STREAM</h1>
+            <div  id="localPlayer" class="player">
+          <!-- <ion-button style="--border-radius: 25px;" (click)="stopMicro()" *ngIf="micro" [disabled]="(titulo1 != null && titulo1 != '')?false:true"  float-right ion-button ><ion-icon name="mic-off-outline"></ion-icon></ion-button>
+          <ion-button style="--border-radius: 25px;" (click)="startMicro()" *ngIf="!micro" [disabled]="(titulo1 != null && titulo1 != '')?false:true"  float-right ion-button ><ion-icon name="mic-outline"></ion-icon></ion-button>
+          <ion-button style="--border-radius: 25px;" (click)="stopCamera()" *ngIf="camera && !screen" [disabled]="(titulo1 != null && titulo1 != '')?false:true"  float-right ion-button ><ion-icon name="videocam-off-outline"></ion-icon></ion-button>
+          <ion-button style="--border-radius: 25px;" (click)="startCamera()" *ngIf="!camera && !screen" [disabled]="(titulo1 != null && titulo1 != '')?false:true"  float-right ion-button ><ion-icon name="videocam-outline"></ion-icon></ion-button>
+          <ion-button style="--border-radius: 25px;" (click)="startScreen()" *ngIf="!screen && !camera" [disabled]="(titulo1 != null && titulo1 != '')?false:true"  float-right ion-button ><ion-icon name="desktop-outline"></ion-icon></ion-button>
+          <ion-button style="--border-radius: 25px;" (click)="stopScreen()" *ngIf="screen && !camera" [disabled]="(titulo1 != null && titulo1 != '')?false:true"  float-right ion-button ><ion-icon name="desktop-outline"></ion-icon><div class="line1"></div></ion-button>
+                       -->
+            </div>
+            <div class="w-100"></div>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+   
 </ion-content>

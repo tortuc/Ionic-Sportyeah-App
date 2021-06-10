@@ -83,8 +83,7 @@ export class QuestionService {
         // utilziamos un .map que recorre el array y lo modifica
         parrafos.map(
           async (parrafo) => {
-            
-            if (parrafo.question && parrafo.question.headline != undefined) {
+            if (parrafo.question && parrafo.question.questionGroup != undefined) {
               // if(parrafo.question.headline){
               // esperamos la url
               parrafo.question = (await this.create(parrafo.question).toPromise())._id as string;
