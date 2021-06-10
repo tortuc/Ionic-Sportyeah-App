@@ -12,7 +12,7 @@
   </ion-toolbar>
 </ion-header>
 <ion-content  style="color: white;">
-  <!-- <ion-grid>
+  <ion-grid>
     <ion-row class="rowStyle">
       <ion-col *ngIf="!begingStream" size="12">
         <ion-grid>
@@ -56,7 +56,7 @@
 
             </div>          
             <div class="w-100"></div>
-          </div> -->
+          </div>
         <!-- REACCIONES -->
 <!-- <div id="reactsDiv" #reacts
 >
@@ -69,8 +69,8 @@
    [news]="news"
    isPost="false"
  ></news-options>
- </div>
-      </ion-col> -->
+ </div>-->
+      </ion-col> 
 
        <!-- Comentarios -->
        <!-- <ion-col *ngIf="begingStream" size-lg="4"	size-xs="12">
@@ -102,10 +102,10 @@
         <comment-post  [news]="news?.news" (newComment)="comments($event)"></comment-post>
       </ion-col> -->
 <!-- Fin Comentarios -->
-    <!-- </ion-row>
-  </ion-grid> -->
-
-  <div class="form">
+    </ion-row>
+  </ion-grid> 
+</ion-content>
+<!--   <div class="form">
     <span class="headingText"> Join or start a stream! </span>
     <input type="text" id="userName" placeholder="Username" value="JohnDoe123" />
     <input
@@ -141,5 +141,4 @@
       </div>
     </div>
   </div>
-
-</ion-content>
+ -->

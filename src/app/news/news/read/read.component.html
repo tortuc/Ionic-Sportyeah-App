@@ -132,8 +132,21 @@
     <ion-col  size="12" >
       <p style="text-align: center;color: #737373;font-size: 14px;"><i>{{news?.news.origin}}</i></p>
      </ion-col>
-    <ion-col *ngIf="news.news.user.sponsors.length != 0" size="12">
-    <!-- SPONSORS -->
+      <!-- SPONSORS -->
+      <ion-col size="12" >
+        <h2>{{'Sponsors' | translate}}</h2>
+        <div class="sponsors">
+          <view-sponsor-mini
+            *ngFor="let sponsor of sponsors.slice(0, 6); let i = index"
+            (click)="clickOnSponsor(sponsor)"
+            [info]="sponsor.idSponsor?.sponsor_info || sponsor.customSponsor"
+            [sponsor]="sponsor"
+          ></view-sponsor-mini>
+        </div>
+      </ion-col>
+       <!-- TERMINO SPONSORS -->
+    <!-- <ion-col *ngIf="news.news.user.sponsors.length != 0" size="12">
+   
     <h2 *ngIf="news?.news.principalSubtitle" style="text-align: center;color: #5a5a5a;">Patrocinado por:</h2> 
     <div>
       <ion-grid>
@@ -157,8 +170,9 @@
         </ion-row>
       </ion-grid>
     </div>
-    <!-- TERMINO SPONSORS -->
-  </ion-col>
+  </ion-col> -->
+   
+
     
     <!-- <ion-col *ngIf="news.news.question != null" size="12">
       <question [data]="news" [notified]="notified" (newItemEvent)="voted($event)"></question>

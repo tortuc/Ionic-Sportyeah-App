@@ -1,5 +1,5 @@
 import { Component, OnInit,Output,EventEmitter, Input } from '@angular/core';
-import { Router } from '@angular/router';
+import { Event, NavigationEnd, Router } from '@angular/router';
 import { LoadingController, PopoverController } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
 import { EventService } from 'src/app/service/event.service';
@@ -20,17 +20,31 @@ export class ShowEventsComponent implements OnInit {
     private eventService:EventService,
     public popoverController: PopoverController,
     private router:Router,
-  ) { }
+  ) { 
+    // router.events.subscribe( (event: Event) =>{
+    //       if (event instanceof NavigationEnd && event.url == '/event') {
+    //         // Navigation Ended Successfully.
+    //          this.ngOnInit()
+    //          console.log('meejecutoooo');
+    //          console.log(event.url)
+    //     }
+    // });
+  }
   @Output() readEvent = new EventEmitter();
   @Input() displayOptions: boolean = true;
 
 
   ngOnInit() {
+    this.eventService.eventEdited$.subscribe(()=>{this.recargarLista()})
+   this. recargarLista()
+  }
+    events
+
+  recargarLista(){
     this.eventService.find().subscribe((response)=>{
       this.events = response;
     })
   }
-    events
 
     seeEvent(event){
       this.readEvent.emit(event)

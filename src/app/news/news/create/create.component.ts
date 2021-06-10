@@ -100,6 +100,7 @@ urlYu
     news.headline = this.titulo1;
     news.principalSubtitle = this.subTitle;
     news.content = await this.questionService.parrafoFilter(this.parrafos);
+    loading.dismiss();
     news.date = this.date;
     news.origin = this.origen;
     news.originPrincipaMedia = this.originPrincipaMedia;
@@ -235,7 +236,6 @@ urlYu
     /*   this.titulo1= `Escribe el Título # ${this.parrafos.length+1} `;
   this.deporte= `Escribe el Subtítulo # ${this.parrafos.length+1} `; */
     this.agregandoParrafo = false;
-    console.log(this.parrafos)
   }
   numberPositionSelect(number) {
     this.number += number;
@@ -338,7 +338,6 @@ urlYu
           .then((url: string) => {
             loading.dismiss();
             this.parrafos[i].image = url;
-            console.log(url);
             
             this.openArray = false;
           })
@@ -796,8 +795,6 @@ urlYu
       .then((data) => {
         if (data.data.question != undefined) {
           this.question.questionGroup.push(data.data.question); //Las preguntas creadas se introducen en el grupo de preguntas
-          console.log(this.question);
-          
         }
       })
       .catch((err) => {});
@@ -821,14 +818,11 @@ urlYu
       link:file.format =='link'?file.url:null,
       format:file.format
     });
-    console.log(this.parrafos);
   }
   editFile(format,i){
     this.optionsBtn.editFile(format,i)
   }
   editedFile(file){
-    console.log(this.parrafos[file.position]);
-    console.log(file);
 
     this.parrafos[file.position] = {
       subtitle: null,
@@ -921,7 +915,6 @@ this.editYoutube = false
       question,
       format:'question'
     }) 
-    console.log(this.parrafos);
   }
   questionEdited($event) {
     let question = {
@@ -956,12 +949,10 @@ this.editYoutube = false
   msgAudio(url) {
     this.audioNews = url;
     this.newsAudio = true;
-    console.log( this.audioNews)
   }
   deleteAudio(){
     this.audioNews = null;
     this.newsAudio = false;
-    console.log( this.audioNews)
   }
  
   newsAudio:boolean=false

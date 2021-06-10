@@ -1,5 +1,26 @@
 <ion-card style="margin: 0; padding: 0">
-  <div style="text-align: center;" class="main-bg">
-    <h3>{{ 'event.invite'| translate}}</h3>
+  <div style="text-align: center">
+    <h4 style="color: black; font-weight: 600">
+      {{ "event.invite_friends" | translate }}
+    </h4>
+    <div *ngIf="users.length <= 1">
+      <p>{{'event.invite_from_friends' | translate}}</p>
+      <img height="50px" src="assets/logos/imagotipo_azul.png" alt="" />
+    </div>
+      <users-event-item *ngFor="let user of users | slice: 0:3" [user]="user"></users-event-item>
+    <ion-button class="btn-green-small" (click)="seeAllusers()">{{
+      "event.see_all" | translate
+    }}</ion-button>
+    <ion-button
+      class="btn-green-small"
+      (click)="addFriendsModal()"
+      >{{ "event.invite_friends" | translate }}</ion-button
+    >
+    <!-- <ion-button
+      
+      class="btn-green-small"
+      (click)="leave()"
+      >{{ "landing_event.leave" | translate }}</ion-button
+    > -->
   </div>
 </ion-card>

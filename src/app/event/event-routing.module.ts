@@ -4,6 +4,7 @@ import { CreateEventComponent } from './create-event/create-event.component';
 import { EditEventComponent } from './edit-event/edit-event.component';
 
 import { EventPage } from './event.page';
+import { ReadEventComponent } from './read-event/read-event.component';
 
 const routes: Routes = [
   {
@@ -17,6 +18,10 @@ const routes: Routes = [
   {
     path: 'edit/:id',
     component: EditEventComponent
+  },
+  {
+    path: 'read/:id',
+    component: ReadEventComponent
   }
 ];
 

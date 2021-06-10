@@ -275,9 +275,16 @@
 
                 <div *ngIf="parrafo.question">
                   <question-comment
-                   *ngIf="parrafo.question"
+                   *ngIf="parrafo.question  && !parrafo.question.user"
                    [questionId]="parrafo.question"
                  ></question-comment>
+
+                 <edit-question
+                 *ngIf="parrafo.question && parrafo.question.user"
+                    [question]="parrafo.question.questionGroup"
+                    (delete)="eliminarParrafo(parrafo.position)"
+                    (edit)="editQuestion(parrafo.question,parrafo.position)"
+                  ></edit-question>
                 </div>
                 
                 <!-- Origen de la imagen o video Parrafo -->

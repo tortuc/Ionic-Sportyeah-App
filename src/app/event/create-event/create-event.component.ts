@@ -5,9 +5,11 @@ import { LoadingController, Platform, PopoverController, ToastController } from 
 import { TranslateService } from "@ngx-translate/core";
 import * as moment from "moment";
 import { MentionsDirective } from "src/app/directives/mentions.directive";
+import { IEvent } from "src/app/models/IEvent";
 import { EventService } from "src/app/service/event.service";
 import { FilesService } from "src/app/service/files.service";
 import { PostService } from "src/app/service/post.service";
+import { TicketEventService } from "src/app/service/ticket-event.service";
 import { UserService } from "src/app/service/user.service";
 import { AssetsButtonsComponent } from "src/app/shared-components/assets-buttons/assets-buttons.component";
 import { SelectCurrencyComponent } from "../select-currency/select-currency.component";
@@ -34,6 +36,7 @@ export class CreateEventComponent implements OnInit {
     private popoverController: PopoverController,
     public toastController: ToastController,
     private router:Router,
+    public ticketEventService:TicketEventService
   ) { }
 
   ngOnInit() {}
@@ -139,16 +142,15 @@ newPrice($event){
       this.eventService
         .create(event)
         .toPromise()
-        .then((event) => {
+        .then((event:IEvent) => {
           loading.dismiss();
+          this.ticketEventService.sendInvitation(this.userInvited,event)
+          this.eventService.eventEdited$.next(event)
           this.router.navigate([`event`])
         })
         .catch((err) => {
           loading.dismiss();
         });
-    // } else {
-      // this.eventService.uploadVideoEvent(event, this.videosToUploads, this.files);
-    // }
   }
 
   fileChoose(){
@@ -193,6 +195,11 @@ newPrice($event){
       duration: 3000,
     });
     toast.present();
+  }
+
+  userInvited = []
+  invitedUsers(users){
+    this.userInvited= users
   }
 
 }

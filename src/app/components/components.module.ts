@@ -69,6 +69,7 @@ import { CreateAwardChallengeComponent } from "./challenges/create-award-challen
 import { ShowAwardsComponent } from "./challenges/show-awards/show-awards.component";
 import { AwardsAccordionComponent } from "./challenges/awards-accordion/awards-accordion.component";
 import { CategoryComponent } from "./structure/category/category.component";
+import { EventInvitationNotificationComponent } from "./event-invitation-notification/event-invitation-notification.component";
 
 const components = [
   NewProfilePhotoComponent,
@@ -79,6 +80,7 @@ const components = [
   UnfollowNotificationComponent,
   LikeNotificationComponent,
   CommentNotificationComponent,
+  EventInvitationNotificationComponent,
   SharedNotificationComponent,
   ChallengeCommentsComponent,
   ChallengeReactionsComponent,

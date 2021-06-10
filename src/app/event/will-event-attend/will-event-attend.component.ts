@@ -12,12 +12,14 @@ export class WillEventAttendComponent implements OnInit, OnChanges {
   @Input() ticket;
   constructor(
     private ticketEvent:TicketEventService,
-    private userService:UserService
+    private userService:UserService,
   ) { }
 
   willAttend;
   
   ngOnInit() {
+    this.ticketEvent.ticketChange$.subscribe(()=>{this.takeTicketEvent()
+    })
     this.takeTicketEvent()
   }
   ngOnChanges(){
