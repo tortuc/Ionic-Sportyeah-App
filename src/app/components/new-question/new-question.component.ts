@@ -52,6 +52,8 @@ export class NewQuestionComponent implements OnInit {
   headLine;
 
   async create() {
+    console.log("estoy creando desde el new queistion");
+    
     let exist = this.answers.find(
       (x) => x.option == "" || x.option == undefined
     );

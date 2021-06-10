@@ -25,19 +25,19 @@ export class NewsPage implements OnInit {
   myNews = []; // Contiene las noticias del reportero en caso de ser user press
   indexLast = 3;
    verMasSport(){
-       this.indexLast += 3 
+       this.indexLast += 10 
    }
   indexLastFollow = 3;
    verMasfollow(){
-    this.indexLastFollow += 3 
+    this.indexLastFollow += 10 
    }
    indexLastMy = 3;
    verMasMy(){
-    this.indexLastMy += 3 
+    this.indexLastMy += 10 
    }
    indexStreaming = 3;
    verMasStreaming(){
-    this.indexStreaming += 3 
+    this.indexStreaming += 10 
    }
   
   ngOnInit() {
