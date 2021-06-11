@@ -62,7 +62,7 @@
     </ion-col> -->
   </ion-row>
 </ion-grid>
-<ion-fab-button style="z-index:1000;" *ngIf="userService.User?.profile_user == 'press' "  [routerLink]="'/news/create'" class="new addNews"><ion-icon name="add"></ion-icon></ion-fab-button>
+<!-- <ion-fab-button style="z-index:1000;" *ngIf="userService.User?.profile_user == 'press' "  [routerLink]="'/news/create'" class="new addNews"><ion-icon name="add"></ion-icon></ion-fab-button> -->
 
 <!-- Noticias generales  -->
 <ion-card>
@@ -105,7 +105,6 @@
         </ion-item> -->
         <ion-grid>
           <ion-row  *ngFor="let new of news?.slice(0,indexLast )">
-
             <ion-col style="text-align: left;" size-xs="12" size-lg="3">
               <ion-img (click)="OpenNews(new._id)" *ngIf="new.principalImage"  class="imageMiniCard" [src]="new.principalImage"></ion-img>
               <div (click)="OpenNews(new._id)"  *ngIf="new.principalVideo" style="position: relative; cursor: pointer;">
@@ -329,5 +328,5 @@
       </ion-col>
     </ion-row>
   </ion-grid>
-  <ion-fab-button style="z-index:1000;" *ngIf="userService.User?.profile_user == 'press' "  [routerLink]="'/news/create'" class="new addNews"><ion-icon name="add"></ion-icon></ion-fab-button>
+  <!-- <ion-fab-button style="z-index:1000;" *ngIf="userService.User?.profile_user == 'press' "  [routerLink]="'/news/create'" class="new addNews"><ion-icon name="add"></ion-icon></ion-fab-button> -->
 </ion-content>
