@@ -72,7 +72,7 @@
    </ion-text>
   </ion-card-header> -->
   
-  <ion-card-content  *ngIf="newsSportUser.length > 0">
+  <ion-card-content  *ngIf="news.length > 0">
       <ion-list>
        <!--  <ion-item  *ngFor="let new of newsSportUser?.slice(0,indexLast )">
 
@@ -104,7 +104,7 @@
           </div>   
         </ion-item> -->
         <ion-grid>
-          <ion-row  *ngFor="let new of newsSportUser?.slice(0,indexLast )">
+          <ion-row  *ngFor="let new of news?.slice(0,indexLast )">
 
             <ion-col style="text-align: left;" size-xs="12" size-lg="3">
               <ion-img (click)="OpenNews(new._id)" *ngIf="new.principalImage"  class="imageMiniCard" [src]="new.principalImage"></ion-img>
@@ -140,13 +140,13 @@
          
         </ion-grid>
         <div style="text-align: center;">
-          <ion-button *ngIf="indexLast < newsSportUser.length" class="main-bg"  (click)="verMasSport()">{{ 'news.see_more'| translate}}</ion-button>
+          <ion-button *ngIf="indexLast < news.length" class="main-bg"  (click)="verMasSport()">{{ 'news.see_more'| translate}}</ion-button>
         </div>
         
       </ion-list>
   </ion-card-content>
 
-  <ion-card-content *ngIf="newsSportUser.length == 0">
+  <ion-card-content *ngIf="news.length == 0">
     <ion-grid>
       <ion-row>
         <ion-col size="12"> 

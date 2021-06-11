@@ -42,6 +42,10 @@ export class NewsService {
     return this.http.get(`${environment.URL_API}/news`)
   }
 
+  findStreaming(){
+    return this.http.get(`${environment.URL_API}/news/streaming`)
+  }
+
   findById(id){
     return this.http.get(`${environment.URL_API}/news/${id}`)
   }
