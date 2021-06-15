@@ -43,6 +43,8 @@ export class NewsPage implements OnInit {
   ngOnInit() {
     this.newsService.find().subscribe((response:any)=>{
       this.news = response
+      console.log(this.news);
+      
     })
     this.newsService.findUserNews(this.userService.User._id).subscribe((response:any)=>{
       this.myNews = response;

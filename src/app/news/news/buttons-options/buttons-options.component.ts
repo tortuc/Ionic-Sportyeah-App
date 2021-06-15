@@ -40,6 +40,8 @@ export class ButtonsOptionsComponent implements OnInit {
   // @Input() files: IFile[] = [];
   @Input() group:boolean = false;
 
+  @Input() principal:boolean = false;
+
   @Output() videoToUpload = new EventEmitter();
   @Output() newFile = new EventEmitter();
   @Output() editedFile = new EventEmitter();
@@ -110,9 +112,9 @@ edit= false;
         this.youtube();
         break;
 
-      // case "online":
-      //   this.filesOnline();
-      //   break;
+      case "online":
+        this.filesOnline();
+        break;
 
       case "camera":
         this.fileService.takePhoto().then((file) => {

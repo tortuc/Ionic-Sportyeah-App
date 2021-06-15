@@ -19,6 +19,8 @@ export class QuestionService {
   ) { }
 
   create(body){
+    console.log(body);
+    
     return this.http.post<any>(`${environment.URL_API}/question/create`,body)
   }
 

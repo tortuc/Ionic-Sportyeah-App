@@ -1,7 +1,7 @@
 <ion-header>
-  <ion-buttons slot="start">
+  <!-- <ion-buttons slot="end">
     <ion-back-button style="color: white"></ion-back-button>
-  </ion-buttons>
+  </ion-buttons> -->
   <ion-toolbar class="toolbar-bg">
     <ion-buttons slot="start">
       <ion-menu-button style="color: white"></ion-menu-button>
@@ -13,7 +13,12 @@
 <ion-content *ngIf="news.length > 0" class="main-bg">
 <ion-grid>
   <ion-row>
+    <ion-col style="text-align: center;" size="12">
+    <ion-button style="--border-radius: 25px;" *ngIf="userService.User?.profile_user == 'press' "  [routerLink]="'/news/create'">Agregar notica</ion-button>
+    </ion-col>
+
     <ion-col size="12">
+
       <h1 class="title">{{'news.last' | translate}}</h1>
       <!--<ion-text color="black">
          <h1 style="font-size:35px;color: white; text-align: center;"><i></i></h1> 
@@ -118,16 +123,26 @@
                   <source [src]="new.principalVideo | safeUrl" type="video/mp4" />
                 </video>
               </div> 
+              <div *ngIf="new.principalYoutube">
+                <iframe style=" overflow: hidden ;  width: 100%;
+                height: 140px"
+                  *ngIf="new.principalYoutube | youtube"
+                  [src]="new.principalYoutube | youtube"
+                  frameborder="0"
+              ></iframe>
+              </div>
+
             </ion-col>
             
-            <ion-col size-xs="10" size-lg="7">
+            <ion-col size-xs="9" size-lg="7">
               <h5 class="deporteTitle">{{ 'sport.'+new.sport| translate}}<span style="font-size: 8 !important;color: rgb(58, 58, 58);margin-left:15px">{{new.date | customDisplayDate:true}}</span>
       
               </h5>
               <h3 (click)="OpenNews(new._id)" class="newsTitle">{{new.headline}}</h3>
+              <h4 (click)="OpenNews(new._id)" class="newsSubitle">{{new.principalSubtitle}}</h4>
             </ion-col>  
-            <ion-col size-xs="2" size-lg="2">
-              <div style="text-align: center;margin-top: 40px;cursor: pointer;">
+            <ion-col size-xs="3" size-lg="2">
+              <div class="userAvatar">
                 <ion-avatar class="avatar" (click)="userService.goToProfile(new.user.username,new.user._id,'news',undefined)" >
                   <img class="user-img-shadow" [src]="new.user.photo" />
                 </ion-avatar>
@@ -322,6 +337,9 @@
 <ion-content *ngIf="news.length == 0" class="main-bg">
   <ion-grid>
     <ion-row>
+      <ion-col style="text-align: center;" size="12">
+        <ion-button style="--border-radius: 25px;" *ngIf="userService.User?.profile_user == 'press' "  [routerLink]="'/news/create'">Agregar notica</ion-button>
+      </ion-col>
       <ion-col size="12"> 
         <ion-img class="iconNotNews" src="https://img.icons8.com/color/344/nothing-found.png" ></ion-img>
         <h1 style="text-align: center;color:white">{{ 'news.notNews'| translate}}</h1>
