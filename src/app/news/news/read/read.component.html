@@ -62,6 +62,14 @@
        <source [src]="news?.news.principalVideo | safeUrl" type="video/mp4" />
      </video>
    </div> 
+      <!-- Youtube Principal -->
+   <div *ngIf="news?.news.principalYoutube">
+    <iframe
+      *ngIf="news?.news.principalYoutube | youtube"
+      [src]="news?.news.principalYoutube | youtube"
+      frameborder="0"
+  ></iframe>
+  </div>
    <p *ngIf="news?.news.principalVideo != null || news?.news.principalImage != null " style="text-align: center;color: #737373;font-size: 14px;" (click)="isLink(news?.news.originPrincipaMedia)"><i>{{news?.news.originPrincipaMedia }}</i></p>
 </ion-col> 
 

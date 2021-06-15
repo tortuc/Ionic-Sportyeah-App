@@ -22,8 +22,8 @@
                     <img class="logoSport" src="assets/logos/imagotipo_azul.png" alt="logoSportyeah!" >
                     <h1 style="color: black;">{{ 'news.newNews' | translate }}</h1>
                   </div>
-                  <ion-button *ngIf="!redactarArticulo" (click)="redactar()">{{ 'news.write_new' | translate }}</ion-button>
-                  <ion-button *ngIf="!redactarArticulo" (click)="createStream()">{{ 'news.transmit' | translate }}</ion-button>
+                  <ion-button class="borderRadius" *ngIf="!redactarArticulo" (click)="redactar()">{{ 'news.write_new' | translate }}</ion-button>
+                  <ion-button class="borderRadius" *ngIf="!redactarArticulo" (click)="createStream()">{{ 'news.transmit' | translate }}</ion-button>
                 </ion-col>
                
         <ion-col *ngIf="redactarArticulo" size="12">
@@ -70,11 +70,32 @@
 
 
             <ion-col style="text-align: center;" size="12">
+                
+
               <!-- Boton para imagen Principal -->
-             <p *ngIf="!imagenSelected && !urlVideo">{{'news.image_video' | translate}}</p> 
-             <ion-button *ngIf="!imagenSelected && !urlVideo" style="text-align: center;" (click)="takePhotoFrom('principal',1)"  >
+            <p *ngIf="!imagenSelected && !videoSelected && !principalYoutube">{{'news.image_video' | translate}}</p> 
+            <buttons-options 
+            *ngIf="!imagenSelected && !videoSelected && !principalYoutube" 
+              #optionsBtn
+              (videoToUpload)="pushVideoToUpload($event)"
+              (newFile)="addVideoPrincipal($event)"
+              (newYoutube)="agregandoYoutubePrincipal = !agregandoYoutubePrincipal"
+              (editedFile)="editedFile($event)"
+              [question]="question.questionGroup"
+              [principal]="true"
+            ></buttons-options>
+            <div style="text-align: center;" *ngIf="agregandoYoutubePrincipal">
+              <div>{{'news.addYoutube' | translate}}:</div>
+              <div
+              #mainInput
+              style="max-height: 200px; color: #222121;background: #2a4c7854;border-radius: 9px;"
+              contenteditable
+            ></div>
+            <ion-button (click)="addYoutubePrincipal()"  >{{'news.addVideo' | translate}}</ion-button>
+           </div>
+             <!--  <ion-button *ngIf="!imagenSelected && !videoSelected" style="text-align: center;" (click)="takePhotoFrom('principal',1)"  >
               <ion-icon  name="images" style="--color: black;font-size:30px" ></ion-icon>
-            </ion-button> <br>
+            </ion-button> <br> -->
             <p *ngIf="!newsAudio">{{'news.audioNews' | translate}}</p> 
             <record-audio-news
           *ngIf="!newsAudio"
@@ -86,7 +107,7 @@
           (emoji)="stopPropagation($event)"
         -->
 
-            <div *ngIf="!urlVideo">
+            <!-- <div *ngIf="!videoSelected">
               <input
                 #openVideo
                 type="file"
@@ -94,7 +115,7 @@
                 (change)="uploadVideo($event,'principal',1)"
                 hidden
               />
-      </div>
+      </div> -->
           </ion-col>
          
          
@@ -110,15 +131,15 @@
             <ion-img *ngIf="imagenSelected"    class="imageSelected" [src]="imagenSelected"></ion-img>
              <!-- Boton para cambiar imagen Principal -->
              <div *ngIf="imagenSelected" style="width: 85%;text-align: end;">
-              <ion-button  style="text-align: center;height: 25px;" (click)="takePhotoFrom('principal', 1 )"  >
+              <!-- <ion-button  style="text-align: center;height: 25px;" (click)="takePhotoFrom('principal', 1 )"  >
                 <ion-icon  name="pencil-outline" style="--color: black;font-size:20px" ></ion-icon>
-              </ion-button>
+              </ion-button> -->
               <ion-button class="buttonDelete"  (click)="deleteImagePrincipal()"  >
                 <ion-icon  name="trash-outline" style="--color: black;font-size:20px" ></ion-icon>
               </ion-button>
              </div>
             <!-- Video Principal -->
-            <div *ngIf="urlVideo" style="position: relative">
+            <div *ngIf="videoSelected" style="position: relative">
               <ion-icon
               name="close"
               class="close-video"
@@ -131,14 +152,38 @@
                 webkit-playsinline="webkit-playsinline"
                 class="videoPlayer"
               >
-                <source [src]="urlVideo | safeUrl" type="video/mp4" />
+                <source [src]="videoSelected | safeUrl" type="video/mp4" />
               </video>
+            </div>
+
+            <!-- Youtube Principal -->
+            <div *ngIf="principalYoutube">
+                <iframe
+            *ngIf="principalYoutube | youtube"
+            [src]="principalYoutube | youtube"
+            frameborder="0"
+              ></iframe>
+              <div  style="text-align: center;" *ngIf="editYoutubePrincipal">
+                <div
+                #mainInputEdit
+                style="max-height: 200px; color: #222121;background: #2a4c7854;border-radius: 9px;"
+                contenteditable
+              ></div>
+              
+            <ion-button (click)="saveEditYoutubePrincipal()"  >{{'news.addYoutube' | translate}}</ion-button>
+              </div>
+              <ion-button  style="text-align: center;height: 25px;" (click)="editYoutubePrincipal = true"  >
+                <ion-icon  name="pencil-outline" style="--color: black;font-size:20px" ></ion-icon>
+              </ion-button>
+              <ion-button class="buttonDelete"  (click)="eliminarYoutube()"><!-- deleteImage -->
+                <ion-icon  name="trash-outline" style="--color: black;font-size:20px" ></ion-icon>
+              </ion-button>
             </div>
             
             
             <!-- Origen de la imagen o video principal -->
          
-              <ion-radio-group  [(ngModel)]="MiprincipalMedia"  *ngIf="MiprincipalMedia == undefined && (urlVideo != null || imagenSelected != null ) && !originPrincipaMedia">
+              <ion-radio-group  [(ngModel)]="MiprincipalMedia"  *ngIf="MiprincipalMedia == undefined && (videoSelected != null || imagenSelected != null ) && !originPrincipaMedia">
                 <ion-item  (ionBlur)="originPrincipaMediaListoMio()" >
                   <ion-label>{{'news.my_property' | translate}}</ion-label>
                   <ion-radio   slot="start" value="0"></ion-radio>
@@ -153,7 +198,7 @@
                 <ion-textarea [(ngModel)]="originPrincipaMedia" placeholder="Porfavor introduce el origen de la noticia"></ion-textarea>
                 <ion-button (click)="originPrincipaMediaListo(1)" [disabled]="(originPrincipaMedia != null && originPrincipaMedia != '')?false:true"  float-right ion-button ><ion-icon name="add"></ion-icon></ion-button>
               </ion-item>
-              <p *ngIf="(originPrincipaMedia == null || originPrincipaMedia == '') && (urlVideo != null || imagenSelected != null )" style="color: rgb(255, 0, 0);">{{'news.intelectual_rights' | translate}}</p>
+              <p *ngIf="(originPrincipaMedia == null || originPrincipaMedia == '') && (videoSelected != null || imagenSelected != null )" style="color: rgb(255, 0, 0);">{{'news.intelectual_rights' | translate}}</p>
               <p *ngIf="originPrincipaMedia && agregandoOrigenPrincipaMedia == true" style="text-align: center;color: #737373;font-size: 14px;"><i>{{originPrincipaMedia}}</i><ion-icon  (click)="originPrincipaMediaListo(0)" class="editIcon" name="pencil-outline" ></ion-icon></p>
            
        </ion-col> 
@@ -382,10 +427,10 @@
               <p *ngIf="origen && agregandoOrigen == true" style="text-align: center;color: #737373;font-size: 14px;"><i>{{origen}}</i><ion-icon  (click)="origenListo(0)" class="editIcon" name="pencil-outline" ></ion-icon></p>
             </ion-col>
             <ion-col style="text-align: center;" size="12">
-              <ion-button *ngIf="redactarArticulo" (click)="todoConOrigen()" [disabled]="(titulo1 != null && titulo1 != '') && (deporte != null && deporte != '') && ((urlVideo != null && urlVideo != '') || (parrafos.length > 0)) && ((origen != null && origen != '')) ?false:true"  >{{ 'news.rody_post' | translate}}</ion-button>
+              <ion-button class="borderRadius" *ngIf="redactarArticulo" (click)="todoConOrigen()" [disabled]="(titulo1 != null && titulo1 != '') && (deporte != null && deporte != '') && ((videoSelected != null && videoSelected != '') || (parrafos.length > 0)) && ((origen != null && origen != '')) ?false:true"  >{{ 'news.rody_post' | translate}}</ion-button>
             </ion-col>
             <ion-col size="12" style="text-align: center;">
-              <ion-button (click)="porgramDate()">{{ 'news.program_date_news' | translate}}</ion-button>
+              <ion-button class="borderRadius" (click)="porgramDate()">{{ 'news.program_date_news' | translate}}</ion-button>
             </ion-col> 
              </ion-row>
            </ion-grid>
@@ -403,7 +448,7 @@
                 <ion-icon (click)="listoParaPublicar()" style="font-size: 41px;" name="arrow-back-circle-outline"></ion-icon>
               </ion-col>   
               <ion-col size="12" style="text-align: center;">
-                <ion-button (click)="publicar()">{{ 'news.publish' | translate}}</ion-button>
+                <ion-button class="borderRadius" (click)="publicar()">{{ 'news.publish' | translate}}</ion-button>
               </ion-col>     
               <ion-col size="12" style="text-align: center;">   
                 <ion-card style="width: 45%;margin: auto;height: 82%;">
@@ -423,7 +468,7 @@
                   </ion-card-header>
                   <ion-img *ngIf="imagenSelected"   class="imageMiniCard" [src]="imagenSelected"></ion-img>
                   <!-- Video Principal -->
-                  <div *ngIf="urlVideo" style="position: relative">
+                  <div *ngIf="videoSelected" style="position: relative">
                     <video
                       controls="controls"
                       preload="metadata"
@@ -431,7 +476,7 @@
                       webkit-playsinline="webkit-playsinline"
                       class="videoPlayerNews"
                     >
-                      <source [src]="urlVideo | safeUrl" type="video/mp4" />
+                      <source [src]="videoSelected | safeUrl" type="video/mp4" />
                     </video>
                   </div> 
                 </ion-card>

@@ -96,6 +96,7 @@ urlYu
     let news = this.form.value
     news.principalVideo = this.videoSelected;
     news.principalImage = this.imagenSelected;
+    news.principalYoutube = this.principalYoutube
     news.user = this.userService.User._id;
     news.headline = this.titulo1;
     news.principalSubtitle = this.subTitle;
@@ -452,6 +453,12 @@ urlYu
   urlVideoNotPrincipal = null;
   videoFileNotPrincipal = null;
   closeVideoPrincipal() {
+    this.videosToUploads = this.videosToUploads.filter((file)=>{
+      console.log(file.url);
+      console.log(this.videosToUploads);
+      return file.url != this.videoSelected
+    })
+    console.log(this.videosToUploads);
     this.urlVideo = null;
     this.videoFile = null;
     this.videoSelected = null;
@@ -858,6 +865,28 @@ urlYu
   videosToUploads = []
   pushVideoToUpload(file) {
     this.videosToUploads.push(file);
+  }
+  
+  addVideoPrincipal(file){
+    if(file.format == 'video'){
+      this.videoSelected = file.url;
+    }else{
+      this.imagenSelected = file.url;
+    }
+  }
+  agregandoYoutubePrincipal = false
+  principalYoutube
+  addYoutubePrincipal(){
+    this.principalYoutube  =   this.mainInput.nativeElement.innerHTML
+    this.agregandoYoutubePrincipal = false
+  }
+  editYoutubePrincipal = false;
+  saveEditYoutubePrincipal(){
+    this.principalYoutube  =   this.mainInputEdit.nativeElement.innerHTML
+    this.editYoutubePrincipal = false
+  }
+  eliminarYoutube(){
+    this.principalYoutube = null;
   }
 
   addYoutube(){

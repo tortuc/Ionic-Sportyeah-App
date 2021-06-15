@@ -49,6 +49,13 @@
               <source [src]="new.principalVideo | safeUrl" type="video/mp4" />
             </video>
           </div> 
+          <div *ngIf="new.principalYoutube">
+            <iframe
+              *ngIf="new.principalYoutube | youtube"
+              [src]="new.principalYoutube | youtube"
+              frameborder="0"
+          ></iframe>
+          </div>
         </ion-card>
       </ion-col>
     </ion-row>  
