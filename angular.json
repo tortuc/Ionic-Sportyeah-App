@@ -167,6 +167,9 @@
             "production": {
               "devServerTarget": "app:serve:production"
             },
+            "test": {
+              "devServerTarget": "app:serve:test"
+            },
             "ci": {
               "devServerTarget": "app:serve:ci"
             }
@@ -180,6 +183,9 @@
           "configurations": {
             "production": {
               "browserTarget": "app:build:production"
+            },
+            "test": {
+              "browserTarget": "app:build:test"
             }
           }
         },
@@ -193,6 +199,10 @@
             "production": {
               "cordovaBuildTarget": "app:ionic-cordova-build:production",
               "devServerTarget": "app:serve:production"
+            },
+            "test": {
+              "cordovaBuildTarget": "app:ionic-cordova-build:test",
+              "devServerTarget": "app:serve:test"
             }
           }
         },
@@ -210,6 +220,17 @@
                 {
                   "replace": "src/environments/environment.ts",
                   "with": "src/environments/environment.prod.ts"
+                }
+              ],
+              "sourceMap": false,
+              "optimization": true
+            },
+            "test": {
+              "outputHashing": "media",
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.test.ts"
                 }
               ],
               "sourceMap": false,
@@ -244,7 +265,8 @@
             ]
           },
           "configurations": {
-            "production": {}
+            "production": {},
+            "test": {}
           }
         }
       }
