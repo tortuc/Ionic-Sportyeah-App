@@ -15,7 +15,9 @@
     "build:ssr": "ng build --prod && ng run app:server:production",
     "prerender": "ng run app:prerender",
     "prod": "ng build --prod && ng run app:server:production && pm2 start dist/app/server/main.js",
+    "prod-test": "ng build --configuration=test && ng run app:server:production && pm2 start dist/app/server/main.js",
     "dev": "ionic serve",
+    "dev-test": "ionic serve --configuration=test",
     "build-android": "ionic build --prod && npx cap copy android && cordova-res android --skip-config --copy && npx cap open android"
   },
   "private": true,
