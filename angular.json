@@ -227,7 +227,11 @@
             "production": {
               "browserTarget": "app:build:production",
               "serverTarget": "app:server:production"
-            }
+            },
+            "test": {
+              "browserTarget": "app:build:test",
+              "serverTarget": "app:server:test"
+            }  
           }
         },
         "prerender": {
