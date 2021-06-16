@@ -87,6 +87,7 @@ form = this.fb.group({
       this.videoSelected = response.news.principalVideo;
       this.urlVideo = response.news.principalVideo;
       this.imagenSelected = response.news.principalImage;
+      this.principalYoutube = response.news.principalYoutube
       this.parrafos = response.news.content;
       this.titulo1 = response.news.headline;
       this.deporte = response.news.sport;
@@ -118,6 +119,7 @@ async editar(){
   
   news.principalVideo = this.videoSelected;
   news.principalImage = this.imagenSelected;
+  news.principalYoutube = this.principalYoutube  
   news.user = this.userService.User._id;
   news.headline = this.titulo1;
   news.principalSubtitle = this.subTitle;
@@ -861,6 +863,27 @@ editedLink(file){
 videosToUploads = []
 pushVideoToUpload(file) {
   this.videosToUploads.push(file);
+}
+addVideoPrincipal(file){
+  if(file.format == 'video'){
+    this.videoSelected = file.url;
+  }else{
+    this.imagenSelected = file.url;
+  }
+}
+agregandoYoutubePrincipal = false
+principalYoutube
+addYoutubePrincipal(){
+  this.principalYoutube  =   this.mainInput.nativeElement.innerHTML
+  this.agregandoYoutubePrincipal = false
+}
+editYoutubePrincipal = false;
+saveEditYoutubePrincipal(){
+  this.principalYoutube  =   this.mainInputEdit.nativeElement.innerHTML
+  this.editYoutubePrincipal = false
+}
+eliminarYoutube(){
+  this.principalYoutube = null;
 }
 
 addYoutube(){
