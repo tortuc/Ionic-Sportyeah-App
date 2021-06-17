@@ -427,7 +427,10 @@
               <p *ngIf="origen && agregandoOrigen == true" style="text-align: center;color: #737373;font-size: 14px;"><i>{{origen}}</i><ion-icon  (click)="origenListo(0)" class="editIcon" name="pencil-outline" ></ion-icon></p>
             </ion-col>
             <ion-col style="text-align: center;" size="12">
-              <ion-button class="borderRadius" *ngIf="redactarArticulo" (click)="todoConOrigen()" [disabled]="(titulo1 != null && titulo1 != '') && (deporte != null && deporte != '') && ((videoSelected != null && videoSelected != '') || (parrafos.length > 0)) && ((origen != null && origen != '')) ?false:true"  >{{ 'news.rody_post' | translate}}</ion-button>
+              <ion-button class="borderRadius" *ngIf="redactarArticulo" (click)="todoConOrigen()" [disabled]="(titulo1 != null && titulo1 != '') && (deporte != null && deporte != '') && ((videoSelected != null && videoSelected != '') || (parrafos.length > 0)) && ((origen != null && origen != '')) ?false:true"  >{{ 'news.ready_post' | translate}}</ion-button>
+            </ion-col>
+            <ion-col style="text-align: center;" size="12">
+              <ion-button class="borderRadius" *ngIf="redactarArticulo" (click)="publicar(true)" >{{ 'news.save_draft_copy' | translate}}</ion-button>
             </ion-col>
             <ion-col size="12" style="text-align: center;">
               <ion-button class="borderRadius" (click)="porgramDate()">{{ 'news.program_date_news' | translate}}</ion-button>
@@ -448,7 +451,7 @@
                 <ion-icon (click)="listoParaPublicar()" style="font-size: 41px;" name="arrow-back-circle-outline"></ion-icon>
               </ion-col>   
               <ion-col size="12" style="text-align: center;">
-                <ion-button class="borderRadius" (click)="publicar()">{{ 'news.publish' | translate}}</ion-button>
+                <ion-button class="borderRadius" (click)="publicar(false)">{{ 'news.publish' | translate}}</ion-button>
               </ion-col>     
               <ion-col size="12" style="text-align: center;">   
                 <ion-card style="width: 45%;margin: auto;height: 82%;">
@@ -466,6 +469,7 @@
                       </ion-text>   
                     </ion-item>
                   </ion-card-header>
+                  <!-- Imagen Principal -->
                   <ion-img *ngIf="imagenSelected"   class="imageMiniCard" [src]="imagenSelected"></ion-img>
                   <!-- Video Principal -->
                   <div *ngIf="videoSelected" style="position: relative">

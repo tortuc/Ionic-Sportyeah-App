@@ -25,7 +25,7 @@ export class NewsPage implements OnInit {
   myNews = []; // Contiene las noticias del reportero en caso de ser user press
   indexLast = 3;
    verMasSport(){
-       this.indexLast += 10 
+    this.indexLast += 10 
    }
   indexLastFollow = 3;
    verMasfollow(){
@@ -43,8 +43,6 @@ export class NewsPage implements OnInit {
   ngOnInit() {
     this.newsService.find().subscribe((response:any)=>{
       this.news = response
-      console.log(this.news);
-      
     })
     this.newsService.findUserNews(this.userService.User._id).subscribe((response:any)=>{
       this.myNews = response;

@@ -62,6 +62,11 @@ export class NewsService {
     return this.http.get(`${environment.URL_API}/news/deleted/${user}`)
   }
 
+  
+  findUserDraftNews(user){
+    return this.http.get(`${environment.URL_API}/news/draft/${user}`)
+  }
+
   findUserProgramatedNews(user){
     return this.http.get(`${environment.URL_API}/news/programated/${user}`)
   }
@@ -74,7 +79,8 @@ export class NewsService {
     return this.http.delete(`${environment.URL_API}/news/delete/${id}`)
   }
 
-  async delete(id:string){
+  async delete(news){
+    
     return new Promise(async(resolve,reject)=>{
 
   
@@ -95,11 +101,11 @@ export class NewsService {
           text: this.translate.instant("news.deleteModal.accept"),
           handler: () => {
             this.http.delete(
-              `${environment.URL_API}/news/delete/${id}`,
+              `${environment.URL_API}/news/delete/${news._id}`,
               {
                 headers: new HttpHeaders({ "access-token": getToken() }),
               }
-            ).subscribe(()=>{ resolve(true) })
+            ).subscribe(()=>{ resolve(news) })
           },
         },
       ],
