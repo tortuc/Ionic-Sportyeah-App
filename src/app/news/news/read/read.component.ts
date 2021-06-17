@@ -37,8 +37,6 @@ export class ReadComponent implements OnInit {
       .toPromise()
       .then( (response: any) => {
         this.news = response;
-        console.log(response);
-        
          this.getComments();
          this.getSponsors(response.news.user._id)
       })

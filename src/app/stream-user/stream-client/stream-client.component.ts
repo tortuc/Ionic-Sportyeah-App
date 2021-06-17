@@ -69,6 +69,7 @@ export class StreamClientComponent implements OnInit {
   idVideo;
   unpublished:boolean = false;
 
+  remoteAudioTrack:any
   async subcribeToRemoteUser(){
     this.rtc.client.on("user-published", async (user, mediaType) => {
       // Subscribe to a remote user.
@@ -108,12 +109,15 @@ export class StreamClientComponent implements OnInit {
       // If the subscribed track is audio.
       if (mediaType === "audio") {
         // Get `RemoteAudioTrack` in the `user` object.
-        const remoteAudioTrack = user.audioTrack;
+         this.remoteAudioTrack = user.audioTrack;
         // Play the audio track. No need to pass any DOM element.
-        remoteAudioTrack.play();
+        this.remoteAudioTrack.play();
+        console.log("/////////////////////////////////////////////////////////////");
+        console.log(this.remoteAudioTrack)
+        console.log("/////////////////////////////////////////////////////////////");
+
       }
     });
-
     
     
     //Unpublished
@@ -125,6 +129,13 @@ export class StreamClientComponent implements OnInit {
     });
   }
 
+  duration = 0;
+  currentTime: any = 0;
+  changeRange(ev){
+    console.log(Number(ev.target.value)*100);
+    this.remoteAudioTrack.setVolume(Number(ev.target.value));
+    console.log(this.remoteAudioTrack)
+  }
 
  
 }

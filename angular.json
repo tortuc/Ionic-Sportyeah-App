@@ -79,10 +79,19 @@
               "serviceWorker": true,
               "ngswConfigPath": "ngsw-config.json"
             },
+            "test": {
+              "fileReplacements": [
+                  {
+                      "replace": "src/environments/environment.ts",
+                      "with": "src/environments/environment.test.ts"
+                  }
+              ]
+          },
             "ci": {
               "progress": false
             }
           }
+        
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
@@ -93,6 +102,9 @@
             "production": {
               "browserTarget": "app:build:production"
             },
+            "test": {
+              "browserTarget": "app:build:test"
+          },
             "ci": {
               "progress": false
             }
@@ -155,6 +167,9 @@
             "production": {
               "devServerTarget": "app:serve:production"
             },
+            "test": {
+              "devServerTarget": "app:serve:test"
+            },
             "ci": {
               "devServerTarget": "app:serve:ci"
             }
@@ -168,6 +183,9 @@
           "configurations": {
             "production": {
               "browserTarget": "app:build:production"
+            },
+            "test": {
+              "browserTarget": "app:build:test"
             }
           }
         },
@@ -181,6 +199,10 @@
             "production": {
               "cordovaBuildTarget": "app:ionic-cordova-build:production",
               "devServerTarget": "app:serve:production"
+            },
+            "test": {
+              "cordovaBuildTarget": "app:ionic-cordova-build:test",
+              "devServerTarget": "app:serve:test"
             }
           }
         },
@@ -202,6 +224,17 @@
               ],
               "sourceMap": false,
               "optimization": true
+            },
+            "test": {
+              "outputHashing": "media",
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.test.ts"
+                }
+              ],
+              "sourceMap": false,
+              "optimization": true
             }
           }
         },
@@ -215,7 +248,11 @@
             "production": {
               "browserTarget": "app:build:production",
               "serverTarget": "app:server:production"
-            }
+            },
+            "test": {
+              "browserTarget": "app:build:test",
+              "serverTarget": "app:server:test"
+            }  
           }
         },
         "prerender": {
@@ -228,7 +265,8 @@
             ]
           },
           "configurations": {
-            "production": {}
+            "production": {},
+            "test": {}
           }
         }
       }
