@@ -8,4 +8,6 @@ export const environment: Environment = {
   URL_SOCKET: "https://api.sportyeah.com",
   URL_CHALLENGE: "https://challenge.sportyeah.com",
   URL_WEB:'https://app.sportyeah.com',
+  title:"Sportyeah"
+
 };

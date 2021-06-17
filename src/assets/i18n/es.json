@@ -460,6 +460,9 @@
     "invited_event": {
       "text": "te ha invitado a participar en su evento"
     },
+    "news_created": {
+      "text": "ha publicado una noticia del deporte: "
+    },
     "readall": "Marcar todas como leidas"
   },
   "edit": "Editar",
@@ -962,9 +965,13 @@
     "next": "Siguiente",
     "newNews": "Nueva Noticia",
     "editNews": "Editando Noticia",
-    "rody_post": "Listo para publicar",
+    "ready_post": "Listo para publicar",
+    "save_draft_copy": "Guardar como borrador",
+    "saved_draft_copy":"Artículo guardado como borrador",
+    "draft":"Borrador",
     "publish": "Publicar",
     "published": "Artículo publicado con exito!",
+    "ready_edit": "Listo para editar",
     "edited": "Artículo editado con exito!",
     "date": "Fecha",
     "addVideo": "Agregar video",

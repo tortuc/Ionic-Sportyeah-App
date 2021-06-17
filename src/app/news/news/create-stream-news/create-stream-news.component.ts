@@ -78,7 +78,7 @@ formateSelected
   }
  
 createChanel(){
-  this.channel = this.makeid(22)
+  this.channel = this.userService.User.username
 }
  
 
@@ -347,15 +347,15 @@ await   this.newsService.deleteNews(this.newsId).subscribe((response)=>{
     postStream:['',[Validators.required]],
   })
 
-  makeid(length) {
-    var result           = '';
-    var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    var charactersLength = characters.length;
-    for ( var i = 0; i < length; i++ ) {
-       result += characters.charAt(Math.floor(Math.random() * charactersLength));
-    }
-   return result
-  }
+  // makeid(length) {
+  //   var result           = '';
+  //   var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  //   var charactersLength = characters.length;
+  //   for ( var i = 0; i < length; i++ ) {
+  //      result += characters.charAt(Math.floor(Math.random() * charactersLength));
+  //   }
+  //  return result
+  // }
 async  publicar(){
    
   let loading = await this.loadingCtrl.create({

@@ -12,7 +12,10 @@ export interface INotification {
     | "mention_comment"
     | "like"
     | "shared"
-    | "comment";
+    | "comment"
+    | "questionEnd"
+    | "invited_event"
+    | "news_created";
   date: Date;
   deleted: boolean;
   comment: IComment;

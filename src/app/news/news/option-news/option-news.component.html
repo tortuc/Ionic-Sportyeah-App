@@ -9,7 +9,7 @@
         <ion-icon style="color: #e41919;margin-right:3px"  name="trash-bin-outline"></ion-icon>  {{'options_post.delete' | translate}}
       </ion-item>
 
-      <ion-item style="cursor:pointer" *ngIf="news.deleted == true  "  (click)="restore()">
+      <ion-item style="cursor:pointer" *ngIf="news.deleted == true && news.draftCopy == false "  (click)="restore()">
         <ion-icon style="color: #20e419;margin-right:3px"  name="trash-bin-outline"></ion-icon>  {{'news.restore' | translate}}
       </ion-item>
   
