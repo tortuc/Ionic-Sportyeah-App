@@ -19,9 +19,9 @@ export class ShowNewsComponent implements OnInit {
     public popoverController: PopoverController,
   ) { }
 
-
   inactivedNews
   activeNews
+  draftNews
   news
   ngOnInit() {
     this.newsService.findUserNews(this.userService.User._id).subscribe((response)=>{
@@ -31,22 +31,40 @@ export class ShowNewsComponent implements OnInit {
     this.newsService.findUserDeletedNews(this.userService.User._id).subscribe((response)=>{
       this.inactivedNews = response;
     })
+    this.newsService.findUserDraftNews(this.userService.User._id).subscribe((response)=>{
+      this.draftNews = response;
+    })
   }
 
 
   OpenNews(id) {
     this.router.navigate([`news/read/${id}`]);
   }
- async deleteNew(id) {
-  let result = await  this.newsService.delete(id)
+ async deleteNew(news) {
+   
+  let result:any = await  this.newsService.delete(news)
+  console.log(result);
 
   if(result){
     await this.newsService.findUserNews(this.userService.User._id).subscribe((response)=>{
-      this.news = response;
-      this.activeNews = response;
+      if(result.draftCopy == true){
+        this.activeNews = response;
+      }else{
+        this.news = response;
+        this.activeNews = response;
+      }
     })
     await this.newsService.findUserDeletedNews(this.userService.User._id).subscribe((response)=>{
       this.inactivedNews = response;
+    })
+    this.newsService.findUserDraftNews(this.userService.User._id).subscribe((response)=>{
+      
+      if(result.draftCopy == false){
+        this.draftNews = response;
+      }else{
+        this.news = response;
+        this.draftNews = response;
+      }
     })
   }
   }
@@ -62,8 +80,13 @@ export class ShowNewsComponent implements OnInit {
       this.news = response;
       this.inactivedNews = response;
     })
+    this.newsService.findUserDraftNews(this.userService.User._id).subscribe((response)=>{
+      this.draftNews = response;
+    })
   }
   }
+
+  
 
   editNews(idNews) {
     this.router.navigate([`news/edit/${idNews}`]);
@@ -103,8 +126,10 @@ export class ShowNewsComponent implements OnInit {
   segmentChanged(e: CustomEvent) {
     if (e.detail.value === "active") {
       this.news = this.activeNews
-    } else{
+    } else if(e.detail.value === "inactive"){
       this.news = this.inactivedNews
+    }else{
+      this.news = this.draftNews
     }
   }
 

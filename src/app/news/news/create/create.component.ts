@@ -65,22 +65,32 @@ urlYu
     public modalController: ModalController,
     public loadingCtrl: LoadingController,
     private popover: PopoverController,
-  ) {}
+  ) {
+    if(this.userService.User.profile_user != 'press'){
+      this.router.navigate([`news`])
+    }
+  }
 
   form = this.fb.group({
-    user: ["", [Validators.required]],
-    headline: ["", [Validators.required]],
-    principalSubtitle: ["", [Validators.required]],
-    sport: ["", [Validators.required]],
-    stream: [false, [Validators.required]],
-    postStream: ["", [Validators.required]],
-    date: ["", [Validators.required]],
-    programated: [null, [Validators.required]],
+    user: [""],
+    headline: [""],
+    principalSubtitle: [""],
+    sport: [""],
+    stream: [false],
+    postStream: [""],
+    date: [""],
+    programated: [null],
   });
 
-  async presentToastWithOptions() {
+  async presentToastWithOptions(draft) {
+    let message 
+    if(draft == false){
+      message = this.translate.instant("news.published") 
+    }else{
+      message = this.translate.instant("news.saved_draft_copy") 
+    }
     const toast = await this.toastController.create({
-      message: this.translate.instant("news.published"),
+      message ,
       position: "top",
       color: "dark",
       duration: 3000,
@@ -88,7 +98,7 @@ urlYu
     toast.present();
   }
 
-  async publicar() {
+  async publicar(draft) {
     let loading = await this.loadingCtrl.create({
       message: this.translate.instant("loading"),
     });
@@ -113,9 +123,12 @@ urlYu
       news.programated = false;
     }
     news.sport = this.deporte;
-  
+    news.draftCopy = draft;
+    if(news.sport == undefined){
+      news.sport = 'various'
+    }
       this.newsService.create(news).subscribe((response) => {
-        this.presentToastWithOptions();
+        this.presentToastWithOptions(draft);
         loading.dismiss();
         this.router.navigate(["news"]);
       });
@@ -735,18 +748,18 @@ urlYu
 
   //Stream
   id;
-  makeid(length) {
-    var result = "";
-    var characters =
-      "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-    var charactersLength = characters.length;
-    for (var i = 0; i < length; i++) {
-      result += characters.charAt(Math.floor(Math.random() * charactersLength));
-    }
-    return result;
-  }
+  // makeid(length) {
+  //   var result = "";
+  //   var characters =
+  //     "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  //   var charactersLength = characters.length;
+  //   for (var i = 0; i < length; i++) {
+  //     result += characters.charAt(Math.floor(Math.random() * charactersLength));
+  //   }
+  //   return result;
+  // }
   createStream() {
-    this.router.navigate([`/news/createStream/${this.makeid(22)}`]);
+    this.router.navigate([`/news/createStream/${this.userService.User._id}`]);
   }
   redactarArticulo: boolean = false;
   redactar() {
@@ -760,7 +773,7 @@ urlYu
       this.sportyeah.nativeElement.classList.add("logoSportBig");
     }
   }
-  ngOnInit(): void {}
+  ngOnInit(): void {  }
 
   question = {
     user: this.userService.User._id,
@@ -769,21 +782,21 @@ urlYu
   };
 
   badDate: boolean = false;
-  createdNews(loading) {
-    this.questionService.create(this.question).subscribe((response: any) => {
-      //Crea el cuestionario y agrega el id al news
-      this.form.value.question = response._id;
+  // createdNews(loading) {
+  //   this.questionService.create(this.question).subscribe((response: any) => {
+  //     //Crea el cuestionario y agrega el id al news
+  //     this.form.value.question = response._id;
 
-      this.newsService.create(this.form.value).subscribe((response) => {
-        this.presentToastWithOptions();
-        this.router.navigate(["news"]);
-      });
-    });
-    loading.dismiss(); 
-  }
-  createNewsAndQuestion(loading) {
-      this.createdNews(loading);
-  }
+  //     this.newsService.create(this.form.value).subscribe((response) => {
+  //       this.presentToastWithOptions();
+  //       this.router.navigate(["news"]);
+  //     });
+  //   });
+  //   loading.dismiss(); 
+  // }
+  // createNewsAndQuestion(loading) {
+  //     this.createdNews(loading);
+  // }
   whitTime: boolean;
   endDate;
 

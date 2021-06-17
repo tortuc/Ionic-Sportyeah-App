@@ -70,6 +70,7 @@ import { ShowAwardsComponent } from "./challenges/show-awards/show-awards.compon
 import { AwardsAccordionComponent } from "./challenges/awards-accordion/awards-accordion.component";
 import { CategoryComponent } from "./structure/category/category.component";
 import { EventInvitationNotificationComponent } from "./event-invitation-notification/event-invitation-notification.component";
+import { NewsNotificationComponent } from "./news-notification/news-notification.component";
 
 const components = [
   NewProfilePhotoComponent,
@@ -81,6 +82,7 @@ const components = [
   LikeNotificationComponent,
   CommentNotificationComponent,
   EventInvitationNotificationComponent,
+  NewsNotificationComponent,
   SharedNotificationComponent,
   ChallengeCommentsComponent,
   ChallengeReactionsComponent,

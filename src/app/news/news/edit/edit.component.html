@@ -426,10 +426,10 @@
                 <p *ngIf="origen && agregandoOrigen == true" style="text-align: center;color: #737373;font-size: 14px;"><i>{{origen}}</i><ion-icon  (click)="origenListo(0)" class="editIcon" name="pencil-outline" ></ion-icon></p>
               </ion-col>
          <ion-col style="text-align: center;" size="12">
-          <ion-button  (click)="todoConOrigen()" [disabled]="(titulo1 != null && titulo1 != '') && (deporte != null && deporte != '') && ((videoSelected != null && videoSelected != '') || (parrafos.length > 0)) && ((origen != null && origen != '')) ?false:true"  >Listo para editar</ion-button>
+          <ion-button class="borderRadius"  (click)="todoConOrigen()" [disabled]="(titulo1 != null && titulo1 != '') && (deporte != null && deporte != '') && ((videoSelected != null && videoSelected != '') || (parrafos.length > 0)) && ((origen != null && origen != '')) ?false:true"  >{{'news.ready_edit' | translate}}</ion-button>
         </ion-col>
         <ion-col size="12" style="text-align: center;">
-          <ion-button (click)="porgramDate()">{{ 'news.program_date_news' | translate}}</ion-button>
+          <ion-button class="borderRadius" (click)="porgramDate()">{{ 'news.program_date_news' | translate}}</ion-button>
         </ion-col> 
           </ion-row>
         </ion-grid>

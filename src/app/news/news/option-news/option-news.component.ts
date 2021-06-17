@@ -19,7 +19,7 @@ export class OptionNewsComponent implements OnInit {
   delete(){
     this.popover.dismiss({
       action:"delete",
-      news:this.news._id
+      news:this.news
     })
   }
 

@@ -15,6 +15,7 @@ import { FilesService } from 'src/app/service/files.service';
 import { ButtonsOptionsComponent } from '../buttons-options/buttons-options.component';
 import { ModalProgramNewsComponent } from '../modal-program-news/modal-program-news.component';
 import * as moment from 'moment';
+import { truncate } from 'fs';
 
 const { Camera ,Filesystem} = Plugins;
 
@@ -134,6 +135,11 @@ async editar(){
   }else{
     news.programated = false;
   }
+  console.log(this.news.draftCopy);
+  
+  if(this.news.draftCopy == true){
+    news.draftCopy = false;
+  }
   news.sport = this.deporte;
   news.id = this.idNews;
    
@@ -152,7 +158,7 @@ number:number = 0//Posicion de el parrafo, pero no del array,
 positionEditactual:number=null; 
 parrafoAntesEdicion;
 parrafos=[];
-  text1 = `Escribe el párrafo # ${this.parrafos.length+1} `;
+  text1 ='' // `Escribe el párrafo # ${this.parrafos.length+1} `;
   titulo1= ``;
   subTitle = null;
   deporte= ``;

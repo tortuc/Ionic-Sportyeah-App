@@ -1,15 +1,12 @@
 import { Component, OnInit,ViewChild,ElementRef } from '@angular/core';
 import AgoraRTC, { IAgoraRTCClient } from "agora-rtc-sdk-ng"
 import { UserService } from "../../../service/user.service";
-import { ActivatedRoute, Router } from '@angular/router';
-import { LoadingController, ModalController, Platform } from "@ionic/angular";
+import { ActivatedRoute } from '@angular/router';
+import { LoadingController } from "@ionic/angular";
 import { TranslateService } from "@ngx-translate/core";
 import { NewsService } from '../../../service/news.service';
 import { SocketService } from 'src/app/service/socket.service';
-import { Hash } from 'crypto';
-import { keyframes } from '@angular/animations';
-import { Console } from 'console';
-const client: IAgoraRTCClient = AgoraRTC.createClient({ mode: "live", codec: "vp8" });
+// const client: IAgoraRTCClient = AgoraRTC.createClient({ mode: "live", codec: "vp8" });
  
 @Component({
   selector: 'app-stream-news',
@@ -35,15 +32,7 @@ export class StreamNewsComponent implements OnInit {
     public newsService:NewsService,
     public socketService:SocketService,
   ) {
-    //client.setClientRole("audience")
-  
     this.channel = route.snapshot.paramMap.get('id')
-      this.rtc.client = AgoraRTC.createClient({ mode: "live", codec: "vp8" ,role:"audience"});
-      try {
-             this.subscribe()
-      } catch (error) {
-      }
-    //this.join()
     this.newsService.findById(this.newsService.idNews).toPromise()
     .then((response:any)=>{
       this.news = response 
@@ -87,13 +76,29 @@ export class StreamNewsComponent implements OnInit {
 formateSelected */
 
   uid
-  async join(){
-    this.uid = await this.rtc.client.join(this.options.appId, this.channel,  this.options.token, null);
+
+  async startClientCall(){
+    //Create Client
+    await  this.createClient()
+    try {
+      this.subscribe()
+} catch (error) {
+}
+
   }
 
+
+  async createClient(){
+    this.rtc.client = AgoraRTC.createClient({ mode: "live", codec: "vp8", role:"audience" });
+  }
+
+  async joinAChanel(){
+    this.options.uid = await this.rtc.client.join(this.options.appId, this.options.channel, this.options.token, this.userService.User._id);
+  }
+  
   async  leave() {//retiro del canal
-    client.localTracks.forEach((v) => v.close());
-    await client.leave();
+    this.rtc.client.localTracks.forEach((v) => v.close());
+    await this.rtc.client.leave();
   }
 
   /* async onAgoraUserPublished(user, mediaType) {
@@ -115,7 +120,7 @@ formateSelected */
     });
     loading.present();
     this.isSubscribe = true
-    await this.join()
+    await this.joinAChanel()
     this.rtc.client.on("user-published", async (user, mediaType) => {
       // Subscribe to a remote user.
       await this.rtc.client.subscribe(user, mediaType);
@@ -145,7 +150,7 @@ formateSelected */
           video.setAttribute("preload","metadata")
           video.setAttribute("webkit-playsinline","webkit-playsinline")
          }, 1000);
-        var textnode = document.createTextNode(user.uid.toString());
+        // var textnode = document.createTextNode(user.uid.toString());
         //document.getElementById("remotePlayerlist").appendChild(textnode);
        
         // Or just pass the ID of the DIV container.
@@ -277,6 +282,7 @@ createReaction(idReaction,link){
   commnets= [];
   unpublished:boolean = false;
   ngOnInit() {
+    this.startClientCall()
     this.socketService.socket.on('new-reaction',(like)=>{
       this.esta(like.like.type,like.like._id)
     })
