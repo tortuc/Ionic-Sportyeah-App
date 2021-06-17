@@ -19,10 +19,12 @@ const indexHtml = existsSync(join(distFolder, "index.original.html"))
   : "index";
 
 const win = domino.createWindow(indexHtml);
-global["window"] = win;
-global["self"] = win.self;
+console.log(win);
+
+global["IDBIndex"] = win.IDBIndex;
 global["document"] = win.document;
 global["navigator"] = win.navigator;
+global["self"] = win;
 
 // The Express app is exported so that it can be used by serverless Functions.
 export function app(): express.Express {

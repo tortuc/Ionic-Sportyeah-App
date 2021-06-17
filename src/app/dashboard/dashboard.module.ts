@@ -16,7 +16,6 @@ import { PipesModule } from '../pipes/pipes.module';
 import { ComponentsModule } from '../components/components.module';
 import { ContenteditableValueAccessorModule } from '@tinkoff/angular-contenteditable-accessor'
 import { DirectivesModule } from '../directives/directive.module';
-import { IonCustomScrollbarModule } from 'ion-custom-scrollbar';
 import { ComponentsSharedModule } from '../shared-components/components-shared.module';
 import { PostComponetsModule } from '../post-components/post-componets.module';
  
@@ -35,7 +34,6 @@ import { PostComponetsModule } from '../post-components/post-componets.module';
     ComponentsModule,
     ContenteditableValueAccessorModule,
     DirectivesModule,
-    IonCustomScrollbarModule,
     ComponentsSharedModule,
     PostComponetsModule
   ],
