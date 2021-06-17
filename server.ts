@@ -19,7 +19,6 @@ const indexHtml = existsSync(join(distFolder, "index.original.html"))
   : "index";
 
 const win = domino.createWindow(indexHtml);
-console.log(win);
 
 global["IDBIndex"] = win.IDBIndex;
 global["document"] = win.document;
