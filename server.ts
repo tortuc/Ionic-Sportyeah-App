@@ -7,15 +7,16 @@ import 'zone.js/dist/zone-node';
 
 import { ngExpressEngine } from '@nguniversal/express-engine';
 import * as express from 'express';
-import { join } from 'path';
-
+import * as path from "path"
 import { AppServerModule } from './src/main.server';
 import { APP_BASE_HREF } from '@angular/common';
 import { existsSync } from 'fs';
 
 const domino = require('domino');
-const win = domino.createWindow('/path/to/your/project/dist/client/index.html');
+const indexRoute = join(process.cwd(), '/../browser/index.html')
+const win = domino.createWindow( indexRoute);
 global['window'] = win;
+global['self'] = win;
 global['document'] = win.document;
 global['navigator'] = win.navigator;
 
