@@ -9,7 +9,7 @@ import { LoadingController, ModalController, Platform } from "@ionic/angular";
 import { TranslateService } from "@ngx-translate/core";
 import { response } from 'express';
 import { SocketService } from 'src/app/service/socket.service';
-const client: IAgoraRTCClient = AgoraRTC.createClient({ mode: "live", codec: "vp8" });
+// const client: IAgoraRTCClient = AgoraRTC.createClient({ mode: "live", codec: "vp8" });
 
 @Component({
   selector: 'app-create-stream-news',
@@ -31,7 +31,6 @@ export class CreateStreamNewsComponent implements OnInit {
     public socketService:SocketService,
 
   ) { 
-  this.rtc.client = AgoraRTC.createClient({ mode: "live", codec: "vp8" ,role:"host"});
   }
 
   begingStream:boolean = false;
@@ -68,13 +67,18 @@ export class CreateStreamNewsComponent implements OnInit {
 formateSelected
 
   uid
+
+  async createClient(){
+    this.rtc.client = AgoraRTC.createClient({ mode: "live", codec: "vp8" ,role:"host"});
+  }
+
   async join(){
     this.uid = await this.rtc.client.join(this.options.appId, this.channel, this.options.token, null);
   }
 
   async  leave() {//retiro del canal
-    client.localTracks.forEach((v) => v.close());
-    await client.leave();
+    this.rtc.client.localTracks.forEach((v) => v.close());
+    await this.rtc.client.leave();
   }
  
 createChanel(){
@@ -124,6 +128,7 @@ createChanel(){
   screen:boolean = false;
   micro:boolean = false;
   async startScreenTransmision() {
+    this.createClient()
     this.createChanel()
     let loading = await this.loadingCtrl.create({
       message: this.translate.instant("loading"),

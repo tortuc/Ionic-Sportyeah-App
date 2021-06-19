@@ -40,6 +40,7 @@ import { LikesReactionsNewsComponent } from './likes-reactions-news/likes-reacti
 import { CreateStreamNewsComponent } from './create-stream-news/create-stream-news.component';
 import { StreamNewsComponent } from './stream-news/stream-news.component';
 import { SponsorsModule } from 'src/app/sponsors-components/sponsors.module';
+import { SubtitleNewsComponent } from './subtitle-news/subtitle-news.component';
 
 @NgModule({
   imports: [
@@ -82,7 +83,8 @@ import { SponsorsModule } from 'src/app/sponsors-components/sponsors.module';
     ModalProgramNewsComponent,
     LikesNewsComponent,
     AllReactionsNewsComponent,
-    LikesReactionsNewsComponent
+    LikesReactionsNewsComponent,
+    SubtitleNewsComponent
   ],
  
   schemas:[CUSTOM_ELEMENTS_SCHEMA]
