@@ -39,7 +39,7 @@
 -->              </ion-item>
            <ion-item ><!-- *ngIf="!subTitlebool" -->
              <ion-label  position="floating">{{'news.subTitle' | translate}}</ion-label>
-             <ion-input  style=" color: black;"  [(ngModel)]="subTitle"></ion-input>
+             <ion-input  style=" color: black;"  [(ngModel)]="subTitlePrincipal"></ion-input>
 <!--                 <ion-button (click)="subTituloListo(1)" [disabled]="(subTitle != null && subTitle != '')?false:true"  float-right ion-button ><ion-icon name="add"></ion-icon></ion-button>
 -->              </ion-item>
            <ion-item ><!-- *ngIf="!deporte" (click)="deporteListo()"-->
@@ -212,8 +212,10 @@
                 <!-- Este agrega subtitulos si el parrafo no los tiene -->
                 <div style="text-align: center;">
 <!--                     <ion-button *ngIf="(parrafo.subtitle == '' || parrafo.subtitle == undefined) && parrafo.position != 0" (click)="agregandoSubtitulo?agregarSubtitulo(parrafo.position):agregandoSubtitulo = true && poisionAgregarSubtitulo = i"  float-right ion-button >Agregar Subtitulo</ion-button>
--->                    <ion-input *ngIf="parrafo.position != 0" style="background: white; color: black;" placeholder="Agrege el subtítulo aquí" [(ngModel)]="parrafo.subtitle"></ion-input>   
-           
+   -->
+                <subtitle-news *ngIf="editando && parrafo.position == number" #subtitleNewsBtn [subTitle]="parrafo.subtitle" (editSubTitle)="subTitleEdit($event,parrafo.position)" ></subtitle-news>
+                <span *ngIf="parrafo.subtitle && ( parrafo.position != number)" [innerHTML]="parrafo.subtitle | links"></span>
+ 
                   <!-- <ion-item >
                   <ion-label>{{'news.subTitle' | translate}}</ion-label>    
                 </ion-item> -->
@@ -229,7 +231,7 @@
                     <ngx-wig style="color: black;" [(ngModel)]="text1" [buttons]="'list1,list2,bold,italic,link,underline'"></ngx-wig>
                     <ion-button *ngIf="parrafos.length > 0 " style="font-size: 10px;--background:rgba(255, 0, 0, 0.685);" (click)="cancelar()" >{{'news.cancel' | translate}}</ion-button><br>
                   </div>
-                  <div *ngIf="parrafo.parrafo != '' && parrafo.parrafo != undefined ">
+                  <div>
                   <ion-button *ngIf="parrafos.length > 0  " [disabled]="(text1 == '' && text1 == null)?true:false" style="font-size: 10px;"  (click)="(positionEditactual != parrafo.position)?selectParrafoCards(parrafo.position):EditParrafo()" >{{((positionEditactual != parrafo.position)?'news.edit':'news.save') | translate}}</ion-button>
                   <ion-button *ngIf="parrafos.length > 0 && !editando" style="--background:rgba(255, 0, 0, 0.685);font-size: 10px;" (click)="eliminarParrafo(parrafo.position)" >{{'news.delete' | translate}}</ion-button>
                   </div>
@@ -359,9 +361,8 @@
             <ion-col size="12">
               <div *ngIf="agregandoParrafo">
               <!-- Para agregar subtitulos -->
-              <p *ngIf="parrafos.length > 0">Agregar Subtítulo</p>
-              <ion-input *ngIf="parrafos.length > 0" style="background: white; color: black;" placeholder="Agrege el subtítulo aquí" [(ngModel)]="subTitleParrafo"></ion-input> 
-   
+              <subtitle-news #subtitleNewsBtn (newSubTitle)="subTitleAdd($event)" ></subtitle-news>
+
   
             <!-- Para agregar parrafo -->
                 <ngx-wig style="color: black;" [(ngModel)]="text1" [buttons]="'list1,list2,bold,italic,link,underline'"></ngx-wig>
