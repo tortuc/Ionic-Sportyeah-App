@@ -41,7 +41,9 @@ export class SportSelectComponent implements OnInit {
     private readonly translate: TranslateService
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    console.log(sports.length)
+  }
 
   filter() {
     this.sportsFilters = sports.filter((sport) => {
@@ -74,7 +76,7 @@ export class SportSelectComponent implements OnInit {
       sports: motorSports,
     },
     {
-      type: "combicombinedTestsned",
+      type: "combinedTests",
 
       sports: combinedTests,
     },
