@@ -8,7 +8,6 @@ import { AlertController, ModalController } from "@ionic/angular";
 import {
   languajes,
   profiles,
-  sports,
   sub_profiles_administration,
   sub_profiles_staff,
 } from "src/config/base";
@@ -36,7 +35,6 @@ enum Texts {
   styleUrls: ["./signup.page.scss"],
 })
 export class SignupPage implements OnInit {
-  public readonly sports = sports;
 
   public readonly langs = languajes;
 
@@ -261,6 +259,7 @@ export class SignupPage implements OnInit {
     });
 
     modal.onDidDismiss().then((response) => {
+      console.log(response)
       response.data ? this.form.controls.sport.setValue(response.data) : null;
     });
 

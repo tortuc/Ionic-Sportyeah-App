@@ -1,18 +1,58 @@
 <ion-content>
   <ion-icon
-  name="close-outline"
-  (click)="modalCtrl.dismiss()"
-  class="close-modal"
-></ion-icon>
-  <h2 style="text-align: center">{{ "select_sport" | translate }}</h2>
-  <ion-grid>
-    <ion-row>
-      <ion-col size="4" *ngFor="let sport of sports" (click)="option(sport)">
-        <div class="content">
-          <img src="assets/sports/{{ sport }}.png" alt="" />
-          <h4>{{ "sport." + sport | translate }}</h4>
-        </div>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+    name="close-outline"
+    (click)="modalCtrl.dismiss()"
+    class="close-modal"
+  ></ion-icon>
+  <h2 style="text-align: center">{{ "sportTypes" | translate }}</h2>
+
+  <div>
+    <!-- Searchbar with a placeholder -->
+    <ion-searchbar
+      placeholder="{{ 'searchSport' | translate }}"
+      (ionChange)="filter()"
+      [(ngModel)]="query"
+    ></ion-searchbar>
+    <ion-list>
+      <ion-radio-group (ionChange)="sportSelected($event)">
+        <ng-container *ngIf="!query">
+          <div *ngFor="let item of list">
+            <ion-list-header (click)="setOption(item.type)">
+              <ion-label class="sport-label">
+                <span>
+                  - {{ item.type | translate }}
+                  <ion-icon
+                    style="vertical-align: middle"
+                    [name]="
+                      option == item.type
+                        ? 'chevron-up-outline'
+                        : 'chevron-down-outline'
+                    "
+                  ></ion-icon
+                ></span>
+              </ion-label>
+            </ion-list-header>
+            <div *ngIf="option == item.type">
+              <h6 style="text-align: center">
+                {{ "disciplines" | translate }}
+              </h6>
+              <ion-item *ngFor="let sport of item.sports">
+                <ion-label> {{ "allSports." + sport | translate }}</ion-label>
+                <ion-radio [value]="sport"></ion-radio>
+              </ion-item>
+            </div>
+          </div>
+        </ng-container>
+        <ng-container *ngIf="query">
+          <h6 style="text-align: center">
+            {{ "disciplines" | translate }}
+          </h6>
+          <ion-item *ngFor="let sport of sportsFilters">
+            <ion-label> {{ "allSports." + sport | translate }}</ion-label>
+            <ion-radio [value]="sport"></ion-radio>
+          </ion-item>
+        </ng-container>
+      </ion-radio-group>
+    </ion-list>
+  </div>
 </ion-content>
