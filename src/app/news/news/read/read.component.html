@@ -80,10 +80,10 @@
       <ion-row>
         <ion-col size="12">
         <!-- Este es el Subtitulo -->
-        <h2 *ngIf="parrafo.subtitle" style="text-align: center;color: #5a5a5a;font-size: 23px;">
-          {{parrafo.subtitle}}
+        <h2 *ngIf="parrafo.subtitle" [innerHTML]="parrafo.subtitle | links" style="text-align: center;color: #5a5a5a;font-size: 23px;">
         </h2>
-        
+        <!-- <span *ngIf="parrafo.subtitle" [innerHTML]="parrafo.subtitle | links"></span> -->
+
 
           <!-- Este es el parrafo -->
           <div style="color: black;text-align: justify;"  [innerHTML]="parrafo.parrafo"></div>

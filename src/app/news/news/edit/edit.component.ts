@@ -16,6 +16,7 @@ import { ButtonsOptionsComponent } from '../buttons-options/buttons-options.comp
 import { ModalProgramNewsComponent } from '../modal-program-news/modal-program-news.component';
 import * as moment from 'moment';
 import { truncate } from 'fs';
+import { SubtitleNewsComponent } from '../subtitle-news/subtitle-news.component';
 
 const { Camera ,Filesystem} = Plugins;
 
@@ -31,7 +32,9 @@ export class EditComponent implements OnInit {
   @ViewChild("sportyeah") sportyeah: any;
   @ViewChild("optionsBtn") optionsBtn: ButtonsOptionsComponent;
 
-  
+  //Para el subtitulo
+  @ViewChild("subtitleNewsBtn") subtitleNewsBtn: SubtitleNewsComponent;
+
   @ViewChild("mainInputEdit") mainInputEdit: ElementRef;
 
   @ViewChild("mainInput") mainInput: ElementRef;
@@ -68,7 +71,12 @@ form = this.fb.group({
   date: ["", [Validators.required]],
 });
   news
-
+  subTitleAdd($event){
+    this.subTitle = $event;
+  }
+  subTitleEdit($event,position){
+    this.parrafos[position].subtitle = $event
+  }
   async presentToastWithOptions() {
     const toast = await this.toastController.create({
       message:this.translate.instant('news.edited'),
@@ -91,6 +99,8 @@ form = this.fb.group({
       this.principalYoutube = response.news.principalYoutube
       this.parrafos = response.news.content;
       this.titulo1 = response.news.headline;
+      this.subTitlePrincipal = response.news.principalSubtitle;
+
       this.deporte = response.news.sport;
       this.origen = response.news.origin;
       this.originPrincipaMedia = response.news.originPrincipaMedia;
@@ -123,7 +133,7 @@ async editar(){
   news.principalYoutube = this.principalYoutube  
   news.user = this.userService.User._id;
   news.headline = this.titulo1;
-  news.principalSubtitle = this.subTitle;
+  news.principalSubtitle = this.subTitlePrincipal;
   news.content = await this.questionService.parrafoFilter(this.parrafos);
   
   news.origin = this.origen;
@@ -160,6 +170,7 @@ parrafoAntesEdicion;
 parrafos=[];
   text1 ='' // `Escribe el párrafo # ${this.parrafos.length+1} `;
   titulo1= ``;
+  subTitlePrincipal = '';
   subTitle = null;
   deporte= ``;
   sports=['soccer', 'basketball','tennis',
@@ -180,15 +191,11 @@ parrafos=[];
   }
 
 
-  consol(){
-    let subtitulo
-    if(this.parrafos.length == 0){
-      subtitulo = null 
-    }else{
-      subtitulo = this.subTitleParrafo 
-    } 
+  async consol(){
+    await  this.subtitleNewsBtn.send()
+
     this.parrafos.push({
-      subtitle: subtitulo,
+      subtitle: this.subTitle,
       parrafo: this.text1,
       position: this.parrafos.length,
       image: null,
@@ -219,7 +226,9 @@ parrafos=[];
     this.editando = true
   }
   
-  EditParrafo(){
+  async EditParrafo(){
+    await this.subtitleNewsBtn.edit()
+
     this.parrafos[this.positionEditactual].parrafo = this.text1;
     this.parrafos[this.positionEditactual].title = this.titulo1;
  
@@ -227,6 +236,8 @@ parrafos=[];
     this.editando = false
     this.text1 = ``
     this.agregandoParrafo = false
+    this.number = undefined
+
   }
   eliminarParrafo(id){
     this.parrafos.splice(id,1)
@@ -235,10 +246,9 @@ parrafos=[];
     }
     id = null
     this.editando = false
-    if(this.number != 0 && this.number == this.parrafos.length){
-      this.number -= 1
-    }
     
+    this.number = undefined
+
     this.text1 = ``
   
   }
@@ -250,7 +260,7 @@ parrafos=[];
     this.parrafoAntesEdicion = null
     this.editando = false
     this.text1 = ``
-
+    this.number = undefined
   }
 
   ////Imagenes

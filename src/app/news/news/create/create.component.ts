@@ -1,4 +1,4 @@
-import { Component, OnChanges, OnInit, ViewChild } from "@angular/core";
+import { Component, OnChanges, OnInit, ViewChild,ElementRef } from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
 import { UserService } from "../../../service/user.service";
 import {
@@ -18,13 +18,14 @@ import {
 import { NewsService } from "../../../service/news.service";
 import { ToastController } from "@ionic/angular";
 import { Router } from "@angular/router";
-import { ElementRef } from "@angular/core";
 import { QuestionService } from "src/app/service/question.service";
 import { NewQuestionComponent } from "src/app/components/new-question/new-question.component";
 import { EditQuestionComponent } from "src/app/components/edit-question/edit-question.component";
 import { ButtonsOptionsComponent } from "../buttons-options/buttons-options.component";
 import { FilesService } from "src/app/service/files.service";
 import { ModalProgramNewsComponent } from "../modal-program-news/modal-program-news.component";
+import { MentionsDirective } from "src/app/directives/mentions.directive";
+import { SubtitleNewsComponent } from "../subtitle-news/subtitle-news.component";
 
 const { Camera } = Plugins;
 
@@ -46,7 +47,6 @@ export class CreateComponent implements OnInit,OnChanges {
   @ViewChild("mainInput") mainInput: ElementRef;
 
 ngOnChanges(){
-//  this.urlYu  = this.mainInput.nativeElement.innerHTML
 }
 urlYu
 
@@ -70,7 +70,15 @@ urlYu
       this.router.navigate([`news`])
     }
   }
+  @ViewChild("subtitleNewsBtn") subtitleNewsBtn: SubtitleNewsComponent;
 
+
+  subTitleAdd($event){
+    this.subTitle = $event;
+  }
+  subTitleEdit($event,position){
+    this.parrafos[position].subtitle = $event
+  }
   form = this.fb.group({
     user: [""],
     headline: [""],
@@ -109,7 +117,7 @@ urlYu
     news.principalYoutube = this.principalYoutube
     news.user = this.userService.User._id;
     news.headline = this.titulo1;
-    news.principalSubtitle = this.subTitle;
+    news.principalSubtitle = this.subTitlePrincipal;
     news.content = await this.questionService.parrafoFilter(this.parrafos);
     loading.dismiss();
     news.date = this.date;
@@ -129,8 +137,8 @@ urlYu
     }
       this.newsService.create(news).subscribe((response) => {
         this.presentToastWithOptions(draft);
-        loading.dismiss();
         this.router.navigate(["news"]);
+        loading.dismiss();
       });
   }
   fecha =
@@ -141,7 +149,7 @@ urlYu
     new Date().getFullYear();
   editando: boolean = false; //si esta editando el agregar es disabled
   imagen; //imagen mostrada
-  number: number = 0; //Posicion de el parrafo, pero no del array,
+  number: number = undefined; //Posicion de el parrafo, pero no del array,
   positionEditactual: number = null;
   parrafoAntesEdicion;
   parrafos = [];
@@ -150,6 +158,7 @@ urlYu
   titulo1 = null;
   deporte = null;
   subTitle = null;
+  subTitlePrincipal = null;
   sports = [
     "soccer",
     "basketball",
@@ -179,16 +188,11 @@ urlYu
     slides.slidePrev();
   }
 
-  consol() {
-    let subtitulo;
-    if (this.parrafos.length == 0) {
-      subtitulo = null;
-    } else {
-      subtitulo = this.subTitleParrafo;
-    }
-
+  async consol() {
+   
+  await  this.subtitleNewsBtn.send()
     this.parrafos.push({
-      subtitle: subtitulo,
+      subtitle: this.subTitle,
       parrafo: this.text1,
       position: this.parrafos.length,
       image: null,
@@ -200,7 +204,6 @@ urlYu
       format:'text'
     }); //title:this.titulo1,subtitle:this.deporte
     this.text1 = ``;
-
     /* this.titulo1= `Escribe el Titulo # ${this.parrafos.length+1} `;
   this.deporte= `Escribe el Subtitulo # ${this.parrafos.length+1} `; */
     this.agregandoParrafo = false;
@@ -224,7 +227,8 @@ urlYu
     this.editando = true;
   }
 
-  EditParrafo() {
+  async EditParrafo() {
+    await this.subtitleNewsBtn.edit()
     this.parrafos[this.positionEditactual].parrafo = this.text1;
     //this.parrafos[this.positionEditactual].title = this.titulo1;
     // this.parrafos[this.positionEditactual].subtitle = this.deporte;
@@ -234,6 +238,7 @@ urlYu
     /*   this.titulo1= `Escribe el Título # ${this.parrafos.length+1} `;
   this.deporte= `Escribe el Subtítulo # ${this.parrafos.length+1} `; */
     this.agregandoParrafo = false;
+    this.number = undefined
   }
   eliminarParrafo(id) {
     this.parrafos.splice(id, 1);
@@ -242,9 +247,11 @@ urlYu
     }
     id = null;
     this.editando = false;
-    if (this.number != 0 && this.number == this.parrafos.length) {
-      this.number -= 1;
-    }
+    // if (this.number != 0 && this.number == this.parrafos.length) {
+    //   this.number -= 1;
+    // }
+
+    this.number = undefined
 
     this.text1 = ``;
     /*   this.titulo1= `Escribe el Título # ${this.parrafos.length+1} `;
@@ -262,7 +269,9 @@ urlYu
     /*  this.titulo1= `Escribe el Título # ${this.parrafos.length+1} `;
   this.deporte= `Escribe el Subtítulo # ${this.parrafos.length+1} `; */
     this.agregandoParrafo = false;
+    this.number = undefined
   }
+
 
   ////Imagenes
   selectedImage(imag) {
@@ -467,11 +476,8 @@ urlYu
   videoFileNotPrincipal = null;
   closeVideoPrincipal() {
     this.videosToUploads = this.videosToUploads.filter((file)=>{
-      console.log(file.url);
-      console.log(this.videosToUploads);
       return file.url != this.videoSelected
     })
-    console.log(this.videosToUploads);
     this.urlVideo = null;
     this.videoFile = null;
     this.videoSelected = null;
