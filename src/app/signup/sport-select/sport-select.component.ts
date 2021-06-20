@@ -17,6 +17,10 @@ import {
   strengthSports,
   tableSports,
   animalSports,
+  xtremeSports,
+  slidingSports,
+  airSports,
+  mountainSports,
 } from "src/config/sports";
 
 enum Texts {
@@ -109,6 +113,22 @@ export class SportSelectComponent implements OnInit {
     {
       type: "animalSports",
       sports: animalSports,
+    },
+    {
+      type: "xtremeSports",
+      sports: xtremeSports,
+    },
+    {
+      type: "slidingSports",
+      sports: slidingSports,
+    },
+    {
+      type: "airSports",
+      sports: airSports,
+    },
+    {
+      type: "mountainSports",
+      sports: mountainSports,
     },
   ];
 
