@@ -78,18 +78,51 @@ export const SIDEBAR_ITEMS = [
   },
 ];
 
-
 export const sportsSticks = [
-  
-]
+  "badminton",
+  "tennis",
+  "table-tennis",
+  "squash",
+  "racquetball",
+  "paddle-tennis",
+  "paleta-fronton ",
+  "beach tennis",
+  "soft-tennis",
+  "basque-ball",
+  "valencian-ball",
+  "golf",
+  "croquet",
+  "hockey",
+  "bandy",
+  "floorball",
+  "polo",
+  "bikepolo",
+  "baseball",
+  "cricket",
+  "softball",
+  "lacrosse",
+  "polocrosse",
+  "billiards",
+];
+
+export const sportsCycling = [
+  "road-cycling",
+  "track-cycling",
+  "mountain-biking",
+  "bmx",
+  "cyclocross ",
+  "trial",
+  "artistic-cycling",
+  "cyclobol",
+  "mountain-unicycles",
+  "unicycle-trial",
+  "unicycle-hockey",
+];
 
 /**
  * Deportes disponibles
  */
 export const sports = [
-
-
-
   "soccer",
   "basketball",
   "tennis",
@@ -136,7 +169,7 @@ export const profiles = [
   "sponsor",
   "executive",
   "administration",
-  "referee"
+  "referee",
 ];
 
 /**
