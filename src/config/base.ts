@@ -119,6 +119,30 @@ export const sportsCycling = [
   "unicycle-hockey",
 ];
 
+export const waterSports = [
+  "swimming",
+  "synchronized-swimming",
+  "jumps",
+  "waterpolo",
+  "candle",
+  "canoeing",
+  "remo",
+  "rafting",
+  "water-skiing",
+  "surf",
+  "bodyboarding",
+  "windsurfing",
+  "kitesurfing",
+  "waterbasket",
+  "watervoley",
+  "kayak-polo",
+  "powerboats",
+  "diving",
+  "underwater-hockey",
+  "wakeboard",
+  "hydrospeed",
+];
+
 /**
  * Deportes disponibles
  */
