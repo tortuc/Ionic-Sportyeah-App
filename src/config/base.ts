@@ -78,10 +78,18 @@ export const SIDEBAR_ITEMS = [
   },
 ];
 
+
+export const sportsSticks = [
+  
+]
+
 /**
  * Deportes disponibles
  */
 export const sports = [
+
+
+
   "soccer",
   "basketball",
   "tennis",

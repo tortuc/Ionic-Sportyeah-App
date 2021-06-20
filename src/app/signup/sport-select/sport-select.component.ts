@@ -8,7 +8,7 @@ import { sports } from "src/config/base";
   styleUrls: ["./sport-select.component.scss"],
 })
 export class SportSelectComponent implements OnInit {
-  constructor(private readonly modalCtrl: ModalController) {}
+  constructor(public readonly modalCtrl: ModalController) {}
 
   ngOnInit() {}
 
