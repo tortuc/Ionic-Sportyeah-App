@@ -6,5 +6,6 @@ export interface Environment {
   URL_SOCKET: string,
   URL_CHALLENGE: string,
   URL_WEB: string,
-  title:string
+  title:string,
+  URL_LANDING:string
 }

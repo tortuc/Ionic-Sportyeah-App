@@ -1634,5 +1634,13 @@
   "seopost": {
     "title": "{{user.name}} {{user.last_name}} (@{{user.username}}) en Sportyeah: {{message}}",
     "description": "{{reactions}} Reacciones, {{comments}} Comentarios - {{title}}"
+  },
+  "legal":{
+    "contact":"Contactanos",
+    "conditions":"Condiciones de uso",
+    "privacy":"Politica de privacidad", 
+    "warning":"Aviso legal",
+    "return":"Politica de devoluciones",
+    "cookies":"Cookies"
   }
 }

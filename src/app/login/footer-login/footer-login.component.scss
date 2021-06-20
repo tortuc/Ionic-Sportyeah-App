@@ -1,0 +1,33 @@
+.footer-login {
+    padding: 5px;
+    background: white;
+    text-align: center;
+    color: black;
+  }
+  
+  .legal {
+    display: flex;
+    gap: 10px;
+    font-size: 13px;
+    color: black;
+    place-content: center;
+    .item {
+      cursor: pointer;
+    }
+  }
+  
+  .stores {
+    display: flex;
+    gap: 10px;
+    background: white;
+    place-content: center;
+  
+  }
+  
+  @media screen and (max-width:600px) {
+    .legal{
+      display: grid;
+      gap: 0px;
+    }
+  }
+  
