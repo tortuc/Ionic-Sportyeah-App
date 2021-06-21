@@ -3,7 +3,6 @@ import { AlertController, ModalController } from "@ionic/angular";
 import { TranslateService } from "@ngx-translate/core";
 import {
   sports,
-  sportsSticks,
   sportsCycling,
   waterSports,
   motorSports,
@@ -21,6 +20,7 @@ import {
   slidingSports,
   airSports,
   mountainSports,
+  danceSports,
 } from "src/config/sports";
 
 enum Texts {
@@ -42,7 +42,7 @@ export class SportSelectComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    console.log(sports.length)
+    console.log(sports.length);
   }
 
   filter() {
@@ -56,81 +56,98 @@ export class SportSelectComponent implements OnInit {
 
   list = [
     {
-      type: "sportsSticks",
-
-      sports: sportsSticks,
-    },
-    {
       type: "sportsCycling",
 
       sports: sportsCycling,
+      img: "assets/sports/cycling.png",
     },
     {
       type: "waterSports",
 
       sports: waterSports,
+      img: "assets/sports/swimming.png",
     },
     {
       type: "motorSports",
 
       sports: motorSports,
+      img: "assets/sports/wheel.png",
     },
     {
       type: "combinedTests",
 
       sports: combinedTests,
+      img: "assets/sports/combined.png",
     },
     {
       type: "athletics",
       sports: athletics,
+      img: "assets/sports/athletics.png",
     },
     {
       type: "precisionSports",
       sports: precisionSports,
+      img: "assets/sports/archery.png",
     },
     {
       type: "gymnastics",
       sports: gymnastics,
+      img: "assets/sports/various.png",
     },
     {
       type: "winterSports",
       sports: winterSports,
+      img: "assets/sports/winter.png",
     },
     {
       type: "combatSports",
       sports: combatSports,
+      img: "assets/sports/karate.png",
     },
     {
       type: "teamSports",
       sports: teamSports,
+      img: "assets/sports/team.png",
     },
     {
       type: "strengthSports",
       sports: strengthSports,
+      img: "assets/sports/strength.png",
     },
     {
       type: "tableSports",
       sports: tableSports,
+      img: "assets/sports/table_tennis.png",
     },
     {
       type: "animalSports",
       sports: animalSports,
+      img: "assets/sports/hriding.png",
     },
     {
       type: "xtremeSports",
       sports: xtremeSports,
+      img: "assets/sports/climbingx.png",
     },
     {
       type: "slidingSports",
       sports: slidingSports,
+      img: "assets/sports/sliding.png",
     },
     {
       type: "airSports",
       sports: airSports,
+      img: "assets/sports/skydiving.png",
     },
     {
       type: "mountainSports",
       sports: mountainSports,
+      img: "assets/sports/climbing.png",
+    },
+    {
+      type: "danceSports",
+      sports: danceSports,
+      img: "assets/sports/dancer.png",
     },
   ];
 
