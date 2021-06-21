@@ -24,7 +24,8 @@
             >
               <div style="text-align: center">
                 <img
-                  style="height: 80px"
+                  (click)="setOption(item.type)"
+                  style="height: 80px; cursor: pointer"
                   [src]="item.img"
                   alt=""
                 />
@@ -53,9 +54,9 @@
                     >
                     <ion-radio [value]="sport"></ion-radio>
                   </ion-item>
-                  <ion-button class="btn-primary" (click)="setOption(null)"
-                    >{{'closeSports' | translate}}</ion-button
-                  >
+                  <ion-button class="btn-primary" (click)="setOption(null)">{{
+                    "closeSports" | translate
+                  }}</ion-button>
                 </div>
               </div>
             </ion-col>
