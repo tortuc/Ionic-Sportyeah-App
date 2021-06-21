@@ -4,15 +4,10 @@ import { Router } from "@angular/router";
 import { TranslateService } from "@ngx-translate/core";
 import { LoginService } from "../service/login.service";
 import { UserService } from "../service/user.service";
-import {
-  AlertController,
-  IonSelectOption,
-  ModalController,
-} from "@ionic/angular";
+import { AlertController, ModalController } from "@ionic/angular";
 import {
   languajes,
   profiles,
-  sports,
   sub_profiles_administration,
   sub_profiles_staff,
 } from "src/config/base";
@@ -40,7 +35,6 @@ enum Texts {
   styleUrls: ["./signup.page.scss"],
 })
 export class SignupPage implements OnInit {
-  public readonly sports = sports;
 
   public readonly langs = languajes;
 
@@ -104,8 +98,8 @@ export class SignupPage implements OnInit {
       sub_profile: ["", [Validators.required]],
       agree: [false],
       authorize: [true],
-      browser: [myBrowser()]
-    }, 
+      browser: [myBrowser()],
+    },
     { validator: this.checkPasswords }
   );
 
@@ -262,10 +256,10 @@ export class SignupPage implements OnInit {
     const modal = await this.modalCtrl.create({
       component: SportSelectComponent,
       cssClass: "modal-border",
-      backdropDismiss: false,
     });
 
     modal.onDidDismiss().then((response) => {
+      console.log(response)
       response.data ? this.form.controls.sport.setValue(response.data) : null;
     });
 

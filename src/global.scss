@@ -924,4 +924,13 @@ ion-avatar.chat-img {
 
 .big-selet .alert-wrapper {
   --min-width: 300px !important;
+
+  ::ng-deep .alert-radio-label {
+    color: #000 !important;
+  }
+}
+
+
+div{
+  color: black !important;
 }

@@ -79,38 +79,6 @@ export const SIDEBAR_ITEMS = [
 ];
 
 /**
- * Deportes disponibles
- */
-export const sports = [
-  "soccer",
-  "basketball",
-  "tennis",
-  "baseball",
-  "golf",
-  "running",
-  "volleyball",
-  "swimming",
-  "boxing",
-  "table_tennis",
-  "rugby",
-  "football",
-  "esport",
-  "various",
-  "archery",
-  "athletics",
-  "badminton",
-  "rafting",
-  "climbing",
-  "cycling",
-  "hriding",
-  "fencing",
-  "karate",
-  "judo",
-  "taekwondo",
-  "surf",
-];
-
-/**
  * Tipos de perfiles disponibles
  */
 
@@ -128,7 +96,7 @@ export const profiles = [
   "sponsor",
   "executive",
   "administration",
-  "referee"
+  "referee",
 ];
 
 /**
