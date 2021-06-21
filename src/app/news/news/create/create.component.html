@@ -51,7 +51,7 @@
               </ion-item> 
               <ion-item>
                 <ion-label position="floating" style="    margin-bottom: 10px;">{{'news.date' | translate}}</ion-label>
-                <ion-input  style=" color: black;" type="date" [(ngModel)]="date"></ion-input>
+                <ion-input  style=" color: black;" onkeydown="return false" [max]="today" type="date" [(ngModel)]="date"></ion-input>
               </ion-item>
              
               <ion-item>

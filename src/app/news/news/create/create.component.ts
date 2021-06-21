@@ -154,6 +154,7 @@ urlYu
   parrafoAntesEdicion;
   parrafos = [];
 
+  today = moment().format("YYYY-MM-DD")
   text1 = ``;
   titulo1 = null;
   deporte = null;
@@ -677,8 +678,8 @@ urlYu
       ok = false;
     }
 
-    this.subTitle = this.subTitle.trim();
-    if (this.subTitle.length != 0) {
+    this.subTitlePrincipal = this.subTitlePrincipal.trim();
+    if (this.subTitlePrincipal.length != 0) {
     } else {
       this.ToastError("El subtítulo no puede estar vacio");
       this.subTitlebool = false;
@@ -779,7 +780,7 @@ urlYu
       this.sportyeah.nativeElement.classList.add("logoSportBig");
     }
   }
-  ngOnInit(): void {  }
+  ngOnInit(): void { }
 
   question = {
     user: this.userService.User._id,
