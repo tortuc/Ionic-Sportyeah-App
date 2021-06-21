@@ -164,7 +164,7 @@ async editar(){
 fecha = new Date().getDate() + '/'+ (new Date().getMonth()+1) + '/' + new Date().getFullYear()
 editando:boolean=false//si esta editando el agregar es disabled
 imagen;//imagen mostrada
-number:number = 0//Posicion de el parrafo, pero no del array, 
+number:number = undefined//Posicion de el parrafo, pero no del array, 
 positionEditactual:number=null; 
 parrafoAntesEdicion;
 parrafos=[];
