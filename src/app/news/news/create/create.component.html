@@ -448,6 +448,6 @@
         </ion-grid>
           </ion-content>
 
-       <preview-news (publishNews)="publicar()" (readyNot)="listoParaPublicar()" [news]="news" *ngIf="listoPublicar" ></preview-news>
+       <preview-news (publishNews)="publicar(false)" (readyNot)="listoParaPublicar()" [news]="news" *ngIf="listoPublicar" ></preview-news>
        
   </ion-content>

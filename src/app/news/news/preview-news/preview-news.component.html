@@ -65,7 +65,7 @@
           frameborder="0"
       ></iframe>
       </div>
-       <p *ngIf="news?.principalVideo != null || news?.principalImage != null " style="text-align: center;color: #737373;font-size: 14px;" (click)="isLink(news?.originPrincipaMedia)"><i>{{news?.originPrincipaMedia }}</i></p>
+       <p *ngIf="news?.principalVideo != null || news?.principalImage != null " style="text-align: center;color: #737373;font-size: 14px;" ><i>{{news?.originPrincipaMedia }}</i></p>
     </ion-col> 
     
       <!--  Cuerpo de la noticia -->
@@ -124,7 +124,7 @@
              *ngIf="parrafo.question"
              [questionId]="parrafo.question"
              ></question-comment>
-            <p *ngIf="parrafo.originMedia" style="text-align: center;color: #737373;font-size: 14px;" (click)="isLink(parrafo.originMedia)"><i>{{parrafo.originMedia}}</i></p>
+            <p *ngIf="parrafo.originMedia" style="text-align: center;color: #737373;font-size: 14px;"><i>{{parrafo.originMedia}}</i></p>
        
           </ion-col>
     
