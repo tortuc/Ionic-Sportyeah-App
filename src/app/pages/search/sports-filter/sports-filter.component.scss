@@ -1,0 +1,56 @@
+.content {
+    text-align: center;
+    cursor: pointer;
+    img {
+      max-width: 100px;
+      max-height: 100px;
+    }
+  }
+  
+  .sport-label {
+    color: black;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  .search{
+    position: sticky;
+    top: 10px;
+    z-index: 100;
+  }
+
+  .sport-item{
+    cursor: pointer;
+    margin: 2px;
+    border-radius: 10px;
+    .icon-select{
+        vertical-align: middle;
+    visibility: hidden;
+    }
+    &:hover{
+        --background: #1d34528f;
+        color: white;
+    }
+    &.selected{
+        --background: #1d34528f;
+        color: white;
+        .icon-select{
+            visibility: visible;
+        }
+    }
+}
+
+.search{
+    position: sticky;
+    top: 10px;
+    z-index: 100;
+  }
+
+ion-fab{
+    bottom: 10px;
+    right: 20px;
+    ion-fab-button{
+        --background: #2dd655;
+    }
+}

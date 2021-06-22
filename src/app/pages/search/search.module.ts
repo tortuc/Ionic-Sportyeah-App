@@ -13,6 +13,8 @@ import { DirectivesModule } from '../../directives/directive.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { TranslateModule } from '@ngx-translate/core';
 import { ComponentsSharedModule } from 'src/app/shared-components/components-shared.module';
+import { CountryFilterComponent } from './country-filter/country-filter.component';
+import { SportsFilterComponent } from './sports-filter/sports-filter.component';
 
 @NgModule({
   imports: [
@@ -28,6 +30,6 @@ import { ComponentsSharedModule } from 'src/app/shared-components/components-sha
     ComponentsSharedModule,
     ComponentsModule
   ],
-  declarations: [SearchPage]
+  declarations: [SearchPage,CountryFilterComponent,SportsFilterComponent]
 })
 export class SearchPageModule {}

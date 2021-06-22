@@ -1,0 +1,91 @@
+<ion-content>
+  <ion-icon
+    name="close-outline"
+    (click)="modalCtrl.dismiss()"
+    class="close-modal"
+  ></ion-icon>
+  <h2 style="text-align: center">{{ "sportTypes" | translate }}</h2>
+
+  <div>
+    <!-- Searchbar with a placeholder -->
+    <ion-searchbar
+      class="search"
+      placeholder="{{ 'searchSport' | translate }}"
+      (ionChange)="filter()"
+      [(ngModel)]="query"
+    ></ion-searchbar>
+    <ion-list>
+      <ion-radio-group (ionChange)="sportSelected($event)">
+        <ng-container *ngIf="!query">
+          <ion-row>
+            <ion-col
+              *ngFor="let item of list"
+              [size]="item.type == option ? 12 : 6"
+            >
+              <div style="text-align: center">
+                <img
+                  (click)="setOption(item.type)"
+                  style="height: 80px; cursor: pointer"
+                  [src]="item.img"
+                  alt=""
+                />
+                <ion-list-header (click)="setOption(item.type)">
+                  <ion-label class="sport-label">
+                    <span>
+                      {{ item.type | translate }}
+                      <ion-icon
+                        style="vertical-align: middle"
+                        [name]="
+                          option == item.type
+                            ? 'chevron-up-outline'
+                            : 'chevron-down-outline'
+                        "
+                      ></ion-icon
+                    ></span>
+                  </ion-label>
+                </ion-list-header>
+                <div *ngIf="option == item.type">
+                  <h6 style="text-align: center">
+                    {{ "disciplines" | translate }}
+                  </h6>
+                  <ion-item *ngFor="let sport of item.sports"  
+                   class="sport-item" 
+                 [ngClass]="isSelect(sport)"
+                  (click)="addSport(sport)">
+                    <ion-label>
+                      {{ "allSports." + sport | translate }}</ion-label
+                    >
+                    <ion-icon class="icon-select" name="checkmark-outline"></ion-icon>
+
+                  </ion-item>
+                  <ion-button class="btn-primary" (click)="setOption(null)">{{
+                    "closeSports" | translate
+                  }}</ion-button>
+                </div>
+              </div>
+            </ion-col>
+          </ion-row>
+        </ng-container>
+        <ng-container *ngIf="query">
+          <h6 style="text-align: center">
+            {{ "disciplines" | translate }}
+          </h6>
+          <ion-item   
+          class="sport-item" 
+           *ngFor="let sport of sportsFilters" 
+          [ngClass]="isSelect(sport)"
+           (click)="addSport(sport)">
+            <ion-label> {{ "allSports." + sport | translate }}</ion-label>
+            <ion-icon class="icon-select" name="checkmark-outline"></ion-icon>
+
+          </ion-item>
+        </ng-container>
+      </ion-radio-group>
+    </ion-list>
+  </div>
+  <ion-fab slot="fixed">
+    <ion-fab-button (click)="close()">
+      <ion-icon name="checkmark-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

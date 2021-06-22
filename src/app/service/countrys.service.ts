@@ -14,7 +14,7 @@ export class CountrysService {
   constructor(
     private readonly http:HttpClient
   ) {
-    this.getCountrys
+    this.getCountrys()
    }
 
 

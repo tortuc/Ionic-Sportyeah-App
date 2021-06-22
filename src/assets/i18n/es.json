@@ -2036,11 +2036,41 @@
     "Skysurfing": "Skysurfing (Surfeo Aéreo)",
     "dance-sport": "Baile deportivo",
     "ballroom-dance": "Baile de salón de competición",
-    "competition-dance": "Baile de competición"
+    "competition-dance": "Baile de competición",
+    "soccer":"Fútbol",
+    "sport": "Deporte",
+    "running": "Correr",
+    "table_tennis": "Tenis de mesa",
+    "esport": "eSport",
+    "various": "Varios",
+    "athletics": "Atletismo",
+    "cycling": "Ciclismo",
+    "hriding": "Equitación"
   },
   "selectSport": {
     "alertHeader": "Seleccionar deporte",
     "alertMessage": "¿Seguro deseas seleccionar {{sport}} como tu deporte principal?",
     "alertAccept": "Si, Seleccionar"
+  },
+  "countryFilter":{
+    "search":"Buscar pais por nombre",
+    "selectAll":"Seleccionar todos",
+    "discardAll":"Desmarcar todos",
+    "cancelSearch":"Cancelar busqueda",
+    "title":"Paises",
+    "hint":"Selecciona los paises donde quieres realizar la busqueda de usuarios"
+  },
+  "searchPage":{
+    "showFilters":"Mostrar filtros",
+    "hideFilters":"Ocultar filtros",
+    "sports":"Deportes",
+    "profile_user":"Tipo de usuarios",
+    "country":"Paises",
+    "more":"Más...",
+    "all":"Todos",
+    "selectCountrys":"Seleccionar paises",
+    "selectSports":"Seleccionar deportes",
+    "whatsapp":"¿A quien buscas no tiene cuenta en SportYeah? Invitalo a unirse mediante de whatsapp",
+    "invWhatsapp":"Invitar amigos"
   }
 }

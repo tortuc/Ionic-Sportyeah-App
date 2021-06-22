@@ -11,21 +11,124 @@
 
 <ion-content style="--background: white">
   <ion-card style="box-shadow: unset; margin: 0">
-    <div style="padding: 5px;">
-      <p>Filtros</p>
+    <ion-searchbar
+    animated="true"
+    placeholder="{{
+    'search' | translate }}"
+    (ionChange)="filter($event)"
+    autocomplete="on"
+  ></ion-searchbar>
+    <div *ngIf="showFilters" style="padding: 5px;">
+   
       <ion-row>
-        <ion-col size="4">Deportes</ion-col>
-        <ion-col size="4">Tipo de usuario</ion-col>
-        <ion-col size="4">Paises</ion-col>
+        <ion-col size-xs="12" size-lg="4">
+
+          <div style="text-align: center;">
+            <h3 style="margin: 0;">{{Texts.sports | translate}}</h3>
+            <div *ngIf="sports.length > 0 && 250 > sports.length" style="text-align: left;">
+              <ion-badge
+              style="margin-right: 5px;"
+               *ngFor="let sport of sports.slice(0,4)">
+               {{"allSports."+sport | translate}}
+              </ion-badge>
+              <div style="text-align: center;" *ngIf="sports.length > 4"> {{sports.length -4}} {{Texts.more | translate}} </div>
+            </div>
+            <div *ngIf="sports.length == 0 || 250 == sports.length" style="text-align: center;">
+              {{Texts.all | translate}}
+            </div>
+            <div>
+              <ion-button
+               class="btn-primary" 
+               (click)="selectSports()">
+               {{Texts.selectSports | translate}}
+              </ion-button>
+              <ion-button
+              *ngIf="sports.length > 0"
+               class="btn-cancel" 
+               (click)="sports = []"
+               (click)="newQuery()"
+               >
+               {{"cancel" | translate}}
+              </ion-button>
+            </div>
+  </div>
+        </ion-col>
+        <ion-col size-xs="12" size-lg="4">
+
+          <div>
+           <h5 style="text-align: center;margin: 0;"> {{Texts.profile_user | translate}}</h5>
+            <ion-item>
+              <ion-label position="floating"
+                >{{'profile_user.profile_user' |
+                translate}}</ion-label
+              >
+              <ion-select
+              (ionChange)="newQuery()"
+              multiple="true"
+                cancelText="{{'cancel' | translate}}"
+                okText="{{'accept' | translate}}"
+               
+                [(ngModel)]="profiles"
+              >
+                <ion-select-option
+                  *ngFor="let profile of allProfiles"
+                  [value]="profile"
+                  >{{'profile_user.'+ profile|
+                  translate}}</ion-select-option
+                >
+              </ion-select>
+            </ion-item>
+            <div style="text-align: center;">
+              <ion-button
+              *ngIf="profiles.length > 0"
+               class="btn-cancel" 
+               (click)="profiles = []"
+               (click)="newQuery()"
+               >
+               {{"cancel" | translate}}
+              </ion-button>
+            </div>
+          </div>
+        </ion-col>
+        <ion-col size-xs="12" size-lg="4">
+          <div style="text-align: center;">
+            <h3 style="margin: 0;">{{Texts.country | translate}}</h3>
+            <div *ngIf="countrys.length > 0 && 250 > countrys.length" style="text-align: left;">
+              <ion-badge
+              style="margin-right: 5px;"
+               *ngFor="let country of countrys.slice(0,4)">
+               {{country.name}}
+              </ion-badge>
+              <div style="text-align: center;" *ngIf="countrys.length > 4"> {{countrys.length -4}} {{Texts.more | translate}} </div>
+            </div>
+            <div *ngIf="countrys.length == 0 || 250 == countrys.length" style="text-align: center;">
+              {{Texts.all | translate}}
+            </div>
+            <div><ion-button 
+              class="btn-primary" 
+              (click)="selectCountrys()">
+              {{Texts.selectCountrys | translate}}
+            </ion-button>
+            <ion-button
+            *ngIf="countrys.length > 0"
+             class="btn-cancel" 
+             (click)="countrys = []"
+             (click)="newQuery()"
+             >
+             {{"cancel" | translate}}
+            </ion-button>
+            </div>
+  </div>
+        </ion-col>
       </ion-row>
     </div>
-    <ion-searchbar
-      animated="true"
-      placeholder="{{
-      'search' | translate }}"
-      (ionChange)="filter($event)"
-      autocomplete="on"
-    ></ion-searchbar>
+    <div style="text-align: center;"><ion-button class="btn-primary" (click)="showFilters = !showFilters"> {{(showFilters?Texts.hideFilters:Texts.showFilters) | translate}}</ion-button></div>
+    
+    <div style="text-align: center;">
+      <p>{{Texts.whatsapp | translate}}</p>
+        <ion-button (click)="whatsapp()"  class="btn-primary"><span><ion-icon name="logo-whatsapp"></ion-icon
+          >{{Texts.invWhatsapp | translate}}</span></ion-button>
+    </div>
 
     <div style="padding: 0">
       <div style="text-align: center; margin-top: 0.5em">
@@ -59,7 +162,7 @@
       <div
         *ngIf="!allUsers && query != ''"
         style="padding: 10px; text-align: center; cursor: pointer"
-        (click)="usersQuery(query)"
+        (click)="usersQuery()"
       >
         <h3>
           {{'search_page.more' | translate}}
