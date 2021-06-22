@@ -46,6 +46,7 @@ export class SocialNetworksPublicComponent implements OnInit {
     if (socialNetworks.instagram) {
       this.socialNetworks.push({
         icon: "logo-instagram",
+        img:"assets/logos/instagram.png",
         name: SocialNetworks.instagram,
         username: socialNetworks.instagram,
       });
