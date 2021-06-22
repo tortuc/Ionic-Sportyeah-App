@@ -105,37 +105,14 @@ urlYu
     });
     toast.present();
   }
-
+  news;
   async publicar(draft) {
     let loading = await this.loadingCtrl.create({
       message: this.translate.instant("loading"),
     });
     loading.present();
-    let news = this.form.value
-    news.principalVideo = this.videoSelected;
-    news.principalImage = this.imagenSelected;
-    news.principalYoutube = this.principalYoutube
-    news.user = this.userService.User._id;
-    news.headline = this.titulo1;
-    news.principalSubtitle = this.subTitlePrincipal;
-    news.content = await this.questionService.parrafoFilter(this.parrafos);
-    loading.dismiss();
-    news.date = this.date;
-    news.origin = this.origen;
-    news.originPrincipaMedia = this.originPrincipaMedia;
-    news.audioNews = this.audioNews;
-    news.programatedDate = this.programedDate;
-    if(this.programedDate != undefined){
-      news.programated = true;
-    }else{
-      news.programated = false;
-    }
-    news.sport = this.deporte;
-    news.draftCopy = draft;
-    if(news.sport == undefined){
-      news.sport = 'various'
-    }
-      this.newsService.create(news).subscribe((response) => {
+    this.news.draftCopy = draft;
+      this.newsService.create(this.news).subscribe((response) => {
         this.presentToastWithOptions(draft);
         this.router.navigate(["news"]);
         loading.dismiss();
@@ -582,8 +559,6 @@ urlYu
   listoPublicar: boolean = false;
   listoParaPublicar() {
     this.listoPublicar = !this.listoPublicar;
-    // this.sportyeah.nativeElement.classList.remove("logoSport");
-    //   this.sportyeah.nativeElement.classList.add("logoSportBig");
   }
 
   //Origen de la noticia
@@ -647,7 +622,31 @@ urlYu
     this.originParrafoMedia = this.parrafos[i].originMedia;
     this.parrafos[i].originMedia = null;
   }
-  todoConOrigen() {
+ async todoConOrigen() {
+   this.news = this.form.value
+    this.news.principalVideo = this.videoSelected;
+    this.news.principalImage = this.imagenSelected;
+    this.news.principalYoutube = this.principalYoutube
+    this.news.user = this.userService.User._id;
+    this.news.headline = this.titulo1;
+    this.news.principalSubtitle = this.subTitlePrincipal;
+    this.news.content = await this.questionService.parrafoFilter(this.parrafos);
+    // loading.dismiss();
+    this.news.date = this.date;
+    this.news.origin = this.origen;
+    this.news.originPrincipaMedia = this.originPrincipaMedia;
+    this.news.audioNews = this.audioNews;
+    this.news.programatedDate = this.programedDate;
+    if(this.programedDate != undefined){
+      this.news.programated = true;
+    }else{
+      this.news.programated = false;
+    }
+    this.news.sport = this.deporte;
+    
+    if(this.news.sport == undefined){
+      this.news.sport = 'various'
+    }
     // this.whitTime = this.editQuestionComponent.whitTime;
     // this.endDate = this.editQuestionComponent.endDate;
     this.todosParrafosConOrigen = false;

@@ -1000,7 +1000,10 @@
     "inactive_news": "Inactivas",
     "active_news": "Activas",
     "restore": "Restaurar",
-    "news_shared": "Noticia compartida"
+    "news_shared": "Noticia compartida",
+    "smartphone_view":"Vista previa para móviles",
+    "desktop_view":"Vista previa para ordenador",
+    "preview_news":"Vista previa"
   },
   "sponsorDescription": "¡Agrega un patrocinador!",
   "back": "Volver",

@@ -229,9 +229,11 @@
                   <!-- Esto edita el texto del parrafo -->
                   <div *ngIf="editando && parrafo.position == number">
                     <ngx-wig style="color: black;" [(ngModel)]="text1" [buttons]="'list1,list2,bold,italic,link,underline'"></ngx-wig>
+                    <div style="text-align: end;"> 
                     <ion-button *ngIf="parrafos.length > 0 " style="font-size: 10px;--background:rgba(255, 0, 0, 0.685);" (click)="cancelar()" >{{'news.cancel' | translate}}</ion-button><br>
+                    </div>
                   </div>
-                  <div>
+                  <div style="text-align: end;">
                   <ion-button *ngIf="parrafos.length > 0  " [disabled]="(text1 == '' && text1 == null)?true:false" style="font-size: 10px;"  (click)="(positionEditactual != parrafo.position)?selectParrafoCards(parrafo.position):EditParrafo()" >{{((positionEditactual != parrafo.position)?'news.edit':'news.save') | translate}}</ion-button>
                   <ion-button *ngIf="parrafos.length > 0 && !editando" style="--background:rgba(255, 0, 0, 0.685);font-size: 10px;" (click)="eliminarParrafo(parrafo.position)" >{{'news.delete' | translate}}</ion-button>
                   </div>
@@ -366,10 +368,12 @@
   
             <!-- Para agregar parrafo -->
                 <ngx-wig style="color: black;" [(ngModel)]="text1" [buttons]="'list1,list2,bold,italic,link,underline'"></ngx-wig>
-                <ion-button (click)="consol() " *ngIf="!editando"  >{{'news.add' | translate}}</ion-button>
-                <ion-button *ngIf="!editando"   (click)="cancelar()" >{{'news.cancel' | translate}}</ion-button>
-                <ion-button *ngIf="parrafos.length > 0 && positionEditactual != null"  (click)="EditParrafo()" >{{'news.edit' | translate}}</ion-button>
-  <!--               <ion-button *ngIf="parrafos.length > 0 && positionEditactual != null" style="--background:rgba(255, 100, 100, 0.685);" (click)="eliminarParrafo(parrafo.position)" >{{'news.delete' | translate}}</ion-button>-->              <ion-button *ngIf="parrafos.length > 0 && positionEditactual != null"  (click)="cancelar()" >{{'news.cancel' | translate}}</ion-button><br>
+                <div style="text-align: end;">
+                  <ion-button (click)="consol() " *ngIf="!editando"  >{{'news.add' | translate}}</ion-button>
+                  <ion-button *ngIf="!editando"   (click)="cancelar()" >{{'news.cancel' | translate}}</ion-button>
+                  <ion-button *ngIf="parrafos.length > 0 && positionEditactual != null"  (click)="EditParrafo()" >{{'news.edit' | translate}}</ion-button>
+                </div>
+                <!--               <ion-button *ngIf="parrafos.length > 0 && positionEditactual != null" style="--background:rgba(255, 100, 100, 0.685);" (click)="eliminarParrafo(parrafo.position)" >{{'news.delete' | translate}}</ion-button>-->              <ion-button *ngIf="parrafos.length > 0 && positionEditactual != null"  (click)="cancelar()" >{{'news.cancel' | translate}}</ion-button><br>
                 <span *ngIf="parrafos.length > 0 && positionEditactual != null">{{'news.editParagraph' | translate}}: {{positionEditactual+1}}...: </span>
               </div>
   
@@ -442,50 +446,7 @@
 
 
 
-<!--  Listo para publicar -->
-<ion-content *ngIf="listoPublicar">
-  <ion-grid>
-    <ion-row>
-      <ion-col size="12">
-        <ion-icon (click)="listoParaPublicar()" style="font-size: 41px;" name="arrow-back-circle-outline"></ion-icon>
-      </ion-col> 
-      <ion-col size="12" style="text-align: center;">
-        <ion-button (click)="editar()">{{ 'news.publish' | translate}}</ion-button>
-      </ion-col>  
-      <ion-col size="12" tyle="text-align: center;">
-        <ion-card style="width: 45%;margin: auto;height: 82%;">
-          <ion-card-header>
-            <ion-card-subtitle style="text-align: center;" *ngIf="deporte">{{ 'sport.'+deporte| translate}}</ion-card-subtitle>
-            <ion-card-title style="text-align: center;">{{titulo1}}</ion-card-title>
-            <ion-item style="transform: scale(0.9);margin-bottom: -3%;">
-              <ion-label>
-                <ion-text color="black">
-                  <h1 style="font-size:14px">{{userService.User?.name}} {{userService.User?.last_name}} </h1>
-                </ion-text>
-              </ion-label>
-              <ion-text color="black">
-                <h2 style="font-size:14px" >{{fecha}}</h2>
-              </ion-text>   
-            </ion-item>
-          </ion-card-header>
-          <ion-img *ngIf="imagenSelected"   class="imageMiniCard" [src]="imagenSelected"></ion-img>
-          <!-- Video Principal -->
-          <div *ngIf="videoSelected" style="position: relative">
-            <video
-              controls="controls"
-              preload="metadata"
-              autoplay="autoplay"
-              webkit-playsinline="webkit-playsinline"
-              class="videoPlayerNews"
-            >
-              <source [src]="videoSelected | safeUrl" type="video/mp4" />
-            </video>
-          </div> 
-        </ion-card>
-      </ion-col>
-</ion-row>
-</ion-grid>
-</ion-content>
+<preview-news (publishNews)="editar()" (readyNot)="listoParaPublicar()" [edit]="true" [news]="news" *ngIf="listoPublicar" ></preview-news>
 
 </ion-content>
 

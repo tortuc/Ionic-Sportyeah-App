@@ -141,7 +141,7 @@
       <p style="text-align: center;color: #737373;font-size: 14px;"><i>{{news?.news.origin}}</i></p>
      </ion-col>
       <!-- SPONSORS -->
-      <ion-col size="12" >
+      <ion-col size="12" *ngIf="sponsors.length > 0" >
         <h2>{{'Sponsors' | translate}}</h2>
         <div class="sponsors">
           <view-sponsor-mini

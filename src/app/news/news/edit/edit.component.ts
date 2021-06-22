@@ -121,39 +121,14 @@ form = this.fb.group({
       this.agregandoOrigen = true;
     })
   }
+  
 async editar(){
   let loading = await this.loadingCtrl.create({
     message: this.translate.instant("loading"),
   });
   loading.present();
-  let news = this.form.value
   
-  news.principalVideo = this.videoSelected;
-  news.principalImage = this.imagenSelected;
-  news.principalYoutube = this.principalYoutube  
-  news.user = this.userService.User._id;
-  news.headline = this.titulo1;
-  news.principalSubtitle = this.subTitlePrincipal;
-  news.content = await this.questionService.parrafoFilter(this.parrafos);
-  
-  news.origin = this.origen;
-  news.originPrincipaMedia = this.originPrincipaMedia;
-  news.audioNews = this.audioNews;
-  news.programatedDate = this.programedDate
-  if(this.programedDate != undefined){
-    news.programated = true;
-  }else{
-    news.programated = false;
-  }
-  console.log(this.news.draftCopy);
-  
-  if(this.news.draftCopy == true){
-    news.draftCopy = false;
-  }
-  news.sport = this.deporte;
-  news.id = this.idNews;
-   
-  this.newsService.updateNews(news).subscribe((response) => {
+  this.newsService.updateNews(this.news).subscribe((response) => {
       this.presentToastWithOptions();
       this.router.navigate(["news"]);
     });
@@ -636,7 +611,33 @@ origenParrafoEditar(i){
  this.originParrafoMedia = this.parrafos[i].originMedia
  this.parrafos[i].originMedia = null
 }
-todoConOrigen(){
+async todoConOrigen(){
+  this.news = this.form.value
+  
+  this.news.principalVideo = this.videoSelected;
+  this.news.principalImage = this.imagenSelected;
+  this.news.principalYoutube = this.principalYoutube  
+  this.news.user = this.userService.User._id;
+  this.news.headline = this.titulo1;
+  this.news.principalSubtitle = this.subTitlePrincipal;
+  this.news.content = await this.questionService.parrafoFilter(this.parrafos);
+  
+  this.news.origin = this.origen;
+  this.news.originPrincipaMedia = this.originPrincipaMedia;
+  this.news.audioNews = this.audioNews;
+  this.news.programatedDate = this.programedDate
+  if(this.programedDate != undefined){
+    this.news.programated = true;
+  }else{
+    this.news.programated = false;
+  }
+  
+  if(this.news.draftCopy == true){
+    this.news.draftCopy = false;
+  }
+  this.news.sport = this.deporte;
+  this.news.id = this.idNews;
+   
 // this.whitTime = this.editQuestionComponent.whitTime;
 // this.endDate = this.editQuestionComponent.endDate;
   this.todosParrafosConOrigen = false
