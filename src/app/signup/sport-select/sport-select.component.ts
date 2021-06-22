@@ -23,6 +23,28 @@ import {
   danceSports,
 } from "src/config/sports";
 
+var normalize = (function() {
+  var from = "ÃÀÁÄÂÈÉËÊÌÍÏÎÒÓÖÔÙÚÜÛãàáäâèéëêìíïîòóöôùúüûÑñÇç", 
+      to   = "AAAAAEEEEIIIIOOOOUUUUaaaaaeeeeiiiioooouuuunncc",
+      mapping = {};
+ 
+  for(var i = 0, j = from.length; i < j; i++ )
+      mapping[ from.charAt( i ) ] = to.charAt( i );
+ 
+  return function( str ) {
+      var ret = [];
+      for( var i = 0, j = str.length; i < j; i++ ) {
+          var c = str.charAt( i );
+          if( mapping.hasOwnProperty( str.charAt( i ) ) )
+              ret.push( mapping[ c ] );
+          else
+              ret.push( c );
+      }      
+      return ret.join( '' );
+  }
+ 
+})();
+
 enum Texts {
   alertHeader = "selectSport.alertHeader",
   alertMessage = "selectSport.alertMessage",
@@ -49,7 +71,7 @@ export class SportSelectComponent implements OnInit {
     this.sportsFilters = sports.filter((sport) => {
       const text: string = this.translate.instant(`allSports.${sport}`);
 
-      return text.toLowerCase().indexOf(this.query.toLowerCase()) != -1;
+      return normalize(text).toLowerCase().indexOf(this.query.toLowerCase()) != -1;
     });
   }
   query = "";
