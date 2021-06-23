@@ -30,10 +30,9 @@ export class PreviewNewsComponent implements OnInit {
   @Output() publishNews = new EventEmitter
 
   ngOnInit() { 
-    console.log(this.news)
     this.getSponsors()
   }
-  preview = 'desktop'
+  preview = 'desktop_view'
   sponsors: ISponsor[] = [];
    getSponsors() {
     this.sponsorService

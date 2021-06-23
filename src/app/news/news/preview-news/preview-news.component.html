@@ -3,16 +3,17 @@
      <ion-grid>
       <ion-row>
         <ion-col size="12"  style="text-align: end;">
-          <ion-button *ngIf="platform.is('desktop')" (click)="preview = 'smartphone'" class="borderRadius" ><ion-icon name="phone-portrait-outline"></ion-icon></ion-button>
-          <ion-button *ngIf="platform.is('desktop')" (click)="preview = 'desktop'" class="borderRadius"><ion-icon name="desktop-outline"></ion-icon></ion-button>
+          <ion-button *ngIf="platform.is('desktop')" (click)="preview = 'smartphone_view'" class="borderRadius" ><ion-icon name="phone-portrait-outline"></ion-icon></ion-button>
+          <ion-button *ngIf="platform.is('desktop')" (click)="preview = 'tablet_view'" class="borderRadius"><ion-icon name="tablet-landscape-outline"></ion-icon></ion-button>
+          <ion-button *ngIf="platform.is('desktop')" (click)="preview = 'desktop_view'" class="borderRadius"><ion-icon name="desktop-outline"></ion-icon></ion-button>
           <ion-button (click)="notReady()" class="borderRadius"><ion-icon name="arrow-back-outline"></ion-icon></ion-button>
         </ion-col>
         <ion-col size="12" >
-          <h2 style="color: white;" *ngIf="platform.is('desktop')">{{(preview == 'desktop' ? 'news.desktop_view' : 'news.smartphone_view') | translate}}</h2>
+          <h2 style="color: white;" *ngIf="platform.is('desktop')">{{ 'news.'+preview | translate}}</h2>
           <h2 style="color: white;"  *ngIf="platform.is('mobile')">{{ 'news.preview_news'  | translate}}</h2>
         </ion-col>
       </ion-row>
-      <ion-row style="background: white;" [ngClass]="preview == 'desktop' ? 'desktop fade-in-fwd' : 'smartPhone fade-in-bck'"  >
+      <ion-row style="background: white;border-radius: 25px;" [ngClass]=" preview+' fade-in-fwd'"  >
         <ion-col size="12">
              <!--  Header de la noticia -->
       <div>

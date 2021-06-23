@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-menu-button style="color: white"></ion-menu-button>
     </ion-buttons>
-    <ion-title>Ranking</ion-title>
+    <ion-title>{{'ranking.ranking' | translate}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -14,16 +14,15 @@
       alt="logoSportyeah!"
       style="height: 200px"
     /> -->
-    <h1>Ranking Sportyeah!</h1>
+    <h1>{{'ranking.ranking_sportyeah' | translate}}</h1>
     <h5>
-      En este ranking seguir a los usuarios que son tendencias en Sportyeah! Se
-      uno de ellos...
+      {{'ranking.description' | translate}}
     </h5>
   </div>
 
   <div style="cursor: pointer; text-align: center">
-    <p style="font-size: 12px" *ngIf="!country">Ranking Global</p>
-    <p style="font-size: 12px" *ngIf="country">Ranking en mi país</p>
+    <p style="font-size: 12px" *ngIf="!country">{{'ranking.global' | translate}}</p>
+    <p style="font-size: 12px" *ngIf="country">{{'ranking.country' | translate}}</p>
   
     <img
       *ngIf="!country"
@@ -42,7 +41,7 @@
     >
    
       <ion-segment-button value="0">
-        <p class="textoSegment">Reacciones</p>
+        <p class="textoSegment">{{'ranking.react' | translate}}</p>
         <img
           class="iconsPost"
           src="https://img.icons8.com/bubbles/344/facebook-like.png"
@@ -51,7 +50,7 @@
       </ion-segment-button>
     
       <ion-segment-button value="1">
-        <p class="textoSegment">Comentarios</p>
+        <p class="textoSegment">{{'ranking.comment' | translate}}</p>
         <img
           class="iconsPost"
           src="https://img.icons8.com/bubbles/344/comments.png"
@@ -60,7 +59,7 @@
       </ion-segment-button>
 
       <ion-segment-button value="2">
-        <p class="textoSegment">Compartidos</p>
+        <p class="textoSegment">{{'ranking.shared' | translate}}</p>
         <img
           class="iconsPost"
           src="https://img.icons8.com/bubbles/452/undo.png"
@@ -68,7 +67,7 @@
         />
       </ion-segment-button>
       <ion-segment-button value="3">
-        <p class="textoSegment">Vistas</p>
+        <p class="textoSegment">{{'ranking.view' | translate}}</p>
         <img
           class="iconsPost"
           src="https://img.icons8.com/bubbles/344/visible--v2.png"
@@ -77,7 +76,7 @@
       </ion-segment-button>
 
       <ion-segment-button value="4">
-        <p class="textoSegment">Seguidos</p>
+        <p class="textoSegment">{{'ranking.follow' | translate}}</p>
         <img
           class="iconsPost"
           src="https://img.icons8.com/bubbles/344/add-user-male.png"
@@ -86,7 +85,7 @@
       </ion-segment-button>
 
       <ion-segment-button value="5">
-        <p class="textoSegment">Más Buscados</p>
+        <p class="textoSegment">{{'ranking.search' | translate}}</p>
         <img
           class="iconsPost"
           src="https://img.icons8.com/bubbles/452/search.png"
@@ -95,7 +94,7 @@
       </ion-segment-button>
 
       <ion-segment-button value="6">
-        <p class="textoSegment">Visto por rebote</p>
+        <p class="textoSegment">{{'ranking.seen_by_bounce' | translate}}</p>
         <img
           class="iconsPost"
           src="https://img.icons8.com/bubbles/344/bouncing-ball.png"
@@ -115,47 +114,66 @@
       margin-top: 10px;
     "
   >
-    <ion-slides pager="true" [options]="slideOpts" style="cursor: pointer">
+    <ion-slides #slides pager="true" [options]="slideOpts" style="cursor: pointer">
       <ion-slide>
         <ranking-since-ever
-          
-          style="width: 100%; padding-bottom: 20px"
+          class="rankingSlide"    
           [segment]="segment"
           [AllPost]="todolosPost"
           [country]="country"
         ></ranking-since-ever>
+        <ion-button class="buttonSlide" (click)="next(slides)">
+          <span *ngIf="platform.is('desktop')">{{ 'ranking.today' | translate }}</span><ion-icon name="chevron-forward-outline"></ion-icon>
+        </ion-button>
       </ion-slide>
-      <ion-slide>
+      <ion-slide >
+        <ion-button  class="buttonSlide" (click)="prev(slides)">
+          <ion-icon name="chevron-back-outline"></ion-icon><span *ngIf="platform.is('desktop')">{{ 'ranking.sinceEver' | translate }}</span>
+        </ion-button>
         <ranking-today
-          
-          style="width: 100%; padding-bottom: 20px"
+          class="rankingSlide"    
           [segment]="segment"
           [AllPost]="todolosPost"
           [country]="country"
         ></ranking-today>
+        <ion-button  class="buttonSlide" (click)="next(slides)">
+          <span *ngIf="platform.is('desktop')">{{ 'ranking.week' | translate }}</span><ion-icon name="chevron-forward-outline"></ion-icon>
+        </ion-button>
       </ion-slide>
-      <ion-slide>
+      <ion-slide >
+        <ion-button  class="buttonSlide" (click)="prev(slides)">
+          <ion-icon name="chevron-back-outline"></ion-icon><span *ngIf="platform.is('desktop')">{{ 'ranking.today' | translate }}</span>
+        </ion-button>
         <ranking-week
-          
-          style="width: 100%; padding-bottom: 20px"
+          class="rankingSlide"    
           [segment]="segment"
           [AllPost]="todolosPost"
           [country]="country"
         ></ranking-week>
+        <ion-button  class="buttonSlide" (click)="next(slides)">
+          <span *ngIf="platform.is('desktop')">{{ 'ranking.month' | translate }}</span><ion-icon name="chevron-forward-outline"></ion-icon>
+        </ion-button>
       </ion-slide>
-      <ion-slide>
+      <ion-slide >
+        <ion-button  class="buttonSlide" (click)="prev(slides)">
+          <ion-icon name="chevron-back-outline"></ion-icon><span *ngIf="platform.is('desktop')">{{ 'ranking.week' | translate }}</span>
+        </ion-button>
         <ranking-month
-          
-          style="width: 100%; padding-bottom: 20px"
+          class="rankingSlide"    
           [segment]="segment"
           [AllPost]="todolosPost"
           [country]="country"
         ></ranking-month>
+        <ion-button  class="buttonSlide" (click)="next(slides)">
+          <span *ngIf="platform.is('desktop')">{{ 'ranking.year' | translate }}</span><ion-icon name="chevron-forward-outline"></ion-icon>
+        </ion-button>
       </ion-slide>
-      <ion-slide>
+      <ion-slide >
+        <ion-button  class="buttonSlide" (click)="prev(slides)">
+          <ion-icon name="chevron-back-outline"></ion-icon><span *ngIf="platform.is('desktop')">{{ 'ranking.month' | translate }}</span>
+        </ion-button>
         <raking-year
-          
-          style="width: 100%; padding-bottom: 20px"
+          class="rankingSlide"    
           [segment]="segment"
           [AllPost]="todolosPost"
           [country]="country"
