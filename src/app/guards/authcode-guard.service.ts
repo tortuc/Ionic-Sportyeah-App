@@ -13,7 +13,7 @@ export class AuthCodeGuardService {
   async canActivate() {
     return this.UserService.verifyToken()
       .then((user:User) => {
-        if(user.codeAuth != null){
+        if(user.codeAuth == null){
           this.router.navigate(["/dashboard"])
           return false
         }else{
