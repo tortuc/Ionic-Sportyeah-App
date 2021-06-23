@@ -1,7 +1,7 @@
-import { Component, OnInit } from "@angular/core";
-import { AlertController, ModalController } from "@ionic/angular";
-import { TranslateService } from "@ngx-translate/core";
-import { normalize } from "src/config/base";
+import { Component, Input, OnInit } from '@angular/core';
+import { ModalController } from '@ionic/angular';
+import { TranslateService } from '@ngx-translate/core';
+import { normalize } from 'src/config/base';
 import {
   sports,
   sportsCycling,
@@ -25,22 +25,16 @@ import {
 } from "src/config/sports";
 
 
-
-enum Texts {
-  alertHeader = "selectSport.alertHeader",
-  alertMessage = "selectSport.alertMessage",
-  alertAccept = "selectSport.alertAccept",
-}
-
 @Component({
-  selector: "app-sport-select",
-  templateUrl: "./sport-select.component.html",
-  styleUrls: ["./sport-select.component.scss"],
+  selector: 'app-sports-filter',
+  templateUrl: './sports-filter.component.html',
+  styleUrls: ['./sports-filter.component.scss']
 })
-export class SportSelectComponent implements OnInit {
+export class SportsFilterComponent implements OnInit {
+
+  @Input() sports:string[] = []
   constructor(
     public readonly modalCtrl: ModalController,
-    private readonly alertCtrl: AlertController,
     private readonly translate: TranslateService
   ) {}
 
@@ -164,22 +158,26 @@ export class SportSelectComponent implements OnInit {
   async sportSelected(event) {
     const sport = event.detail.value;
 
-    let alert = await this.alertCtrl.create({
-      header: this.translate.instant(Texts.alertHeader),
-      message: this.translate.instant(Texts.alertMessage, {
-        sport: this.translate.instant(`allSports.${sport}`),
-      }),
-      buttons: [
-        { text: this.translate.instant("cancel"), role: "close" },
-        {
-          text: this.translate.instant(Texts.alertAccept),
-          handler: () => {
-            this.modalCtrl.dismiss(sport);
-          },
-        },
-      ],
-    });
+    
+  }
 
-    return await alert.present();
+  addSport(sport:string){
+    let exist = this.sports.find(x=>x == sport)
+    if(!exist){
+      this.sports.push(sport)
+    }else{
+      this.sports = this.sports.filter(x=>x != sport)
+    }
+  }
+
+
+  isSelect(sport){
+    let exist = this.sports.find(x=>x == sport)
+
+    return (exist)?"selected":""
+  }
+
+  close(){
+    this.modalCtrl.dismiss(this.sports)
   }
 }

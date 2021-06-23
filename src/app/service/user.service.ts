@@ -16,6 +16,7 @@ import { Subject } from "rxjs";
 import { ModalController } from "@ionic/angular";
 import { take } from "rxjs/operators";
 import { myBrowser } from "../helpers/browser";
+import { Countrys } from "./countrys.service";
 
 // import { FcmService } from "./fcm.service";
 
@@ -300,9 +301,20 @@ export class UserService {
       `${environment.URL_API}/friend/query/${query}`
     );
   }
-  queryUsersSkip(query, skip) {
-    return this.http.get<User[]>(
-      `${environment.URL_API}/friend/query/${query}/${skip}`
+
+
+  formatCountrys(countrys:Countrys[]):string[]{
+    let format = countrys.map((country)=>{
+      return country.alpha2Code
+    })
+    return format
+  }
+
+  queryUsersSkip(query, skip,countrysOriginals:Countrys[],profiles,sports) {
+    
+    let countrys = this.formatCountrys(countrysOriginals)
+    return this.http.put<User[]>(
+      `${environment.URL_API}/friend/query/${query}/${skip}`,{filters:{countrys,profiles,sports}}
     );
   }
 

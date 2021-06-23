@@ -260,11 +260,16 @@ a {
   --background: var(--color-secondary);
   --color: white;
   --border-radius: 25px;
+  font-size: 12px;
+  max-height: 30px;
 }
 .btn-primary {
   --background: var(--color-primary);
   --color: white;
   --border-radius: 25px;
+
+    font-size: 12px;
+    max-height: 30px;
   span {
     font-size: 12px;
     ion-icon {
@@ -278,6 +283,8 @@ a {
   --background: #fa1e0e;
   --color: white;
   --border-radius: 20px;
+  font-size: 12px;
+  max-height: 30px;
   span {
     font-size: 12px;
     ion-icon {
