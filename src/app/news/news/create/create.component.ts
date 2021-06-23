@@ -71,8 +71,7 @@ urlYu
     }
   }
   @ViewChild("subtitleNewsBtn") subtitleNewsBtn: SubtitleNewsComponent;
-
-
+ 
   subTitleAdd($event){
     this.subTitle = $event;
   }

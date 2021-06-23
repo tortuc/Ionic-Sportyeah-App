@@ -50,9 +50,11 @@
                 </ion-select>
               </ion-item> 
               <ion-item>
-                <ion-label position="floating" style="    margin-bottom: 10px;">{{'news.date' | translate}}</ion-label>
-                <ion-input  style=" color: black;" onkeydown="return false" [max]="today" type="date" [(ngModel)]="date"></ion-input>
-              </ion-item>
+                <ion-label position="floating" style="    margin-bottom: 23px;">{{'news.date' | translate}}</ion-label>
+                <input  style=" color: black; border-width:0px;border:none;outline:none;"  onkeydown="return false" [max]="today" type="date" [(ngModel)]="date">
+             <!-- <ion-datetime #datePicker  [(ngModel)]="myDate"></ion-datetime> #datePicker (click)="datePicker.open()"
+             <ion-fab-button (click)="datePicker.open()"><ion-icon name="calendar"></ion-icon></ion-fab-button> -->
+            </ion-item> 
              
               <ion-item>
                 <ion-label>

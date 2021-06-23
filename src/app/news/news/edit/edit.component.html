@@ -50,8 +50,9 @@
            </ion-item> 
            <form [formGroup]="form">
             <ion-item>
-              <ion-label position="floating" style="    margin-bottom: 10px;">{{'news.date' | translate}}</ion-label>
-              <ion-input  style=" color: black;" onkeydown="return false" [max]="today" type="date"  max="9999-12-31" formControlName="date"></ion-input>
+              <ion-label position="floating" style="margin-bottom: 23px;">{{'news.date' | translate}}</ion-label>
+              <!-- <ion-input  style=" color: black;" onkeydown="return false" [max]="today" type="date"  max="9999-12-31" formControlName="date"></ion-input> -->
+              <input  style=" color: black; border-width:0px;border:none;outline:none;"  onkeydown="return false" formControlName="date" [max]="today" type="date" >
             </ion-item>
           </form>
         <ion-item>
