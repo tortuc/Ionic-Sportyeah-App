@@ -1,5 +1,9 @@
-import { Component, Input, OnInit,EventEmitter,Output} from "@angular/core";
-import { ModalController,PopoverController,AlertController } from "@ionic/angular";
+import { Component, Input, OnInit, EventEmitter, Output } from "@angular/core";
+import {
+  ModalController,
+  PopoverController,
+  AlertController,
+} from "@ionic/angular";
 import { IComment } from "src/app/models/iPost";
 import { UserService } from "src/app/service/user.service";
 import { ViewsSponsorService } from "src/app/service/views-sponsor.service";
@@ -8,6 +12,30 @@ import { OptionsPostPage } from "src/app/profile/options-post/options-post.page"
 import { EditCommentPage } from "src/app/profile/edit-comment/edit-comment.page";
 import { TranslateService } from "@ngx-translate/core";
 import { CommentService } from "src/app/service/comment.service";
+import { PopoverOptionsComponent } from "src/app/components/structure/popover-options/popover-options.component";
+
+enum Texts {
+  edit = "Editar comentario",
+  delete = "Eliminar comentario",
+}
+
+enum options {
+  edit = "edit",
+  delete = "delete",
+}
+
+const popoverOtions = [
+  {
+    icon: "create-outline",
+    text: Texts.edit,
+    action: "edit",
+  },
+  {
+    icon: "trash-bin-outline",
+    text: Texts.delete,
+    action: "delete",
+  },
+];
 @Component({
   selector: "view-comment",
   templateUrl: "./view-comment.component.html",
@@ -26,7 +54,7 @@ export class ViewCommentComponent implements OnInit {
     private commentService: CommentService,
     private alertController: AlertController,
     private modalController: ModalController,
-    public viewsSponsorService:ViewsSponsorService
+    public viewsSponsorService: ViewsSponsorService
   ) {}
 
   ngOnInit() {}
@@ -39,8 +67,9 @@ export class ViewCommentComponent implements OnInit {
     modal.present();
   }
 
-  goToSponsor(sponsor) { console.log("desde coment views sponosr");
-  
+  goToSponsor(sponsor) {
+    console.log("desde coment views sponosr");
+
     if (this.comment.user._id != this.userService.User._id) {
       this.viewsSponsorService
         .createSponsorView({
@@ -58,27 +87,28 @@ export class ViewCommentComponent implements OnInit {
     }
   }
 
-  async openOptions(ev: any) {
+  async openOptions(event) {
     const popover = await this.popoverController.create({
-      component: OptionsPostPage,
-      cssClass: "my-custom-class",
-      event: ev,
-      translucent: true,
-      componentProps: { post: this.comment },
+      component: PopoverOptionsComponent,
+      componentProps: { options: popoverOtions },
+      event,
+      showBackdrop: false,
     });
-    popover.onDidDismiss().then((data) => {
-      this.options(data.data);
-    });
-    return await popover.present();
-  }
 
-  options(data) {
-    switch (data?.action) {
-      case "delete":
-        this.askDelete(data.post);
+    popover.onDidDismiss().then((response) => {
+      let option = response.data;
+      this.handlerOptions(option);
+    });
+    popover.present();
+  }
+  handlerOptions(option: options) {
+    switch (option) {
+      case options.edit:
+        this.edit();
         break;
-      case "edit":
-        this.edit(data.post);
+
+      case options.delete:
+        this.askDelete();
         break;
 
       default:
@@ -86,7 +116,7 @@ export class ViewCommentComponent implements OnInit {
     }
   }
 
-  async askDelete(post: IComment) {
+  async askDelete() {
     let alert = await this.alertController.create({
       header: this.translate.instant("delete_post.header"),
       message: this.translate.instant("delete_post.message"),
@@ -97,7 +127,7 @@ export class ViewCommentComponent implements OnInit {
         {
           text: this.translate.instant("accept"),
           handler: () => {
-            this.deleteComment(post);
+            this.deleteComment();
           },
         },
       ],
@@ -105,39 +135,39 @@ export class ViewCommentComponent implements OnInit {
     alert.present();
   }
 
-
-  deleteComment(posts: IComment) {
-    console.log("delete comentario")
+  deleteComment() {
+    console.log("delete comentario");
     this.commentService
-      .deleteOne(posts._id)
+      .deleteOne(this.comment._id)
       .toPromise()
-      .then((post) => {
+      .then(() => {
         this.comment.deleted = true;
-        this.Deletedcomments.emit()
-
-        
+        this.Deletedcomments.emit();
       })
       .catch((err) => {
         // handle the error
       });
   }
 
-
-  async edit(comment: any) {
+  async edit() {
+    this.commentService.commentEditd$.subscribe((comment)=>{
+      console.log(comment)
+      if(comment._id == this.comment._id){
+        this.comment = comment
+      }
+    })
     const modal = await this.modalController.create({
       component: EditCommentPage,
       cssClass: "my-custom-class",
       componentProps: {
-        comment,
+        comment: this.comment,
       },
     });
     modal.onDidDismiss().then((data) => {
-      //this.modalClose(data.data);
+      if(data.data?.edited){
+        this.comment = data.data.comment
+      }
     });
     return await modal.present();
   }
-
-  
-
-
 }

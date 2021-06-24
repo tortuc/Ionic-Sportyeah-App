@@ -29,11 +29,9 @@ export class EditCommentPage implements OnInit {
     public loadingCtrl: LoadingController,
     private commentService: CommentService
   ) {
-
     // this.commentService.fileRemovedSuscriber().subscribe((url)=>{
     //   this.removeFile(url);
     // })
-
   }
 
   removeFile(url) {
@@ -64,7 +62,6 @@ export class EditCommentPage implements OnInit {
   });
 
   async ngOnInit() {
- 
     this.setValues();
 
     window.onclick = () => {
@@ -73,43 +70,22 @@ export class EditCommentPage implements OnInit {
   }
 
   setValues() {
-    
-    console.log(this.comment)
+    console.log(this.comment);
 
     this.form.controls.message.setValue(this.comment.message);
-    this.files = this.comment.files
+    this.files = this.comment.files;
   }
 
   async save() {
-    let loading = await this.loadingCtrl.create({
-      message: this.translate.instant("loading"),
-    });
-    loading.present();
     let comment = this.form.value;
     comment.files = this.files;
-   
+
     comment.message = this.mainInput.nativeElement.innerHTML;
 
     if (this.videosToUploads.length == 0) {
-      this.commentService
-        .updateOne(this.comment._id, comment)
-        .toPromise()
-        .then((resp) => {
-          loading.dismiss();
-          this.modalController.dismiss({
-            dismissed: true,
-            edited: true,
-          });
-
-          this.comment.message = comment.message
-          
-        })
-        .catch((err) => {
-          loading.dismiss();
-        });
+      this.commentService.updateOne(this.comment._id, comment);
+      this.modalController.dismiss();
     } else {
-      loading.dismiss();
-
       this.modalController.dismiss({
         dismissed: true,
         edited: true,

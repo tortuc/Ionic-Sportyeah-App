@@ -1,19 +1,20 @@
 <ion-card class="comment">
   <div class="user-header">
     <ion-avatar
-      class="mini"
+      class="user-avatar"
       (click)="userService.goToProfile(comment.user.username,comment.user._id,'comment',undefined)"
     >
-      <ion-img class="img-user-mini" [src]="comment.user.photo"></ion-img>
+      <img  [src]="comment.user.photo">
       <div class="connectedDIVlittle" *ngIf="comment.user.connected"></div>
     </ion-avatar>
-    <div class="user-name">
-      <span
-        class="message profile-name"
+    <div class="name-content" style="padding: 5px;">
+      <p
+        class="name profile-name"
         (click)="userService.goToProfile(comment.user.username,comment.user._id,'comment',undefined)"
-        >{{ comment.user.name }} {{ comment.user.last_name }}</span
-      ><br />
-      <span>{{ comment.date | customDisplayDate }}</span>
+        >{{ comment.user.name }} {{ comment.user.last_name }}</p
+      >
+      <span *ngIf="!comment.edited" class="date-span"> {{ comment.date | customDisplayDate }}</span>
+      <span *ngIf="comment.edited" class="date-span">{{'edit_at' | translate}} {{ comment.edite | customDisplayDate }}</span>
     </div> 
     <ion-icon
     

@@ -16,6 +16,7 @@ export class LoadingService {
   public async present() {
     this.loading = await this.loadingCtrl.create({
       message: this.translate.instant("loading"),
+      cssClass:"custom-loading"
     });
     this.loading.present();
   }
