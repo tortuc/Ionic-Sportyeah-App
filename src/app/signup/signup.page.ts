@@ -4,14 +4,30 @@ import { Router } from "@angular/router";
 import { TranslateService } from "@ngx-translate/core";
 import { LoginService } from "../service/login.service";
 import { UserService } from "../service/user.service";
-import { AlertController, LoadingController } from "@ionic/angular";
+import { AlertController, ModalController } from "@ionic/angular";
 import {
   languajes,
   profiles,
-  sports,
   sub_profiles_administration,
   sub_profiles_staff,
 } from "src/config/base";
+import { LoadingService } from "../service/loading.service";
+import { SportSelectComponent } from "./sport-select/sport-select.component";
+import { response } from "express";
+import { AlertOptions } from "@capacitor/core";
+import { myBrowser } from "../helpers/browser";
+
+enum Texts {
+  emailErrorTitle = "sign_up.wrong.email.title",
+  emailErrorMessage = "sign_up.wrong.email.msg",
+  emailErrorBtn = "sign_up.wrong.email.button",
+  usernameErrorTitle = "sign_up.wrong.username.title",
+  usernameErrorMessage = "sign_up.wrong.username.msg",
+  usernameErrorBtn = "sign_up.wrong.username.button",
+  successTitle = "sign_up.success.title",
+  successMsg = "sign_up.success.msg",
+  successBtn = "sign_up.success.button",
+}
 
 @Component({
   selector: "app-signup",
@@ -19,7 +35,6 @@ import {
   styleUrls: ["./signup.page.scss"],
 })
 export class SignupPage implements OnInit {
-  public readonly sports = sports;
 
   public readonly langs = languajes;
 
@@ -29,16 +44,21 @@ export class SignupPage implements OnInit {
 
   public readonly sub_profiles_staff = sub_profiles_staff;
 
+  public customAlertOptions: any = {
+    cssClass: "big-selet",
+  };
+
   show = false;
   show1 = false;
   constructor(
-    private fb: FormBuilder,
-    private loginService: LoginService,
-    public alertController: AlertController,
-    private translate: TranslateService,
-    private router: Router,
-    public userService: UserService,
-    private loadingCtrl: LoadingController
+    private readonly fb: FormBuilder,
+    private readonly loginService: LoginService,
+    public readonly alertController: AlertController,
+    private readonly translate: TranslateService,
+    private readonly router: Router,
+    public readonly userService: UserService,
+    private readonly loading: LoadingService,
+    private readonly modalCtrl: ModalController
   ) {}
 
   ngOnInit() {}
@@ -78,6 +98,7 @@ export class SignupPage implements OnInit {
       sub_profile: ["", [Validators.required]],
       agree: [false],
       authorize: [true],
+      browser: [myBrowser()],
     },
     { validator: this.checkPasswords }
   );
@@ -165,12 +186,8 @@ export class SignupPage implements OnInit {
    * Intentamos crear el usuario
    */
   async create() {
-    // creamos un loading para bloquear las funcionalidades mientras se crea el usuario
-    let loading = await this.loadingCtrl.create({
-      message: this.translate.instant("loading"),
-    });
     // presentamos el loading
-    loading.present();
+    this.loading.present();
 
     // obtenemos los datos del formulario y ese sera nuestro usuario
     let user = this.form.value;
@@ -179,38 +196,38 @@ export class SignupPage implements OnInit {
 
     user.country = await this.loginService.getCountryCode();
 
-    console.log(user);
-
     this.loginService
       .create(user)
       .toPromise()
       .then(() => {
-        loading.dismiss();
+        this.loading.dismiss();
         this.success();
       })
       .catch((err) => {
-        loading.dismiss();
-        if (err.error == "email-already-exists") {
-          this.alert(
-            "sign_up.wrong.email.title",
-            "sign_up.wrong.email.msg",
-            "sign_up.wrong.email.button"
-          );
-        } else if (err.error == "user-already-exists") {
-          this.alert(
-            "sign_up.wrong.username.title",
-            "sign_up.wrong.username.msg",
-            "sign_up.wrong.username.button"
-          );
+        this.loading.dismiss();
+        switch (err.error) {
+          case "email-already-exists":
+            this.alert(
+              Texts.emailErrorTitle,
+              Texts.emailErrorMessage,
+              Texts.emailErrorBtn
+            );
+            break;
+          case "user-already-exists":
+            this.alert(
+              Texts.usernameErrorTitle,
+              Texts.usernameErrorMessage,
+              Texts.usernameErrorBtn
+            );
+            break;
+
+          default:
+            break;
         }
       });
   }
   success() {
-    this.alert(
-      "sign_up.success.title",
-      "sign_up.success.msg",
-      "sign_up.success.button"
-    );
+    this.alert(Texts.successTitle, Texts.successMsg, Texts.successBtn);
     this.router.navigate(["/login"]);
   }
 
@@ -231,7 +248,21 @@ export class SignupPage implements OnInit {
     await alert.present();
   }
 
-  setLang(ev){
-    this.translate.use(ev.detail.value)
+  setLang(ev) {
+    this.translate.use(ev.detail.value);
+  }
+
+  public async selectSport() {
+    const modal = await this.modalCtrl.create({
+      component: SportSelectComponent,
+      cssClass: "modal-border",
+    });
+
+    modal.onDidDismiss().then((response) => {
+      console.log(response)
+      response.data ? this.form.controls.sport.setValue(response.data) : null;
+    });
+
+    return await modal.present();
   }
 }

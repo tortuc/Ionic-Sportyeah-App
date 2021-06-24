@@ -10,6 +10,9 @@
             <ion-segment-button value="inactive">
               <ion-label>{{'news.inactive_news' | translate}}</ion-label>
             </ion-segment-button>
+            <ion-segment-button value="draft">
+              <ion-label>{{'news.draft' | translate}}</ion-label>
+            </ion-segment-button>
           </ion-segment>
         </ion-card>
       </ion-col>
@@ -49,6 +52,13 @@
               <source [src]="new.principalVideo | safeUrl" type="video/mp4" />
             </video>
           </div> 
+          <div *ngIf="new.principalYoutube">
+            <iframe
+              *ngIf="new.principalYoutube | youtube"
+              [src]="new.principalYoutube | youtube"
+              frameborder="0"
+          ></iframe>
+          </div>
         </ion-card>
       </ion-col>
     </ion-row>  

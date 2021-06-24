@@ -1,16 +1,13 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { User } from "src/app/models/IUser";
-import {
-  IOrganization,
-  IStructure,
-  StructureService,
-} from "src/app/service/structure.service";
+import { IOrganization, IStructure } from "src/app/models/structure.model";
+import { StructureService } from "src/app/service/structure.service";
 import { UserService } from "src/app/service/user.service";
 
 enum Texts {
-  toolbar = "Perfil de organigrama",
-  from = "Desde",
+  toolbar = "executive_profile.toolbar",
+  from = "from",
 }
 
 @Component({

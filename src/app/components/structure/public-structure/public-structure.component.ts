@@ -1,10 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { ModalController } from "@ionic/angular";
-import {
-  IStructure,
-  StructureService,
-} from "src/app/service/structure.service";
+import { IStructure } from "src/app/models/structure.model";
+import { StructureService } from "src/app/service/structure.service";
 import { UserService } from "src/app/service/user.service";
 
 enum Texts {
@@ -41,6 +39,8 @@ export class PublicStructureComponent implements OnInit {
     this.structureService
       .getStructureByUsername(this.route.snapshot.paramMap.get("username"))
       .subscribe((structure) => {
+        console.log(structure);
+
         this.structure = structure;
         this.setSocialNetworks();
       });
@@ -56,27 +56,29 @@ export class PublicStructureComponent implements OnInit {
       {
         icon: "logo-tiktok",
         name: SocialNetworks.tiktok,
-        username: socialNetworks.tiktok,
+        username: socialNetworks?.tiktok,
       },
       {
         icon: "logo-twitter",
         name: SocialNetworks.twitter,
-        username: socialNetworks.twitter,
+        username: socialNetworks?.twitter,
       },
       {
         icon: "logo-facebook",
         name: SocialNetworks.facebook,
-        username: socialNetworks.facebook,
+        username: socialNetworks?.facebook,
       },
       {
         icon: "logo-instagram",
         name: SocialNetworks.instagram,
-        username: socialNetworks.instagram,
+        username: socialNetworks?.instagram,
+        img:"assets/logos/instagram.png",
+
       },
       {
         icon: "logo-linkedin",
         name: SocialNetworks.linkedin,
-        username: socialNetworks.linkedin,
+        username: socialNetworks?.linkedin,
       },
     ];
   }

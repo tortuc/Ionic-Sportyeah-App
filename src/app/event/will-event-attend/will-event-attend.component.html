@@ -1,0 +1,21 @@
+<div *ngIf="willAttend?.length > 0">
+  <div style="text-align: center;margin:0px;padding:0px;"><h3 style="color: white;margin:0px;padding:0px;margin-top: 8px;">{{'event.youll_go' | translate}}</h3></div>
+  <!-- <ion-card style="margin:0px;padding:0px;"> -->
+    <ion-slides  pager="true" [options]="slideOpts">
+      <ion-slide style="text-align: center;"  *ngFor="let willAtt of willAttend">
+          <div class="scale-in-hor-center event" (click)="seeEvent(willAtt.event)" [ngStyle]="{'background-image': 'url(' + willAtt.event.principalImage + ')'}" >
+            <img style="height: 65px;" src="assets/logos/imagotipo_azul.png" alt="">
+            <ion-card-header>
+              <ion-card-title [ngStyle]="{'color':willAtt.event.colorTitle}">{{willAtt.event.title}}</ion-card-title>
+            </ion-card-header>
+          </div>
+      </ion-slide>
+    </ion-slides>
+  <!-- </ion-card> -->
+</div>
+
+<div *ngIf="willAttend?.length == 0" style="text-align: center;">
+  <div><h5>{{'event.not_have_go' | translate}}</h5></div>
+  <img style="max-width: 130px;" src="https://img.icons8.com/ultraviolet/344/starred-ticket.png" alt="">
+  <div><h4>{{'event.take_events' | translate}}</h4></div>
+</div>

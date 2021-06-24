@@ -1,7 +1,12 @@
 import { NgModule } from "@angular/core";
 import { PreloadAllModules, RouterModule, Routes } from "@angular/router";
+import { PlayerComponent } from "./components/structure/player/player.component";
 import { ExecutiveProfileComponent } from "./components/structure/private-organization-chart/executive-profile/executive-profile.component";
+import { PublicCategoryComponent } from "./components/structure/public-category/public-category.component";
+import { PublicDivisionComponent } from "./components/structure/public-division/public-division.component";
+import { PublicTeamComponent } from "./components/structure/public-team/public-team.component";
 import { AuthGuardService } from "./guards/auth-guard.service";
+import { AuthCodeGuardService } from "./guards/authcode-guard.service";
 import { LandingGuard } from "./guards/landing-guard.service";
 import { SessionGuardService } from "./guards/session-guard.service";
 import { LivescoreModule } from "./livescore";
@@ -12,11 +17,7 @@ const routes: Routes = [
     redirectTo: "login",
     pathMatch: "full",
   },
-  {
-    path: "livescore",
-    loadChildren: (): Promise<LivescoreModule> =>
-      import("./livescore").then((m) => m.LivescoreModule),
-  },
+ 
   {
     path: "login",
     loadChildren: () =>
@@ -172,15 +173,61 @@ const routes: Routes = [
     canActivate: [LandingGuard],
   },
   {
+    path: 'streaming',
+    loadChildren: () => import('./stream-user/stream-user.module').then( m => m.StreamUserPageModule),
+    canActivate: [AuthGuardService],
+  },
+  {
+    path: 'event',
+    loadChildren: () => import('./event/event.module').then( m => m.EventPageModule),
+    canActivate: [AuthGuardService],
+  },
+  {
     path: "structure/organization/profile/:id",
     component: ExecutiveProfileComponent,
     canActivate: [LandingGuard],
+  },
+  {
+    path: "structure/division/:id",
+    component: PublicDivisionComponent,
+    canActivate: [LandingGuard],
+  },
+  {
+    path: "structure/category/:id",
+    component: PublicCategoryComponent,
+    canActivate: [LandingGuard],
+  },
+  {
+    path: "structure/team/:id",
+    component: PublicTeamComponent,
+    canActivate: [LandingGuard],
+  },
+  {
+    path: "structure/player/:id",
+    component: PlayerComponent,
+    canActivate: [LandingGuard],
+  },
+  {
+    path: "livescore",
+    loadChildren: (): Promise<LivescoreModule> =>
+      import("./livescore").then((m) => m.LivescoreModule),
+  },
+  {
+    path: 'auth',
+    loadChildren: () => import('./auth/auth.module').then( m => m.AuthPageModule),
+    canActivate:[AuthCodeGuardService]
   },
   {
     path: "**",
     loadChildren: () =>
       import("./not-found/not-found.module").then((m) => m.NotFoundPageModule),
   },
+  
+
+ 
+ 
+
+
 ];
 @NgModule({
   imports: [

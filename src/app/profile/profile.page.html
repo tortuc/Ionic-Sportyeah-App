@@ -13,7 +13,7 @@
   </ion-toolbar>
 </ion-header>
 <ion-content
-  [scrollbar]="reusableCI.scrollbarStyle"
+  
   class="main-bg"
   [scrollEvents]="true"
   (ionScrollEnd)="logScrolling($event)"
@@ -120,15 +120,6 @@
               </ion-icon>
               {{'golanding' | translate}}
             </ion-button>
-            <ion-button
-              color="primary"
-              *ngIf="landingButton"
-              [routerLink]="'../structure/'+userService.User.username"
-            >
-              <ion-icon name="megaphone-outline" style="margin-right: 5px">
-              </ion-icon>
-              {{'gostructure' | translate}}
-            </ion-button>
           </ion-card-header>
 
           <!-- Redes sociales en mobile -->
@@ -138,7 +129,9 @@
           <private-structure-preview
             fxShow="false"
             fxShow.lt-md="true"
-            *ngIf="['club'].includes(userService.User.profile_user)"
+            *ngIf="['club', 'association',
+            'foundation',
+            'federation'].includes(userService.User.profile_user)"
           ></private-structure-preview>
 
           <!-- Patrocinadores en mobile -->
@@ -178,18 +171,18 @@
           <private-gallery-preview #gallery></private-gallery-preview>
 
           <experience
-            *ngIf="['player','scout','press', 'executive','staff'].includes(userService.User.profile_user)"
+            *ngIf="['player','referee','scout','press', 'executive','staff'].includes(userService.User.profile_user)"
             [id]="userService.User?._id"
             [user]="userService.User"
           ></experience>
 
           <awards
-            *ngIf="['player','scout','press','executive','staff'].includes(userService.User?.profile_user)"
+            *ngIf="['player','referee','scout','press','executive','staff'].includes(userService.User?.profile_user)"
             [user]="userService.User"
           ></awards>
 
           <aptitudes
-            *ngIf="['player','scout','executive','staff'].includes(userService.User?.profile_user)"
+            *ngIf="['player','referee','scout','executive','staff'].includes(userService.User?.profile_user)"
             [user]="userService.User"
           ></aptitudes>
         </div>
@@ -236,7 +229,9 @@
             *ngIf="userService.User.profile_user == 'sponsor'"
           ></custom-sponsor>
           <private-structure-preview
-            *ngIf="['club'].includes(userService.User.profile_user)"
+            *ngIf="['club', 'association',
+            'foundation',
+            'federation'].includes(userService.User.profile_user)"
           ></private-structure-preview>
 
           <friends-panel-desktop></friends-panel-desktop>

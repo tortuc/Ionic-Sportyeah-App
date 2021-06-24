@@ -1,0 +1,61 @@
+<ion-header>
+  <ion-toolbar class="toolbar-bg">
+    <ion-buttons slot="start">
+      <ion-back-button style="color: white"></ion-back-button>
+    </ion-buttons>
+    <ion-title style="--color: white">{{
+      Texts.toolbar | translate
+    }}</ion-title>
+    <ion-buttons slot="end">
+      <button-search-friend></button-search-friend>
+      <button-notification></button-notification>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div *ngIf="profile == null" style="text-align: center; padding: 20px">
+    <ion-spinner></ion-spinner>
+  </div>
+
+  <div *ngIf="profile">
+    <div class="header">
+      <div (click)="goToStructure()" class="logo">
+        <img [src]="profile.team.category.division.structure.logo" alt="" />
+      </div>
+      <h1 class="club" (click)="goToStructure()">
+        {{ profile.team.category.division.structure.name }}
+      </h1>
+      <h2 class="position">{{ profile.position }}</h2>
+      <div class="photo-content">
+        <div class="photo">
+          <img [src]="profile.photo" alt="" />
+        </div>
+        <div class="data">
+          <h3 class="subtitle" style="margin-bottom: 3px">Datos personales</h3>
+          <h6 class="subtitle">{{ Texts.name | translate }}</h6>
+          <p class="text">{{ profile.name }}</p>
+          <h6 class="subtitle">{{ Texts.position | translate }}</h6>
+          <p class="text">{{ profile.position }}</p>
+          <h6 class="subtitle">{{ Texts.height | translate }}</h6>
+          <p class="text">{{ profile.height }}</p>
+          <h6 class="subtitle">{{ Texts.place | translate }}</h6>
+          <p class="text">{{ profile.place }}</p>
+          <h6 class="subtitle">{{ Texts.birth | translate }}</h6>
+          <p class="text">{{ profile.birthday | customDisplayDate: true }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="content">
+      <h6>{{ Texts.bio | translate }}</h6>
+      <p class="history">- {{ profile.history }}</p>
+
+      <div *ngIf="profile.user">
+        <user-item
+          ngClass.lg="preview-desktop"
+          [user]="profile.user"
+        ></user-item>
+      </div>
+    </div>
+  </div>
+</ion-content>

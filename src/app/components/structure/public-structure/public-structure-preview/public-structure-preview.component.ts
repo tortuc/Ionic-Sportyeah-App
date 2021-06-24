@@ -1,9 +1,7 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { User } from "src/app/models/IUser";
-import {
-  IStructure,
-  StructureService,
-} from "src/app/service/structure.service";
+import { IStructure } from "src/app/models/structure.model";
+import { StructureService } from "src/app/service/structure.service";
 
 enum Texts {
   title = "private_structure.preview.title",
@@ -24,6 +22,7 @@ export class PublicStructurePreviewComponent implements OnInit {
     this.structureService.getStructureByUser(this.user._id).subscribe(
       (structure) => {
         this.structure = structure;
+        console.log(structure);
       },
       () => {
         this.structure = null;

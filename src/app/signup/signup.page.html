@@ -105,10 +105,15 @@
                         </ion-col>
                         <ion-col size-xs="12" size-md="6">
                           <ion-item>
-                            <ion-label position="floating"
+                            <ion-label position="stacked"
                               >{{'sign_up.lang' | translate}}</ion-label
                             >
-                            <ion-select formControlName="lang" (ionChange)="setLang($event)">
+                            <ion-select
+                              cancelText="{{'cancel' | translate}}"
+                              okText="{{'accept' | translate}}"
+                              formControlName="lang"
+                              (ionChange)="setLang($event)"
+                            >
                               <ion-select-option
                                 *ngFor="let lang of langs"
                                 [value]="lang"
@@ -144,18 +149,14 @@
                           </div>
                         </ion-col>
                         <ion-col size-sm="6" size-xs="12">
-                          <ion-item>
+                          <ion-item (click)="selectSport()">
                             <ion-label position="floating"
                               >{{'sport.sport' | translate}}</ion-label
                             >
-                            <ion-select formControlName="sport">
-                              <ion-select-option
-                                *ngFor="let sport of sports"
-                                [value]="sport"
-                                >{{ 'sport.'+sport|
-                                translate}}</ion-select-option
-                              >
-                            </ion-select>
+                            <ion-input
+                              readonly
+                              formControlName="sport"
+                            ></ion-input>
                           </ion-item>
                         </ion-col>
 
@@ -167,6 +168,8 @@
                               translate}}</ion-label
                             >
                             <ion-select
+                              cancelText="{{'cancel' | translate}}"
+                              okText="{{'accept' | translate}}"
                               [disabled]="form.value.sport == ''?true:false"
                               (ionChange)="have_sub_profile()"
                               formControlName="profile_user"
@@ -174,10 +177,8 @@
                               <ion-select-option
                                 *ngFor="let profile of profiles"
                                 [value]="profile"
-                                >{{profile=='player'?('profile_user.'+
-                                profile+'.' + form.value.sport|
-                                translate):('profile_user.'+ profile|
-                                translate)}}</ion-select-option
+                                >{{'profile_user.'+ profile|
+                                translate}}</ion-select-option
                               >
                             </ion-select>
                           </ion-item>
@@ -192,9 +193,14 @@
                               >{{'sub_profile.sub_profile' |
                               translate}}</ion-label
                             >
-                            <ion-select formControlName="sub_profile">
+                            <ion-select
+                              [interfaceOptions]="customAlertOptions"
+                              cancelText="{{'cancel' | translate}}"
+                              okText="{{'accept' | translate}}"
+                              formControlName="sub_profile"
+                            >
                               <ion-select-option
-                                *ngFor="let sub_profile of (form.value.profile_user=='administration'? sub_profiles_administration:sub_profiles_staff)"
+                                *ngFor="let sub_profile of (form.value.profile_user=='staff'?sub_profiles_staff: sub_profiles_administration)"
                                 [value]="sub_profile"
                                 >{{'sub_profile.'+ sub_profile|
                                 translate}}</ion-select-option

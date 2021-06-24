@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
+import { IStructure } from "src/app/models/structure.model";
 import {
-  IStructure,
   StructureService,
 } from "src/app/service/structure.service";
 

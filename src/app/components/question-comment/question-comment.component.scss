@@ -3,8 +3,8 @@
   width: 100%;
   cursor: pointer;
   color: black;
-  height: 53px;
-  margin-bottom: 10px;
+  height: 53px;//53px
+  margin-bottom: 15px;
   pointer-events: none;
 }
 
@@ -45,14 +45,14 @@
 }
 
 ion-progress-bar {
-  height: 53px;
+  height: 53px;//100%
   --progress-background: #9cc4e5;
   border-radius: 30px;
   border: solid black 1px;
 }
 
 .barProgres {
-  height: 53px;
+  height: 53px;//100%
   --progress-background: transparent;
   &:hover {
     --background: #80c1f3;

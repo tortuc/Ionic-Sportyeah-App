@@ -1,7 +1,6 @@
 import {
   Component,
   OnInit,
-  HostListener,
   ViewChildren,
   QueryList,
 } from "@angular/core";
@@ -16,11 +15,12 @@ import { ChatService } from "./service/chat.service";
 import { NotificationService } from "./service/notification.service";
 import { ReusableComponentsIonic } from "./service/ionicHelpers.service";
 import { CookieService } from "ngx-cookie-service";
-import { Meta } from "@angular/platform-browser";
+import { Meta, Title } from "@angular/platform-browser";
 import { languajes, SIDEBAR_ITEMS } from "src/config/base";
 import { getToken } from "./helpers/token";
 import { Location } from "@angular/common";
 import { FilesService } from "./service/files.service";
+import { environment } from "src/environments/environment";
 
 @Component({
   selector: "app-root",
@@ -49,8 +49,11 @@ export class AppComponent implements OnInit {
     private cookieService: CookieService,
     private meta: Meta,
     public fileService: FilesService,
-    public location: Location
+    public location: Location,
+    private titleService: Title
   ) {
+    console.log("iniciando app");
+    
     this.initializeApp();
 
     this.langSettings();
@@ -60,8 +63,11 @@ export class AppComponent implements OnInit {
 
   initializeApp() {
     this.platform.ready().then(() => {
-      this.statusBar.styleDefault();
-      this.splashScreen.hide();
+      if (this.platform.is("cordova")) {
+        this.statusBar.styleDefault();
+        this.splashScreen.hide();
+      }
+
       this.backButtonEvent();
     });
   }
@@ -74,7 +80,9 @@ export class AppComponent implements OnInit {
     this.router.navigate([r]);
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    
+  }
 
   langSettings() {
     this.translate.addLangs(this.langs);
@@ -89,6 +97,7 @@ export class AppComponent implements OnInit {
   }
 
   seo() {
+    this.titleService.setTitle(environment.title)
     this.meta.addTag(
       {
         property: "og:title",

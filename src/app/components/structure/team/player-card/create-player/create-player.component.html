@@ -1,0 +1,113 @@
+<input
+  type="file"
+  #fileChooser
+  accept="image/*"
+  (change)="uploadFile($event)"
+  hidden
+/>
+
+<ion-content>
+  <loading-progress class="progress"></loading-progress>
+
+  <ion-icon
+    name="close-outline"
+    (click)="modalCtrl.dismiss()"
+    class="close-modal"
+  ></ion-icon>
+
+  <div class="header">
+    <h4>{{ (player ? Texts.edit : Texts.title) | translate }}</h4>
+  </div>
+  <div style="text-align: center">
+    <div class="photo-cover">
+      <div (click)="fileChooser.click()" class="photo-change">
+        <h4 class="text">{{ Texts.changeImg | translate }}</h4>
+      </div>
+      <img class="profile-photo" [src]="form.controls.photo.value" alt="" />
+    </div>
+    <div style="padding: 5px; text-align: center">
+      <ion-button (click)="fileChooser.click()" class="btn-primary">{{
+        Texts.changeImg | translate
+      }}</ion-button>
+    </div>
+  </div>
+  <div style="padding: 0px 10px">
+    <form [formGroup]="form">
+      <ion-item>
+        <ion-label position="floating">{{ Texts.name | translate }}</ion-label>
+        <ion-input formControlName="name"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">{{
+          Texts.position | translate
+        }}</ion-label>
+        <ion-input formControlName="position"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">{{
+          Texts.height | translate
+        }}</ion-label>
+        <ion-input formControlName="height"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">{{ Texts.place | translate }}</ion-label>
+        <ion-input formControlName="place"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">{{ Texts.date | translate }}</ion-label>
+        <ion-input
+          formControlName="birthday"
+          type="date"
+          max="3000-01-01"
+        ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">{{
+          Texts.history | translate
+        }}</ion-label>
+        <ion-textarea formControlName="history"></ion-textarea>
+      </ion-item>
+    </form>
+
+    <div style="text-align: center">
+      <h5>{{ Texts.user | translate }}</h5>
+      <ng-container *ngIf="user == null">
+        <ion-searchbar
+          animated="true"
+          placeholder="{{ 'search' | translate }}"
+          (ionChange)="filter($event)"
+          autocomplete="on"
+        ></ion-searchbar>
+        <ion-row>
+          <ion-col size="6" *ngFor="let user of users">
+            <user-item-preview
+              (click)="setUser(user)"
+              [user]="user"
+            ></user-item-preview>
+          </ion-col>
+        </ion-row>
+      </ng-container>
+      <ng-container *ngIf="user">
+        <user-item-preview
+          class="user-selected"
+          [user]="user"
+        ></user-item-preview>
+        <div style="text-align: center">
+          <ion-button class="btn-cancel" (click)="user = null">{{
+            Texts.cancelUser | translate
+          }}</ion-button>
+        </div>
+      </ng-container>
+    </div>
+
+    <div style="padding: 5px; text-align: center">
+      <ion-button
+        (click)="save()"
+        [disabled]="form.invalid"
+        class="btn-primary"
+        >{{ (player ? Texts.save : Texts.create) | translate }}</ion-button
+      >
+    </div>
+  </div>
+</ion-content>

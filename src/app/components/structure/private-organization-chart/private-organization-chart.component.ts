@@ -1,17 +1,14 @@
 import { Component, OnInit } from "@angular/core";
 import { ModalController } from "@ionic/angular";
-import {
-  IOrganization,
-  IStructure,
-  StructureService,
-} from "src/app/service/structure.service";
+import { IOrganization, IStructure } from "src/app/models/structure.model";
+import { StructureService } from "src/app/service/structure.service";
 import { CreateProfileOrgComponent } from "./create-profile-org/create-profile-org.component";
 
 enum Texts {
   title = "organizationChart.title",
   description = "organizationChart.description",
   create = "organizationChart.createBtn",
-  from = "Desde",
+  from = "from", 
 }
 
 @Component({

@@ -49,6 +49,7 @@
     overflow: hidden;
     border-radius: 15px;
     box-shadow: 0 0 10px black;
+    max-width: 50%;
 
     img {
       height: 100%;
@@ -100,6 +101,7 @@
     padding: 0;
 
     .section {
+      max-width: unset;
       margin: 10px 0px;
       box-shadow: 0 0 5px black;
       height: 250px;

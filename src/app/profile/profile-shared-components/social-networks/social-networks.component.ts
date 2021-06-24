@@ -46,6 +46,8 @@ export class SocialNetworksComponent implements OnInit {
       },
       {
         icon: "logo-instagram",
+        img:"assets/logos/instagram.png",
+
         name: SocialNetworks.instagram,
         username: socialNetworks.instagram,
       },

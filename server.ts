@@ -1,7 +1,7 @@
-import "localstorage-polyfill";
-
-global["localStorage"] = localStorage;
-global["sessionStorage"] = require("sessionstorage");
+import 'localstorage-polyfill'
+ 
+global['localStorage'] = localStorage;
+global['sessionStorage'] = require('sessionstorage');
 
 import 'zone.js/dist/zone-node';
 
@@ -48,6 +48,7 @@ function run(): void {
   // Start up the Node server
   const server = app();
   server.listen(port, () => {
+    console.log(`Node Express server listening on http://localhost:${port}`);
   });
 }
 

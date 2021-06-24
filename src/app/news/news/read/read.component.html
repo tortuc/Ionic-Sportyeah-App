@@ -1,5 +1,8 @@
 <ion-header>
-  <ion-toolbar class="toolbar-bg">
+  <ion-toolbar class="main-bg">
+    <ion-buttons slot="end">
+      <ion-back-button style="color: white"></ion-back-button>
+    </ion-buttons>
     <ion-buttons slot="start">
       <ion-menu-button style="color: white"></ion-menu-button>
     </ion-buttons>
@@ -59,6 +62,14 @@
        <source [src]="news?.news.principalVideo | safeUrl" type="video/mp4" />
      </video>
    </div> 
+      <!-- Youtube Principal -->
+   <div *ngIf="news?.news.principalYoutube">
+    <iframe
+      *ngIf="news?.news.principalYoutube | youtube"
+      [src]="news?.news.principalYoutube | youtube"
+      frameborder="0"
+  ></iframe>
+  </div>
    <p *ngIf="news?.news.principalVideo != null || news?.news.principalImage != null " style="text-align: center;color: #737373;font-size: 14px;" (click)="isLink(news?.news.originPrincipaMedia)"><i>{{news?.news.originPrincipaMedia }}</i></p>
 </ion-col> 
 
@@ -69,10 +80,10 @@
       <ion-row>
         <ion-col size="12">
         <!-- Este es el Subtitulo -->
-        <h2 *ngIf="parrafo.subtitle" style="text-align: center;color: #5a5a5a;font-size: 23px;">
-          {{parrafo.subtitle}}
+        <h2 *ngIf="parrafo.subtitle" [innerHTML]="parrafo.subtitle | links" style="text-align: center;color: #5a5a5a;font-size: 23px;">
         </h2>
-        
+        <!-- <span *ngIf="parrafo.subtitle" [innerHTML]="parrafo.subtitle | links"></span> -->
+
 
           <!-- Este es el parrafo -->
           <div style="color: black;text-align: justify;"  [innerHTML]="parrafo.parrafo"></div>
@@ -129,8 +140,21 @@
     <ion-col  size="12" >
       <p style="text-align: center;color: #737373;font-size: 14px;"><i>{{news?.news.origin}}</i></p>
      </ion-col>
-    <ion-col *ngIf="news.news.user.sponsors.length != 0" size="12">
-    <!-- SPONSORS -->
+      <!-- SPONSORS -->
+      <ion-col size="12" *ngIf="sponsors.length > 0" >
+        <h2>{{'Sponsors' | translate}}</h2>
+        <div class="sponsors">
+          <view-sponsor-mini
+            *ngFor="let sponsor of sponsors.slice(0, 6); let i = index"
+            (click)="clickOnSponsor(sponsor)"
+            [info]="sponsor.idSponsor?.sponsor_info || sponsor.customSponsor"
+            [sponsor]="sponsor"
+          ></view-sponsor-mini>
+        </div>
+      </ion-col>
+       <!-- TERMINO SPONSORS -->
+    <!-- <ion-col *ngIf="news.news.user.sponsors.length != 0" size="12">
+   
     <h2 *ngIf="news?.news.principalSubtitle" style="text-align: center;color: #5a5a5a;">Patrocinado por:</h2> 
     <div>
       <ion-grid>
@@ -154,8 +178,9 @@
         </ion-row>
       </ion-grid>
     </div>
-    <!-- TERMINO SPONSORS -->
-  </ion-col>
+  </ion-col> -->
+   
+
     
     <!-- <ion-col *ngIf="news.news.question != null" size="12">
       <question [data]="news" [notified]="notified" (newItemEvent)="voted($event)"></question>

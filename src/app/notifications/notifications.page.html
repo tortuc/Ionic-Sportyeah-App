@@ -40,6 +40,8 @@
                   <shared-notification      *ngIf="notification.action === 'shared'"    [notification]="notification"></shared-notification>
                   <mention-notification      *ngIf="notification.action === 'mention' || notification.action === 'mention_comment'"    [notification]="notification"></mention-notification>
                   <question-notification     *ngIf="notification.action === 'questionEnd'"    [notification]="notification"></question-notification>
+                  <event-invitation-notification *ngIf="notification.action === 'invited_event'"    [notification]="notification"> </event-invitation-notification>
+                  <news-notification *ngIf="notification.action === 'news_created'" [notification]="notification"></news-notification>
                 </ion-col>
                 <ion-col style="text-align: center; min-height: 50px;"
                       ><ion-spinner *ngIf="loadingContent"></ion-spinner

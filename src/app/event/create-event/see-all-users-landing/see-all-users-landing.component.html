@@ -1,0 +1,67 @@
+<ion-header>
+  <ion-toolbar class="main-bg">
+    <ion-title style="--color:white;">{{'event.see_all' | translate}}</ion-title>
+    <ion-buttons slot="end" >
+      <ion-button (click)="dismiss()"  style="--color:white"><ion-icon name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-searchbar placeholder="{{'event.seeAll_search' | translate}}" (ionChange)="filter($event?.detail.value)">
+
+  </ion-searchbar>
+ 
+  <ion-segment  [(ngModel)]="segment" >
+    <ion-segment-button value="users">
+      <ion-label>{{'event.participing' | translate}}</ion-label>
+    </ion-segment-button>
+   
+    <!-- <ion-segment-button value="pending">
+      <ion-label>{{'landing_event.seeAll.pending' | translate}}</ion-label>
+    </ion-segment-button> -->
+  </ion-segment>
+  <div *ngIf="segment == 'users'">
+    <ion-item *ngFor="let user of users" style="cursor: pointer;"  >
+
+      <ion-thumbnail slot="start">
+        <ion-avatar class="mini" >
+          <img [src]="user.photo">
+        </ion-avatar>
+      </ion-thumbnail>
+      <ion-label  >
+        <span>{{user.name}} {{user.last_name}} </span><br>
+        <span style="font-size: 12px;">@{{user.username}}</span>
+      </ion-label>
+      <!-- <ion-button 
+      (click)="delete(user._id)"
+       class="btn-green-small">{{'landing_event.seeAll.out.button' | translate}}</ion-button>
+      <ion-button 
+      (click)="block(user)"
+       class="btn-green-small">{{'landing_event.seeAll.block.button' | translate}}</ion-button>
+   -->
+    </ion-item>
+  </div>
+ 
+  <!-- <div *ngIf="segment == 'pending'">
+    <div style="text-align: center;"><ion-button class="btn-green-small" (click)="remind()">{{'landing_event.seeAll.remind.button' | translate}}</ion-button></div>
+    <ion-item *ngFor="let user of event.analytic.pending" style="cursor: pointer;"  >
+
+      <ion-thumbnail slot="start">
+        <ion-avatar class="mini" >
+          <img [src]="user.photo">
+        </ion-avatar>
+      </ion-thumbnail>
+      <ion-label  >
+        <span>{{user.name}} {{user.last_name}} </span><br>
+        <span style="font-size: 12px;">@{{user.username}}</span>
+      </ion-label>
+  
+    </ion-item>
+  </div> -->
+
+
+</ion-content>
+

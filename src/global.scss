@@ -160,7 +160,7 @@ ion-searchbar {
   --icon-color: black !important;
   --color: black !important;
   color: black !important;
-  text-align:left !important;
+  text-align: left !important;
 }
 
 ion-list {
@@ -260,11 +260,16 @@ a {
   --background: var(--color-secondary);
   --color: white;
   --border-radius: 25px;
+  font-size: 12px;
+  max-height: 30px;
 }
 .btn-primary {
   --background: var(--color-primary);
   --color: white;
   --border-radius: 25px;
+
+    font-size: 12px;
+    max-height: 30px;
   span {
     font-size: 12px;
     ion-icon {
@@ -278,6 +283,8 @@ a {
   --background: #fa1e0e;
   --color: white;
   --border-radius: 20px;
+  font-size: 12px;
+  max-height: 30px;
   span {
     font-size: 12px;
     ion-icon {
@@ -286,7 +293,6 @@ a {
     }
   }
 }
-
 
 .btn-delete {
   --background: #d73226;
@@ -887,8 +893,6 @@ ion-avatar.chat-img {
   width: 100%;
 }
 
-
-
 .close-modal {
   color: white;
   background: #00000075;
@@ -901,7 +905,7 @@ ion-avatar.chat-img {
   cursor: pointer;
 }
 
-.profile-col{
+.profile-col {
   padding: 5px;
 }
 
@@ -923,4 +927,17 @@ ion-avatar.chat-img {
   &.instagram {
     color: black;
   }
+}
+
+.big-selet .alert-wrapper {
+  --min-width: 300px !important;
+
+  ::ng-deep .alert-radio-label {
+    color: #000 !important;
+  }
+}
+
+
+div{
+  color: black !important;
 }

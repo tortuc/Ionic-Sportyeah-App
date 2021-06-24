@@ -47,7 +47,7 @@ export class ChatPage implements OnInit {
     private cookieService: CookieService,
     private loadingCtrl: LoadingController
   ) {
-    this.mobileQuery = media.matchMedia("(min-width: 768px)");
+    this.mobileQuery = media.matchMedia("(min-width: 900px)");
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
     this.platform.backButton.subscribeWithPriority(10, () => {

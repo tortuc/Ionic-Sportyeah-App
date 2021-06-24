@@ -47,9 +47,8 @@ export class DashboardPage implements OnInit, AfterViewInit {
     public reusableCI: ReusableComponentsIonic,
     public cd: ChangeDetectorRef,
     private loginService: LoginService,
-    private readonly groupService:GroupService
+    private readonly groupService: GroupService
   ) {
-
     this.groupService.groupInvited();
     this.loginService.connections().subscribe((connections: any[]) => {
       if (connections.length < 2 && this.userService.User.msgProfile == false) {

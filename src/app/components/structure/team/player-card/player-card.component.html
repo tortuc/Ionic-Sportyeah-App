@@ -1,0 +1,17 @@
+<ion-card class="exe-item">
+  <ion-card-header (click)="visit()" class="exe-header">
+    <img class="exe-img" [src]="profile.photo" alt="" />
+  </ion-card-header>
+  <ion-card-content (click)="visit()" class="exe-info">
+    <h2 class="name">{{ profile.name }}</h2>
+    <h3 class="position">{{ profile.position }}</h3>
+  </ion-card-content>
+  <div *ngIf="private" class="buttons">
+    <ion-button (click)="edit()" class="btn-primary"
+      ><span><ion-icon name="create-outline"></ion-icon></span
+    ></ion-button>
+    <ion-button (click)="delete()" class="btn-cancel"
+      ><span><ion-icon name="trash-outline"></ion-icon></span
+    ></ion-button>
+  </div>
+</ion-card>

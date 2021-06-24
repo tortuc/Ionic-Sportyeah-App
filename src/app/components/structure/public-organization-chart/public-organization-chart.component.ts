@@ -1,16 +1,12 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import { ModalController } from "@ionic/angular";
-import {
-  IOrganization,
-  IStructure,
-  StructureService,
-} from "src/app/service/structure.service";
+import { IOrganization, IStructure } from "src/app/models/structure.model";
+import { StructureService } from "src/app/service/structure.service";
 enum Texts {
   title = "organizationChart.title",
   description = "organizationChart.description",
   create = "organizationChart.createBtn",
-  from = "Desde",
+  from = "from",
 }
 @Component({
   selector: "app-public-organization-chart",
@@ -31,7 +27,7 @@ export class PublicOrganizationChartComponent implements OnInit {
       .getStructureByUsername(this.route.snapshot.paramMap.get("username"))
       .subscribe((structure) => {
         this.structure = structure;
-        this.getProfiles()
+        this.getProfiles();
       });
   }
 
@@ -40,13 +36,11 @@ export class PublicOrganizationChartComponent implements OnInit {
   getProfiles() {
     this.structureService
       .getOrganizationByUsername(this.route.snapshot.paramMap.get("username"))
-      .subscribe((profiles) => {
-        console.log(profiles);
-        
-        this.profiles = profiles;
-      },(err)=>{
-        console.log(err);
-        
-      });
+      .subscribe(
+        (profiles) => {
+          this.profiles = profiles;
+        },
+        (err) => {}
+      );
   }
 }

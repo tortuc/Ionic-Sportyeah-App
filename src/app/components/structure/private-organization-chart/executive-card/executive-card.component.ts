@@ -1,13 +1,10 @@
-import { Interpolation } from "@angular/compiler";
 import { Component, Input, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { AlertController, ModalController } from "@ionic/angular";
 import { TranslateService } from "@ngx-translate/core";
+import { IOrganization } from "src/app/models/structure.model";
 import { LoadingService } from "src/app/service/loading.service";
-import {
-  IOrganization,
-  StructureService,
-} from "src/app/service/structure.service";
+import { StructureService } from "src/app/service/structure.service";
 import { CreateProfileOrgComponent } from "../create-profile-org/create-profile-org.component";
 
 enum Texts {
@@ -24,7 +21,7 @@ enum Texts {
 export class ExecutiveCardComponent implements OnInit {
   public readonly Texts = Texts;
   @Input() profile: IOrganization;
-  @Input() private:boolean = false;
+  @Input() private: boolean = false;
 
   constructor(
     private readonly modalCtrl: ModalController,
@@ -35,10 +32,7 @@ export class ExecutiveCardComponent implements OnInit {
     private readonly router: Router
   ) {}
 
-  ngOnInit() {
-    console.log(this.profile);
-    
-  }
+  ngOnInit() {}
 
   public visit() {
     this.router.navigate([

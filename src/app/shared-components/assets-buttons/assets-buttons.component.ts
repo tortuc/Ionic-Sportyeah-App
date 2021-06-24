@@ -37,17 +37,15 @@ export class AssetsButtonsComponent implements OnInit, OnChanges {
   @Input() editPost: boolean = false;
   @Input() question = null;
   @Input() files: IFile[] = [];
-  @Input() group:boolean = false;
+  @Input() group: boolean = false;
 
   @Output() videoToUpload = new EventEmitter();
   @Output() newFile = new EventEmitter();
 
   clickEmoji(ev) {
-    
+    console.log(ev)
     this.emoji.emit(ev);
   }
-
- 
 
   constructor(
     public platform: Platform,
@@ -61,18 +59,15 @@ export class AssetsButtonsComponent implements OnInit, OnChanges {
   ) {}
 
   canCreateQuestion = true;
-  ngOnInit() {
-    
-  
-  }
+  ngOnInit() {}
 
   ngOnChanges() {
-    if(this.editPost){
-      this.canCreateQuestion = false
-    }else if(this.chat && !this.group){
-      this.canCreateQuestion = false
-    }else{
-      this.canCreateQuestion = true
+    if (this.editPost) {
+      this.canCreateQuestion = false;
+    } else if (this.chat && !this.group) {
+      this.canCreateQuestion = false;
+    } else {
+      this.canCreateQuestion = true;
     }
   }
 
@@ -139,7 +134,6 @@ export class AssetsButtonsComponent implements OnInit, OnChanges {
 
     alert.present();
   }
-
 
   uploadFile(event) {
     this.uploadImages(event.target.files);

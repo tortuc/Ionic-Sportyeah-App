@@ -1,8 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { ModalController } from "@ionic/angular";
+import { IStructure } from "src/app/models/structure.model";
 import {
-  IStructure,
   StructureService,
 } from "src/app/service/structure.service";
 import { UserService } from "src/app/service/user.service";
@@ -32,7 +32,7 @@ export class PrivateStructureComponent implements OnInit {
   public readonly Texts = Texts;
   constructor(
     private readonly structureService: StructureService,
-    private readonly userService: UserService,
+    public readonly userService: UserService,
     private readonly router: Router,
     private readonly modalCtrl: ModalController
   ) {}
@@ -65,6 +65,8 @@ export class PrivateStructureComponent implements OnInit {
       },
       {
         icon: "logo-instagram",
+        img:"assets/logos/instagram.png",
+
         name: SocialNetworks.instagram,
         username: socialNetworks.instagram,
       },

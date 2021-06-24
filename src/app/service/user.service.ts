@@ -15,6 +15,8 @@ import { CookieService } from "ngx-cookie-service";
 import { Subject } from "rxjs";
 import { ModalController } from "@ionic/angular";
 import { take } from "rxjs/operators";
+import { myBrowser } from "../helpers/browser";
+import { Countrys } from "./countrys.service";
 
 // import { FcmService } from "./fcm.service";
 
@@ -58,6 +60,7 @@ export class UserService {
     this.translate.use(user.lang);
     this.cookieService.set("lang", user.lang);
     this.User = user;
+    // this.update({ browser: myBrowser() }).subscribe()
   }
 
   getUser() {
@@ -194,7 +197,7 @@ export class UserService {
     });
   }
 
-  async verifyToken(): Promise<Boolean> {
+  async verifyToken(): Promise<User> {
     return await new Promise((resolve, reject) => {
       if (this.User == null) {
         if (getToken() != null) {
@@ -213,22 +216,22 @@ export class UserService {
                   this.socketService.socket.emit("login", {
                     user: resp.user._id,
                   });
-                  resolve(true);
+                  resolve(resp.user);
                 } else {
                   localStorage.clear();
-                  reject(false);
+                  reject(null);
                 }
               },
               (err) => {
                 localStorage.clear();
-                reject(false);
+                reject(null);
               }
             );
         } else {
           reject(false);
         }
       } else {
-        resolve(true);
+        resolve(this.User);
       }
     });
   }
@@ -281,6 +284,15 @@ export class UserService {
     );
   }
 
+
+  public authCode(code: string) {
+    return this.http.post<User>(
+      `${environment.URL_API}/user/codeauth`,
+      { code },
+      { headers: new HttpHeaders({ "access-token": getToken() }) }
+    );
+  }
+
   private logout$ = new Subject<boolean>();
 
   logoutObservable() {
@@ -298,9 +310,20 @@ export class UserService {
       `${environment.URL_API}/friend/query/${query}`
     );
   }
-  queryUsersSkip(query, skip) {
-    return this.http.get<User[]>(
-      `${environment.URL_API}/friend/query/${query}/${skip}`
+
+
+  formatCountrys(countrys:Countrys[]):string[]{
+    let format = countrys.map((country)=>{
+      return country.alpha2Code
+    })
+    return format
+  }
+
+  queryUsersSkip(query, skip,countrysOriginals:Countrys[],profiles,sports) {
+    
+    let countrys = this.formatCountrys(countrysOriginals)
+    return this.http.put<User[]>(
+      `${environment.URL_API}/friend/query/${query}/${skip}`,{filters:{countrys,profiles,sports}}
     );
   }
 

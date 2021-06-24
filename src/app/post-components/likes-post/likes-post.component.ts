@@ -41,6 +41,8 @@ export class LikesPostComponent implements OnInit {
       .subscribe(
         (data) => {
           this.data = data;
+          console.log(data);
+          
         },
         (err) => {}
       );

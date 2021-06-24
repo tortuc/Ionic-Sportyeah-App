@@ -15,6 +15,8 @@ import { FilesService } from 'src/app/service/files.service';
 import { ButtonsOptionsComponent } from '../buttons-options/buttons-options.component';
 import { ModalProgramNewsComponent } from '../modal-program-news/modal-program-news.component';
 import * as moment from 'moment';
+import { truncate } from 'fs';
+import { SubtitleNewsComponent } from '../subtitle-news/subtitle-news.component';
 
 const { Camera ,Filesystem} = Plugins;
 
@@ -30,7 +32,9 @@ export class EditComponent implements OnInit {
   @ViewChild("sportyeah") sportyeah: any;
   @ViewChild("optionsBtn") optionsBtn: ButtonsOptionsComponent;
 
-  
+  //Para el subtitulo
+  @ViewChild("subtitleNewsBtn") subtitleNewsBtn: SubtitleNewsComponent;
+
   @ViewChild("mainInputEdit") mainInputEdit: ElementRef;
 
   @ViewChild("mainInput") mainInput: ElementRef;
@@ -67,7 +71,12 @@ form = this.fb.group({
   date: ["", [Validators.required]],
 });
   news
-
+  subTitleAdd($event){
+    this.subTitle = $event;
+  }
+  subTitleEdit($event,position){
+    this.parrafos[position].subtitle = $event
+  }
   async presentToastWithOptions() {
     const toast = await this.toastController.create({
       message:this.translate.instant('news.edited'),
@@ -80,7 +89,6 @@ form = this.fb.group({
 
   ngOnInit() {
     this.newsService.findById(this.idNews).subscribe((response:any)=>{
-      console.log(response.news);
       
 
       this.news = response.news
@@ -88,12 +96,16 @@ form = this.fb.group({
       this.videoSelected = response.news.principalVideo;
       this.urlVideo = response.news.principalVideo;
       this.imagenSelected = response.news.principalImage;
+      this.principalYoutube = response.news.principalYoutube
       this.parrafos = response.news.content;
       this.titulo1 = response.news.headline;
+      this.subTitlePrincipal = response.news.principalSubtitle;
+
       this.deporte = response.news.sport;
       this.origen = response.news.origin;
       this.originPrincipaMedia = response.news.originPrincipaMedia;
-      this.date = response.news.date;
+      // this.date = response.news.date;
+      this.form.controls.date.setValue(moment(new Date(response.news.date)).format('YYYY-MM-DD'))
       this.audioNews = response.news.audioNews;
       this.programedDate = response.news.programatedDate
       if(response.news.principalSubtitle){
@@ -109,35 +121,14 @@ form = this.fb.group({
       this.agregandoOrigen = true;
     })
   }
-  newDate
+  
 async editar(){
   let loading = await this.loadingCtrl.create({
     message: this.translate.instant("loading"),
   });
   loading.present();
-  let news = this.form.value
-  news.principalVideo = this.videoSelected;
-  news.principalImage = this.imagenSelected;
-  news.user = this.userService.User._id;
-  news.headline = this.titulo1;
-  news.principalSubtitle = this.subTitle;
-  news.content = await this.questionService.parrafoFilter(this.parrafos);
-  if(  this.newDate != undefined){
-    news.date = this.newDate
-  }else{
-    news.date = this.date;
-  }
-  news.origin = this.origen;
-  news.originPrincipaMedia = this.originPrincipaMedia;
-  news.audioNews = this.audioNews;
-  news.programatedDate = this.programedDate
-  if(this.programedDate != undefined){
-    news.programated = true;
-  }else{
-    news.programated = false;
-  }
-  news.sport = this.deporte;
-    this.newsService.updateNews(news).subscribe((response) => {
+  
+  this.newsService.updateNews(this.news).subscribe((response) => {
       this.presentToastWithOptions();
       this.router.navigate(["news"]);
     });
@@ -148,12 +139,14 @@ async editar(){
 fecha = new Date().getDate() + '/'+ (new Date().getMonth()+1) + '/' + new Date().getFullYear()
 editando:boolean=false//si esta editando el agregar es disabled
 imagen;//imagen mostrada
-number:number = 0//Posicion de el parrafo, pero no del array, 
+number:number = undefined//Posicion de el parrafo, pero no del array, 
 positionEditactual:number=null; 
 parrafoAntesEdicion;
 parrafos=[];
-  text1 = `Escribe el párrafo # ${this.parrafos.length+1} `;
+today = moment().format("YYYY-MM-DD")
+  text1 ='' // `Escribe el párrafo # ${this.parrafos.length+1} `;
   titulo1= ``;
+  subTitlePrincipal = '';
   subTitle = null;
   deporte= ``;
   sports=['soccer', 'basketball','tennis',
@@ -174,15 +167,11 @@ parrafos=[];
   }
 
 
-  consol(){
-    let subtitulo
-    if(this.parrafos.length == 0){
-      subtitulo = null 
-    }else{
-      subtitulo = this.subTitleParrafo 
-    } 
+  async consol(){
+    await  this.subtitleNewsBtn.send()
+
     this.parrafos.push({
-      subtitle: subtitulo,
+      subtitle: this.subTitle,
       parrafo: this.text1,
       position: this.parrafos.length,
       image: null,
@@ -213,7 +202,9 @@ parrafos=[];
     this.editando = true
   }
   
-  EditParrafo(){
+  async EditParrafo(){
+    await this.subtitleNewsBtn.edit()
+
     this.parrafos[this.positionEditactual].parrafo = this.text1;
     this.parrafos[this.positionEditactual].title = this.titulo1;
  
@@ -221,6 +212,8 @@ parrafos=[];
     this.editando = false
     this.text1 = ``
     this.agregandoParrafo = false
+    this.number = undefined
+
   }
   eliminarParrafo(id){
     this.parrafos.splice(id,1)
@@ -229,10 +222,9 @@ parrafos=[];
     }
     id = null
     this.editando = false
-    if(this.number != 0 && this.number == this.parrafos.length){
-      this.number -= 1
-    }
     
+    this.number = undefined
+
     this.text1 = ``
   
   }
@@ -244,7 +236,7 @@ parrafos=[];
     this.parrafoAntesEdicion = null
     this.editando = false
     this.text1 = ``
-
+    this.number = undefined
   }
 
   ////Imagenes
@@ -564,7 +556,7 @@ origenSelect = [
 {value:0,origenSelect:"Mío"},
 {value:1,origenSelect:"Otra fuente"}
 ]
-miNoticia = undefined;
+miNoticia = undefined;f
 origenListoMio(){
   if(this.miNoticia == 0){
     this.origen = 'De mi propiedad'
@@ -619,7 +611,33 @@ origenParrafoEditar(i){
  this.originParrafoMedia = this.parrafos[i].originMedia
  this.parrafos[i].originMedia = null
 }
-todoConOrigen(){
+async todoConOrigen(){
+  this.news = this.form.value
+  
+  this.news.principalVideo = this.videoSelected;
+  this.news.principalImage = this.imagenSelected;
+  this.news.principalYoutube = this.principalYoutube  
+  this.news.user = this.userService.User._id;
+  this.news.headline = this.titulo1;
+  this.news.principalSubtitle = this.subTitlePrincipal;
+  this.news.content = await this.questionService.parrafoFilter(this.parrafos);
+  
+  this.news.origin = this.origen;
+  this.news.originPrincipaMedia = this.originPrincipaMedia;
+  this.news.audioNews = this.audioNews;
+  this.news.programatedDate = this.programedDate
+  if(this.programedDate != undefined){
+    this.news.programated = true;
+  }else{
+    this.news.programated = false;
+  }
+  
+  if(this.news.draftCopy == true){
+    this.news.draftCopy = false;
+  }
+  this.news.sport = this.deporte;
+  this.news.id = this.idNews;
+   
 // this.whitTime = this.editQuestionComponent.whitTime;
 // this.endDate = this.editQuestionComponent.endDate;
   this.todosParrafosConOrigen = false
@@ -648,8 +666,8 @@ todoConOrigen(){
     ok = false
 }
 
-  this.subTitle = this.subTitle.trim();
-  if ( this.subTitle.length != 0) {
+  this.subTitlePrincipal = this.subTitlePrincipal.trim();
+  if ( this.subTitlePrincipal.length != 0) {
   } else { 
     this.ToastError('El subtítulo no puede estar vacio')
     this.subTitlebool = false;
@@ -739,7 +757,6 @@ question = {
 editNewsQuestion(news,loading){
   this.questionService.create(this.question).subscribe((response:any)=>{//Crea el cuestionario y agrega el id al news
     news.question = response._id  
-   
     this.newsService.updateNews(this.form.value).subscribe((response)=>{
       this.presentToastWithOptions()
       this.router.navigate([`news/read/${this.news._id}`])
@@ -767,26 +784,24 @@ endDate;
 badDate:boolean=false;
 
 //Crea una modal donde se pueden crear preguntas 
-async createQuestion(){
-const modal = await this.modalController.create({
-  component: NewQuestionComponent,
-  cssClass: 'my-custom-class',
-  backdropDismiss:false
-  ,
-  componentProps: {
-  
-    edit:false
-  }
-});
-modal.onDidDismiss().then((data)=>{
-  if(data.data.question != undefined){
-    this.question.questionGroup.push(data.data.question) //Las preguntas creadas se introducen en el grupo de preguntas
-  }
-})
-.catch((err) => {
-});
-
-return await modal.present();
+async createQuestion() {
+  const modal = await this.modalController.create({
+    component: NewQuestionComponent,
+    cssClass: "my-custom-class",
+    backdropDismiss: false,
+    componentProps: {
+      edit: false,
+    },
+  });
+  modal
+    .onDidDismiss()
+    .then((data) => {
+      if (data.data.question != undefined) {
+        this.question.questionGroup.push(data.data.question); //Las preguntas creadas se introducen en el grupo de preguntas
+      }
+    })
+    .catch((err) => {});
+  return await modal.present();
 }
 // async editQuestion(i){
 // const modalEdit = await this.modalController.create({
@@ -826,14 +841,11 @@ addFile(file) {
     link:file.format =='link'?file.url:null,
     format:file.format
   });
-  console.log(this.parrafos);
 }
 editFile(format,i){
   this.optionsBtn.editFile(format,i)
 }
 editedFile(file){
-  console.log(this.parrafos[file.position]);
-  console.log(file);
 
   this.parrafos[file.position] = {
     subtitle: null,
@@ -869,6 +881,27 @@ editedLink(file){
 videosToUploads = []
 pushVideoToUpload(file) {
   this.videosToUploads.push(file);
+}
+addVideoPrincipal(file){
+  if(file.format == 'video'){
+    this.videoSelected = file.url;
+  }else{
+    this.imagenSelected = file.url;
+  }
+}
+agregandoYoutubePrincipal = false
+principalYoutube
+addYoutubePrincipal(){
+  this.principalYoutube  =   this.mainInput.nativeElement.innerHTML
+  this.agregandoYoutubePrincipal = false
+}
+editYoutubePrincipal = false;
+saveEditYoutubePrincipal(){
+  this.principalYoutube  =   this.mainInputEdit.nativeElement.innerHTML
+  this.editYoutubePrincipal = false
+}
+eliminarYoutube(){
+  this.principalYoutube = null;
 }
 
 addYoutube(){
@@ -926,7 +959,6 @@ newQuestion($event) {
     question,
     format:'question'
   }) 
-  console.log(this.parrafos);
 }
 questionEdited($event) {
   let question = {

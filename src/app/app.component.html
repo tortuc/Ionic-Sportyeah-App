@@ -2,13 +2,13 @@
   <ion-split-pane contentId="main-content">
     <ion-menu
       ngClass.gt-xs="max-widht-300"
-      [disabled]="userService.User == undefined"
+      [disabled]="userService.User == undefined || userService.User.codeAuth != null"
       contentId="main-content"
       type="overlay"
     >
       <ion-content
         style="--background: white !important"
-        [scrollbar]="reusableCI.scrollbarStyle"
+        
         allowAllScreens="true"
       >
         <ion-list
@@ -160,6 +160,7 @@
               <ion-label>{{ "sidebar.logout" | translate }}</ion-label>
             </ion-item>
           </ion-menu-toggle>
+         
           <!--<ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
             <ion-item
               (click)="selectedIndex = i"

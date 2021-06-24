@@ -10,6 +10,7 @@ import { LoginPage } from './login.page';
 import { TranslateModule } from '@ngx-translate/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ComponentsSharedModule } from '../shared-components/components-shared.module';
+import { FooterLoginComponent } from './footer-login/footer-login.component';
 
 @NgModule({
   imports: [
@@ -22,6 +23,6 @@ import { ComponentsSharedModule } from '../shared-components/components-shared.m
     ReactiveFormsModule,
     ComponentsSharedModule
   ],
-  declarations: [LoginPage]
+  declarations: [LoginPage,FooterLoginComponent]
 })
 export class LoginPageModule {}

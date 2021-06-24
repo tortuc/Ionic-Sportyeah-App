@@ -1,0 +1,72 @@
+<ion-header>
+  <ion-toolbar class="toolbar-bg">
+    <ion-buttons slot="start">
+      <ion-back-button style="color: white"></ion-back-button>
+    </ion-buttons>
+    <ion-title style="--color: white">{{
+      "structure.title.text" | translate
+    }}</ion-title>
+    <ion-buttons slot="end">
+      <button-search-friend></button-search-friend>
+      <button-notification></button-notification>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div>
+    <div class="header">
+      <ng-container *ngIf="structure">
+        <div class="logo">
+          <img [src]="structure.logo" alt="" />
+        </div>
+        <h1 class="name">{{ structure.name }}</h1>
+      </ng-container>
+
+      <ng-container *ngIf="team">
+        <h1 class="title">{{ team.name }}</h1>
+        <h6>
+          {{ team.description }}
+        </h6>
+      </ng-container>
+    </div>
+  </div>
+  <div class="content">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12">
+          <h4>{{ Texts.staff | translate }}</h4>
+        </ion-col>
+
+        <ion-col
+          size-md="4"
+          size-lg="3"
+          size-xs="6"
+          *ngFor="let profile of staff"
+          [ngClass]="{ deleted: profile.deleted }"
+          size="3"
+        >
+          <player-card [profile]="profile"></player-card>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="12">
+          <h4>{{ Texts.players | translate }}</h4>
+        </ion-col>
+
+        <ion-col
+          size-md="4"
+          size-lg="3"
+          size-xs="6"
+          *ngFor="let profile of players"
+          [ngClass]="{ deleted: profile.deleted }"
+          size="3"
+          style="padding: 0"
+        >
+          <player-card [profile]="profile"></player-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+</ion-content>

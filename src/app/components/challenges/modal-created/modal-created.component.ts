@@ -31,7 +31,7 @@ export class ModalCreatedComponent implements OnInit {
 
   ngOnInit() {
     this.users = this.userService.followings;
-    this.challengeLink = `${environment.URL_FRONT}challenge/${this.userService.User.username}/${this.Challenge._id}`;
+    this.challengeLink = `${environment.URL_FRONT}challenge/${this.userService.User.username}/${this.Challenge?._id}`;
   }
 
   onChange(search) {

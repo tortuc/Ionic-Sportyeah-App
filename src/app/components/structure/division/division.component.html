@@ -1,0 +1,55 @@
+<ion-header>
+  <ion-toolbar class="toolbar-bg">
+    <ion-buttons slot="start">
+      <ion-back-button style="color: white"></ion-back-button>
+    </ion-buttons>
+    <ion-title style="--color: white">{{
+      "structure.title.text" | translate
+    }}</ion-title>
+    <ion-buttons slot="end">
+      <button-search-friend></button-search-friend>
+      <button-notification></button-notification>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div>
+    <div class="header">
+      <div class="logo">
+        <img [src]="structure.logo" alt="" />
+      </div>
+      <h1 class="name">{{ structure.name }}</h1>
+      <div *ngIf="division">
+        <h1 class="title">{{ division.name }}</h1>
+        <h6>
+          {{ division.description }}
+        </h6>
+      </div>
+    </div>
+  </div>
+  <div class="content">
+    <ion-grid>
+      <ion-row>
+        <ion-col size-md="6" size-lg="4" size-xs="12">
+          <div class="section-create" (click)="create()">
+            <div class="text-content">
+              <h2 class="text">{{ Texts.create | translate }}</h2>
+              <img src="assets/structure/category.jpg" alt="" />
+            </div>
+          </div>
+        </ion-col>
+
+        <ion-col
+          size-md="6"
+          size-lg="4"
+          size-xs="12"
+          *ngFor="let category of categories"
+          [ngClass]="{ deleted: category.deleted }"
+        >
+          <category-card [private]="true" [category]="category"></category-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+</ion-content>

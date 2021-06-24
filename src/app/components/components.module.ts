@@ -46,7 +46,6 @@ import { EmojiModule } from "@ctrl/ngx-emoji-mart/ngx-emoji";
 import { ReactionsPostsComponent } from "./reactions-posts/reactions-posts.component";
 import { ViewProfileComponent } from "./view-profile/view-profile.component";
 import { IonicRatingModule } from "ionic4-rating";
-import { StructureComponent } from "src/app/profile/structure/structure.component";
 import { ChallengesPostOptionsComponent } from "./challenges/challenges-post-options/challenges-post-options.component";
 import { COptionsComponent } from "./challenges/c-options/c-options.component";
 import { NewsOptionsComponent } from "./news-options/news-options.component";
@@ -69,6 +68,9 @@ import { AwardsListComponent } from "./challenges/awards-list/awards-list.compon
 import { CreateAwardChallengeComponent } from "./challenges/create-award-challenge/create-award-challenge.component";
 import { ShowAwardsComponent } from "./challenges/show-awards/show-awards.component";
 import { AwardsAccordionComponent } from "./challenges/awards-accordion/awards-accordion.component";
+import { CategoryComponent } from "./structure/category/category.component";
+import { EventInvitationNotificationComponent } from "./event-invitation-notification/event-invitation-notification.component";
+import { NewsNotificationComponent } from "./news-notification/news-notification.component";
 
 const components = [
   NewProfilePhotoComponent,
@@ -79,7 +81,8 @@ const components = [
   UnfollowNotificationComponent,
   LikeNotificationComponent,
   CommentNotificationComponent,
-  StructureComponent,
+  EventInvitationNotificationComponent,
+  NewsNotificationComponent,
   SharedNotificationComponent,
   ChallengeCommentsComponent,
   ChallengeReactionsComponent,
@@ -127,7 +130,7 @@ const components = [
   ShowAwardsComponent,
   AwardsListComponent,
   AwardsAccordionComponent,
-  CreateAwardChallengeComponent,
+  CreateAwardChallengeComponent
 
 
 ];

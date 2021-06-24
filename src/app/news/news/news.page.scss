@@ -5,7 +5,6 @@
     cursor: pointer;
 }
 .imageMiniCard{
-    width: 160px;
     margin-left: auto;
     margin-right: auto;
     cursor: pointer;
@@ -77,6 +76,39 @@
         top: 50%;
         position: absolute;
       }
+
+      .avatar{
+        width: 18px;
+        height: 18px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .nameUser{
+        font-size: 8px !important;
+        color: rgb(56, 50, 50);
+      }
+      .divAvatar{
+        text-align: center;margin-top: 40px;cursor: pointer;
+      }
+
+      .userAvatar{
+        margin-top: 0px !important;
+      }
+
+    
+
+      .newsTitle{
+        font-size: 14px !important;
+        color:black ;
+        cursor: pointer;
+        width: 10em; /* the element needs a fixed width (in px, em, %, etc) */
+        white-space: nowrap; /* don't break the line */
+      }
+      .newsSubitle{
+        width: 10em; /* the element needs a fixed width (in px, em, %, etc) */
+        white-space: nowrap; /* don't break the line */
+      }
+
   }
 
   .threeNews{
@@ -91,9 +123,39 @@
     font-size: 18px !important;
     color:black ;
     cursor: pointer;
+    // width: 10em !important; /* the element needs a fixed width (in px, em, %, etc) */
+    overflow: hidden; /* make sure it hides the content that overflows */
+    text-overflow: ellipsis; /* give the beautiful '...' effect */
+  }
+  .newsSubitle{
+    font-size: 14px !important;
+    color:black ;
+    cursor: pointer;
+    // width: 10em !important; /* the element needs a fixed width (in px, em, %, etc) */
+    overflow: hidden; /* make sure it hides the content that overflows */
+    white-space: nowrap; /* don't break the line */
+    text-overflow: ellipsis; /* give the beautiful '...' effect */
   }
    
   .addNews{
     --background: black;
 
+  }
+
+  .avatar{
+    width: 37px;
+    height: 37px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .nameUser{
+    font-size: 8 !important;
+    color: rgb(0, 0, 0);
+    text-align: center;
+  }
+
+  .userAvatar{
+    text-align: center;
+    margin-top: 30px;
+    cursor: pointer;
   }

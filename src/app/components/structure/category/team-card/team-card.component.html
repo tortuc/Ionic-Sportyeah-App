@@ -1,0 +1,13 @@
+<div class="section">
+  <ion-icon
+    *ngIf="private"
+    (click)="options($event)"
+    name="ellipsis-vertical-circle-outline"
+    class="options-btn"
+  ></ion-icon>
+
+  <div class="text-content" (click)="goto()">
+    <h2 class="text">{{ team.name }}</h2>
+    <img [src]="team.image" alt="" />
+  </div>
+</div>

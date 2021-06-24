@@ -163,6 +163,7 @@ export class NewPostPage implements OnInit {
   loading = false;
 
   addFile(file) {
+    console.log(file)
     this.files.push(file);
   }
 

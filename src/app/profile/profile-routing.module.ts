@@ -1,14 +1,15 @@
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
-
 import { ProfilePage } from "./profile.page";
 import { ViewProfileComponent } from "../components/view-profile/view-profile.component";
 import { GalleryComponent } from "../components/gallery/gallery/gallery.component";
 import { PrivateStructureComponent } from "../components/structure/private-structure/private-structure.component";
 import { StructureGuardService } from "../guards/structure-guard.service";
 import { PrivateOrganizationChartComponent } from "../components/structure/private-organization-chart/private-organization-chart.component";
-import { ExecutiveProfileComponent } from "../components/structure/private-organization-chart/executive-profile/executive-profile.component";
-import { LandingGuard } from "../guards/landing-guard.service";
+import { PrivateStructureClubComponent } from "../components/structure/private-structure-club/private-structure-club.component";
+import { DivisionComponent } from "../components/structure/division/division.component";
+import { CategoryComponent } from "../components/structure/category/category.component";
+import { TeamComponent } from "../components/structure/team/team.component";
 const routes: Routes = [
   {
     path: "",
@@ -36,10 +37,26 @@ const routes: Routes = [
     canActivate: [StructureGuardService],
   },
   {
-    path: "structure/organization/profile/:id",
-    component: ExecutiveProfileComponent,
-    canActivate:[LandingGuard]
+    path: "structure/divisions",
+    component: PrivateStructureClubComponent,
+    canActivate: [StructureGuardService],
   },
+  {
+    path: "structure/divisions/:id",
+    component: DivisionComponent,
+    canActivate: [StructureGuardService],
+  },
+  {
+    path: "structure/category/:id",
+    component: CategoryComponent,
+    canActivate: [StructureGuardService],
+  },
+  {
+    path: "structure/team/:id",
+    component: TeamComponent,
+    canActivate: [StructureGuardService],
+  },
+
   {
     path: "following",
     loadChildren: () =>

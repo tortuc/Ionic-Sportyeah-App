@@ -1,0 +1,53 @@
+.exe-item {
+  box-shadow: 0 0 10px 0px black;
+  .exe-header {
+    cursor: pointer;
+    margin: 0;
+    padding: 0;
+    .exe-img {
+      max-height: 240px;
+      width: 100%;
+      height: 240px;
+    }
+  }
+  .exe-info {
+    cursor: pointer;
+    .name {
+      color: black;
+      font-weight: bold;
+      font-size: 20px;
+    }
+    .position {
+      color: black;
+      font-weight: bold;
+      font-size: 16px;
+    }
+  }
+}
+
+.buttons {
+  text-align: right;
+}
+
+@media screen and (max-width: 600px) {
+  .exe-item {
+    margin: 0;
+    box-shadow: 0 0 1px 0px black;
+    border-radius: 0;
+    .exe-header {
+      .exe-img {
+        max-height: 200px;
+        height: 200px;
+      }
+    }
+    .exe-info {
+      .position {
+        font-weight: unset;
+        font-size: 14px;
+      }
+      .name{
+        font-size: 18px;
+      }
+    }
+  }
+}

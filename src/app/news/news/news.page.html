@@ -1,7 +1,7 @@
 <ion-header>
-  <ion-buttons slot="start">
+  <!-- <ion-buttons slot="end">
     <ion-back-button style="color: white"></ion-back-button>
-  </ion-buttons>
+  </ion-buttons> -->
   <ion-toolbar class="toolbar-bg">
     <ion-buttons slot="start">
       <ion-menu-button style="color: white"></ion-menu-button>
@@ -13,7 +13,12 @@
 <ion-content *ngIf="news.length > 0" class="main-bg">
 <ion-grid>
   <ion-row>
+    <ion-col style="text-align: center;" size="12">
+    <ion-button style="--border-radius: 25px;" *ngIf="userService.User?.profile_user == 'press' "  [routerLink]="'/news/create'">Agregar notica</ion-button>
+    </ion-col>
+
     <ion-col size="12">
+
       <h1 class="title">{{'news.last' | translate}}</h1>
       <!--<ion-text color="black">
          <h1 style="font-size:35px;color: white; text-align: center;"><i></i></h1> 
@@ -62,7 +67,7 @@
     </ion-col> -->
   </ion-row>
 </ion-grid>
-<ion-fab-button style="z-index:1000;" *ngIf="userService.User?.profile_user == 'press' "  [routerLink]="'/news/create'" class="new addNews"><ion-icon name="add"></ion-icon></ion-fab-button>
+<!-- <ion-fab-button style="z-index:1000;" *ngIf="userService.User?.profile_user == 'press' "  [routerLink]="'/news/create'" class="new addNews"><ion-icon name="add"></ion-icon></ion-fab-button> -->
 
 <!-- Noticias generales  -->
 <ion-card>
@@ -72,7 +77,7 @@
    </ion-text>
   </ion-card-header> -->
   
-  <ion-card-content  *ngIf="newsSportUser.length > 0">
+  <ion-card-content  *ngIf="news.length > 0">
       <ion-list>
        <!--  <ion-item  *ngFor="let new of newsSportUser?.slice(0,indexLast )">
 
@@ -104,8 +109,7 @@
           </div>   
         </ion-item> -->
         <ion-grid>
-          <ion-row  *ngFor="let new of newsSportUser?.slice(0,indexLast )">
-
+          <ion-row  *ngFor="let new of news?.slice(0,indexLast )">
             <ion-col style="text-align: left;" size-xs="12" size-lg="3">
               <ion-img (click)="OpenNews(new._id)" *ngIf="new.principalImage"  class="imageMiniCard" [src]="new.principalImage"></ion-img>
               <div (click)="OpenNews(new._id)"  *ngIf="new.principalVideo" style="position: relative; cursor: pointer;">
@@ -119,31 +123,44 @@
                   <source [src]="new.principalVideo | safeUrl" type="video/mp4" />
                 </video>
               </div> 
+              <div *ngIf="new.principalYoutube">
+                <iframe style=" overflow: hidden ;  width: 100%;
+                height: 140px"
+                  *ngIf="new.principalYoutube | youtube"
+                  [src]="new.principalYoutube | youtube"
+                  frameborder="0"
+              ></iframe>
+              </div>
+
             </ion-col>
             
-            <ion-col size-xs="12" size-lg="9">
+            <ion-col size-xs="9" size-lg="7">
               <h5 class="deporteTitle">{{ 'sport.'+new.sport| translate}}<span style="font-size: 8 !important;color: rgb(58, 58, 58);margin-left:15px">{{new.date | customDisplayDate:true}}</span>
-                <div style="float: right;">
-                <ion-avatar style="width: 25px;height: 25px;margin-left: auto; margin-right: auto;" (click)="userService.goToProfile(new.user.username,new.user._id,'news',undefined)" >
-                  <img class="user-img-shadow" [src]="new.user.photo" />
-                </ion-avatar>
-                <span  style="font-size: 8 !important;margin-left:8px !important;color: rgb(0, 0, 0)" (click)="userService.goToProfile(new.user.username,new.user._id,'news',undefined)">{{new.user.name}} {{new.user.last_name}}</span>
-              </div>
+      
               </h5>
               <h3 (click)="OpenNews(new._id)" class="newsTitle">{{new.headline}}</h3>
-            </ion-col>   
+              <h4 (click)="OpenNews(new._id)" class="newsSubitle">{{new.principalSubtitle}}</h4>
+            </ion-col>  
+            <ion-col size-xs="3" size-lg="2">
+              <div class="userAvatar">
+                <ion-avatar class="avatar" (click)="userService.goToProfile(new.user.username,new.user._id,'news',undefined)" >
+                  <img class="user-img-shadow" [src]="new.user.photo" />
+                </ion-avatar>
+                <p  class="nameUser"  (click)="userService.goToProfile(new.user.username,new.user._id,'news',undefined)">{{new.user.name}} {{new.user.last_name}}</p>
+              </div>
+            </ion-col> 
             <div style="background: rgb(136, 136, 136); height: 1px;width: 100%;margin-bottom: 10px;"></div>
           </ion-row>
          
         </ion-grid>
         <div style="text-align: center;">
-          <ion-button *ngIf="indexLast < newsSportUser.length" class="main-bg"  (click)="verMasSport()">{{ 'news.see_more'| translate}}</ion-button>
+          <ion-button *ngIf="indexLast < news.length" class="main-bg"  (click)="verMasSport()">{{ 'news.see_more'| translate}}</ion-button>
         </div>
         
       </ion-list>
   </ion-card-content>
 
-  <ion-card-content *ngIf="newsSportUser.length == 0">
+  <ion-card-content *ngIf="news.length == 0">
     <ion-grid>
       <ion-row>
         <ion-col size="12"> 
@@ -261,7 +278,7 @@
   </ion-card-header>
   
   <ion-card-content *ngIf="myNews.length > 0">
-      <ion-list>
+     
         <ion-grid>
         <ion-row  *ngFor="let new of myNews?.slice(0,indexLastMy )">
           <ion-col size-xs="12" size-lg="3" >
@@ -279,17 +296,20 @@
             </div> 
           </ion-col>
           
-          <ion-col size-xs="12" size-lg="9">
+          <ion-col size-xs="10" size-lg="7">
             <h5 class="deporteTitle">{{ 'sport.'+new.sport| translate}}<span style="font-size: 8 !important;color: rgb(58, 58, 58);margin-left:15px">{{new.date | customDisplayDate:true}}</span>
-              <div style="float: right;">
-              <ion-avatar style="width: 25px;height: 25px;margin-left: auto; margin-right: auto;" (click)="userService.goToProfile(new.user.username,new.user._id,'news',undefined)" >  <!-- (click)="userService.goToProfile(new.user.username,news.user._id,'news',undefined)" -->
-                <img class="user-img-shadow" [src]="new.user.photo" />
-              </ion-avatar>
-              <span  style="font-size: 8 !important;margin-left:8px !important;color: rgb(0, 0, 0)" (click)="userService.goToProfile(new.user.username,new.user._id,'news',undefined)" >{{new.user.name}} {{new.user.last_name}}</span><!--  (click)="userService.goToProfile(new.user.username,new.user._id,'news',undefined)" -->
-            </div>
+              
             </h5>
             <h3 (click)="OpenNews(new._id)" class="newsTitle">{{new.headline}}</h3>
-          </ion-col>   
+          </ion-col> 
+          <ion-col  size-xs="2" size-lg="2">
+            <div style="text-align: center;margin-top: 40px;cursor: pointer;" >
+              <ion-avatar class="avatar" (click)="userService.goToProfile(new.user.username,new.user._id,'news',undefined)" >  <!-- (click)="userService.goToProfile(new.user.username,news.user._id,'news',undefined)" -->
+                <img class="user-img-shadow" [src]="new.user.photo" />
+              </ion-avatar>
+              <p class="nameUser"  (click)="userService.goToProfile(new.user.username,new.user._id,'news',undefined)" >{{new.user.name}} {{new.user.last_name}}</p><!--  (click)="userService.goToProfile(new.user.username,new.user._id,'news',undefined)" -->
+            </div>
+          </ion-col>  
           <div style="background: rgb(136, 136, 136); height: 1px;width: 100%;margin-bottom: 10px;"></div>
         </ion-row>
       </ion-grid>
@@ -297,7 +317,7 @@
           <ion-button *ngIf="indexLastMy < myNews.length" class="main-bg"  (click)="verMasMy()">{{ 'news.see_more'| translate}}</ion-button>
         </div>
         
-      </ion-list>
+     
   </ion-card-content>
 
   <ion-card-content *ngIf="myNews.length == 0">
@@ -317,11 +337,14 @@
 <ion-content *ngIf="news.length == 0" class="main-bg">
   <ion-grid>
     <ion-row>
+      <ion-col style="text-align: center;" size="12">
+        <ion-button style="--border-radius: 25px;" *ngIf="userService.User?.profile_user == 'press' "  [routerLink]="'/news/create'">Agregar notica</ion-button>
+      </ion-col>
       <ion-col size="12"> 
         <ion-img class="iconNotNews" src="https://img.icons8.com/color/344/nothing-found.png" ></ion-img>
         <h1 style="text-align: center;color:white">{{ 'news.notNews'| translate}}</h1>
       </ion-col>
     </ion-row>
   </ion-grid>
-  <ion-fab-button style="z-index:1000;" *ngIf="userService.User?.profile_user == 'press' "  [routerLink]="'/news/create'" class="new addNews"><ion-icon name="add"></ion-icon></ion-fab-button>
+  <!-- <ion-fab-button style="z-index:1000;" *ngIf="userService.User?.profile_user == 'press' "  [routerLink]="'/news/create'" class="new addNews"><ion-icon name="add"></ion-icon></ion-fab-button> -->
 </ion-content>

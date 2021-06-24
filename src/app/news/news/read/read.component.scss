@@ -19,3 +19,24 @@
   position: absolute;
   right: 10px;
 }
+
+
+/////
+.sponsors {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  padding: 0px 10px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.sponsor-img {
+height: 40px;
+width: 80px;
+border-radius: 10px;
+object-fit: cover;
+cursor: pointer;
+box-shadow: 0 0 1px 1px var(--color-primary);
+background: var(--color-primary);
+}

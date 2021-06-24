@@ -17,8 +17,6 @@ import { EmojiModule } from "@ctrl/ngx-emoji-mart/ngx-emoji";
 import { PickerModule } from "@ctrl/ngx-emoji-mart";
 import { DirectivesModule } from "../directives/directive.module";
 import { ComponentsModule } from "../components/components.module";
-import { NewNodeComponent } from "./structure/new-node/new-node.component";
-import { IonCustomScrollbarModule } from "ion-custom-scrollbar";
 import { PostComponetsModule } from "../post-components/post-componets.module";
 import { ComponentsSharedModule } from "../shared-components/components-shared.module";
 import { MsgProfileEditComponent } from "./msg-profile-edit/msg-profile-edit.component";
@@ -46,7 +44,6 @@ import { StructureModule } from "../components/structure/structure.module";
     EmojiModule,
     PickerModule,
     DirectivesModule,
-    IonCustomScrollbarModule,
     ComponentsSharedModule,
     PostComponetsModule,
     SponsorsModule,
@@ -55,7 +52,7 @@ import { StructureModule } from "../components/structure/structure.module";
     AptitudesModule,
     GalleryModule,
     ProfileSharedComponentsModule,
-    StructureModule
+    StructureModule,
   ],
   declarations: [
     ProfilePage,
@@ -64,7 +61,6 @@ import { StructureModule } from "../components/structure/structure.module";
     EditCommentPage,
     FollowingPage,
     FollowerPage,
-    NewNodeComponent,
     MsgProfileEditComponent,
     OptionNewsComponent,
   ],

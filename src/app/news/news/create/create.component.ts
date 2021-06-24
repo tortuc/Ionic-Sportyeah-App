@@ -1,4 +1,4 @@
-import { Component, OnChanges, OnInit, ViewChild } from "@angular/core";
+import { Component, OnChanges, OnInit, ViewChild,ElementRef } from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
 import { UserService } from "../../../service/user.service";
 import {
@@ -18,13 +18,14 @@ import {
 import { NewsService } from "../../../service/news.service";
 import { ToastController } from "@ionic/angular";
 import { Router } from "@angular/router";
-import { ElementRef } from "@angular/core";
 import { QuestionService } from "src/app/service/question.service";
 import { NewQuestionComponent } from "src/app/components/new-question/new-question.component";
 import { EditQuestionComponent } from "src/app/components/edit-question/edit-question.component";
 import { ButtonsOptionsComponent } from "../buttons-options/buttons-options.component";
 import { FilesService } from "src/app/service/files.service";
 import { ModalProgramNewsComponent } from "../modal-program-news/modal-program-news.component";
+import { MentionsDirective } from "src/app/directives/mentions.directive";
+import { SubtitleNewsComponent } from "../subtitle-news/subtitle-news.component";
 
 const { Camera } = Plugins;
 
@@ -46,7 +47,6 @@ export class CreateComponent implements OnInit,OnChanges {
   @ViewChild("mainInput") mainInput: ElementRef;
 
 ngOnChanges(){
-//  this.urlYu  = this.mainInput.nativeElement.innerHTML
 }
 urlYu
 
@@ -65,58 +65,56 @@ urlYu
     public modalController: ModalController,
     public loadingCtrl: LoadingController,
     private popover: PopoverController,
-  ) {}
-
+  ) {
+    if(this.userService.User.profile_user != 'press'){
+      this.router.navigate([`news`])
+    }
+  }
+  @ViewChild("subtitleNewsBtn") subtitleNewsBtn: SubtitleNewsComponent;
+ 
+  subTitleAdd($event){
+    this.subTitle = $event;
+  }
+  subTitleEdit($event,position){
+    this.parrafos[position].subtitle = $event
+  }
   form = this.fb.group({
-    user: ["", [Validators.required]],
-    headline: ["", [Validators.required]],
-    principalSubtitle: ["", [Validators.required]],
-    sport: ["", [Validators.required]],
-    stream: [false, [Validators.required]],
-    postStream: ["", [Validators.required]],
-    date: ["", [Validators.required]],
-    programated: [null, [Validators.required]],
+    user: [""],
+    headline: [""],
+    principalSubtitle: [""],
+    sport: [""],
+    stream: [false],
+    postStream: [""],
+    date: [""],
+    programated: [null],
   });
 
-  async presentToastWithOptions() {
+  async presentToastWithOptions(draft) {
+    let message 
+    if(draft == false){
+      message = this.translate.instant("news.published") 
+    }else{
+      message = this.translate.instant("news.saved_draft_copy") 
+    }
     const toast = await this.toastController.create({
-      message: this.translate.instant("news.published"),
+      message ,
       position: "top",
       color: "dark",
       duration: 3000,
     });
     toast.present();
   }
-
-  async publicar() {
+  news;
+  async publicar(draft) {
     let loading = await this.loadingCtrl.create({
       message: this.translate.instant("loading"),
     });
     loading.present();
-    let news = this.form.value
-    news.principalVideo = this.videoSelected;
-    news.principalImage = this.imagenSelected;
-    news.user = this.userService.User._id;
-    news.headline = this.titulo1;
-    news.principalSubtitle = this.subTitle;
-    news.content = await this.questionService.parrafoFilter(this.parrafos);
-    news.date = this.date;
-    news.origin = this.origen;
-    news.originPrincipaMedia = this.originPrincipaMedia;
-    news.audioNews = this.audioNews;
-    news.programatedDate = this.programedDate;
-    if(this.programedDate != undefined){
-      news.programated = true;
-    }else{
-      news.programated = false;
-    }
-    news.sport = this.deporte;
-   console.log(news)
-  
-      this.newsService.create(news).subscribe((response) => {
-        this.presentToastWithOptions();
-        loading.dismiss();
+    this.news.draftCopy = draft;
+      this.newsService.create(this.news).subscribe((response) => {
+        this.presentToastWithOptions(draft);
         this.router.navigate(["news"]);
+        loading.dismiss();
       });
   }
   fecha =
@@ -127,15 +125,17 @@ urlYu
     new Date().getFullYear();
   editando: boolean = false; //si esta editando el agregar es disabled
   imagen; //imagen mostrada
-  number: number = 0; //Posicion de el parrafo, pero no del array,
+  number: number = undefined; //Posicion de el parrafo, pero no del array,
   positionEditactual: number = null;
   parrafoAntesEdicion;
   parrafos = [];
 
+  today = moment().format("YYYY-MM-DD")
   text1 = ``;
   titulo1 = null;
   deporte = null;
   subTitle = null;
+  subTitlePrincipal = null;
   sports = [
     "soccer",
     "basketball",
@@ -165,16 +165,11 @@ urlYu
     slides.slidePrev();
   }
 
-  consol() {
-    let subtitulo;
-    if (this.parrafos.length == 0) {
-      subtitulo = null;
-    } else {
-      subtitulo = this.subTitleParrafo;
-    }
-
+  async consol() {
+   
+  await  this.subtitleNewsBtn.send()
     this.parrafos.push({
-      subtitle: subtitulo,
+      subtitle: this.subTitle,
       parrafo: this.text1,
       position: this.parrafos.length,
       image: null,
@@ -186,7 +181,6 @@ urlYu
       format:'text'
     }); //title:this.titulo1,subtitle:this.deporte
     this.text1 = ``;
-
     /* this.titulo1= `Escribe el Titulo # ${this.parrafos.length+1} `;
   this.deporte= `Escribe el Subtitulo # ${this.parrafos.length+1} `; */
     this.agregandoParrafo = false;
@@ -210,7 +204,8 @@ urlYu
     this.editando = true;
   }
 
-  EditParrafo() {
+  async EditParrafo() {
+    await this.subtitleNewsBtn.edit()
     this.parrafos[this.positionEditactual].parrafo = this.text1;
     //this.parrafos[this.positionEditactual].title = this.titulo1;
     // this.parrafos[this.positionEditactual].subtitle = this.deporte;
@@ -220,6 +215,7 @@ urlYu
     /*   this.titulo1= `Escribe el Título # ${this.parrafos.length+1} `;
   this.deporte= `Escribe el Subtítulo # ${this.parrafos.length+1} `; */
     this.agregandoParrafo = false;
+    this.number = undefined
   }
   eliminarParrafo(id) {
     this.parrafos.splice(id, 1);
@@ -228,15 +224,16 @@ urlYu
     }
     id = null;
     this.editando = false;
-    if (this.number != 0 && this.number == this.parrafos.length) {
-      this.number -= 1;
-    }
+    // if (this.number != 0 && this.number == this.parrafos.length) {
+    //   this.number -= 1;
+    // }
+
+    this.number = undefined
 
     this.text1 = ``;
     /*   this.titulo1= `Escribe el Título # ${this.parrafos.length+1} `;
   this.deporte= `Escribe el Subtítulo # ${this.parrafos.length+1} `; */
     this.agregandoParrafo = false;
-    console.log(this.parrafos)
   }
   numberPositionSelect(number) {
     this.number += number;
@@ -249,7 +246,9 @@ urlYu
     /*  this.titulo1= `Escribe el Título # ${this.parrafos.length+1} `;
   this.deporte= `Escribe el Subtítulo # ${this.parrafos.length+1} `; */
     this.agregandoParrafo = false;
+    this.number = undefined
   }
+
 
   ////Imagenes
   selectedImage(imag) {
@@ -339,7 +338,6 @@ urlYu
           .then((url: string) => {
             loading.dismiss();
             this.parrafos[i].image = url;
-            console.log(url);
             
             this.openArray = false;
           })
@@ -454,6 +452,9 @@ urlYu
   urlVideoNotPrincipal = null;
   videoFileNotPrincipal = null;
   closeVideoPrincipal() {
+    this.videosToUploads = this.videosToUploads.filter((file)=>{
+      return file.url != this.videoSelected
+    })
     this.urlVideo = null;
     this.videoFile = null;
     this.videoSelected = null;
@@ -557,8 +558,6 @@ urlYu
   listoPublicar: boolean = false;
   listoParaPublicar() {
     this.listoPublicar = !this.listoPublicar;
-    // this.sportyeah.nativeElement.classList.remove("logoSport");
-    //   this.sportyeah.nativeElement.classList.add("logoSportBig");
   }
 
   //Origen de la noticia
@@ -622,7 +621,31 @@ urlYu
     this.originParrafoMedia = this.parrafos[i].originMedia;
     this.parrafos[i].originMedia = null;
   }
-  todoConOrigen() {
+ async todoConOrigen() {
+   this.news = this.form.value
+    this.news.principalVideo = this.videoSelected;
+    this.news.principalImage = this.imagenSelected;
+    this.news.principalYoutube = this.principalYoutube
+    this.news.user = this.userService.User._id;
+    this.news.headline = this.titulo1;
+    this.news.principalSubtitle = this.subTitlePrincipal;
+    this.news.content = await this.questionService.parrafoFilter(this.parrafos);
+    // loading.dismiss();
+    this.news.date = this.date;
+    this.news.origin = this.origen;
+    this.news.originPrincipaMedia = this.originPrincipaMedia;
+    this.news.audioNews = this.audioNews;
+    this.news.programatedDate = this.programedDate;
+    if(this.programedDate != undefined){
+      this.news.programated = true;
+    }else{
+      this.news.programated = false;
+    }
+    this.news.sport = this.deporte;
+    
+    if(this.news.sport == undefined){
+      this.news.sport = 'various'
+    }
     // this.whitTime = this.editQuestionComponent.whitTime;
     // this.endDate = this.editQuestionComponent.endDate;
     this.todosParrafosConOrigen = false;
@@ -653,8 +676,8 @@ urlYu
       ok = false;
     }
 
-    this.subTitle = this.subTitle.trim();
-    if (this.subTitle.length != 0) {
+    this.subTitlePrincipal = this.subTitlePrincipal.trim();
+    if (this.subTitlePrincipal.length != 0) {
     } else {
       this.ToastError("El subtítulo no puede estar vacio");
       this.subTitlebool = false;
@@ -730,18 +753,18 @@ urlYu
 
   //Stream
   id;
-  makeid(length) {
-    var result = "";
-    var characters =
-      "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-    var charactersLength = characters.length;
-    for (var i = 0; i < length; i++) {
-      result += characters.charAt(Math.floor(Math.random() * charactersLength));
-    }
-    return result;
-  }
+  // makeid(length) {
+  //   var result = "";
+  //   var characters =
+  //     "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  //   var charactersLength = characters.length;
+  //   for (var i = 0; i < length; i++) {
+  //     result += characters.charAt(Math.floor(Math.random() * charactersLength));
+  //   }
+  //   return result;
+  // }
   createStream() {
-    this.router.navigate([`/news/createStream/${this.makeid(22)}`]);
+    this.router.navigate([`/news/createStream/${this.userService.User._id}`]);
   }
   redactarArticulo: boolean = false;
   redactar() {
@@ -755,7 +778,7 @@ urlYu
       this.sportyeah.nativeElement.classList.add("logoSportBig");
     }
   }
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   question = {
     user: this.userService.User._id,
@@ -764,21 +787,21 @@ urlYu
   };
 
   badDate: boolean = false;
-  createdNews(loading) {
-    this.questionService.create(this.question).subscribe((response: any) => {
-      //Crea el cuestionario y agrega el id al news
-      this.form.value.question = response._id;
+  // createdNews(loading) {
+  //   this.questionService.create(this.question).subscribe((response: any) => {
+  //     //Crea el cuestionario y agrega el id al news
+  //     this.form.value.question = response._id;
 
-      this.newsService.create(this.form.value).subscribe((response) => {
-        this.presentToastWithOptions();
-        this.router.navigate(["news"]);
-      });
-    });
-    loading.dismiss(); 
-  }
-  createNewsAndQuestion(loading) {
-      this.createdNews(loading);
-  }
+  //     this.newsService.create(this.form.value).subscribe((response) => {
+  //       this.presentToastWithOptions();
+  //       this.router.navigate(["news"]);
+  //     });
+  //   });
+  //   loading.dismiss(); 
+  // }
+  // createNewsAndQuestion(loading) {
+  //     this.createdNews(loading);
+  // }
   whitTime: boolean;
   endDate;
 
@@ -797,8 +820,6 @@ urlYu
       .then((data) => {
         if (data.data.question != undefined) {
           this.question.questionGroup.push(data.data.question); //Las preguntas creadas se introducen en el grupo de preguntas
-          console.log(this.question);
-          
         }
       })
       .catch((err) => {});
@@ -822,14 +843,11 @@ urlYu
       link:file.format =='link'?file.url:null,
       format:file.format
     });
-    console.log(this.parrafos);
   }
   editFile(format,i){
     this.optionsBtn.editFile(format,i)
   }
   editedFile(file){
-    console.log(this.parrafos[file.position]);
-    console.log(file);
 
     this.parrafos[file.position] = {
       subtitle: null,
@@ -865,6 +883,28 @@ urlYu
   videosToUploads = []
   pushVideoToUpload(file) {
     this.videosToUploads.push(file);
+  }
+  
+  addVideoPrincipal(file){
+    if(file.format == 'video'){
+      this.videoSelected = file.url;
+    }else{
+      this.imagenSelected = file.url;
+    }
+  }
+  agregandoYoutubePrincipal = false
+  principalYoutube
+  addYoutubePrincipal(){
+    this.principalYoutube  =   this.mainInput.nativeElement.innerHTML
+    this.agregandoYoutubePrincipal = false
+  }
+  editYoutubePrincipal = false;
+  saveEditYoutubePrincipal(){
+    this.principalYoutube  =   this.mainInputEdit.nativeElement.innerHTML
+    this.editYoutubePrincipal = false
+  }
+  eliminarYoutube(){
+    this.principalYoutube = null;
   }
 
   addYoutube(){
@@ -922,7 +962,6 @@ this.editYoutube = false
       question,
       format:'question'
     }) 
-    console.log(this.parrafos);
   }
   questionEdited($event) {
     let question = {
@@ -957,12 +996,10 @@ this.editYoutube = false
   msgAudio(url) {
     this.audioNews = url;
     this.newsAudio = true;
-    console.log( this.audioNews)
   }
   deleteAudio(){
     this.audioNews = null;
     this.newsAudio = false;
-    console.log( this.audioNews)
   }
  
   newsAudio:boolean=false

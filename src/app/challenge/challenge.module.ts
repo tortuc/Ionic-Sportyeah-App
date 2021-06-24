@@ -7,7 +7,6 @@ import { IonicModule } from "@ionic/angular";
 import { ChallengePageRoutingModule } from "./challenge-routing.module";
 import { ChallengePage } from "./challenge.page";
 import { ComponentsModule } from "../components/components.module";
-import { IonCustomScrollbarModule } from 'ion-custom-scrollbar';
 import { AwardModule } from "../components/award/award.module";
 
 
@@ -20,7 +19,6 @@ import { AwardModule } from "../components/award/award.module";
     TranslateModule,
     ComponentsModule,
     PipesModule,
-    IonCustomScrollbarModule,
   ],
   declarations: [
     ChallengePage

@@ -35,6 +35,7 @@ export class ReactionsService {
    reactionsByNews(id) {
     return this.http.get<any[]>(`${this.routeNews}/totalReactions/${id}`);
   }
+  
   /**
    * Buscar reacciones de cualquier tipo en un post
    * @param id
@@ -46,6 +47,19 @@ export class ReactionsService {
       `${this.routePost}/anyreactions/${post}/${skip}`
     );
   }
+
+
+  /**
+   * Buscar reacciones de cualquier tipo en un post
+   * @param id
+   * @returns
+   */
+
+   anyReactionNews(news, skip) {
+    return this.http.get<ILike[]>(
+      `${this.routeNews}/anyreactions/${news}/${skip}`
+    );
+  }
   /**
    * Buscar reacciones de un tipo en especifico en una publicacion
    * @param id
@@ -55,6 +69,18 @@ export class ReactionsService {
   ReactionsPostByType(post, skip,type) {
     return this.http.get<ILike[]>(
       `${this.routePost}/reactionstype/${post}/${type}/${skip}`
+    );
+  }
+
+  /**
+   * Buscar reacciones de un tipo en especifico en una noticia
+   * @param id
+   * @returns
+   */
+
+   ReactionsNewsByType(news, skip,type) {
+    return this.http.get<ILike[]>(
+      `${this.routeNews}/reactionstype/${news}/${type}/${skip}`
     );
   }
 }

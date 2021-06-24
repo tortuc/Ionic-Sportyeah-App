@@ -4,11 +4,10 @@ import { CreateComponent } from './create/create.component';
 import { NewsPage } from './news.page';
 import { ReadComponent } from './read/read.component'
 import { EditComponent } from './edit/edit.component';
-import { StreamComponent } from './stream/stream.component';
-import { CreateStreamComponent } from './create-stream/create-stream.component';
+import { StreamNewsComponent } from './stream-news/stream-news.component';
 import { LandingGuard } from 'src/app/guards/landing-guard.service';
 import { ProfileNewsComponent } from './profile-news/profile-news.component';
-
+import { CreateStreamNewsComponent } from './create-stream-news/create-stream-news.component'
 const routes: Routes = [
   {
     path: '',
@@ -28,11 +27,11 @@ const routes: Routes = [
   },
   {
     path: 'streamNews/:id',
-    component: StreamComponent
+    component: StreamNewsComponent
   },
   {
     path: 'createStream/:id',
-    component: CreateStreamComponent
+    component: CreateStreamNewsComponent
   },
   {
     path: 'profileNews',

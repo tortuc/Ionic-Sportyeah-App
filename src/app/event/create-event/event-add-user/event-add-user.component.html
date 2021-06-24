@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-toolbar class="main-bg">
+    <ion-title style="--color: white">{{
+      "event.add_users" | translate
+    }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismiss()" style="--color: white"
+        ><ion-icon name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-searchbar
+    placeholder="{{ 'search_your_friends' | translate }}"
+    (ionChange)="filter($event)"
+  ></ion-searchbar>
+
+  <ion-item
+    *ngFor="let user of users"
+    style="cursor: pointer"
+    [ngClass]="isSelect(user.user)"
+    (click)="pushUser(user.user)"
+  >
+    <ion-thumbnail slot="start">
+      <ion-avatar class="mini">
+        <img [src]="user.user.photo" />
+      </ion-avatar>
+    </ion-thumbnail>
+    <ion-label>
+      <span>{{ user.user.name }} {{ user.user.last_name }} </span><br />
+      <span style="font-size: 12px">@{{ user.user.username }}</span>
+    </ion-label>
+  </ion-item>
+</ion-content>
+<ion-footer>
+  <ion-button
+    [disabled]="usersSelect.length == 0"
+    (click)="addFriends()"
+    class="btn-green"
+    style="float: right; margin: 10px"
+    >{{ "event.add_button" | translate }}</ion-button
+  >
+</ion-footer>

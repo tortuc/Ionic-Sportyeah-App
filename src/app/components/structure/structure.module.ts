@@ -18,6 +18,25 @@ import { ExecutiveProfileComponent } from "./private-organization-chart/executiv
 import { PublicStructureComponent } from "./public-structure/public-structure.component";
 import { PublicStructurePreviewComponent } from "./public-structure/public-structure-preview/public-structure-preview.component";
 import { PublicOrganizationChartComponent } from "./public-organization-chart/public-organization-chart.component";
+import { PrivateStructureClubComponent } from "./private-structure-club/private-structure-club.component";
+import { CreateDivisionComponent } from "./private-structure-club/create-division/create-division.component";
+import { DivisionCardComponent } from "./private-structure-club/division-card/division-card.component";
+import { DivisionOptionsComponent } from "./private-structure-club/division-card/division-options/division-options.component";
+import { DivisionComponent } from "./division/division.component";
+import { CategoryCardComponent } from "./division/category-card/category-card.component";
+import { CreateCategoryComponent } from "./division/create-category/create-category.component";
+import { PopoverOptionsComponent } from "./popover-options/popover-options.component";
+import { TeamCardComponent } from "./category/team-card/team-card.component";
+import { CategoryComponent } from "./category/category.component";
+import { CreateTeamComponent } from "./category/create-team/create-team.component";
+import { TeamComponent } from "./team/team.component";
+import { PlayerCardComponent } from "./team/player-card/player-card.component";
+import { CreatePlayerComponent } from "./team/player-card/create-player/create-player.component";
+import { PlayerComponent } from "./player/player.component";
+import { PublicStructureClubComponent } from "./public-structure-club/public-structure-club.component";
+import { PublicDivisionComponent } from "./public-division/public-division.component";
+import { PublicCategoryComponent } from "./public-category/public-category.component";
+import { PublicTeamComponent } from "./public-team/public-team.component";
 
 const components = [
   PrivateStructureComponent,
@@ -29,8 +48,26 @@ const components = [
   ExecutiveProfileComponent,
   PublicStructureComponent,
   PublicStructurePreviewComponent,
-  PublicOrganizationChartComponent
-  
+  PublicOrganizationChartComponent,
+  PrivateStructureClubComponent,
+  CreateDivisionComponent,
+  DivisionCardComponent,
+  DivisionOptionsComponent,
+  DivisionComponent,
+  CategoryCardComponent,
+  CreateCategoryComponent,
+  PopoverOptionsComponent,
+  TeamCardComponent,
+  CategoryComponent,
+  CreateTeamComponent,
+  TeamComponent,
+  PlayerCardComponent,
+  CreatePlayerComponent,
+  PlayerComponent,
+  PublicStructureClubComponent,
+  PublicDivisionComponent,
+  PublicCategoryComponent,
+  PublicTeamComponent
 ];
 
 @NgModule({
@@ -45,7 +82,7 @@ const components = [
     ReactiveFormsModule,
     FormsModule,
     ComponentsSharedModule,
-    ComponentsModule
+    ComponentsModule,
   ],
   exports: components,
 })
