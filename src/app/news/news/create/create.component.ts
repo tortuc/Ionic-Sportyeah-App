@@ -26,6 +26,7 @@ import { FilesService } from "src/app/service/files.service";
 import { ModalProgramNewsComponent } from "../modal-program-news/modal-program-news.component";
 import { MentionsDirective } from "src/app/directives/mentions.directive";
 import { SubtitleNewsComponent } from "../subtitle-news/subtitle-news.component";
+import { AftherCreateNewsComponent } from "../afther-create-news/afther-create-news.component";
 
 const { Camera } = Plugins;
 
@@ -105,15 +106,17 @@ urlYu
     toast.present();
   }
   news;
+  published;
   async publicar(draft) {
     let loading = await this.loadingCtrl.create({
       message: this.translate.instant("loading"),
     });
     loading.present();
     this.news.draftCopy = draft;
-      this.newsService.create(this.news).subscribe((response) => {
+      this.newsService.create(this.news).subscribe((response:any) => {
         this.presentToastWithOptions(draft);
-        this.router.navigate(["news"]);
+        this.published = response._id;
+        this.newsCreated(response)
         loading.dismiss();
       });
   }
@@ -1031,4 +1034,13 @@ this.editYoutube = false
         return popover.present();
       }
   }
+
+  async newsCreated(news){
+    let modal = await this.modalCtrl.create({
+      component:AftherCreateNewsComponent,
+      componentProps:{news}
+    })
+    modal.present()
+  }
+
 }

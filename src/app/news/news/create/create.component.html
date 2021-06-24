@@ -12,7 +12,7 @@
 </ion-header>
 
 <ion-content class="main-bg">
-
+  
          <!--  Este muestra el contenido para crear la noticia -->
           <ion-content *ngIf="!listoPublicar"  class="slide-in-fwd-center" style="background: white;">
             <ion-grid>
@@ -450,6 +450,6 @@
         </ion-grid>
           </ion-content>
 
-       <preview-news (publishNews)="publicar(false)" (readyNot)="listoParaPublicar()" [news]="news" *ngIf="listoPublicar" ></preview-news>
+       <preview-news (publishNews)="publicar(false)" (readyNot)="listoParaPublicar()" [news]="news" [published]="published"  *ngIf="listoPublicar" ></preview-news>
        
   </ion-content>

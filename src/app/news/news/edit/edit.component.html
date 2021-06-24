@@ -3,9 +3,9 @@
     <ion-buttons slot="start">
       <ion-back-button style="color: white"></ion-back-button>
     </ion-buttons>
-    <ion-buttons slot="end">
+    <!-- <ion-buttons slot="end">
       <ion-icon style="color: white;font-size:30px;cursor: pointer;" name="person-outline" [routerLink]="'/profile'"></ion-icon>
-    </ion-buttons>
+    </ion-buttons> -->
     <ion-title style="--color: white">{{ 'news.edit'| translate}}</ion-title>
     
   </ion-toolbar>
@@ -447,7 +447,7 @@
 
 
 
-<preview-news (publishNews)="editar()" (readyNot)="listoParaPublicar()" [edit]="true" [news]="news" *ngIf="listoPublicar" ></preview-news>
+<preview-news (publishNews)="editar()" (readyNot)="listoParaPublicar()" [edit]="true" [published]="published" [news]="news" *ngIf="listoPublicar" ></preview-news>
 
 </ion-content>
 

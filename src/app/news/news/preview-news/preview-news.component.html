@@ -85,9 +85,6 @@
               <div style="color: black;text-align: justify;"  [innerHTML]="parrafo.parrafo"></div>
             </ion-col>
     
-        
-            
-              
               <ion-col *ngIf="parrafo.image || parrafo.video || parrafo.question || parrafo.link || parrafo.url" size="12">
                         <!--  Imagen del parrafo -->
               <ion-img  *ngIf="parrafo.image "  class="imageArray" [src]="parrafo.image"></ion-img>
@@ -150,7 +147,8 @@
           </ion-col>
            <!-- TERMINO SPONSORS -->
            <ion-col size="12" style="text-align: center;">
-            <ion-button class="borderRadius" (click)="publish()">{{ (edit?'news.edit':'news.publish') | translate}}</ion-button>
+            <ion-button class="borderRadius" *ngIf="published == undefined" (click)="publish()">{{ (edit?'news.edit':'news.publish') | translate}}</ion-button>
+            <ion-button class="borderRadius" *ngIf="published != undefined" (click)="readNews()">{{ 'news.read_news' | translate}}</ion-button>
           </ion-col>  
        </ion-row>
      </ion-grid>

@@ -25,7 +25,7 @@ export class PreviewNewsComponent implements OnInit {
 
   @Input() news;  
   @Input() edit:boolean = false;  
-
+  @Input() published = undefined;
   @Output() readyNot = new EventEmitter
   @Output() publishNews = new EventEmitter
 
@@ -92,6 +92,10 @@ export class PreviewNewsComponent implements OnInit {
 
   publish(){
     this.publishNews.emit(false)
+  }
+
+  readNews(){
+    this.router.navigate([`news/read/${this.published}`]);
   }
 
 }

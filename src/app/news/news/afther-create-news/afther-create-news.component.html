@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar class="main-bg">
+    <ion-buttons slot="end">
+      <ion-back-button style="color: white"></ion-back-button>
+    </ion-buttons>
+    <!-- <ion-buttons slot="start">
+      <ion-menu-button style="color: white"></ion-menu-button>
+    </ion-buttons> -->
+    <ion-title>{{ (edit?'news.news_edited':'news.news_created') | translate}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+  <ion-grid>
+    <ion-row> 
+      <ion-col size="12" style="text-align: center;">
+        <h2>{{(edit?'news.edited_news':'news.created') | translate}}</h2><br>
+        <img style="width: 150px;max-width: 150px;" src="https://img.icons8.com/ultraviolet/2x/tennis-news.png" alt="">
+      </ion-col>
+
+      <ion-col  size-xs="12" size-lg="4" style="text-align: center;" >
+        <p>Dirigete a la leer tu noticia</p>
+        <ion-button (click)="goToRead()" class="btn-primary" >{{'news.read_news' | translate}}</ion-button>
+      </ion-col>
+
+      <ion-col  size-xs="12" size-lg="4" style="text-align: center;" >
+        <p>Dirigete a tu seccion de noticias</p>
+        <ion-button (click)="goToYourNews()" class="btn-primary" >{{'news.go_to_you_news' | translate}}</ion-button>
+      </ion-col>
+
+      <ion-col  size-xs="12" size-lg="4" style="text-align: center;" >
+        <p>Dirigete al muro de noticias Sportyeah</p>
+        <ion-button (click)="goToNewsWall()" class="btn-primary" >{{'news.go_to_news_wall' | translate}}</ion-button>
+      </ion-col>
+
+    </ion-row>
+  </ion-grid>
+</ion-content>

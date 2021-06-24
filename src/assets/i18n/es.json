@@ -1004,7 +1004,15 @@
     "smartphone_view":"Vista previa para móviles",
     "desktop_view":"Vista previa para ordenador",
     "tablet_view":"Vista previa para tablet",
-    "preview_news":"Vista previa"
+    "preview_news":"Vista previa",
+    "read_news":"Leer noticia",
+    "created":"¡Tu noticia se ha creado correctamente!",
+    "edited_news":"¡Tu noticia se ha editado correctamente!",
+    "go_to_you_news":"Tus noticias",
+    "go_to_news_wall":"Muro de noticias",
+    "news_created":"Noticia creada",
+    "news_edited":"Noticia editada"
+
   },
   "sponsorDescription": "¡Agrega un patrocinador!",
   "back": "Volver",

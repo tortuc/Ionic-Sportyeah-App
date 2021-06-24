@@ -17,6 +17,7 @@ import { ModalProgramNewsComponent } from '../modal-program-news/modal-program-n
 import * as moment from 'moment';
 import { truncate } from 'fs';
 import { SubtitleNewsComponent } from '../subtitle-news/subtitle-news.component';
+import { AftherCreateNewsComponent } from '../afther-create-news/afther-create-news.component';
 
 const { Camera ,Filesystem} = Plugins;
 
@@ -121,18 +122,19 @@ form = this.fb.group({
       this.agregandoOrigen = true;
     })
   }
-  
+  published
 async editar(){
   let loading = await this.loadingCtrl.create({
     message: this.translate.instant("loading"),
   });
   loading.present();
   
-  this.newsService.updateNews(this.news).subscribe((response) => {
+  this.newsService.updateNews(this.news).subscribe((response:any) => {
       this.presentToastWithOptions();
-      this.router.navigate(["news"]);
+      this.published = response._id;
+      this.newsCreated(response)
+      loading.dismiss();
     });
-    loading.dismiss();
 
 }
 
@@ -1028,5 +1030,13 @@ async porgramDate(){
       });
       return popover.present();
     }
+}
+
+async newsCreated(news){
+  let modal = await this.modalController.create({
+    component:AftherCreateNewsComponent,
+    componentProps:{news,edit:true}
+  })
+  modal.present()
 }
 }

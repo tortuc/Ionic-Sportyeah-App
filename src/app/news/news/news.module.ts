@@ -42,6 +42,7 @@ import { StreamNewsComponent } from './stream-news/stream-news.component';
 import { SponsorsModule } from 'src/app/sponsors-components/sponsors.module';
 import { SubtitleNewsComponent } from './subtitle-news/subtitle-news.component';
 import { PreviewNewsComponent } from './preview-news/preview-news.component';
+import { AftherCreateNewsComponent } from './afther-create-news/afther-create-news.component';
 
 @NgModule({
   imports: [
@@ -86,7 +87,8 @@ import { PreviewNewsComponent } from './preview-news/preview-news.component';
     AllReactionsNewsComponent,
     LikesReactionsNewsComponent,
     SubtitleNewsComponent,
-    PreviewNewsComponent
+    PreviewNewsComponent,
+    AftherCreateNewsComponent
   ],
  
   schemas:[CUSTOM_ELEMENTS_SCHEMA]

@@ -48,10 +48,10 @@
     </div>
    <!-- Imagen Principal -->
    <div style="margin-top: 90px;" *ngIf="news?.news.principalImage" >
-    <ion-img   class="imageSelected" [src]="news?.news.principalImage"></ion-img>
+    <ion-img (click)="seeFiles('image',news?.news.principalImage)" class="imageSelected" [src]="news?.news.principalImage"></ion-img>
    </div>
       <!-- Video Principal -->
-   <div *ngIf="news?.news.principalVideo" style="position: relative">
+   <div (click)="seeFiles('video',news?.news.principalVideo)" *ngIf="news?.news.principalVideo" style="position: relative">
      <video
        controls="controls"
        preload="metadata"
@@ -94,9 +94,9 @@
           
           <ion-col *ngIf="parrafo.image || parrafo.video || parrafo.question || parrafo.link || parrafo.url" size="12">
                     <!--  Imagen del parrafo -->
-          <ion-img  *ngIf="parrafo.image "  class="imageArray" [src]="parrafo.image"></ion-img>
+          <ion-img (click)="seeFiles('image',parrafo.image)" *ngIf="parrafo.image" class="imageArray imgen" [src]="parrafo.image"></ion-img>
           <!-- Videos notPrincipal (del parrafo) -->
-        <div *ngIf=" parrafo.video" style="position: relative">
+        <div *ngIf=" parrafo.video" (click)="seeFiles('video',parrafo.video)" style="position: relative">
           <ion-icon
             name="close"
             class="close-video"
