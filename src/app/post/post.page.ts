@@ -128,6 +128,30 @@ export class PostPage implements OnInit {
     this.router.navigate(["/profile"]);
   }
 
+
+   Deletedcomments(index) {
+     console.log("Deletedcomments")
+    console.log(this.comments)
+
+     //this.getComments()
+     //this.comments.unshift();
+     this.comments.splice(index,1)
+     //this.getPost(this.post._id);
+   }
+
+   Updatecomments(commentUpdate) {
+    console.log("Deletedcomments")
+    console.log("this.comments")
+
+    //this.getComments()
+    //this.comments.unshift();
+    //this.comments.splice(index,1)
+    this.comments.find(comment => comment.post == commentUpdate.post).message = commentUpdate.message;
+
+    //this.getPost(this.post._id);
+  }
+
+
   voted(voted: boolean) {
     if (voted) {
       this.getPost(this.post._id);
@@ -135,6 +159,7 @@ export class PostPage implements OnInit {
   }
 
   newComment(event) {
+    console.log("newComment")
     this.comments.unshift(event);
   }
 }
