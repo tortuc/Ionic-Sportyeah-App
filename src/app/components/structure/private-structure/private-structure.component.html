@@ -54,11 +54,13 @@
           style="cursor: pointer"
           (click)="redirectTo(social.name, social.username)"
         >
-          <ion-icon
-            class="icons social-icon"
-            [name]="social.icon"
-            [ngClass]="social.name"
-          ></ion-icon>
+        <img style="height: 40px;" *ngIf="social.img" [src]="social.img" alt="">
+        <ion-icon
+        *ngIf="!social.img"
+          class="social-icon"
+          [name]="social.icon"
+          [ngClass]="social.name"
+        ></ion-icon>
           <p *ngIf="social.username">@{{ social.username }}</p>
         </div>
       </div>

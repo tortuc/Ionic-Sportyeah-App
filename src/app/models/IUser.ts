@@ -36,6 +36,7 @@ export interface User {
   sponsor_info: ISponsorInfo;
   socialNetworks:ISocialNetworks;
   browser:string;
+  codeAuth:string;
 }
 
 export interface Followers {

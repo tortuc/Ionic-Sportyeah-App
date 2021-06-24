@@ -2058,7 +2058,7 @@
     "dance-sport": "Baile deportivo",
     "ballroom-dance": "Baile de salón de competición",
     "competition-dance": "Baile de competición",
-    "soccer":"Fútbol",
+    "soccer": "Fútbol",
     "sport": "Deporte",
     "running": "Correr",
     "table_tennis": "Tenis de mesa",
@@ -2073,25 +2073,33 @@
     "alertMessage": "¿Seguro deseas seleccionar {{sport}} como tu deporte principal?",
     "alertAccept": "Si, Seleccionar"
   },
-  "countryFilter":{
-    "search":"Buscar pais por nombre",
-    "selectAll":"Seleccionar todos",
-    "discardAll":"Desmarcar todos",
-    "cancelSearch":"Cancelar busqueda",
-    "title":"Paises",
-    "hint":"Selecciona los paises donde quieres realizar la busqueda de usuarios"
+  "countryFilter": {
+    "search": "Buscar pais por nombre",
+    "selectAll": "Seleccionar todos",
+    "discardAll": "Desmarcar todos",
+    "cancelSearch": "Cancelar busqueda",
+    "title": "Paises",
+    "hint": "Selecciona los paises donde quieres realizar la busqueda de usuarios"
   },
-  "searchPage":{
-    "showFilters":"Mostrar filtros",
-    "hideFilters":"Ocultar filtros",
-    "sports":"Deportes",
-    "profile_user":"Tipo de usuarios",
-    "country":"Paises",
-    "more":"Más...",
-    "all":"Todos",
-    "selectCountrys":"Seleccionar paises",
-    "selectSports":"Seleccionar deportes",
-    "whatsapp":"¿A quien buscas no tiene cuenta en SportYeah? Invitalo a unirse mediante de whatsapp",
-    "invWhatsapp":"Invitar amigos"
+  "searchPage": {
+    "showFilters": "Mostrar filtros",
+    "hideFilters": "Ocultar filtros",
+    "sports": "Deportes",
+    "profile_user": "Tipo de usuarios",
+    "country": "Paises",
+    "more": "Más...",
+    "all": "Todos",
+    "selectCountrys": "Seleccionar paises",
+    "selectSports": "Seleccionar deportes",
+    "whatsapp": "¿A quien buscas no tiene cuenta en SportYeah? Invitalo a unirse mediante de whatsapp",
+    "invWhatsapp": "Invitar amigos"
+  },
+  "auth": {
+    "title": "Esta accediendo desde una direccion IP no habitual",
+    "hint": "Le hemos enviado un codigo a su correo electronico, para poder acceder a la cuenta",
+    "error": "El codigo es incorrecto",
+    "success": "Bienvenido, en unos segundos sera redireccionado a su cuenta",
+    "label": "Ingrese el codigo recibido en el correo",
+    "continue": "Continuar"
   }
 }

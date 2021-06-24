@@ -72,6 +72,8 @@ export class PublicStructureComponent implements OnInit {
         icon: "logo-instagram",
         name: SocialNetworks.instagram,
         username: socialNetworks?.instagram,
+        img:"assets/logos/instagram.png",
+
       },
       {
         icon: "logo-linkedin",

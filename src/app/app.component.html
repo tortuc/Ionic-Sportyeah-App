@@ -2,7 +2,7 @@
   <ion-split-pane contentId="main-content">
     <ion-menu
       ngClass.gt-xs="max-widht-300"
-      [disabled]="userService.User == undefined"
+      [disabled]="userService.User == undefined || userService.User.codeAuth != null"
       contentId="main-content"
       type="overlay"
     >
