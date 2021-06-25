@@ -14,7 +14,7 @@
         >{{ comment.user.name }} {{ comment.user.last_name }}</p
       >
       <span *ngIf="!comment.edited" class="date-span"> {{ comment.date | customDisplayDate }}</span>
-      <span *ngIf="comment.edited" class="date-span">{{'edit_at' | translate}} {{ comment.edite | customDisplayDate }}</span>
+      <span *ngIf="comment.edited" class="date-span">{{'edit_at' | translate}} {{ comment.edited | customDisplayDate }}</span>
     </div> 
     <ion-icon
     

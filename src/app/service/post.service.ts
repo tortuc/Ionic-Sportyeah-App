@@ -150,7 +150,7 @@ getAllPost(){
 
 
 
-uploadsVideos(videos: any[], files: IFile[], i = 0) {
+uploadsVideos(videos: any[], files: IFile[]) {
   return new Promise(async (resolve) => {
 
     let newFiles = await Promise.all(

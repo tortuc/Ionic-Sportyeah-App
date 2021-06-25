@@ -1,8 +1,10 @@
 .comment {
+  
   margin: 0;
-  padding: 0;
-  box-shadow: none;
-  border-bottom: #ef8f97 solid 1px;
+    padding: 0;
+    box-shadow: none;
+    border-bottom: var(--color-secondary) solid 1px;
+    border-radius: 15px;
 }
 
 .img-comments-container {
