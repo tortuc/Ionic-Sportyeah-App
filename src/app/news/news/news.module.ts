@@ -43,6 +43,9 @@ import { SponsorsModule } from 'src/app/sponsors-components/sponsors.module';
 import { SubtitleNewsComponent } from './subtitle-news/subtitle-news.component';
 import { PreviewNewsComponent } from './preview-news/preview-news.component';
 import { AftherCreateNewsComponent } from './afther-create-news/afther-create-news.component';
+import { MobileNewsViewComponent } from './preview-news/mobile-news-view/mobile-news-view.component';
+import { TabletNewsViewComponent } from './preview-news/tablet-news-view/tablet-news-view.component';
+import { MonitorNewsViewComponent } from './preview-news/monitor-news-view/monitor-news-view.component';
 
 @NgModule({
   imports: [
@@ -63,7 +66,10 @@ import { AftherCreateNewsComponent } from './afther-create-news/afther-create-ne
     DirectivesModule,
     SponsorsModule
   ],
-  exports:[ModalProgramNewsComponent],
+  exports:[
+    ModalProgramNewsComponent,
+    AftherCreateNewsComponent
+  ],
   declarations: [
     NewsPage,
     CreateComponent,
@@ -88,7 +94,10 @@ import { AftherCreateNewsComponent } from './afther-create-news/afther-create-ne
     LikesReactionsNewsComponent,
     SubtitleNewsComponent,
     PreviewNewsComponent,
-    AftherCreateNewsComponent
+    MobileNewsViewComponent,
+    AftherCreateNewsComponent,
+    TabletNewsViewComponent,
+    MonitorNewsViewComponent
   ],
  
   schemas:[CUSTOM_ELEMENTS_SCHEMA]
