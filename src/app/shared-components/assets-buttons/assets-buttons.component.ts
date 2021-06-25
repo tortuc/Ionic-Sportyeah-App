@@ -43,6 +43,7 @@ export class AssetsButtonsComponent implements OnInit, OnChanges {
   @Output() newFile = new EventEmitter();
 
   clickEmoji(ev) {
+    console.log(ev)
     this.emoji.emit(ev);
   }
 
@@ -173,6 +174,7 @@ export class AssetsButtonsComponent implements OnInit, OnChanges {
   async filesOnline() {
     let action = await this.actionSheetController.create({
       header: this.translate.instant("images_online.header"),
+      cssClass:"action-sheet-custom",
       buttons: [
         {
           text: this.translate.instant("images_online.image"),

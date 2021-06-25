@@ -11,7 +11,9 @@
         (click)="redirectTo(social.name, social.username)"
         style="cursor: pointer"
       >
+        <img style="height: 40px;" *ngIf="social.img" [src]="social.img" alt="">
         <ion-icon
+        *ngIf="!social.img"
           class="social-icon"
           [name]="social.icon"
           [ngClass]="social.name"

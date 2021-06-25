@@ -128,6 +128,17 @@ export class PostPage implements OnInit {
     this.router.navigate(["/profile"]);
   }
 
+  Deletedcomments(index) {
+
+    this.comments.splice(index, 1);
+  }
+
+  Updatecomments(commentUpdate) {
+    this.comments.find(
+      (comment) => comment.post == commentUpdate.post
+    ).message = commentUpdate.message;
+  }
+
   voted(voted: boolean) {
     if (voted) {
       this.getPost(this.post._id);

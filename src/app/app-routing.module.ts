@@ -6,6 +6,7 @@ import { PublicCategoryComponent } from "./components/structure/public-category/
 import { PublicDivisionComponent } from "./components/structure/public-division/public-division.component";
 import { PublicTeamComponent } from "./components/structure/public-team/public-team.component";
 import { AuthGuardService } from "./guards/auth-guard.service";
+import { AuthCodeGuardService } from "./guards/authcode-guard.service";
 import { LandingGuard } from "./guards/landing-guard.service";
 import { SessionGuardService } from "./guards/session-guard.service";
 import { LivescoreModule } from "./livescore";
@@ -212,10 +213,17 @@ const routes: Routes = [
       import("./livescore").then((m) => m.LivescoreModule),
   },
   {
+    path: 'auth',
+    loadChildren: () => import('./auth/auth.module').then( m => m.AuthPageModule),
+    canActivate:[AuthCodeGuardService]
+  },
+  {
     path: "**",
     loadChildren: () =>
       import("./not-found/not-found.module").then((m) => m.NotFoundPageModule),
   },
+  
+
  
  
 

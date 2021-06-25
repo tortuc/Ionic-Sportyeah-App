@@ -177,10 +177,8 @@
                               <ion-select-option
                                 *ngFor="let profile of profiles"
                                 [value]="profile"
-                                >{{profile=='player'?('profile_user.'+
-                                profile+'.' + form.value.sport|
-                                translate):('profile_user.'+ profile|
-                                translate)}}</ion-select-option
+                                >{{'profile_user.'+ profile|
+                                translate}}</ion-select-option
                               >
                             </ion-select>
                           </ion-item>

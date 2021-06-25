@@ -1,0 +1,162 @@
+
+
+
+<ion-row style="
+    background: white;
+    border-radius: 0px;
+    transform: scale(0.58);
+    position: relative;
+    bottom: 87px;
+    max-width: 846px;
+    min-width: 846px;
+    margin-bottom: -777px;
+"  class="desktop_view ">
+  <ion-content style="
+         height: 520px;
+    max-height: 520px;
+    transform: scale(0.965);">
+  
+  <ion-col size="12">
+       <!--  Header de la noticia -->
+<div>
+  <h4 style="text-align: center;color: #737373;font-size: 14px;">{{ 'sport.'+news?.sport| translate}}</h4>
+  <h1 style="text-align: center;font-size: 30px;">{{news?.headline}}</h1>
+  <h2 *ngIf="news?.principalSubtitle" style="text-align: center;color: #5a5a5a;">{{news?.principalSubtitle}}</h2>
+  <ion-item>
+    <ion-label>
+      <ion-text color="black">
+        <ion-avatar (click)="userService.goToProfile(news?.user.username,news?.user._id,'news',undefined)">
+          <img class="user-img-shadow" [src]="userService.User?.photo"/>
+        </ion-avatar>
+        <h1 style="font-size:14px ;cursor: pointer;" (click)="userService.goToProfile(news?.user.username,news?.user._id,'news',undefined)" >{{news?.user.name}} {{news?.user.last_name}} </h1>
+      </ion-text>
+    </ion-label>
+    <ion-text color="black">
+      <h2 style="font-size:14px" >{{news?.date | customDisplayDate:true}}</h2>
+    </ion-text>   
+  </ion-item>
+</div>
+  </ion-col>
+
+<ion-col size="12">
+
+  <div *ngIf="news?.audioNews">
+    <h4 style="color: rgb(128, 128, 128);">{{'news.audioNews' | translate}}</h4 >
+    <msg-audio-news [urlAudio]="news?.audioNews"></msg-audio-news>
+  </div>
+ <!-- Imagen Principal -->
+ <div style="margin-top: 90px;" *ngIf="news?.principalImage" >
+  <ion-img   class="imageSelected" [src]="news?.principalImage"></ion-img>
+ </div>
+    <!-- Video Principal -->
+ <div *ngIf="news?.principalVideo" style="position: relative">
+   <video
+     controls="controls"
+     preload="metadata"
+     autoplay="autoplay"
+     webkit-playsinline="webkit-playsinline"
+     class="videoPlayer"
+   >
+     <source [src]="news?.principalVideo | safeUrl" type="video/mp4" />
+   </video>
+ </div> 
+    <!-- Youtube Principal -->
+ <div *ngIf="news?.principalYoutube">
+  <iframe
+    *ngIf="news?.principalYoutube | youtube"
+    [src]="news?.principalYoutube | youtube"
+    frameborder="0"
+></iframe>
+</div>
+ <p *ngIf="news?.principalVideo != null || news?.principalImage != null " style="text-align: center;color: #737373;font-size: 14px;" ><i>{{news?.originPrincipaMedia }}</i></p>
+</ion-col> 
+
+<!--  Cuerpo de la noticia -->
+  <ion-col size="12">
+<div *ngFor="let parrafo of news?.content;let i = index">
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12">
+      <!-- Este es el Subtitulo -->
+      <h2 *ngIf="parrafo.subtitle" [innerHTML]="parrafo.subtitle | links" style="text-align: center;color: #5a5a5a;font-size: 23px;">
+      </h2>
+      <!-- <span *ngIf="parrafo.subtitle" [innerHTML]="parrafo.subtitle | links"></span> -->
+
+
+        <!-- Este es el parrafo -->
+        <div style="color: black;text-align: justify;"  [innerHTML]="parrafo.parrafo"></div>
+      </ion-col>
+
+        <ion-col *ngIf="parrafo.image || parrafo.video || parrafo.question || parrafo.link || parrafo.url" size="12">
+                  <!--  Imagen del parrafo -->
+        <ion-img  *ngIf="parrafo.image "  class="imageArray" [src]="parrafo.image"></ion-img>
+        <!-- Videos notPrincipal (del parrafo) -->
+      <div *ngIf=" parrafo.video" style="position: relative">
+        <ion-icon
+          name="close"
+          class="close-video"
+        ></ion-icon>
+        <video
+          controls="controls"
+          preload="metadata"
+          autoplay="autoplay"
+          webkit-playsinline="webkit-playsinline"
+          class="videoPlayer"
+        >
+          <source [src]="parrafo.video | safeUrl" type="video/mp4" />
+        </video>
+      </div> 
+
+      <!--  Link del parrafo -->
+      <attach-link-preview-news  *ngIf="parrafo.link" [file]="parrafo.link"></attach-link-preview-news>
+
+    <!--  Youtube del parrafo -->
+      <div *ngIf="parrafo.url">
+        <iframe
+    *ngIf="parrafo.url | youtube"
+    [src]="parrafo.url | youtube"
+    frameborder="0"
+      ></iframe>
+    </div>
+
+      <!--  Cuestionario del parrafo -->
+      <question-comment
+       *ngIf="parrafo.question"
+       [questionId]="parrafo.question"
+       ></question-comment>
+      <p *ngIf="parrafo.originMedia" style="text-align: center;color: #737373;font-size: 14px;"><i>{{parrafo.originMedia}}</i></p>
+ 
+    </ion-col>
+
+    </ion-row>
+  </ion-grid>
+   </div>
+  </ion-col>
+   <ion-col  size="12" >
+    <p style="text-align: center;color: #737373;font-size: 14px;"><i>{{news?.origin}}</i></p>
+   </ion-col>
+    <!-- SPONSORS -->
+    <ion-col size="12 " *ngIf="sponsors.length > 0" >
+      <h2>{{'Sponsors' | translate}}</h2>
+      <div class="sponsors" >
+        <view-sponsor-mini
+          *ngFor="let sponsor of sponsors.slice(0, 6); let i = index"
+          [info]="sponsor.idSponsor?.sponsor_info || sponsor.customSponsor"
+          [sponsor]="sponsor"
+        ></view-sponsor-mini>
+      </div>
+    </ion-col>
+     <!-- TERMINO SPONSORS -->
+     <!-- <ion-col size="12" style="text-align: center;">
+      <ion-button class="borderRadius" *ngIf="published == undefined" (click)="publish()">{{ (edit?'news.edit':'news.publish') | translate}}</ion-button>
+      <ion-button class="borderRadius" *ngIf="published != undefined" (click)="readNews()">{{ 'news.read_news' | translate}}</ion-button>
+    </ion-col>   -->
+  </ion-content>
+</ion-row>
+
+<ion-img src="assets/images/monitor.png" style="max-height: 450px;
+height: 450px;
+margin-top: 270px;
+">
+</ion-img>
+

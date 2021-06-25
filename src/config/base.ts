@@ -79,38 +79,6 @@ export const SIDEBAR_ITEMS = [
 ];
 
 /**
- * Deportes disponibles
- */
-export const sports = [
-  "soccer",
-  "basketball",
-  "tennis",
-  "baseball",
-  "golf",
-  "running",
-  "volleyball",
-  "swimming",
-  "boxing",
-  "table_tennis",
-  "rugby",
-  "football",
-  "esport",
-  "various",
-  "archery",
-  "athletics",
-  "badminton",
-  "rafting",
-  "climbing",
-  "cycling",
-  "hriding",
-  "fencing",
-  "karate",
-  "judo",
-  "taekwondo",
-  "surf",
-];
-
-/**
  * Tipos de perfiles disponibles
  */
 
@@ -128,7 +96,7 @@ export const profiles = [
   "sponsor",
   "executive",
   "administration",
-  "referee"
+  "referee",
 ];
 
 /**
@@ -182,3 +150,26 @@ export const languajes = [
   "ar", // arabe
   "hi", // hindu
 ];
+
+
+export var normalize = (function() {
+  var from = "ÃÀÁÄÂÈÉËÊÌÍÏÎÒÓÖÔÙÚÜÛãàáäâèéëêìíïîòóöôùúüûÑñÇç", 
+      to   = "AAAAAEEEEIIIIOOOOUUUUaaaaaeeeeiiiioooouuuunncc",
+      mapping = {};
+ 
+  for(var i = 0, j = from.length; i < j; i++ )
+      mapping[ from.charAt( i ) ] = to.charAt( i );
+ 
+  return function( str ) {
+      var ret = [];
+      for( var i = 0, j = str.length; i < j; i++ ) {
+          var c = str.charAt( i );
+          if( mapping.hasOwnProperty( str.charAt( i ) ) )
+              ret.push( mapping[ c ] );
+          else
+              ret.push( c );
+      }      
+      return ret.join( '' );
+  }
+ 
+})();

@@ -1,0 +1,79 @@
+<ion-content>
+  <ion-icon
+    name="close-outline"
+    (click)="modalCtrl.dismiss()"
+    class="close-modal"
+  ></ion-icon>
+  <div style="text-align: center;">
+    <h3>{{ Texts.title | translate}}</h3>
+    <p>{{Texts.hint  | translate}}</p>
+  
+  </div>
+  <ion-searchbar
+  class="search"
+  placeholder="{{ 'countryFilter.search' | translate }}"
+  (ionChange)="filter()"
+  [(ngModel)]="query"
+></ion-searchbar>
+
+  <ion-list *ngIf="!query">
+    <div style="text-align: center;">
+
+      <ion-button class="btn-primary" (click)="selectAll()">{{ (countrys.length == 250?Texts.discardAll:Texts.selectAll) | translate}}</ion-button>
+    </div>
+  
+    <ion-item
+     class="country-item" 
+    *ngFor="let country of countryService.allCountrys" 
+    (click)="addCountry(country)" 
+    [ngClass]="isSelect(country)" lines="none">
+      <ion-label  >
+        <span>
+          <img style="    height: 30px;
+          vertical-align: middle;" src="https://www.countryflags.io/{{country.alpha2Code}}/flat/64.png" alt=""> 
+           {{country.name}}     
+           <ion-icon class="icon-select" name="checkmark-outline"></ion-icon>
+  
+        </span>
+      
+      </ion-label>
+    </ion-item>
+  
+    
+    
+  
+  </ion-list>
+
+  <ion-list *ngIf="query">
+    
+  
+    <ion-item
+     class="country-item" 
+    *ngFor="let country of countrysFilters" 
+    (click)="addCountry(country)" 
+    [ngClass]="isSelect(country)" lines="none">
+      <ion-label  >
+        <span>
+          <img style="    height: 30px;
+          vertical-align: middle;" src="https://www.countryflags.io/{{country.alpha2Code}}/flat/64.png" alt=""> 
+           {{country.name}}     
+           <ion-icon class="icon-select" name="checkmark-outline"></ion-icon>
+  
+        </span>
+      
+      </ion-label>
+    </ion-item>
+  
+    <div style="text-align: center;">
+      <ion-button class="btn-primary" (click)="query = ''">{{ Texts.cancelSearch | translate}}</ion-button>
+    </div>
+    
+  
+  </ion-list>
+  <ion-fab slot="fixed">
+    <ion-fab-button (click)="close()">
+      <ion-icon name="checkmark-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+</ion-content>

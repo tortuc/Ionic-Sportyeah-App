@@ -1,4 +1,5 @@
 import { Component, OnInit, ElementRef, ViewChild } from "@angular/core";
+import { Platform } from "@ionic/angular";
 import { PostService } from "../service/post.service";
 import { UserService } from "../service/user.service";
 
@@ -12,7 +13,9 @@ export class RankingPage implements OnInit {
 
   constructor(
     private postService: PostService,
-    private userService: UserService
+    private userService: UserService,
+    public platform: Platform,
+
   ) {
     this.postService.getAllPost().subscribe((post: any) => {
       this.todolosPost = post;
@@ -26,6 +29,12 @@ export class RankingPage implements OnInit {
     initialSlide: 0,
     speed: 400,
   };
+  next(slides){
+    slides.slideNext(); // slide to next
+  }
+  prev(slides){
+    slides.slidePrev(); // slide to next
+  }
   ngOnInit() {}
   positionLike;
   userLike;

@@ -3,8 +3,11 @@ import { FormBuilder, Validators } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import { AlertController, LoadingController } from "@ionic/angular";
 import { TranslateService } from "@ngx-translate/core";
+import { environment } from "src/environments/environment";
 import { LoginService } from "../service/login.service";
 import { UserService } from "../service/user.service";
+
+
 
 @Component({
   selector: "app-login",
@@ -21,10 +24,9 @@ export class LoginPage implements OnInit {
     public userService: UserService,
     private router: Router,
     private loadingCtrl: LoadingController,
-    private route: ActivatedRoute,
-
+    private route: ActivatedRoute
   ) {
-     // Esto es para loguear directamente con un token
+    // Esto es para loguear directamente con un token
     route.queryParams.subscribe((data) => {
       if (data?.token) {
         localStorage.setItem("token", data?.token);
@@ -114,4 +116,6 @@ export class LoginPage implements OnInit {
 
     await alert.present();
   }
+
+  
 }

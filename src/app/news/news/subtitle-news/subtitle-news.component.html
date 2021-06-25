@@ -1,0 +1,82 @@
+<ion-grid class="white">
+  <ion-row>
+    <!-- <ion-col size="12">
+      <new-post-header></new-post-header>
+    </ion-col> -->
+    <ion-col size="12">
+      <!-- <form [formGroup]="form"> -->
+        <span
+          *ngIf="subTitle == ''"
+          class="fake-placeholder"
+          >{{ "news.subtitle_paragraph" | translate }}</span
+        >
+        <div
+          #mainInput
+          style="background: #e1ebfff5;border-radius: 10px;"
+          class="custom-textarea box-input"
+          [(ngModel)]="subTitle"
+          contenteditable
+          Mentions
+          (usersRender)="usersChange($event)"
+          (click)="stopPropagation($event)"
+        ></div>
+
+        <div style="max-height: 400px; overflow: auto">
+          <div
+            class="users-mentions"
+            id="mentionsUser"
+            *ngFor="let user of users"
+            (click)="setUser(user.user)"
+          >
+            <ion-avatar class="mention">
+              <ion-img [src]="user.user.photo"></ion-img>
+            </ion-avatar>
+            <span class="name-mention">
+              {{ user.user.name }} {{ user.user.last_name }}</span
+            >
+          </div>
+        </div>
+      <!-- </form> -->
+
+      <div (click)="stopPropagation($event)">
+        <emoji-mart
+          *ngIf="emoji"
+          (emojiClick)="addEmoji($event)"
+          title="Pick your emoji…"
+          emoji="point_up"
+          [showPreview]="false"
+        ></emoji-mart>
+      </div>
+    </ion-col>
+
+    <ion-col class="buttons" style="text-align: end;" size="12">
+      <ion-button (click)="openEmojis($event)"><ion-icon name="happy"></ion-icon></ion-button>
+
+
+      <!-- <ion-button
+        class="btn-green"
+        [disabled]="
+          form.invalid || creating
+        "
+        (click)="send()"
+      >
+        {{ "new_comment.btn" | translate }}
+      </ion-button> -->
+    </ion-col>
+    <!-- <ion-col>
+      <post-preview-images
+        [loading]="loading"
+        [(files)]="files"
+      ></post-preview-images>
+    </ion-col> -->
+    <!-- <ion-col size="12">
+      <edit-question
+        *ngIf="question.questionGroup"
+        #editQuestionHash
+        [question]="question.questionGroup"
+        (delete)="deleteQuestion()"
+        (edit)="editQuestion()"
+      ></edit-question>
+    </ion-col> -->
+  </ion-row>
+</ion-grid>

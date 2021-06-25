@@ -16,6 +16,8 @@ import { ButtonsOptionsComponent } from '../buttons-options/buttons-options.comp
 import { ModalProgramNewsComponent } from '../modal-program-news/modal-program-news.component';
 import * as moment from 'moment';
 import { truncate } from 'fs';
+import { SubtitleNewsComponent } from '../subtitle-news/subtitle-news.component';
+import { AftherCreateNewsComponent } from '../afther-create-news/afther-create-news.component';
 
 const { Camera ,Filesystem} = Plugins;
 
@@ -31,7 +33,9 @@ export class EditComponent implements OnInit {
   @ViewChild("sportyeah") sportyeah: any;
   @ViewChild("optionsBtn") optionsBtn: ButtonsOptionsComponent;
 
-  
+  //Para el subtitulo
+  @ViewChild("subtitleNewsBtn") subtitleNewsBtn: SubtitleNewsComponent;
+
   @ViewChild("mainInputEdit") mainInputEdit: ElementRef;
 
   @ViewChild("mainInput") mainInput: ElementRef;
@@ -68,7 +72,12 @@ form = this.fb.group({
   date: ["", [Validators.required]],
 });
   news
-
+  subTitleAdd($event){
+    this.subTitle = $event;
+  }
+  subTitleEdit($event,position){
+    this.parrafos[position].subtitle = $event
+  }
   async presentToastWithOptions() {
     const toast = await this.toastController.create({
       message:this.translate.instant('news.edited'),
@@ -91,6 +100,8 @@ form = this.fb.group({
       this.principalYoutube = response.news.principalYoutube
       this.parrafos = response.news.content;
       this.titulo1 = response.news.headline;
+      this.subTitlePrincipal = response.news.principalSubtitle;
+
       this.deporte = response.news.sport;
       this.origen = response.news.origin;
       this.originPrincipaMedia = response.news.originPrincipaMedia;
@@ -111,55 +122,33 @@ form = this.fb.group({
       this.agregandoOrigen = true;
     })
   }
+  published
 async editar(){
   let loading = await this.loadingCtrl.create({
     message: this.translate.instant("loading"),
   });
   loading.present();
-  let news = this.form.value
   
-  news.principalVideo = this.videoSelected;
-  news.principalImage = this.imagenSelected;
-  news.principalYoutube = this.principalYoutube  
-  news.user = this.userService.User._id;
-  news.headline = this.titulo1;
-  news.principalSubtitle = this.subTitle;
-  news.content = await this.questionService.parrafoFilter(this.parrafos);
-  
-  news.origin = this.origen;
-  news.originPrincipaMedia = this.originPrincipaMedia;
-  news.audioNews = this.audioNews;
-  news.programatedDate = this.programedDate
-  if(this.programedDate != undefined){
-    news.programated = true;
-  }else{
-    news.programated = false;
-  }
-  console.log(this.news.draftCopy);
-  
-  if(this.news.draftCopy == true){
-    news.draftCopy = false;
-  }
-  news.sport = this.deporte;
-  news.id = this.idNews;
-   
-  this.newsService.updateNews(news).subscribe((response) => {
+  this.newsService.updateNews(this.news).subscribe((response:any) => {
       this.presentToastWithOptions();
-      this.router.navigate(["news"]);
+      this.published = response._id;
+      this.newsCreated(response)
+      loading.dismiss();
     });
-    loading.dismiss();
 
 }
 
 fecha = new Date().getDate() + '/'+ (new Date().getMonth()+1) + '/' + new Date().getFullYear()
 editando:boolean=false//si esta editando el agregar es disabled
 imagen;//imagen mostrada
-number:number = 0//Posicion de el parrafo, pero no del array, 
+number:number = undefined//Posicion de el parrafo, pero no del array, 
 positionEditactual:number=null; 
 parrafoAntesEdicion;
 parrafos=[];
+today = moment().format("YYYY-MM-DD")
   text1 ='' // `Escribe el párrafo # ${this.parrafos.length+1} `;
   titulo1= ``;
+  subTitlePrincipal = '';
   subTitle = null;
   deporte= ``;
   sports=['soccer', 'basketball','tennis',
@@ -180,15 +169,11 @@ parrafos=[];
   }
 
 
-  consol(){
-    let subtitulo
-    if(this.parrafos.length == 0){
-      subtitulo = null 
-    }else{
-      subtitulo = this.subTitleParrafo 
-    } 
+  async consol(){
+    await  this.subtitleNewsBtn.send()
+
     this.parrafos.push({
-      subtitle: subtitulo,
+      subtitle: this.subTitle,
       parrafo: this.text1,
       position: this.parrafos.length,
       image: null,
@@ -219,7 +204,9 @@ parrafos=[];
     this.editando = true
   }
   
-  EditParrafo(){
+  async EditParrafo(){
+    await this.subtitleNewsBtn.edit()
+
     this.parrafos[this.positionEditactual].parrafo = this.text1;
     this.parrafos[this.positionEditactual].title = this.titulo1;
  
@@ -227,6 +214,8 @@ parrafos=[];
     this.editando = false
     this.text1 = ``
     this.agregandoParrafo = false
+    this.number = undefined
+
   }
   eliminarParrafo(id){
     this.parrafos.splice(id,1)
@@ -235,10 +224,9 @@ parrafos=[];
     }
     id = null
     this.editando = false
-    if(this.number != 0 && this.number == this.parrafos.length){
-      this.number -= 1
-    }
     
+    this.number = undefined
+
     this.text1 = ``
   
   }
@@ -250,7 +238,7 @@ parrafos=[];
     this.parrafoAntesEdicion = null
     this.editando = false
     this.text1 = ``
-
+    this.number = undefined
   }
 
   ////Imagenes
@@ -625,7 +613,33 @@ origenParrafoEditar(i){
  this.originParrafoMedia = this.parrafos[i].originMedia
  this.parrafos[i].originMedia = null
 }
-todoConOrigen(){
+async todoConOrigen(){
+  this.news = this.form.value
+  
+  this.news.principalVideo = this.videoSelected;
+  this.news.principalImage = this.imagenSelected;
+  this.news.principalYoutube = this.principalYoutube  
+  this.news.user = this.userService.User._id;
+  this.news.headline = this.titulo1;
+  this.news.principalSubtitle = this.subTitlePrincipal;
+  this.news.content = await this.questionService.parrafoFilter(this.parrafos);
+  
+  this.news.origin = this.origen;
+  this.news.originPrincipaMedia = this.originPrincipaMedia;
+  this.news.audioNews = this.audioNews;
+  this.news.programatedDate = this.programedDate
+  if(this.programedDate != undefined){
+    this.news.programated = true;
+  }else{
+    this.news.programated = false;
+  }
+  
+  if(this.news.draftCopy == true){
+    this.news.draftCopy = false;
+  }
+  this.news.sport = this.deporte;
+  this.news.id = this.idNews;
+   
 // this.whitTime = this.editQuestionComponent.whitTime;
 // this.endDate = this.editQuestionComponent.endDate;
   this.todosParrafosConOrigen = false
@@ -654,8 +668,8 @@ todoConOrigen(){
     ok = false
 }
 
-  this.subTitle = this.subTitle.trim();
-  if ( this.subTitle.length != 0) {
+  this.subTitlePrincipal = this.subTitlePrincipal.trim();
+  if ( this.subTitlePrincipal.length != 0) {
   } else { 
     this.ToastError('El subtítulo no puede estar vacio')
     this.subTitlebool = false;
@@ -1016,5 +1030,13 @@ async porgramDate(){
       });
       return popover.present();
     }
+}
+
+async newsCreated(news){
+  let modal = await this.modalController.create({
+    component:AftherCreateNewsComponent,
+    componentProps:{news,edit:true}
+  })
+  modal.present()
 }
 }
