@@ -4,5 +4,19 @@
       <ion-col *ngFor="let comment of comments;let i = index" size="12">
         <view-comment [comment]="comment" (Deletedcomments)="Deletedcomments(i)"></view-comment>
       </ion-col>
+      <ion-col>
+        <div style="text-align: center;">
+          <ion-button class="btn-primary" *ngIf="!all && !loading" (click)="getComments()">{{"loadMore" | translate}}</ion-button>
+          <div *ngIf="loading" style="text-align: center">
+            <h6>
+              <ion-spinner
+                style="color: var(--color-primary); vertical-align: middle"
+              ></ion-spinner>
+              {{"loading" | translate}}
+            </h6>
+          </div>
+          <h6 *ngIf="all">{{"allComments" | translate}}</h6>
+        </div>
+      </ion-col>
     </ion-row>
 </div>

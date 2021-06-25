@@ -195,6 +195,7 @@ export class CommentPostComponent implements OnInit {
     toast.present();
     // Activamos el sonido del nuevo comentario
     this.commentService.commentAudio();
+    this.commentService.newCommen$.next(comment)
   }
 
   reset() {

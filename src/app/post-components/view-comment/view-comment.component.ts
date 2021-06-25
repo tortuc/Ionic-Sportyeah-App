@@ -60,6 +60,11 @@ export class ViewCommentComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.commentService.newCommen$.subscribe((comment)=>{
+      if(comment.comment == this.comment._id){
+        this.getCountComments()
+      }
+    })
     this.getCountComments()
   }
 

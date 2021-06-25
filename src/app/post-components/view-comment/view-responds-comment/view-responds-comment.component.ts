@@ -23,6 +23,11 @@ export class ViewRespondsCommentComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.commentService.newCommen$.subscribe((comment)=>{
+      if(comment.comment == this.comment._id){
+        this.comments.unshift(comment)
+      }
+    })
     this.getComments()
   }
 
@@ -32,6 +37,7 @@ export class ViewRespondsCommentComponent implements OnInit {
   comments = [];
   loading = false;
   skip = 0;
+  all = false
   getComments() {
     this.loading = true;
     this.commentService
@@ -41,8 +47,10 @@ export class ViewRespondsCommentComponent implements OnInit {
         (comments) => {
           this.loading = false;
           this.comments = this.comments.concat(comments);
-          this.skip += 10;
-          console.log(this.comments)
+          this.skip += 5;
+          if(comments.length < 5){
+            this.all = true
+          }
         },
         () => {
           this.loading = false;

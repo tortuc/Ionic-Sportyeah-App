@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { ChangeDetectorRef, Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { PostService } from "../service/post.service";
 import { UserService } from "../service/user.service";
@@ -25,7 +25,8 @@ export class PostPage implements OnInit {
     private viewsProfileService: ViewsProfileService,
     public commentService: CommentService,
     private translate: TranslateService,
-    private readonly metaService: Meta
+    private readonly metaService: Meta,
+    private readonly cd:ChangeDetectorRef
   ) {
     this.getPost(route.snapshot.paramMap.get("id"));
   }
@@ -47,11 +48,18 @@ export class PostPage implements OnInit {
         this.notFound = true;
       });
   }
-  ngOnInit() {}
+  ngOnInit() {
+    this.commentService.newCommen$.subscribe((comment)=>{
+      if(comment.post == this.post._id){
+        this.comments.unshift(comment)
+      }
+    })
+  }
   post: IPost;
   comments = [];
   loading = false;
   skip = 0;
+  all = false;
   getComments() {
     this.loading = true;
     this.commentService
@@ -62,6 +70,9 @@ export class PostPage implements OnInit {
           this.loading = false;
           this.comments = this.comments.concat(comments);
           this.skip += 10;
+          if(comments.length < 10){
+            this.all = true
+          }
         },
         () => {
           this.loading = false;
@@ -145,7 +156,18 @@ export class PostPage implements OnInit {
     }
   }
 
-  newComment(event) {
-    this.comments.unshift(event);
+  // newComment(event) {
+  //   this.comments.unshift(event);
+  // }
+
+  async logScrolling(ev) {
+    let el = await ev.target.getScrollElement();
+    this.cd.detectChanges();
+
+    if (el.scrollHeight - el.scrollTop < el.clientHeight + 400) {
+      if(!this.loading && !this.all){
+        this.getComments()
+      }
+    }
   }
 }

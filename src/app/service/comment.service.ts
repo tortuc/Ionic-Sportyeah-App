@@ -240,4 +240,5 @@ dislikeComment(id){
     }
 
 
+    public newCommen$ = new Subject<IComment>()
 }

@@ -2111,5 +2111,7 @@
   "seeLikesComment":"Reacciones en este comentario",
   "all":"Todas",
   "dislike":"Remover reaccion",
-  "respond_comment":"Responder comentario"
+  "respond_comment":"Responder comentario",
+  "allComments":"No hay mas comentarios para mostrar",
+  "loadMore":"Ver mas"
 }
