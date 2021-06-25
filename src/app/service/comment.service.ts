@@ -3,12 +3,18 @@ import { Injectable } from "@angular/core";
 import { environment } from "src/environments/environment";
 import { Howl } from "howler";
 import { IComment } from "../models/iPost";
+import { take } from "rxjs/operators";
+import { Subject } from "rxjs";
+import { LoadingService } from "./loading.service";
 
 @Injectable({
   providedIn: "root",
 })
 export class CommentService {
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private readonly loading: LoadingService
+  ) {}
 
   audio = new Howl({
     src: ["assets/sounds/comment.mp3"],
@@ -33,16 +39,16 @@ export class CommentService {
     );
   }
 
-    /**
+  /**
    * Retorna la cantiddad de comentarios en una noticia
    * @param news _id del news
    * @returns
    */
-     getCountsOfCommentsNews(news) {
-      return this.http.get<number>(
-        `${environment.URL_API}/news/countcomments/${news}`
-      );
-    }
+  getCountsOfCommentsNews(news) {
+    return this.http.get<number>(
+      `${environment.URL_API}/news/countcomments/${news}`
+    );
+  }
 
   /**
    * Obtiene comentarios de una publicacion, dependiendo de la paginacion
@@ -57,7 +63,29 @@ export class CommentService {
     );
   }
 
+  deleteOne(id) {
+    return this.http.delete(`${environment.URL_API}/post/comment/${id}`);
+  }
 
+  public commentEditd$ = new Subject<IComment>();
+  updateOne(id: string, newValues: IComment) {
+    this.loading.present();
+    this.http
+      .put<IComment>(
+        `${environment.URL_API}/post/comment/update/${id}`,
+        newValues
+      )
+      .pipe(take(1))
+      .subscribe(
+        (comment) => {
+          this.loading.dismiss();
+          this.commentEditd$.next(comment);
+        },
+        (error) => {
+          this.loading.dismiss();
+        }
+      );
+  }
 
   /**
    * Obtiene comentarios de una noticia, dependiendo de la paginacion
@@ -66,7 +94,7 @@ export class CommentService {
    * @returns
    */
 
-   getCommentsByNews(news, skip) {
+  getCommentsByNews(news, skip) {
     return this.http.get<IComment[]>(
       `${environment.URL_API}/news/comments/${news}/${skip}`
     );
@@ -91,25 +119,23 @@ export class CommentService {
       });
   }
 
-
-
-    /**
+  /**
    * Retorna si el usuario comento una noticia
    */
 
-     userCommentThisNews(user, news) {
-      return this.http
-        .get(`${environment.URL_API}/news/usercomment/${news}/${user}`)
-        .toPromise()
-        .then((comment) => {
-          if (comment) {
-            return true;
-          } else {
-            throw false;
-          }
-        })
-        .catch(() => {
+  userCommentThisNews(user, news) {
+    return this.http
+      .get(`${environment.URL_API}/news/usercomment/${news}/${user}`)
+      .toPromise()
+      .then((comment) => {
+        if (comment) {
+          return true;
+        } else {
           throw false;
-        });
-    }
+        }
+      })
+      .catch(() => {
+        throw false;
+      });
+  }
 }

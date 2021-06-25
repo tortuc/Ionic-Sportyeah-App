@@ -271,9 +271,15 @@
     }
   },
 
+  "edit_comment": {
+    "title": "Editar comentarios",
+    "btn": "Guardar"
+  },
+
   "edit_post": {
     "title": "Editar publicacion",
     "btn": "Guardar"
+    
   },
   "options_post": {
     "edit": "Editar",

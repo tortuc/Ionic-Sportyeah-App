@@ -268,8 +268,8 @@ a {
   --color: white;
   --border-radius: 25px;
 
-    font-size: 12px;
-    max-height: 30px;
+  font-size: 12px;
+  max-height: 30px;
   span {
     font-size: 12px;
     ion-icon {
@@ -278,7 +278,9 @@ a {
     }
   }
 }
-
+input {
+  color: black !important;
+}
 .btn-cancel {
   --background: #fa1e0e;
   --color: white;
@@ -937,7 +939,19 @@ ion-avatar.chat-img {
   }
 }
 
-
-div{
+div {
   color: black !important;
+}
+
+.action-sheet-custom {
+  --background: white;
+  --color: black;
+  --button-color: black;
+}
+
+.custom-loading {
+  --background: white;
+  --spinner-color: black;
+  --color: black;
+  color: #000;
 }

@@ -55,6 +55,7 @@ export interface IComment {
   _id: string;
   deleted: boolean;
   question:any;
+  edited:Date;
 }
 
 export interface IPostC {
