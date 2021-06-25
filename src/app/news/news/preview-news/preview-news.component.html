@@ -1,4 +1,4 @@
-  <ion-content *ngIf="news " class="main-bg" >
+  <ion-content *ngIf="news "  >
     <div style=" text-align: center;">
      <ion-grid>
       <ion-row>
@@ -6,14 +6,22 @@
           <ion-button *ngIf="platform.is('desktop')" (click)="preview = 'smartphone_view'" class="borderRadius" ><ion-icon name="phone-portrait-outline"></ion-icon></ion-button>
           <ion-button *ngIf="platform.is('desktop')" (click)="preview = 'tablet_view'" class="borderRadius"><ion-icon name="tablet-landscape-outline"></ion-icon></ion-button>
           <ion-button *ngIf="platform.is('desktop')" (click)="preview = 'desktop_view'" class="borderRadius"><ion-icon name="desktop-outline"></ion-icon></ion-button>
+          <ion-button class="borderRadius" *ngIf="platform.is('desktop') && published == undefined" (click)="publish()">{{ (edit?'news.edit':'news.publish') | translate}}</ion-button>
+          <ion-button class="borderRadius" *ngIf="platform.is('desktop') && published != undefined" (click)="readNews()">{{ 'news.read_news' | translate}}</ion-button>
+        
           <ion-button (click)="notReady()" class="borderRadius"><ion-icon name="arrow-back-outline"></ion-icon></ion-button>
         </ion-col>
         <ion-col size="12" >
-          <h2 style="color: white;" *ngIf="platform.is('desktop')">{{ 'news.'+preview | translate}}</h2>
-          <h2 style="color: white;"  *ngIf="platform.is('mobile')">{{ 'news.preview_news'  | translate}}</h2>
+          <h2 style="margin: 0px;" *ngIf="platform.is('desktop')">{{ 'news.'+preview | translate}}</h2>
+          <h2 style="margin: 0px;"  *ngIf="platform.is('mobile')">{{ 'news.preview_news'  | translate}}</h2>
         </ion-col>
       </ion-row>
-      <ion-row style="background: white;border-radius: 25px;" [ngClass]=" preview+' fade-in-fwd'"  >
+      
+      <mobile-news-view class="fade-in-bck" [news]="news" [sponsors]="sponsors" *ngIf="platform.is('desktop') && preview == 'smartphone_view'" ></mobile-news-view>
+      <tablet-news-view class="fade-in-bck" [news]="news" [sponsors]="sponsors" *ngIf="platform.is('desktop') && preview == 'tablet_view'"></tablet-news-view>
+      <monitor-news-view class="fade-in-bck" [news]="news" [sponsors]="sponsors" *ngIf="platform.is('desktop') && preview == 'desktop_view'"></monitor-news-view>
+      
+      <ion-row *ngIf="platform.is('mobile')" style="background: white;border-radius: 25px;"   >
         <ion-col size="12">
              <!--  Header de la noticia -->
       <div>

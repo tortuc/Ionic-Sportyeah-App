@@ -38,7 +38,6 @@ export class PreviewNewsComponent implements OnInit {
     this.sponsorService
       .getAllSponsorsUserById(this.userService.User._id)
       .subscribe((sponsors) => {
-        console.log(sponsors)
         this.sponsors = sponsors;
         if (sponsors.length > 6) {
           this.rotateSponsors();
