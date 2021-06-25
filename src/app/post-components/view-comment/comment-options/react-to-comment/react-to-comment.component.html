@@ -15,7 +15,11 @@
     <img [src]="reaction.option | showReactionsImage" alt="" />
     <p>{{ reaction.name | translate }}</p>
   </div>
-  <div *ngIf="reaction" class="circle" (click)="dislike()">
+  <div
+    *ngIf="reaction"
+    class="circle"
+    (click)="dislike()"
+  >
     <img src="assets/images/remove.png" alt="" />
     <p>{{ "dislike" | translate }}</p>
   </div>

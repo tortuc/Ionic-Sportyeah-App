@@ -14,6 +14,10 @@ export class AllReactionsComponent implements OnInit {
    * _id De la publicacion
    */
   @Input() post: string;
+  /**
+   * _id Del comentario
+   */
+  @Input() comment: string;
 
   /**
    * Se dio click a un usuario
@@ -57,7 +61,8 @@ export class AllReactionsComponent implements OnInit {
    */
   getReactions() {
     this.loading = true;
-    this.reactionsService
+    if(this.post){
+      this.reactionsService
       .anyReactionPost(this.post, this.skip)
       .pipe(take(1))
       .subscribe(
@@ -74,5 +79,24 @@ export class AllReactionsComponent implements OnInit {
           this.loading = false;
         }
       );
+    }else if(this.comment){
+      this.reactionsService
+      .anyReactionComment(this.comment, this.skip)
+      .pipe(take(1))
+      .subscribe(
+        (reactions) => {
+          /**
+           * Concatenamos las reacciones
+           */
+          this.reactions = this.reactions.concat(reactions);
+
+          this.skip = +15;
+          this.loading = false;
+        },
+        () => {
+          this.loading = false;
+        }
+      );
+    }
   }
 }

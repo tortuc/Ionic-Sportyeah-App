@@ -3,7 +3,9 @@
   padding: 0;
   box-shadow: none;
   border-bottom: var(--color-secondary) solid 1px;
+  border-left: var(--color-secondary) solid 1px;
   border-radius: 15px;
+  overflow: visible;
 }
 
 .img-comments-container {

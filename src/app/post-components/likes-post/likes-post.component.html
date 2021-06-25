@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar class="toolbar-bg">
-    <ion-title style="--color: white">{{ "seelikes" | translate }}</ion-title>
+    <ion-title style="--color: white">{{ (post?Texts.titlePost:Texts.titleComment )| translate }}</ion-title>
     <ion-buttons slot="end">
       <ion-button (click)="dismiss()" style="--color: white"
         ><ion-icon name="close"></ion-icon>
@@ -31,6 +31,7 @@
   <all-reactions
     #all
     [post]="post"
+    [comment]="comment"
     *ngIf="segment == 'all'"
     (visit)="goToProfile($event)"
   ></all-reactions>
@@ -38,6 +39,7 @@
   *ngIf="segment != 'all'"
     #likes
     [post]="post"
+    [comment]="comment"
     [type]="segment"
     (visit)="goToProfile($event)"
   ></likes-reactions>

@@ -135,10 +135,14 @@
 
 .total {
   
-  font-size: 14px;
+  font-size: 12px;
   margin: 0;
   cursor: pointer;
   &:hover {
     color: var(--color-secondary);
   }
+}
+
+.post-button{
+  margin: 0;
 }

@@ -3,33 +3,23 @@ import { Router } from "@angular/router";
 import { ActionSheetController, ModalController } from "@ionic/angular";
 import { TranslateService } from "@ngx-translate/core";
 import { take } from "rxjs/operators";
-import { ILike, IPost } from "src/app/models/iPost";
-import { LikedPipe } from "src/app/pipes/liked.pipe";
-import { PostService } from "src/app/service/post.service";
+import { IComment, ILike } from "src/app/models/iPost";
+import { LikesPostComponent } from "src/app/post-components/likes-post/likes-post.component";
+import { CommentService } from "src/app/service/comment.service";
 import { UserService } from "src/app/service/user.service";
-import { LikesPostComponent } from "../likes-post/likes-post.component";
-
 @Component({
-  selector: "react-to-posts",
-  templateUrl: "./react-to-posts.component.html",
-  styleUrls: ["./react-to-posts.component.scss"],
+  selector: "react-to-comment",
+  templateUrl: "./react-to-comment.component.html",
+  styleUrls: ["./react-to-comment.component.scss"],
 })
-export class ReactToPostsComponent implements OnInit {
+export class ReactToCommentComponent implements OnInit {
+  @Input() comment: IComment;
   @ViewChild("reacts") reacts: ElementRef;
   @ViewChild("overlay") overlay: ElementRef;
 
-  /**
-   * Cuerpo con los datos del post, reacciones, comentarios y comparticiones
-   */
-  @Input() post: IPost;
-  /**
-   * Si se esta cargando desde la pagina del post
-   */
-  @Input() isPost: boolean = false;
-
   constructor(
     public userService: UserService,
-    private postService: PostService,
+    private commentService: CommentService,
     private modalController: ModalController,
     public translate: TranslateService,
     public actionSheetCtrl: ActionSheetController,
@@ -52,8 +42,8 @@ export class ReactToPostsComponent implements OnInit {
    * Obtener la cantidad de reacciones en el post
    */
   getCountReacions() {
-    this.postService
-      .countReactionsByPost(this.post._id)
+    this.commentService
+      .countReactionsByComment(this.comment._id)
       .pipe(take(1))
       .subscribe((reactions) => {
         this.countReacions = reactions;
@@ -65,10 +55,19 @@ export class ReactToPostsComponent implements OnInit {
    * Saber si el usuario acual, reacciono al post
    */
   async IReacted() {
-    this.reaction = await new LikedPipe(
-      this.postService,
-      this.userService
-    ).transform(this.post._id, this.countReacions);
+    if (this.countReacions < 1) {
+      this.reaction = null;
+    } else {
+      try {
+        let reaction: any = await this.commentService
+          .userReactToComment(this.comment._id, this.userService.User?._id)
+          .toPromise();
+
+        this.reaction = reaction ? reaction : false;
+      } catch (error) {
+        this.reaction = null;
+      }
+    }
   }
 
   reactions = [
@@ -318,7 +317,7 @@ export class ReactToPostsComponent implements OnInit {
    * @param reaction tipo de reaccion
    * @param only si presiono el boton en vez de alguna reaccion
    */
-  react( reaction, only = false) {
+  react(reaction, only = false) {
     // empieza el loading y bloquea el boton para que no pueda interactuar denuevo mientras se hace la logica
     this.loading = true;
     // se cierra las reacciones
@@ -331,7 +330,7 @@ export class ReactToPostsComponent implements OnInit {
       this.dislike();
     } else if (!liked) {
       // si no hay reaccion, entonces se reacciona
-      this.likePost(reaction);
+      this.like(reaction);
     } else {
       // si ya hay reaccion, y presiono una reaccion entonces se actualiza a la que presiono
       this.changeReaction(liked._id, reaction);
@@ -344,7 +343,7 @@ export class ReactToPostsComponent implements OnInit {
    * @param type tipo de reaccion
    */
   changeReaction(id, type) {
-    this.postService
+    this.commentService
       .changeReact(id, type)
       .pipe(take(1))
       .subscribe(
@@ -359,13 +358,13 @@ export class ReactToPostsComponent implements OnInit {
   }
 
   /**
-   * Reacciona a una publicacion
-   * @param post _id del post
+   * Reacciona a un comentario
+   * @param comment _id del comentario
    * @param reaction tipo de reaccion
    */
-  likePost(reaction) {
-    this.postService
-      .likePost(this.post._id, reaction)
+  like(reaction) {
+    this.commentService
+      .likeComment(this.comment._id, reaction)
       .pipe(take(1))
       .subscribe(
         (resp: { like: ILike; likes: number }) => {
@@ -384,8 +383,8 @@ export class ReactToPostsComponent implements OnInit {
    */
   dislike() {
     // le decimos al backend que marque la reaccion como eliminada
-    this.postService
-      .dislikePost(this.reaction._id)
+    this.commentService
+      .dislikeComment(this.reaction._id)
       .pipe(take(1))
       .subscribe(
         (likes: number) => {
@@ -416,28 +415,20 @@ export class ReactToPostsComponent implements OnInit {
   modalOpen = false;
 
   async seeLikes() {
-    if (this.isPost) {
-      if (!this.modalOpen) {
-        this.modalOpen = true;
+    if (!this.modalOpen) {
+      this.modalOpen = true;
 
-        let modal = await this.modalController.create({
-          component: LikesPostComponent,
-          componentProps: {
-            post: this.post._id,
-          },
-        });
-        modal.onDidDismiss().then(() => {
-          this.modalOpen = false;
-        });
+      let modal = await this.modalController.create({
+        component: LikesPostComponent,
+        componentProps: {
+          comment: this.comment._id,
+        },
+      });
+      modal.onDidDismiss().then(() => {
+        this.modalOpen = false;
+      });
 
-        return modal.present();
-      }
-    } else {
-      this.goToPost(this.post._id);
+      return modal.present();
     }
-  }
-
-  goToPost(id) {
-    this.router.navigate([`/post/${id}`]);
   }
 }

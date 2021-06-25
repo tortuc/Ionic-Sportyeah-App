@@ -43,9 +43,11 @@ const popoverOtions = [
 })
 export class ViewCommentComponent implements OnInit {
   @Input() comment: IComment;
+  @Input() preview: boolean = false;
 
   @Output() comments = new EventEmitter();
   @Output() Deletedcomments = new EventEmitter();
+  countComments: number = 0;
   constructor(
     public userService: UserService,
     private popoverController: PopoverController,
@@ -57,7 +59,15 @@ export class ViewCommentComponent implements OnInit {
     public viewsSponsorService: ViewsSponsorService
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.getCountComments()
+  }
+
+  async getCountComments() {
+    this.countComments = await this.commentService
+      .getCountsOfCommentsInComment(this.comment._id)
+      .toPromise();
+  }
 
   async openImg() {
     let modal = await this.modalCtrl.create({

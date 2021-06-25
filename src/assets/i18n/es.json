@@ -2107,5 +2107,9 @@
     "success": "Bienvenido, en unos segundos sera redireccionado a su cuenta",
     "label": "Ingrese el codigo recibido en el correo",
     "continue": "Continuar"
-  }
+  },
+  "seeLikesComment":"Reacciones en este comentario",
+  "all":"Todas",
+  "dislike":"Remover reaccion",
+  "respond_comment":"Responder comentario"
 }

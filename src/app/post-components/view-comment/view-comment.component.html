@@ -17,7 +17,7 @@
       <span *ngIf="comment.edited" class="date-span">{{'edit_at' | translate}} {{ comment.edited | customDisplayDate }}</span>
     </div> 
     <ion-icon
-    
+    *ngIf="comment.user._id == userService.User?._id && !preview"
     name="chevron-down"
     (click)="openOptions($event)"
     class="options-down"
@@ -25,7 +25,7 @@
   </div>
 
 
-  <div style="padding: 13px">
+  <div style="padding: 5px">
     <span *ngIf="comment.message" [innerHTML]="comment.message | links"></span>
     <div class="img-comments-container">
       <ng-container *ngFor="let file of comment.files">
@@ -59,4 +59,9 @@
       [questionId]="comment.question"
     ></question-comment>
   </div>
+  <ng-container *ngIf="!preview" >
+    <comment-options [comment]="comment"></comment-options>
+    <view-responds-comment *ngIf="countComments > 0" [comment]="comment"></view-responds-comment>
+  
+  </ng-container>
 </ion-card>

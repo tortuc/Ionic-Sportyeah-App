@@ -1,0 +1,8 @@
+<div style="padding: 10px;">
+    <span class="see" (click)="show = !show">{{ (show?Texts.hide:Texts.show) | translate}}</span>
+    <ion-row *ngIf="show">
+      <ion-col *ngFor="let comment of comments;let i = index" size="12">
+        <view-comment [comment]="comment" (Deletedcomments)="Deletedcomments(i)"></view-comment>
+      </ion-col>
+    </ion-row>
+</div>

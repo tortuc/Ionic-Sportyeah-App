@@ -15,7 +15,7 @@
             <ion-col size="12">
               <view-post [postPage]="true" [post]="post"></view-post>
             </ion-col>
-            <ion-col size="12">
+            <ion-col *ngIf="userService.User" size="12">
               <comment-post
                 postPage="true"
                 [post]="post"

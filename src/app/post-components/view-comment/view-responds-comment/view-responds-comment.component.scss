@@ -1,0 +1,6 @@
+.see{
+    cursor:pointer;
+    &:hover{
+        color: var(--color-primary);
+    }
+}
