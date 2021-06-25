@@ -6,6 +6,7 @@ import { IComment } from "../models/iPost";
 import { take } from "rxjs/operators";
 import { Subject } from "rxjs";
 import { LoadingService } from "./loading.service";
+import { PostService } from "./post.service";
 
 @Injectable({
   providedIn: "root",
@@ -13,7 +14,8 @@ import { LoadingService } from "./loading.service";
 export class CommentService {
   constructor(
     private http: HttpClient,
-    private readonly loading: LoadingService
+    private readonly loading: LoadingService,
+    private readonly postService:PostService
   ) {}
 
   audio = new Howl({
@@ -68,7 +70,10 @@ export class CommentService {
   }
 
   public commentEditd$ = new Subject<IComment>();
-  updateOne(id: string, newValues: IComment) {
+  async updateOne(id: string, newValues: IComment,files,videos) {
+
+    newValues.files = await this.postService.uploadsVideos(videos, files);
+
     this.loading.present();
     this.http
       .put<IComment>(
