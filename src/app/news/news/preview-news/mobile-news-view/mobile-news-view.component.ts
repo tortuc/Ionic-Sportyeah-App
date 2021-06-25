@@ -11,7 +11,7 @@ export class MobileNewsViewComponent implements OnInit {
   @Input() news;
   @Input() sponsors;
   constructor(
-    private userService:UserService
+    public userService:UserService
   ) { }
 
   ngOnInit() {}

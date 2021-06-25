@@ -141,7 +141,6 @@
       <div class="sponsors" >
         <view-sponsor-mini
           *ngFor="let sponsor of sponsors.slice(0, 6); let i = index"
-          (click)="clickOnSponsor(sponsor)"
           [info]="sponsor.idSponsor?.sponsor_info || sponsor.customSponsor"
           [sponsor]="sponsor"
         ></view-sponsor-mini>
