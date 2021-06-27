@@ -8,20 +8,22 @@ import { IComment } from "src/app/models/iPost";
 import { UserService } from "src/app/service/user.service";
 import { ViewsSponsorService } from "src/app/service/views-sponsor.service";
 import { SeeFilesPostSliderComponent } from "../see-files-post-slider/see-files-post-slider.component";
-import { OptionsPostPage } from "src/app/profile/options-post/options-post.page";
 import { EditCommentPage } from "src/app/profile/edit-comment/edit-comment.page";
 import { TranslateService } from "@ngx-translate/core";
 import { CommentService } from "src/app/service/comment.service";
 import { PopoverOptionsComponent } from "src/app/components/structure/popover-options/popover-options.component";
+import { ReportCommentComponent } from "./report-comment/report-comment.component";
 
 enum Texts {
-  edit = "Editar comentario",
-  delete = "Eliminar comentario",
+  edit = "editComment",
+  delete = "deleteComment",
+  report = "Denunciar comentario"
 }
 
 enum options {
   edit = "edit",
   delete = "delete",
+  report = "report",
 }
 
 const popoverOtions = [
@@ -34,6 +36,15 @@ const popoverOtions = [
     icon: "trash-bin-outline",
     text: Texts.delete,
     action: "delete",
+  },
+ 
+];
+const popoverOtionsOther = [
+ 
+  {
+    icon: "alert-circle-outline",
+    text: Texts.report,
+    action: "report",
   },
 ];
 @Component({
@@ -116,6 +127,22 @@ export class ViewCommentComponent implements OnInit {
     });
     popover.present();
   }
+  async openOptionsOther(event) {
+    const popover = await this.popoverController.create({
+      component: PopoverOptionsComponent,
+      componentProps: { options: popoverOtionsOther },
+      event,
+      showBackdrop: false,
+    });
+
+    popover.onDidDismiss().then((response) => {
+      let option = response.data;
+      this.handlerOptions(option);
+    });
+    popover.present();
+  }
+
+
   handlerOptions(option: options) {
     switch (option) {
       case options.edit:
@@ -125,10 +152,22 @@ export class ViewCommentComponent implements OnInit {
       case options.delete:
         this.askDelete();
         break;
+      case options.report:
+        this.report();
+        break;
 
       default:
         break;
     }
+  }
+  async report() {
+    const modal = await this.modalController.create({
+      component:ReportCommentComponent,
+      componentProps:{comment:this.comment},
+      cssClass:"modal-border"
+    })
+
+    return await modal.present()
   }
 
   async askDelete() {

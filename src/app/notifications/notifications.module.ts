@@ -12,6 +12,8 @@ import { TranslateModule } from '@ngx-translate/core';
 import { PipesModule } from '../pipes/pipes.module';
 import { ComponentsModule } from '../components/components.module';
 import { ComponentsSharedModule } from '../shared-components/components-shared.module';
+import { ReportCloseonlyNotificationComponent } from './report-closeonly-notification/report-closeonly-notification.component';
+import { ReportCloseNotificationComponent } from './report-close-notification/report-close-notification.component';
 
 @NgModule({
   imports: [
@@ -25,6 +27,6 @@ import { ComponentsSharedModule } from '../shared-components/components-shared.m
     ComponentsModule,
     PipesModule
   ],
-  declarations: [NotificationsPage]
+  declarations: [NotificationsPage,ReportCloseonlyNotificationComponent,ReportCloseNotificationComponent]
 })
 export class NotificationsPageModule {}

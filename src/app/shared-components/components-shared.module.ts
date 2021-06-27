@@ -43,6 +43,7 @@ import { CommentOptionsComponent } from "../post-components/view-comment/comment
 import { ReactToCommentComponent } from "../post-components/view-comment/comment-options/react-to-comment/react-to-comment.component";
 import { CommentsInCommentComponent } from "../post-components/view-comment/comment-options/comments-in-comment/comments-in-comment.component";
 import { ViewRespondsCommentComponent } from "../post-components/view-comment/view-responds-comment/view-responds-comment.component";
+import { ReportCommentComponent } from "../post-components/view-comment/report-comment/report-comment.component";
 
 const components = [
   ViewCommentComponent,
@@ -82,7 +83,8 @@ const components = [
   CommentOptionsComponent,
   ReactToCommentComponent,
   CommentsInCommentComponent,
-  ViewRespondsCommentComponent
+  ViewRespondsCommentComponent,
+  ReportCommentComponent
 ];
 
 @NgModule({

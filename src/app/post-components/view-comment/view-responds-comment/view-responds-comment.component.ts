@@ -4,8 +4,8 @@ import { IComment } from "src/app/models/iPost";
 import { CommentService } from "src/app/service/comment.service";
 
 enum Texts {
-  show = "Mostrar respuestas",
-  hide = "Ocultar respuestas",
+  show = "showResponds",
+  hide = "hideResponds",
 }
 
 @Component({

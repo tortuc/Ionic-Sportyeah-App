@@ -1,0 +1,27 @@
+<div
+  class="notification"
+  (click)="read()"
+  [ngClass]="notification.read ? '' : 'unread'"
+  routerLink="{{ notification.routerlink }}"
+>
+  <div class="notification-user">
+    <img class="user" [src]="notification.friend.photo" />
+
+    <ion-icon name="alert-circle-outline" class="icon"></ion-icon>
+  </div>
+
+  <div style="padding-left: 15px">
+    <div style="display: flex; align-items: center">
+      <p>
+        {{
+          "notifications." +
+            (notification.comment.user._id == userService.User._id
+              ? "report_close_owner"
+              : "report_close") | translate
+        }}
+      </p>
+    </div>
+
+    <span class="date">{{ notification.date | customDisplayDate }}</span>
+  </div>
+</div>

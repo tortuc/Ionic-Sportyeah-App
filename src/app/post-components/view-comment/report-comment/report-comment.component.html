@@ -1,0 +1,31 @@
+<ion-content>
+  <loading-progress class="progress"></loading-progress>
+
+  <ion-icon
+    name="close-outline"
+    (click)="modalCtrl.dismiss()"
+    class="close-modal"
+  ></ion-icon>
+  <div style="padding: 10px">
+    <h4 style="text-align: center">{{ Texts.title | translate }}</h4>
+    <p style="text-align: center;margin-bottom: 0;">{{ Texts.hint | translate }}</p>
+
+    <ion-list>
+      <ion-radio-group [(ngModel)]="reason"> 
+        <ion-list-header>
+          <ion-label style="color: black;"> {{Texts.reasons | translate}} </ion-label>
+        </ion-list-header>
+
+        <ion-item *ngFor="let option of options">
+          <ion-label>{{option.text | translate}}</ion-label>
+          <ion-radio [value]="option.type"></ion-radio>
+        </ion-item>
+
+    
+      </ion-radio-group>
+    </ion-list>
+    <div style="text-align: center;">
+      <ion-button [disabled]="!reason" class="btn-primary" (click)="createReport()">{{Texts.btn | translate}}</ion-button>
+    </div>
+  </div>
+</ion-content>

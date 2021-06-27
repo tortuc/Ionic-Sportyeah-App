@@ -1,0 +1,47 @@
+<ion-content>
+  <ion-grid style="padding: 0" class="height-100vh">
+    <ion-row
+      class="height-100vh ion-align-items-center ion-justify-content-center"
+    >
+      <ion-col class="max-widht-520" size-lg="5" size-md="8" size-sm="12">
+        <div *ngIf="!report" style="text-align: center">
+          <p>
+            <ion-spinner
+              style="vertical-align: middle; color: blue"
+            ></ion-spinner>
+            {{"loading" | translate}}
+          </p>
+        </div>
+        <ion-card
+          *ngIf="report"
+          ngClass.xs="login-xs"
+          style="box-shadow: none !important"
+        >
+          <div style="text-align: center">
+            <div
+              *ngIf="userService.User?._id != report.comment.user._id"
+              (click)="userService.goToProfileOnly(report.user.username)"
+              class="user-content"
+            >
+              <img [src]="report.user.photo" alt="" />
+              <h5>{{report.user.name}} {{report.user.last_name}}</h5>
+            </div>
+            <h3>{{Texts.status | translate}}</h3>
+            <p>{{"report."+report.status | translate}}</p>
+          </div>
+          <div>
+            <p>{{Texts.content | translate}}</p>
+            <p>- {{Texts.reason | translate}} {{"report."+report.reason | translate}}</p>
+            <view-comment
+              [preview]="true"
+              [comment]="report.comment"
+            ></view-comment>
+            <p *ngIf="entered">
+              {{Texts.day | translate}} {{report.date | customDisplayDate}}
+            </p>
+          </div>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

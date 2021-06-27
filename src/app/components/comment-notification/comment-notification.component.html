@@ -16,7 +16,7 @@
       </p>
     </div>
     <div *ngIf="notification.comment">
-      <view-comment [comment]="notification.comment"></view-comment>
+      <view-comment [preview]="true" [comment]="notification.comment"></view-comment>
     </div>
 
     <span class="date">{{ notification.date | customDisplayDate }}</span>

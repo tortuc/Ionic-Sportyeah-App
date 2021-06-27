@@ -42,6 +42,8 @@
                   <question-notification     *ngIf="notification.action === 'questionEnd'"    [notification]="notification"></question-notification>
                   <event-invitation-notification *ngIf="notification.action === 'invited_event'"    [notification]="notification"> </event-invitation-notification>
                   <news-notification *ngIf="notification.action === 'news_created'" [notification]="notification"></news-notification>
+                  <report-closeonly-notification *ngIf="notification.action === 'report_close_only'" [notification]="notification"></report-closeonly-notification>
+                  <report-close-notification *ngIf="notification.action === 'report_close_delete'" [notification]="notification"></report-close-notification>
                 </ion-col>
                 <ion-col style="text-align: center; min-height: 50px;"
                       ><ion-spinner *ngIf="loadingContent"></ion-spinner

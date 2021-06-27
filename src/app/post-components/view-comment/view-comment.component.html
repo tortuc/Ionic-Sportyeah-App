@@ -22,6 +22,12 @@
     (click)="openOptions($event)"
     class="options-down"
   ></ion-icon>
+    <ion-icon
+    *ngIf="comment.user._id != userService.User?._id && !preview"
+    name="chevron-down"
+    (click)="openOptionsOther($event)"
+    class="options-down"
+  ></ion-icon>
   </div>
 
 
