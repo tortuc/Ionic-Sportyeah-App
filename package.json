@@ -18,7 +18,8 @@
     "prod-test": "ng build --configuration=test --aot --outputHashing=all && ng run app:server:test && pm2 start dist/app/server/main.js",
     "dev": "ionic serve",
     "dev-test": "ionic serve --configuration=test",
-    "build-android": "ionic build --prod && npx cap copy android && cordova-res android --skip-config --copy && npx cap open android"
+    "build-android": "ionic build --prod && npx cap copy android && cordova-res android --skip-config --copy && npx cap open android",
+    "build-android-test": "ionic build --configuration=test && npx cap copy android && cordova-res android --skip-config --copy && npx cap open android"
   },
   "private": true,
   "dependencies": {

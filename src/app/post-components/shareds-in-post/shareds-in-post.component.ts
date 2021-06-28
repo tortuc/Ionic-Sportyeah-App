@@ -101,7 +101,7 @@ export class SharedsInPostComponent implements OnInit {
         buttons: [
           {
             text: this.translate.instant("share.now"),
-            icon: "arrow-redo-outline",
+            icon: "bookmark-outline",
             handler: () => {
               this.shareRigthNow();
             },
@@ -140,6 +140,7 @@ export class SharedsInPostComponent implements OnInit {
   }
   shareWith() {
     if (this.platform.is("mobile")) {
+      // this.customMobileShare()
       this.socialShare.share(
         this.translate.instant("share_with.text"),
         this.translate.instant("share_with.title"),
@@ -149,6 +150,114 @@ export class SharedsInPostComponent implements OnInit {
     } else {
       this.sharedWeb();
     }
+  }
+
+  async customMobileShare(){
+    this.socialShare.canShareVia("com.instagram.android").then((response)=>{
+      console.log("si se puede",response)
+    })
+    .catch((error)=>{
+      console.log("no se puede",error)
+    })
+    let action = await this.actionSheetCtrl.create({
+      header: this.translate.instant("share.header"),
+      buttons: [
+        {
+          text: "twitter",
+          icon: "logo-twitter",
+          handler: () => {
+            this.socialShare.shareViaTwitter(this.translate.instant(
+              "share_with.text"
+            ),null,`https://app.sportyeah.com/post/${this.post._id}`)
+           
+            this.socketService.socket.emit("shared", "twitter");
+          },
+          cssClass: "twitter",
+        },
+        {
+          text: "tiktok",
+          icon: "logo-tiktok",
+          handler: () => {
+            this.socialShare.shareVia("com.zhiliaoapp.musically",this.translate.instant(
+              "share_with.text"
+            ),null,`https://app.sportyeah.com/post/${this.post._id}`)
+           
+            this.socketService.socket.emit("shared", "twitter");
+          },
+          cssClass: "tiktok",
+        },
+        {
+          text: "WhatsApp",
+          icon: "logo-whatsapp",
+          handler: () => {
+            this.socialShare.shareViaWhatsApp(this.translate.instant(
+              "share_with.text"
+            ),null,`https://app.sportyeah.com/post/${this.post._id}`)
+           
+            this.socketService.socket.emit("shared", "whatsapp");
+          },
+          cssClass: "whatsapp",
+        },
+        {
+          text: "Instagram",
+          icon: "logo-instagram",
+          handler: () => {
+            this.socialShare.shareViaInstagram(this.translate.instant(
+              "share_with.text"
+            ) + `https://app.sportyeah.com/post/${this.post._id}`,null)
+            this.socketService.socket.emit("shared", "facebook");
+          },
+          cssClass: "instagram",
+        },
+        {
+          text: "Facebook",
+          icon: "logo-facebook",
+          handler: () => {
+            this.socialShare.shareViaFacebook(this.translate.instant(
+              "share_with.text"
+            ),null,`https://app.sportyeah.com/post/${this.post._id}`)
+            this.socketService.socket.emit("shared", "facebook");
+          },
+          cssClass: "facebook",
+        },
+        {
+          text: "LinkedIn",
+          icon: "logo-linkedin",
+
+          handler: () => {
+            
+            this.socialShare.shareVia("com.linkedin.android",this.translate.instant(
+              "share_with.text"
+            ),null,`https://app.sportyeah.com/post/${this.post._id}`).catch((error)=>{
+              console.log(error)
+            })
+            this.socketService.socket.emit("shared", "linkedin");
+          },
+          cssClass: "linkedin",
+        },
+        {
+          text: this.translate.instant("copy"),
+          icon: "reader",
+          handler: () => {
+            this.clipboard.copy(
+              `${this.translate.instant(
+                "share_with.text"
+              )} https://app.sportyeah.com/post/${this.post._id}`
+            );
+            this.socketService.socket.emit("shared", "copy");
+          },
+          cssClass: "copy",
+        },
+
+        {
+          text: this.translate.instant("cancel"),
+          icon: "close",
+          role: "cancel",
+          cssClass: "cancel",
+        },
+      ],
+    });
+    action.present();
   }
 
   async openPopover(ev) {
