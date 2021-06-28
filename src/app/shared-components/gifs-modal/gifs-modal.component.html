@@ -9,6 +9,12 @@
   </ion-toolbar>
 </ion-header>
 <ion-content style="--background:black" [scrollEvents]="true" (ionScrollEnd)="logScrolling($event)">
+  <ion-searchbar
+  class="search"
+  placeholder="{{ 'searchSport' | translate }}"
+  (ionChange)="filter()"
+  [(ngModel)]="query"
+></ion-searchbar>
   <ion-grid >
     <ion-row>
       <ion-col size="6" *ngFor="let gif of gifs" style="padding:2px" >

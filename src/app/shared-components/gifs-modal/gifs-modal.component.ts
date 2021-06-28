@@ -13,6 +13,10 @@ export class GifsModalComponent implements OnInit {
   offset: number = 0;
   gifs: any[] = [];
 
+
+  query = "";
+  lastQuery = ""
+
   constructor(public modalCtrl: ModalController) {}
 
   ngOnInit() {
@@ -28,12 +32,35 @@ export class GifsModalComponent implements OnInit {
           this.loading = false;
           this.gifs = this.gifs.concat(gifs.data);
           this.offset += 30;
-          console.log(this.gifs);
+        
         })
         .catch((e) => {
           this.loading = false;
         });
     }
+  }
+
+  
+  filter() {
+    if(this.query){
+      this.loading = true;
+      if(this.query != this.lastQuery){
+        this.gifs = []
+      }
+      this.lastQuery = this.query
+      gf.search(this.query,{ offset: this.offset, limit: 30 } ).then((gifs)=>{
+        this.gifs = this.gifs.concat(gifs.data);
+        this.offset += 30;
+        this.loading = false
+      })
+      .catch((error)=>{
+        console.error(error)
+        this.loading = false
+      })
+    }else{
+      this.findGifs()
+    }
+   
   }
 
   selected(id) {
@@ -56,7 +83,12 @@ export class GifsModalComponent implements OnInit {
       scrollHeight > this.lastHeight + 2500
     ) {
       this.lastHeight = scrollHeight;
-      this.findGifs();
+      if(this.query){
+        this.filter()
+      }else{
+        this.findGifs();
+      }
+      
     }
   }
 }

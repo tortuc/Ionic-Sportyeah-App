@@ -64,7 +64,12 @@
         ></emoji-mart>
       </div>
     </ion-col>
-
+    <ion-col>
+      <post-preview-images
+        [loading]="loading"
+        [(files)]="files"
+      ></post-preview-images>
+    </ion-col>
     <ion-col class="buttons" size="12">
       <assets-buttons
         #assetsBtn
@@ -87,12 +92,7 @@
         {{ "new_comment.btn" | translate }}
       </ion-button>
     </ion-col>
-    <ion-col>
-      <post-preview-images
-        [loading]="loading"
-        [(files)]="files"
-      ></post-preview-images>
-    </ion-col>
+  
     <ion-col size="12">
       <edit-question
         *ngIf="question.questionGroup"

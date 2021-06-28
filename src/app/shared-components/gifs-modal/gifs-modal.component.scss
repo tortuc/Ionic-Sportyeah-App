@@ -8,3 +8,9 @@
     min-height: 150px;
     cursor: pointer;
 }
+
+.search{
+    position: sticky;
+    top: 10px;
+    z-index: 100;
+  }
