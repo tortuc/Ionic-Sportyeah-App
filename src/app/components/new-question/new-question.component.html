@@ -27,6 +27,7 @@
           <ion-input
             [(ngModel)]="answer.option"
             class="inputAnswer"
+            [ngClass]="{'maxSmartpshone': platform.is('mobile')}"
             placeholder="{{ 'question.new.answer' | translate }}"
           ></ion-input
           ><ion-icon
