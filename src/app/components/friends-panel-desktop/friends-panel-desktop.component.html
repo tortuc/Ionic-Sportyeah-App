@@ -16,7 +16,7 @@
       <p>
         {{ "panel.follow.not_followings" | translate }}
       </p>
-      <ion-button class="btn-green" routerLink="/search">
+      <ion-button class="btn-primary" routerLink="/search">
         {{ "panel.follow.search_friends" | translate }}</ion-button
       >
     </div>
@@ -29,7 +29,7 @@
       *ngIf="userService.followings.length > 0"
       style="text-align: center; padding: 5px"
     >
-      <ion-button class="see-more" routerLink="/profile/following">{{
+      <ion-button class="btn-primary" routerLink="/profile/following">{{
         "panel.seeAll" | translate
       }}</ion-button>
     </div>
@@ -41,7 +41,7 @@
     >
       <p>{{ "panel.follow.not_followers" | translate }}</p>
       <ion-img
-        src="assets/logos/text_bear.png"
+        src="assets/logos/imagotipo_azul.png"
         class="img-login logo"
       ></ion-img>
     </div>
