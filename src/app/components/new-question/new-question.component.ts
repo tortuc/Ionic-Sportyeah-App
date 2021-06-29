@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
-import { AlertController, ModalController } from "@ionic/angular";
+import { AlertController, ModalController, Platform } from "@ionic/angular";
 
 @Component({
   selector: "app-new-question",
@@ -13,7 +13,8 @@ export class NewQuestionComponent implements OnInit {
   constructor(
     public modalController: ModalController,
     public translate: TranslateService,
-    public alertCtrl: AlertController
+    public alertCtrl: AlertController,
+    public platform: Platform,
   ) {}
 
   ngOnInit() {

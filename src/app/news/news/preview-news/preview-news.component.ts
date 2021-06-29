@@ -20,7 +20,6 @@ export class PreviewNewsComponent implements OnInit {
     public userService: UserService,
     private router: Router,
     public platform: Platform,
-
     ) { }
 
   @Input() news;  

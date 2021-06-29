@@ -29,6 +29,8 @@
           <img class="user-img-shadow" [src]="userService.User?.photo"/>
         </ion-avatar>
         <h1 style="font-size:14px ;cursor: pointer;" (click)="userService.goToProfile(news?.user.username,news?.user._id,'news',undefined)" >{{news?.user.name}} {{news?.user.last_name}} </h1>
+        <br>
+        <p style="text-align: initial;color: #737373;font-size: 14px;margin-top: -20px;"><i>{{news?.origin}}</i></p>
       </ion-text>
     </ion-label>
     <ion-text color="black">
@@ -132,9 +134,9 @@
   </ion-grid>
    </div>
   </ion-col>
-   <ion-col  size="12" >
+   <!-- <ion-col  size="12" >
     <p style="text-align: center;color: #737373;font-size: 14px;"><i>{{news?.origin}}</i></p>
-   </ion-col>
+   </ion-col> -->
     <!-- SPONSORS -->
     <ion-col size="12 " *ngIf="sponsors.length > 0" >
       <h2>{{'Sponsors' | translate}}</h2>

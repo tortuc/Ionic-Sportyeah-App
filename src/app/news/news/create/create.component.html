@@ -43,11 +43,13 @@
                 <ion-input  style=" color: black;"  [(ngModel)]="subTitlePrincipal"></ion-input>
 <!--                 <ion-button (click)="subTituloListo(1)" [disabled]="(subTitle != null && subTitle != '')?false:true"  float-right ion-button ><ion-icon name="add"></ion-icon></ion-button>
  -->              </ion-item>
-              <ion-item ><!-- *ngIf="!deporte" (click)="deporteListo()"-->
-              <ion-label position="floating">{{'sport.sport' | translate}}</ion-label>
+              <ion-item  (click)="selectSport()"><!-- *ngIf="!deporte" (click)="deporteListo()"-->
+                <ion-label position="floating">{{'sport.sport' | translate}}</ion-label>
+                <ion-input  style=" color: black;" [(ngModel)]="deporte"></ion-input>
+                <!-- <ion-label position="floating">{{'sport.sport' | translate}}</ion-label>
                 <ion-select  [(ngModel)]="deporte">
                   <ion-select-option  *ngFor="let sport of sports" [value]="sport" >{{ 'sport.'+sport| translate}}</ion-select-option>              
-                </ion-select>
+                </ion-select> -->
               </ion-item> 
               <ion-item>
                 <ion-label position="floating" style="    margin-bottom: 23px;">{{'news.date' | translate}}</ion-label>
@@ -67,6 +69,31 @@
                 </ion-text>    -->
               </ion-item>
             </div>
+              </ion-col>
+              <ion-col  size="12">
+                <!-- <ion-item *ngIf="miNoticia == undefined && !origen">
+                <ion-label position="floating">{{'sport.sport' | translate}}</ion-label>
+                  <ion-select [(ngModel)]="miNoticia" (ionChange)="origenListoMio()">
+                    <ion-select-option  *ngFor="let propiedad of origenSelect"  [value]="propiedad.value" >{{ 'sport.'+propiedad.origenSelect| translate}}</ion-select-option>              
+                  </ion-select>
+                </ion-item> --> 
+                          <ion-radio-group  [(ngModel)]="miNoticia"  *ngIf="miNoticia == undefined && !origen">
+                            <ion-item  (ionBlur)="origenListoMio()" >
+                              <ion-label>{{'news.my_property' | translate}}</ion-label>
+                              <ion-radio   slot="start" value="0"></ion-radio>
+                            </ion-item>
+                        
+                            <ion-item  (ionBlur)="origenListoMio()" >
+                              <ion-label>{{'news.of_other' | translate}}</ion-label>
+                              <ion-radio   slot="start" value="1"></ion-radio>
+                            </ion-item>
+                          </ion-radio-group>
+                <ion-item *ngIf="!agregandoOrigen && miNoticia == 1 ">
+                  <ion-textarea [(ngModel)]="origen" placeholder="Porfavor introduce el origen de la noticia"></ion-textarea>
+                  <ion-button (click)="origenListo(1)" [disabled]="(origen != null && origen != '')?false:true"  float-right ion-button ><ion-icon name="add"></ion-icon></ion-button>
+                </ion-item>
+                <p *ngIf="origen == null || origen == ''" style="color: rgb(255, 0, 0);" >{{'news.intelectual_rights_news' | translate}}</p>
+                <p *ngIf="origen && agregandoOrigen == true" style="text-align: center;color: #737373;font-size: 14px;"><i>{{origen}}</i><ion-icon  (click)="origenListo(0)" class="editIcon" name="pencil-outline" ></ion-icon></p>
               </ion-col>
            
 
@@ -408,31 +435,7 @@
             [question]="question.questionGroup"
           ></buttons-options>  
           </ion-col>
-            <ion-col  size="12">
-              <!-- <ion-item *ngIf="miNoticia == undefined && !origen">
-              <ion-label position="floating">{{'sport.sport' | translate}}</ion-label>
-                <ion-select [(ngModel)]="miNoticia" (ionChange)="origenListoMio()">
-                  <ion-select-option  *ngFor="let propiedad of origenSelect"  [value]="propiedad.value" >{{ 'sport.'+propiedad.origenSelect| translate}}</ion-select-option>              
-                </ion-select>
-              </ion-item> --> 
-                        <ion-radio-group  [(ngModel)]="miNoticia"  *ngIf="miNoticia == undefined && !origen">
-                          <ion-item  (ionBlur)="origenListoMio()" >
-                            <ion-label>{{'news.my_property' | translate}}</ion-label>
-                            <ion-radio   slot="start" value="0"></ion-radio>
-                          </ion-item>
-                      
-                          <ion-item  (ionBlur)="origenListoMio()" >
-                            <ion-label>{{'news.of_other' | translate}}</ion-label>
-                            <ion-radio   slot="start" value="1"></ion-radio>
-                          </ion-item>
-                        </ion-radio-group>
-              <ion-item *ngIf="!agregandoOrigen && miNoticia == 1 ">
-                <ion-textarea [(ngModel)]="origen" placeholder="Porfavor introduce el origen de la noticia"></ion-textarea>
-                <ion-button (click)="origenListo(1)" [disabled]="(origen != null && origen != '')?false:true"  float-right ion-button ><ion-icon name="add"></ion-icon></ion-button>
-              </ion-item>
-              <p *ngIf="origen == null || origen == ''" style="color: rgb(255, 0, 0);" >{{'news.intelectual_rights_news' | translate}}</p>
-              <p *ngIf="origen && agregandoOrigen == true" style="text-align: center;color: #737373;font-size: 14px;"><i>{{origen}}</i><ion-icon  (click)="origenListo(0)" class="editIcon" name="pencil-outline" ></ion-icon></p>
-            </ion-col>
+            
             <ion-col style="text-align: center;" size-xs="12" size-lg="4">
               <ion-button class="borderRadius" *ngIf="redactarArticulo" (click)="todoConOrigen()" [disabled]="(titulo1 != null && titulo1 != '') && (deporte != null && deporte != '') && ((videoSelected != null && videoSelected != '') || (parrafos.length > 0)) && ((origen != null && origen != '')) ?false:true"  >{{ 'news.ready_post' | translate}}</ion-button>
             </ion-col>

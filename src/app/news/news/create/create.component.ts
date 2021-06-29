@@ -27,6 +27,7 @@ import { ModalProgramNewsComponent } from "../modal-program-news/modal-program-n
 import { MentionsDirective } from "src/app/directives/mentions.directive";
 import { SubtitleNewsComponent } from "../subtitle-news/subtitle-news.component";
 import { AftherCreateNewsComponent } from "../afther-create-news/afther-create-news.component";
+import { SportSelectComponent } from "src/app/signup/sport-select/sport-select.component";
 
 const { Camera } = Plugins;
 
@@ -1041,6 +1042,20 @@ this.editYoutube = false
       componentProps:{news}
     })
     modal.present()
+  }
+
+
+   public async selectSport() {
+    const modal = await this.modalCtrl.create({
+      component: SportSelectComponent,
+      cssClass: "modal-border",
+    });
+
+    modal.onDidDismiss().then((response) => {
+      response.data ? this.deporte = response.data : null;
+    });
+
+    return await modal.present();
   }
 
 }

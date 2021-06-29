@@ -9,7 +9,7 @@ import { CommentService } from "src/app/service/comment.service";
 import { SponsorService } from "src/app/service";
 import { ISponsor } from "src/app/models/ISponsor";
 import { User } from "src/app/models/IUser";
-import { ModalController } from "@ionic/angular";
+import { ModalController, Platform } from "@ionic/angular";
 import { SeeFilesPostSliderComponent } from "src/app/post-components/see-files-post-slider/see-files-post-slider.component";
 
 @Component({
@@ -27,8 +27,8 @@ export class ReadComponent implements OnInit {
     public commentService: CommentService,
     private sponsorService: SponsorService,
     private router: Router,
-    private modalCtrl:ModalController
-
+    private modalCtrl:ModalController,
+    public platform: Platform,
   ) {
     this.idNews = route.snapshot.paramMap.get("id");
     this.getNews(this.idNews);
