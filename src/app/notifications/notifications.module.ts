@@ -15,6 +15,7 @@ import { ComponentsSharedModule } from '../shared-components/components-shared.m
 import { ReportCloseonlyNotificationComponent } from './report-closeonly-notification/report-closeonly-notification.component';
 import { ReportCloseNotificationComponent } from './report-close-notification/report-close-notification.component';
 import { CommentComponentsModule } from '../comment-components/comment-components.module';
+import { CommentNotificationComponent } from '../components/comment-notification/comment-notification.component';
 
 @NgModule({
   imports: [
@@ -29,6 +30,6 @@ import { CommentComponentsModule } from '../comment-components/comment-component
     PipesModule,
     CommentComponentsModule
   ],
-  declarations: [NotificationsPage,ReportCloseonlyNotificationComponent,ReportCloseNotificationComponent]
+  declarations: [NotificationsPage,ReportCloseonlyNotificationComponent,ReportCloseNotificationComponent,CommentNotificationComponent]
 })
 export class NotificationsPageModule {}

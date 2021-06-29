@@ -34,7 +34,6 @@ import { LangsPage } from "../langs/langs.page";
 import { FollowNotificationComponent } from "./follow-notification/follow-notification.component";
 import { UnfollowNotificationComponent } from "./unfollow-notification/unfollow-notification.component";
 import { LikeNotificationComponent } from "./like-notification/like-notification.component";
-import { CommentNotificationComponent } from "./comment-notification/comment-notification.component";
 import { SharedNotificationComponent } from "./shared-notification/shared-notification.component";
 import { MentionNotificationComponent } from "./mention-notification/mention-notification.component";
 import { ButtonNotificationComponent } from "./button-notification/button-notification.component";
@@ -68,7 +67,6 @@ import { AwardsListComponent } from "./challenges/awards-list/awards-list.compon
 import { CreateAwardChallengeComponent } from "./challenges/create-award-challenge/create-award-challenge.component";
 import { ShowAwardsComponent } from "./challenges/show-awards/show-awards.component";
 import { AwardsAccordionComponent } from "./challenges/awards-accordion/awards-accordion.component";
-import { CategoryComponent } from "./structure/category/category.component";
 import { EventInvitationNotificationComponent } from "./event-invitation-notification/event-invitation-notification.component";
 import { NewsNotificationComponent } from "./news-notification/news-notification.component";
 
@@ -80,7 +78,6 @@ const components = [
   FollowNotificationComponent,
   UnfollowNotificationComponent,
   LikeNotificationComponent,
-  CommentNotificationComponent,
   EventInvitationNotificationComponent,
   NewsNotificationComponent,
   SharedNotificationComponent,
