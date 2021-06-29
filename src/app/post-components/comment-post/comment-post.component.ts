@@ -15,7 +15,7 @@ import {
 } from "@ionic/angular";
 import { TranslateService } from "@ngx-translate/core";
 import { MentionsDirective } from "src/app/directives/mentions.directive";
-import { INew, IPost, IFile } from "src/app/models/iPost";
+import { INew, IPost, IFile, IComment } from "src/app/models/iPost";
 import { CommentService } from "src/app/service/comment.service";
 import { NewsService } from "src/app/service/news.service";
 import { PostService } from "src/app/service/post.service";
@@ -23,12 +23,20 @@ import { QuestionService } from "src/app/service/question.service";
 import { UserService } from "src/app/service/user.service";
 import { AssetsButtonsComponent } from "src/app/shared-components/assets-buttons/assets-buttons.component";
 
+
+enum Texts {
+  commentTitle = "new_comment.title",
+  respondTitle = "respond_comment"
+}
+
 @Component({
   selector: "comment-post",
   templateUrl: "./comment-post.component.html",
   styleUrls: ["./comment-post.component.scss"],
 })
 export class CommentPostComponent implements OnInit {
+
+  public readonly Texts = Texts
   constructor(
     public userService: UserService,
     public fb: FormBuilder,
@@ -49,9 +57,11 @@ export class CommentPostComponent implements OnInit {
   });
 
   @Input() post: IPost;
+  @Input() comment: IComment;
   @Input() news: INew;
 
   @Input() postPage: boolean = false;
+  @Input() respond: boolean = false;
 
   @ViewChild(MentionsDirective) mentions: MentionsDirective;
   @ViewChild("openImage") openImage: ElementRef;
@@ -59,6 +69,13 @@ export class CommentPostComponent implements OnInit {
   @ViewChild("assetsBtn") assetsBtn: AssetsButtonsComponent;
 
   ngOnInit() {
+
+    this.commentService.respondComment$.subscribe((comment)=>{
+      if(comment.comment == this.comment?._id){
+        this.form.controls.message.setValue(" ")
+        this.mentions.setUserRespond(comment.user)
+      }
+    })
     try {
       window.onclick = () => {
         this.emoji = false;
@@ -132,8 +149,9 @@ export class CommentPostComponent implements OnInit {
 
     // presentamos el loading
     loading.present();
-    if (this.post && !this.news) {
-      comment.post = this.post._id;
+    if (!this.news) {
+      comment.post = this.post?._id;
+      comment.comment = this.comment?._id;
       this.postService
         .newComment(comment)
         .toPromise()
@@ -185,6 +203,7 @@ export class CommentPostComponent implements OnInit {
     toast.present();
     // Activamos el sonido del nuevo comentario
     this.commentService.commentAudio();
+    this.commentService.newCommen$.next(comment)
   }
 
   reset() {

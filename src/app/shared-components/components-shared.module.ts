@@ -39,9 +39,13 @@ import { PostPreviewImagesComponent } from "../post-components/post-preview-imag
 import { UserItemReactionsComponent } from "../post-components/user-item-reactions/user-item-reactions.component";
 import { MiniflagComponent } from "../components/miniflag/miniflag.component";
 import { UserItemPreviewComponent } from "../components/user-item-preview/user-item-preview.component";
+import { CommentOptionsComponent } from "../post-components/view-comment/comment-options/comment-options.component";
+import { ReactToCommentComponent } from "../post-components/view-comment/comment-options/react-to-comment/react-to-comment.component";
+import { CommentsInCommentComponent } from "../post-components/view-comment/comment-options/comments-in-comment/comments-in-comment.component";
+import { ViewRespondsCommentComponent } from "../post-components/view-comment/view-responds-comment/view-responds-comment.component";
+import { ReportCommentComponent } from "../post-components/view-comment/report-comment/report-comment.component";
 
 const components = [
-  ViewCommentComponent,
   QuestionCommentComponent,
   FollowButtonComponent,
   LangButtonComponent,
@@ -72,11 +76,10 @@ const components = [
   ProfileUserInfoComponent,
   UserItemReactionsComponent,
   MiniflagComponent,
-  
-
   NewPostHeaderComponent,
-  PostPreviewImagesSliderComponent,
-  PostPreviewImagesComponent,
+  PostPreviewImagesSliderComponent, 
+  PostPreviewImagesComponent
+ 
 ];
 
 @NgModule({

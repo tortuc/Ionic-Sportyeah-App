@@ -6,24 +6,47 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="main-bg">
-  <ion-grid style="padding: 0" >
+<ion-content
+  [scrollEvents]="true"
+  (ionScrollEnd)="logScrolling($event)"
+  class="main-bg"
+>
+  <ion-grid style="padding: 0">
     <ion-row>
       <ion-col size-xs="12" size-lg="8" ngClass.xs="p-0">
-        <ion-grid >
-          <ion-row style="background: white;" *ngIf="post" class="post-card">
+        <ion-grid>
+          <ion-row style="background: white" *ngIf="post" class="post-card">
             <ion-col size="12">
               <view-post [postPage]="true" [post]="post"></view-post>
             </ion-col>
-            <ion-col size="12">
+            <ion-col *ngIf="userService.User" size="12">
               <comment-post
                 postPage="true"
                 [post]="post"
-                (newComment)="newComment($event)"
+              
               ></comment-post>
             </ion-col>
             <ion-col *ngFor="let comment of comments;let i = index" size="12">
-              <view-comment [comment]="comment" (Deletedcomments)="Deletedcomments(i)"></view-comment>
+              <view-comment
+                [comment]="comment"
+                (Deletedcomments)="Deletedcomments(i)"
+              ></view-comment>
+            </ion-col>
+            <ion-col >
+              <div *ngIf="loading" style="text-align: center">
+                <h6>
+                  <ion-spinner
+                    style="color: var(--color-primary); vertical-align: middle"
+                  ></ion-spinner>
+                  {{"loading" | translate}}
+                </h6>
+              </div>
+              <div *ngIf="all" style="text-align: center">
+                <p>
+            
+                  {{"allComments" | translate}}
+                </p>
+              </div>
             </ion-col>
           </ion-row>
 
@@ -48,19 +71,19 @@
           </ion-row>
         </ion-grid>
       </ion-col>
-      
+
       <ion-col
-      *ngIf="userService.User != null"
-      size-lg="4"
-      fxShow.lt-md="false"
-      class="ion-justify-content-center ion-align-items-center"
-    >
-      <div style="position: sticky; top: -300px; padding: 5px">
-        <friends-panel-desktop [postPage]="true"></friends-panel-desktop>
-        <add-users-panel-desktop [postPage]="true"></add-users-panel-desktop>
-        <!-- <popular-groups-panel [postPage]="true"></popular-groups-panel> -->
-      </div>
-    </ion-col>
+        *ngIf="userService.User != null"
+        size-lg="4"
+        fxShow.lt-md="false"
+        class="ion-justify-content-center ion-align-items-center"
+      >
+        <div style="position: sticky; top: -300px; padding: 5px">
+          <friends-panel-desktop [postPage]="true"></friends-panel-desktop>
+          <add-users-panel-desktop [postPage]="true"></add-users-panel-desktop>
+          <!-- <popular-groups-panel [postPage]="true"></popular-groups-panel> -->
+        </div>
+      </ion-col>
     </ion-row>
   </ion-grid>
 </ion-content>

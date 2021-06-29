@@ -1,0 +1,12 @@
+<ion-button
+  fill="clean"
+  [ngClass]="commented ? 'icomment' : ''"
+  (click)="newComment()"
+  class="post-button"
+>
+  <ion-icon class="btn-icon" name="chatbox-outline"></ion-icon>
+  <span class="btn-text">{{ "post.respond" | translate }}</span>
+</ion-button>
+<p  class="total" *ngIf="!respond" (click)="showResponds()">
+  {{ countComments }} {{ "post.responds" | translate }}
+</p>

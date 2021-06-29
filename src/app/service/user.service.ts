@@ -266,6 +266,18 @@ export class UserService {
       // no pasa nada, no lo borren
     });
   }
+  public goToProfileOnly(username) {
+    if (username != this.User?.username) {
+     
+      this.router.navigate([`/user/${username}`]);
+    } else {
+      this.router.navigate(["/profile"]);
+    }
+
+    this.modalCtrl.dismiss().catch((e) => {
+      // no pasa nada, no lo borren
+    });
+  }
 
   audio = new Howl({
     src: ["../../assets/sounds/done.mp3"],

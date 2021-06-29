@@ -13,13 +13,21 @@ import { UserService } from "src/app/service/user.service";
 import { AllReactionsComponent } from "../all-reactions/all-reactions.component";
 import { LikesReactionsComponent } from "../likes-reactions/likes-reactions.component";
 
+enum Texts {
+  titlePost = "seelikes",
+  titleComment = "seeLikesComment",
+}
+
 @Component({
   selector: "likes-post",
   templateUrl: "./likes-post.component.html",
   styleUrls: ["./likes-post.component.scss"],
 })
 export class LikesPostComponent implements OnInit {
+
+  public readonly Texts = Texts
   @Input() post: string;
+  @Input() comment: string;
 
   @ViewChild("all") all: AllReactionsComponent;
   @ViewChild("likes") likes: LikesReactionsComponent;
@@ -35,17 +43,32 @@ export class LikesPostComponent implements OnInit {
   data = [];
 
   ngOnInit() {
-    this.reactionService
+    if(this.post){
+      this.reactionService
       .reactionsByPost(this.post)
       .pipe(take(1))
       .subscribe(
         (data) => {
           this.data = data;
-          console.log(data);
+         
           
         },
         (err) => {}
       );
+    }else if(this.comment){
+      this.reactionService
+      .reactionsByComment(this.comment)
+      .pipe(take(1))
+      .subscribe(
+        (data) => {
+          this.data = data;
+         
+          
+        },
+        (err) => {}
+      );
+    }
+  
   }
 
   async logScrolling(ev) {

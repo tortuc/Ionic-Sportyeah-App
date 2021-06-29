@@ -10,10 +10,14 @@
   <div
     *ngFor="let reaction of reactions"
     class="circle"
-    (click)="react(post._id, reaction.option)"
+    (click)="react(reaction.option)"
   >
     <img [src]="reaction.option | showReactionsImage" alt="" />
     <p>{{ reaction.name | translate }}</p>
+  </div>
+  <div *ngIf="reaction" class="circle" (click)="dislike()">
+    <img src="assets/images/remove.png" alt="" />
+    <p>{{ "dislike" | translate }}</p>
   </div>
 </div>
 <ion-button

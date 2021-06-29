@@ -21,6 +21,10 @@ export class LikesReactionsComponent implements OnInit, OnChanges {
    * _id De la publicacion
    */
   @Input() post: string;
+  /**
+   * _id del comentario
+   */
+  @Input() comment: string;
 
   /**
    * _id De la publicacion
@@ -75,7 +79,8 @@ export class LikesReactionsComponent implements OnInit, OnChanges {
    */
   getReactions() {
     this.loading = true;
-    this.reactionsService
+    if(this.post){
+      this.reactionsService
       .ReactionsPostByType(this.post, this.skip, Number(this.type))
       .pipe(take(1))
       .subscribe(
@@ -91,5 +96,23 @@ export class LikesReactionsComponent implements OnInit, OnChanges {
           this.loading = false;
         }
       );
+    }else if(this.comment){
+      this.reactionsService
+      .ReactionsCommentByType(this.comment, this.skip, Number(this.type))
+      .pipe(take(1))
+      .subscribe(
+        (reactions) => {
+          /**
+           * Concatenamos las reacciones
+           */
+          this.reactions = this.reactions.concat(reactions);
+          this.skip = +15;
+          this.loading = false;
+        },
+        () => {
+          this.loading = false;
+        }
+      );
+    }
   }
 }

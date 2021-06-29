@@ -82,15 +82,13 @@ export class EditCommentPage implements OnInit {
 
     comment.message = this.mainInput.nativeElement.innerHTML;
 
-    if (this.videosToUploads.length == 0) {
-      this.commentService.updateOne(this.comment._id, comment);
-      this.modalController.dismiss();
-    } else {
-      this.modalController.dismiss({
-        dismissed: true,
-        edited: true,
-      });
-    }
+    this.commentService.updateOne(
+      this.comment._id,
+      comment,
+      this.files,
+      this.videosToUploads
+    );
+    this.modalController.dismiss();
   }
 
   dismiss() {

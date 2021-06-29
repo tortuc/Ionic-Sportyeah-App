@@ -318,7 +318,7 @@ export class ReactToPostsComponent implements OnInit {
    * @param reaction tipo de reaccion
    * @param only si presiono el boton en vez de alguna reaccion
    */
-  react(id, reaction, only = false) {
+  react( reaction, only = false) {
     // empieza el loading y bloquea el boton para que no pueda interactuar denuevo mientras se hace la logica
     this.loading = true;
     // se cierra las reacciones
@@ -328,10 +328,10 @@ export class ReactToPostsComponent implements OnInit {
 
     // si hay reaccion y presiono el boton entonces se elimina la reaccion
     if (liked && only) {
-      this.dislike(liked._id);
+      this.dislike();
     } else if (!liked) {
       // si no hay reaccion, entonces se reacciona
-      this.likePost(id, reaction);
+      this.likePost(reaction);
     } else {
       // si ya hay reaccion, y presiono una reaccion entonces se actualiza a la que presiono
       this.changeReaction(liked._id, reaction);
@@ -363,9 +363,9 @@ export class ReactToPostsComponent implements OnInit {
    * @param post _id del post
    * @param reaction tipo de reaccion
    */
-  likePost(post, reaction) {
+  likePost(reaction) {
     this.postService
-      .likePost(post, reaction)
+      .likePost(this.post._id, reaction)
       .pipe(take(1))
       .subscribe(
         (resp: { like: ILike; likes: number }) => {
@@ -382,10 +382,10 @@ export class ReactToPostsComponent implements OnInit {
    * Quitar la reaccion de una publicacion
    * @param like _id de la reaccion
    */
-  dislike(like) {
+  dislike() {
     // le decimos al backend que marque la reaccion como eliminada
     this.postService
-      .dislikePost(like)
+      .dislikePost(this.reaction._id)
       .pipe(take(1))
       .subscribe(
         (likes: number) => {

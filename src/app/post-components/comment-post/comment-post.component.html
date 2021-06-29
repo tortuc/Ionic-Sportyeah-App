@@ -1,7 +1,7 @@
 <ion-header *ngIf="!postPage" style="max-width: 100% !important">
   <ion-toolbar class="toolbar-bg">
     <ion-title style="--color: white">{{
-      "new_comment.title" | translate
+      (comment?Texts.respondTitle:Texts.commentTitle) | translate
     }}</ion-title>
     <ion-buttons slot="end">
       <ion-button (click)="modalController.dismiss()" style="--color: white"
@@ -10,7 +10,12 @@
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
-<ion-grid class="white">
+<ion-grid class="white" style="overflow: scroll;">
+  <ng-container *ngIf="comment && !respond">
+    <view-comment  [preview]="true" [comment]="comment" ></view-comment>
+    <h6 style="text-align: center;">Responder comentario</h6>
+  </ng-container>
+
   <ion-row>
     <ion-col size="12">
       <new-post-header></new-post-header>
@@ -59,7 +64,12 @@
         ></emoji-mart>
       </div>
     </ion-col>
-
+    <ion-col>
+      <post-preview-images
+        [loading]="loading"
+        [(files)]="files"
+      ></post-preview-images>
+    </ion-col>
     <ion-col class="buttons" size="12">
       <assets-buttons
         #assetsBtn
@@ -82,12 +92,7 @@
         {{ "new_comment.btn" | translate }}
       </ion-button>
     </ion-col>
-    <ion-col>
-      <post-preview-images
-        [loading]="loading"
-        [(files)]="files"
-      ></post-preview-images>
-    </ion-col>
+  
     <ion-col size="12">
       <edit-question
         *ngIf="question.questionGroup"

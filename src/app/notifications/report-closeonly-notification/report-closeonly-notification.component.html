@@ -1,0 +1,22 @@
+<div
+  class="notification"
+  (click)="read()"
+  [ngClass]="notification.read ? '' : 'unread'"
+  routerLink="{{ notification.routerlink }}"
+>
+  <div class="notification-user">
+    <img class="user" [src]="notification.friend.photo" />
+   
+    <ion-icon name="alert-circle-outline" class="icon"></ion-icon>
+  </div>
+
+  <div style="padding-left: 15px">
+    <div style="display: flex; align-items: center">
+      <p>
+        {{ "notifications.report_close_only.text" | translate }}
+      </p>
+    </div>
+
+    <span class="date">{{ notification.date | customDisplayDate }}</span>
+  </div>
+</div>

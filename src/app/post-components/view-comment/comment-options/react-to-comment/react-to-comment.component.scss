@@ -1,0 +1,150 @@
+@mixin object($width, $height, $bg) {
+    width: $width;
+    height: $height;
+    background: $bg;
+  }
+  
+  @mixin transPos($top, $right, $bottom, $left, $transX, $transY) {
+    position: absolute;
+    top: $top;
+    left: $left;
+    right: $right;
+    bottom: $bottom;
+    transform: translate($transX, $transY);
+  }
+  
+  .reacts {
+    @include object(385px, 268px, #fff);
+    border-radius: 75px;
+    padding: 15px;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    box-shadow: 0px 0px 60px rgba(0, 0, 0, 0.2);
+    z-index: 1000000;
+    visibility: hidden;
+    opacity: 0;
+    overflow: visible;
+    position: absolute;
+    top: -185px;
+    .circle {
+      @include object(35px, 35px, #edff97);
+      border-radius: 50%;
+      transform-origin: 50% 100%;
+      animation: slide 0.2s ease-in-out forwards;
+      cursor: pointer;
+      margin: 8px;
+      @keyframes slide {
+        0% {
+          transform: translateY(30px);
+          opacity: 0;
+        }
+      }
+      @for $i from 1 through 6 {
+        &:nth-child(#{$i}) {
+          animation-duration: calc(0.2s * #{$i});
+        }
+      }
+      &:hover {
+        transform: scale(1.3);
+      }
+      &:hover p {
+        opacity: 1;
+      }
+      img {
+        width: 100%;
+      }
+      position: relative;
+      p {
+        @include transPos(-30px, null, null, 50%, -50%, 0);
+        background: rgba(#000, 0.5);
+        padding: 4px 8px;
+        display: block;
+        color: #fff;
+        font-size: 10px;
+        border-radius: 90px;
+        opacity: 0;
+        width: 76px;
+        text-align: center;
+      }
+    }
+  }
+  
+  .like {
+    @include object(auto, 40px, #fff);
+    @include transPos(null, null, calc(50% - 150px), 50%, -50%, -50%);
+    clear: both;
+    line-height: 40px;
+    padding: 0 10px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 60px rgba(0, 0, 0, 0.2);
+    top: 10px;
+    cursor: pointer;
+    i,
+    p {
+      display: inline-block;
+      color: #558cff;
+      font-size: 18px;
+      margin: 0 3px;
+    }
+    p {
+      font-family: Sans-serif;
+    }
+  }
+  
+  .show {
+    opacity: 1;
+    visibility: visible !important;
+  }
+  
+  @media screen and (max-width: 600px) {
+    .reacts {
+      transform: scale(0.9);
+    }
+  
+  }
+  
+  .overlay {
+    position: fixed;
+    top: 0;
+    z-index: 1;
+    height: 100vh;
+    width: 100vw;
+    background: none !important;
+    opacity: 0 !important;
+    visibility: hidden;
+  }
+  
+  .img-reacted {
+    margin-right: 2px;
+    height: 20px;
+    width: 20px;
+    vertical-align: sub;
+    pointer-events: none !important;
+  }
+  
+  .btn-text {
+    
+    font-size: 12px;
+  }
+  
+  .btn-icon {
+    margin-right: 2px;
+    vertical-align: bottom;
+  }
+  
+  .total {
+    font-size: 12px;
+    margin: 0;
+    cursor: pointer;
+    margin-top: -2px;
+    margin-left: 15px;
+    &:hover {
+      color: var(--color-secondary);
+    }
+  }
+  
+  .post-button{
+    margin: 0;
+  }
+  

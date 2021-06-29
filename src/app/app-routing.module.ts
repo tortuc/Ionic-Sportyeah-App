@@ -218,10 +218,17 @@ const routes: Routes = [
     canActivate:[AuthCodeGuardService]
   },
   {
+    path: 'report/:id',
+    loadChildren: () => import('./pages/report/report.module').then( m => m.ReportPageModule),
+    canActivate: [AuthGuardService]
+  },
+  {
     path: "**",
     loadChildren: () =>
       import("./not-found/not-found.module").then((m) => m.NotFoundPageModule),
   },
+  
+
   
 
  

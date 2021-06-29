@@ -279,7 +279,6 @@
   "edit_post": {
     "title": "Editar publicacion",
     "btn": "Guardar"
-    
   },
   "options_post": {
     "edit": "Editar",
@@ -308,6 +307,8 @@
     "sad": "Me entristece",
     "angry": "Me enoja",
     "comments": "Comentarios",
+    "responds": "Respuestas",
+    "respond": "Responder",
     "comment": "Comentar",
     "shared": "Veces compartido",
     "share": "Compartir",
@@ -390,7 +391,7 @@
   },
   "share": {
     "header": "Compartir",
-    "now": "Compartir ahora",
+    "now": "Envio directo a muro",
     "with": "Comparir en ...",
     "wall": "Compartir"
   },
@@ -469,7 +470,12 @@
     "news_created": {
       "text": "ha publicado una noticia del deporte: "
     },
-    "readall": "Marcar todas como leidas"
+    "report_close_only": {
+      "text": "Hemos atendido tu denuncia, y no hemos encontrado motivos suficientes para eliminar el contenido denunciado"
+    },
+    "readall": "Marcar todas como leidas",
+    "report_close_owner":"Hemos eliminado un contenido que has creado, debido a que infringe las normas de Sportyeah",
+    "report_close":"Hemos revisado tu denuncia, y se procedio a eliminar el contenido... Gracias por tu aporte"
   },
   "edit": "Editar",
   "delete": "Eliminar",
@@ -1007,18 +1013,17 @@
     "active_news": "Activas",
     "restore": "Restaurar",
     "news_shared": "Noticia compartida",
-    "smartphone_view":"Vista previa para móviles",
-    "desktop_view":"Vista previa para ordenador",
-    "tablet_view":"Vista previa para tablet",
-    "preview_news":"Vista previa",
-    "read_news":"Leer noticia",
-    "created":"¡Tu noticia se ha creado correctamente!",
-    "edited_news":"¡Tu noticia se ha editado correctamente!",
-    "go_to_you_news":"Tus noticias",
-    "go_to_news_wall":"Muro de noticias",
-    "news_created":"Noticia creada",
-    "news_edited":"Noticia editada"
-
+    "smartphone_view": "Vista previa para móviles",
+    "desktop_view": "Vista previa para ordenador",
+    "tablet_view": "Vista previa para tablet",
+    "preview_news": "Vista previa",
+    "read_news": "Leer noticia",
+    "created": "¡Tu noticia se ha creado correctamente!",
+    "edited_news": "¡Tu noticia se ha editado correctamente!",
+    "go_to_you_news": "Tus noticias",
+    "go_to_news_wall": "Muro de noticias",
+    "news_created": "Noticia creada",
+    "news_edited": "Noticia editada"
   },
   "sponsorDescription": "¡Agrega un patrocinador!",
   "back": "Volver",
@@ -1098,9 +1103,9 @@
   },
   "seeImg": "Ver Imagen",
   "ranking": {
-    "ranking":"Clasificación",
-    "ranking_sportyeah":"Clasificación Sportyeah",
-    "description":"En esta clasificación seguir a los usuarios que son tendencias en Sportyeah! Se uno de ellos...",
+    "ranking": "Clasificación",
+    "ranking_sportyeah": "Clasificación Sportyeah",
+    "description": "En esta clasificación seguir a los usuarios que son tendencias en Sportyeah! Se uno de ellos...",
     "global": "Clasificación Global",
     "country": "Clasificación en mi país",
     "react": "Reacciones",
@@ -2107,5 +2112,45 @@
     "success": "Bienvenido, en unos segundos sera redireccionado a su cuenta",
     "label": "Ingrese el codigo recibido en el correo",
     "continue": "Continuar"
+  },
+  "seeLikesComment": "Reacciones en este comentario",
+  "all": "Todas",
+  "dislike": "Remover reaccion",
+  "respond_comment": "Responder comentario",
+  "allComments": "No hay mas comentarios para mostrar",
+  "loadMore": "Ver mas",
+  "showResponds": "Mostrar respuestas",
+  "hideResponds": "Ocultar respuestas",
+  "editComment": "Editar comentario",
+  "deleteComment": "Eliminar comentario",
+  "report": {
+    "title": "Denunciar este comentario",
+    "hint": "Indique el motivo de la denuncia",
+    "reasons": "Razones de denuncia",
+    "sex": "Contiene acto sexual explicito",
+    "violence": "Contenido violento",
+    "pedophilia": "Contenido pedofilo",
+    "abuse_person": "Maltrato a una persona",
+    "abuse_animal": "Maltrato animal",
+    "dead": "Se ve fallecer a una persona o animal",
+    "childrens": "En la imagen se ven menores",
+    "copyright": "Han tomado una imagen-video-texto-...de su propiedad sin su consentimiento",
+    "collective_disrespect": "Por falta de respeto a un colectivo",
+    "personal_disrespect": "Por falta de respeto de manera personal",
+    "fake_news": "No es una noticia real (fake news)",
+    "spelling_mistakes": "Tiene faltas de ortografía que reseñar",
+    "bug": "El contenido no se visualiza bien por problemas de la app",
+    "btn": "Denunciar comentario",
+    "successHeader": "Denuncia realizada",
+    "successMessage": "Te avisaremos que acciones tomamos respecto a tu denuncia",
+    "0": "Denuncia en revisión",
+    "1": "Denuncia cerrada sin acciones",
+    "2": "Denuncia cerrada eliminando contenido"
+  },
+  "reportpage": {
+    "status": "Estado de la denuncia",
+    "content": "Contenido denunciado",
+    "day": "El dia",
+    "reason": "Motivo:"
   }
 }
