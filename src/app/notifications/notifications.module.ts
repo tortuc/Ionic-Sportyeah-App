@@ -14,6 +14,7 @@ import { ComponentsModule } from '../components/components.module';
 import { ComponentsSharedModule } from '../shared-components/components-shared.module';
 import { ReportCloseonlyNotificationComponent } from './report-closeonly-notification/report-closeonly-notification.component';
 import { ReportCloseNotificationComponent } from './report-close-notification/report-close-notification.component';
+import { CommentComponentsModule } from '../comment-components/comment-components.module';
 
 @NgModule({
   imports: [
@@ -25,7 +26,8 @@ import { ReportCloseNotificationComponent } from './report-close-notification/re
     TranslateModule,
     ComponentsSharedModule,
     ComponentsModule,
-    PipesModule
+    PipesModule,
+    CommentComponentsModule
   ],
   declarations: [NotificationsPage,ReportCloseonlyNotificationComponent,ReportCloseNotificationComponent]
 })

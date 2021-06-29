@@ -11,6 +11,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { PipesModule } from 'src/app/pipes/pipes.module';
 import { ComponentsSharedModule } from 'src/app/shared-components/components-shared.module';
 import { RouterModule } from '@angular/router';
+import { CommentComponentsModule } from 'src/app/comment-components/comment-components.module';
 
 @NgModule({
   imports: [
@@ -21,7 +22,8 @@ import { RouterModule } from '@angular/router';
     TranslateModule,
     PipesModule,
     ComponentsSharedModule,
-    RouterModule
+    RouterModule,
+    CommentComponentsModule
   ],
   declarations: [ReportPage]
 })

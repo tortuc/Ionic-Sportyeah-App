@@ -9,7 +9,7 @@ export const environment: Environment = {
   URL_API: "http://localhost:3000/v1",
   URL_IMAGE: "http://localhost:3112/v1",
   URL_SOCKET: "http://localhost:3000",
-  URL_CHALLENGE: "http://localhost:1000",
+  URL_CHALLENGE: "http://localhost:1000/v1",
   URL_WEB:'http://localhost:8100',
   title:"Sportyeah local",
   URL_LANDING:"https://www.sportyeah.com/#"

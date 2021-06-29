@@ -61,7 +61,7 @@ export class ChallengeService {
     private translate: TranslateService,
     private userService: UserService
   ) {}
-  private route: string = `${environment.URL_CHALLENGE}/v001/challenge`;
+  private route: string = `${environment.URL_CHALLENGE}`;
 
   create(challenge: IChallenge) {
     return this.http.post(`${this.route}/create`, challenge);
