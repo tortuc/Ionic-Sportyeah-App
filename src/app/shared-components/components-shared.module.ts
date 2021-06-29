@@ -46,7 +46,6 @@ import { ViewRespondsCommentComponent } from "../post-components/view-comment/vi
 import { ReportCommentComponent } from "../post-components/view-comment/report-comment/report-comment.component";
 
 const components = [
-  ViewCommentComponent,
   QuestionCommentComponent,
   FollowButtonComponent,
   LangButtonComponent,
@@ -79,12 +78,8 @@ const components = [
   MiniflagComponent,
   NewPostHeaderComponent,
   PostPreviewImagesSliderComponent, 
-  PostPreviewImagesComponent,
-  CommentOptionsComponent,
-  ReactToCommentComponent,
-  CommentsInCommentComponent,
-  ViewRespondsCommentComponent,
-  ReportCommentComponent
+  PostPreviewImagesComponent
+ 
 ];
 
 @NgModule({

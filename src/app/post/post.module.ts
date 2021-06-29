@@ -13,6 +13,7 @@ import { PipesModule } from "../pipes/pipes.module";
 import { ComponentsModule } from "../components/components.module";
 import { PostComponetsModule } from "../post-components/post-componets.module";
 import { ComponentsSharedModule } from "../shared-components/components-shared.module";
+import { CommentComponentsModule } from "../comment-components/comment-components.module";
 
 @NgModule({
   imports: [
@@ -26,7 +27,8 @@ import { ComponentsSharedModule } from "../shared-components/components-shared.m
     PipesModule,
     ComponentsModule,
     PostComponetsModule,
-    ComponentsSharedModule
+    ComponentsSharedModule,
+    CommentComponentsModule
   ],
   declarations: [PostPage],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

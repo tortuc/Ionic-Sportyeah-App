@@ -46,6 +46,7 @@ import { AftherCreateNewsComponent } from './afther-create-news/afther-create-ne
 import { MobileNewsViewComponent } from './preview-news/mobile-news-view/mobile-news-view.component';
 import { TabletNewsViewComponent } from './preview-news/tablet-news-view/tablet-news-view.component';
 import { MonitorNewsViewComponent } from './preview-news/monitor-news-view/monitor-news-view.component';
+import { CommentComponentsModule } from 'src/app/comment-components/comment-components.module';
 
 @NgModule({
   imports: [
@@ -64,7 +65,9 @@ import { MonitorNewsViewComponent } from './preview-news/monitor-news-view/monit
     EmojiModule,
     PickerModule,
     DirectivesModule,
-    SponsorsModule
+    SponsorsModule,
+    CommentComponentsModule
+
   ],
   exports:[
     ModalProgramNewsComponent,

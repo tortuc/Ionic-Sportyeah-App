@@ -14,6 +14,7 @@ import { UserService } from "src/app/service/user.service";
 })
 export class CommentsInCommentComponent implements OnInit {
   @Input() comment:IComment;
+  @Input() respond:boolean = false;
 
   
   
@@ -60,15 +61,24 @@ export class CommentsInCommentComponent implements OnInit {
     if (!this.userService.User) {
       // this.loginService.goToLogin(`/post/${this.comment.post}`);
     } else {
-      let comment = await this.modalController.create({
-        component: CommentPostComponent,
-        componentProps: { comment:this.comment },
-        backdropDismiss: false,
-      });
-      comment.onDidDismiss().then((data) => {
-        this.getCountComments();
-      });
-      return comment.present();
+      if(this.respond){
+        this.commentService.respondComment$.next(this.comment)
+      }else{
+        let comment = await this.modalController.create({
+          component: CommentPostComponent,
+          componentProps: { comment:this.comment },
+          backdropDismiss: false,
+        });
+        comment.onDidDismiss().then((data) => {
+          this.getCountComments();
+        });
+        return comment.present();
+      }
+      
     }
+  }
+
+  showResponds(){
+    this.commentService.showResponds$.next(this.comment)
   }
 }

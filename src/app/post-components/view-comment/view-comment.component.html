@@ -66,7 +66,7 @@
     ></question-comment>
   </div>
   <ng-container *ngIf="!preview" >
-    <comment-options [comment]="comment"></comment-options>
+    <comment-options [respond]="respond" [comment]="comment"></comment-options>
     <view-responds-comment *ngIf="countComments > 0" [comment]="comment"></view-responds-comment>
   
   </ng-container>

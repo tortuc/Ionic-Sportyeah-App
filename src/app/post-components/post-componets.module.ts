@@ -28,9 +28,9 @@ import { PostContentComponent } from "../components/post-content/post-content.co
 import { SeeFilesPostContentComponent } from "./see-files-post-content/see-files-post-content.component";
 import { SharePopoverComponent } from "./share-popover/share-popover.component";
 import { SponsorsModule } from "../sponsors-components/sponsors.module";
+import { CommentComponentsModule } from "../comment-components/comment-components.module";
 
 const componets = [
-  CommentPostComponent,
   SeeFilesPostSliderComponent,
   ReactToPostsComponent,
   LikesPostComponent,
@@ -60,6 +60,7 @@ const componets = [
     ReactiveFormsModule,
     ContenteditableValueAccessorModule,
     ComponentsSharedModule,
+    CommentComponentsModule,
     EmojiModule,
     PickerModule,
     DirectivesModule,

@@ -239,6 +239,8 @@ dislikeComment(id){
       );
     }
 
-
     public newCommen$ = new Subject<IComment>()
+
+    public respondComment$ = new Subject<IComment>()
+    public showResponds$ = new Subject<IComment>()
 }

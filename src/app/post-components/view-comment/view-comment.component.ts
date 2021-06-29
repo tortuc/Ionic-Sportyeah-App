@@ -55,6 +55,7 @@ const popoverOtionsOther = [
 export class ViewCommentComponent implements OnInit {
   @Input() comment: IComment;
   @Input() preview: boolean = false;
+  @Input() respond: boolean = false;
 
   @Output() comments = new EventEmitter();
   @Output() Deletedcomments = new EventEmitter();

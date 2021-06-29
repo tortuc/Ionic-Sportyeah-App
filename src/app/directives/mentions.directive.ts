@@ -1,6 +1,6 @@
 import { Directive, ElementRef, EventEmitter, Output } from "@angular/core";
 import { User } from "../models/IUser";
-import {  UserService } from "../service/user.service";
+import { UserService } from "../service/user.service";
 
 @Directive({
   selector: "[Mentions]",
@@ -120,6 +120,7 @@ export class MentionsDirective {
         { count: chars },
         null
       );
+      console.log(selection,range);
 
       if (range) {
         range.collapse(false);
@@ -152,11 +153,35 @@ export class MentionsDirective {
 
     // Una vez que la variable de control tenga el nuevo valor, se acomoda el caret del input al final del nombre del usuario
     this.setCurrentCursorPosition(
-      this.pos - this.match.length + fullname.length
+      this.pos - this.match?.length + fullname.length
     );
 
     // Se actualiza tambien el valor de pos
-    this.pos = this.pos - this.match.length + fullname.length;
+    this.pos = this.pos - this.match?.length + fullname.length;
+    // Se limpea los usuarios a renderizar
+    this.usersRender.emit([]);
+  }
+  /**
+   * Esta funcion es para mencionar un usuario que el cliente de click
+   * @param {User} user
+   */
+  public setUserRespond(user: User) {
+    this.pos = 0;
+
+    this.el.nativeElement.focus();
+    this.el.nativeElement.blur();
+    this.el.nativeElement.focus();
+    this.setCurrentCursorPosition(0);
+
+    // Obtenemos su Full name
+    let fullname = `${user.name} ${user.last_name}`;
+
+    this.el.nativeElement.innerHTML = `<a class="user" href="/user/${user.username}">${fullname}</a> `;
+
+    // Una vez que la variable de control tenga el nuevo valor, se acomoda el caret del input al final del nombre del usuario
+    this.setCurrentCursorPosition(this.pos + fullname.length + 1);
+    // Se actualiza tambien el valor de pos
+    this.pos = this.pos + fullname.length;
     // Se limpea los usuarios a renderizar
     this.usersRender.emit([]);
   }

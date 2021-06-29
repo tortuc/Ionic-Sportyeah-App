@@ -22,9 +22,14 @@ export class ViewRespondsCommentComponent implements OnInit {
   ngOnInit() {
     this.commentService.newCommen$.subscribe((comment) => {
       if (comment.comment == this.comment._id) {
-        this.comments.unshift(comment);
+        this.comments.push(comment);
       }
     });
+    this.commentService.showResponds$.subscribe((comment)=>{
+      if(comment._id == this.comment._id){
+        this.show = true
+      }
+    })
     this.getComments();
   }
 

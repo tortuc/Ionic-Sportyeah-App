@@ -61,6 +61,7 @@ export class CommentPostComponent implements OnInit {
   @Input() news: INew;
 
   @Input() postPage: boolean = false;
+  @Input() respond: boolean = false;
 
   @ViewChild(MentionsDirective) mentions: MentionsDirective;
   @ViewChild("openImage") openImage: ElementRef;
@@ -68,6 +69,13 @@ export class CommentPostComponent implements OnInit {
   @ViewChild("assetsBtn") assetsBtn: AssetsButtonsComponent;
 
   ngOnInit() {
+
+    this.commentService.respondComment$.subscribe((comment)=>{
+      if(comment.comment == this.comment?._id){
+        this.form.controls.message.setValue(" ")
+        this.mentions.setUserRespond(comment.user)
+      }
+    })
     try {
       window.onclick = () => {
         this.emoji = false;

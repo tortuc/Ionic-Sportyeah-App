@@ -9,6 +9,7 @@ import { IComment } from 'src/app/models/iPost';
 export class CommentOptionsComponent implements OnInit {
 
   @Input() comment:IComment;
+  @Input() respond:boolean = false;
 
   constructor() { }
 

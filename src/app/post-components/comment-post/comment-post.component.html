@@ -11,7 +11,7 @@
   </ion-toolbar>
 </ion-header>
 <ion-grid class="white" style="overflow: scroll;">
-  <ng-container *ngIf="comment">
+  <ng-container *ngIf="comment && !respond">
     <view-comment  [preview]="true" [comment]="comment" ></view-comment>
     <h6 style="text-align: center;">Responder comentario</h6>
   </ng-container>
