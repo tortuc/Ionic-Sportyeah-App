@@ -176,11 +176,11 @@ export class UserPage implements OnInit {
   }
 
   news = [];
+  skipNews = 0;
   getArticle(id) {
-    this.newsService.findUserNews(id).subscribe((response: any) => {
-      this.news = response.filter((news) => {
-        return news.stream == false;
-      });
+    this.newsService.findUserNews(id,this.skipNews).subscribe((response: any) => {
+      this.news = response
+      this.skipNews += 3
     });
   }
 
@@ -209,6 +209,7 @@ export class UserPage implements OnInit {
   }
 
   async logScrolling(ev) {
+    
     let el = await ev.target.getScrollElement();
     this.cd.detectChanges();
     if (el.clientHeight * 0.4 < el.scrollTop) {
@@ -232,6 +233,7 @@ export class UserPage implements OnInit {
       !this.loadingPost
     ) {
       this.getPosts(this.user._id);
+      this.getNews()
     }
   }
 
@@ -251,5 +253,17 @@ export class UserPage implements OnInit {
     this.cd.detectChanges();
     this.segment = segmentOptions.posts;
     this.content.scrollByPoint(0, 600, 1000);
+  }
+
+
+  getNews(){
+      this.newsService.findUserNews(this.userService.User._id,this.skipNews)
+      .pipe(take(1))
+      .subscribe((news:any)=>{
+        this.news = this.news.concat(news)
+        if(news.length > 0){
+          this.skipNews += 3;
+        }
+      })
   }
 }

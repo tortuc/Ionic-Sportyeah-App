@@ -93,17 +93,10 @@ export class ProfilePage implements OnInit {
     modal.present();
   }
 
-  news = [];
   posts: IPost[] = [];
   views: [];
   ngOnInit() {
-    this.newsService
-      .findUserNews(this.userService.User._id)
-      .subscribe((response: any) => {
-        this.news = response; /* .filter((news)=>{
-          return news.stream == false;
-        })*/
-      });
+   
 
     this.getPost();
     this.getCountPost();
