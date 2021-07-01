@@ -2,6 +2,10 @@
   --color: #000;
 }
 
+.main-row{
+  height: unset;
+}
+
 .forgot {
   width: 100%;
   text-align: right;
@@ -11,5 +15,11 @@
 
 .new-account {
   font-size: 15px;
+}
+
+@media screen and (max-width:600px) {
+  .main-row{
+    height: 100vh;
+  } 
 }
 

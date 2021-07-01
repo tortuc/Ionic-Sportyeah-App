@@ -19,7 +19,9 @@
     "dev": "ionic serve",
     "dev-test": "ionic serve --configuration=test",
     "build-android": "ionic build --prod && npx cap copy android && cordova-res android --skip-config --copy && npx cap open android",
-    "build-android-test": "ionic build --configuration=test && npx cap copy android && cordova-res android --skip-config --copy && npx cap open android"
+    "build-android-test": "ionic build --configuration=test && npx cap copy android && cordova-res android --skip-config --copy && npx cap open android",
+    "build-ios": "ionic build --prod && npx cap copy ios && cordova-res ios --skip-config --copy && npx cap open ios",
+    "build-ios-test": "ionic build --configuration=test && npx cap copy ios && cordova-res ios --skip-config --copy && npx cap open ios"
   },
   "private": true,
   "dependencies": {

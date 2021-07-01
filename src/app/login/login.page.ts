@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { AlertController, LoadingController } from "@ionic/angular";
 import { TranslateService } from "@ngx-translate/core";
 import { environment } from "src/environments/environment";
+import { LoadingService } from "../service/loading.service";
 import { LoginService } from "../service/login.service";
 import { UserService } from "../service/user.service";
 
@@ -23,7 +24,7 @@ export class LoginPage implements OnInit {
     public translate: TranslateService,
     public userService: UserService,
     private router: Router,
-    private loadingCtrl: LoadingController,
+    private loadingService: LoadingService,
     private route: ActivatedRoute
   ) {
     // Esto es para loguear directamente con un token
@@ -45,13 +46,11 @@ export class LoginPage implements OnInit {
   remember = false;
 
   async login() {
-    let loading = await this.loadingCtrl.create({
-      message: this.translate.instant("loading"),
-    });
-    loading.present();
+   
+    this.loadingService.present();
     this.loginService.auth(this.loginForm.value).subscribe(
       async (token: string) => {
-        loading.dismiss();
+        this.loadingService.dismiss();
         if (!this.remember) {
           sessionStorage.setItem("token", token);
         } else {
@@ -63,7 +62,7 @@ export class LoginPage implements OnInit {
         });
       },
       (err) => {
-        loading.dismiss();
+        this.loadingService.dismiss();
 
         switch (err.status) {
           case 401:
