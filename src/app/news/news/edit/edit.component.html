@@ -86,14 +86,17 @@
                         </ion-item>
                       </ion-radio-group>
             <ion-item *ngIf="!agregandoOrigen && miNoticia == 1 ">
-              <ion-textarea [(ngModel)]="origen" placeholder="Porfavor introduce el origen de la noticia"></ion-textarea>
+              <ion-textarea [(ngModel)]="origen"  [placeholder]="'news.please_origin_principal' | translate"></ion-textarea>
               <ion-button (click)="origenListo(1)" [disabled]="(origen != null && origen != '')?false:true"  float-right ion-button ><ion-icon name="add"></ion-icon></ion-button>
             </ion-item>
             <p *ngIf="origen == null || origen == ''" style="color: rgb(255, 0, 0);" >{{'news.intelectual_rights_news' | translate}}</p>
             <p *ngIf="origen && agregandoOrigen == true" style="text-align: center;color: #737373;font-size: 14px;"><i>{{origen}}</i><ion-icon  (click)="origenListo(0)" class="editIcon" name="pencil-outline" ></ion-icon></p>
           </ion-col>
         
-
+          <ion-col size="12">
+            <ion-label position="floating" >{{'news.description' | translate}}</ion-label>
+            <ion-textarea [(ngModel)]="description" [placeholder]="'news.please_description' | translate"></ion-textarea>
+          </ion-col>
 
            <ion-col style="text-align: center;" size="12">
             <!-- Boton para imagen Principal -->
@@ -213,7 +216,7 @@
             </ion-item>
           </ion-radio-group>
           <ion-item *ngIf="!agregandoOrigenPrincipaMedia && MiprincipalMedia == 1 ">
-            <ion-textarea [(ngModel)]="originPrincipaMedia" placeholder="Porfavor introduce el origen de la noticia"></ion-textarea>
+            <ion-textarea [(ngModel)]="originPrincipaMedia" [placeholder]="'news.please_origin_media' | translate"></ion-textarea>
             <ion-button (click)="originPrincipaMediaListo(1)" [disabled]="(originPrincipaMedia != null && originPrincipaMedia != '')?false:true"  float-right ion-button ><ion-icon name="add"></ion-icon></ion-button>
           </ion-item>
           <p *ngIf="(originPrincipaMedia == null || originPrincipaMedia == '') && (videoSelected != null || imagenSelected != null )" style="color: rgb(255, 0, 0);">{{'news.intelectual_rights' | translate}}</p>
@@ -373,7 +376,7 @@
               </ion-item>
             </ion-radio-group>
           <ion-item *ngIf="MiParrafoMedia == 1 && !parrafo.originMedia">
-            <ion-textarea [(ngModel)]="originParrafoMedia" placeholder="Porfavor introduce el origen del archio multimedia"></ion-textarea>
+            <ion-textarea [(ngModel)]="originParrafoMedia" [placeholder]="'news.please_origin_media' | translate"></ion-textarea>
             <ion-button (click)="origenParrafoListo(i,0)" [disabled]="(originParrafoMedia != null && originParrafoMedia != '')?false:true"  float-right ion-button ><ion-icon name="add"></ion-icon></ion-button>
           </ion-item>
           <p *ngIf="parrafo.originMedia" style="text-align: center;color: #737373;font-size: 14px;cursor: pointer;"><i>{{parrafo.originMedia}}</i><ion-icon  (click)="origenParrafoEditar(i)" class="editIcon" name="pencil-outline" ></ion-icon></p>

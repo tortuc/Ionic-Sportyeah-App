@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit,ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { PopoverController } from '@ionic/angular';
 import * as moment from 'moment';
@@ -6,6 +6,7 @@ import { NewsService } from 'src/app/service/news.service';
 import { UserService } from 'src/app/service/user.service';
 import { ModalProgramNewsComponent } from '../modal-program-news/modal-program-news.component';
 import { OptionNewsComponent } from '../option-news/option-news.component';
+import { ShowNewsComponent } from './show-news/show-news.component';
 
 @Component({
   selector: 'app-profile-news',
@@ -14,12 +15,15 @@ import { OptionNewsComponent } from '../option-news/option-news.component';
 })
 export class ProfileNewsComponent implements OnInit {
 
+  @ViewChild("showNews") showNews: ShowNewsComponent;
+
   constructor(
     public newsService:NewsService,
     private router:Router,
     public  userService:UserService,
     public popoverController: PopoverController,
     private popover: PopoverController,
+    public cd: ChangeDetectorRef,
     ) { }
 news
   ngOnInit() {
@@ -117,4 +121,22 @@ this.newsService.findUserProgramatedNews(this.userService.User._id).subscribe((r
         return popover.present();
       }
   }
+
+
+
+  /**
+   * Esta funcion se llama cuando el usuario baja el scroll, y si llega muy abajo, entonces se llaman mas noticias automaticamente
+   * @param ev
+   */
+ async logScrolling(ev) {
+ let el = await ev.target.getScrollElement();
+ this.cd.detectChanges();
+ if (
+   el.scrollHeight - el.scrollTop < el.clientHeight + 400 &&
+   !this.showNews.loadingNews
+ ) {
+   this.showNews.getNews();
+ }
+}
+
 }

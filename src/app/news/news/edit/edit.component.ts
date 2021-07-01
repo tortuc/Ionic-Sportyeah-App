@@ -101,7 +101,7 @@ form = this.fb.group({
       this.parrafos = response.news.content;
       this.titulo1 = response.news.headline;
       this.subTitlePrincipal = response.news.principalSubtitle;
-
+      this.description = response.news.description
       this.deporte = response.news.sport;
       this.origen = response.news.origin;
       this.originPrincipaMedia = response.news.originPrincipaMedia;
@@ -149,6 +149,7 @@ today = moment().format("YYYY-MM-DD")
   text1 ='' // `Escribe el párrafo # ${this.parrafos.length+1} `;
   titulo1= ``;
   subTitlePrincipal = '';
+  description = null;
   subTitle = null;
   deporte= ``;
   sports=['soccer', 'basketball','tennis',
@@ -623,7 +624,7 @@ async todoConOrigen(){
   this.news.headline = this.titulo1;
   this.news.principalSubtitle = this.subTitlePrincipal;
   this.news.content = await this.questionService.parrafoFilter(this.parrafos);
-  
+  this.news.description = this.description;
   this.news.origin = this.origen;
   this.news.originPrincipaMedia = this.originPrincipaMedia;
   this.news.audioNews = this.audioNews;

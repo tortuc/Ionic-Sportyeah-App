@@ -101,6 +101,8 @@ export class DashboardPage implements OnInit, AfterViewInit {
   posts: IPost[] = [];
 
   getPost(event = null, newPosts = false) {
+    console.log("Me ejecuto");
+
     if (newPosts) {
       this.skipPost = 0;
       this.posts = [];
@@ -119,6 +121,7 @@ export class DashboardPage implements OnInit, AfterViewInit {
         .subscribe(
           (posts: IPost[]) => {
             this.posts = this.posts.concat(posts);
+
             this.skipPost += 10;
             if (event) {
               event.target.complete();

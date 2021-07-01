@@ -38,12 +38,12 @@ export class NewsService {
     return this.http.post(`${environment.URL_API}/news/create`,body)
   }
 
-  find(){
-    return this.http.get(`${environment.URL_API}/news`)
+  find(skip){
+    return this.http.post(`${environment.URL_API}/news`,skip)
   }
 
-  findStreaming(){
-    return this.http.get(`${environment.URL_API}/news/streaming`)
+  findStreaming(skip){
+    return this.http.post(`${environment.URL_API}/news/streaming`,skip)
   }
 
   findById(id){
@@ -54,17 +54,17 @@ export class NewsService {
     return this.http.get(`${environment.URL_API}/news/sport/${sport}`)
   }
 
-  findUserNews(user){
-    return this.http.get(`${environment.URL_API}/news/own/${user}`)
+  findUserNews(user,skip){
+    return this.http.post(`${environment.URL_API}/news/own`,{user,skip})
   }
 
-  findUserDeletedNews(user){
-    return this.http.get(`${environment.URL_API}/news/deleted/${user}`)
+  findUserDeletedNews(user,skip){
+    return this.http.post(`${environment.URL_API}/news/deleted`,{user,skip})
   }
 
   
-  findUserDraftNews(user){
-    return this.http.get(`${environment.URL_API}/news/draft/${user}`)
+  findUserDraftNews(user,skip){
+    return this.http.post(`${environment.URL_API}/news/draft`,{user,skip})
   }
 
   findUserProgramatedNews(user){

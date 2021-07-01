@@ -1023,7 +1023,11 @@
     "go_to_you_news": "Tus noticias",
     "go_to_news_wall": "Muro de noticias",
     "news_created": "Noticia creada",
-    "news_edited": "Noticia editada"
+    "news_edited": "Noticia editada",
+    "description":"Descripción",
+    "please_description":"Por favor introduce una descripción de la noticia",
+    "please_origin_principal":"Por favor introduce el origen de la noticia",
+    "please_origin_media":"Por favor introduce el origen del archio multimedia"
   },
   "sponsorDescription": "¡Agrega un patrocinador!",
   "back": "Volver",

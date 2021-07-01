@@ -39,6 +39,8 @@ export class ReadComponent implements OnInit {
       .findById(id)
       .toPromise()
       .then( (response: any) => {
+        console.log(response);
+        
         this.news = response;
          this.getComments();
          this.getSponsors(response.news.user._id)

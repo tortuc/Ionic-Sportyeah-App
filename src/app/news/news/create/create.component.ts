@@ -140,6 +140,7 @@ urlYu
   deporte = null;
   subTitle = null;
   subTitlePrincipal = null;
+  description = null;
   sports = [
     "soccer",
     "basketball",
@@ -640,6 +641,7 @@ urlYu
     this.news.originPrincipaMedia = this.originPrincipaMedia;
     this.news.audioNews = this.audioNews;
     this.news.programatedDate = this.programedDate;
+    this.news.description = this.description;
     if(this.programedDate != undefined){
       this.news.programated = true;
     }else{
