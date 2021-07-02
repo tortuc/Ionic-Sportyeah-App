@@ -13,7 +13,7 @@ export class QuestionCommentComponent implements OnInit {
     public userService: UserService,
     public questionService: QuestionService
   ) {}
-
+    cincuenta=50;
   ngOnInit() { 
   
     this.questionService
@@ -33,4 +33,13 @@ export class QuestionCommentComponent implements OnInit {
         });
     }
   }
+  setMyStyle(value) {
+    console.log(value);
+    
+    let styles = {
+      'background': `linear-gradient(to right,  #9cc4e5 0%,#9cc4e5 ${value}%,#f6f6f6 ${value}%,#f6f6f6 100%)`,
+    };
+    return styles;
+}
+
 }

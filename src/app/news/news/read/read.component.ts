@@ -11,7 +11,28 @@ import { ISponsor } from "src/app/models/ISponsor";
 import { User } from "src/app/models/IUser";
 import { ModalController, Platform } from "@ionic/angular";
 import { SeeFilesPostSliderComponent } from "src/app/post-components/see-files-post-slider/see-files-post-slider.component";
-
+import {
+  sports,
+  sportsCycling,
+  waterSports,
+  motorSports,
+  combinedTests,
+  athletics,
+  precisionSports,
+  gymnastics,
+  winterSports,
+  combatSports,
+  teamSports,
+  strengthSports,
+  tableSports,
+  animalSports,
+  xtremeSports,
+  slidingSports,
+  airSports,
+  mountainSports,
+  danceSports,
+} from "src/config/sports";
+import { element } from "protractor";
 @Component({
   selector: "app-read",
   templateUrl: "./read.component.html",
@@ -39,11 +60,10 @@ export class ReadComponent implements OnInit {
       .findById(id)
       .toPromise()
       .then( (response: any) => {
-        console.log(response);
-        
         this.news = response;
-         this.getComments();
-         this.getSponsors(response.news.user._id)
+        this.getComments();
+        this.getSponsors(response.news.user._id)
+        this.findSportImage(response.news.sport)
       })
       .catch((err) => {
         this.news = 404;
@@ -181,4 +201,111 @@ export class ReadComponent implements OnInit {
     })
     modal.present()
   }
+  sportImg;
+  findSportImage(sport){
+    for(let element of this.list){
+     let find = element.sports.find(x => x == sport )
+      if(find != undefined){
+        this.sportImg = element.img
+        break
+      }
+    }
+  }
+
+  list = [
+    {
+      type: "sportsCycling",
+
+      sports: sportsCycling,
+      img: "assets/sports/cycling.png",
+    },
+    {
+      type: "waterSports",
+
+      sports: waterSports,
+      img: "assets/sports/swimming.png",
+    },
+    {
+      type: "motorSports",
+
+      sports: motorSports,
+      img: "assets/sports/wheel.png",
+    },
+    {
+      type: "combinedTests",
+
+      sports: combinedTests,
+      img: "assets/sports/combined.png",
+    },
+    {
+      type: "athletics",
+      sports: athletics,
+      img: "assets/sports/athletics.png",
+    },
+    {
+      type: "precisionSports",
+      sports: precisionSports,
+      img: "assets/sports/archery.png",
+    },
+    {
+      type: "gymnastics",
+      sports: gymnastics,
+      img: "assets/sports/various.png",
+    },
+    {
+      type: "winterSports",
+      sports: winterSports,
+      img: "assets/sports/winter.png",
+    },
+    {
+      type: "combatSports",
+      sports: combatSports,
+      img: "assets/sports/karate.png",
+    },
+    {
+      type: "teamSports",
+      sports: teamSports,
+      img: "assets/sports/team.png",
+    },
+    {
+      type: "strengthSports",
+      sports: strengthSports,
+      img: "assets/sports/strength.png",
+    },
+    {
+      type: "tableSports",
+      sports: tableSports,
+      img: "assets/sports/table_tennis.png",
+    },
+    {
+      type: "animalSports",
+      sports: animalSports,
+      img: "assets/sports/hriding.png",
+    },
+    {
+      type: "xtremeSports",
+      sports: xtremeSports,
+      img: "assets/sports/climbingx.png",
+    },
+    {
+      type: "slidingSports",
+      sports: slidingSports,
+      img: "assets/sports/sliding.png",
+    },
+    {
+      type: "airSports",
+      sports: airSports,
+      img: "assets/sports/skydiving.png",
+    },
+    {
+      type: "mountainSports",
+      sports: mountainSports,
+      img: "assets/sports/climbing.png",
+    },
+    {
+      type: "danceSports",
+      sports: danceSports,
+      img: "assets/sports/dancer.png",
+    },
+  ];
 }

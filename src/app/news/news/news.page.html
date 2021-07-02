@@ -74,49 +74,10 @@ class="main-bg">
           
           <ion-card-content *ngIf="news.length > 0">
                 <ion-grid>
-                <ion-row  *ngFor="let new of news"> <!-- ?.slice(0,indexLastMy ) -->
-                  <ion-col style="text-align: left;" size-xs="12" size-lg="3">
-                    <ion-img (click)="OpenNews(new._id)" *ngIf="new.principalImage"  class="imageMiniCard" [src]="new.principalImage"></ion-img>
-                    <div (click)="OpenNews(new._id)"  *ngIf="new.principalVideo" style="position: relative; cursor: pointer;">
-                      <video
-                        [muted]="true"
-                        controls="controls"
-                        preload="metadata"
-                        autoplay="autoplay"
-                        webkit-playsinline="webkit-playsinline"
-                        class="videoPlayerNews"
-                      >
-                        <source [src]="new.principalVideo | safeUrl" type="video/mp4" />
-                      </video>
-                    </div> 
-                    <div *ngIf="new.principalYoutube">
-                      <iframe style=" overflow: hidden ;  width: 100%;
-                      height: 140px"
-                        *ngIf="new.principalYoutube | youtube"
-                        [src]="new.principalYoutube | youtube"
-                        frameborder="0"
-                    ></iframe>
-                    </div>
-      
+                <ion-row > <!-- ?.slice(0,indexLastMy ) -->
+                  <ion-col size="12" *ngFor="let new of news">
+                    <news-wall (openNew)="OpenNews(new._id)" [new]="new"> </news-wall>
                   </ion-col>
-                  
-                  <ion-col size-xs="9" size-lg="7">
-                    <h5 class="deporteTitle">{{ 'allSports.'+new.sport| translate}}<span style="font-size: 8 !important;color: rgb(58, 58, 58);margin-left:15px">{{new.date | customDisplayDate:true}}</span>
-            
-                    </h5>
-                    <h3 (click)="OpenNews(new._id)" class="newsTitle">{{new.headline}}</h3>
-                    <h4 (click)="OpenNews(new._id)" class="newsSubitle">{{new.principalSubtitle}}</h4>
-                    <h5 (click)="OpenNews(new._id)" style="font-size: 10px;" >{{new.description}}</h5>
-                  </ion-col>  
-                  <ion-col size-xs="3" size-lg="2">
-                    <div class="userAvatar">
-                      <ion-avatar class="avatar" (click)="userService.goToProfile(new.user.username,new.user._id,'news',undefined)" >
-                        <img class="user-img-shadow" [src]="new.user.photo" />
-                      </ion-avatar>
-                      <p  class="nameUser"  (click)="userService.goToProfile(new.user.username,new.user._id,'news',undefined)">{{new.user.name}} {{new.user.last_name}}</p>
-                    </div>
-                  </ion-col> 
-                  <div style="background: rgb(136, 136, 136); height: 1px;width: 100%;margin-bottom: 10px;"></div>
                 </ion-row>
               </ion-grid>
                 <!-- <div style="text-align: center;">

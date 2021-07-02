@@ -44,12 +44,12 @@ export class ReactToNewsComponent implements OnInit {
   }
 
   /**
-   * Cantidad de reacciones en el post
+   * Cantidad de reacciones en el news
    */
   countReacions = 0;
 
   /**
-   * Obtener la cantidad de reacciones en el post
+   * Obtener la cantidad de reacciones en el news
    */
   getCountReacions() {
     
@@ -63,7 +63,7 @@ export class ReactToNewsComponent implements OnInit {
   }
 
   /**
-   * Saber si el usuario acual, reacciono al post
+   * Saber si el usuario acual, reacciono al news
    */
   async IReacted() {
     this.reaction = await new LikedNewsPipe(

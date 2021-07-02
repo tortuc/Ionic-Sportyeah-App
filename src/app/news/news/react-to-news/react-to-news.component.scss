@@ -26,7 +26,9 @@
   opacity: 0;
   overflow: visible;
   position: absolute;
-  top: -185px;
+  top: 80px;
+  left: -25px;
+  transform: scale(0.85);
   .circle {
     @include object(35px, 35px, #edff97);
     border-radius: 50%;

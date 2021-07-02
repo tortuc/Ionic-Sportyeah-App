@@ -47,6 +47,7 @@ import { MobileNewsViewComponent } from './preview-news/mobile-news-view/mobile-
 import { TabletNewsViewComponent } from './preview-news/tablet-news-view/tablet-news-view.component';
 import { MonitorNewsViewComponent } from './preview-news/monitor-news-view/monitor-news-view.component';
 import { CommentComponentsModule } from 'src/app/comment-components/comment-components.module';
+import { NewsWallComponent } from './news-wall/news-wall.component';
 
 @NgModule({
   imports: [
@@ -100,7 +101,8 @@ import { CommentComponentsModule } from 'src/app/comment-components/comment-comp
     MobileNewsViewComponent,
     AftherCreateNewsComponent,
     TabletNewsViewComponent,
-    MonitorNewsViewComponent
+    MonitorNewsViewComponent,
+    NewsWallComponent
   ],
  
   schemas:[CUSTOM_ELEMENTS_SCHEMA]

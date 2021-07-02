@@ -13,7 +13,7 @@
       answer._id | canVote: question.questionGroup._id:question?.notified | async
     "
   >
-    <ion-icon name="checkmark-circle-outline" class="voted"></ion-icon>
+    <!-- <ion-icon name="checkmark-circle-outline" class="voted"></ion-icon>
     <p style="position: absolute; padding-left: 20px; z-index: 1000">
       {{ answer.option }}
     </p>
@@ -23,7 +23,29 @@
     <ion-progress-bar
       class="barProgres"
       [value]="(answer.users / question.total).toFixed(2)"
-    ></ion-progress-bar>
+    ></ion-progress-bar> -->
+
+    <div  style="border-radius: 100px;height: auto;border: solid black 1px;">
+      <div  style="border-radius: 100px;padding: 1px;"
+      [ngStyle]="setMyStyle(((answer.users / question.total) * 100).toFixed(1))"
+      >
+      
+      <p style="padding-left: 20px; padding-right: 65px;z-index: 1000">
+          {{ answer.option }}
+        </p>
+        <p class="percentage" style="position: absolute;top: 0px;right: 7px;">
+          {{ ((answer.users / question.total) * 100).toFixed(1) }}% <span> <ion-icon style="margin-top: 4px;left: 8px;color: #0a326f;" name="checkmark-circle-outline" class="voted"></ion-icon> </span>
+        </p>
+      </div>
+    </div>
+    <!-- linear-gradient(to right,  #9c9e9f  0%,#9c9e9f (((answer.users / question.total) * 100).toFixed(1)) +'%',#f6f6f6 (((answer.users / question.total) * 100).toFixed(1)) +'%',#f6f6f6 100%); -->
+    <!-- [ngStyle]="{background: 'linear-gradient(to right,  #9c9e9f 0%,#9c9e9f cincuenta%,#f6f6f6 cincuenta%,#f6f6f6 100%)'}" -->
+   
+    <div>
+
+    </div>
+
+
   </div>
   <p style="margin:0; color: black;">{{question.total}} votos</p>
 </div>

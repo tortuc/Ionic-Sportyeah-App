@@ -1,0 +1,165 @@
+.cardNews{
+    width: 100%;
+    height: 100%;
+    margin-bottom:10%; 
+    cursor: pointer;
+}
+.imageMiniCard{
+    margin-left: auto;
+    margin-right: auto;
+    cursor: pointer;
+}
+
+.iconNotNews{
+    width: 21%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 12%;
+}
+
+.videoPlayerNews {
+    width: 100% !important;
+    height: 114px !important;
+  }
+
+  .title {
+    font-family: sans-serif;
+    margin:0px auto;
+    text-align: center;
+    font-size: 30px;
+    max-width: 530px;
+    position: relative;
+    color: white;
+  }
+  
+  .title:before {
+    content: "";
+    display: block;
+    width: 140px;
+    height: 2px;
+    background: white;
+    left: -100px;
+    top: 50%;
+    position: absolute;
+  }
+  
+  .title:after {
+    content: "";
+    display: block;
+    width: 140px;
+    height: 2px;
+    background: white;
+    right: -100px;
+    top: 50%;
+    position: absolute;
+  }
+
+  @media screen and (max-width:440px){
+    .title:before {
+        content: "";
+        display: block;
+        width: 120px;
+        height: 2px;
+        background: white;
+        left: -100px;
+        top: 50%;
+        position: absolute;
+      }
+      
+      .title:after {
+        content: "";
+        display: block;
+        width: 120px;
+        height: 2px;
+        background: white;
+        right: -100px;
+        top: 50%;
+        position: absolute;
+      }
+
+      .avatar{
+        width: 18px;
+        height: 18px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .nameUser{
+        font-size: 8px !important;
+        color: rgb(56, 50, 50);
+      }
+      .divAvatar{
+        text-align: center;margin-top: 40px;cursor: pointer;
+      }
+
+      .userAvatar{
+        margin-top: 0px !important;
+      }
+
+    
+
+      .newsTitle{
+        font-size: 14px !important;
+        color:black ;
+        cursor: pointer;
+        // width: 10em; /* the element needs a fixed width (in px, em, %, etc) */
+        // white-space: nowrap; /* don't break the line */
+      }
+      .newsSubitle{
+        width: 12em; /* the element needs a fixed width (in px, em, %, etc) */
+        white-space: nowrap; /* don't break the line */
+      }
+
+  }
+
+  .threeNews{
+    background: white;height: 300px;
+    cursor: pointer;
+  }
+
+  .deporteTitle{
+    font-size: 9px !important;
+  }
+  .newsTitle{
+    font-size: 18px !important;
+    color:black ;
+    cursor: pointer;
+    // width: 10em !important; /* the element needs a fixed width (in px, em, %, etc) */
+    overflow: hidden; /* make sure it hides the content that overflows */
+    text-overflow: ellipsis; /* give the beautiful '...' effect */
+  }
+  .newsSubitle{
+    font-size: 14px !important;
+    color:black ;
+    cursor: pointer;
+    // width: 10em !important; /* the element needs a fixed width (in px, em, %, etc) */
+    overflow: hidden; /* make sure it hides the content that overflows */
+    white-space: nowrap; /* don't break the line */
+    text-overflow: ellipsis; /* give the beautiful '...' effect */
+  }
+   
+  .addNews{
+    --background: black;
+
+  }
+
+  .avatar{
+    width: 37px;
+    height: 37px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .nameUser{
+    font-size: 8 !important;
+    color: rgb(0, 0, 0);
+    text-align: center;
+  }
+
+  .userAvatar{
+    text-align: center;
+    margin-top: 30px;
+    cursor: pointer;
+  }
+
+  .iconsPost {
+    width: 50px;
+  }

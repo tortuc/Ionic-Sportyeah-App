@@ -3,7 +3,7 @@
   width: 100%;
   cursor: pointer;
   color: black;
-  height: 53px;//53px
+  height: auto;//53px
   margin-bottom: 15px;
   pointer-events: none;
 }
@@ -38,9 +38,9 @@
 }
 
 .percentage {
-  position: absolute;
-  z-index: 1000;
-  right: 60px;
+  // position: absolute;
+  // z-index: 1000;
+  // right: 60px;
   visibility: hidden !important;
 }
 
@@ -52,8 +52,8 @@ ion-progress-bar {
 }
 
 .barProgres {
-  height: 53px;//100%
-  --progress-background: transparent;
+  // height: 53px;//100%
+  // --progress-background: transparent;
   &:hover {
     --background: #80c1f3;
   }

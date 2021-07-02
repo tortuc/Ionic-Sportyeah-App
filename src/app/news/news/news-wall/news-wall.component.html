@@ -1,0 +1,60 @@
+<ion-row>
+
+<ion-col style="text-align: left;" size-xs="12" size-lg="3">
+  <ion-img (click)="OpenNews()" *ngIf="new.principalImage"  class="imageMiniCard" [src]="new.principalImage"></ion-img>
+  <div (click)="OpenNews()"  *ngIf="new.principalVideo" style="position: relative; cursor: pointer;">
+    <video
+      [muted]="true"
+      controls="controls"
+      preload="metadata"
+      autoplay="autoplay"
+      webkit-playsinline="webkit-playsinline"
+      class="videoPlayerNews"
+    >
+      <source [src]="new.principalVideo | safeUrl" type="video/mp4" />
+    </video>
+  </div> 
+  <div *ngIf="new.principalYoutube">
+    <iframe style=" overflow: hidden ;  width: 100%;
+    height: 140px"
+      *ngIf="new.principalYoutube | youtube"
+      [src]="new.principalYoutube | youtube"
+      frameborder="0"
+  ></iframe>
+  </div>
+
+</ion-col>
+
+<ion-col (click)="OpenNews()" style="cursor: pointer;" size-xs="9" size-lg="7">
+  <img style="width: 10%;" [src]="sportImg">
+  <h5 class="deporteTitle">{{ 'allSports.'+new.sport| translate}}<span style="font-size: 8 !important;color: rgb(58, 58, 58);margin-left:15px">{{new.date | customDisplayDate:true}}</span>
+  </h5>
+  <h3  class="newsTitle">{{new.headline}}</h3>
+  <h4  class="newsSubitle">{{new.principalSubtitle}}</h4><span style="font-size: 12px;"><a >{{'news.see_more' | translate}}</a></span>
+  <h5  style="font-size: 10px;" >{{new.description}}</h5> 
+</ion-col>  
+<ion-col size-xs="3" size-lg="2">
+  <div class="userAvatar">
+    <ion-avatar class="avatar" (click)="userService.goToProfile(new.user.username,new.user._id,'news',undefined)" >
+      <img class="user-img-shadow" [src]="new.user.photo" />
+    </ion-avatar>
+    <p  class="nameUser" (click)="userService.goToProfile(new.user.username,new.user._id,'news',undefined)">{{new.user.name}} {{new.user.last_name}}</p>
+  </div>
+  <div>
+    <ion-row style="text-align: center;">
+      <ion-col size-xs="12" size-lg="4">
+        <p style="font-size: 12px;">{{countReacions}} <span><ion-icon name="heart-outline"></ion-icon></span></p>
+      </ion-col>
+
+      <ion-col size-xs="12" size-lg="4">
+        <p style="font-size: 12px;">{{countComments}} <span><ion-icon name="chatbox-outline"></ion-icon></span></p>
+      </ion-col>
+
+      <ion-col size-xs="12" size-lg="4">
+        <p style="font-size: 12px;">{{new.views.length}} <span><ion-icon name="eye-outline"></ion-icon></span></p>
+      </ion-col>
+    </ion-row>
+  </div>
+</ion-col> 
+<div style="background: rgb(136, 136, 136); height: 1px;width: 100%;margin-bottom: 10px;"></div>
+</ion-row>
