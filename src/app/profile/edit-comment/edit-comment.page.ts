@@ -83,6 +83,7 @@ export class EditCommentPage implements OnInit {
     comment.message = this.mainInput.nativeElement.innerHTML;
 
     this.commentService.updateOne(
+      comment.user,
       this.comment._id,
       comment,
       this.files,

@@ -57,11 +57,11 @@ myPost(skip){
 /**
  * Devuelve todas las publicaciones de un usuario
  * @param id `_id` del usuario
- * @param skip 
+ * @param skip
  * Esta variable sirve para buscar una cantidad especifica de post
  * Esto significa que si empieza en 0 busca las primeras 10 publicaciones
  * En un rango de 0-10
- * luego lo aumentamos 10 es decir busca el rango de las ultimas 10-20... y asi sucecivamente hasta que no trae mas publicaciones 
+ * luego lo aumentamos 10 es decir busca el rango de las ultimas 10-20... y asi sucecivamente hasta que no trae mas publicaciones
  */
 postByUser(id,skip){
   return this.http.get(
@@ -150,7 +150,7 @@ getAllPost(){
 
 
 
-uploadsVideos(videos: any[], files: IFile[]) {
+uploadsVideos(user: string, videos: any[], files: IFile[]) {
   return new Promise(async (resolve) => {
 
     let newFiles = await Promise.all(
@@ -163,6 +163,7 @@ uploadsVideos(videos: any[], files: IFile[]) {
           if (video) {
             let form = new FormData();
             form.append("video", video.file);
+            form.append('user', user);
             // esperamos la url
             file.url = (await this.filesServices.uploadVideo(
               form,
@@ -180,7 +181,7 @@ uploadsVideos(videos: any[], files: IFile[]) {
     // devolvemos la data correctamente
 
     resolve(newFiles);
-  
+
   });
 }
 
@@ -234,7 +235,7 @@ fileRemovedSuscriber() {
       this.translate.instant("upload_video.uploading.header"),
       this.translate.instant("upload_video.uploading.message")
     );
-    post.files = await this.uploadsVideos(videos, files);
+    post.files = await this.uploadsVideos(post.user, videos, files);
     this.create(post)
       .toPromise()
       .then((post: IPost) => {
@@ -276,17 +277,17 @@ fileRemovedSuscriber() {
      this.newPost$.next(id);
      this.commentAudio()
    }
- 
+
    // funcion para suscribirse al observable de la nueva publicacion
- 
+
    newPostObservable() {
      return this.newPost$.asObservable();
    }
- 
+
 
 
    public async editPostVideo(id, post, videos, files) {
-    post.files = await this.uploadsVideos(videos, files);
+    post.files = await this.uploadsVideos(post.user, videos, files);
     let alert = await this.alertCtrl.create({
       header: this.translate.instant("edit_post.video.saving.header"),
       message: this.translate.instant("edit_post.video.saving.message"),

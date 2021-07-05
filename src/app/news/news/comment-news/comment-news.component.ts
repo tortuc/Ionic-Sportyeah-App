@@ -112,7 +112,7 @@ export class CommentNewsComponent implements OnInit {
   @Output() newComment = new EventEmitter();
 
    creating = false
- 
+
   async send() {
     this.creating = true
     // obtenemos los datos del formulario
@@ -121,6 +121,7 @@ export class CommentNewsComponent implements OnInit {
     // le asignamos los archivos (si son videos se sobrescribiran)
 
     comment.files = await this.postService.uploadsVideos(
+      comment.user,
       this.videosToUploads,
       this.files
     );
@@ -132,15 +133,15 @@ export class CommentNewsComponent implements OnInit {
       message: this.translate.instant("loading"),
     });
 
-    comment.question = await this.assetsBtn.saveQuestion(this.question);    
+    comment.question = await this.assetsBtn.saveQuestion(this.question);
     // presentamos el loading
     loading.present();
-   
+
       comment.news = this.news._id;
       this.newsService
         .newComment(comment)
         .toPromise()
-        .then(async (comment) => {          
+        .then(async (comment) => {
           this.newCommentSuccess(comment, loading);
         })
         .catch((err) => {

@@ -108,7 +108,7 @@ export class CommentPostComponent implements OnInit {
   // cambia la variable de control del emoji
   openEmojis() {
     console.log("emojis");
-    
+
     this.emoji = !this.emoji;
   }
 
@@ -134,6 +134,7 @@ export class CommentPostComponent implements OnInit {
     // le asignamos los archivos (si son videos se sobrescribiran)
 
     comment.files = await this.postService.uploadsVideos(
+      comment.user,
       this.videosToUploads,
       this.files
     );
@@ -254,6 +255,6 @@ export class CommentPostComponent implements OnInit {
   addFile(file) {
     this.files.push(file);
     console.log(this.files);
-    
+
   }
 }

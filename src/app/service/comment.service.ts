@@ -93,9 +93,9 @@ export class CommentService {
   }
 
   public commentEditd$ = new Subject<IComment>();
-  async updateOne(id: string, newValues: IComment,files,videos) {
+  async updateOne(user: string, id: string, newValues: IComment,files,videos) {
 
-    newValues.files = await this.postService.uploadsVideos(videos, files);
+    newValues.files = await this.postService.uploadsVideos(user, videos, files);
 
     this.loading.present();
     this.http
@@ -187,7 +187,7 @@ export class CommentService {
   }
 
 
-  
+
 likeComment(id,reaction){
   return this.http.put(
     `${environment.URL_API}/comment/like/${id}` ,{id_reaction:reaction},
